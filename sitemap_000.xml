@@ -1,181 +1,181 @@
 <?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_intro</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_intro</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_start</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_start</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_getcode_svn</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_config</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_config</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_build</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_build</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_proj</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_proj</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_style</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_style</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_core</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_core</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_conn</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_conn</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_dbapi</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_dbapi</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_cgi</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_cgi</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_html</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_html</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_ser</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_ser</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_datamod</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_datamod</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_objmgr</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_objmgr</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_blast</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_blast</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_dataaccess</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_dataaccess</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_algoalign</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_algoalign</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_gui</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_gui</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_boost</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_boost</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_xmlwrapp</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_xmlwrapp</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_debug</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_debug</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_grid</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_grid</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_app</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_app</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_demo</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_demo</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_res</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_res</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_browse</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_browse</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_devtools</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_devtools</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_faq</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_faq</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://toolkitbook.github.io/book/pages/ch_libconfig</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/ch_libconfig</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
@@ -183,55 +183,55 @@
     
     
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/appendix</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/appendix</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/part1</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/part1</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/part2</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/part2</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/part3</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/part3</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/part4</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/part4</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/part5</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/part5</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/part6</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/part6</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/part7</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/part7</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
     <url>
-		<loc>http://toolkitbook.github.io/book/pages/part8</loc>
+		<loc>http://ncbi.github.io/cxx-toolkit/pages/part8</loc>
 		<lastmod>2015-09-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>

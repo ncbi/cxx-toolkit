@@ -122,7 +122,7 @@ XmlWrapp was created by forking [xmlwrapp](http://vslavik.github.io/xmlwrapp/) a
 
 The figure below illustrates the relationship between your C++ application and the XML libraries:
 
-[![Image Overview.png](/book/static/img/Overview.png)](/book/static/img/Overview.png "Click to see the full-resolution image")
+[![Image Overview.png](/cxx-toolkit/static/img/Overview.png)](/cxx-toolkit/static/img/Overview.png "Click to see the full-resolution image")
 
 One goal of the `libxmlwrapp` library is to be a very thin wrapper around `libxml2` / `libxslt` and to provide a simple yet powerful C++ interface without compromising speed. To achieve this goal, the library does not implement expensive run-time validity checks, and it is possible to write compilable C++ code that will cause a segmentation fault. For example, it is possible to create an unsafe XmlWrapp namespace object that points to an existing `libxml2` namespace, then destroy the pointed-to namespace. This results in the unsafe `libxmlwrapp` namespace object containing a dangling pointer. Subsequent access of the pointer will cause an exception or abnormal termination.
 
@@ -169,7 +169,7 @@ All the XmlWrapp functionality resides in the C++ namespaces [xml::](http://www.
 XmlWrapp Classes
 ----------------
 
-[![Image ch\_xmlwrapp\_classes.png](/book/static/img/ch_xmlwrapp_classes.png)](/book/static/img/ch_xmlwrapp_classes.png "Click to see the full-resolution image")
+[![Image ch\_xmlwrapp\_classes.png](/cxx-toolkit/static/img/ch_xmlwrapp_classes.png)](/cxx-toolkit/static/img/ch_xmlwrapp_classes.png "Click to see the full-resolution image")
 
 The figure above shows the most important classes in XmlWrapp. XML can be parsed from a file, memory buffer, or stream, creating a document object. One of the most important things you can get from the document object is the document root node.
 
@@ -775,7 +775,7 @@ For a diagram illustrating how the XmlWrapp library handles iterators and change
 
 <a name="ch_xmlwrapp.1.2"></a>
 
-[![Figure 1. Phantom Attributes.](/book/static/img/ch_xmlwrapp_phantom_attr.png)](/book/static/img/ch_xmlwrapp_phantom_attr.png "Click to see the full-resolution image")
+[![Figure 1. Phantom Attributes.](/cxx-toolkit/static/img/ch_xmlwrapp_phantom_attr.png)](/cxx-toolkit/static/img/ch_xmlwrapp_phantom_attr.png "Click to see the full-resolution image")
 
 Figure 1. Phantom Attributes.
 
@@ -826,7 +826,7 @@ To understand the difference between them it is necessary to know how `libxml2` 
 
 XmlWrapp covers both ways. The ***xml::ns*** can store its own copies of the namespace prefix and URI, and in this case the namespace is called safe. Or, the ***xml::ns*** can store just a pointer to the corresponding namespace structure, and in this case the namespace is called unsafe.
 
-[![Image ch\_xmlwrapp\_xmlns.png](/book/static/img/ch_xmlwrapp_xmlns.png)](/book/static/img/ch_xmlwrapp_xmlns.png "Click to see the full-resolution image")
+[![Image ch\_xmlwrapp\_xmlns.png](/cxx-toolkit/static/img/ch_xmlwrapp_xmlns.png)](/cxx-toolkit/static/img/ch_xmlwrapp_xmlns.png "Click to see the full-resolution image")
 
 A safe namespace can be constructed based on strings provided by the user or by making copies of the prefix and URI strings extracted from the `libxml2` low level structure. Having a copy of the strings makes it absolutely safe to manipulate namespaces - it is even possible to get a namespace from one document, destroy the document, and then apply the stored namespace to another document.
 

@@ -108,13 +108,13 @@ A good deal of the complication and tedium of getting started has thankfully bee
 
 <a name="ch_start.F1"></a>
 
-[![Figure 1. NCBI C++ Source Tree](/book/static/img/src_tree.gif)](/book/static/img/src_tree.gif "Click to see the full-resolution image")
+[![Figure 1. NCBI C++ Source Tree](/cxx-toolkit/static/img/src_tree.gif)](/cxx-toolkit/static/img/src_tree.gif "Click to see the full-resolution image")
 
 Figure 1. NCBI C++ Source Tree
 
 <a name="ch_start.F2"></a>
 
-[![Figure 2. NCBI C++ Build Tree](/book/static/img/bld_tree.gif)](/book/static/img/bld_tree.gif "Click to see the full-resolution image")
+[![Figure 2. NCBI C++ Build Tree](/cxx-toolkit/static/img/bld_tree.gif)](/cxx-toolkit/static/img/bld_tree.gif "Click to see the full-resolution image")
 
 Figure 2. NCBI C++ Build Tree
 

@@ -893,7 +893,7 @@ The resulting [CArgs](#ch_core.CArgs) object will contain parsed, verified, and 
 
 <a name="ch_core.F1"></a>
 
-[![Figure 1. Argument processing class relations.](/book/static/img/flow.gif)](/book/static/img/flow.gif "Click to see the full-resolution image")
+[![Figure 1. Argument processing class relations.](/cxx-toolkit/static/img/flow.gif)](/cxx-toolkit/static/img/flow.gif "Click to see the full-resolution image")
 
 Figure 1. Argument processing class relations.
 
@@ -2326,7 +2326,7 @@ Application state codes:
 
 The normal state transitions are:
 
-[![Image ch\_core\_log\_fmt\_app\_states.png](/book/static/img/ch_core_log_fmt_app_states.png)](/book/static/img/ch_core_log_fmt_app_states.png "Click to see the full-resolution image")
+[![Image ch\_core\_log\_fmt\_app\_states.png](/cxx-toolkit/static/img/ch_core_log_fmt_app_states.png)](/cxx-toolkit/static/img/ch_core_log_fmt_app_states.png "Click to see the full-resolution image")
 
 <a name="ch_core.Events_and_Messages"></a>
 
@@ -2496,13 +2496,13 @@ For example:
 
 An example of application events:
 
-[![Image ch\_core\_log\_fmt\_event.png](/book/static/img/ch_core_log_fmt_event.png)](/book/static/img/ch_core_log_fmt_event.png "Click to see the full-resolution image")
+[![Image ch\_core\_log\_fmt\_event.png](/cxx-toolkit/static/img/ch_core_log_fmt_event.png)](/cxx-toolkit/static/img/ch_core_log_fmt_event.png "Click to see the full-resolution image")
 
 (Click to see the full-resolution image.)
 
 An example of diagnostic messages:
 
-[![Image ch\_core\_log\_fmt\_diagnostic.png](/book/static/img/ch_core_log_fmt_diagnostic.png)](/book/static/img/ch_core_log_fmt_diagnostic.png "Click to see the full-resolution image")
+[![Image ch\_core\_log\_fmt\_diagnostic.png](/cxx-toolkit/static/img/ch_core_log_fmt_diagnostic.png)](/cxx-toolkit/static/img/ch_core_log_fmt_diagnostic.png "Click to see the full-resolution image")
 
 (Click to see the full-resolution image.)
 
@@ -3694,7 +3694,7 @@ The following subsections discuss the individual classes in more detail.
 
 <a name="ch_core.F2"></a>
 
-[![Figure 2. Thread Life Cycle](/book/static/img/thread_life_cycle.gif)](/book/static/img/thread_life_cycle.gif "Click to see the full-resolution image")
+[![Figure 2. Thread Life Cycle](/cxx-toolkit/static/img/thread_life_cycle.gif)](/cxx-toolkit/static/img/thread_life_cycle.gif "Click to see the full-resolution image")
 
 Figure 2. Thread Life Cycle
 

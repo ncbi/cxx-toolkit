@@ -581,7 +581,7 @@ The main page (see [Figure 1](#ch_boost.F20.1)) provides many ways to narrow dow
 
 <a name="ch_boost.F20.1"></a>
 
-[![Figure 1. Test Interface](/book/static/img/TestInterface.png)](/book/static/img/TestInterface.png "Click to see the full-resolution image")
+[![Figure 1. Test Interface](/cxx-toolkit/static/img/TestInterface.png)](/cxx-toolkit/static/img/TestInterface.png "Click to see the full-resolution image")
 
 Figure 1. Test Interface
 
@@ -589,7 +589,7 @@ The “See test statistics” button retrieves the desired statistics in a secon
 
 <a name="ch_boost.F20.2"></a>
 
-[![Figure 2. Test Matrix](/book/static/img/TestMatrix.png)](/book/static/img/TestMatrix.png "Click to see the full-resolution image")
+[![Figure 2. Test Matrix](/cxx-toolkit/static/img/TestMatrix.png)](/cxx-toolkit/static/img/TestMatrix.png "Click to see the full-resolution image")
 
 Figure 2. Test Matrix
 
@@ -597,7 +597,7 @@ Each cell in the results tables represents a specific unit test performed on a s
 
 <a name="ch_boost.F20.3"></a>
 
-[![Figure 3. Test Result](/book/static/img/TestResult.png)](/book/static/img/TestResult.png "Click to see the full-resolution image")
+[![Figure 3. Test Result](/cxx-toolkit/static/img/TestResult.png)](/cxx-toolkit/static/img/TestResult.png "Click to see the full-resolution image")
 
 Figure 3. Test Result
 

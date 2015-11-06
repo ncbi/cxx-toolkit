@@ -195,7 +195,7 @@ To provide more flexibility, load balancing, and fault-tolerance, it is highly a
 
 The following diagram illustrates this flow of control and data:
 
-[![Image grid-collab.png](/book/static/img/grid-collab.png)](/book/static/img/grid-collab.png "Click to see the full-resolution image")
+[![Image grid-collab.png](/cxx-toolkit/static/img/grid-collab.png)](/cxx-toolkit/static/img/grid-collab.png "Click to see the full-resolution image")
 
 <a name="ch_grid.The_GRID_Farm"></a>
 
@@ -737,7 +737,7 @@ The following code fragments show examples of API calls for creating request-spe
 
 Code like the above will result in [AppLog](http://mini.ncbi.nlm.nih.gov/1k2vj) entries that look similar to:
 
-[![Image ch\_grid\_cserver\_applog.png](/book/static/img/ch_grid_cserver_applog.png)](/book/static/img/ch_grid_cserver_applog.png "Click to see the full-resolution image")
+[![Image ch\_grid\_cserver\_applog.png](/cxx-toolkit/static/img/ch_grid_cserver_applog.png)](/cxx-toolkit/static/img/ch_grid_cserver_applog.png "Click to see the full-resolution image")
 
 Each thread has its own diagnostics context. Therefore, simultaneous calls to ***GetDiagContext().SetRequestContext()*** in multiple event handlers will not interfere with each other.
 

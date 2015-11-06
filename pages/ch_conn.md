@@ -752,7 +752,7 @@ Using connections and connectors (via the entirely procedural approach) in C++ p
 
 <a name="ch_conn.fig1"></a>
 
-![Figure 1. C++ API connection stream classes](/book/static/img/ch_conn_CConn_IOStream.png)
+![Figure 1. C++ API connection stream classes](/cxx-toolkit/static/img/ch_conn_CConn_IOStream.png)
 
 Figure 1. C++ API connection stream classes
 

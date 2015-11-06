@@ -160,7 +160,7 @@ Further discussion of combining a CGI application with the HTML classes can be f
 
 <a name="ch_cgi.F1"></a>
 
-[![Figure 1. Layered design of the CGI classes](/book/static/img/cgi.gif)](/book/static/img/cgi.gif "Click to see the full-resolution image")
+[![Figure 1. Layered design of the CGI classes](/cxx-toolkit/static/img/cgi.gif)](/cxx-toolkit/static/img/cgi.gif "Click to see the full-resolution image")
 
 Figure 1. Layered design of the CGI classes
 
@@ -184,7 +184,7 @@ The ***CCgiApplication*** class is a specialization of ***CNcbiApplication***. [
 
 <a name="ch_cgi.F2"></a>
 
-[![Figure 2. Adapting the init() and run() methods inherited from CNcbiApplication](/book/static/img/cgirun.gif)](/book/static/img/cgirun.gif "Click to see the full-resolution image")
+[![Figure 2. Adapting the init() and run() methods inherited from CNcbiApplication](/cxx-toolkit/static/img/cgirun.gif)](/cxx-toolkit/static/img/cgirun.gif "Click to see the full-resolution image")
 
 Figure 2. Adapting the init() and run() methods inherited from CNcbiApplication
 
@@ -1420,7 +1420,7 @@ The round-trip sequence of events for a FastCGI request/response is:
 
 7.  The web server sends the response and status code to the client via HTTP.
 
-[![Image ch\_cgi\_fcgi\_events.png](/book/static/img/ch_cgi_fcgi_events.png)](/book/static/img/ch_cgi_fcgi_events.png "Click to see the full-resolution image")
+[![Image ch\_cgi\_fcgi\_events.png](/cxx-toolkit/static/img/ch_cgi_fcgi_events.png)](/cxx-toolkit/static/img/ch_cgi_fcgi_events.png "Click to see the full-resolution image")
 
 ***Note:*** The primary purpose of the FastCGI protocol is to eliminate repeated long application startup times (and possibly shutdown times). This means that, unlike normal CGI applications, FCGI applications will not be started by the web server - they're expected to be already running and listening for a socket connection request from the proxy script. Thus, the proxy script will just attempt to connect to an already running FCGI application via the configured socket. If you send a request to the proxy without having first started your FCGI application, the request will appear to hang until it times out or until the FCGI application is started.
 

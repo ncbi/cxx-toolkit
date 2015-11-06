@@ -161,7 +161,7 @@ Seq-inst is the parent class of a sequence representation class hierarchy. There
 
 There is also a representation branch, which is independent of the molecule type branch. This class hierarchy involves the particular data structure used to represent the knowledge we have about the molecule, no matter which part of the molecule type branch it may be in. The repr element indicates the type of representation used. The aim of such a set of representation classes is to support the information to express different views of sequence based objects, from chromosomes to restriction fragments, from genetic maps to proteins, within a single overall model. The ability to do this confers profound advantages for software tools, data storage and retrieval, and traversal of related sequence and map data from different scientific domains.
 
-[![Image ch\_datamod\_G1.jpg](/book/static/img/ch_datamod_G1.jpg)](/book/static/img/ch_datamod_G1.jpg "Click to see the full-resolution image")
+[![Image ch\_datamod\_G1.jpg](/cxx-toolkit/static/img/ch_datamod_G1.jpg)](/cxx-toolkit/static/img/ch_datamod_G1.jpg "Click to see the full-resolution image")
 
 A **virtual** representation is used to describe a sequence about which we may know things like it is DNA, it is double stranded, we may even know its length, but we do not have the actual sequence itself yet. Most fields of the Seq-inst are filled in, but Seq-inst.seq-data is empty. An example would be a band on a restriction map.
 
@@ -216,7 +216,7 @@ A feature table is a collection of Seq-feat, or [sequence features](#ch_datamod.
 
 Since the Seq-feat data structure itself and the Seq-loc used to attach it to the sequence are common to all features, it is also possible to support a class of operations over all features without regard to the different types of datablocks attached to them. So a function to determine all features in a particular region of a Bioseq need not care what type of features they are.
 
-[![Image ch\_datamod\_G2.jpg](/book/static/img/ch_datamod_G2.jpg)](/book/static/img/ch_datamod_G2.jpg "Click to see the full-resolution image")
+[![Image ch\_datamod\_G2.jpg](/cxx-toolkit/static/img/ch_datamod_G2.jpg)](/cxx-toolkit/static/img/ch_datamod_G2.jpg "Click to see the full-resolution image")
 
 A Seq-feat is bipolar in that it contains up to two Seq-loc's. Seq-feat.location indicates the "source" and is the location similar to the single location in common feature table implementations. Seq-feat.product is the "sink". A CdRegion feature would have its Seq-feat.location on the DNA and its Seq-feat.product on the protein sequence produced. Used this way it defines the process of translating a DNA sequence to a protein sequence. This establishes in an explicit way the important relationship between nucleic acid and protein sequence databases.
 
@@ -236,7 +236,7 @@ A Seq-align is considered to be a SEQUENCE OF segments. Each segment is an unbro
         id=300        ....CCTTTTAGAGATGATGAT....ATGA
                       | 1 |   2   |   3  | 4| 5 | 6 |  Segments
 
-[![Image ch\_datamod\_G3.jpg](/book/static/img/ch_datamod_G3.jpg)](/book/static/img/ch_datamod_G3.jpg "Click to see the full-resolution image")
+[![Image ch\_datamod\_G3.jpg](/cxx-toolkit/static/img/ch_datamod_G3.jpg)](/cxx-toolkit/static/img/ch_datamod_G3.jpg "Click to see the full-resolution image")
 
 The example above is a global alignment that is each segment sequentially maps a region of each Bioseq to a region of the others. An alignment can also be of type "diags", which is just a collection of segments with no implication about the logic of joining one segment to the next. This is equivalent to the diagonal lines that are shown on a dot-matrix plot.
 
@@ -315,7 +315,7 @@ A third group may be doing bulk sequencing in the region of the human chromosome
 
 The database now has the information from five different research groups, experts in different fields, using different computer and software systems, and unaware, in many cases, of each other's work, to unambiguously pull together all this related information into an integrated high level view through the use of the shared data model and the controlled Seq-ids on common cited coordinate systems. This integration across disciplines and generation of high level views of the data is continuously and automatically available to all users and can be updated immediately on the arrival of new data without human intervention or interpretation by the database staff. This moves scientific databases from the role of curators of scientific data to the role of facilitators of discourse among researchers. It makes identification of potentially fruitful connections across disciplines an automatic result of data entry, rather than of painstaking analysis by a central group. It takes advantage of the growing rush of molecular biology data, making its volume and diversity advantages rather than liabilities.
 
-[![Image ch\_datamod\_G4.jpg](/book/static/img/ch_datamod_G4.jpg)](/book/static/img/ch_datamod_G4.jpg "Click to see the full-resolution image")
+[![Image ch\_datamod\_G4.jpg](/cxx-toolkit/static/img/ch_datamod_G4.jpg)](/cxx-toolkit/static/img/ch_datamod_G4.jpg "Click to see the full-resolution image")
 
 <a name="ch_datamod.Programming_Consider"></a>
 

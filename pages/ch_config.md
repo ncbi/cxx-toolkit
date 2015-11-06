@@ -168,7 +168,7 @@ Similarly, paths beginning with `internal/` result in the inclusion of source an
 
 The general syntax for path lines is represented by the following diagram:
 
-[![Image ch\_config\_lst\_grammar\_path\_line.png](/book/static/img/ch_config_lst_grammar_path_line.png)](/book/static/img/ch_config_lst_grammar_path_line.png "Click to see the full-resolution image")
+[![Image ch\_config\_lst\_grammar\_path\_line.png](/cxx-toolkit/static/img/ch_config_lst_grammar_path_line.png)](/cxx-toolkit/static/img/ch_config_lst_grammar_path_line.png "Click to see the full-resolution image")
 
 The various elements of the above syntax diagram are discussed in the following sections:
 
@@ -286,7 +286,7 @@ Project tags may be used to filter the final set of selected projects (see the [
 
 The general syntax for project tag lines is represented by the following diagram:
 
-[![Image ch\_config\_lst\_grammar\_tags\_line.png](/book/static/img/ch_config_lst_grammar_tags_line.png)](/book/static/img/ch_config_lst_grammar_tags_line.png "Click to see the full-resolution image")
+[![Image ch\_config\_lst\_grammar\_tags\_line.png](/cxx-toolkit/static/img/ch_config_lst_grammar_tags_line.png)](/cxx-toolkit/static/img/ch_config_lst_grammar_tags_line.png "Click to see the full-resolution image")
 
 For example:
 
@@ -475,7 +475,7 @@ The configuration GUI has a "Wizard" style design – selections are made in a s
 
 The Configuration tab looks like:
 
-[![Image ch\_config\_dlg\_cfg.png](/book/static/img/ch_config_dlg_cfg.png)](/book/static/img/ch_config_dlg_cfg.png "Click to see the full-resolution image")
+[![Image ch\_config\_dlg\_cfg.png](/cxx-toolkit/static/img/ch_config_dlg_cfg.png)](/cxx-toolkit/static/img/ch_config_dlg_cfg.png "Click to see the full-resolution image")
 
 The Configuration tab allows you to:
 
@@ -493,7 +493,7 @@ The Configuration tab allows you to:
 
 The Advanced tab looks like:
 
-[![Image ch\_config\_dlg\_adv\_less.png](/book/static/img/ch_config_dlg_adv_less.png)](/book/static/img/ch_config_dlg_adv_less.png "Click to see the full-resolution image")
+[![Image ch\_config\_dlg\_adv\_less.png](/cxx-toolkit/static/img/ch_config_dlg_adv_less.png)](/cxx-toolkit/static/img/ch_config_dlg_adv_less.png "Click to see the full-resolution image")
 
 The Advanced tab allows you to:
 
@@ -507,7 +507,7 @@ The Advanced tab allows you to:
 
 In addition, by clicking "more" you will see:
 
-[![Image ch\_config\_dlg\_adv\_more.png](/book/static/img/ch_config_dlg_adv_more.png)](/book/static/img/ch_config_dlg_adv_more.png "Click to see the full-resolution image")
+[![Image ch\_config\_dlg\_adv\_more.png](/cxx-toolkit/static/img/ch_config_dlg_adv_more.png)](/cxx-toolkit/static/img/ch_config_dlg_adv_more.png "Click to see the full-resolution image")
 
 These additional options generally don't need to be changed, but they allow you to:
 
@@ -527,7 +527,7 @@ These additional options generally don't need to be changed, but they allow you 
 
 The Third party libraries tab looks like:
 
-[![Image ch\_config\_dlg\_third.png](/book/static/img/ch_config_dlg_third.png)](/book/static/img/ch_config_dlg_third.png "Click to see the full-resolution image")
+[![Image ch\_config\_dlg\_third.png](/cxx-toolkit/static/img/ch_config_dlg_third.png)](/cxx-toolkit/static/img/ch_config_dlg_third.png "Click to see the full-resolution image")
 
 The Third party libraries tab allows you to:
 
@@ -543,7 +543,7 @@ The Third party libraries tab allows you to:
 
 The Projects tab looks like:
 
-[![Image ch\_config\_dlg\_proj.png](/book/static/img/ch_config_dlg_proj.png)](/book/static/img/ch_config_dlg_proj.png "Click to see the full-resolution image")
+[![Image ch\_config\_dlg\_proj.png](/cxx-toolkit/static/img/ch_config_dlg_proj.png)](/cxx-toolkit/static/img/ch_config_dlg_proj.png "Click to see the full-resolution image")
 
 The Projects tab allows you to select exactly which applications and libraries will be built. If an item is not selected, but at least one selected item depends on it, then it will also be built. This provides a convenient way for developers to simply pick the top-level items to build.
 
@@ -557,7 +557,7 @@ The Tags column allows you to quickly select all items having the selected proje
 
 The Done tab looks like:
 
-[![Image ch\_config\_dlg\_done.png](/book/static/img/ch_config_dlg_done.png)](/book/static/img/ch_config_dlg_done.png "Click to see the full-resolution image")
+[![Image ch\_config\_dlg\_done.png](/cxx-toolkit/static/img/ch_config_dlg_done.png)](/cxx-toolkit/static/img/ch_config_dlg_done.png "Click to see the full-resolution image")
 
 The Done tab:
 
@@ -1447,7 +1447,7 @@ Each of the standard solutions use a predefined list of projects to build, which
 
 To configure and generate the project list, open the chosen solution, select the desired configuration, right click on the **-CONFIGURE-** project, and click 'Build'. This will rewrite the project file that Visual C++ is currently using, so you should see one or more dialog boxes similar to this:
 
-[![Image ch\_config\_proj\_mod\_reload.png](/book/static/img/ch_config_proj_mod_reload.png)](/book/static/img/ch_config_proj_mod_reload.png "Click to see the full-resolution image")
+[![Image ch\_config\_proj\_mod\_reload.png](/cxx-toolkit/static/img/ch_config_proj_mod_reload.png)](/cxx-toolkit/static/img/ch_config_proj_mod_reload.png "Click to see the full-resolution image")
 
 ***Note:*** At least one such dialog will typically appear *before* the configuration is complete. Therefore, you need to wait until you see the message:
 

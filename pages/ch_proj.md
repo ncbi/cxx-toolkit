@@ -766,7 +766,7 @@ Thus, you will also need to create a `meta-makefile` in the newly created `src/m
 
 <a name="ch_proj.F1"></a>
 
-[![Figure 1. Meta makefiles and the makefiles they generate](/book/static/img/cpptree.jpg)](/book/static/img/cpptree.jpg "Click to see the full-resolution image")
+[![Figure 1. Meta makefiles and the makefiles they generate](/cxx-toolkit/static/img/cpptree.jpg)](/cxx-toolkit/static/img/cpptree.jpg "Click to see the full-resolution image")
 
 Figure 1. Meta makefiles and the makefiles they generate
 
@@ -1038,7 +1038,7 @@ Given the potential for this complexity of interactions, a critical design issue
 
 <a name="ch_proj.F2"></a>
 
-[![Figure 2. Example of complex relationships between base classes and user classes](/book/static/img/user_base.gif)](/book/static/img/user_base.gif "Click to see the full-resolution image")
+[![Figure 2. Example of complex relationships between base classes and user classes](/cxx-toolkit/static/img/user_base.gif)](/cxx-toolkit/static/img/user_base.gif "Click to see the full-resolution image")
 
 Figure 2. Example of complex relationships between base classes and user classes
 
