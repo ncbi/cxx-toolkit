@@ -1,0 +1,105 @@
+<!-- move tables to scrollable div -->
+<script language="javascript">
+  var x = document.getElementsByClassName("table-scroll");
+  var i;
+  for (i = 0; i < x.length; i++) {
+    x[i].appendChild(x[i].previousElementSibling);
+  }
+</script>
+
+    <div class="subfooter">
+        <h2 class="offscreen_noflow">Simple NCBI Directory</h2>
+        <div class="footer_title">
+          <h1>Other NCBI resources</h1>
+        </div>
+        <ul class="foot_list" id="getting_started">
+            <li><h3>Getting Started</h3></li>
+            <!-- removed; hp-250           <li><a href="/guide/all/">Site Map</a></li>-->
+            <li><a href="http://www.ncbi.nlm.nih.gov/home/learn.shtml">NCBI Education</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/books/NBK3831/">NCBI Help Manual</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/books/NBK143764/">NCBI Handbook</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/home/learn.shtml">Training &amp; Tutorials</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/home/submit.shtml">Submit Data</a></li>
+        </ul>
+        <!-- this section is re-written by an XSLT before output -->
+        <ul class="foot_list" id="resources">
+            <li><h3>Resources</h3></li>
+            <!-- fill this in with categories -->
+        <li><a href="http://www.ncbi.nlm.nih.gov/guide/chemicals-bioassays/">Chemicals &amp; Bioassays</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/data-software/">Data &amp; Software</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/dna-rna/">DNA &amp; RNA</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/domains-structures/">Domains &amp; Structures</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/genes-expression/">Genes &amp; Expression</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/genetics-medicine/">Genetics &amp; Medicine</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/genomes-maps/">Genomes &amp; Maps</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/homology/">Homology</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/literature/">Literature</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/proteins/">Proteins</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/sequence-analysis/">Sequence Analysis</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/taxonomy/">Taxonomy</a></li><li><a href="http://www.ncbi.nlm.nih.gov/guide/variation/">Variation</a></li></ul>
+        
+        <ul class="foot_list" id="popular">
+            <li><h3>Popular</h3></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/pubmed/">PubMed</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/books/">Bookshelf</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/pmc/">PubMed Central</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/pubmedhealth/">PubMed Health</a></li>
+            <li><a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a></li>            
+            <li><a href="http://www.ncbi.nlm.nih.gov/nucleotide/">Nucleotide</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/genome/">Genome</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/snp/">SNP</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/gene/">Gene</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/protein/">Protein</a></li>
+            <li><a href="http://pubchem.ncbi.nlm.nih.gov/" class="newdomain">PubChem</a></li>
+        </ul>
+        <ul class="foot_list" id="featured">
+            <li><h3>Featured</h3></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/gtr/">Genetic Testing Registry</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/pubmedhealth/">PubMed Health</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/genbank/">GenBank</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/refseq/">Reference Sequences</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/geo/">Gene Expression Omnibus</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/mapview/">Map Viewer</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/genome/guide/human/">Human Genome</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/genome/guide/mouse/">Mouse Genome</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/genomes/FLU/">Influenza Virus</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/tools/primer-blast/">Primer-BLAST</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/Traces/sra/">Sequence Read Archive</a></li>
+        </ul>
+        <ul class="foot_list" id="info">
+            <li><h3>NCBI Information</h3></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/home/about/">About NCBI</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/research/">Research at NCBI</a></li>
+            <li><a href="http://www.ncbi.nlm.nih.gov/news/">NCBI News</a></li>
+            <li><a href="ftp://ftp.ncbi.nlm.nih.gov/">NCBI FTP Site</a></li>
+            <li><a target="_blank" aria-haspopup="true" aria-expanded="false" role="button" class="external" href="https://www.facebook.com/ncbi.nlm">NCBI on Facebook</a></li>
+            <li><a target="_blank" aria-haspopup="true" aria-expanded="false" role="button" class="external" href="https://twitter.com/ncbi">NCBI on Twitter</a></li>
+            <li><a target="_blank" aria-haspopup="true" aria-expanded="false" role="button" class="external" href="http://www.youtube.com/ncbinlm">NCBI on YouTube</a></li>
+        </ul>
+    </div>
+    <div style="top: -100px; left: -100px; display: none;" aria-hidden="true" aria-live="assertive" id="external-disclaimer" class="ui-helper-reset ui-ncbipopper-wrapper ui-ncbipopper-basic">
+        External link. Please review our <a href="http://www.nlm.nih.gov/privacy.html">privacy policy</a>.
+    </div>    
+    <div id="ncbifooter" class="contact_info">      
+        <div id="footer-contents-right">
+            <div id="nlm_thumb_logo">
+                <a href="http://www.nlm.nih.gov/" title="NLM">NLM</a>
+            </div>
+            <div id="nih_thumb_logo">
+                <a href="http://www.nih.gov/" title="NIH">NIH</a>
+            </div>
+            <div id="hhs_thumb_logo">
+                <a href="http://www.dhhs.gov/" title="DHHS">DHHS</a>
+            </div>
+            <div id="usagov_thumb_logo">
+                <a href="http://www.usa.gov/" title="USA.gov">USA.gov</a>
+            </div>         
+        </div>
+        
+        <div id="footer-contents-left">
+            <p class="address vcard">
+                <span class="url">
+                    <a class="fn url newdomain" href="http://www.ncbi.nlm.nih.gov/">National Center for
+                        Biotechnology Information</a>,
+                </span> <span class="org url"><a href="http://www.nlm.nih.gov/">U.S. National Library of Medicine</a></span>
+                <span class="adr">
+                    <span class="street-address">8600 Rockville Pike</span>, <span class="locality">Bethesda</span>
+                    <span class="region">MD</span>, <span class="postal-code">20894</span>
+                    <span class="country-name">USA</span>
+                </span>
+            </p>
+            
+            <a href="http://www.ncbi.nlm.nih.gov/home/about/policies.shtml">Policies and Guidelines</a> | <a href="http://www.ncbi.nlm.nih.gov/home/about/contact.shtml">Contact</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="/book/default_files/InstrumentPageStarterJS.js"> </script>    
+    <script type="text/javascript" src="/book/default_files/hfjs2.js"> </script>

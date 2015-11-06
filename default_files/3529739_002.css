@@ -1,0 +1,21 @@
+
+#portaldata, 
+#portal-debug-console, 
+#universal_header, 
+div.page > div.header,
+div.page > div.localnav,
+#footer,
+#help-desk-link, 
+div.paf-debug-wrap,
+.sidecontentpullout, .besetpullout { display: none; }
+body {background-color: white; }
+.shadow {
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow:none;
+}
+html body div.page {
+    font-family: Georgia, serif;
+    line-height: 1.2;
+}
+#NCBIFooter_dynamic{display:none}

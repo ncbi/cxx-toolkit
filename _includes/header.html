@@ -1,0 +1,213 @@
+
+                        <!--/.header-->
+                        
+                    	<!-- header start  -->
+<div class="header" style="height: 80px">
+	<!--
+	<div class="ncbi_logo" style="position:absolute; right:10px;">
+        	<a class="img_link icnblk_img" title="NCBI" target="mainwindow" href="http://www.ncbi.nlm.nih.gov/">
+            		<img class="source-thumb" src="/book/static/img/ncbi_logo1.png" alt="NCBI Home Page"/>
+        	</a>
+    	</div>
+    	-->
+    	
+    	<div class="ncbi_logo">
+		<a href="http://www.ncbi.nlm.nih.gov/" target="_blank">
+			<img title="NCBI Home Page" src="/book/static/img/ncbi_logo1.png">
+		</a>
+	</div>
+    	
+	<div class="res_logo">
+		<h1 class="res_name">
+	        	<a href="/book" title="Table of Contents Page" id="toolkit_header">
+				<!--
+				<a class="img_link icnblk_img" title="Table of Contents Page" target="mainwindow" href="/book">
+				<img class="source-thumb" src="/book/static/img/th-toolkit-lrg.png" alt="Cover of The NCBI C++ Toolkit Book" height="100px" width="80px"/>
+				-->
+				NCBI C++ Toolkit
+			</a>
+		</h1>
+	</div>
+    
+	<div style="position: absolute; height: 80px; right: 100px; top: -25px" class="search" align="top">
+        	<form name="frmSymbolSearch" onsubmit="return SymbolSearch('toolkit')" action="/" id="frmSymbolSearch">
+		<table style="width: 100%">
+      <tbody><tr>
+			<td colspan="4">
+				<input id="search_box" name="__symbol" placeholder="Search..." onkeypress="SymbolSearchKeyPress('toolkit',event)" type="text">
+				<label for="search_box" class="offscreen_noflow">Search term</label>
+				<div id="button-holder">
+					<img src="/book/static/img/search_icon.png" onclick="javasrcipt:SymbolSearch('toolkit');">
+				</div>
+			
+		</td></tr>
+      
+		<tr class="option">
+			<td width="0%"><nobr><input checked="checked" name="__symboloc" id="google_search" type="radio"> <label title="Google Search on this Book" for="google_search">Book</label>			</nobr>
+			</td>
+			<td width="0%">
+				<nobr><input name="__symboloc" id="toolkit" type="radio"> <label title="Search in the C/C++ source code" for="toolkit">Code</label></nobr>
+			</td>
+			<td width="0%">
+				<nobr><input name="__symboloc" id="pLXR" type="radio"> <label title="Search the symbol in the source code using LINUX Cross-Reference browser" for="pLXR">LXR</label></nobr>
+			</td>
+			<td width="100%">
+				<input name="__symboloc" id="pLib" type="radio"> <label title="Locate the Toolkit library(es) where the symbol is defined" for="pLib">Library</label>
+			</td>
+		</tr>
+		</tbody></table>
+		</form>
+	</div>
+
+    
+	<div style="height: 1px; "> </div>
+	
+	
+                </div>
+                      
+                      <div class="nvgtn">
+		<a style="float:left; padding-left: 50px;" class="jig-ncbipopper" href="#__nav_cntnt" role="button" aria-expanded="false" aria-haspopup="true">Contents ▾</a>
+		<div id="__nav_cntnt" style="width: 700px; height: 500px; overflow: auto; top: -100px; left: -100px; display: none; max-height: 455px;" aria-live="assertive" aria-hidden="true" class="ui-helper-reset ui-ncbipopper-wrapper ui-ncbipopper-basic">
+			<a href="../" class="right">Table of Contents Page</a>
+			<ul class="simple-list">
+				<li class="half_rhythm">
+					<a href="/book/pages/fm">Book Information</a>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/part1">Part 1. Overview</a>
+					<ul class="simple-list">
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_intro">1. Introduction to the C++ Toolkit</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_start">2. Getting Started</a>
+						</li>
+					</ul>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/part2">Part 2. Development Framework</a>
+					<ul class="simple-list">
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_getcode_svn">3. Retrieve the Source Code (FTP and Subversion)</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_config">4. Configure, Build, and Use the Toolkit</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_build">5. Working with Makefiles</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_proj">6. Project Creation and Management</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_style">7. Programming Policies and Guidelines</a>
+						</li>
+					</ul>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/part3">Part 3. C++ Toolkit Library Reference</a>
+					<ul class="simple-list">
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_core">8. Portability, Core Functionality and Application Framework</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_conn">9. Networking and IPC</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_dbapi">10. Database Access Support</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_cgi">11. CGI and Fast-CGI </a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_html">12. HTML</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_ser">13. Data Serialization (ASN.1, XML)</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_datamod">14. Biological Sequence Data Model</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_objmgr">15. Biological Object Manager</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_blast">16. BLAST API</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_dataaccess">17. Access to NCBI data</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_algoalign">18. Biological Sequence Alignment</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_gui">19. GUI and Graphics</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_boost">20. Using the Boost Unit Test Framework</a>
+						</li>
+					</ul>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/part4">Part 4. Wrappers for 3rd-Party Packages</a>
+					<ul class="simple-list">
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_xmlwrapp">21. XmlWrapp (XML parsing and handling, XSLT, XPath)</a>
+						</li>
+					</ul>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/part5">Part 5. Software</a>
+					<ul class="simple-list">
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_debug">22. Debugging, Exceptions, and Error Handling</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_grid">23. Distributed Computing</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_app">24. Applications</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_demo">25. Examples and Demos</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_res">26. C Toolkit Resources for C++ Toolkit Users</a>
+						</li>
+					</ul>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/part6">Part 6. Help and Support</a>
+					<ul class="simple-list">
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_browse">27. NCBI C++ Toolkit Source Browser</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_devtools">28. Software Development Tools</a>
+						</li>
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_faq">29. FAQs, Useful Documentation Links, and Mailing Lists</a>
+						</li>
+					</ul>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/part7">Part 7. Library and Applications Configuration</a>
+					<ul class="simple-list">
+						<li class="half_rhythm">
+							<a href="/book/pages/ch_libconfig">30. Library Configuration</a>
+						</li>
+					</ul>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/part8">Release Notes</a>
+				</li>
+				<li class="half_rhythm">
+					<a href="/book/pages/appendix">Appendix - Books and Styles</a>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<a style="float:right; padding-right: 50px;" href="https://github.com/toolkitbook/book/edit/gh-pages/{{ page.path }}"><img alt="Edit this page" src="/book/static/img/button_edit_grey.gif"></a>
+			<a style="float:right; padding-right: 50px;" target="_blank" href="/book/help_page">How to edit the page</a></div>
+	</div>
+
