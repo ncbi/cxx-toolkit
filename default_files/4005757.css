@@ -77,7 +77,7 @@ tr.option {color:white;}
 /******  END - Styles for new header ******/
 
 /******  Footer styling  *******/
-.footer_title {padding:15px;}
+.footer_title {padding:5px;}
 .footer_title H1 {color: #14376c;}
 
 /******** Make large tables in <div class="container"> scrollable like in the old book *******/
