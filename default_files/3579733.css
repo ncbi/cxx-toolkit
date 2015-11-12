@@ -34,7 +34,7 @@ body .ui-ncbimenu-item-first-active,body ul li a.ui-ncbimenu-item-active{backgro
 #footer-contents-left p.address .adr{display:block}
 #footer{background:#e5e5e5 url(//static.pubmed.gov/portal/portal3rc.fcgi/4068278/img/3418709) repeat-x scroll left top;clear:both;zoom:1;z-index:1}
 #footer,.contact_info{color:#14376c;background-color:#fff;overflow:visible;text-align:center;}
-.foot_list{margin:0;padding:0;width:20%;float:left;text-align:left;width:19\0%;*width:19%}
+.foot_list{margin:0;padding:0;width:20%;float:left;text-align:left;margin-top:2em;width:19\0%;*width:19%}
 .foot_list li{list-style-type:none;}
 .foot_list li h3{text-transform:uppercase;margin:0;margin-bottom:.05em;}
 .offscreen_noflow{float:left;text-indent:-9999em;_display:block;margin:0;padding:0;height:0;}
