@@ -7,7 +7,7 @@ nav: index
 The NCBI C++ Toolkit Book
 =========================
 
-National Center for Biotechnology Information (US): Bethesda (MD); 2004.
+National Center for Biotechnology Information (US): Bethesda (MD); 2004. TEST TEST VAKATOV
 
 Contents
 --------
