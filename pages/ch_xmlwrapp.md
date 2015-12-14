@@ -666,14 +666,14 @@ Recommendations:
 
 Sometimes it is necessary to iterate over a node's attributes or to find an attribute. Let’s take a simple example:
 
-```xml
+{% highlight c++ %}
 <?xml version="1.0" ?>
 <root xmlns:some_ns="http://the.com"
       attr1       = "val1"
       foo         = "fooVal"
       some_ns:bar = "barVal">
 </root>
-```
+{% endhighlight %}
 
 XmlWrapp provides an STL-like way of iterating over the attributes, e.g:
 
