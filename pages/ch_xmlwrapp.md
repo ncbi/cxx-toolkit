@@ -993,7 +993,7 @@ Then you insert the following subtree before the child node:
 
 You might expect ***save\_to\_string()*** to produce:
 
-```xml
+```
 <?xml version="1.0"?>
 <root>
     <new_1>
