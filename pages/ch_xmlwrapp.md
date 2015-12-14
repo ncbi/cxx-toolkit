@@ -847,11 +847,11 @@ When using ***xml::event\_parser***, three functions are involved in parsing an 
 
 Imagine that an event parser which implements both ***text()*** and ***entity\_reference()*** callbacks receives the following document as in input:
 
-```xml
+{% highlight xml %}
 <?xml version="1.0"?>
 <!DOCTYPE EXAMPLE SYSTEM "example.dtd" [ <!ENTITY my "VALUE">]>
 <root><node>Super &my; oh!</node></root>
-```
+{% endhighlight %}
 
 Then the table below lists the callbacks that are called, depending on the value passed to ***substitute\_entities()***:
 
