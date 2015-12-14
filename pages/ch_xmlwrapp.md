@@ -196,12 +196,11 @@ This section includes compact code fragments that show the essence of how to ach
 
 ### Create a Document from an std::string Object
 
-```c++
-std::string         xmldata( "<TagA>"
-                                 "<TagB>stuff</TagB>"
-                             "</TagA>" );
-xml::document       doc( xmldata.c_str(), xmldata.size(), NULL );
-```
+
+    std::string         xmldata( "<TagA>"
+                                     "<TagB>stuff</TagB>"
+                                 "</TagA>" );
+    xml::document       doc( xmldata.c_str(), xmldata.size(), NULL );
 
 <a name="ch_xmlwrapp._Create_a_Document_fr_1"></a>
 
