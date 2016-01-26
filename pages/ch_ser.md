@@ -404,17 +404,17 @@ In keeping with the ***Read*** and ***Write*** methods of the ***CObjectIStream*
 As an example, consider how the ***Run()*** method in [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) might be implemented differently using the ***CObjectStreamCopier*** class:
 
     int CTestAsn::Run() {
-    auto_ptr<CObjectIStream>
-    xml_in(CObjectIStream::Open("1001.xml", eSerial_Xml));
-    auto_ptr<CObjectOStream>
-    txt_out(CObjectOStream::Open("1001.asntxt", eSerial_AsnText));
-    CObjectStreamCopier txt_copier(*xml_in, *txt_out);
-    txt_copier.Copy(CBiostruc::GetTypeInfo());
-    auto_ptr<CObjectOStream>
-        bin_out(CObjectOStream::Open("1001.asnbin", eSerial_AsnBinary));
-    CObjectStreamCopier bin_copier(*xml_in, *bin_out);
-    bin_copier.Copy(CBiostruc::GetTypeInfo());
-    return 0;
+        auto_ptr<CObjectIStream>
+            xml_in(CObjectIStream::Open("1001.xml", eSerial_Xml));
+        auto_ptr<CObjectOStream>
+            txt_out(CObjectOStream::Open("1001.asntxt", eSerial_AsnText));
+        CObjectStreamCopier txt_copier(*xml_in, *txt_out);
+        txt_copier.Copy(CBiostruc::GetTypeInfo());
+        auto_ptr<CObjectOStream>
+            bin_out(CObjectOStream::Open("1001.asnbin", eSerial_AsnBinary));
+        CObjectStreamCopier bin_copier(*xml_in, *bin_out);
+        bin_copier.Copy(CBiostruc::GetTypeInfo());
+        return 0;
     }
 
 It is also possible to install type-specific ***Copy*** hooks. Like the ***Read*** and ***Write*** methods, the ***Copy*** methods serve as wrapper functions that define what occurs immediately before and after the data is actually copied.
