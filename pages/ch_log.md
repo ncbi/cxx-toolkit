@@ -19,51 +19,6 @@ This section provides reference information on the use of the diagnostic stream 
 Working with Diagnostic Streams ([\*](ch_debug.html#ch_debug.std_cpp_message_post))
 -----------------------------------------------------------------------------------
 
--   [Working with Diagnostic Streams (\*)](#ch_core.diag)
-
-    -   [Where Diagnostic Messages Go](#ch_core.Where_Diagnostic_Messages_Go)
-
-    -   [Setting Diagnostic Severity Levels](#ch_core.diag_severity)
-
-    -   [Diagnostic Messages Filtering](#ch_core.diagnostic_messages_filtering)
-
-    -   [Log File Format](#ch_core.Log_File_Format)
-
-        -   [The Old Post Format](#ch_core.The_Old_Post_Format)
-
-        -   [The New Post Format](#ch_core.The_New_Post_Format)
-
-        -   [Controlling Appearance of Diagnostic Message Using Post Flags](#ch_core.diag_post_flags)
-
-    -   [Defining the Output Stream](#ch_core.diag_set_stream)
-
-    -   [Tee Output to STDERR](#ch_core.Tee_Output_to_STDERR)
-
-    -   [The Message Buffer](#ch_core.diag_buffering)
-
-    -   [Request Exit Status Codes](#ch_core.Request_Exit_Status_Codes)
-
-        -   [Standard (HTTP-like) status codes](#ch_core.Standard_HTTPlike_status_codes)
-
-        -   [NCBI-specific status codes](#ch_core.NCBIspecific_status_codes)
-
-    -   [Error Codes and Their Descriptions](#ch_core.diag_errcodes)
-
-        -   [Preparing an Error Message File](#ch_core.err_msg_file)
-
-    -   [Defining Custom Handlers Using CDiagHandler](#ch_core.diag_handlers)
-
-    -   [The ERR\_POST and LOG\_POST Macros](#ch_core.ERR_POST)
-
-    -   [The \_TRACE macro](#ch_core._TRACE)
-
-    -   [Performance Logging](#ch_core.Performance_Logging)
-
-    -   [Stack Traces](#ch_core.Stack_Traces)
-
-        -   [Printing a Stack Trace](#ch_core.Printing_a_Stack_Trace)
-
-        -   [Obtaining a Stack Trace for Exceptions](#ch_core.Obtaining_a_Stack_Trace_for_Exce)
 
 
 The [CNcbiDiag](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiDiag.html) class implements the functionality of an output stream enhanced with error posting mechanisms similar to those found in the NCBI C Toolkit. A ***CNcbiDiag*** object has the look and feel of an output stream; its member functions and friends include output operators and format manipulators. A ***CNcbiDiag*** object is not itself a stream, but serves as an interface to a stream which allows multiple threads to write to the same output. Each instance of ***CNcbiDiag*** includes the following private data members:
