@@ -1081,7 +1081,7 @@ ul.messages li.hi_warn em.detail{
 .ncbi-code{color:#59331F; white-space:pre;}
 .ncbi-path {color:#777777; white-space:pre;}
 .pageobject{font-weight:bold;color:#985735;}
-.highlight{background-color:yellow;font-weight:bold;}
+.note_highlight{background-color:yellow;font-weight:bold;}
 
 /* Search bar */
 .search_extras label { margin-right:1em;font-size: 1.1em; }
