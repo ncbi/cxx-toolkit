@@ -1148,7 +1148,7 @@ text-align: left;
 }
 
 /* Added style and scroll bars to preformatted pieces of text */
-pre {
+pre.highlight {
   background: #eee;
   border: 1px solid #C0C0C0;
   overflow: auto;
