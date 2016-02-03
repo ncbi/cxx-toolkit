@@ -10,6 +10,6 @@ Part 7\. Library and Applications Configuration
 
 Part 7 discusses configuration parameters for libraries and applications:
 
--   [30. Library Configuration](ch_libconfig.html)
+-   [31. Library Configuration](ch_libconfig.html)
 
 
