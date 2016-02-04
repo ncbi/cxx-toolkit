@@ -8,7 +8,7 @@ nav: pages/ch_libconfig
 30\. Library Configuration
 ========================================
 
-Last Update: June 24, 2014.
+Last Update: February 4nd, 2016.
 
 Overview
 --------
