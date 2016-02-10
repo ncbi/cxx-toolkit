@@ -211,9 +211,9 @@ If you have questions, please email to <span class="oem_span">jww4jvylGujip5ust5
 
 Table 1. Naming Conventions
 
-|----------------------------------------------------------------------|------------------------------------------------------------|
+
 |                      SYNOPSIS                                        |                      EXAMPLE                               |
-| ---                                                                  | ---                                                        |
+|----------------------------------------------------------------------|------------------------------------------------------------|
 | &nbsp;                                                               |**Type Names**                                              |
 |***C****ClassTypeName*                                                |`class CMyClass { ..... };`                                 |
 |***I****InterfaceName*                                                |`class IMyInterface { ..... };`                             | |***S****StructTypeName*                                               |`struct SMyStruct { ..... };`                               |
