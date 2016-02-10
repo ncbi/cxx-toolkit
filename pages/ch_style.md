@@ -213,7 +213,7 @@ Table 1. Naming Conventions
 
 |                      SYNOPSIS                                        |                      EXAMPLE                               |
 |----------------------------------------------------------------------|------------------------------------------------------------|
-|                                                                      |          **Type Names**                                    |
+|                                                                      |&nbsp;&nbsp;**Type Names**                                  |
 |***C****ClassTypeName*                                                |`class CMyClass { ..... };`                                 |
 |***I****InterfaceName*                                                |`class IMyInterface { ..... };`                             |
 |***S****StructTypeName*                                               |`struct SMyStruct { ..... };`                               |
