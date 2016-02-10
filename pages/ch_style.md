@@ -211,12 +211,12 @@ If you have questions, please email to <span class="oem_span">jww4jvylGujip5ust5
 
 Table 1. Naming Conventions
 
-
 |                      SYNOPSIS                                        |                      EXAMPLE                               |
 |----------------------------------------------------------------------|------------------------------------------------------------|
 | zzzzz                                                               |**Type Names**                                              |
 |***C****ClassTypeName*                                                |`class CMyClass { ..... };`                                 |
-|***I****InterfaceName*                                                |`class IMyInterface { ..... };`                             | |***S****StructTypeName*                                               |`struct SMyStruct { ..... };`                               |
+|***I****InterfaceName*                                                |`class IMyInterface { ..... };`                             | 
+|***S****StructTypeName*                                               |`struct SMyStruct { ..... };`                               |
 |***U****UnionTypeName*                                                |`union UMyUnion { ..... };`                                 |
 |***E****EnumTypeName*                                                 |`enum EMyEnum { ..... };`                                   |
 |***F****FunctionTypeName*                                             |`typedef int (*FMyFunc)(void);`                             |
@@ -247,6 +247,7 @@ Table 1. Naming Conventions
 |  zzzzz                                                              |**Global (*"extern"*) Functions and Data**                  |
 |***g\_****GlobalFunc*                                                 |`double g_MyGlobalFunc(void);`                              |
 |***g\_****GlobalVar*                                                  |`short g_MyGlobalVar;`                                      |
+
 <div class="table-scroll"></div>
 
 <a name="ch_style.1.3.1"></a>
