@@ -214,7 +214,7 @@ Table 1. Naming Conventions
 
 |                      SYNOPSIS                                        |                      EXAMPLE                               |
 |----------------------------------------------------------------------|------------------------------------------------------------|
-| &nbsp;                                                               |**Type Names**                                              |
+| zzzzz                                                               |**Type Names**                                              |
 |***C****ClassTypeName*                                                |`class CMyClass { ..... };`                                 |
 |***I****InterfaceName*                                                |`class IMyInterface { ..... };`                             | |***S****StructTypeName*                                               |`struct SMyStruct { ..... };`                               |
 |***U****UnionTypeName*                                                |`union UMyUnion { ..... };`                                 |
@@ -225,26 +225,26 @@ Table 1. Naming Conventions
 |***T****Iterator****\_I***                                            |`typedef list<int>::iterator TMyList_I;`                    |
 |***T****ConstIterator****\_CI***                                      |`typedef set<string>::const_iterator TMySet_CI;`            |
 |***N****Namespace* [(see also)](#ch_style.naming_prefix)              |`namespace NMyNamespace { ..... }`                          |
-| &nbsp;                                                               |**Preprocessor Define/Macro**                               |
+| zzzzz                                                               |**Preprocessor Define/Macro**                               |
 |*MACRO\_NAME*                                                         |`#define MY_DEFINE 12345`                                   |
 |*macro\_arg\_name*                                                    |`#define MY_MACRO(x, y) (((x) + 1) < (y))`                  |
-| &nbsp;                                                               |**Function Arguments and Local Variables**                  |
+| zzzzz                                                               |**Function Arguments and Local Variables**                  |
 |*func\_local\_var\_name* |`void MyFunc(int foo, const CMyClass& a_class)`<br/>`{ `<br/>`    size_t  foo_size;`<br/>`    int   bar;`|
-| &nbsp;                                                               |**Constants**                                               |
+| zzzzz                                                              |**Constants**                                               |
 |***k****ConstantName*                                                 |`const int kMyConst = 123;`                                 |
 |***e****EnumValueName*  |`enum EMyEnum { `<br/>`    eMyEnum_1 = 11, `<br/>`    eMyEnum_2 = 22, `<br/>`    eMyEnum_3 = 33 `<br/>`};`|
 |***f****FlagValueName*|`enum EMyFlags {`<br/>`    fMyFlag_1 = (1<<0),  ///< = 0x1 (describe)`<br/>`    fMyFlag_2 = (1<<1),  ///< = 0x2 (describe)`<br/>`    fMyFlag_3 = (1<<2)   ///< = 0x4 (describe)`<br/>`};` <br/>`typedef int TMyFlags; ///< holds bitwise OR of "EMyFlags"`                                                                                                                         |
-| &nbsp;                                                               |**Class and Structure Data Members (Fields)**               |
+| zzzzz                                                               |**Class and Structure Data Members (Fields)**               |
 |***m\_****ClassMemberName*                                            |`class C { short int m_MyClassData; };`                     |
 |*struct\_field\_name*                                                 |`struct S { int my_struct_field; };`                        |
 |***sm\_****ClassStaticMemberName*                                     |`class C { static double sm_MyClassStaticData; };`          |
-| &nbsp;                                                               |**Class Member Functions (Methods)**                        |
+| zzzzz                                                               |**Class Member Functions (Methods)**                        |
 |*ClassMethod*                                                         |`bool MyClassMethod(void);`                                 |
 |***x\_****ClassPrivateMethod*                                         |`int x_MyClassPrivateMethod(char c);`                       |
-| &nbsp;                                                               |**Module Static Functions and Data**                        |
+| zzzzz                                                              |**Module Static Functions and Data**                        |
 |***s\_****StaticFunc*                                                 |`static char s_MyStaticFunc(void);`                         |
 |***s\_****StaticVar*                                                  |`static int s_MyStaticVar;`                                 |
-| &nbsp;                                                               |**Global (*"extern"*) Functions and Data**                  |
+|  zzzzz                                                              |**Global (*"extern"*) Functions and Data**                  |
 |***g\_****GlobalFunc*                                                 |`double g_MyGlobalFunc(void);`                              |
 |***g\_****GlobalVar*                                                  |`short g_MyGlobalVar;`                                      |
 <div class="table-scroll"></div>
