@@ -394,6 +394,18 @@ The old format for log messages is simply a message - prefixed with the severity
 
 #### The New Post Format
 
+A log file using new format is a binary file containing messages separated with line feed characters (\n, 0x0A). Messages are composed of several predefined fields, each field may contain binary content. To prevent line feeds from appearing in a message body it is encoded using the following table:
+
+| Original byte | Encoded sequence |
+|---------------|------------------|
+| 0x0A (\n)     | 0x0B (\v)        |
+| 0x0B          | 0xFF 0x0B        |
+| 0xFF          | 0xFF 0xFF        |
+
+***Note:***
+
+On some platforms if log output is sent to a text stream (e.g. console) the message separator may be replaced with the platform specific newline character or sequence.
+
 The new format for the application log and error postings is:
 
     <pid>/<tid>/<rid>/<state> <guid> <psn>/<tsn> <time> <host> <client> <session> <application> <event> <message>
