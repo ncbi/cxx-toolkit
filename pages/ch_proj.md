@@ -924,7 +924,7 @@ The project's application makefile can also redefine the compiler and linker, al
 
 #### Defining and running tests
 
-The definition and execution of unit tests is controlled by the **`CHECK_CMD`** macro in the test application's makefile, `Makefile.app_name.app`. If this macro is not defined (or commented out), then no test will be executed. If **`CHECK_CMD`** is defined, then the test it specifies will be included in the automated test suite and can also be invoked independently by running "`make check`" in the folder where the test makefile is situated. You also can run an individual test (if more than one test is located in the folder) by running: "`make check APP_PROJ=name_of_the_test_to_run`".
+The definition and execution of unit tests is controlled by the **`CHECK_CMD`** macro in the test application's makefile, `Makefile.app_name.app`. If this macro is not defined (or commented out), then no test will be executed. If **`CHECK_CMD`** is defined, then the test it specifies will be included in the automated test suite and can also be invoked independently by running "`make check`" in the folder where the test makefile is situated. You also can run an individual test (if more than one test is located in the folder) by running: "`make check APP_PROJ=%name_of_the_test_to_run%`".
 
 To include an application into the test suite it is necessary to add just one line into its makefile `Makefile.app_name.app`:
 
