@@ -479,8 +479,6 @@ The Configuration tab looks like:
 
 The Configuration tab allows you to:
 
--   Choose between static and dynamically-linked libraries.
-
 -   Specify the subset of the Toolkit that you want to build, using either a path for a subtree (e.g. `src\`) or a project list file (`*.lst`) for specific projects. Clicking on the "..." button opens a file selection dialog, which can be used to navigate to the desired subtree or to select a project list file.
 
 -   Specify one or more project tags (which will restrict the scope of the build to the specified projects). Clicking on the "..." button simply displays the valid choices for project tags (it isn't used for selecting tags). More than one project tag can be combined in a Boolean expression, for example:<br/>`(code || web) && !test`
@@ -511,7 +509,7 @@ In addition, by clicking "more" you will see:
 
 These additional options generally don't need to be changed, but they allow you to:
 
--   Exclude the "Build PTB" step from the configure process. This should be selected if the PTB (project tree builder) source is not available. Even if the PTB source is available, it usually makes sense to exclude building the PTB because building it will take longer and generally won't have a benefit.
+-   Exclude the "Build PTB" step from the configure process. The PTB (project tree builder) scans source tree, finds makefiles and generates Visual Studio solution and project files based on this information. Usually, its sources are available and, if it is not found, it can be built locally. Excluding this step might be useful if PTB sources cannot be found, or you want to use a prebuilt one from a nonstandard location.
 
 -   Prevent whole-tree scanning for missing project dependencies. A project dependency may be missing if, for example, import\_project was used and the configuration was changed to something other than simply Debug or Release (e.g. DebugMT).
 
@@ -523,19 +521,21 @@ These additional options generally don't need to be changed, but they allow you 
 
 <a name="ch_config.Third_party_libraries_tab"></a>
 
-##### Third party libraries tab
+##### Libraries and Tools tab
 
-The Third party libraries tab looks like:
+The Libraries and Tools tab looks like:
 
 [![Image ch\_config\_dlg\_third.png](/cxx-toolkit/static/img/ch_config_dlg_third.png)](/cxx-toolkit/static/img/ch_config_dlg_third.png "Click to see the full-resolution image")
 
-The Third party libraries tab allows you to:
+The Libraries and Tools tab allows you to:
 
 -   Select a different location for third-party libraries.
 
 -   Select a different location for the NCBI C Toolkit.
 
 -   Add VTune configurations. If selected, new VTune configurations will be added to the list of available configurations – for example, VTune\_DebugDLL.
+
+-   Add UNICODE build configurations (on Microsoft Windows only).
 
 <a name="ch_config.Projects_tab"></a>
 
@@ -1449,14 +1449,14 @@ To configure and generate the project list, open the chosen solution, select the
 
 [![Image ch\_config\_proj\_mod\_reload.png](/cxx-toolkit/static/img/ch_config_proj_mod_reload.png)](/cxx-toolkit/static/img/ch_config_proj_mod_reload.png "Click to see the full-resolution image")
 
-***Note:*** At least one such dialog will typically appear *before* the configuration is complete. Therefore, you need to wait until you see the message:
+***Note:*** At least one such dialog will typically appear *before* the configuration is complete. Do not click anything, or click *Ignore All*, you need to wait until you see the message:
 
     ******************************************************************************
     ==============  It is now safe to reload the solution:          ==============
     ==============  Please, close it and open again                 ==============
     ******************************************************************************
 
-in the Output window before reloading. Once this message appears, you can either click "Reload" or click "Ignore" and then manually close and reopen the solution. The reloaded solution will list all configured projects.
+in the *Output* window before reloading. Once this message appears, you can either click *Reload All* or click *Ignore All* and then manually close and reopen the solution. The reloaded solution will list all configured projects.
 
 A configuration tool with a Java-based GUI is also available and can be launched by building the **-CONFIGURE-DIALOG-** project. For more information on using the configuration GUI, see the [general section on configuring](#ch_config.Configure_the_Build).
 
@@ -1479,6 +1479,8 @@ The following topics discuss configuring with Visual C++ in more detail:
 -   [DLL Configuration](#ch_config.DLL_Configuration)
 
 -   [Fine-Tuning with Environment Variables](#ch_config.FineTuning_with_Envi)
+
+-   [UNICODE support](#ch_config.Unicode)
 
 <a name="ch_config._SiteSpecific_Build_T"></a>
 
@@ -1765,6 +1767,12 @@ When the **`PREBUILT_PTB_EXE`** environment variable defines an existing file (e
 The **`PTB_PROJECT`** environment variable can be used to redefine the default project list. For example, it can be defined as follows:
 
 **`PTB_PROJECT=scripts\projects\datatool\project.lst`**
+
+<a name="ch_config.Unicode"></a>
+
+##### UNICODE support
+
+Unlike Unix and Linux systems, Microsoft Windows has separate APIs for UNICODE (in the form of UTF-16) and ANSI character sets. NCBI C++ Toolkit's approach is similar to that of Unix - all strings are assumed to be in UTF-8 encoding. Still, when making calls to native OS API, the Toolkit has to distinguish UNICODE and non-UNICODE configurations. All strings are automatically converted into UTF-16 and from UTF-8 when required, primarily in the CORELIB.
 
 <a name="ch_config.Building_with_Visual"></a>
 
