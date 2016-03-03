@@ -24,6 +24,15 @@ How to edit the page
 -  We will review the changes you made and merge them with the current version of the page.
 -  You can find more details on GitHub Pull requests [here](https://help.github.com/articles/using-pull-requests/)
 
+  
+How to add images
+-------------------------------------------------
+
+- To add an image to the page, open the page for editing (see steps above).
+- Create a reference (link) to the image you want to add. See syntax for the image reference [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images). Click 'Propose file changes' button.
+- Only users with administrators' rights can upload images to the book. You will need to send us the image you want to upload (see contact info below). Please make sure that the name of your image is the same that you used in the reference link.
+
+
 Contact info
 -------------------------------------------------
 
