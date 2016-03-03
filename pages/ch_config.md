@@ -1772,7 +1772,7 @@ The **`PTB_PROJECT`** environment variable can be used to redefine the default p
 
 ##### UNICODE support
 
-Unlike Unix and Linux systems, Microsoft Windows has separate APIs for UNICODE (in the form of UTF-16) and ANSI character sets. NCBI C++ Toolkit's approach is similar to that of Unix - all strings are assumed to be in UTF-8 encoding. Still, when making calls to native OS API, the Toolkit has to distinguish UNICODE and non-UNICODE configurations. All strings are automatically converted into UTF-16 and from UTF-8 when required, primarily in the CORELIB.
+Unlike Unix and Linux systems, Microsoft Windows has separate APIs for UNICODE (in the form of UTF-16) and ANSI character sets. NCBI C++ Toolkit's approach is similar to that of Unix - all strings are assumed to be in UTF-8 encoding. Still, when making calls to native OS API, the Toolkit has to distinguish UNICODE and non-UNICODE configurations. All strings are automatically converted into UTF-16 or into UTF-8 when required, primarily in the CORELIB.
 
 <a name="ch_config.Building_with_Visual"></a>
 
