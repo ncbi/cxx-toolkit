@@ -237,7 +237,7 @@ The following is an outline of the topics presented in this chapter:
 
     -   [NStr Class](#ch_core.NStr)
 
-    -   [UTF-8 Strings](#ch_core.UTF_strings)
+    -   [UNICODE support](#ch_core.UTF_strings)
 
     -   [PCase and PNocase](#ch_core.pcase)
 
@@ -3035,7 +3035,7 @@ The following sections provide additional details on string APIs
 
 -   [NStr Class](#ch_core.NStr)
 
--   [UTF-8 Strings](#ch_core.UTF_strings)
+-   [UNICODE support](#ch_core.UTF_strings)
 
 -   [PCase and PNocase](#ch_core.pcase)
 
@@ -3045,7 +3045,7 @@ The following sections provide additional details on string APIs
 
 For convenience, two types of empty strings are provided. A C-language style string that terminates with the null character ('\\0') and a C++ style empty string.
 
-The C-language style empty string constants are **`NcbiEmptyCStr`** which is a macro definition for the **`NCBI_NS_NCBI::kEmptyCStr`**. So the **`NcbiEmptyStr`** and **`kEmptyCStr`** are, for all practical purposes, equivalent.
+The C-language style empty string constant is **`NcbiEmptyCStr`** which is a macro definition for the **`NCBI_NS_NCBI::kEmptyCStr`**. So the **`NcbiEmptyCStr`** and **`kEmptyCStr`** are, for all practical purposes, equivalent.
 
 The C++-language style empty string constants are **`NcbiEmptyString`** and the **`kEmptyStr`** which are macro definitions for the ***NCBI\_NS\_NCBI::CNcbiEmptyString::Get()*** method that returns an empty string. So the **`NcbiEmptyString`** and **`kEmptyStr`** are, for all practical purposes, equivalent.
 
@@ -3059,23 +3059,11 @@ The ***NStr*** class encapsulates a number of class-wide static methods. These i
 
 <a name="ch_core.UTF_strings"></a>
 
-### UTF-8 Strings
+### UNICODE support
 
-The ***CStringUTF8*** class extends the C++ string class and provides support for Unicode Transformation Format-8 (UTF-8) strings.
+In the Toolkit, all strings are assumed to be in UTF-8 format. Still, in order to communicate with the operating system or with external data sources, we need the ability to convert strings to and from other formats. This is done with the help of ***CUtf8*** helper class. In the Toolkit we also use ***CStringUTF8*** class, but this is only a synonym to ***std::string*** and serves as sort of a reminder.
 
-This class supports constructors where the input argument is a string reference, char\* pointer, and wide string, and wide character pointers. Wide string support exists if the macro **`HAVE_WSTRING`** is defined:
-
-    CStringUTF8(const string& src);
-    CStringUTF8(const char* src);
-    CStringUTF8(const wstring& src);
-    CStringUTF8(const wchar_t* src);
-
-The ***CStringUTF8*** class defines assignment(=) and append-to string (+=) operators where the string assigned or appended can be a `CStringUTF8` reference, string reference, char\* pointer, wstring reference, wchar\_t\* pointer.
-
-Conversion to ASCII from ***CStringUTF8*** is defined by the ***AsAscii()*** method. This method can throw a StringException with error codes 'eFormat' or 'eConvert' if the string has a wrong UTF-8 format or cannot be converted to ASCII.
-
-    string AsAscii(void) const;
-    wstring AsUnicode(void) const
+The ***CUtf8*** class converts source string into UTF-8 format using its multiple overloaded *AsUTF8* methods. The input argument can be a string reference, char\* pointer with encoding information, and wide string, and wide character pointers. Wide string support exists if the macro **`HAVE_WSTRING`** is defined. Backward conversion is done with *AsSingleByteString* or *AsBasicString* methods. The class also provides several useful methods such as counting the number of code points in UTF-8 string, validating string encoding, converting single character to and from UNICODE, checking for white space characters in its extended, UNICODE meaning as defined by <a href="http://unicode.org/charts/uca/chart_Whitespace.html">The Unicode Consortium</a>, and truncating white spaces from string.
 
 <a name="ch_core.pcase"></a>
 
