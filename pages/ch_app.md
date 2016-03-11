@@ -216,6 +216,8 @@ DATATOOL: Code Generation and Data Serialization Utility
 
 -   Convert data between ASN.1, XML and JSON formats.
 
+-   Generate SOAP client code based on [WSDL specification](https://www.w3.org/TR/wsdl).
+
 ***Note:*** Because ASN.1, XML and JSON are, in general, incompatible, the last two functions are supported only partially.
 
 The following topics are discussed in subsections:
