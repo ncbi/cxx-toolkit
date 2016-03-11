@@ -3391,7 +3391,7 @@ If you call ***SetSkipUnknownVariants()*** then a lack of coding rigor may cause
 SOAP support
 ------------
 
-The NCBI C++ Toolkit SOAP server and client provide a limited level of support of SOAP 1.1 over HTTP, and use the document binding style with a literal schema definition. Document/literal is the style that most Web services platforms were focusing on when this feature was introduced. Parsing of WSDL (Web services description language) specification and automatic C++ code generation are not supported. Still, since the WSDL message types section uses XML schema, and since the application is capable of parsing Schema, the majority of the C++ code generation can be done automatically.
+The NCBI C++ Toolkit SOAP server and client provide a limited level of support of SOAP 1.1 over HTTP, and use the document binding style with a literal schema definition. Document/literal is the style that most Web services platforms were focusing on when this feature was introduced. [DATATOOL](#ch_ser.Generating_a_SOAP_client_using_DA) application can be used to parse WSDL (Web services description language) specification and create SOAP client.
 
 <a name="ch_ser.SOAP_message"></a>
 
