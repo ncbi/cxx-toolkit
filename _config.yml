@@ -1,6 +1,6 @@
 name: Developer Hub
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 safe: true
 baseurl: /book
 exclude: ['.ruby-version', 'node_modules', 'package.json', 'bower.json']
