@@ -73,13 +73,21 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Other Resources](#ch_grid.Other_Resources)
 
--   [GRID Utilities](#ch_grid.GRID_Utilities)
+-   [GRID Command Line Interface](#ch_grid.GRID_Cli)
 
-    -   [netschedule\_control](#ch_grid.netschedule_control)
+    -   [General commands](#ch_grid.GRID_Cli_General)
+    
+    -   [NetCache commands](#ch_grid.GRID_Cli_NetCache)
+    
+    -   [NetStorage commands](#ch_grid.GRID_Cli_NetStorage)
+    
+    -   [Universal NetSchedule commands](#ch_grid.GRID_Cli_NetSchedule_Universal)
+    
+    -   [Submitter commands](#ch_grid.GRID_Cli_Submitter)
+    
+    -   [Worker node commands](#ch_grid.GRID_Cli_Worker)
 
-    -   [ns\_remote\_job\_control](#ch_grid.ns_remote_job_contro)
-
-    -   [Alternate list input and output](#ch_grid._Alternate_list_input)
+## NetStorage commands
 
 <a name="ch_grid.Getting_Help"></a>
 
@@ -165,7 +173,7 @@ The NCBI GRID framework is built of the following components:
 
 5.  Remote CGI -- enables moving the actual CGI execution to the grid.
 
-6.  [GRID Utilities](#ch_grid.GRID_Utilities) for remote administration, monitoring, retrieval and submission (**netschedule\_control**, **netcache\_control**, **ns\_remote\_job\_control**, **ns\_submit\_remote\_job**, etc.)
+6.  [GRID Command Line Interface](#ch_grid.GRID_Cli) for remote administration, monitoring, retrieval and submission.
 
 All these components are fully portable, in the sense that they can be built and then run and communicate with each other across all platforms that are supported by the NCBI C++ Toolkit (Unix, MS-Windows, MacOSX).
 
@@ -378,7 +386,7 @@ Classes that should be used to prepare an input data a remote application and ge
 
 **Config file:** [src/sample/app/netschedule/remote\_app\_client\_sample.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/remote_app_client_sample.ini)
 
-**ns\_submit\_remote\_job** utility allows submitting a job for a remote application from its command line or a jobs file. See **ns\_submit\_remote\_job –help**.
+**grid\_cli** utility allows submitting a job for a remote application from its command line or a jobs file. See **grid\_cli help**.
 
 **Jobs file format:**
 
@@ -790,426 +798,1954 @@ Here are some places to look for reference and to see how to ***CServer*** is us
 
 -   [Genome Pipeline](http://mini.ncbi.nlm.nih.gov/1k2qn) (NCBI only)
 
-<a name="ch_grid.GRID_Utilities"></a>
+<a name="ch_grid.GRID_Cli"></a>
 
-GRID Utilities
---------------
+GRID Command Line Interface
+---------------------------
 
-The following sections describe the GRID Utilities:
+This section describes the NCBI GRID Command Line Interface (grid_cli) utility.
+ 
+grid_cli allows access and control NCBI Grid services: NetSchedule, NetCache, NetStorage
 
--   [netschedule\_control](#ch_grid.netschedule_control)
+<a name="ch_grid.GRID_Cli_General"></a>
 
--   [ns\_remote\_job\_control](#ch_grid.ns_remote_job_contro)
+## General commands
 
--   [Alternate list input and output](#ch_grid._Alternate_list_input)
+### whatis
 
-<a name="ch_grid.netschedule_control"></a>
+ Determine argument type and characteristics.
 
-### netschedule\_control
+**SYNOPSIS**
 
-**DESCRIPTION:**
+grid_cli whatis ARG
 
-NCBI NetSchedule control utility. This program can be used to operate NetSchedule servers and server groups from the command line.
+**DESCRIPTION**
 
-**OPTIONS:**
+This command makes an attempt to guess the type of its argument. If the
+argument is successfully recognized as a token that represents a Grid
+object, the type-dependent information about the object is printed.
 
-<a name="ch_grid.T3"></a>
+Valid output formats are "human-readable" and "json". The default is
+"human-readable".
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td align="left">-h</td>
-<td align="left">Print brief usage and description; ignore other arguments.</td>
-</tr>
-<tr class="even">
-<td align="left">-help</td>
-<td align="left">Print long usage and description; ignore other arguments.</td>
-</tr>
-<tr class="odd">
-<td align="left">-xmlhelp</td>
-<td align="left">Print long usage and description in XML format; ignore other arguments.</td>
-</tr>
-<tr class="even">
-<td align="left">-version-full</td>
-<td align="left">Print extended version data; ignore other arguments.</td>
-</tr>
-<tr class="odd">
-<td align="left">-service &lt;SERVICE_NAME&gt;</td>
-<td align="left">Specifies a NetSchedule service name to use. It can be either an LBSMD service name or a server name / port number pair separated by a colon, such as: <code>host:1234</code></td>
-</tr>
-<tr class="even">
-<td align="left">-queue &lt;QUEUE_NAME&gt;</td>
-<td align="left">The queue name to operate with.</td>
-</tr>
-<tr class="odd">
-<td align="left">-jid &lt;JOB_ID&gt;</td>
-<td align="left">This option specifies a job ID for those operations that need it.</td>
-</tr>
-<tr class="even">
-<td align="left">-shutdown</td>
-<td align="left">This command tells the specified server to shut down. The server address is defined by the <code>-service</code> option. An LBSMD service name cannot be used with <code>-shutdown</code>.</td>
-</tr>
-<tr class="odd">
-<td align="left">-shutdown_now</td>
-<td align="left">The same as <code>-shutdown</code> but does not wait for job termination.</td>
-</tr>
-<tr class="even">
-<td align="left">-log &lt;ON_OFF&gt;</td>
-<td align="left">Switch server side logging on and off.</td>
-</tr>
-<tr class="odd">
-<td align="left">-monitor</td>
-<td align="left">Starts monitoring of the specified queue. Events associated with that queue will be dumped to the standard output of <code>netschedule_control</code> until it's terminated with <code>Ctrl-C</code>.</td>
-</tr>
-<tr class="even">
-<td align="left">-ver</td>
-<td align="left">Prints server version(s) of the server or the group of servers specified by the <code>-service</code> option.</td>
-</tr>
-<tr class="odd">
-<td align="left">-reconf</td>
-<td align="left">Send a request to reload server configuration.</td>
-</tr>
-<tr class="even">
-<td align="left">-qlist</td>
-<td align="left">List available queues.</td>
-</tr>
-<tr class="odd">
-<td align="left">-qcreate</td>
-<td align="left">Create queue (qclass should be present, and comment is an optional parameter).</td>
-</tr>
-<tr class="even">
-<td align="left">-qclass &lt;QUEUE_CLASS&gt;</td>
-<td align="left">Class for queue creation.</td>
-</tr>
-<tr class="odd">
-<td align="left">-comment &lt;COMMENT&gt;</td>
-<td align="left">Optional parameter for the <code>-qcreate</code> command</td>
-</tr>
-<tr class="even">
-<td align="left">-qdelete</td>
-<td align="left">Delete the specified queue.</td>
-</tr>
-<tr class="odd">
-<td align="left">-drop</td>
-<td align="left">Unconditionally drop ALL jobs in the specified queue.</td>
-</tr>
-<tr class="even">
-<td align="left">-stat &lt;STAT_TYPE&gt;</td>
-<td align="left">Print queue statistics. Available values for <code>STAT_TYPE</code>: <code>all</code>, <code>brief</code>.</td>
-</tr>
-<tr class="odd">
-<td align="left">-affstat &lt;AFFINITY_NAME&gt;</td>
-<td align="left">Print queue statistics summary based on affinity.</td>
-</tr>
-<tr class="even">
-<td align="left">-dump</td>
-<td align="left">Print queue dump or job dump if <code>-jid</code> parameter is specified.</td>
-</tr>
-<tr class="odd">
-<td align="left">-reschedule &lt;JOB_ID&gt;</td>
-<td align="left">Reschedule the job specified by the <code>JOB_ID</code> parameter.</td>
-</tr>
-<tr class="even">
-<td align="left">-cancel &lt;JOB_ID&gt;</td>
-<td align="left">Cancel the specified job.</td>
-</tr>
-<tr class="odd">
-<td align="left">-qprint &lt;JOB_STATUS&gt;</td>
-<td align="left">Print queue content for the specified job status.</td>
-</tr>
-<tr class="even">
-<td align="left">-count &lt;QUERY_STRING&gt;</td>
-<td align="left">Count all jobs within the specified queue with tags set by query string.</td>
-</tr>
-<tr class="odd">
-<td align="left">-count_active</td>
-<td align="left">Count active jobs in all queues.</td>
-</tr>
-<tr class="even">
-<td align="left">-show_jobs_id &lt;QUERY_STRING&gt;</td>
-<td align="left">Show all job IDs by query string.</td>
-</tr>
-<tr class="odd">
-<td align="left">-query &lt;QUERY_STRING&gt;</td>
-<td align="left">Perform a query on the jobs withing the specified queue.</td>
-</tr>
-<tr class="even">
-<td align="left">-fields &lt;FIELD_LIST&gt;</td>
-<td align="left">Fields (separated by ','), which should be returned by one of the above query commands.</td>
-</tr>
-<tr class="odd">
-<td align="left">-select &lt;QUERY_STRING&gt;</td>
-<td align="left">Perform a select query on the jobs withing the specified queue.</td>
-</tr>
-<tr class="even">
-<td align="left">-showparams</td>
-<td align="left">Show service parameters.</td>
-</tr>
-<tr class="odd">
-<td align="left">-read &lt;BATCH_ID_OUTPUT,JOB_IDS_OUTPUT,LIMIT,TIMEOUT&gt;</td>
-<td align="left">Retrieve IDs of the completed jobs and change their state to Reading.<br/><br/>For the first two parameters, the <a href="#ch_grid.Alternate_list_outpu">Alternate list output</a> format can be used.<br/><br/><strong>Parameter descriptions:</strong><br/><strong><code>BATCH_ID_OUTPUT</code></strong>
-<ul>
-<li><p>Defines where to send the ID of the retrieved jobs. Can be either a file name or '-'.</p></li>
-</ul>
-<strong><code>JOB_IDS</code></strong>
-<ul>
-<li><p>Defines where to send the list of jobs that were switched to the state <code>Reading</code>. Can be either a file name or '-'.</p></li>
-</ul>
-<strong><code>LIMIT</code></strong>
-<ul>
-<li><p>Maximum number of jobs retrieved.</p></li>
-</ul>
-<strong><code>TIMEOUT</code></strong>
-<ul>
-<li><p>Timeout before jobs will be switched back to the state <code>Done</code> so that they can be returned again in response to another <code>-read</code>.</p></li>
-</ul>
-<br/><strong>Examples:</strong><br/>
-<pre><code>    netschedule_control -service NS_Test -queue test \
-        -read batch_id.txt,job_ids.lst,100,300
-    netschedule_control -service NS_Test -queue test \
-        -read -,job_ids.lst,100,300
-    netschedule_control -service NS_Test -queue test \
-        -read batch_id.txt,-,100,300</code></pre></td>
-</tr>
-<tr class="even">
-<td align="left">-read_confirm &lt;JOB_LIST&gt;</td>
-<td align="left">Mark jobs in <code>JOB_LIST</code> as successfully retrieved. The <a href="#ch_grid._Alternate_list_input">Alternate list input</a> format can be used to specify <code>JOB_LIST</code>. If this operation succeeds, the specified jobs will change their state to <code>Confirmed</code>.<br/><br/>Examples:<br/>
-<pre><code>    netschedule_control -service NS_Test -queue test \
-        -read_confirm @job_ids.lst
-    netschedule_control -service NS_Test -queue test \
-        -read_confirm - &lt; job_ids.lst
-    netschedule_control -service NS_Test -queue test \
-        -read_confirm JSID_01_4_130.14.24.10_9100,JSID_01_5_130.14.24.10_9100</code></pre></td>
-</tr>
-<tr class="odd">
-<td align="left">-read_rollback &lt;JOB_LIST&gt;</td>
-<td align="left">Undo the <code>-read</code> operation for the specified jobs thus making them available for the subsequent <code>-read</code> operations. See the description of <code>-read_confirm</code> for information on the <code>JOB_LIST</code> argument and usage examples.</td>
-</tr>
-<tr class="even">
-<td align="left">-read_fail &lt;JOB_LIST&gt;</td>
-<td align="left">Undo the <code>-read</code> operation for the specified jobs thus making them available for the subsequent <code>-read</code> operations. This command is similar to <code>-read_rollback</code> with the exception that it also increases the counter of the job result reading failures for the specified jobs. See the description of <code>-read_confirm</code> for information on the <code>JOB_LIST</code> argument and usage examples.</td>
-</tr>
-<tr class="odd">
-<td align="left">-logfile &lt;LOG_FILE&gt;</td>
-<td align="left">File to which the program log should be redirected.</td>
-</tr>
-<tr class="even">
-<td align="left">-conffile &lt;INI_FILE&gt;</td>
-<td align="left">Override configuration file name (by default, <code>netschedule_control.ini</code>).</td>
-</tr>
-<tr class="odd">
-<td align="left">-version</td>
-<td align="left">Print version number; ignore other arguments.</td>
-</tr>
-<tr class="even">
-<td align="left">-dryrun</td>
-<td align="left">Do nothing, only test all preconditions.</td>
-</tr>
-</tbody>
-</table>
+**OPTIONS**
 
-<div class="table-scroll"></div>
-
-<a name="ch_grid.ns_remote_job_contro"></a>
-
-### ns\_remote\_job\_control
-
-DESCRIPTION:
-
-This utility acts as a submitter for the remote\_app daemon. It initiates job execution on remote\_app, and then checks the status and the results of the job.
-
-OPTIONS:
-
-<a name="ch_grid.T4"></a>
-
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td align="left">-h</td>
-<td align="left">Print brief usage and description; ignore other arguments.</td>
-</tr>
-<tr class="even">
-<td align="left">-help</td>
-<td align="left">Print long usage and description; ignore other arguments.</td>
-</tr>
-<tr class="odd">
-<td align="left">-xmlhelp</td>
-<td align="left">Print long usage and description in XML format; ignore other arguments.</td>
-</tr>
-<tr class="even">
-<td align="left">-q &lt;QUEUE&gt;</td>
-<td align="left">NetSchedule queue name.</td>
-</tr>
-<tr class="odd">
-<td align="left">-ns &lt;SERVICE&gt;</td>
-<td align="left">NetSchedule service address (service_name or host:port).</td>
-</tr>
-<tr class="even">
-<td align="left">-nc &lt;SERVICE&gt;</td>
-<td align="left">NetCache service address (service_name or host:port).</td>
-</tr>
-<tr class="odd">
-<td align="left">-jlist &lt;STATUS&gt;</td>
-<td align="left">Show jobs by status. STATUS can be one of the following:
-<ul>
-<li><p><code>all</code></p></li>
-<li><p><code>canceled</code></p></li>
-<li><p><code>done</code></p></li>
-<li><p><code>failed</code></p></li>
-<li><p><code>pending</code></p></li>
-<li><p><code>returned</code></p></li>
-<li><p><code>running</code></p></li>
-</ul>
-<br/></td>
-</tr>
-<tr class="even">
-<td align="left">-qlist</td>
-<td align="left">Print the list of queues available on the specified NetSchedule server or a group of servers identified by the service name.</td>
-</tr>
-<tr class="odd">
-<td align="left">-wnlist</td>
-<td align="left">Show registered worker nodes.</td>
-</tr>
-<tr class="even">
-<td align="left">-jid &lt;JOB_ID&gt;</td>
-<td align="left">Show information on the specified job.</td>
-</tr>
-<tr class="odd">
-<td align="left">-bid &lt;BLOB_ID&gt;</td>
-<td align="left">Show NetCache blob contents.</td>
-</tr>
-<tr class="even">
-<td align="left">-attr &lt;ATTRIBUTE&gt;</td>
-<td align="left">Show one of the following job attributes:
-<ul>
-<li><p><code>cmdline</code></p></li>
-<li><p><code>progress</code></p></li>
-<li><p><code>raw_input</code></p></li>
-<li><p><code>raw_output</code></p></li>
-<li><p><code>retcode</code></p></li>
-<li><p><code>status</code></p></li>
-<li><p><code>stdin</code></p></li>
-<li><p><code>stdout</code></p></li>
-<li><p><code>stderr</code></p></li>
-</ul>
-<br/><br/>Alternatively, the ATTRIBUTE parameter can be specified as one of the following attribute sets:
-<ul>
-<li><p><code>standard</code></p></li>
-<li><p><code>full</code></p></li>
-<li><p><code>minimal</code></p></li>
-</ul>
-<br/></td>
-</tr>
-<tr class="odd">
-<td align="left">-stdout &lt;JOB_IDS&gt;</td>
-<td align="left">Dump concatenated standard output streams of the specified jobs. The <code>JOB_IDS</code> argument can be specified in the <a href="#ch_grid._Alternate_list_input">Alternate list input</a> format.<br/>Examples:<br/>
-<pre><code>    ns_remote_job_control -ns NS_Test -q test \
-        -stdout JSID_01_4_130.14.24.10_9100,JSID_01_5_130.14.24.10_9100
-    ns_remote_job_control -ns NS_Test -q test -stdout @job_ids.lst
-    ns_remote_job_control -ns NS_Test -q test -stdout - &lt; job_ids.lst</code></pre></td>
-</tr>
-<tr class="even">
-<td align="left">-stderr &lt;JOB_IDS&gt;</td>
-<td align="left">Dump concatenated standard error streams of the specified jobs. The <code>JOB_IDS</code> argument can be specified in the <a href="#ch_grid._Alternate_list_input">Alternate list input</a> format. See the description of the <code>-stdout</code> command for examples.</td>
-</tr>
-<tr class="odd">
-<td align="left">-cancel &lt;JOB_ID&gt;</td>
-<td align="left">Cancel the specified job.</td>
-</tr>
-<tr class="even">
-<td align="left">-cmd &lt;COMMAND&gt;</td>
-<td align="left">Apply one of the following commands to the queue specified by the <code>-q</code> option:
-<ul>
-<li><p><code>drop_jobs</code></p></li>
-<li><p><code>kill_nodes</code></p></li>
-<li><p><code>shutdown_nodes</code></p></li>
-</ul>
-<br/></td>
-</tr>
-<tr class="odd">
-<td align="left">-render &lt;OUTPUT_FORMAT&gt;</td>
-<td align="left">Set the output format of the informational commands like <code>-qlist</code>. The format can be either of the following: <code>text</code>, <code>xml</code>.</td>
-</tr>
-<tr class="even">
-<td align="left">-of &lt;OUTPUT_FILE&gt;</td>
-<td align="left">Output file for operations that actually produce output.</td>
-</tr>
-<tr class="odd">
-<td align="left">-logfile &lt;LOG_FILE&gt;</td>
-<td align="left">File to which the program log should be redirected.</td>
-</tr>
-<tr class="even">
-<td align="left">-conffile &lt;INI_FILE&gt;</td>
-<td align="left">Override configuration file name (by default, <code>ns_remote_job_control.ini</code>).</td>
-</tr>
-<tr class="odd">
-<td align="left">-version</td>
-<td align="left">Print version number; ignore other arguments.</td>
-</tr>
-<tr class="even">
-<td align="left">-version-full</td>
-<td align="left">Print extended version data; ignore other arguments.</td>
-</tr>
-<tr class="odd">
-<td align="left">-dryrun</td>
-<td align="left">Do nothing, only test all preconditions.</td>
-</tr>
-</tbody>
-</table>
-
-<div class="table-scroll"></div>
-
-<a name="ch_grid._Alternate_list_input"></a>
-
-### Alternate list input and output
-
-This section describes two alternative methods of printing the results of operations that generate lists (e.g. lists of job IDs) and three methods of inputting such lists as command line arguments.
-
-<a name="ch_grid.Alternate_list_outpu"></a>
-
-#### Alternate list output
-
-The `-read` command of `netschedule_control` produces a list of job IDs as its output. This list can be sent either to a file (if a file name is specified) or to **`stdout`** (if a dash ('-') is specified in place of the file name).
-
-**Example:**
-
-        # Read job results: send batch ID to STDOUT,
-        # and the list of jobs to job_ids.lst
-        netschedule_control -service NS_Test -queue test \
-            -read -,job_ids.lst,10,300
-
-<a name="ch_grid._Alternate_list_input_1"></a>
-
-#### Alternate list input
-
-There are three ways one can specify a list of arguments in a command line option that accepts the Alternate list input format (like the -stdout and stderr options of ns\_remote\_job\_conrol):
-
-1.  Via a comma-separated (or a space-separated) list.
-
-2.  By using a text file (one argument per line). The name of the file must be prefixed with '@' to distinguish from the explicit enumeration of the previous case.
-
-3.  Via **`stdin`** (denoted by '-'). This variant does not differ from using a text file except that list items are red from the standard input - one item per line.
-
-**Examples:**
-
-        # Concatenate and print stdout
-        ns_remote_job_control -ns NS_Test -q rmcgi_sample \
-            -stdout JSID_01_4_130.14.24.10_9100,JSID_01_5_130.14.24.10_9100
-
-        # Confirm job result reading for batch #6
-        netschedule_control -service NS_Test -queue test \
-            -read_confirm 6,@job_ids.lst
-
-        # The same using STDIN
-        netschedule_control -service NS_Test -queue test \
-            -read_confirm 6,- < job_ids.lst
+&nbsp;&nbsp;&nbsp;&nbsp;**--of [--output-format] ARG** :
+                                One of the output formats supported by
+                                this command.
 
 
+
+
+### login
+
+ Generate a client identification token.
+
+**SYNOPSIS**
+
+grid_cli login APP_UID
+
+**DESCRIPTION**
+
+This command wraps the specified client identification parameters in a
+session token. The returned token can be passed later to other commands
+either through the GRID_CLI_LOGIN_TOKEN environment variable or via the
+'--login-token' command line option, which makes it possible to set
+client identification parameters all at once.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cache ARG**             :
+                                Enable ICache mode and specify cache
+                                name to use.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--enable-mirroring**      :
+                                Enable NetCache mirroring functionality.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ft-site ARG**           :
+                                FileTrack site to use: 'submit' (or
+                                'prod'), 'dsubmit' (or 'dev'), 'qsubmit'
+                                (or 'qa'). Default: 'submit'.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ft-api-key ARG**        :
+                                FileTrack API key. When connecting to
+                                FileTrack directly, an API key is
+                                required.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--no-conn-retries**       :
+                                Do not attempt to reconnect to services
+                                after the first connection failure.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### serverinfo (si)
+
+ Print information about a Grid server.
+
+**SYNOPSIS**
+
+grid_cli serverinfo
+
+**DESCRIPTION**
+
+Query and print information about a running NetCache, NetSchedule,
+NetStorage, or worker node process.
+
+The following output formats are supported: "human-readable", "raw", and
+"json". The default is "human-readable".
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--wn [--worker-node] ARG** :
+                                Worker node address (a host:port pair).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--of [--output-format] ARG** :
+                                One of the output formats supported by
+                                this command.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--compat-mode**           :
+                                Enable backward compatibility tweaks.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### stats (stat, status)
+
+ Show server status and access statistics.
+
+**SYNOPSIS**
+
+grid_cli stats
+
+**DESCRIPTION**
+
+Dump accumulated statistics on server access and performance.
+
+When applied to a NetSchedule server, this operation supports the
+following format options: "raw", "human-readable", "json".  If none
+specified, "human-readable" is assumed.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--wn [--worker-node] ARG** :
+                                Worker node address (a host:port pair).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--brief**                 :
+                                Produce less verbose output.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-group-info**        :
+                                Print information on job groups.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--client-info**           :
+                                Print information on the recently
+                                connected clients.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--notification-info**     :
+                                Print a snapshot of the currently
+                                subscribed notification listeners.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--affinity-info**         :
+                                Print information on the currently
+                                handled affinities.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--active-job-count**      :
+                                Only print the total number of Pending
+                                and Running jobs in all queues combined.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--jobs-by-status**        :
+                                Print the number of jobs itemized by
+                                their current status. If the
+                                '--affinity' option is given, only the
+                                jobs with the specified affinity will be
+                                counted.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--affinity ARG**          :
+                                Affinity token.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--group [--job-group] ARG** :
+                                Job group.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--verbose**               :
+                                Produce more verbose output.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--of [--output-format] ARG** :
+                                One of the output formats supported by
+                                this command.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--aggregation-interval ARG** :
+                                NetCache: specify the statistics
+                                aggregation interval to return ('1min',
+                                '5min', '1h', 'life', and so on).
+                                Default: 'life'.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--previous-interval**     :
+                                NetCache: return statistics for the
+                                previous (complete) aggregation interval
+                                (instead of returning the current but
+                                incomplete statistics).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--compat-mode**           :
+                                Enable backward compatibility tweaks.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+<a name="ch_grid.GRID_Cli_NetCache"></a>
+
+## NetCache commands
+
+
+### blobinfo (bi)
+
+ Retrieve metadata of a NetCache blob.
+
+**SYNOPSIS**
+
+grid_cli blobinfo ID
+
+**DESCRIPTION**
+
+Print vital information about the specified blob. Expired blobs will be
+reported as not found.
+
+Both NetCache and ICache modes are supported. ICache mode requires blob
+ID to be specified in the following format: "key,version,subkey".
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cache ARG**             :
+                                Enable ICache mode and specify cache
+                                name to use.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--single-server**         :
+                                In ICache mode, use only the most likely
+                                server to hold the key. Do not try other
+                                servers in the service.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### getblob (gb)
+
+ Retrieve a blob from NetCache.
+
+**SYNOPSIS**
+
+grid_cli getblob ID
+
+**DESCRIPTION**
+
+Read the blob identified by ID and send its contents to the standard
+output (or to the specified output file). Expired blobs will be reported
+as not found.
+
+Both NetCache and ICache modes are supported. ICache mode requires blob
+ID to be specified in the following format: "key,version,subkey".
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cache ARG**             :
+                                Enable ICache mode and specify cache
+                                name to use.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--password ARG**          :
+                                Enable NetCache password protection.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--offset ARG**            :
+                                Byte offset of the portion of data.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--size [--length] ARG**   :
+                                Length (in bytes) of the portion of
+                                data.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--single-server**         :
+                                In ICache mode, use only the most likely
+                                server to hold the key. Do not try other
+                                servers in the service.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### putblob (pb)
+
+ Create or rewrite a NetCache blob.
+
+**SYNOPSIS**
+
+grid_cli putblob [ID]
+
+**DESCRIPTION**
+
+Read data from the standard input (or a file) until EOF is encountered
+and save the received data as a NetCache blob.
+
+Both NetCache and ICache modes are supported. ICache mode requires blob
+ID to be specified in the following format: "key,version,subkey".
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cache ARG**             :
+                                Enable ICache mode and specify cache
+                                name to use.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--password ARG**          :
+                                Enable NetCache password protection.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ttl ARG**               :
+                                Override the default time-to-live value.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--enable-mirroring**      :
+                                Enable NetCache mirroring functionality.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--use-compound-id**       :
+                                Return key in CompoundID format.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--input ARG**             :
+                                Provide input data on the command line.
+                                The standard input stream will not be
+                                read.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--input-file ARG**        :
+                                Read input from the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--compat-mode**           :
+                                Enable backward compatibility tweaks.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### rmblob (rb)
+
+ Remove a NetCache blob.
+
+**SYNOPSIS**
+
+grid_cli rmblob ID
+
+**DESCRIPTION**
+
+Delete a blob if it exists. If the blob has expired (or never existed),
+no errors are reported.
+
+Both NetCache and ICache modes are supported. ICache mode requires blob
+ID to be specified in the following format: "key,version,subkey".
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cache ARG**             :
+                                Enable ICache mode and specify cache
+                                name to use.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--password ARG**          :
+                                Enable NetCache password protection.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+<a name="ch_grid.GRID_Cli_NetStorage"></a>
+
+## NetStorage commands
+
+
+### upload
+
+ Create or rewrite a NetStorage object.
+
+**SYNOPSIS**
+
+grid_cli upload [OBJECT_LOC]
+
+**DESCRIPTION**
+
+Save the data coming from the standard input (or an input file) to a
+network storage. The choice of the storage is based on the specified
+combination of the '--persistent', '--fast-storage', '--movable', and
+'--cacheable' options. After the data has been written, the generated
+object locator is printed to the standard output.
+
+If a NetStorage service (or server) is specified via the '--netstorage'
+option, that service or server will be used as a gateway to the actual
+storage back-end (e.g. NetCache). If the option is not specified, a
+direct connection to the storage back-end is established.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--persistent**            :
+                                Use a persistent storage like FileTrack.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--fast-storage**          :
+                                Use a fast storage like NetCache.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--namespace ARG**         :
+                                Domain-specific name that isolates
+                                objects created with a user-defined key
+                                from objects created by other users.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ttl ARG**               :
+                                Override the default time-to-live value.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--movable**               :
+                                Allow the object to move between
+                                storages.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cacheable**             :
+                                Use NetCache for data caching.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--no-meta-data**          :
+                                Do not use relational database for
+                                ownership, change tracking, and object
+                                attributes.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--input ARG**             :
+                                Provide input data on the command line.
+                                The standard input stream will not be
+                                read.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--input-file ARG**        :
+                                Read input from the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ft-site ARG**           :
+                                FileTrack site to use: 'submit' (or
+                                'prod'), 'dsubmit' (or 'dev'), 'qsubmit'
+                                (or 'qa'). Default: 'submit'.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ft-api-key ARG**        :
+                                FileTrack API key. When connecting to
+                                FileTrack directly, an API key is
+                                required.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### download
+
+ Retrieve a NetStorage object.
+
+**SYNOPSIS**
+
+grid_cli download ID
+
+**DESCRIPTION**
+
+Read the object pointed to by the specified locator and send its
+contents to the standard output or a file.
+
+If a NetStorage service (or server) is specified via the '--netstorage'
+option, that service or server will be used as a gateway to the actual
+storage back-end (e.g. NetCache). If the option is not specified, a
+direct connection to the storage back-end is established.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--offset ARG**            :
+                                Byte offset of the portion of data.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--size [--length] ARG**   :
+                                Length (in bytes) of the portion of
+                                data.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### relocate
+
+ Move a NetStorage object to a different storage.
+
+**SYNOPSIS**
+
+grid_cli relocate ID
+
+**DESCRIPTION**
+
+Transfer object contents to the new location hinted by a combination of
+the '--persistent', '--fast-storage', and '--cacheable' options. After
+the data has been transferred, a new object locator will be generated,
+which can be used instead of the old one for faster object access.
+
+If a NetStorage service (or server) is specified via the '--netstorage'
+option, that service or server will be used as a gateway to the actual
+storage back-end (e.g. NetCache). If the option is not specified, a
+direct connection to the storage back-end is established.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--persistent**            :
+                                Use a persistent storage like FileTrack.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--fast-storage**          :
+                                Use a fast storage like NetCache.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--namespace ARG**         :
+                                Domain-specific name that isolates
+                                objects created with a user-defined key
+                                from objects created by other users.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ttl ARG**               :
+                                Override the default time-to-live value.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--movable**               :
+                                Allow the object to move between
+                                storages.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cacheable**             :
+                                Use NetCache for data caching.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--no-meta-data**          :
+                                Do not use relational database for
+                                ownership, change tracking, and object
+                                attributes.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ft-site ARG**           :
+                                FileTrack site to use: 'submit' (or
+                                'prod'), 'dsubmit' (or 'dev'), 'qsubmit'
+                                (or 'qa'). Default: 'submit'.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ft-api-key ARG**        :
+                                FileTrack API key. When connecting to
+                                FileTrack directly, an API key is
+                                required.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### mkobjectloc
+
+ Turn a user-defined key into an object locator.
+
+**SYNOPSIS**
+
+grid_cli mkobjectloc [OBJECT_LOC]
+
+**DESCRIPTION**
+
+Take a unique user-defined key/namespace pair (or an existing object
+locator) and make a new object locator. The resulting object locator
+will reflect storage preferences specified by the '--persistent',
+'--fast-storage', '--movable', and '--cacheable' options.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--object-key ARG**        :
+                                Uniqie user-defined key to address the
+                                object. Requires '--namespace'.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--namespace ARG**         :
+                                Domain-specific name that isolates
+                                objects created with a user-defined key
+                                from objects created by other users.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--persistent**            :
+                                Use a persistent storage like FileTrack.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--fast-storage**          :
+                                Use a fast storage like NetCache.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--namespace ARG**         :
+                                Domain-specific name that isolates
+                                objects created with a user-defined key
+                                from objects created by other users.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ttl ARG**               :
+                                Override the default time-to-live value.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--movable**               :
+                                Allow the object to move between
+                                storages.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cacheable**             :
+                                Use NetCache for data caching.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--no-meta-data**          :
+                                Do not use relational database for
+                                ownership, change tracking, and object
+                                attributes.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ft-site ARG**           :
+                                FileTrack site to use: 'submit' (or
+                                'prod'), 'dsubmit' (or 'dev'), 'qsubmit'
+                                (or 'qa'). Default: 'submit'.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### objectinfo
+
+ Print information about a NetStorage object.
+
+**SYNOPSIS**
+
+grid_cli objectinfo ID
+
+**DESCRIPTION**
+
+Some object locators may require additional options to hint at the
+actual object location.
+
+If a NetStorage service (or server) is specified via the '--netstorage'
+option, that service or server will be used as a gateway to the actual
+storage back-end (e.g. NetCache). If the option is not specified, a
+direct connection to the storage back-end is established.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### rmobject
+
+ Remove a NetStorage object by its locator.
+
+**SYNOPSIS**
+
+grid_cli rmobject ID
+
+**DESCRIPTION**
+
+Some object locators may require additional options to hint at the
+actual object location.
+
+If a NetStorage service (or server) is specified via the '--netstorage'
+option, that service or server will be used as a gateway to the actual
+storage back-end (e.g. NetCache). If the option is not specified, a
+direct connection to the storage back-end is established.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### getattr
+
+ Get a NetStorage object attribute value.
+
+**SYNOPSIS**
+
+grid_cli getattr OBJECT_LOC ATTR_NAME
+
+**DESCRIPTION**
+
+Some object locators may require additional options to hint at the
+actual object location.
+
+If a NetStorage service (or server) is specified via the '--netstorage'
+option, that service or server will be used as a gateway to the actual
+storage back-end (e.g. NetCache). If the option is not specified, a
+direct connection to the storage back-end is established.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cache ARG**             :
+                                Enable ICache mode and specify cache
+                                name to use.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### setattr
+
+ Set a NetStorage object attribute value.
+
+**SYNOPSIS**
+
+grid_cli setattr OBJECT_LOC ATTR_NAME ATTR_VALUE
+
+**DESCRIPTION**
+
+Some object locators may require additional options to hint at the
+actual object location.
+
+If a NetStorage service (or server) is specified via the '--netstorage'
+option, that service or server will be used as a gateway to the actual
+storage back-end (e.g. NetCache). If the option is not specified, a
+direct connection to the storage back-end is established.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nst [--netstorage] ARG** :
+                                NetStorage service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--cache ARG**             :
+                                Enable ICache mode and specify cache
+                                name to use.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ft-api-key ARG**        :
+                                FileTrack API key. When connecting to
+                                FileTrack directly, an API key is
+                                required.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+<a name="ch_grid.GRID_Cli_NetSchedule_Universal"></a>
+
+## Universal NetSchedule commands
+
+
+### jobinfo (ji)
+
+ Print information about a NetSchedule job.
+
+**SYNOPSIS**
+
+grid_cli jobinfo ID
+
+**DESCRIPTION**
+
+Print vital information about the specified NetSchedule job. Expired
+jobs will be reported as not found.
+
+The following output formats are supported: "human-readable", "raw", and
+"json". The default is "human-readable".
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--brief**                 :
+                                Produce less verbose output.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--status-only**           :
+                                Print job status only.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--defer-expiration**      :
+                                Prolong job lifetime by updating its
+                                last access timestamp.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--progress-message-only** :
+                                Print only the progress message.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--of [--output-format] ARG** :
+                                One of the output formats supported by
+                                this command.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### getjobinput
+
+ Read job input.
+
+**SYNOPSIS**
+
+grid_cli getjobinput ID
+
+**DESCRIPTION**
+
+Retrieve and print job input to the standard output stream or save it to
+a file.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### getjoboutput
+
+ Read job output if the job is completed.
+
+**SYNOPSIS**
+
+grid_cli getjoboutput ID
+
+**DESCRIPTION**
+
+Retrieve and print job output to the standard output stream or save it
+to a file. If the job does not exist or has not been completed
+successfully, an appropriate error message is printed to the standard
+error stream and the program exits with a non-zero return code.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--remote-app-stdout**     :
+                                Treat the job as a 'remote_app' job and
+                                extract the standard output stream of
+                                the remote application.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--remote-app-stderr**     :
+                                Extract the standard error stream of the
+                                remote application.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### updatejob
+
+ Modify attributes of an existing job.
+
+**SYNOPSIS**
+
+grid_cli updatejob ID
+
+**DESCRIPTION**
+
+Change one or more job properties. The outcome depends on the current
+state of the job.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--extend-lifetime ARG**   :
+                                Extend job lifetime by the specified
+                                number of seconds.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--progress-message ARG**  :
+                                Set job progress message.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### queueinfo (qi)
+
+ Get information about NetSchedule queues.
+
+**SYNOPSIS**
+
+grid_cli queueinfo [QUEUE]
+
+**DESCRIPTION**
+
+When neither '--all-queues' nor '--queue-classes' option is given, this
+command prints the following information on the specified queue: the
+queue configuration parameters, queue type (static or dynamic), and, if
+the queue is dynamic, its description and the queue class name. For
+newer NetSchedule versions, additional queue parameters may be printed.
+
+If the '--all-queues' option is given, this command prints information
+about every queue on each server specified by the '--netschedule'
+option.
+
+The '--queue-classes' switch provides an option to get the information
+on queue classes instead of queues.
+
+Valid output formats are "raw" and "json". The default is "raw".
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--all-queues**            :
+                                Print information on all queues.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue-classes**         :
+                                Print information on queue classes.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--of [--output-format] ARG** :
+                                One of the output formats supported by
+                                this command.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### dumpqueue
+
+ Dump a NetSchedule queue.
+
+**SYNOPSIS**
+
+grid_cli dumpqueue
+
+**DESCRIPTION**
+
+This command dumps detailed information about jobs in a NetSchedule
+queue. It is possible to limit the number of records printed and also to
+filter the output by job status and/or job group.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--start-after-job ARG**   :
+                                Specify the key of the last job in the
+                                previous dump batch.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-count ARG**         :
+                                Specify the maximum number of jobs in
+                                the output.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--group [--job-group] ARG** :
+                                Job group.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-status ARG**        :
+                                Select jobs by job status.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### createqueue
+
+ Create a dynamic NetSchedule queue.
+
+**SYNOPSIS**
+
+grid_cli createqueue QUEUE QUEUE_CLASS
+
+**DESCRIPTION**
+
+This command creates a new NetSchedule queue using a template known as
+queue class.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue-description ARG** :
+                                Optional queue description.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### getqueuelist
+
+ Print the list of available NetSchedule queues.
+
+**SYNOPSIS**
+
+grid_cli getqueuelist
+
+**DESCRIPTION**
+
+This command takes a NetSchedule service name (or server address) and
+queries each server participating that service for the list of
+configured or dynamically created queues. The collected lists are then
+combined in a single list of queues available on all servers in the
+service. For each queue available only on a subset of servers, its
+servers are listed in parentheses after the queue name.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### deletequeue
+
+ Delete a dynamic NetSchedule queue.
+
+**SYNOPSIS**
+
+grid_cli deletequeue QUEUE
+
+**DESCRIPTION**
+
+Worker nodes that may have already started job processing will not be
+notified.
+
+Static queues cannot be deleted, although it is possible to cancel all
+jobs in a static queue.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+    
+<a name="ch_grid.GRID_Cli_Submitter"></a>
+
+## Submitter commands
+
+
+### submitjob
+
+ Submit one or more jobs to a NetSchedule queue.
+
+**SYNOPSIS**
+
+grid_cli submitjob
+
+**DESCRIPTION**
+
+Create one or multiple jobs by submitting input data to a NetSchedule
+queue. The first submitted job will be executed immediately as long as
+there is a worker node waiting for a job on that queue.
+
+This command has three modes of operation:
+
+  - single job submission;
+  - batch submission;
+  - preparation of input for "offline" job execution.
+
+In single job submission mode, unless the '--input-file' or '--input'
+options are given, job input is read from the standard input stream, and
+the rest of attributes are taken from their respective command line
+options. The '--remote-app-args' option creates a job for processing by
+the 'remote_app' worker node, in which case either '--input' or
+'--input-file' option can be used to define the standard input stream of
+the remote_app job.
+
+If the '--wait-timeout' option is given in single job submission mode,
+grid_cli will wait for the job to terminate, and if the job terminates
+within the specified number of seconds or when this timeout has passed
+while the job is still Pending or Running, job status will be printed
+right after the job ID. And if this status is 'Done', job output will be
+printed on the next line (unless the '--output-file' option is given, in
+which case the output goes to the specified file).
+
+A NetCache server is required for saving job input if it exceeds the
+capability of the NetSchedule internal storage.
+
+Batch submission mode is activated by the '--batch' option, which takes
+the maximum batch size as its argument. When this mode is enabled, all
+options that define job attributes are ignored. Instead, job attributes
+are read from the standard input stream or the specified input file -
+one line per job. Each line must contain a space-separated list of job
+attributes as follows:
+
+  input="DATA" OR args="REMOTE_APP_ARGS"
+  affinity="TOKEN"
+  exclusive
+
+Special characters in all quoted strings must be properly escaped. It is
+OK to omit quotation marks for a string that doesn't contain spaces. The
+"input" attribute is required unless the "args" attribute is specified.
+The latter enables remote_app mode and defines command line arguments
+for a remote_app job, in which case the "input" attribute becomes
+optional and defines the standard input stream for the remote_app job.
+
+Examples:
+
+  input="db, 8548@394.701" exclusive
+  args="checkout p1/d2" affinity="bin1"
+
+In batch mode, the IDs of the created jobs are printed to the standard
+output stream (or the specified output file) one job ID per line.
+
+The third mode of operation bypasses NetSchedule and NetCache, and saves
+the input data for direct consumption by the worker node (primarily for
+testing or debugging). This mode is enabled by the '--job-input-dir'
+option, which defines the target directory where input data will be
+saved.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--batch ARG**             :
+                                Enable batch mode and specify batch
+                                size.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--input ARG**             :
+                                Provide input data on the command line.
+                                The standard input stream will not be
+                                read.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--input-file ARG**        :
+                                Read input from the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--remote-app-args ARG**   :
+                                Submit a remote_app job and specify its
+                                arguments.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--group [--job-group] ARG** :
+                                Job group.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--affinity ARG**          :
+                                Affinity token.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--exclusive-job**         :
+                                Create an exclusive job.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--timeout [--wait-timeout] ARG** :
+                                Timeout in seconds.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-input-dir ARG**     :
+                                Job input directory.
+
+
+
+
+### watchjob
+
+ Wait for a job to change status.
+
+**SYNOPSIS**
+
+grid_cli watchjob ID
+
+**DESCRIPTION**
+
+Listen to the job status change notifications and return when one of the
+following conditions has been met:
+
+* The wait timeout specified by the '--wait-timeout' option has passed.
+This option is required.
+
+* The job has come to a status indicated by one or more
+'--wait-for-job-status' options.
+
+* A new job history event with the index greater than the one specified
+by the '--wait-for-job-event-after' option has occurred.
+
+If neither '--wait-for-job-status' nor '--wait-for-job-event-after'
+option is specified, the 'watchjob' command waits until the job
+progresses to a status other than 'Pending' or 'Running'.
+
+The output of this command is independent of the reason it exits: the
+latest job event index is printed to the standard output on the first
+line and the current job status is printed on the second line.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--timeout [--wait-timeout] ARG** :
+                                Timeout in seconds.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--wait-for-job-status ARG** :
+                                Wait until the job status changes to the
+                                given value. The option can be given
+                                more than once to wait for any one of
+                                multiple values. Use the keyword 'Any'
+                                to wait for any status change.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--wait-for-job-event-after ARG** :
+                                Wait for a job event with the index
+                                greater than ARG.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### readjob
+
+ Return the next finished job.
+
+**SYNOPSIS**
+
+grid_cli readjob
+
+**DESCRIPTION**
+
+Incrementally harvest IDs of successfully completed, failed, and
+canceled jobs. This command has two modes of operation: simple mode
+(without acknowledgment) and reliable mode (with acknowledgment). The
+former is the default; the latter is triggered by the '--reliable-read'
+option.
+
+In simple mode, if any of the specified NetSchedule servers has a job
+that's done, failed, or canceled, the ID of that job will be printed on
+the first line, and its status - 'Done', 'Failed', or 'Canceled' - on
+the second line. Also, if the job is 'Done', its entire output will be
+printed as well, starting from the third line (unless the
+'--output-file' option is given, in which case the output goes to the
+specified file).
+
+After the job output has been successfully printed, the status of the
+job is immediately changed to 'Confirmed', which means that the job
+won't be available for reading anymore.
+
+In reliable mode, job reading is a two-step process. The first step,
+which is triggered by the '--reliable-read' option, acquires a reading
+reservation. If there's a job that's done, failed, or canceled, its ID
+is printed on the first line along with its final status ('Done',
+'Failed', or 'Canceled') on the next line and a unique reservation token
+on the third line. This first step changes the status of the returned
+job from 'Done' to 'Reading'. The reading reservation is valid for a
+short period of time configurable on the server. If the server does not
+receive a reading confirmation (see below) within this time frame, the
+job will change its status back to the original status ('Done',
+'Failed', or 'Canceled').
+
+The second step is activated by one of the following finalization
+options: '--confirm-read', '--rollback-read', or '--fail-read'. Each of
+these options requires the reservation token that was issued by
+NetSchedule during the first step to be passed as the argument for the
+option. The corresponding job ID must be provided with the '--job-id'
+option. The job must still be in the 'Reading' status. After the
+finalization step, the status of the job will change depending on the
+option given as per the following table:
+
+    Option              Resulting status
+    ================    ================
+    --confirm-read      Confirmed
+    --fail-read         ReadFailed
+    --rollback-read     Done, Failed, or Canceled
+
+The 'Confirmed' status and the 'ReadFailed' status are final and cannot
+be changed, while '--rollback-read' makes the jobs available for
+subsequent 'readjob' commands.
+
+In either mode, the '--wait-timeout' option allows to wait the specified
+number of seconds until a job becomes available for reading. Without
+this option, if there are no completed, failed, or canceled jobs in the
+queue, nothing will be printed and the exit code will be zero.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--remote-app-stdout**     :
+                                Treat the job as a 'remote_app' job and
+                                extract the standard output stream of
+                                the remote application.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--remote-app-stderr**     :
+                                Extract the standard error stream of the
+                                remote application.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--affinity-list ARG**     :
+                                Comma-separated list of affinity tokens.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--group [--job-group] ARG** :
+                                Job group.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--reliable-read**         :
+                                Enable reading confirmation mode.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--timeout [--wait-timeout] ARG** :
+                                Timeout in seconds.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-id ARG**            :
+                                Job ID to operate on.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--confirm-read ARG**      :
+                                For the reading reservation specified as
+                                the argument to this option, mark the
+                                job identified by '--job-id' as
+                                successfully retrieved.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--rollback-read ARG**     :
+                                Release the specified reading
+                                reservation of the specified job.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--fail-read ARG**         :
+                                Use the specified reading reservation to
+                                mark the job as impossible to read.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--error-message ARG**     :
+                                Provide an optional error message.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### canceljob
+
+ Cancel one or more NetSchedule jobs.
+
+**SYNOPSIS**
+
+grid_cli canceljob [ID]
+
+**DESCRIPTION**
+
+Mark the specified job (or multiple jobs) as canceled. This command also
+instructs the worker node that may be processing those jobs to stop the
+processing.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--all-jobs**              :
+                                Apply to all jobs in the queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--group [--job-group] ARG** :
+                                Job group.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-status ARG**        :
+                                Select jobs by job status.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+<a name="ch_grid.GRID_Cli_Worker"></a>
+
+## Worker node commands
+
+
+### requestjob
+
+ Get a job from NetSchedule for processing.
+
+**SYNOPSIS**
+
+grid_cli requestjob
+
+**DESCRIPTION**
+
+Return a job pending for execution. The status of the job is changed
+from "Pending" to "Running" before the job is returned. This command
+makes it possible for grid_cli to emulate a worker node.
+
+The affinity-related options affect how the job is selected. Unless the
+'--any-affinity' option is given, a job is returned only if its affinity
+matches one of the specified affinities.
+
+Job retrieval can also be restricted to the group name specified by the
+'--job-group' option.
+
+If a job is acquired, its ID and attributes are printed to the standard
+output stream on the first and the second lines respectively, followed
+by the input data of the job unless the '--output-file' option is
+specified, in which case the input data will be saved to that file.
+
+The format of the line with job attributes is as follows:
+
+auth_token [affinity="job_affinity"] [exclusive]
+
+If none of the NetSchedule servers has pending jobs in the specified
+queue, nothing is printed and the exit code of zero is returned.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--affinity-list ARG**     :
+                                Comma-separated list of affinity tokens.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--use-preferred-affinities** :
+                                Accept a job with any of the affinities
+                                registered earlier as preferred.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--claim-new-affinities**  :
+                                Accept a job with a preferred affinity,
+                                without an affinity, or with an affinity
+                                that is not preferred by any worker (in
+                                which case it is added to the preferred
+                                affinities).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--any-affinity**          :
+                                Accept job with any available affinity.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--group [--job-group] ARG** :
+                                Job group.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--timeout [--wait-timeout] ARG** :
+                                Timeout in seconds.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### commitjob
+
+ Mark the job as complete or failed.
+
+**SYNOPSIS**
+
+grid_cli commitjob ID AUTH_TOKEN
+
+**DESCRIPTION**
+
+Change the state of the job to either 'Done' or 'Failed'. This command
+can only be executed on jobs that are in the 'Running' state.
+
+Unless one of the '--job-output', '--job-output-blob', or '--input-file'
+options is given, the job output is read from the standard input stream.
+
+If the job is being reported as failed, an error message must be
+provided with the '--fail-job' command line option.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--nc [--netcache] ARG**   :
+                                NetCache service name or server address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--return-code ARG**       :
+                                Job return code.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-output ARG**        :
+                                Provide job output on the command line
+                                (inhibits reading from the standard
+                                input stream or an input file).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-output-blob ARG**   :
+                                Specify a NetCache blob to use as the
+                                job output.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--input-file ARG**        :
+                                Read input from the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--fail-job ARG**          :
+                                Report the job as failed and specify an
+                                error message.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--affinity ARG**          :
+                                Affinity token.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### returnjob
+
+ Return a previously accepted job.
+
+**SYNOPSIS**
+
+grid_cli returnjob ID AUTH_TOKEN
+
+**DESCRIPTION**
+
+Due to insufficient resources or for any other reason, this command can
+be used by a worker node to return a previously accepted job back to the
+NetSchedule queue. The job will change its state from Running back to
+Pending, but the information about previous runs will not be discarded,
+and the expiration time will not be advanced.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### clearnode
+
+ Fail incomplete jobs and clear client record.
+
+**SYNOPSIS**
+
+grid_cli clearnode
+
+**DESCRIPTION**
+
+The '--login-token' option must be provided for client identification.
+This command removes the corresponding client registry record from all
+NetSchedule servers. If there are running jobs assigned to the client,
+their status will be changed back to Pending (or Failed if no retries
+left).
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--ns [--netschedule] ARG** :
+                                NetSchedule service name or server
+                                address.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
+
+
+
+
+### replay
+
+ Rerun a job in debugging environment.
+
+**SYNOPSIS**
+
+grid_cli replay ID
+
+**DESCRIPTION**
+
+This command facilitates debugging of remote_cgi and remote_app jobs as
+well as "native" worker nodes. By using this command, job input can be
+preserved for later re-run in debugging or testing environment. Job
+output can also be preserved to compare it with "reference" runs.
+
+**OPTIONS**
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--queue ARG**             :
+                                NetSchedule queue.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-input-dir ARG**     :
+                                Job input directory.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--job-output-dir ARG**    :
+                                Job output directory.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--dump-cgi-env**          :
+                                For remote_cgi jobs, print the CGI
+                                environment variables saved by cgi2rcgi
+                                as a part of job input.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--dump-cgi-stdin**        :
+                                For remote_cgi jobs, dump the standard
+                                input saved by cgi2rcgi as a part of job
+                                input.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**-o [--output-file] ARG**  :
+                                Save output to the specified file.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--compat-mode**           :
+                                Enable backward compatibility tweaks.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--login-token ARG**       :
+                                Login token (see the 'login' command).
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--auth ARG**              :
+                                Authentication string ("client_name").
+
+&nbsp;&nbsp;&nbsp;&nbsp;**--allow-xsite-conn**      :
+                                Allow cross-site connections.
