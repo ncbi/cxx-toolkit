@@ -8,7 +8,7 @@ nav: pages/ch_jsonwrapp
 22\. JSONWRAPP (JSON parsing and handling)
 ===================================================================
 
-Created: March 14, 2016; Last Update: March 15, 2016.
+Created: March 14, 2016; Last Update: March 16, 2016.
 
 
 -  [Introduction](#ch_jsonwrapp.Introduction)
@@ -16,6 +16,16 @@ Created: March 14, 2016; Last Update: March 15, 2016.
 -  [Overview](#ch_jsonwrapp.Overview)
 
 -  [JsonWrapp classes](#ch_jsonwrapp.Classes)
+
+  -  [Node](#ch_jsonwrapp.Node)
+
+  -  [Value](#ch_jsonwrapp.Value)
+
+  -  [Array](#ch_jsonwrapp.Array)
+
+  -  [Object](#ch_jsonwrapp.Object)
+
+  -  [Document](#ch_jsonwrapp.Document)
 
 -  [JSON data parsing (DOM and SAX)](#ch_jsonwrapp.Parsing)
 
@@ -81,6 +91,64 @@ Converting the *Null* value into *String* or *Number* does not require *ResetX()
 Converting it into *Array*, does:
 
     CJson_Array arr = val.ResetArray();
+
+
+<a name="ch_jsonwrapp.Node"></a>
+
+#### Node
+
+Two base classes [CJson_ConstNode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstNode.html) and
+[CJson_Node](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Node.html) provide only basic information about the node. It is possible to query node type: *IsNull()*, *IsValue()*, *IsArray()*, *IsObject()*, request access to node data using *GetX()* or *SetX()* methods, or change node type with the help of *ResetX()*.
+
+
+<a name="ch_jsonwrapp.Value"></a>
+
+#### Value
+
+Value classes [CJson_ConstValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstValue.html) and 
+[CJson_Value](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Value.html) provide access to nodes of primitive types (numbers, strings and boolean). To convert a value from one type into another (for exanple, from number into a string), there is no need to call *Reset*. This can be done with a *SetX()*.
+
+
+<a name="ch_jsonwrapp.Array"></a>
+
+#### Array
+
+JSON array is an ordered sequence of zero or more values. `JsonWrapp` array classes -
+[CJson_ConstArray](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstArray.html),
+[CJson_Array](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Array.html) - are designed to resemble STL vector class and implement practically identical (but limited) interface. The classes also implement random access iterators to access array elements.
+
+For example, to populate an array with primitive type nodes:
+
+    arr.push_back(1);
+    arr.push_back(false);
+    arr.push_back("str");
+
+To add Array or Object node into Array:
+
+    CJson_Array a2 = arr.push_back_array();
+    CJson_Object o2 = arr.push_back_object();
+
+To enumerate contents of the Array:
+
+    for (CJson_Array::iterator i = arr.begin(); i != arr.end(); ++i) {
+      CJson_Node v = *i
+    }
+    for_each(arr.begin(), arr.end(), [](const CJson_ConstNode& v) {
+        do_something(v);
+    });
+
+
+<a name="ch_jsonwrapp.Object"></a>
+
+#### Object
+
+Object is
+
+<a name="ch_jsonwrapp.Document"></a>
+
+#### Document
+
+Document is
 
 <a name="ch_jsonwrapp.Parsing"></a>
 
