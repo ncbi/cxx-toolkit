@@ -17,15 +17,15 @@ Created: March 14, 2016; Last Update: March 16, 2016.
 
 -  [JsonWrapp classes](#ch_jsonwrapp.Classes)
 
-  -  [Node](#ch_jsonwrapp.Node)
+    -  [Node](#ch_jsonwrapp.Node)
 
-  -  [Value](#ch_jsonwrapp.Value)
+    -  [Value](#ch_jsonwrapp.Value)
 
-  -  [Array](#ch_jsonwrapp.Array)
+    -  [Array](#ch_jsonwrapp.Array)
 
-  -  [Object](#ch_jsonwrapp.Object)
+    -  [Object](#ch_jsonwrapp.Object)
 
-  -  [Document](#ch_jsonwrapp.Document)
+    -  [Document](#ch_jsonwrapp.Document)
 
 -  [JSON data parsing (DOM and SAX)](#ch_jsonwrapp.Parsing)
 
@@ -142,13 +142,60 @@ To enumerate contents of the Array:
 
 #### Object
 
-Object is
+JSON object is an unordered collection of zero or more name/value pairs, where a name is a string and a value is a string, number, boolean, null, object, or array. `JsonWrapp` object classes -  [CJson_ConstObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstObject.html),
+[CJson_Object](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Object.html) - resemble STL map. Unlike STL map though, pair elements are called *name* and *value* here. Object classes implement bidirectional iterators to access object elements.
+
+To insert primitive type nodes into an object:
+
+    obj.insert("int", 1);
+    obj.insert("bool", false);
+    obj.insert("str", "string");
+
+To insert Array or Object node into Object:
+
+    CJson_Array a2 = obj.insert_array("a2");
+    CJson_Object o2 = obj.insert_object("o2");
+
+To enumerate contents of the Object:
+
+    for (CJson_Object::iterator i = obj.begin(); i != obj.end(); ++i) {
+      string n = v->name;
+      CJson_Node v = i->value;
+    }
+    for_each(obj.begin(), obj.end(), [](const CJson_ConstObject_pair& v) {
+        cout << v.name << ": " << v.value << endl;
+    });
+    for(CJson_Object::iterator::pair& v : obj) {
+        cout << v.name << ": " << v.value << endl;
+    }
+
 
 <a name="ch_jsonwrapp.Document"></a>
 
 #### Document
 
-Document is
+In `JsonWrapp` library, Document is the only data storage class. All other objects are simply pointers to different parts of the document. Documents can be created and populated in memory, initialized from strings which contain valid JSON data, read from file.
+
+For example, to create a document from a string:
+
+    CJson_Document doc1("{\"null\": null, \"bool\": true, \"str\": \"str\"}");
+    CJson_Document doc2;
+    doc2.ParseString("{\"null\": null, \"bool\": true, \"str\": \"str\"}");
+
+To read document from file:
+
+    CJson_Document doc1;
+    doc1.Read("filename");
+    ifstream ifs("filename")
+    CJson_Document doc2;
+    ifs >> doc2;
+
+It is also possible to initialize Document with the contents of Node of another Document. In this case, data from one document will be copied into a new document:
+
+    CJson_Document doc1;
+    doc1.Read("filename");
+    CJson_Document doc2(doc1.GetObject().at("name"));
+
 
 <a name="ch_jsonwrapp.Parsing"></a>
 
