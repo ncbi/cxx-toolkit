@@ -55,23 +55,23 @@ First thing to note is that most classes here act like pointers. That is, creati
 
 The library implements the following classes: 
 
--  [CJson_ConstNode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstNode.html), 
+-  [CJson_ConstNode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstNode.html) 
   
--  [CJson_Node](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Node.html),
+-  [CJson_Node](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Node.html)
  
--  [CJson_ConstValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstValue.html), 
+-  [CJson_ConstValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstValue.html) 
   
--  [CJson_Value](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Value.html), 
+-  [CJson_Value](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Value.html) 
   
--  [CJson_ConstArray](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstArray.html), 
+-  [CJson_ConstArray](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstArray.html) 
   
--  [CJson_Array](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Array.html), 
+-  [CJson_Array](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Array.html) 
  
--  [CJson_ConstObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstObject.html),
+-  [CJson_ConstObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstObject.html)
  
--  [CJson_Object](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Object.html),
+-  [CJson_Object](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Object.html)
 
--  [CJson_Document](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Document.html).
+-  [CJson_Document](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Document.html)
 
 *Node*, *Value*, *Array* and *Object* classes provide relevant interfaces for their particular types. *CJson\_ConstX* objects provide read methods, while *CJson\_X* objects – write methods. *Value* holds primitive type data. *Array* provides vector-like interface. *Object* resembles STL map.
 
