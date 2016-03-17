@@ -2191,9 +2191,9 @@ NCBI NetCache Service
 
 ### What is NetCache?
 
-**NetCache** is a service that provides to distributed hosts a reliable and uniform means of accessing temporary storage. Using **NetCache**, distributed applications can store data temporarily without having to manage distributed access or handle errors. Applications on different hosts can access the same data simply by using the unique key for the data.
+**Netcache** service provides temporary storage of documents and data in a distributed computing environment. The system stores data it receives and provides it back upon request. Applications hosted on different network servers access the data by using a unique alphanumeric key.
 
-CGI applications badly need this functionality to store session information between successive HTPP requests. Some session information could be embedded into URLs or cookies, however it is generally not a good idea because:
+CGI applications need this functionality to store session information between successive HTPP requests. Some session information could be embedded into URLs or cookies, however it is generally not a good idea because:
 
 -   Some data should not be transmitted to the client, for security reasons.
 
@@ -2215,9 +2215,9 @@ Thus it is better to store this information on the server side. However, this in
 
 -   Automatically recovering after failures
 
-Therefore, it's better to provide a centralized service that provides robust temporary storage, which is exactly what **NetCache** does.
+Therefore, it's better to provide a centralized service that provides robust temporary storage, which is what **NetCache** does.
 
-**NetCache** is load-balanced and has high performance and virtually unlimited scalability. Any Linux, Unix or Windows machine can be a **NetCache** host, and any application can use it. For example, the success with which **NetCache** solves the problem of distributed access to temporary storage enables the [NCBI Grid](ch_grid.html) framework to rely on it for passing data between its components.
+**NetCache** is load-balanced and has high performance and virtually unlimited scalability. The success with which **NetCache** solves the problem of distributed access to temporary storage enables the [NCBI Grid](ch_grid.html) framework to rely on it for passing data between its components.
 
 <a name="ch_app.what_it_can_be_used"></a>
 
@@ -2277,7 +2277,13 @@ The following topics explain how to use NetCache from an application:
 
 A typical **NetCache** implementation involves a load-balanced server daemon (the "service") and one or more clients that access the service through a software interface. See [netcached.ini](http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log) for descriptions of the **NetCache** server daemon configuration parameters.
 
-Two classes provide an interface to **NetCache** - ***CNetCacheAPI*** and ***CNetICacheClient***. These classes share most of the basic ideas of using **NetCache**, but might be best suited for slightly different purposes. ***CNetCacheAPI*** might be a bit better for temporary storage in scenarios where the data is not kept elsewhere, whereas ***CNetICacheClient*** implements the ***ICache*** interface and might be a bit better for scenarios where the data still exists elsewhere but is also cached for performance reasons. ***CNetCacheAPI*** will probably be more commonly used because it automatically generates unique keys for you and it has a slightly simpler interface. ***CNetCacheAPI*** also supports stream insertion and extraction operators.
+Two classes provide access to **NetCache** - 
+[CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) and
+[CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html).
+These classes share most of the basic ideas of using **NetCache**, but might be best suited for slightly different purposes. [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html)
+might be a bit better for temporary storage in scenarios where the data is not kept elsewhere, whereas
+[CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) implements the
+[ICache](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICache.html) interface and might be a bit better for scenarios where the data still exists elsewhere but is also cached for performance reasons. ***CNetCacheAPI*** will probably be more commonly used because it automatically generates unique keys for you and it has a slightly simpler interface. ***CNetCacheAPI*** also supports stream insertion and extraction operators.
 
 There are multiple ways to write data to **NetCache** and read it back, but the basic ideas are:
 
@@ -2285,9 +2291,9 @@ There are multiple ways to write data to **NetCache** and read it back, but the 
 
 -   Blob identification is usually associated with a unique purpose.
 
-    -   With ***CNetCacheAPI***, a blob is uniquely identified by a key that is generated by **NetCache** and returned to the calling code. Thus, the calling code can limit use of the blob to a given purpose. For example, data can be passed from one instance of a CGI to the next by storing the data in a **NetCache** blob and passing the key via cookie.
+    -   With ***CNetCacheAPI***, a blob is uniquely identified by a key that is generated by the **NetCache** and returned to the calling code. Thus, the calling code can limit use of the blob to a given purpose. For example, data can be passed from one instance of a CGI to the next by storing the data in a **NetCache** blob and passing the key via cookie.
 
-    -   With ***CNetICacheClient***, blobs are identified by the combination { key, version, subkey, cache name }, which isn't guaranteed to be unique. It is possible that two programs could choose the same combination and one program could change or delete the data stored by the other.
+    -   With ***CNetICacheClient***, blobs are identified by the combination { key, subkey, version, cache name }, which isn't guaranteed to be unique. It is possible that two programs could choose the same combination and one program could change or delete the data stored by the other.
 
 -   With ***CNetICacheClient***, the cache name can be specified in the registry and is essentially a convenient way of simulating namespaces.
 
@@ -2310,8 +2316,6 @@ There are multiple ways to write data to **NetCache** and read it back, but the 
     -   Blob lifetime can be prolonged.
 
         -   By default, each time a blob is accessed its lifetime will be extended by the server's default `blob_ttl`. The default prolongation can be overridden by passing a TTL when accessing the blob (the passed value will apply only to that access).
-
-        -   By default, the total lifetime of a blob, including all prolongations, will be limited to either 10 times the `blob_ttl` or 30 days, whichever is larger. The default maximum lifetime can be overridden with `max_ttl`.
 
         -   Lifetime prolongation can be disabled by setting the `prolong_on_read` entry to `false` in [netcached.ini](http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log).
 
@@ -2531,7 +2535,7 @@ A:It keeps its database on disk, memory-mapped; it also has a (configurable) "wr
 
 **Q:Is there an NCBI "pool" of netcache servers that we can simply tie in to, or do we have to set up netcache servers on our group's own machines?**
 
-A:We usually (except for PubMed) administer NC servers, most of which are shared. Depends on your load (hit rate, blob size distribution, blob lifetime, redundancy, etc.) we can point you to the shared NC servers or create a new NC server pool.
+A:We usually (except for PubMed) administer NC servers, most of which are shared. Depending on your load (hit rate, blob size distribution, blob lifetime, redundancy, etc.) we can point you to the shared NC servers or create a new NC server pool.
 
 **Q:I assume what's in c++/include/connect/services/\*hpp is the api to use for a client?**
 
@@ -2550,7 +2554,7 @@ A:Yes, you can mirror NC servers, master-master style, including between BETH an
 
 **Q:Is there a limit to the size of the data blobs that can be stored?**
 
-A:I have seen 400MB blobs there being written and read without an incident a thousand times a day (<http://mini.ncbi.nlm.nih.gov/1k3ru>). We can do experiments to see how your load will be handled. As a general rule, you should ask <span class="oem_span">nypk4jvylGujip5ust5upo5nv/</span> for guidance when changing your NC usage.
+A:Theoretical limit is high enough to say that there is no limit; in practice, limits are imposed by hardware. I have seen 400MB blobs there being written and read without an incident a thousand times a day (<http://mini.ncbi.nlm.nih.gov/1k3ru>). We can do experiments to see how your load will be handled. As a general rule, you should ask <span class="oem_span">nypk4jvylGujip5ust5upo5nv/</span> for guidance when changing your NC usage.
 
 **Q:How is the expiration of BLOBs handled by NetCache? My thinking is coming from two directions. First, I wouldn’t want BLOBs deleted out from under me, but also, if the expiration is too long, I don’t want to be littering the NetCache. That is: do I need to work hard to remove all of my BLOBs or can I just trust the automatic clean-up?**
 
