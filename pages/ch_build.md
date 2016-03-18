@@ -153,6 +153,8 @@ The meta-makefile `myProj/Makefile.in` should define at least one of the followi
 
 -   **`ASN_PROJ`** (optional) is like **`LIB_PROJ`**, with one additional feature: Any projects listed there will be interpreted as the names of ASN.1 module specifications to be processed by [datatool](ch_app.html#ch_app.datatool).
 
+-   **`DTD_PROJ`**, **`XSD_PROJ`**, or **`WSDL_PROJ`** (optional) is like **`LIB_PROJ`**, with one additional feature: Any projects listed there will be interpreted as the names of DTD, XML schema, or WSDL specifications to be processed by [datatool](ch_app.html#ch_app.datatool).
+
 -   **`APP_PROJ`** (optional) - a list of names for application makefiles. Similarly, each application (`p1, p2, ..., pN`) listed under **`APP_PROJ`** must have a corresponding project makefile named `Makefile.p*.app` in the project's source directory. When **make** is executed, these application project makefiles will be used along with `Makefile.app` and `Makefile.app.tmpl` to build the specified executables.
 
 -   **`SUB_PROJ`** (optional) - a list of names for subproject directories (used on recursive makes). The **`SUB_PROJ`** macro is used to recursively define **make** targets; items listed here define the subdirectories rooted in the project's source directory where **make** should also be executed.
