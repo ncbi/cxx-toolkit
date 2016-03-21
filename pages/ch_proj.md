@@ -669,10 +669,10 @@ where:
 
 -   **`builddir`** (optional) specifies what version of the pre-built NCBI C++ Toolkit libraries to link to.
 
-As a result of executing this shell script, you will have a new directory created with the pathname `./[internal/]c++/` whose structure contains "slices" of the original SVN tree. Specifically, you will find:
+As a result of executing this shell script, you will have a new directory created with the pathname `trunk/[internal/]c++/` whose structure contains "slices" of the original SVN tree. Specifically, you will find:
 
-    ./[internal/]c++/include/subtree_name
-    ./[internal/]c++/src/subtree_name
+    trunk/[internal/]c++/include/subtree_name
+    trunk/[internal/]c++/src/subtree_name
 
 The `src` and `include` directories will contain all of the requested subtree's source and header files along with any hierarchically defined subdirectories. In addition, the script will create new makefiles with the suffix *\*\_app*. These makefiles are generated from the original [customized makefiles](#ch_proj.make_proj_app) (`Makefile.*.app`) located in the original `src` subtrees. The customized makefiles were designed to work only in conjunction with the build directories in the larger NCBI C++ tree; the newly created makefiles can be used directly in your new working directories.
 
@@ -682,13 +682,12 @@ You can re-run **import\_project** to add multiple projects to your tree.
 
     import_project internal/demo/misc/xmlwrapp
     import_project -topdir trunk/internal/c++ misc/xmlwrapp
-    pushd trunk/internal/c++/src/misc/xmlwrapp
-    make
+	import_project -topdir trunk/internal/c++ -nocheckout .
+	pushd trunk/internal/c++/src
+    make -f Makefile.flat
     popd
-    pushd trunk/internal/c++/src/internal/demo/misc/xmlwrapp
-    make
 
-In this case, your public projects will be located in the `internal` tree. You must build in each imported subtree, in order from most-dependent to least-dependent so that the imported libraries will be linked to rather than the pre-built libraries.
+The third `import_project` command in this example produces a unified `Makefile.flat` covering both subtrees.  Without this command, it would be necessary to build them individually, starting with the libraries, so that the demos would link to imported rather than prebuilt libraries.
 
 The NCBI C++ Toolkit project directories, along with the libraries they implement and the logical modules they entail, are summarized in the [Library Reference](part3.html).
 

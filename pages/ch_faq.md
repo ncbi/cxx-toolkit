@@ -43,6 +43,8 @@ This chapter contains frequently asked questions and useful links.
 
         -   [How can I disable the XML declaration or DOCTYPE with the serial library?](#ch_faq.How_can_I_disable_the_XML_declara)
 
+	    -   [How can I import just one project from the source tree (a library), add a sibling application project that will depend on that library project, and have the ability to build both from the common parent node?](#ch_faq.How_can_I_import_just_one_project)
+
     -   [Compiling](#ch_faq.Compiling)
 
         -   [How do I compile for 32-bit on a 64-bit machine in a typical C++ Toolkit app?](#ch_faq.How_do_I_compile_for_32bit_on_a_6)
@@ -240,6 +242,20 @@ Here's a code snippet that shows all combinations:
 ***Note:*** The serial library can read XML whether or not it contains the XML declaration or DOCTYPE without using special flags. For example:
 
     istr >> MSerial_Xml >> obj;
+
+<a name="ch_faq.How_can_I_import_just_one_project"></a>
+
+#### How can I import just one project from the source tree (a library), add a sibling application project that will depend on that library project, and have the ability to build both from the common parent node?
+
+If the application is already present in the C++ Toolkit, just in the `internal` subtree whereas the library is public, you can import the library via [`import_project -topdir trunk/internal/c++ ...`](ch_proj#ch_proj.work_sub_tree) so that both projects will wind up in a single tree, then import the application normally, and finally run
+
+    import_project -topdir trunk/internal/c++ -nocheckout .
+
+to produce a `Makefile.flat` covering both projects.
+
+You can use a similar approach if there's no public/internal mismatch, just without `-topdir`.
+
+If the application is entirely absent from the C++ Toolkit, you can place its code alongside the library along with a suitable [`Makefile.*.app`](ch_proj#ch_proj.make_proj_app), list it in [`Makefile.in`](ch_proj#ch_proj.meta_makefiles), and rerun `import_project` with the `-nocheckout` flag to (re)generate appropriate wrapper makefiles.
 
 <a name="ch_faq.Compiling"></a>
 
