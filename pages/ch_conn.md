@@ -59,11 +59,13 @@ The following is an outline of the topics presented in this chapter, with links 
 
 -   [CONN-Based C++ Streams and Stream Buffers](#ch_conn.cpp_connection_streams) -- `ncbi_conn_stream`[[.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_conn_stream.hpp) \| [.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_stream.cpp)], `ncbi_conn_streambuf`[[.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_streambuf.hpp) \| [.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_streambuf.cpp)]
 
-    -   Built on top of connection objects.
+    -   Built on top of connection objects
 
 -   [Servers and Service Mapping API](#ch_conn.service_mapping_api)
 
-    -   Description of service name resolution API.
+    -   Description of service name resolution API
+    
+    -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce)
 
     -   NCBI Server Meta-Address Info -- `ncbi_server_info`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h) \| [p.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_infop.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_info.c)]
 
@@ -865,7 +867,7 @@ Additional examples can be found in the test files:
 Service mapping API
 -------------------
 
-The API defined in [connect/ncbi\_service.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) is designed to map the required service name into the server address. Internally, the mapping is done either directly or indirectly by means of the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi), running at the NCBI site. For the client, the mapping is seen as reading from an iterator created by a call to ***SERV\_Open()***, similar to the following fragment (for more examples, please refer to the test program [test\_ncbi\_disp.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_disp.c)):
+The API defined in [connect/ncbi\_service.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) is designed to map the required service name into the server address. Internally, the mapping is done either directly or indirectly by means of the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) and starting from SC-17 by means of [LBOS](https://confluence.ncbi.nlm.nih.gov/display/CT/Introduction+to+LBOS+in+Connect+library), running at the NCBI site. For the client, the mapping is seen as reading from an iterator created by a call to ***SERV\_Open()***, similar to the following fragment (for more examples, please refer to the test program [test\_ncbi\_disp.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_disp.c)):
 
     #include <connect/ncbi_service.h>
     SERV_ITER iter = SERV_Open("my_service", fSERV_Any, SERV_ANYHOST, 0);
@@ -1014,11 +1016,17 @@ Service lookup process now involves looking up through the following sources, in
 
 -   LBSM table (only in-house; this step does not exist in the outside builds);
 
+-   LBOS (only in-house; this step does not exist in the outside builds); 
+
 -   Network dispatcher.
 
 Only one source containing the information about the service is used; the next source is only tried if the previous one did not yield in any servers (for the service).
 
-Step 1 is disabled by default, to enable it set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file. Steps 2 and 3 are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
+Steps 1 and 3 are disabled by default. 
+To enable the 1st step - set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file. 
+To enable the 3rd step - set **`CONN_LBOS_ENABLE`** environment variable to "1" or add **`LBOS_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+Steps 2 and 4 are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
 
 ***Note:*** Alternatively, and for the sake of backward compatibility with older application, the use of local LBSM table can be controlled by **`CONN_LB_DISABLE`**={0,1} in the environment or **`LB_DISABLE`**={0,1} in the "[`CONN`]" section of the registry, or individually on a per service basis:
 
@@ -1066,6 +1074,13 @@ Note that entries for MSSQL14, 16, and 17 are not shown, and they are not requir
     MSSQL15_CONN_LOCAL_SERVER_9="DNS mssql15:1433 L=yes"
 
 You can also look at the [detailed description of LBSMD](ch_app.html#ch_app.Load_Balancing_Servi) and a sample configuration file.
+
+<a name="ch_conn.Lbos_Self_Announce_Deannounce"></a>
+
+### Announcement/deannouncement of servers in LBOS
+
+You can read about how to announce and deannounce your application in LBOS from within the source code in [Confluence](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=51121913) (in-house only).
+
 
 <a name="ch_conn.Threaded_Server_Supp"></a>
 
