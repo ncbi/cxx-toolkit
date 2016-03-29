@@ -5,7 +5,7 @@ nav: pages/ch_algoalign
 ---
 
 
-18\. Biological Sequence Alignment
+19\. Biological Sequence Alignment
 ================================================
 
 Last Update: October 18, 2013.
