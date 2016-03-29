@@ -5,7 +5,7 @@ nav: pages/ch_grid
 ---
 
 
-23\. Distributed Computing
+25\. Distributed Computing
 ========================================
 
 Created: May 14, 2007; Last Update: November 13, 2013.
