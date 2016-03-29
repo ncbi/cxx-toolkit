@@ -5,7 +5,7 @@ nav: pages/ch_gui
 ---
 
 
-19\. GUI and Graphics
+20\. GUI and Graphics
 ===================================
 
 Last Update: November 13, 2013.
