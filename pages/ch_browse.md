@@ -5,7 +5,7 @@ nav: pages/ch_browse
 ---
 
 
-27\. NCBI C++ Toolkit Source Browser
+29\. NCBI C++ Toolkit Source Browser
 ==================================================
 
 Source Browsers
