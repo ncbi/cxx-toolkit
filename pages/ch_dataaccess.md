@@ -5,7 +5,7 @@ nav: pages/ch_dataaccess
 ---
 
 
-17\. Access to NCBI data
+18\. Access to NCBI data
 ======================================
 
 Created: January 26, 2009.
