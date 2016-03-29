@@ -5,7 +5,7 @@ nav: pages/ch_res
 ---
 
 
-26\. C Toolkit Resources for C++ Toolkit Users
+28\. C Toolkit Resources for C++ Toolkit Users
 ============================================================
 
 Last Update: February 3, 2014.
