@@ -5,7 +5,7 @@ nav: pages/ch_cgi
 ---
 
 
-11\. CGI and Fast-CGI
+12\. CGI and Fast-CGI
 ===================================
 
 Created: January 1, 2005; Last Update: February 2, 2015.
