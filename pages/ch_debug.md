@@ -5,7 +5,7 @@ nav: pages/ch_debug
 ---
 
 
-22\. Debugging, Exceptions, and Error Handling
+24\. Debugging, Exceptions, and Error Handling
 ============================================================
 
 Last Update: April 24, 2014.
