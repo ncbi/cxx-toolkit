@@ -5,7 +5,7 @@ nav: pages/ch_libconfig
 ---
 
 
-30\. Library Configuration
+32\. Library Configuration
 ========================================
 
 Last Update: February 4nd, 2016.
