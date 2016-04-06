@@ -328,6 +328,7 @@ Table 6. NCBI C++ Toolkit-wide configuration parameters
 | Specify the directory to use for temporary files.                                                                                      | **`[NCBI]`**<br/>**`TmpDir`**<br/><br/>**`NCBI_CONFIG__NCBI__TMPDIR`**  [<sup>c</sup>](#ch_libconfig.TF.14)                 | a valid path                                                                         | ""                                                                                                                                      |
 | Specify the file name of a Unicode-to-ASCII translation table.                                                                         | **`[NCBI]`**<br/>**`UnicodeToAscii`**<br/><br/>**`NCBI_CONFIG__NCBI__UNICODETOASCII`**  [<sup>c</sup>](#ch_libconfig.TF.14) | a valid path                                                                         | ""                                                                                                                                      |
 
+
 <div class="table-scroll"></div>
 
 <a name="ch_libconfig.TF.12"></a>
