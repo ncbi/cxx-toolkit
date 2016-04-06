@@ -373,158 +373,45 @@ The following sections discuss library-specific configuration parameters.
 
 Table 7. Connection library configuration parameters
 
-Purpose
-[Registry section]<br/>Registry name<br/><br/>Environment variable (See [Note 2](#ch_libconfig.TF.22))
-Valid values
-Default
-Service-specific parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_<param_name>`**<br/><br/>**`<service>_CONN_<param_name>`**
-
-
-Global parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[CONN]`**<br/>**`<param_name>`**<br/><br/>**`CONN_<param_name>`**
-
-
-Specify arguments for the given service.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_ARGS`**<br/><br/>**`<service>_CONN_ARGS`**
-(service-dependent)
-""
-Specify how much debug information will be output.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_DEBUG_PRINTOUT`**<br/><br/>**`<service>_CONN_DEBUG_PRINTOUT`**
-CI  [<sup>a</sup>](#ch_libconfig.TF.15):<br/>*to get some*: 1, on, yes, true, some<br/>*to get all*: data, all<br/>*to get none*: anything else
-""
-If this parameter is true, the network dispatcher will be disabled.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_DISPD_DISABLE`**<br/><br/>**`<service>_CONN_DISPD_DISABLE`**
-Boolean  [<sup>c</sup>](#ch_libconfig.TF.17)
-true
-If this parameter is true, the Firewall mode will be enabled.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_FIREWALL`**<br/><br/>**`<service>_CONN_FIREWALL`**
-Boolean  [<sup>c</sup>](#ch_libconfig.TF.17)
-not set
-Set the dispatcher host name.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_HOST`**<br/><br/>**`<service>_CONN_HOST`**
-a valid host name
-www.ncbi.nlm.nih.gov
-Set the HTTP proxy server.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_HTTP_PROXY_HOST`**<br/><br/>**`<service>_CONN_HTTP_PROXY_HOST`**
-a valid proxy host
-""
-Set the HTTP proxy server port number. This will be set to zero if **`<service>_CONN_HTTP_PROXY_HOST`** is not set.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_HTTP_PROXY_PORT`**<br/><br/>**`<service>_CONN_HTTP_PROXY_PORT`**
-unsigned short
-0
-Set a custom user header. This is rarely used, and then typically for debugging purposes.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_HTTP_USER_HEADER`**<br/><br/>**`<service>_CONN_HTTP_USER_HEADER`**
-a valid HTTP header
-""
-Prohibit the use of a local load balancer. ***Note:*** This parameter is discouraged for performance reasons - please use **`<service>_CONN_LBSMD_DISABLE`** instead.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_LB_DISABLE`**<br/><br/>**`<service>_CONN_LB_DISABLE`**
-Boolean  [<sup>c</sup>](#ch_libconfig.TF.17)
-false
-Prohibit the use of a local load balancer. This should be used instead of **`<service>_CONN_LB_DISABLE`**.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_LBSMD_DISABLE`**<br/><br/>**`<service>_CONN_LBSMD_DISABLE`**
-Boolean  [<sup>c</sup>](#ch_libconfig.TF.17)
-false
-Enable the use of locally configured services. See **`<service>_CONN_LOCAL_SERVER_<n>`**.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_LOCAL_ENABLE`**<br/><br/>**`<service>_CONN_LOCAL_ENABLE`**
-Boolean  [<sup>c</sup>](#ch_libconfig.TF.17)
-false
-Create a service entry for **`service`**, where **`n`** is a number from 0 to 100 (not necessarily sequential). The value must be a valid server descriptor, as it would be configured for the load balancing daemon ([LBSMD](ch_app.html#ch_app.Load_Balancing_Servi)). This is a quick way of configuring locally used services (usually, for the sole purposes of debugging / development) without the need to edit the actual LBSMD tables (which become visible for the whole NCBI). See **`<service>_CONN_LOCAL_ENABLE`**. ***Note:*** This parameter has no corresponding global parameter.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_LOCAL_SERVER_<n>`**<br/><br/>**`<service>_CONN_LOCAL_SERVER_<n>`**
-any non-empty string
-not set
-Maximum number of attempts to establish connection. Zero means use the default.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_MAX_TRY`**<br/><br/>**`<service>_CONN_MAX_TRY`**
-unsigned short
-3
-Specify a password for the connection (only used with **`<service>_CONN_USER`**).<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_PASS`**<br/><br/>**`<service>_CONN_PASS`**
-the user's password
-""
-Set the path to the service.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_PATH`**<br/><br/>**`<service>_CONN_PATH`**
-a valid service path
-/Service/dispd.cgi
-Set the dispatcher port number.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_PORT`**<br/><br/>**`<service>_CONN_PORT`**
-unsigned short
-0
-Set a non-transparent CERN-like firewall proxy server.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_PROXY_HOST`**<br/><br/>**`<service>_CONN_PROXY_HOST`**
-a valid proxy host
-""
-Set the HTTP request method.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_REQ_METHOD`**<br/><br/>**`<service>_CONN_REQ_METHOD`**
-CI [<sup>a</sup>](#ch_libconfig.TF.15): any, get, post
-ANY
-Redirect connections to **`<service>`** to the specified alternative service. See [Service Redirection](ch_conn.html#ch_conn.Service_Redirection).<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_SERVICE_NAME`**<br/><br/>**`<service>_CONN_SERVICE_NAME`**
-a replacement for the service name
-(none)
-Set to true if the client is stateless.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_STATELESS`**<br/><br/>**`<service>_CONN_STATELESS`**
-Boolean  [<sup>c</sup>](#ch_libconfig.TF.17)
-false
-Zero means no waiting but polling (may not work well with all connections); "infinite" means no timeout (i.e. to wait for I/O indefinitely); other values are the maximum number of seconds to wait before failing.<br/>(See [Note 1](#ch_libconfig.TF.21).)
-**`[<service>]`**<br/>**`CONN_TIMEOUT`**<br/><br/>**`<service>_CONN_TIMEOUT`**
-floating point \>= 0.0 (1 microsecond precision)  [<sup>f</sup>](#ch_libconfig.TF.20) or "infinite"
-30.0
-Specify a username for the connection (see **`<service>_CONN_PASS`**). Only necessary for connections requiring authentication.<br/>(See [Note 1](#ch_libconfig.TF.21))
-**`[<service>]`**<br/>**`CONN_USER`**<br/><br/>**`<service>_CONN_USER`**
-a username with access rights for the connection
-(none)
-Set the level of logging detail that GNUTLS should produce about secure transactions. Log levels greater than 7 also dump scrambled data from GNUTLS.
-**`[CONN]`**<br/>**`GNUTLS_LOGLEVEL`**<br/><br/>**`CONN_GNUTLS_LOGLEVEL`**
-0 to 10
-0
-A true value enables HTTP connections to dump headers of error server responses only (successful responses do not get logged).
-**`[CONN]`**<br/>**`HTTP_ERROR_HEADER_ONLY`**<br/><br/>**`CONN_HTTP_ERROR_HEADER_ONLY`**
-Boolean  [<sup>c</sup>](#ch_libconfig.TF.17)
-false
-A true value enables HTTP connections to follow https to http transitions (http to https transitions are secure and therefore don't need to be enabled).
-**`[CONN]`**<br/>**`HTTP_INSECURE_REDIRECT`**<br/><br/>**`CONN_HTTP_INSECURE_REDIRECT`**
-Boolean  [<sup>c</sup>](#ch_libconfig.TF.17)
-false
-Set a default referer (applies to all HTTP connections).
-**`[CONN]`**<br/>**`HTTP_REFERER`**<br/><br/>**`CONN_HTTP_REFERER`**
-a valid referer
-(none)
-A list of identifiers to be treated as local services defined in the registry / environment. This parameter is optional and is used only for reverse address-to-name lookups.
-**`[CONN]`**<br/>**`LOCAL_SERVICES`**<br/><br/>**`CONN_LOCAL_SERVICES`**
-whitespace-delimited  [<sup>d</sup>](#ch_libconfig.TF.18) list of identifiers
-(none)
-Set the mail gateway host.
-**`[CONN]`**<br/>**`MX_HOST`**<br/><br/>**`CONN_MX_HOST`**
-a valid host name
-`localhost` on Unix platforms except Cygwin; `mailgw` on all other platforms
-Set the mail gateway port.
-**`[CONN]`**<br/>**`MX_PORT`**<br/><br/>**`CONN_MX_PORT`**
-1 to 65535
-25 (SMTP)
-Set the mail gateway communication timeout in seconds.
-**`[CONN]`**<br/>**`MX_TIMEOUT`**<br/><br/>**`CONN_MX_TIMEOUT`**
-floating point \>= 0.0 (zero means default)
-120
-Enable [CServer](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html) to catch exceptions.
-**`[server]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`**
-Boolean  [<sup>b</sup>](#ch_libconfig.TF.16)
-true
-Deprecated.
-**`[server]`**<br/>**`allow_implicit_job_return`**<br/><br/>**`NCBI_CONFIG__SERVER__ALLOW_IMPLICIT_JOB_RETURN`**  [<sup>e</sup>](#ch_libconfig.TF.19)
-Boolean  [<sup>b</sup>](#ch_libconfig.TF.16)
-false
-Maximum time worker nodes are allowed to live without a single NetSchedule server.
-**`[server]`**<br/>**`max_wait_for_servers`**<br/><br/>**`NCBI_CONFIG__SERVER__MAX_WAIT_FOR_SERVERS`**  [<sup>e</sup>](#ch_libconfig.TF.19)
-unsigned int
-24 \* 60 \* 60 seconds
-Causes the worker node to shut down if any jobs fail.
-**`[server]`**<br/>**`stop_on_job_errors`**<br/><br/>**`NCBI_CONFIG__SERVER__STOP_ON_JOB_ERRORS`**  [<sup>e</sup>](#ch_libconfig.TF.19)
-Boolean  [<sup>b</sup>](#ch_libconfig.TF.16)
-true
-Enable [CThreadInPool\_ForServer](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCThreadInPool__ForServer.html) to catch exceptions.
-**`[ThreadPool]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`NCBI_CONFIG__THREADPOOL__CATCH_UNHANDLED_EXCEPTIONS`**  [<sup>e</sup>](#ch_libconfig.TF.19)
-Boolean  [<sup>b</sup>](#ch_libconfig.TF.16)
-true
+| Purpose |[Registry section]<br/>Registry name<br/><br/>Environment variable (See [Note 2](#ch_libconfig.TF.22)) | Valid values | Default |
+|---------|-------------------------------------------------------------------------------------------------------|--------------|----------|
+| Service-specific parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21))| **`[<service>]`**<br/>**`CONN_<param_name>`**<br/><br/>**`<service>_CONN_<param_name>`** | xxx | xxx |
+| Global parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21)) |**`[CONN]`**<br/>**`<param_name>`**<br/><br/>**`CONN_<param_name>`** | xxx | xxx |
+| Specify arguments for the given service.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_ARGS`**<br/><br/>**`<service>_CONN_ARGS`** | (service-dependent) | "" |
+| Specify how much debug information will be output.<br/>(See [Note 1](#ch_libconfig.TF.21)) |**`[<service>]`**<br/>**`CONN_DEBUG_PRINTOUT`**<br/><br/>**`<service>_CONN_DEBUG_PRINTOUT`** |CI  [<sup>a</sup>](#ch_libconfig.TF.15):<br/>*to get some*: 1, on, yes, true, some<br/>*to get all*: data, all<br/>*to get none*: anything else | "" |
+| If this parameter is true, the network dispatcher will be disabled.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_DISPD_DISABLE`**<br/><br/>**`<service>_CONN_DISPD_DISABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | true |
+| If this parameter is true, the Firewall mode will be enabled.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_FIREWALL`**<br/><br/>**`<service>_CONN_FIREWALL`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | not set |
+| Set the dispatcher host name.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_HOST`**<br/><br/>**`<service>_CONN_HOST`** | a valid host name | www.ncbi.nlm.nih.gov |
+| Set the HTTP proxy server.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_HTTP_PROXY_HOST`**<br/><br/>**`<service>_CONN_HTTP_PROXY_HOST`** | a valid proxy host | "" |
+| Set the HTTP proxy server port number. This will be set to zero if **`<service>_CONN_HTTP_PROXY_HOST`** is not set.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_HTTP_PROXY_PORT`**<br/><br/>**`<service>_CONN_HTTP_PROXY_PORT`** | unsigned short | 0 |
+| Set a custom user header. This is rarely used, and then typically for debugging purposes.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_HTTP_USER_HEADER`**<br/><br/>**`<service>_CONN_HTTP_USER_HEADER`** | a valid HTTP header | "" |
+| Prohibit the use of a local load balancer. ***Note:*** This parameter is discouraged for performance reasons - please use **`<service>_CONN_LBSMD_DISABLE`** instead.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_LB_DISABLE`**<br/><br/>**`<service>_CONN_LB_DISABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
+| Prohibit the use of a local load balancer. This should be used instead of **`<service>_CONN_LB_DISABLE`**.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_LBSMD_DISABLE`**<br/><br/>**`<service>_CONN_LBSMD_DISABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
+| Enable the use of locally configured services. See **`<service>_CONN_LOCAL_SERVER_<n>`**.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_LOCAL_ENABLE`**<br/><br/>**`<service>_CONN_LOCAL_ENABLE`** | Boolean |  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
+| Create a service entry for **`service`**, where **`n`** is a number from 0 to 100 (not necessarily sequential). The value must be a valid server descriptor, as it would be configured for the load balancing daemon ([LBSMD](ch_app.html#ch_app.Load_Balancing_Servi)). This is a quick way of configuring locally used services (usually, for the sole purposes of debugging / development) without the need to edit the actual LBSMD tables (which become visible for the whole NCBI). See **`<service>_CONN_LOCAL_ENABLE`**. ***Note:*** This parameter has no corresponding global parameter.<br/>(See [Note 1](#ch_libconfig.TF.21)) |  **`[<service>]`**<br/>**`CONN_LOCAL_SERVER_<n>`**<br/><br/>**`<service>_CONN_LOCAL_SERVER_<n>`** | any non-empty string | not set |
+| Maximum number of attempts to establish connection. Zero means use the default.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_MAX_TRY`**<br/><br/>**`<service>_CONN_MAX_TRY`** | unsigned short | 3 |
+| Specify a password for the connection (only used with **`<service>_CONN_USER`**).<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_PASS`**<br/><br/>**`<service>_CONN_PASS`** | the user's password | "" |
+| Set the path to the service.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_PATH`**<br/><br/>**`<service>_CONN_PATH`** | a valid service path | /Service/dispd.cgi |
+| Set the dispatcher port number.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_PORT`**<br/><br/>**`<service>_CONN_PORT`** | unsigned short | 0 |
+| Set a non-transparent CERN-like firewall proxy server.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_PROXY_HOST`**<br/><br/>**`<service>_CONN_PROXY_HOST`** | a valid proxy host | "" |
+| Set the HTTP request method.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_REQ_METHOD`**<br/><br/>**`<service>_CONN_REQ_METHOD`** | CI [<sup>a</sup>](#ch_libconfig.TF.15): any, get, post | ANY |
+| Redirect connections to **`<service>`** to the specified alternative service. See [Service Redirection](ch_conn.html#ch_conn.Service_Redirection).<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_SERVICE_NAME`**<br/><br/>**`<service>_CONN_SERVICE_NAME`** | a replacement for the service name | (none) |
+| Set to true if the client is stateless.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_STATELESS`**<br/><br/>**`<service>_CONN_STATELESS`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
+| Zero means no waiting but polling (may not work well with all connections); "infinite" means no timeout (i.e. to wait for I/O indefinitely); other values are the maximum number of seconds to wait before failing.<br/>(See [Note 1](#ch_libconfig.TF.21).) | **`[<service>]`**<br/>**`CONN_TIMEOUT`**<br/><br/>**`<service>_CONN_TIMEOUT`** | floating point \>= 0.0 (1 microsecond precision)  [<sup>f</sup>](#ch_libconfig.TF.20) or "infinite" | 30.0 |
+| Specify a username for the connection (see **`<service>_CONN_PASS`**). Only necessary for connections requiring authentication.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_USER`**<br/><br/>**`<service>_CONN_USER`** | a username with access rights for the connection | (none) |
+| Set the level of logging detail that GNUTLS should produce about secure transactions. Log levels greater than 7 also dump scrambled data from GNUTLS. | **`[CONN]`**<br/>**`GNUTLS_LOGLEVEL`**<br/><br/>**`CONN_GNUTLS_LOGLEVEL`** | 0 to 10 | 0 |
+| A true value enables HTTP connections to dump headers of error server responses only (successful responses do not get logged). | **`[CONN]`**<br/>**`HTTP_ERROR_HEADER_ONLY`**<br/><br/>**`CONN_HTTP_ERROR_HEADER_ONLY`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false | 
+| A true value enables HTTP connections to follow https to http transitions (http to https transitions are secure and therefore don't need to be enabled). | **`[CONN]`**<br/>**`HTTP_INSECURE_REDIRECT`**<br/><br/>**`CONN_HTTP_INSECURE_REDIRECT`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
+| Set a default referer (applies to all HTTP connections). | **`[CONN]`**<br/>**`HTTP_REFERER`**<br/><br/>**`CONN_HTTP_REFERER`** | a valid referer | (none) |
+| A list of identifiers to be treated as local services defined in the registry / environment. This parameter is optional and is used only for reverse address-to-name lookups. | **`[CONN]`**<br/>**`LOCAL_SERVICES`**<br/><br/>**`CONN_LOCAL_SERVICES`** | whitespace-delimited  [<sup>d</sup>](#ch_libconfig.TF.18) list of identifiers | (none) |
+| Set the mail gateway host. | **`[CONN]`**<br/>**`MX_HOST`**<br/><br/>**`CONN_MX_HOST`** | a valid host name | `localhost` on Unix platforms except Cygwin; `mailgw` on all other platforms | 
+| Set the mail gateway port. | **`[CONN]`**<br/>**`MX_PORT`**<br/><br/>**`CONN_MX_PORT`** | 1 to 65535 | 25 (SMTP) |
+| Set the mail gateway communication timeout in seconds. | **`[CONN]`**<br/>**`MX_TIMEOUT`**<br/><br/>**`CONN_MX_TIMEOUT`** | floating point \>= 0.0 (zero means default) | 120 | 
+| Enable [CServer](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html) to catch exceptions. | **`[server]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`** | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
+| Deprecated. | **`[server]`**<br/>**`allow_implicit_job_return`**<br/><br/>**`NCBI_CONFIG__SERVER__ALLOW_IMPLICIT_JOB_RETURN`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | false |
+| Maximum time worker nodes are allowed to live without a single NetSchedule server. | **`[server]`**<br/>**`max_wait_for_servers`**<br/><br/>**`NCBI_CONFIG__SERVER__MAX_WAIT_FOR_SERVERS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | unsigned int | 24 \* 60 \* 60 seconds |
+| Causes the worker node to shut down if any jobs fail. | **`[server]`**<br/>**`stop_on_job_errors`**<br/><br/>**`NCBI_CONFIG__SERVER__STOP_ON_JOB_ERRORS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
+| Enable [CThreadInPool\_ForServer](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCThreadInPool__ForServer.html) to catch exceptions. | **`[ThreadPool]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`NCBI_CONFIG__THREADPOOL__CATCH_UNHANDLED_EXCEPTIONS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
 <div class="table-scroll"></div>
 
 <a name="ch_libconfig.TF.15"></a>
