@@ -376,9 +376,9 @@ Table 7. Connection library configuration parameters
 
 | Purpose |[Registry section]<br/>Registry name<br/><br/>Environment variable (See [Note 2](#ch_libconfig.TF.22)) | Valid values | Default |
 |---------|-------------------------------------------------------------------------------------------------------|--------------|----------|
-| Service-specific parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21))| **`[<service>]`**<br/>**`CONN_<param_name>`**<br/><br/>**`<service>_CONN_<param_name>`** |   |   |
-| Global parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21)) |**`[CONN]`**<br/>**`<param_name>`**<br/><br/>**`CONN_<param_name>`** |      |   |
-| Specify arguments for the given service.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_ARGS`**<br/><br/>**`<service>_CONN_ARGS`** | (service-dependent) | "" |
+| **Service-specific parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21))**| **`[<service>]`**<br/>**`CONN_<param_name>`**<br/><br/>**`<service>_CONN_<param_name>`** |   |   |
+| **Global parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21))** |**`[CONN]`**<br/>**`<param_name>`**<br/><br/>**`CONN_<param_name>`** |      |   |
+| **Specify arguments for the given service.<br/>(See [Note 1](#ch_libconfig.TF.21))** | **`[<service>]`**<br/>**`CONN_ARGS`**<br/><br/>**`<service>_CONN_ARGS`** | (service-dependent) | "" |
 | Specify how much debug information will be output.<br/>(See [Note 1](#ch_libconfig.TF.21)) |**`[<service>]`**<br/>**`CONN_DEBUG_PRINTOUT`**<br/><br/>**`<service>_CONN_DEBUG_PRINTOUT`** |CI  [<sup>a</sup>](#ch_libconfig.TF.15):<br/>*to get some*: 1, on, yes, true, some<br/>*to get all*: data, all<br/>*to get none*: anything else | "" |
 | If this parameter is true, the network dispatcher will be disabled.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_DISPD_DISABLE`**<br/><br/>**`<service>_CONN_DISPD_DISABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | true |
 | If this parameter is true, the Firewall mode will be enabled.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_FIREWALL`**<br/><br/>**`<service>_CONN_FIREWALL`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | not set |
