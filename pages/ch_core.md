@@ -91,6 +91,8 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Supporting Command-Based Command Lines](#ch_core.Supporting_CommandBased_Command)
 
+    -   [Argument dependency groups](#ch_core.Argument_Dependency_Groups)
+
     -   [Code Examples](#ch_core.arg_code_example)
 
 -   [Namespace, Name Concatenation, and Compiler-specific Macros](#ch_core.namespace_concat)
@@ -791,6 +793,8 @@ This section discusses the following topics:
 
 -   [Supporting Command-Based Command Lines](#ch_core.Supporting_CommandBased_Command)
 
+-   [Argument dependency groups](#ch_core.Argument_Dependency_Groups)
+
 -   [Code Examples](#ch_core.arg_code_example)
 
 <a name="ch_core.cmd_line_APIs"></a>
@@ -811,7 +815,9 @@ The set of classes for argument processing implement automated command line pars
 
 -   access the input argument values specifically typecast according to their descriptions
 
-Normally, a ***CArgDescriptions*** object that contains the argument description is required and [should be created](#ch_core.CArgDescriptions_App) in the application's ***Init()*** function before any other initialization. Otherwise, ***CNcbiApplication*** creates a default one, which allows any program that uses the NCBI C++ Toolkit to provide some `standard` command -line options, namely:
+-   define dependencies between arguments
+
+Normally, a [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) object that contains the argument description is required and [should be created](#ch_core.CArgDescriptions_App) in the application's ***Init()*** function before any other initialization. Otherwise, ***CNcbiApplication*** creates a default one, which allows any program that uses the NCBI C++ Toolkit to provide some `standard` command -line options, namely:
 
 -   to obtain a general description of the program as well as description of all available command-line parameters (`-h` flag)
 
@@ -905,7 +911,7 @@ The [Supporting Command-Based Command Lines](#ch_core.Supporting_CommandBased_Co
 
 ### The ***CArgDescriptions*** ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)) class
 
-***CArgDescriptions*** contains a description of unparsed arguments, that is, user-specified descriptions that are then used to parse the arguments. ***CArgDescriptions*** is used as a container to store the command-line argument descriptions. The argument descriptions are used for parsing and verifying actual command-line arguments.
+[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) contains a description of unparsed arguments, that is, user-specified descriptions that are then used to parse the arguments. ***CArgDescriptions*** is used as a container to store the command-line argument descriptions. The argument descriptions are used for parsing and verifying actual command-line arguments.
 
 The following is a list of topics discussed in this section:
 
@@ -937,7 +943,7 @@ If "auto\_help" is passed TRUE, then a special flag "-h" will be added to the li
 
 #### Describing Argument Attributes
 
-***CNcbiArguments*** contains many methods, called ***AddXxx()***. The "Xxx" refers to the types of arguments, such as mandatory key (named) arguments, optional key arguments, positional arguments, flag arguments, etc. For example, the ***AddKey()*** method refers to adding a description for a mandatory key argument.
+***CArgDescriptions*** class contains many methods, called ***AddXxx()***. The "Xxx" refers to the types of arguments, such as mandatory key (named) arguments, optional key arguments, positional arguments, flag arguments, etc. For example, the ***AddKey()*** method refers to adding a description for a mandatory key argument.
 
 The methods for ***AddXxx()*** are passed the following argument attributes:
 
@@ -1080,7 +1086,7 @@ The arguments in the USAGE message can be arranged into groups by using ***SetCu
 
 ### The CArgs ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs.html)) Class: A Container Class for CArgValue ([\*](#ch_core.CArgValue)) Objects
 
-The ***CArgs*** class provides a data structure where the values of the parsed arguments can be stored and includes access routines in its public interface. Argument values are obtained from the unprocessed command-line arguments via the ***CNcbiArguments*** class and then verified and processed according to the argument descriptions defined by the user in ***CArgDescriptions***. The following describes the public interface methods in ***CArgs***:
+The [CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs.html) class provides a data structure where the values of the parsed arguments can be stored and includes access routines in its public interface. Argument values are obtained from the unprocessed command-line arguments via the ***CNcbiArguments*** class and then verified and processed according to the argument descriptions defined by the user in ***CArgDescriptions***. The following describes the public interface methods in ***CArgs***:
 
     class  CArgs
     {
@@ -1125,7 +1131,7 @@ All `named` arguments can be accessed using the `[ ]` operator, as in: `myCArgs[
 
 ### ***CArgValue*** ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html)) Class: The Internal Representation of Argument Values
 
-The internal representation of an argument value, as it is stored and retrieved from its [CArgs](#ch_core.CArgs) container, is an instance of a ***CArgValue***. The primary purpose of this class is to provide type-validated loading through a set of ***AsXxx()*** methods where "***Xxx***" is the argument type such as "Integer", "Boolean", "Double", etc. The following describes the public interface methods in ***CArgValue***:
+The internal representation of an argument value, as it is stored and retrieved from its [CArgs](#ch_core.CArgs) container, is an instance of a [CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html). The primary purpose of this class is to provide type-validated loading through a set of ***AsXxx()*** methods where "***Xxx***" is the argument type such as "Integer", "Boolean", "Double", etc. The following describes the public interface methods in ***CArgValue***:
 
     class  CArgValue : public CObject
     {
@@ -1223,6 +1229,31 @@ Programs that support command-based command lines must execute these steps:
 For a sample program that demonstrates argument processing for command-based command lines, see [multi\_command.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic/multi_command.cpp).
 
 For more information on standard command lines and general information applicable to all command line processing, see the [Command-Line Syntax](#ch_core.cmd_line_syntax) and [CArgDescriptions](#ch_core.CArgDescriptions) sections.
+
+<a name="ch_core.Argument_Dependency_Groups"></a>
+
+### Argument dependency groups
+
+Sometimes, a piece of information can be specified using several different options. For example, URL can be specified by one string, or by several - server, database, user name, and password; or, an employee can be specified by ID number or by name.  Argument dependency group class - [CArgDependencyGroup](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDependencyGroup.html) - makes it possible to describe such complex scenarios. First thing to note is that all arguments must be described in [CArgDescriptions](#ch_core.CArgDescriptions). Only after that additional restrictions can be imposed in ***CArgDependencyGroup***. Arguments are added into group by name. Then, developer specifies how many of these arguments must be defined for the group to be valid. Argument dependency group may contain other groups, which potentially allows pretty complex scenarios.
+
+For example, in a group of three arguments, we want to require that only one is present:
+
+    CRef<CArgDependencyGroup> args1 = CArgDependencyGroup::Create("group1");
+    args1->Add("first").Add("second").Add("third");
+    args1->SetMinMembers(1).SetMaxMembers(1);
+
+Or, in a group of four arguments  - "a", "b", "x", "y" - we require that either both "a" and "b" are specified, or one of "x" and "y":
+
+    CRef<CArgDependencyGroup> args1 = CArgDependencyGroup::Create("group1");
+    args1->Add("a").Add("b");
+    args1->SetMinMembers(2).SetMaxMembers(2);
+    CRef<CArgDependencyGroup> args2 = CArgDependencyGroup::Create("group2");
+    args1->Add("x").Add("y");
+    args1->SetMinMembers(1).SetMaxMembers(1);
+    CRef<CArgDependencyGroup> args12 = CArgDependencyGroup::Create("group12");
+    args12->Add(args1).Add(args2);
+    args1->SetMinMembers(1).SetMaxMembers(1);
+
 
 <a name="ch_core.arg_code_example"></a>
 
