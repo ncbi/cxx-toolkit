@@ -1252,7 +1252,7 @@ Or, in a group of four arguments  - "a", "b", "x", "y" - we require that either 
     args1->SetMinMembers(1).SetMaxMembers(1);
     CRef<CArgDependencyGroup> args12 = CArgDependencyGroup::Create("group12");
     args12->Add(args1).Add(args2);
-    args1->SetMinMembers(1).SetMaxMembers(1);
+    args12->SetMinMembers(1).SetMaxMembers(1);
 
 
 <a name="ch_core.arg_code_example"></a>
