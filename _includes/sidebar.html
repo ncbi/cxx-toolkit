@@ -111,6 +111,69 @@
 <!------------------------------------------------------------------------------------------------------------ NEW SIDE BAR START --------------------------------------------------------------------------------------------------------------->
 
 	<div id="tkb_public" class="col three_col last">
+	
+	
+<div class="portlet">
+	<div class="portlet_head">
+		<div class="portlet_title">Search</div>
+	</div>
+	<div class="portlet_content">
+	<form name="frmSymbolSearch" onsubmit="return SymbolSearch('toolkit')" action="/" id="frmSymbolSearch">
+		<table>
+			<tbody>
+				<tr align="center" valign="middle">
+					<td colspan="2" nowrap="nowrap">
+						<input id="search_box" name="__symbol" style="vertical-align:                                        middle; line-height:normal " onkeypress="SymbolSearchKeyPress('toolkit',event)" type="text">&nbsp;&nbsp;					
+						<label for="search_box" class="offscreen_noflow">Search term</label>
+						<button type="submit" value="Search" style="vertical-align:                                        middle; line-height:normal;" onclick="javasrcipt:SymbolSearch('toolkit');">Search</button>
+					</td>
+				</tr>
+				<tr class="internal-only">
+					<th style="text-align:left">Public</th>
+					<th style="text-align:left">Internal</th>
+				</tr>
+				<tr>
+					<td>
+						<input id="pToolkitAll" name="__symboloc" type="radio">
+						<label for="pToolkitAll" title="Search in the C/C++ source code and in this Book">All</label>
+					</td>
+					<td class="internal-only">
+						<input id="iToolkitAll" name="__symboloc" checked="checked" type="radio">
+						<label for="iToolkitAll" title="Search in the C/C++ source code,  this Book, and Wiki">All</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input id="pLXR" name="__symboloc" type="radio">
+						<label for="pLXR" title="Search the symbol in the source code using LINUX Cross-Reference browser">LXR</label>
+					</td>
+					<td class="internal-only">
+						<input id="iLXR" name="__symboloc" type="radio">
+						<label for="iLXR" title="Search the symbol in the source code using LINUX Cross-Reference browser">LXR</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input id="pLib" name="__symboloc" type="radio">
+						<label for="pLib" title="Locate the Toolkit library(es) where the symbol is defined">Library</label>
+					</td>
+					<td class="internal-only">
+						<input id="iLib" name="__symboloc" type="radio">
+						<label for="iLib" title="Locate the Toolkit library(es) where the symbol is defined">Library</label>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<input name="p$a" id="p$a" type="hidden">
+		<input name="p$l" id="p$l" value="PAFAppLayout" type="hidden">
+		<input name="p$st" id="p$st" value="toolkit" type="hidden">
+		<input name="SessionId" id="SessionId" value="3E4519A3717B8531_0025SID" disabled="disabled" type="hidden">
+		<input name="Snapshot" id="Snapshot" value="/projects/cppdocs/cppdocs@2.18" disabled="disabled" type="hidden">
+		</input>
+		</form>
+		</div>	
+	
+	
 		<div class="portlet">
 			<div class="portlet_head">
 				<div class="portlet_title">Source Browsers</div>
@@ -133,10 +196,11 @@
 			<div class="portlet_content">
 				<ul>
 					<li class="external-only">
-						<a href="/cxx-toolkit/pages/ch_getcode_svn#read-only-access-to-the-source-code-via-subversion">Documentation</a>
+						<a href="http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/">in-house</a> / <a href="http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/">public</a>
+						</a>
 					</li>
 					<li class="external-only">
-						<a href="http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/" ref="pagearea=source-application&amp;targetsite=external&amp;targetcat=link&amp;targettype=uri">Web (dev)</a>
+						<a href="/cxx-toolkit/pages/ch_getcode_svn#read-only-access-to-the-source-code-via-subversion">Documentation</a>
 					</li>
 				</ul>
 			</div>
@@ -148,10 +212,10 @@
 			<div class="portlet_content">
 				<ul>
 					<li class="external-only">
-						<a href="http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi" ref="pagearea=source-application&amp;targetsite=external&amp;targetcat=link&amp;targettype=uri">Library Search Tool</a>
+						<a href="http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi">Library Search Tool</a>
 					</li>
 					<li class="external-only">
-						<a href="http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/dglistdeps.cgi" ref="pagearea=source-application&amp;targetsite=external&amp;targetcat=link&amp;targettype=uri">Library Dependencies Tool</a>
+						<a href="http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/dglistdeps.cgi">Library Dependencies Tool</a>
 					</li>
 					<li>
 						<a href="http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/RN_index.html">Release Notes</a>
@@ -166,7 +230,7 @@
 						<a href="/cxx-toolkit/pages/ch_faq#mailing-lists">Mailing Lists</a>
 					</li>
 					<li>
-						<a href="mailto:cpp-doc@ncbi.nlm.nih.gov" ref="pagearea=source-application&amp;targetsite=external&amp;targetcat=link&amp;targettype=uri">
+						<a href="mailto:cpp-doc@ncbi.nlm.nih.gov">
 							<span title="Contact C++ Toolkit group">Help and Support</span>
 						</a>
 					</li>
@@ -181,16 +245,16 @@
 			
 				<ul>
 					<li class="internal-only">
-						<a href="http://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit" ref="pagearea=source-application&amp;targetsite=external&amp;targetcat=link&amp;targettype=uri">Wiki
+						<a href="http://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit">Wiki
 						</a>
 					</li>
 					<li class="internal-only">
-						<a href="https://jira.ncbi.nlm.nih.gov/browse/CXX" ref="pagearea=source-application&amp;targetsite=external&amp;targetcat=link&amp;targettype=uri">
+						<a href="https://jira.ncbi.nlm.nih.gov/browse/CXX">
 							JIRA
 						</a>
 					</li>
 					<li class="internal-only">
-						<a href="http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi" ref="pagearea=source-application&amp;targetsite=external&amp;targetcat=link&amp;targettype=uri">
+						<a href="http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi">
 							<span title="View results of testsuite runs on the automatic C++ Toolkit builds">Testsuite</span>
 						</a>
 					</li>
