@@ -33,7 +33,7 @@
         	<form name="frmSymbolSearch" onsubmit="return SymbolSearch('toolkit')" action="/" id="frmSymbolSearch">
 		<table style="width: 100%">
       <tbody><tr>
-			<td colspan="4">
+			<td colspan="5">
 				<input id="search_box" name="__symbol" placeholder="Search..." onkeypress="SymbolSearchKeyPress('toolkit',event)" type="text">
 				<label for="search_box" class="offscreen_noflow">Search term</label>
 				<div id="button-holder">
@@ -51,12 +51,12 @@
 			<td width="0%">
 				<nobr><input name="__symboloc" id="pLXR" type="radio"> <label title="Search the symbol in the source code using LINUX Cross-Reference browser" for="pLXR">LXR</label></nobr>
 			</td>
-			<td width="100%">
+			<td width="0%">
 				<input name="__symboloc" id="pLib" type="radio"> <label title="Locate the Toolkit library(es) where the symbol is defined" for="pLib">Library</label>
 			</td>
-			<!--<td width="100%">
+			<td width="100%">
 				<input name="__symboloc" id="pLib" type="checkbox"  align="right"> <label title="TEST" for="pLib">Internal</label>
-			</td>-->
+			</td>
 
 		</tr>
 		</tbody></table>
