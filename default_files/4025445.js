@@ -545,22 +545,49 @@ jQuery(function($j) {
 ;
 
 
-// Added by Karanjit Siyan 4/3/2004
-// TODO: Rewrite this in jQuery, or (better) handle as a search request.
+
+// search bar functionality
+function toggleInHouseCheckbox(visibility){
+	document.getElementById("switch_nobr").style.visibility = visibility; 
+}
+
 function SymbolSearch(bookID)
 {
 
   var f = document.forms['frmSymbolSearch'];
   var url; 
   var sel;
+  var in_house = f.switch.checked;
 
   for(i=0;i<f.__symboloc.length;i++) if(f.__symboloc[i].checked == true ) { sel=f.__symboloc[i].id; }
 
-  if(sel=='pLXR') { url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=" + f.__symbol.value + "&d="; } else
-  if(sel=='pLib') { url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=yes&symbol=" + f.__symbol.value; } else
-  if(sel=='toolkit') { url = "http://www.ncbi.nlm.nih.gov/toolkit/?term=" + f.__symbol.value; } else
-  if(sel=='book_search') { url = "http://www.ncbi.nlm.nih.gov/toolkitbookgh/?term=" + f.__symbol.value; } 
-//  if(sel=='google_search') { url = "http://www.google.com/#q=" + f.__symbol.value + " site:ncbi.github.io/cxx-toolkit"; } 
+
+  if(sel=='book_search') { 
+    url = "http://www.ncbi.nlm.nih.gov/toolkitbookgh/?term=" + f.__symbol.value; 
+  } else
+
+  if(sel=='toolkit') { 
+    if(in_house) 
+      url = "http://test.ncbi.nlm.nih.gov/toolkitinternal/?term=" + f.__symbol.value; 
+    else
+      url = "http://www.ncbi.nlm.nih.gov/toolkit/?term=" + f.__symbol.value; 
+  } else
+
+  if(sel=='pLXR') { 
+    if(in_house)
+      url = "http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=" + f.__symbol.value + "&d=";
+    else
+      url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=" + f.__symbol.value + "&d="; 
+  } else
+
+  if(sel=='pLib') { 
+    if(in_house)
+      url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=no&symbol=" + f.__symbol.value; 
+    else
+      url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=yes&symbol=" + f.__symbol.value; 
+  }
+
+ //  if(sel=='google_search') { url = "http://www.google.com/#q=" + f.__symbol.value + " site:ncbi.github.io/cxx-toolkit"; }  
 
   // window.location = url;
   window.open(url,'_newtab');
@@ -568,7 +595,6 @@ function SymbolSearch(bookID)
   return false;
 }
 
- 
 function SymbolSearchKeyPress(bookID,e)
 {
  var nav = ( navigator.appName == "Netscape" ) ? true : false;
