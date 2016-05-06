@@ -288,7 +288,7 @@ The input and output operators (`<<` and `>>`) are declared in [serial/serial.hp
 
 ### The ***CObjectIStream*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html)) classes
 
-***CObjectIStream*** is a virtual base class for the [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html), [CObjectIStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamAsn.html),
+***CObjectIStream*** is the base class for the [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html), [CObjectIStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamAsn.html),
 [CObjectIStreamAsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamAsnBinary.html), and
 [CObjectIStreamJson](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamJson.html)
 classes. As such, it has no public constructors, and its user interface includes the following methods:
@@ -346,7 +346,7 @@ Most data objects also contain embedded objects, and the default behavior of ***
 
 As a result of executing `ReadObject(member)`, the newly created subobject will be instantiated as a member of its parent object. In contrast, `ReadSeparateObject(local)`, instantiates the subobject in the local temporary variable only, and the corresponding data member in the parent object is set to an appropriate `null` representation for that data type. In this case, an attempt to reference that subobject after exiting the scope where it was created generates an error.
 
-The ***Skip()*** and ***SkipObject()*** methods allow entire top-level objects and subobjects to be "skipped". In this case the input is still read from the stream and validated, but no object representation for that data is generated. Instead, the data is stored in a delay buffer associated with the object input stream, where it can be accessed as needed. ***Skip()*** should only be applied to top-level objects. As with the ***Read()*** method, the optional ***ENoFileHeader*** argument can be included if the file header has already been extracted from the data stream. `SkipObject(member)` may be applied to subobjects of the root object.
+The ***Skip()*** and ***SkipObject()*** methods allow entire top-level objects and subobjects to be "skipped". In this case the input is still read from the stream and validated, but no object representation for that data is generated. ***Skip()*** should only be applied to top-level objects. As with the ***Read()*** method, the optional ***ENoFileHeader*** argument can be included if the file header has already been extracted from the data stream. `SkipObject(member)` may be applied to subobjects of the root object.
 
 All of the ***Read*** and ***Skip*** methods are like wrapper functions, which define what activities take place immediately before and after the data is actually read. How and when the data is then loaded into memory is determined by the object itself. Each of the above methods ultimately calls `objTypeInfo->ReadData()` or `objTypeInfo->SkipData()`, where **`objTypeInfo`** is the static type information object associated with the data object. This scheme allows the user to install type-specific read, write, and copy hooks, which are described below. For example, the default behavior of loading all subobjects of the top-level object can be modified by installing appropriate read hooks which use the ***ReadSeparateObject()*** and ***SkipObject()*** methods where needed.
 
@@ -398,7 +398,7 @@ The ***Write\*()*** methods correspond to the ***Read\*()*** methods defined for
 
 ### The ***CObjectStreamCopier*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectStreamCopier.html)) classes
 
-The ***CObjectStreamCopier*** class is neither an input nor an output stream class, but a helper class, which allows one to "pass data through" without storing the intermediate objects in memory. Its sole constructor is:
+The ***CObjectStreamCopier*** class is neither an input nor an output stream class. Rather, it is a helper class, which allows to "pass data through" without storing the intermediate objects in memory. Its sole constructor is:
 
     CObjectStreamCopier(CObjectIStream& in, CObjectOStream& out);
 
@@ -1271,9 +1271,9 @@ The guard's destructor will uninstall the hook. Since all hook classes are deriv
 
 #### Stack Path Hooks
 
-When an object is serialized or deserialized, a string called the stack path is created internally to track the structural context of the current location. The stack path starts with the type name of the top-level data object. While each sub-object is processed, a '`.`' and the sub-object name are "pushed on the stack".
+When an object is serialized or deserialized, a string called the stack path is created internally to track the structural context of the current location. The stack path starts with the type name of the top-level data object. While each sub-object is processed, a '`.`' and the sub-object name are "pushed onto the stack".
 
-Stack path hooks enable you to hook complex structural contexts by nesting the main structural contexts - for example, a specific nesting pattern of class members. Stack path hooks also make it possible to hook objects only within a limited level of nesting - for example, the [hooks\_highest\_se\_objs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/serial/hooks_highest_se_objs.cpp) sample program shows how to hook only the highest-level Seq-entry's.
+Stack path hooks enable to hook complex structural contexts by nesting the main structural contexts - for example, a specific nesting pattern of class members. Stack path hooks also make it possible to hook objects only within a limited level of nesting - for example, the [hooks\_highest\_se\_objs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/serial/hooks_highest_se_objs.cpp) sample program shows how to hook only the highest-level Seq-entry's.
 
 An example of a possible stack path string is:
 
@@ -1581,7 +1581,7 @@ First, it is possible to set the verification behavior on three different levels
 
 -   for a specific stream (***SetVerifyData()***),
 
--   for all streams created by a current thread (***SetVerifyDataThread()***),
+-   for all streams created by the current thread (***SetVerifyDataThread()***),
 
 -   for all stream created by the current process (***SetVerifyDataGlobal()***).
 
@@ -1626,7 +1626,9 @@ The only information that is always needed is the output format. It is defined b
 
 -   ***MSerial\_Xml***
 
-Few additional manipulators define the handling of un-initialized object data members:
+-   ***MSerial\_Format(ESerialDataFormat fmt)***
+
+Few additional manipulators define the handling of un-initialized object data members, skipping unknown members or valiants policy, and default string encoding:
 
 -   ***MSerial\_VerifyDefault***
 
@@ -1635,6 +1637,16 @@ Few additional manipulators define the handling of un-initialized object data me
 -   ***MSerial\_VerifyYes***
 
 -   ***MSerial\_VerifyDefValue***
+
+-   ***MSerial\_VerifyData(ESerialVerifyData fmt)***
+
+-   ***MSerial\_SkipUnknownMembers(ESerialSkipUnknown fmt)***
+
+-   ***MSerial\_SkipUnknownVariants(ESerialSkipUnknown fmt)***
+
+-   ***MSerialXml\_DefaultStringEncoding(EEncoding fmt)***
+
+Finally, it is possible to reset all formatting flags using ***MSerial\_None*** manipulator.
 
 <a name="ch_ser.serial_filter"></a>
 
@@ -1723,7 +1735,7 @@ But while these standard iterators are powerful tools for generic programming, t
 
 ### ***CTypeIterator*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeIterator.html)) and ***CTypeConstIterator*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeConstIterator.html))
 
-The ***CTypeIterator*** and ***CTypeConstIterator*** can be used to traverse a structured object, stopping at all data members of a specified type. For example, it is very common to represent a linked list of objects by encoding a next field that embeds an object of the same type. One way to traverse the linked list then, would be to "iterate" over all objects of that type, beginning at the head of the list. For example, suppose you have a ***CPerson***class defined as:
+The ***CTypeIterator*** and ***CTypeConstIterator*** can be used to traverse a structured object, stopping at all data members of a specified type. For example, it is very common to represent a linked list of objects by encoding a next field that embeds an object of the same type. One way to traverse the linked list then, would be to "iterate" over all objects of that type, beginning at the head of the list. For example, suppose you have a ***CPerson*** class defined as:
 
     class CPerson
     {
