@@ -107,11 +107,7 @@ The following is an outline of the topics presented in this chapter:
 
 -   [Runtime Object Type Information](#ch_ser.typeinfo.html)
 
-    -   [Introduction](#ch_ser.typeinfo.html_introduction)
-
-        -   [Type and Object specific info](#ch_ser.typeinfo.html_ctypeinfo_ref)
-
-    -   [Motivation](#ch_ser.typeinfo.html_motivation)
+    -   [Type and Object specific info](#ch_ser.typeinfo.html_ctypeinfo_ref)
 
     -   [Object Information Classes](#ch_ser.typeinfo.html_cobjinfo)
 
@@ -120,8 +116,6 @@ The following is an outline of the topics presented in this chapter:
     -   [CConstObjectInfo (\*)](#ch_ser.typeinfo.html_constobj)
 
     -   [CObjectInfo (\*)](#ch_ser.typeinfo.html_objinfo)
-
-    -   [Usage of object type information](#ch_ser.typeinfo.html_usage)
 
 -   [Traversing a Data Structure](#ch_ser.traverse.html)
 
@@ -2156,17 +2150,13 @@ Runtime Object Type Information
 
 The following topics are discussed in this section:
 
--   [Introduction](#ch_ser.typeinfo.html_introduction)
-
--   [Motivation](#ch_ser.typeinfo.html_motivation)
+-   [Type and Object specific info](#ch_ser.typeinfo.html_ctypeinfo_ref)
 
 -   [Object Information Classes](#ch_ser.typeinfo.html_cobjinfo)
 
--   [Usage of object type information](#ch_ser.typeinfo.html_usage)
+<a name="ch_ser.typeinfo.html_ctypeinfo_ref"></a>
 
-<a name="ch_ser.typeinfo.html_introduction"></a>
-
-### Introduction
+### Type and Object specific info
 
 Run-time information about data types is necessary in several contexts, including:
 
@@ -2182,53 +2172,17 @@ In the first three cases above, it is necessary to have both the object itself a
 
 In case (4) above, the type information is used independent of any actual object instances.
 
-<a name="ch_ser.typeinfo.html_ctypeinfo_ref"></a>
-
-#### Type and Object specific info
-
 The NCBI C++ Toolkit uses two classes to support these requirements:
 
--   **Type information classes** (base class [CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeInfo.html)) are intended for internal usage only, and they encode information about a type, devoid of any instances of that type. This information includes the class layout, inheritance relations, external alias, and various other attributes such as size, which are independent of specific instances. Each data member of a class also has its own type information. Thus, in addition to providing information relevant to the member's occurrence in the class (e.g. the member name and offset), the type information for a `class` must also provide access to the type information for each of its `members`. Limited type information is also available for types other than classes, such as primitive data types, enumerations, containers, and pointers. For example, the type information for a primitive type specifies that it is an ***int, float,*** or ***char***, etc., and whether or not that element is signed. Enumerations are a special kind of primitive type, whose type information specifies its enumeration values and named elements. Type information for containers specifies both the type of container and the type of elements that it holds.
+-   **Type information classes** (base class [CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeInfo.html)) are intended for internal usage only, and they encode information about a type, devoid of any instances of that type. This information includes the class layout, inheritance relations, external alias, and various other attributes such as size, which are independent of specific instances. Each data member of a class also has its own type information. Thus, in addition to providing information relevant to the member's occurrence in the class (e.g. the member name and offset), the type information for a `class` must also provide access to the type information for each of its `members`. Enumerations are a special kind of primitive type, whose type information specifies its enumeration values and named elements. Type information for containers specifies both the type of container and the type of elements that it holds.
 
 -   [Object information classes](#ch_ser.typeinfo.html_cobjinfo) (base class [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectTypeInfo.html)) include a pointer to the type information as well as a pointer to the object ***instance***, and provide a safe interface to that object. In situations where type information is used independent of any concrete object, the object information class simply serves as a wrapper to a type information object. Where access to an object instance is required, the object pointer provides direct access to the correctly type-cast instance, and the interface provides methods to access and/or modify the object itself or members of that object.
 
-The C++ Toolkit stores the type information outside any instances of that type, in a statically created ***CTypeInfo*** object. For class objects, this ***CTypeInfo*** object can be accessed by all instances of the class via a static [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) class method. Similarly, for primitive types and other constructs that have no way of associating methods with them per se, a static globally defined ***GetTypeInfoXxx()*** function is used to access a static ***CTypeInfo*** object. (The *Xxx* suffix is used here to indicate that a globally unique name is generated for the function).
+The C++ Toolkit stores the type information outside any instances of that type, in a statically created ***CTypeInfo*** object. For class objects, this ***CTypeInfo*** object can be accessed by all instances of the class via a static [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) class method. 
 
-All of the automatically generated classes and constructs defined in the C++ Toolkit's [objects/](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directory already have static ***GetTypeInfo()*** functions implemented for them. In order to make type information about `user-defined` classes and elements also accessible, you will need to implement static ***GetTypeInfo()*** functions for these constructs. A number of pre-processor macros are available to support this activity, and are described in the section on [User-defined Type Information](#ch_ser.usrtypeinfo.html).
+All of the automatically generated classes and constructs defined in the C++ Toolkit's [objects/](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directory already have static ***GetTypeInfo()*** functions implemented for them. In order to make type information about `user-defined` classes and elements also accessible, you will need to implement static ***GetTypeInfo()*** functions for these constructs.
 
 Type information is often needed when the object itself has been passed anonymously, or as a pointer to its parent class. In this case, it is not possible to invoke the ***GetTypeInfo()*** method directly, as the object's exact type is unknown. Using a `<static_cast>` operator to enable the member function is also unsafe, as it may open the door to incorrectly associating an object's pointer with the wrong type information. For these reasons, the ***CTypeInfo*** class is intended for internal usage only, and it is the [CObjectTypeInfo](#ch_ser.typeinfo.html_cobjinfo) classes that provide a more safe and friendly user interface to type information.
-
-<a name="ch_ser.typeinfo.html_motivation"></a>
-
-### Motivation
-
-We use a simple example to help motivate the use of this `type` and `object` information model. Let us suppose that we would like to have a generic function ***LoadObject()***, which can populate an object using data read from a flat file. For example, we might like to have:
-
-    bool LoadObject(Object& myObj, istream& is);
-
-where **`myObj`** is an instance of some subclass of ***Object***. Assuming that the text in the file is of the form:
-
-    MemberName1 value1
-    MemberName5 value5
-    MemberName2 value2
-    :
-
-we would like to find the corresponding data member in **`myObj`** for each **`MemberName`**, and set that data member's value accordingly. Unfortunately, **`myObj`** cannot directly supply any useful type information, as the member names we seek are for a specific subclass of ***Object***. Now suppose that we have an appropriate type information object available for **`myObj`**, and consider how this might be used:
-
-    bool LoadObject(TypeInfo& info, Object& myObj, istream& is)
-    {
-        string myName, myValue;
-
-        while ( !is.eof() ) {
-            is >> myName >> myValue;
-            void* member = FindMember(info, myObj, myName);
-            AssignValue(member, myValue);
-        }
-    }
-
-Here, we assume that our type information object, **`info`**, stores information about the memory offset of each data member in **`myObj`**, and that such information can be retrieved using some sort of identifying member name such as **`myName`**. This is not too difficult to imagine, and indeed, this is exactly the type of information and facility provided by the C++ Toolkit's type information classes. The ***FindMember()*** function just needs to return a ***void*** pointer to the appropriate location in memory. The ***AssignValue()*** function presents a much greater challenge however, as its two sole arguments are a ***void*** pointer and a ***string***. This would be fine if the data member was indeed a ***void*** pointer, and a ***string*** value was acceptable. In general this is not the case, and stronger methods are clearly needed.
-
-In particular, for each data member encountered, we need to retrieve the type of that member as well as its location in memory, so as to process **`myValue`** appropriately before assigning it. In addition, we need safer mechanisms for making such "untyped" assignments. Ideally, we would like a ***FindMember()*** function that returns a correctly cast pointer to that data member, along with its associated type information. This is what the [object information classes](#ch_ser.usrtypeinfo.html_class_ref) provide - a pointer to the object instance as well as a pointer to its static `type` information. The interface to the ***object*** information class also provides a number of methods such as ***GetClassMember(), GetTypeFamily(), SetPrimitiveValue()***, etc., to support the type of activity described above.
 
 <a name="ch_ser.typeinfo.html_cobjinfo"></a>
 
@@ -2359,65 +2313,6 @@ Finally, for pointer type objects, the type returned by the method ***GetPointed
 The ***CObjectInfo*** class is in turn derived from ***CConstObjectInfo***, and is intended for usage with `mutable` instances of the object of interest. In addition to all of the methods inherited from the parent class, the interface to this class also provides methods that allow modification of the object itself or its data members.
 
 For primitive type objects, a set of ***SetPrimitiveValueXxx()*** methods are available, complimentary to the ***GetPrimitiveValueXxx()*** methods described above. Methods that return member iterator objects are again reimplemented, and the de-referencing operators now return a ***CObjectInfo*** object for that data member. As the ***CObjectInfo*** now points to a `mutable` object, these iterators can be used to set values for the data member. Similarly, ***GetCurrentChoiceVariant()*** now returns a ***CObjectInfo***, as does `CObjectInfo::CElementIterator::GetElement()`.
-
-<a name="ch_ser.typeinfo.html_usage"></a>
-
-### Usage of object type information
-
-We can now reconsider how our LoadObject() function might be implemented using the ***CObjectInfo*** class:
-
-    bool LoadObject(CObjectInfo& info, CNcbiIStream& is)
-    {
-        string alias, myValue;
-
-        while ( !is.eof() ) {
-            is >> alias >> myValue;
-
-            CObjectInfo dataMember(*info.FindClassMember(alias));
-            if (!dataMember) {
-                ERR_POST_X(1, "Couldn't find member named:" << alias);
-            }
-            SetValue(dataMember, myValue);
-        }
-    }
-
-Here, **`info`** contains pointers to the ***CObject*** itself as well as to its associated ***CTypeInfo*** object. For each member alias read from the file, we apply `FindClassMember(alias)`, and dereference the returned iterator to retrieve a ***CObjectInfo*** object for that member. We then use the operator `()` to verify that the member was located, and if so, use the member's ***CObjectInfo*** to set a value in the function ***SetValue()***:
-
-    void SetValue(const CObjectInfo& obj, const string value)
-    {
-        if (obj.GetTypeFamily() == eTypeFamilyPrimitive) {
-
-            switch ( obj.GetPrimitiveValueType() ) {
-
-            case ePrimitiveValueBool:
-                obj.SetPrimitiveValueBool (atoi (value.c_str()));
-                break;
-
-            case ePrimitiveValueChar:
-                obj.SetPrimitiveValueChar (value.c_str()[0]);
-                break;
-
-            //... etc
-            }
-        } else {
-            ERR_POST_X(2, "Attempt to assign non-primitive from string:" << value);
-        }
-    }
-
-In this example, ***SetValue()*** can only assign primitive types. More generally however, the ***CObjectInfo*** class allows the assignment of more complex types that are simply not implemented here. Note also that the arguments to ***SetValue()*** are `const`, even though the function **does** modify the value of the data instance pointed to. In particular, the type `const CObjectInfo` should not be confused with the type ***CConstObjectInfo***. The former specifies that object information construct is non-mutable, although the instance it points to can be modified. The latter specifies that the instance itself is non-mutable.
-
-In addition to user-specific applications of the type demonstrated in this example, the generic implementations of the [C++ type iterators](#ch_ser.iterators.html) and the [CObject[IO]Stream](#ch_ser.objstream.html)class methods provide excellent examples of how runtime object type information can be deployed.
-
-As a final example of how type information might be used, we consider an application whose simple task is to translate a data file on an input stream to a different format on an output stream. One important use of the object classes defined in `include/objects` is the hooks and parsing mechanisms available to applications utilizing [CObject[IO]Streams](#ch_ser.objstream.html). The stream objects specialize in different formats (such as XML or ASN.1), and must work in concert with these type-specific object classes to interpret or generate serialized data. In some cases however, the dynamic memory allocation required for large objects may be substantial, and it is preferable to avoid actually instantiating a whole object all at once.
-
-Instead, it is possible to use the [CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectStreamCopier.html) class, described in [CObject[IO]Streams](#ch_ser.objstream.html). Briefly, this class holds two ***CObject[IO]Stream*** data members pointing to the input and output streams, and a set of `Copy` methods which take a ***CTypeInfo*** argument. Using this class, it is easy to translate files between different formats; for example:
-
-    auto_ptr<CObjectIStream>  in(CObjectIStream::Open("mydata.xml",eSerial_Xml));
-    auto_ptr<CObjectOStream> out(CObjectOStream::Open("mydata.asn",eSerial_AsnBinary));
-    CObjectStreamCopier copier(*in, *out);
-    copier.Copy (CBioseq_set::GetTypeInfo());
-
-copies a ***CBioseq\_set*** encoded in XML to a new file, reformatted in ASN.1 binary format.
 
 <a name="ch_ser.traverse.html"></a>
 
