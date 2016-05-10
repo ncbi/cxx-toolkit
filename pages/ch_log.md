@@ -75,6 +75,14 @@ The following topics are discussed in this section:
 
     -   [Obtaining a Stack Trace for Exceptions](#ch_core.Obtaining_a_Stack_Trace_for_Exce)
 
+-   [Logging modules and its configuration parameters](#ch_core.Logging_Modules)
+
+    -   [C++](#ch_core.Logging_Modules_CXX)
+    
+    -   [CLog](#ch_core.Logging_Modules_CLog)
+    
+    -   [ncbi_applog](#ch_core.Logging_Modules_ncbi_applog)
+
 <a name="ch_core.Where_Diagnostic_Messages_Go"></a>
 
 ### Where Diagnostic Messages Go
@@ -1173,3 +1181,46 @@ An example of an exception with a stack trace on Linux:
           ./my_prog ???:0 main offset=0x60
           /lib64/tls/libc.so.6 ???:0 __libc_start_main offset=0xEA
           ./my_prog ???:0 std::__throw_logic_error(char const*) offset=0x62
+
+<a name="ch_core.Logging_Modules"></a>
+
+### Logging modules and its configuration parameters
+
+Logging can be done from different modules and sources, written in different languages and having different APIs. Below is a list of each module and description for all its configuration parameters.
+
+<a name="ch_core.Logging_Modules_CXX"></a>
+
+#### C++
+
+Native C++ logging. You can find description of all parameters in the [Logging](ch_libconfig.html#ch_libconfig.libconfig_logfile) section, [Library Configuration](ch_libconfig.html) chapter.
+
+<a name="ch_core.Logging_Modules_CLog"></a>
+
+#### CLog
+
+[CLog](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/misc/clog/ncbi_c_log.h) is a pure C library to provide the C++ Toolkit-like logging semantics and output for C/C++ programs and CGIs.
+
+These parameters tune the usage and behavior of the library and all based on it applications:
+
+| Configuration Parameter | Purpose | Valid value | Default |
+|-------------------------|---------|-------------|---------|
+| **`NCBI_LOG_HIT_ID`** | Defines the default hit ID, which is used for application and for any request which has no explicit hit ID set. | any valid PHID string | "" |
+| **`HTTP_NCBI_PHID`**  | Same as **`NCBI_LOG_HIT_ID`**, but passed through HTTP headers. Have a priority over **`NCBI_LOG_HIT_ID`**. | any valid PHID string | "" |
+| **`NCBI_LOG_SESSION_ID`** | Defines the default session ID, which is used for any request which has no explicit session ID set. | any valid session ID string | "UNK_SESSION" |
+| **`HTTP_NCBI_SID`**  | Same as **`NCBI_LOG_SESSION_ID`**, but passed through HTTP headers. Have a priority over **`NCBI_LOG_SESSION_ID`**. | any valid session ID string | "UNK_SESSION" |
+| **`SERVER_PORT`**  | Web server/service port. Specifies one of the possible locations to store logging files for CGI, see [Where Diagnostic Messages Go](#ch_core.Where_Diagnostic_Messages_Go). | a positive integer | (none) |
+| **`NCBI_CONFIG__LOG__FILE`**  | Reset the log file to the specified file. By default, if [NcbiLog_SetDestination()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiLog_SetDestination) is not called or set to ***eNcbiLog_Default***, and environment variable **`$NCBI_CONFIG__LOG__FILE`** points to some location on a file system, its value will be used as base name for logging. Also, it can have special value "-" to redirect all output to ***STDERR***. | a valid file name, or "-" | (none) |
+
+<a name="ch_core.Logging_Modules_ncbi_applog"></a>
+
+#### ncbi_applog
+
+***ncbi_applog*** is a command-line utility to log to AppLog. Because it is based on ***CLog*** library, it also accept all parameters specified for [CLog](#ch_core.Logging_Modules_CLog).
+
+| Configuration Parameter | Purpose | Valid value | Default |
+|-------------------------|---------|--------------|---------|
+| **`NCBI_APPLOG_TOKEN`**  | Utility returns tokens for ***start_app***, ***start_request*** and  ***stop_request*** commands, that should be used as mandatory argument for all subsequent calls. It is possible to save returned value to **`NCBI_APPLOG_TOKEN`** environment variable and pass empty string "" instead of the real token argument. |  | (none) |
+| **`NCBI_APPLOG_SITE`**  | Value for logsite parameter. If logsite is specified, that the application name in the passed logging data will be replaced with logsite value and original application name have added as 'extra' record to logs. ***-logsite*** command line argument have a priority over environment variable. Also, logsite is used for checking "/log/{{logsite}}" location for writing logs. If logsite is not specified and local logging is impossible, all logging going through CGI redirects, that automatically assign "dev" logsite, if it is not specified. | | (none) for local logging,<br/>"dev" for CGI |
+| **`NCBI_CONFIG__NCBIAPPLOG_CGI`**<br/><br/>**`[NCBI]`**<br/>**`NcbiApplogCGI = http://...`** | Logging CGI, automatically used if /log is not accessible or writable on a current machine. Could be used to change hardcoded value, although it is not recommended. | a valid URL | (none) |
+| **`NCBI_CONFIG__NCBIAPPLOG_DESTINATION`**<br/><br/>**`[NCBI]`**<br/>**`NcbiApplogDestination = ...`**  | Set logging destnation. If this parameter is specified and not 'default', it disable CGI redirecting. See [Where Diagnostic Messages Go](#ch_core.Where_Diagnostic_Messages_Go). | default, cwd, stdlog, stdout, stderr | default (stdlog) |
+| **`NCBI_CONFIG__LOG__FILE`**  | Same as for [CLog](#ch_core.Logging_Modules_CLog), but also disable CGI-redirecting. All logging will be done locally, to the provided in this variable base name for logging files or to standard error for special value "-". If for some reason specified location is non-writable, you will have an error. This environment variable have a higher priority than the output destination in **`NCBI_CONFIG__NCBIAPPLOG_DESTINATION`**. | a valid file name, or "-" | (none) |
