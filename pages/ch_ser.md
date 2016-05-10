@@ -105,16 +105,6 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Additional Information](#ch_ser.iterators.html_appendix)
 
--   [Processing Serial Data](#ch_ser.asn.html)
-
-    -   [Accessing the object header files and serialization libraries](#ch_ser.asn.html_headersandlibs)
-
-    -   [Reading and writing serial data](#ch_ser.asn.html_example1)
-
-    -   [Determining Which Header Files to Include](#ch_ser.asn.html_includes)
-
-    -   [Determining Which Libraries to Link To](#ch_ser.asn.html_linklibs)
-
 -   [Runtime Object Type Information](#ch_ser.typeinfo.html)
 
     -   [Introduction](#ch_ser.typeinfo.html_introduction)
@@ -133,12 +123,6 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Usage of object type information](#ch_ser.typeinfo.html_usage)
 
--   [Choice objects in the NCBI C++ Toolkit](#ch_ser.choice.html)
-
-    -   [Introduction](#ch_ser.choice.html_intro)
-
-    -   [C++ choice objects](#ch_ser.choice.html_cppchoice)
-
 -   [Traversing a Data Structure](#ch_ser.traverse.html)
 
     -   [Locating the Class Definitions](#ch_ser.traverse.html_locateClass)
@@ -148,8 +132,6 @@ The following is an outline of the topics presented in this chapter:
     -   [Traversing a Biostruc](#ch_ser.traverse.html_example)
 
     -   [Iterating Over Containers](#ch_ser.traverse.html_iterate)
-
--   [Managing ASN.1 Specification Versions](#ch_ser.Managing_ASN1_Specification_Versi)
 
 -   [SOAP support](#ch_ser.SOAP_support)
 
@@ -166,6 +148,18 @@ The following is an outline of the topics presented in this chapter:
         -   [Sample server](#ch_ser.Sample_server)
 
         -   [Sample client](#ch_ser.Sample_client)
+
+-   [Processing Serial Data](#ch_ser.asn.html)
+
+    -   [Accessing the object header files and serialization libraries](#ch_ser.asn.html_headersandlibs)
+
+    -   [Reading and writing serial data](#ch_ser.asn.html_example1)
+
+    -   [Determining Which Header Files to Include](#ch_ser.asn.html_includes)
+
+    -   [Determining Which Libraries to Link To](#ch_ser.asn.html_linklibs)
+
+-   [Managing ASN.1 Specification Versions](#ch_ser.Managing_ASN1_Specification_Versi)
 
 -   [Test Cases [src/serial/test]](#ch_ser.ch_ser_test_cases)
 
@@ -2155,100 +2149,6 @@ Figure 1. Traversal path of the CTypeIterator
 
 For additional examples of using the type iterators described in this section, see [ctypeiter.cpp](#ch_ser.ctypeiter_cpp.html).
 
-<a name="ch_ser.asn.html"></a>
-
-Processing Serial Data
-----------------------
-
-Although this discussion focuses on ASN.1 and XML formatted data, the data structures and tools described here have been designed to (potentially) support any formalized serial data specification. Many of the tools and objects have open-ended abstract or template implementations that can be instantiated differently to fit various specifications.
-
-The following topics are discussed in this section
-
--   [Accessing the object header files and serialization libraries](#ch_ser.asn.html_headersandlibs)
-
--   [Reading and writing serial data](#ch_ser.asn.html_example1)
-
--   [Determining Which Header Files to Include](#ch_ser.asn.html_includes)
-
--   [Determining Which Libraries to Link To](#ch_ser.asn.html_linklibs)
-
-<a name="ch_ser.asn.html_headersandlibs"></a>
-
-### Accessing the object header files and serialization libraries
-
-Reading and writing serialized data is implemented by an integrated set of streams, filters, and object types. An application that reads encoded data files will require the object header files and libraries which define how these serial streams of data should be loaded into memory. This entails `#include` statements in your source files, as well as the associated library specifications in your makefiles. The object header and implementation files are located in the [include/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) and [src/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) subtrees of the C++ tree, respectively. The header and implementation files for serialized streams and type information are in the [include/serial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial) and [src/serial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/serial) directories.
-
-If you have checked out the `objects` directories, but not explicitly run the [datatool](ch_app.html#ch_app.datatool) code generator, then you will find that your `include/objects` subdirectories are (almost) empty, and the source subdirectories contain only makefiles and ASN.1 specifications. These makefiles and ASN.1 specifications can be used to build your own copies of the objects' header and implementation files, using `make all_r` (if you configured using the `--with-objects` flag), or running datatool explicitly.
-
-However, building your own local copies of these header and implementation files is neither necessary nor recommended, as it is simpler to use the pre-generated header files and prebuilt libraries. The pre-built header and implementation files can be found in `$NCBI/c++/include/objects/` and `$NCBI/c++/src/objects/`, respectively. Assuming your makefile defines an include path to `$NCBI/c++/include`, selected object header files such as [Date.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/general/Date.hpp), can be included as:
-
-    #include <objects/general/Date.hpp>
-
-This header file (along with its implementations in the accompanying `src` directory) was generated by [datatool](ch_app.html#ch_app.datatool) using the specifications from [src/objects/general/general.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/general/general.asn). In order to use the classes defined in the `objects` directories, your source code should begin with the statements:
-
-    USING_NCBI_SCOPE;
-    using namespace objects;
-
-All of the objects' header and implementation files are generated by **datatool**, as specified in the ASN.1 specification files. The resulting object definitions however, are not in any way dependent on ASN.1 format, as they simply specify the in-memory representation of the defined data types. Accordingly, the objects themselves can be used to read, interpret, and write any type of serialized data. Format specializations on the input stream are implemented via [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html) objects, which extract the required tags and values from the input data according to the format specified. Similarly, Format specializations on an output stream are implemented via [CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStream.html) objects.
-
-<a name="ch_ser.asn.html_example1"></a>
-
-### Reading and writing serial data
-
-Let's consider a program [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) that translates an XML data file containing an object of type [Biostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/mmdb1/mmdb1.asn), to ASN.1 text and binary formats. In ***main()***, we begin by initializing the diagnostic stream to write errors to a local file called `xml2asn.log`. (Exception handling, program tracing, and error logging are described in the [Diagnostic Streams](ch_core.html#ch_core.diag) section).
-
-An instance of the ***CTestAsn*** class is then created, and its member function ***AppMain()*** is invoked. This function in turn calls ***CTestAsn::Run()***. The first three lines of code there define the XML input and ASN.1 output streams, using [auto\_ptr](ch_core.html#ch_core.smart_ptrs), to ensure automatic destruction of these objects.
-
-Each stream is associated with data serialization mechanisms appropriate to the [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat) provided to the constructor:
-
-    enum ESerialDataFormat {
-        eSerial_None      = 0,
-        eSerial_AsnText   = 1,   /// ASN.1 text
-        eSerial_AsnBinary = 2,   /// ASN.1 binary
-        eSerial_Xml       = 3,   /// XML
-        eSerial_Json      = 4    /// JSON
-    };
-
-***CObjectIStream*** and ***CObjectOStream*** are base classes which provide generic interfaces between the specific type information of a serializable object and an I/O stream. The object stream classes that will actually be instantiated by this application, [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html), [CObjectOStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsn.html), and [CObjectOStreamAsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsnBinary.html), are descendants of these base classes.
-
-Finally, a variable for the object type that will be generated from the input stream (in this case a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html)) is defined, and the ***CObject[I/O]Stream*** operators "\<\<" and "\>\>" are used to read and write the serialized data to and from the object. (Note that it is **not** possible to simply "pass the data through", from the input stream to the output stream, using a construct like: `*inObject >> *outObject`). The ***CObject[I/O]Stream***s know nothing about the structure of the specific object - they have knowledge only of the serialization format (text ASN, binary ASN, XML, etc.). In contrast, the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) knows nothing about I/O and serialization formats, but it contains explicit type information about itself. Thus, the ***CObject[I/O]Stream***s can apply their specialized serialization methods to the data members of ***CBiostruc*** using the [type information](#ch_ser.typeinfo.html_ctypeinfo_ref) associated with that object's class.
-
-<a name="ch_ser.asn.html_includes"></a>
-
-### Determining Which Header Files to Include
-
-As always, we include the `corelib` header files, `ncbistd.hpp` and `ncbiapp.hpp`. In addition, the `serial` header files that define the generic ***CObject[IO]Stream*** objects are included, along with `serial.hpp`, which defines generalized serialization mechanisms including the insertion (`<<`) and extraction (`>>`) operators. Finally, we need to include the header file for the object type we will be using.
-
-There are two source browsers that can be used to locate the appropriate header file for a particular object type. Object class names in the NCBI C++ Toolkit begin with the letter "C". Using the [class hierarchy browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html), we find ***CBiostruc***, derived from ***CBiostruc\_Base***, which is in turn derived from ***CObject***. Following the `CBiostruc` link, we can then use the `locate` button to move to the LXR source code navigator, and there, find the name of the header file. In this case, we find [CBiostruc.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/mmdb1/Biostruc.hpp) is located in `include/objects/mmdb1`. Alternatively, if we know the name of the C++ class, the source code navigator's [identifier search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) tool can be used directly. In summary, the following `#include` statements appear at the top of [xml2asn.cpp](#ch_ser.xml2asn_cpp.html):
-
-    #include <corelib/ncbiapp.hpp>
-    #include <serial/serial.hpp>
-    #include <serial/objistr.hpp>
-    #include <serial/objostr.hpp>
-    #include <objects/mmdb1/Biostruc.hpp>
-
-<a name="ch_ser.asn.html_linklibs"></a>
-
-### Determining Which Libraries to Link To
-
-Determining which libraries must be linked to requires a bit more work and may involve some trial and error. The list of available libraries currently includes:
-
-**`access biblio cdd featdef general medlars medline mmdb1 mmdb2 mmdb3 ncbimime objprt proj pub pubmed seq seqalign seqblock seqcode seqfeat seqloc seqres seqset submit xcgi xconnect xfcgi xhtml xncbi xser`**
-
-It should be clear that we will need to link to the core library, `xncbi`, as well as to the serial library, `xser`. In addition, we will need to link to whatever object libraries are entailed by using a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) object. Minimally, one would expect to link to the `mmdb` libraries. This in itself is insufficient however, as the ***CBiostruc*** class embeds other types of objects, including PubMed citations, features, and sequences, which in turn embed additional objects such as [Date](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html). The makefile for `xml2asn.cpp`, `Makefile.xml2asn.app` lists the libraries required for linking in the make variable **`LIB`**.
-
-    #########################################################################
-    # This file was originally generated from by shell script "new_project.sh"
-    #########################################################################
-    APP = xml2asn
-    OBJ = xml2asn
-    LIB = mmdb1 mmdb2 mmdb3 seqloc seqfeat pub medline biblio general xser xncbi
-    LIBS = $(NCBI_C_LIBPATH) -lncbi $(ORIG_LIBS)
-
-See also the example program, [asn2asn.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/asn2asn/asn2asn.cpp) which demonstrates more generalized translation of ***Seq-entry*** and ***Bioseq-set*** (defined in [seqset.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn)).
-
-***Note:*** Two online tools are available to help determine which libraries to link with. See the [FAQ](ch_faq.html#ch_faq.faq.CannotFindObjectSymbol) for details.
-
 <a name="ch_ser.typeinfo.html"></a>
 
 Runtime Object Type Information
@@ -2518,117 +2418,6 @@ Instead, it is possible to use the [CObjectStreamCopier](https://www.ncbi.nlm.ni
     copier.Copy (CBioseq_set::GetTypeInfo());
 
 copies a ***CBioseq\_set*** encoded in XML to a new file, reformatted in ASN.1 binary format.
-
-<a name="ch_ser.choice.html"></a>
-
-Choice objects in the NCBI C++ Toolkit
---------------------------------------
-
-The following topics are discussed in this section:
-
--   [Introduction](#ch_ser.choice.html_intro)
-
--   [C++ choice objects](#ch_ser.choice.html_cppchoice)
-
-<a name="ch_ser.choice.html_intro"></a>
-
-### Introduction
-
-The [datatool](ch_app.html#ch_app.datatool) program processes the ASN.1 specification files (`*.asn`) in the [src/objects/](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) directories to generate the associated C++ class definitions. The corresponding program implemented in the C Toolkit, **asntool**, used the ASN.1 specifications to generate C enums, structs, and functions. In contrast, **datatool** must generate C++ enums, classes and methods. In addition, for each defined object type, **datatool** must also generate the associated [type information](#ch_ser.typeinfo.html) method or function.
-
-There is a significant difference in how these two tools implement ASN.1 `choice` elements. As an example, consider the following ASN.1 specification:
-
-    Object-id ::= CHOICE {
-        id INTEGER,
-        str VisibleString
-    }
-
-The ASN.1 `choice` element specifies that the corresponding object may be any one of the listed types. In this case, the possible types are an integer and a string. The approach used in **asntool** was to implement all choice objects as ***ValNode***s, which were in turn defined as:
-
-    typedef struct valnode {
-        unsigned choice;
-        DataVal data;
-        struct valnode *next;
-    } ValNode;
-
-The ***DataVal*** field is a `union`, which may directly store numerical values, or alternatively, hold a ***void*** pointer to a character string or C `struct`. Thus, to process a `choice` element in the C Toolkit, one could first retrieve the `choice` field to determine how the data should be interpreted, and subsequently, retrieve the data via the ***DataVal*** field. In particular, no explicit implementation of individual choice objects was used, and it was left to functions which manipulate these elements to enforce logical consistency and error checking for legitimate values. A C `struct` which included a `choice` element as one of its fields merely had to declare that element as type *ValNode*. This design was further complicated by the use of a ***void*** pointer to store non-primitive types such as `struct`s or character strings.
-
-In contrast, the C++ **datatool** implementation of `choice` elements defines a class with built-in, automatic error checking for each `choice` object. The usage of [CObject](ch_core.html#ch_core.CRef) class hierarchy (and the associated [type information](#ch_ser.typeinfo.html) methods) solves many of the problems associated with working with ***void*** pointers.
-
-<a name="ch_ser.choice.html_cppchoice"></a>
-
-### C++ choice objects
-
-The classes generated by **datatool** for `choice` elements all have the following general structure:
-
-    class C[AsnChoiceName] : public CObject
-    {
-    public:
-        ...                                 // constructors and destructors
-        DECLARE_INTERNAL_TYPE_INFO();       // declare GetTypeInfo() method
-        enum E_Choice {                     // enumerate the class names
-           e_not_set,                       // for the choice variants
-           e_Xxx,
-           ...
-        };
-        typedef CXxx TXxx;                  // typedef each variant class
-        ...
-        virtual void Reset(void);           // reset selection to none
-        E_Choice Which(void) const;         // return m_choice
-        void Select(E_Choice index,         // change the current selection
-                    EResetVariant reset);
-        static string SelectionName(E_Choice index);
-        bool IsXxx(void) const;             // true if m_choice == eXxx
-        CXxx& GetXxx(void);
-        const CXxx& GetXxx(void) const;
-        CXxx& SetXxx(void);
-        void SetXxx(const CRef<CXxx>& ref);
-        ...
-    private:
-        E_Choice m_choice;                  // choice state
-        union {
-           TXxx m_Xxx;
-           ...
-        };
-        CObject *m_object;                  // variant's data
-        ...
-    };
-
-For the above ASN.1 specification, **datatool** generates a class named ***CObject\_id***, which is derived from [CObject](ch_core.html#ch_core.CObject). For each choice variant in the specification, an enumerated value (in ***E\_Choice***), and an internal `typedef` are defined, and a declaration in the `union` data member is made. For this example then, we would have:
-
-    enum E_Choice {
-        e_not_set,
-        e_Id,
-        e_Str
-    };
-    ...
-    typedef int TId;
-    typedef string TStr;
-    ...
-    union {
-        TId m_Id;
-        string *m_string;
-    };
-
-In this case both of the choice variants are C++ built-in types. More generally however, the choice variant types may refer to any type of object. For convenience, we refer to their C++ type names here as "CXxx",
-
-Two private data members store information about the currently selected choice variant: **`m_choice`** holds the `enum` value, and **`m_Xxx`** holds (or points to a ***CObject*** containing) the variant's data. The choice object's member functions provide access to these two data members. ***Which()*** returns the currently selected variant's `E_Choice enum` value. Each choice variant has its own ***Get()*** and ***Set()*** methods. Each ***GetXxx()*** method throws an exception if the variant type for that method does not correspond to the current selection type. Thus, it is not possible to unknowingly retrieve the incorrect type of choice variant.
-
-`Select(e_Xxx)` uses a `switch(e_Xxx)` statement to initialize **`m_Xxx`** appropriately, sets **`m_choice`** to **`e_Xxx`**, and returns. Two ***SetXxx()*** methods are defined, and both use this ***Select()*** method. ***SetXxx()*** with no arguments calls `Select(e_Xxx)` and returns **`m_Xxx`** (as initialized by ***Select()***). ***SetXxx(TXxx& value)*** also calls `Select(e_Xxx)` but resets **`m_Xxx`** to **`value`** before returning.
-
-Some example choice objects in the C++ Toolkit are:
-
--   [CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html)
-
--   [CInt\_fuzz](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCInt__fuzz.html)
-
--   [CObject\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html)
-
--   [CPerson\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerson__id.html)
-
--   [CAnnotdesc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCAnnotdesc.html)
-
--   [CSeq\_annot](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__annot.html)
 
 <a name="ch_ser.traverse.html"></a>
 
@@ -3024,104 +2813,6 @@ In this example, the iterator will skip over all but the string data members.
 
 The ***CStdTypeIterator*** is one of several iterators which makes use of an object's `type information` to implement the desired functionality. We began this section by positing that the traversal of an object requires an a priori knowledge of that object's internal structure. This is not strictly true however, if type information for the object is also available. An object's type information specifies the class layout, inheritance relations, data member names, and various other attributes such as size, which are independent of specific instances. All of the C++ type iterators described in [The NCBI C++ Toolkit Iterators](#ch_ser.iterators.html) section utilize type information, which is the topic of a previous section: [Runtime Object Type Information](#ch_ser.typeinfo.html).
 
-<a name="ch_ser.Managing_ASN1_Specification_Versi"></a>
-
-Managing ASN.1 Specification Versions
--------------------------------------
-
-Occasionally it is necessary to change an ASN.1 specification. However, if not designed properly, a new version of an ASN.1 specification can create incompatibilities between old data files and new software or old software and new data.
-
--   [The cardinal rule for adding new members](#ch_ser.The_cardinal_rule_for_adding_new)
-
--   [Background for the rule on adding new members](#ch_ser.Background_for_the_rule_on_adding)
-
--   [Self-versioning types](#ch_ser.Selfversioning_types)
-
--   [Skipping unknown data](#ch_ser.Skipping_unknown_data)
-
-<a name="ch_ser.The_cardinal_rule_for_adding_new"></a>
-
-### The cardinal rule for adding new members
-
-The only rule you need to follow to achieve backward compatibility is:
-
-<a name="idp39773808"></a>
-
-> Only add new members to the end of a type, and always make them optional.
-
-***Note:*** In this context, "backward compatibility" means the ability for new readers to read either old or new data.
-
-<a name="ch_ser.Background_for_the_rule_on_adding"></a>
-
-### Background for the rule on adding new members
-
-ASN.1 data writers are generally coded to follow a specific version of the specification, so version-related issues are quite improbable when writing. Data readers are also generally coded according to a given specification version, but the data they read could have been written by any writer version. Thus, problems due to version incompatibilities are most likely to occur when reading.
-
-Text-format ASN.1 data files include member names with the data, so it's easy for the reader to ensure that the read data matches the specification.
-
-Binary data files do not include member names. Instead, they include integer tags which are assumed to correspond to the ASN.1 specification. Therefore, if a new version of a specification inserts a new member between existing members, the tagging will be incompatible with the old version, and data corruption or a crash will result from attempting to read an old data file with a new reader or vice versa.
-
-For example, suppose a specification is changed a la:
-
-<a name="ch_ser.T.nc_old_specificationnew_speci_1"></a>
-
-| Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                             |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` | `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`epoch VisibleString OPTIONAL ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` |
-
-<div class="table-scroll"></div>
-
-The old specification associates tag 2 with month and tag 3 with day; the new specification associates tag 2 with epoch, tag 3 with month, and tag 4 with day. Thus, if an old reader reads a new file it will choke on tag 4 and if a new reader reads an old file it will choke on the absence of tag 4.
-
-However, suppose the specification is changed this way:
-
-<a name="ch_ser.T.nc_old_specificationnew_speci_2"></a>
-
-| Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                                                              |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` | `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER ,`<br/>`epoch VisibleString OPTIONAL`<br/>` }` |
-
-<div class="table-scroll"></div>
-
-Now the new reader can read old data without any trouble. Old readers will not be able to read new data because tag 4 was not part of the specification they were built for so they will crash upon the first instance of epoch data (but they will read all data up to that point just fine).
-
-Because of this, it's strongly recommended to add new field(s) as early as possible, preferably long before the new field(s) actually start getting written. This will allow a time for the old readers to get upgraded.
-
-Therefore, the only backward-compatible way of adding new sequence members is to add them at the end, and to make them optional.
-
-<a name="ch_ser.Selfversioning_types"></a>
-
-### Self-versioning types
-
-It is conceivable that a "schema version" could be incorporated into a type beginning with the first version of the type. For example:
-
-<a name="ch_ser.T.nc_subsnp__sequence__version_in"></a>
-
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `subsnp ::= SEQUENCE {`<br/>`  version INTEGER {`<br/>`    snp_v1(1),`<br/>`    snp_v2(2),`<br/>`    max_version(255)`<br/>`  },`<br/>`  data CHOICE {`<br/>`    subsnp_v1 SubSNP_v1`<br/>`    subsnp_v2 SubSNP_v2`<br/>`}` |
-
-<div class="table-scroll"></div>
-
-However, old readers would still not be able to read new data, so it's unclear what the advantage of this approach would have over simply adding optional members to the end of the type.
-
-What is clear is that this approach could become very cumbersome to maintain if more than a few versions were created.
-
-<a name="ch_ser.Skipping_unknown_data"></a>
-
-### Skipping unknown data
-
-At some point, an old reader may encounter new data, in which case there will be unknown class members and/or choice variants. By default, this condition will cause an exception, but it is possible to skip unknown data using these functions:
-
--   [CObjectIStream::SetSkipUnknownMembers()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html#a752e6d807cc99bd80279d9833af3ae71)
-
--   [CObjectIStream::SetSkipUnknownVariants()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html#ac36b639e833b47220261fa559e26eee9)
-
-There are two different methods because one is relatively safe and the other is not.
-
-If you call ***SetSkipUnknownMembers()*** then unknown members will be essentially ignored and the application can process new data in the same way it would process old data.
-
-If you call ***SetSkipUnknownVariants()*** then a lack of coding rigor may cause a problem. Specifically, a choice object won't be set if new data contains an unknown (and therefore skipped) variant. If your code expects the choice object to be set and doesn't verify that it is, then it could cause data corruption and/or crashing.
-
 <a name="ch_ser.SOAP_support"></a>
 
 SOAP support
@@ -3244,6 +2935,198 @@ Unlike SOAP server, SOAP client object has nothing to do with [CCgiApplication](
 `RegisterObjectType(CMathResponse::GetTypeInfo);`
 
 Other methods encapsulate operations supported by the SOAP server, which the client talks to. Common schema is to create two SOAP message object - request and response, populate request object, call ***Invoke()*** method of the base class, and extract the meaningful data from the response.
+
+<a name="ch_ser.asn.html"></a>
+
+Processing Serial Data
+----------------------
+
+Although this discussion focuses on ASN.1 and XML formatted data, the data structures and tools described here have been designed to (potentially) support any formalized serial data specification. Many of the tools and objects have open-ended abstract or template implementations that can be instantiated differently to fit various specifications.
+
+The following topics are discussed in this section
+
+-   [Accessing the object header files and serialization libraries](#ch_ser.asn.html_headersandlibs)
+
+-   [Reading and writing serial data](#ch_ser.asn.html_example1)
+
+-   [Determining Which Header Files to Include](#ch_ser.asn.html_includes)
+
+-   [Determining Which Libraries to Link To](#ch_ser.asn.html_linklibs)
+
+<a name="ch_ser.asn.html_headersandlibs"></a>
+
+### Accessing the object header files and serialization libraries
+
+Reading and writing serialized data is implemented by an integrated set of streams, filters, and object types. An application that reads encoded data files will require the object header files and libraries which define how these serial streams of data should be loaded into memory. This entails `#include` statements in your source files, as well as the associated library specifications in your makefiles. The object header and implementation files are located in the [include/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) and [src/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) subtrees of the C++ tree, respectively. The header and implementation files for serialized streams and type information are in the [include/serial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial) and [src/serial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/serial) directories.
+
+If you have checked out the `objects` directories, but not explicitly run the [datatool](ch_app.html#ch_app.datatool) code generator, then you will find that your `include/objects` subdirectories are (almost) empty, and the source subdirectories contain only makefiles and ASN.1 specifications. These makefiles and ASN.1 specifications can be used to build your own copies of the objects' header and implementation files, using `make all_r` (if you configured using the `--with-objects` flag), or running datatool explicitly.
+
+However, building your own local copies of these header and implementation files is neither necessary nor recommended, as it is simpler to use the pre-generated header files and prebuilt libraries. The pre-built header and implementation files can be found in `$NCBI/c++/include/objects/` and `$NCBI/c++/src/objects/`, respectively. Assuming your makefile defines an include path to `$NCBI/c++/include`, selected object header files such as [Date.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/general/Date.hpp), can be included as:
+
+    #include <objects/general/Date.hpp>
+
+This header file (along with its implementations in the accompanying `src` directory) was generated by [datatool](ch_app.html#ch_app.datatool) using the specifications from [src/objects/general/general.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/general/general.asn). In order to use the classes defined in the `objects` directories, your source code should begin with the statements:
+
+    USING_NCBI_SCOPE;
+    using namespace objects;
+
+All of the objects' header and implementation files are generated by **datatool**, as specified in the ASN.1 specification files. The resulting object definitions however, are not in any way dependent on ASN.1 format, as they simply specify the in-memory representation of the defined data types. Accordingly, the objects themselves can be used to read, interpret, and write any type of serialized data. Format specializations on the input stream are implemented via [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html) objects, which extract the required tags and values from the input data according to the format specified. Similarly, Format specializations on an output stream are implemented via [CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStream.html) objects.
+
+<a name="ch_ser.asn.html_example1"></a>
+
+### Reading and writing serial data
+
+Let's consider a program [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) that translates an XML data file containing an object of type [Biostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/mmdb1/mmdb1.asn), to ASN.1 text and binary formats. In ***main()***, we begin by initializing the diagnostic stream to write errors to a local file called `xml2asn.log`. (Exception handling, program tracing, and error logging are described in the [Diagnostic Streams](ch_core.html#ch_core.diag) section).
+
+An instance of the ***CTestAsn*** class is then created, and its member function ***AppMain()*** is invoked. This function in turn calls ***CTestAsn::Run()***. The first three lines of code there define the XML input and ASN.1 output streams, using [auto\_ptr](ch_core.html#ch_core.smart_ptrs), to ensure automatic destruction of these objects.
+
+Each stream is associated with data serialization mechanisms appropriate to the [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat) provided to the constructor:
+
+    enum ESerialDataFormat {
+        eSerial_None      = 0,
+        eSerial_AsnText   = 1,   /// ASN.1 text
+        eSerial_AsnBinary = 2,   /// ASN.1 binary
+        eSerial_Xml       = 3,   /// XML
+        eSerial_Json      = 4    /// JSON
+    };
+
+***CObjectIStream*** and ***CObjectOStream*** are base classes which provide generic interfaces between the specific type information of a serializable object and an I/O stream. The object stream classes that will actually be instantiated by this application, [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html), [CObjectOStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsn.html), and [CObjectOStreamAsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsnBinary.html), are descendants of these base classes.
+
+Finally, a variable for the object type that will be generated from the input stream (in this case a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html)) is defined, and the ***CObject[I/O]Stream*** operators "\<\<" and "\>\>" are used to read and write the serialized data to and from the object. (Note that it is **not** possible to simply "pass the data through", from the input stream to the output stream, using a construct like: `*inObject >> *outObject`). The ***CObject[I/O]Stream***s know nothing about the structure of the specific object - they have knowledge only of the serialization format (text ASN, binary ASN, XML, etc.). In contrast, the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) knows nothing about I/O and serialization formats, but it contains explicit type information about itself. Thus, the ***CObject[I/O]Stream***s can apply their specialized serialization methods to the data members of ***CBiostruc*** using the [type information](#ch_ser.typeinfo.html_ctypeinfo_ref) associated with that object's class.
+
+<a name="ch_ser.asn.html_includes"></a>
+
+### Determining Which Header Files to Include
+
+As always, we include the `corelib` header files, `ncbistd.hpp` and `ncbiapp.hpp`. In addition, the `serial` header files that define the generic ***CObject[IO]Stream*** objects are included, along with `serial.hpp`, which defines generalized serialization mechanisms including the insertion (`<<`) and extraction (`>>`) operators. Finally, we need to include the header file for the object type we will be using.
+
+There are two source browsers that can be used to locate the appropriate header file for a particular object type. Object class names in the NCBI C++ Toolkit begin with the letter "C". Using the [class hierarchy browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html), we find ***CBiostruc***, derived from ***CBiostruc\_Base***, which is in turn derived from ***CObject***. Following the `CBiostruc` link, we can then use the `locate` button to move to the LXR source code navigator, and there, find the name of the header file. In this case, we find [CBiostruc.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/mmdb1/Biostruc.hpp) is located in `include/objects/mmdb1`. Alternatively, if we know the name of the C++ class, the source code navigator's [identifier search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) tool can be used directly. In summary, the following `#include` statements appear at the top of [xml2asn.cpp](#ch_ser.xml2asn_cpp.html):
+
+    #include <corelib/ncbiapp.hpp>
+    #include <serial/serial.hpp>
+    #include <serial/objistr.hpp>
+    #include <serial/objostr.hpp>
+    #include <objects/mmdb1/Biostruc.hpp>
+
+<a name="ch_ser.asn.html_linklibs"></a>
+
+### Determining Which Libraries to Link To
+
+Determining which libraries must be linked to requires a bit more work and may involve some trial and error. The list of available libraries currently includes:
+
+**`access biblio cdd featdef general medlars medline mmdb1 mmdb2 mmdb3 ncbimime objprt proj pub pubmed seq seqalign seqblock seqcode seqfeat seqloc seqres seqset submit xcgi xconnect xfcgi xhtml xncbi xser`**
+
+It should be clear that we will need to link to the core library, `xncbi`, as well as to the serial library, `xser`. In addition, we will need to link to whatever object libraries are entailed by using a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) object. Minimally, one would expect to link to the `mmdb` libraries. This in itself is insufficient however, as the ***CBiostruc*** class embeds other types of objects, including PubMed citations, features, and sequences, which in turn embed additional objects such as [Date](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html). The makefile for `xml2asn.cpp`, `Makefile.xml2asn.app` lists the libraries required for linking in the make variable **`LIB`**.
+
+    #########################################################################
+    # This file was originally generated from by shell script "new_project.sh"
+    #########################################################################
+    APP = xml2asn
+    OBJ = xml2asn
+    LIB = mmdb1 mmdb2 mmdb3 seqloc seqfeat pub medline biblio general xser xncbi
+    LIBS = $(NCBI_C_LIBPATH) -lncbi $(ORIG_LIBS)
+
+See also the example program, [asn2asn.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/asn2asn/asn2asn.cpp) which demonstrates more generalized translation of ***Seq-entry*** and ***Bioseq-set*** (defined in [seqset.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn)).
+
+***Note:*** Two online tools are available to help determine which libraries to link with. See the [FAQ](ch_faq.html#ch_faq.faq.CannotFindObjectSymbol) for details.
+
+<a name="ch_ser.Managing_ASN1_Specification_Versi"></a>
+
+Managing ASN.1 Specification Versions
+-------------------------------------
+
+Occasionally it is necessary to change an ASN.1 specification. However, if not designed properly, a new version of an ASN.1 specification can create incompatibilities between old data files and new software or old software and new data.
+
+-   [The cardinal rule for adding new members](#ch_ser.The_cardinal_rule_for_adding_new)
+
+-   [Background for the rule on adding new members](#ch_ser.Background_for_the_rule_on_adding)
+
+-   [Self-versioning types](#ch_ser.Selfversioning_types)
+
+-   [Skipping unknown data](#ch_ser.Skipping_unknown_data)
+
+<a name="ch_ser.The_cardinal_rule_for_adding_new"></a>
+
+### The cardinal rule for adding new members
+
+The only rule you need to follow to achieve backward compatibility is:
+
+<a name="idp39773808"></a>
+
+> Only add new members to the end of a type, and always make them optional.
+
+***Note:*** In this context, "backward compatibility" means the ability for new readers to read either old or new data.
+
+<a name="ch_ser.Background_for_the_rule_on_adding"></a>
+
+### Background for the rule on adding new members
+
+ASN.1 data writers are generally coded to follow a specific version of the specification, so version-related issues are quite improbable when writing. Data readers are also generally coded according to a given specification version, but the data they read could have been written by any writer version. Thus, problems due to version incompatibilities are most likely to occur when reading.
+
+Text-format ASN.1 data files include member names with the data, so it's easy for the reader to ensure that the read data matches the specification.
+
+Binary data files do not include member names. Instead, they include integer tags which are assumed to correspond to the ASN.1 specification. Therefore, if a new version of a specification inserts a new member between existing members, the tagging will be incompatible with the old version, and data corruption or a crash will result from attempting to read an old data file with a new reader or vice versa.
+
+For example, suppose a specification is changed a la:
+
+<a name="ch_ser.T.nc_old_specificationnew_speci_1"></a>
+
+| Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                             |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` | `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`epoch VisibleString OPTIONAL ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` |
+
+<div class="table-scroll"></div>
+
+The old specification associates tag 2 with month and tag 3 with day; the new specification associates tag 2 with epoch, tag 3 with month, and tag 4 with day. Thus, if an old reader reads a new file it will choke on tag 4 and if a new reader reads an old file it will choke on the absence of tag 4.
+
+However, suppose the specification is changed this way:
+
+<a name="ch_ser.T.nc_old_specificationnew_speci_2"></a>
+
+| Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                                                              |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` | `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER ,`<br/>`epoch VisibleString OPTIONAL`<br/>` }` |
+
+<div class="table-scroll"></div>
+
+Now the new reader can read old data without any trouble. Old readers will not be able to read new data because tag 4 was not part of the specification they were built for so they will crash upon the first instance of epoch data (but they will read all data up to that point just fine).
+
+Because of this, it's strongly recommended to add new field(s) as early as possible, preferably long before the new field(s) actually start getting written. This will allow a time for the old readers to get upgraded.
+
+Therefore, the only backward-compatible way of adding new sequence members is to add them at the end, and to make them optional.
+
+<a name="ch_ser.Selfversioning_types"></a>
+
+### Self-versioning types
+
+It is conceivable that a "schema version" could be incorporated into a type beginning with the first version of the type. For example:
+
+<a name="ch_ser.T.nc_subsnp__sequence__version_in"></a>
+
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `subsnp ::= SEQUENCE {`<br/>`  version INTEGER {`<br/>`    snp_v1(1),`<br/>`    snp_v2(2),`<br/>`    max_version(255)`<br/>`  },`<br/>`  data CHOICE {`<br/>`    subsnp_v1 SubSNP_v1`<br/>`    subsnp_v2 SubSNP_v2`<br/>`}` |
+
+<div class="table-scroll"></div>
+
+However, old readers would still not be able to read new data, so it's unclear what the advantage of this approach would have over simply adding optional members to the end of the type.
+
+What is clear is that this approach could become very cumbersome to maintain if more than a few versions were created.
+
+<a name="ch_ser.Skipping_unknown_data"></a>
+
+### Skipping unknown data
+
+At some point, an old reader may encounter new data, in which case there will be unknown class members and/or choice variants. By default, this condition will cause an exception, but it is possible to skip unknown data using these functions:
+
+-   [CObjectIStream::SetSkipUnknownMembers()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html#a752e6d807cc99bd80279d9833af3ae71)
+
+-   [CObjectIStream::SetSkipUnknownVariants()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html#ac36b639e833b47220261fa559e26eee9)
+
+There are two different methods because one is relatively safe and the other is not.
+
+If you call ***SetSkipUnknownMembers()*** then unknown members will be essentially ignored and the application can process new data in the same way it would process old data.
+
+If you call ***SetSkipUnknownVariants()*** then a lack of coding rigor may cause a problem. Specifically, a choice object won't be set if new data contains an unknown (and therefore skipped) variant. If your code expects the choice object to be set and doesn't verify that it is, then it could cause data corruption and/or crashing.
 
 <a name="ch_ser.ch_ser_test_cases"></a>
 
