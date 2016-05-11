@@ -117,6 +117,8 @@ The following is an outline of the topics presented in this chapter:
 
     -   [CObjectInfo (\*)](#ch_ser.typeinfo.html_objinfo)
 
+    -   [CEnumeratedTypeValues](#ch_ser.typeinfo.html_enumval)
+
 -   [Traversing a Data Structure](#ch_ser.traverse.html)
 
     -   [Locating the Class Definitions](#ch_ser.traverse.html_locateClass)
@@ -2154,6 +2156,15 @@ The following topics are discussed in this section:
 
 -   [Object Information Classes](#ch_ser.typeinfo.html_cobjinfo)
 
+-   [CObjectTypeInfo (\*)](#ch_ser.typeinfo.html_objtype)
+
+-   [CConstObjectInfo (\*)](#ch_ser.typeinfo.html_constobj)
+
+-   [CObjectInfo (\*)](#ch_ser.typeinfo.html_objinfo)
+
+-   [CEnumeratedTypeValues](#ch_ser.typeinfo.html_enumval)
+
+
 <a name="ch_ser.typeinfo.html_ctypeinfo_ref"></a>
 
 ### Type and Object specific info
@@ -2313,6 +2324,37 @@ Finally, for pointer type objects, the type returned by the method ***GetPointed
 The ***CObjectInfo*** class is in turn derived from ***CConstObjectInfo***, and is intended for usage with `mutable` instances of the object of interest. In addition to all of the methods inherited from the parent class, the interface to this class also provides methods that allow modification of the object itself or its data members.
 
 For primitive type objects, a set of ***SetPrimitiveValueXxx()*** methods are available, complimentary to the ***GetPrimitiveValueXxx()*** methods described above. Methods that return member iterator objects are again reimplemented, and the de-referencing operators now return a ***CObjectInfo*** object for that data member. As the ***CObjectInfo*** now points to a `mutable` object, these iterators can be used to set values for the data member. Similarly, ***GetCurrentChoiceVariant()*** now returns a ***CObjectInfo***, as does `CObjectInfo::CElementIterator::GetElement()`.
+
+<a name="ch_ser.typeinfo.html_enumval"></a>
+
+#### CEnumeratedTypeValues
+
+Enumerated types (values with name and numeric ID) defined in data specifications translate into sets of `enum` in C++ code. Still, their type information exist and is available for analysis through  [CEnumeratedTypeValues](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCEnumeratedTypeValues.html) class. For example, the following ASN.1 definition
+
+    PC-TermType ::= INTEGER {
+        sidsynonym (1),
+        cidsynonym (2),
+        meshheading (3),
+        meshdescr (4),
+        meshterm (5),
+        meshtreenode (6)
+    }
+
+results in this C++ code:
+
+    enum EPC_TermType {
+        ePC_TermType_sidsynonym   = 1,
+        ePC_TermType_cidsynonym   = 2,
+        ePC_TermType_meshheading  = 3,
+        ePC_TermType_meshdescr    = 4,
+        ePC_TermType_meshterm     = 5,
+        ePC_TermType_meshtreenode = 6
+    };
+    /// Access to EPC_TermType's attributes (values, names) as defined in spec
+    const NCBI_NS_NCBI::CEnumeratedTypeValues* ENUM_METHOD_NAME(EPC_TermType)(void);
+
+Having pointer to an object of `CEnumeratedTypeValues` class, an application can get detailed information about the enumeration, like string name by numeric ID, for example.
+
 
 <a name="ch_ser.traverse.html"></a>
 
@@ -2998,8 +3040,15 @@ It is conceivable that a "schema version" could be incorporated into a type begi
 
 <a name="ch_ser.T.nc_subsnp__sequence__version_in"></a>
 
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `subsnp ::= SEQUENCE {`<br/>`  version INTEGER {`<br/>`    snp_v1(1),`<br/>`    snp_v2(2),`<br/>`    max_version(255)`<br/>`  },`<br/>`  data CHOICE {`<br/>`    subsnp_v1 SubSNP_v1`<br/>`    subsnp_v2 SubSNP_v2`<br/>`}` |
+    subsnp ::= SEQUENCE {
+        version INTEGER {
+            snp_v1(1),
+            snp_v2(2),
+            max_version(255) },
+        data CHOICE {
+            subsnp_v1 SubSNP_v1
+            subsnp_v2 SubSNP_v2 }
+    }
 
 <div class="table-scroll"></div>
 
