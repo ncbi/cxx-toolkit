@@ -1227,65 +1227,63 @@ To allow logging from scripts we have a command-line utility &mdash; ***ncbi_app
 
 Below is an example how to use it. Please note that this example is very simplified and present for illustration purposes only. You can find real working wrapper script that allow to run an arbitrary application and report its calls to AppLog [here](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/misc/clog/app/ncbi_applog_run_app.sh).
 
-``` Bash
-#!/bin/sh
-#
-# Wrapper script for an arbitrary application to report its calls to AppLog.
-#
-# NOTE 1: We use simple command lines and limited set of arguments.
-#         You can get full list of arguments and its description using:
-#         /opt/ncbi/bin/ncbi_applog-1 [command] -help.
-# NOTE 2: Each key/value in the parameters pairs for -param argument shoould be
-#         URL-encoded. We don't doing it here for illustration purposes.
-# NOTE 3: It is recommended to check exit codes for each ncbi_applog call.
-
-# Path to ncbi_applog utility
-APPLOG='/opt/ncbi/bin/ncbi_applog-1'
-
-# Path to your application, and it's name as it will be shown in AppLog
-app_executable='/home/username/my_exe_name'
-app_name='my_app_name'
-
-# For debugging purposes uncomment 2 lines below. This will redirect
-# all output to the current directory instead of sending it to AppLog.
-# See files named 'my_app_name.*'.
-
-#NCBI_CONFIG__NCBIAPPLOG_DESTINATION=cwd
-#export NCBI_CONFIG__NCBIAPPLOG_DESTINATION
-
-# Log starting, specifying application name and pid for our wrapping script.
-# Getting token needed for all subsequent calls.
-
-app_token=`$APPLOG start_app -appname "$app_name" -pid "$$"`
-
-# Start a request. You can run an application multiple times between
-# "start_app" and "stop_app" commands, each time with its own parameters.
-# You can use single request or wrap each run to its own request,
-# but it is recommended to have at least one.
-# Each request have its own token, needed to distinquish it from all other
-# requests, and it should be used for all request-specific calls.
-
-extra_params="foo=abc&bar=123"
-req_token=`$APPLOG start_request "$app_token" -param "user=${USER}&pwd=${PWD}&${extra_params}"`
-
-# Execute an application
-
-"$app_executable" "$@"
-app_exit=$?
-
-# To log exit code correctly for AppLog, it is recommended to translate
-# application's exit code to HTTP-like status code, where 200 mean OK (no error).
-
-case $app_exit in
-    0 ) log_app_exit=200 ;;
-  200 ) log_app_exit=199 ;;
-    * ) log_app_exit=$app_exit ;;
-esac
-
-# Log stopping state for our request and application,
-
-$APPLOG stop_request "$req_token" -status $log_app_exit
-$APPLOG stop_app     "$app_token" -status $log_app_exit
-
-exit $app_exit
-```
+    #!/bin/sh
+    #
+    # Wrapper script for an arbitrary application to report its calls to AppLog.
+    #
+    # NOTE 1: We use simple command lines and limited set of arguments.
+    #         You can get full list of arguments and its description using:
+    #         /opt/ncbi/bin/ncbi_applog-1 [command] -help.
+    # NOTE 2: Each key/value in the parameters pairs for -param argument shoould be
+    #         URL-encoded. We don't doing it here for illustration purposes.
+    # NOTE 3: It is recommended to check exit codes for each ncbi_applog call.
+    
+    # Path to ncbi_applog utility
+    APPLOG='/opt/ncbi/bin/ncbi_applog-1'
+    
+    # Path to your application, and it's name as it will be shown in AppLog
+    app_executable='/home/username/my_exe_name'
+    app_name='my_app_name'
+    
+    # For debugging purposes uncomment 2 lines below. This will redirect
+    # all output to the current directory instead of sending it to AppLog.
+    # See files named 'my_app_name.*'.
+    
+    #NCBI_CONFIG__NCBIAPPLOG_DESTINATION=cwd
+    #export NCBI_CONFIG__NCBIAPPLOG_DESTINATION
+    
+    # Log starting, specifying application name and pid for our wrapping script.
+    # Getting token needed for all subsequent calls.
+    
+    app_token=`$APPLOG start_app -appname "$app_name" -pid "$$"`
+    
+    # Start a request. You can run an application multiple times between
+    # "start_app" and "stop_app" commands, each time with its own parameters.
+    # You can use single request or wrap each run to its own request,
+    # but it is recommended to have at least one.
+    # Each request have its own token, needed to distinquish it from all other
+    # requests, and it should be used for all request-specific calls.
+    
+    extra_params="foo=abc&bar=123"
+    req_token=`$APPLOG start_request "$app_token" -param "user=${USER}&pwd=${PWD}&${extra_params}"`
+    
+    # Execute an application
+    
+    "$app_executable" "$@"
+    app_exit=$?
+    
+    # To log exit code correctly for AppLog, it is recommended to translate
+    # application's exit code to HTTP-like status code, where 200 mean OK (no error).
+    
+    case $app_exit in
+        0 ) log_app_exit=200 ;;
+      200 ) log_app_exit=199 ;;
+        * ) log_app_exit=$app_exit ;;
+    esac
+    
+    # Log stopping state for our request and application,
+    
+    $APPLOG stop_request "$req_token" -status $log_app_exit
+    $APPLOG stop_app     "$app_token" -status $log_app_exit
+    
+    exit $app_exit
