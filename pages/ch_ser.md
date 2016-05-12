@@ -3052,7 +3052,7 @@ It is conceivable that a "schema version" could be incorporated into a type begi
 
 <div class="table-scroll"></div>
 
-However, old readers would still not be able to read new data, so it's unclear what the advantage of this approach would have over simply adding optional members to the end of the type.
+However, old readers would still not be able to read new data. Using `CHOICE` could make sense if there is ever a need to change the specification radically, when adding new fields is not enough. Obviously, the transition from one `CHOICE` variant to another have to be phased in very carefully, allowing significant amount of time for all clients to become aware of the new variant, while still understanding the old one.
 
 What is clear is that this approach could become very cumbersome to maintain if more than a few versions were created.
 
