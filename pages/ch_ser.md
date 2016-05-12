@@ -3150,11 +3150,3 @@ A Test Application Using the Serializable ASN.1 Classes
 -   asn2asn [[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/asn2asn/)]
 
 
-====================================================================================================================================
-
-
-| Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                             |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Date ::= SEQUENCE {`<br/>`   &nbsp;&nbsp;&nbsp;&nbsp;year INTEGER ,`<br/>`    &nbsp;&nbsp;&nbsp;&nbspmonth INTEGER ,`<br/>`    &nbsp;&nbsp;&nbsp;&nbspday INTEGER }` | `Date ::= SEQUENCE {`<br/>`    &nbsp;&nbsp;&nbsp;&nbspyear INTEGER ,`<br/>`   &nbsp;&nbsp;&nbsp;&nbspepoch VisibleString OPTIONAL ,`<br/>`    &nbsp;&nbsp;&nbsp;&nbspmonth INTEGER ,`<br/>`    &nbsp;&nbsp;&nbsp;&nbspday INTEGER }` |
-
-<div class="table-scroll"></div>
