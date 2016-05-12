@@ -3010,7 +3010,17 @@ For example, suppose a specification is changed a la:
 
 | Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                             |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` | `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`epoch VisibleString OPTIONAL ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` |
+| <pre>
+`Date ::= SEQUENCE {`<br/>`
+    year INTEGER ,`<br/>`    
+    month INTEGER ,`<br/>`    
+    day INTEGER }`</pre> | 
+ <pre>`
+ Date ::= SEQUENCE {`<br/>`    
+    year INTEGER ,`<br/>`
+    epoch VisibleString OPTIONAL ,`<br/>`    
+    month INTEGER ,`<br/>`    
+    day INTEGER }`</pre> |
 
 <div class="table-scroll"></div>
 
