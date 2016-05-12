@@ -3155,29 +3155,6 @@ A Test Application Using the Serializable ASN.1 Classes
 
 | Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                             |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 
-
-<pre>
-
-`Date ::= SEQUENCE {`<br/>`   
-    year INTEGER ,`<br/>`    
-    month INTEGER ,`<br/>`    
-    day INTEGER }`
-    
-</pre>
-
-| 
-
-<pre>
-
-`Date ::= SEQUENCE {`<br/>`    
-    year INTEGER ,`<br/>`   
-    epoch VisibleString OPTIONAL ,`<br/>`    
-    month INTEGER ,`<br/>`    
-    day INTEGER }` 
-    
-</pre>
-    
-    |
+| `Date ::= SEQUENCE {`<br/>`   &nbsp;&nbsp;&nbsp;&nbsp;year INTEGER ,`<br/>`    &nbsp;&nbsp;&nbsp;&nbspmonth INTEGER ,`<br/>`    &nbsp;&nbsp;&nbsp;&nbspday INTEGER }` | `Date ::= SEQUENCE {`<br/>`    &nbsp;&nbsp;&nbsp;&nbspyear INTEGER ,`<br/>`   &nbsp;&nbsp;&nbsp;&nbspepoch VisibleString OPTIONAL ,`<br/>`    &nbsp;&nbsp;&nbsp;&nbspmonth INTEGER ,`<br/>`    &nbsp;&nbsp;&nbsp;&nbspday INTEGER }` |
 
 <div class="table-scroll"></div>
