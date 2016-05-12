@@ -1215,7 +1215,7 @@ These parameters tune the usage and behavior of the library and all based on it 
 
 #### ncbi_applog
 
-***ncbi_applog*** is a command-line utility to log to AppLog. Because it is based on ***CLog*** library, it also accept all parameters specified for [CLog](#ch_core.Logging_Modules_CLog).
+To allow logging from scripts we have a command-line utility &mdash; ***ncbi_applog***. It is based on ***CLog*** library, so it accepts all parameters specified for [that library](#ch_core.Logging_Modules_CLog), and also some extra:
 
 | Configuration Parameter | Purpose | Valid value | Default |
 |-------------------------|---------|--------------|---------|
@@ -1224,3 +1224,68 @@ These parameters tune the usage and behavior of the library and all based on it 
 | **`NCBI_CONFIG__NCBIAPPLOG_CGI`**<br/><br/>**`[NCBI]`**<br/>**`NcbiApplogCGI = http://...`** | Logging CGI, automatically used if /log is not accessible or writable on a current machine. Could be used to change hardcoded value, although it is not recommended. | a valid URL | (none) |
 | **`NCBI_CONFIG__NCBIAPPLOG_DESTINATION`**<br/><br/>**`[NCBI]`**<br/>**`NcbiApplogDestination = ...`**  | Set logging destnation. If this parameter is specified and not 'default', it disable CGI redirecting. See [Where Diagnostic Messages Go](#ch_core.Where_Diagnostic_Messages_Go). | default, cwd, stdlog, stdout, stderr | default (stdlog) |
 | **`NCBI_CONFIG__LOG__FILE`**  | Same as for [CLog](#ch_core.Logging_Modules_CLog), but also disable CGI-redirecting. All logging will be done locally, to the provided in this variable base name for logging files or to standard error for special value "-". If for some reason specified location is non-writable, you will have an error. This environment variable have a higher priority than the output destination in **`NCBI_CONFIG__NCBIAPPLOG_DESTINATION`**. | a valid file name, or "-" | (none) |
+
+Below is an example how to use it. Please note that this example is very simplified and present for illustration purposes only. You can find real working wrapper script that allow to run an arbitrary application and report its calls to AppLog [here](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/misc/clog/app/ncbi_applog_run_app.sh).
+
+``` Bash
+#!/bin/sh
+#
+# Wrapper script for an arbitrary application to report its calls to AppLog.
+#
+# NOTE 1: We use simple command lines and limited set of arguments.
+#         You can get full list of arguments and its description using:
+#         /opt/ncbi/bin/ncbi_applog-1 [command] -help.
+# NOTE 2: Each key/value in the parameters pairs for -param argument shoould be
+#         URL-encoded. We don't doing it here for illustration purposes.
+# NOTE 3: It is recommended to check exit codes for each ncbi_applog call.
+
+# Path to ncbi_applog utility
+APPLOG='/opt/ncbi/bin/ncbi_applog-1'
+
+# Path to your application, and it's name as it will be shown in AppLog
+app_executable='/home/username/my_exe_name'
+app_name='my_app_name'
+
+# For debugging purposes uncomment 2 lines below. This will redirect
+# all output to the current directory instead of sending it to AppLog.
+# See files named 'my_app_name.*'.
+
+#NCBI_CONFIG__NCBIAPPLOG_DESTINATION=cwd
+#export NCBI_CONFIG__NCBIAPPLOG_DESTINATION
+
+# Log starting, specifying application name and pid for our wrapping script.
+# Getting token needed for all subsequent calls.
+
+app_token=`$APPLOG start_app -appname "$app_name" -pid "$$"`
+
+# Start a request. You can run an application multiple times between
+# "start_app" and "stop_app" commands, each time with its own parameters.
+# You can use single request or wrap each run to its own request,
+# but it is recommended to have at least one.
+# Each request have its own token, needed to distinquish it from all other
+# requests, and it should be used for all request-specific calls.
+
+extra_params="foo=abc&bar=123"
+req_token=`$APPLOG start_request "$app_token" -param "user=${USER}&pwd=${PWD}&${extra_params}"`
+
+# Execute an application
+
+"$app_executable" "$@"
+app_exit=$?
+
+# To log exit code correctly for AppLog, it is recommended to translate
+# application's exit code to HTTP-like status code, where 200 mean OK (no error).
+
+case $app_exit in
+    0 ) log_app_exit=200 ;;
+  200 ) log_app_exit=199 ;;
+    * ) log_app_exit=$app_exit ;;
+esac
+
+# Log stopping state for our request and application,
+
+$APPLOG stop_request "$req_token" -status $log_app_exit
+$APPLOG stop_app     "$app_token" -status $log_app_exit
+
+exit $app_exit
+```
