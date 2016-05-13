@@ -87,11 +87,11 @@ Read-Only Access to the Source Code via Subversion
 
 The following options for read-only access to the C++ Toolkit Subversion repository are available to the public:
 
--   Checking out the source tree directly from the repository (e.g. svn co <http://anonsvn.ncbi.nlm.nih.gov/repos/v1/trunk/c++>).
+-   Checking out the source tree directly from the repository (e.g. svn co <https://anonsvn.ncbi.nlm.nih.gov/repos/v1/trunk/c++>).
 
 -   Browsing the repository with an HTTP browser (e.g. <http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++>).
 
--   Accessing the repository with a WebDAV client (also using <http://anonsvn.ncbi.nlm.nih.gov/repos/v1/trunk/c++> – although some clients may require dav:// instead of http://).
+-   Accessing the repository with a WebDAV client (also using <https://anonsvn.ncbi.nlm.nih.gov/repos/v1/trunk/c++> – although some clients may require dav:// instead of http://).
 
 <a name="ch_getcode_svn.code_retrieval"></a>
 
