@@ -18,8 +18,7 @@ The overview for this chapter consists of the following topics:
 -   Introduction
 
 -   Chapter Outline
--   
-TEST [this links leads to doc file](/book/test_doc/ch_core.doc)
+
 
 ### Introduction
 
