@@ -19,6 +19,6 @@ GRID
 
     -   [NetStorage Server Overview](/cxx-toolkit/misc/NetStorage Server Overview (ver 1.43).docx)
     
-In-House Only Documentation
+Inhouse Only Documentation
 -------------------------------
--   [Documentation](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=36408685)
+-   The inhouse only documentation can be see [HERE](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=36408685)
