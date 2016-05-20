@@ -21,4 +21,4 @@ GRID
     
 Inhouse Only Documentation
 -------------------------------
--   The inhouse only documentation can be see [HERE](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=36408685)
+-   The inhouse only documentation can be seen [HERE](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=36408685)
