@@ -673,7 +673,7 @@ In many cases you will need to read the hooked object and do some special proces
         // Do some user-defined processing of the bioseq
     }
 
-Note that from a choice variant hook you can not skip stream data -- this could leave the choice object in an uninitialized state. For this reason the CReadChoiceVariantHook class has no DefaultSkip() method.
+Note that skipping choice variant leaves the choice object in an uninitialized state. In general, hooks should be used with care as it is very easy to leave some data of the top level object uninitialized.
 
 <a name="ch_ser.Read_Object_Hook_Sample"></a>
 
