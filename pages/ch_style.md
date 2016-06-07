@@ -638,7 +638,7 @@ Many new features of the C++11 Standard are not yet implemented (or implemented 
 
 Do not use C++11 features in code that is:
 
--   Platform-portable, such as the ["core" (public, non-GUI, non-INTERNAL) part of the C++ Toolkit](http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/);
+-   Platform-portable, such as the ["core" (public, non-GUI, non-INTERNAL) part of the C++ Toolkit](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/);
 
 -   Part of regular [coremake builds](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/c++/scripts/internal/projects/netopt.lst?view=markup);
 
