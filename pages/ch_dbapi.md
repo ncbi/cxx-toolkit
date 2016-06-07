@@ -1530,7 +1530,7 @@ Some of the SQLite wrapper features are:
 
 -   Convenience classes for working with prepared statements, blobs, and exceptions.
 
-Please see the [sqlitewrapp.hpp](http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c%2B%2B/include/db/sqlite/sqlitewrapp.hpp?view=log) header for API details.
+Please see the [sqlitewrapp.hpp](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c%2B%2B/include/db/sqlite/sqlitewrapp.hpp?view=log) header for API details.
 
 For more information about SQLite, see the [online SQLite documentation](http://sqlite.org/docs.html).
 
