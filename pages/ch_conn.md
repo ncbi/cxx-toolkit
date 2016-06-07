@@ -1087,6 +1087,6 @@ You can read about how to announce and deannounce your application in LBOS from 
 Threaded Server Support
 -----------------------
 
-This library also provides [CServer](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CServer&d=), an abstract base class for multithreaded network servers. [Here](http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/connect/test/test_server.cpp) is a demonstration of its use. For more information, see the [Implementing a Server with CServer](ch_grid.html#ch_grid.CServer_Multithreade) section.
+This library also provides [CServer](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CServer&d=), an abstract base class for multithreaded network servers. [Here](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/connect/test/test_server.cpp) is a demonstration of its use. For more information, see the [Implementing a Server with CServer](ch_grid.html#ch_grid.CServer_Multithreade) section.
 
 
