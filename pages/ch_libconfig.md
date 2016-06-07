@@ -941,7 +941,7 @@ See the [Distributed Computing](ch_grid.html) chapter for more information on Ne
 
 Configuration parameters for NetCache daemons are described in the file:
 
-<http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log>
+<https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log>
 
 <a name="ch_libconfig.Seqfetchcgi"></a>
 
