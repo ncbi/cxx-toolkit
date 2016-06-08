@@ -1332,8 +1332,8 @@ A. You need `<misc/xmlwrapp/xmlwrapp.hpp>` for functionality that resides in the
 
 A. You need to add the following:
 
-    LIB = xmlwrapp xncbi
-    LIBS = $(LIBXML_LIBS) $(LIBXSLT_LIBS) $(ORIG_LIBS)
+    LIB = xmlwrapp xconnect xncbi
+    LIBS = $(NETWORK_LIBS) $(LIBXML_LIBS) $(LIBXSLT_LIBS) $(ORIG_LIBS)
     CPPFLAGS = $(LIBXML_INCLUDE) $(LIBXSLT_INCLUDE) $(ORIG_CPPFLAGS)
     REQUIRES = LIBXML LIBXSLT
 
