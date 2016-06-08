@@ -848,13 +848,6 @@ The next example is a complete program that fetches the response from a URL and 
 
 ***Note:*** HTTP error responses are generally not well-formed, and they generally don't originate from the accessed resource (but instead often originate from the server on behalf of the resource). Therefore, by default, HTTP connections and streams in the connection library prevent access to data in the response in such cases. However, the above example shows how to tell the stream that it's okay to pass the message data through to the user level. Specifically, it installs the ***ParseHeader()*** callback (of type [FHTTP\_ParseHeader](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Connectors.html#ga397d6d094a398603a9d45abbf2727314)) to parse the HTTP header and return a code indicating how the stream should handle header errors. In this case, it simply returns values that will release the HTTP response body as stream / connection data. A more sophisticated callback could involve an actual header analysis and return different codes depending on the outcome.
 
-However, there is a bug (scheduled to be fixed in the near future) with **`eHTTP_HeaderContinue`** processing that can cause a retry of the request. To work around the issue, try one of the following:
-
--   set **`CONN_MAX_TRY`** to 1 (search for CONN\_MAX\_TRY in the Connection library [configuration parameters](http://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_libconfig/#ch_libconfig.T7)); or
-
--   pass **`fHTTP_NoAutoRetry`** in the stream flags; or
-
--   return **`eHTTP_HeaderComplete`** from the header callback (if no redirects and/or additional authentication is expected in the stream).
 
 Additional examples can be found in the test files:
 
