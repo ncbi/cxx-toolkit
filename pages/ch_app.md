@@ -1198,7 +1198,7 @@ where:
 
 -   base rate:
 
-    -   R=value sets the base server reachability rate (as a floating point number); the default is 1000. Any negative value makes the server unreachable, and a value 0 is used. The range of the base rate is between 0.001 and 100000. Note that the range [0.001—0.009] is reverved for STANDBY servers – the ones that are only used by clients if no other usable non-STANDBY counterparts can be found.
+    -   R=value sets the base server reachability rate (as a floating point number); the default is 1000. Any negative value makes the server unreachable, and a value 0 means to use the default (which is 1000). The range of the base rate is between 0.001 and 100000. Note that the range [0.001—0.009] is reverved for STANDBY servers – the ones that are only used by clients if no other usable non-STANDBY counterparts can be found.
 
 -   locality markers (Note: If necessary, both L and P markers can be combined in a particular service definition):
 
