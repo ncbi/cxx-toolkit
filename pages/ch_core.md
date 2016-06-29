@@ -465,7 +465,7 @@ Complete details for the ***CNcbiRegistry*** can be found in the section on [The
 
 #### CNcbiDiag
 
-The [CNcbiDiag](#ch_core.diag) class implements much of the functionality of the NCBI C++ Toolkit error-processing mechanisms; however, it is not intended to be used directly. Instead, use the [`{ERR|LOG}_POST*`](#ch_core.ERR_POST) and [`_TRACE`](#ch_core._TRACE) macros. See the sections on [Diagnostic Streams](#ch_core.diag) and [Message Posting](ch_debug.html#ch_debug.std_cpp_message_post) for related information.
+The [CNcbiDiag](#ch_core.diag) class implements much of the functionality of the NCBI C++ Toolkit error-processing mechanisms; however, it is not intended to be used directly. Instead, use the [`{ERR|LOG}_POST*`](#ch_core.ERR_POST) and [`_TRACE`](#ch_core._TRACE) macros. See the sections on [Diagnostic Streams](#ch_log) and [Message Posting](ch_debug.html#ch_debug.std_cpp_message_post) for related information.
 
 <a name="ch_core.creating_simple_app"></a>
 
