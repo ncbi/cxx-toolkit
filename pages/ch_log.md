@@ -153,10 +153,9 @@ Each diagnostic message has its own severity level ([EDiagSev](http://www.ncbi.n
         eDiag_Critical, ///< Critical error message
         eDiag_Fatal,    ///< Fatal error -- guarantees exit(or abort)
         eDiag_Trace,    ///< Trace message
-        // Limits
-        eDiagSevMin = eDiag_Info,  ///< Verbosity level for min. severity
-        eDiagSevMax = eDiag_Trace  ///< Verbosity level for max. severity
     };
+
+Please note that eDiag_Trace is a value of EDiagSev for historical reasons. It is NOT treated as a severity level. It is a separate entity that is just a part of enum EDiagSev.
 
 The default is to post only those messages whose severity level exceeds the **`eDiag_Warning`** level (i.e. **`eDiag_Error, eDiag_Critical`**, and **`eDiag_Fatal`**). The global severity threshold for posting messages can be reset using [SetDiagPostLevel](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagPostLevel) ***(EDiagSev postSev)***. A parallel function, [SetDiagDieLevel](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagDieLevel) ***(EDiagSev dieSev)***, defines the severity level at which execution will abort.
 
