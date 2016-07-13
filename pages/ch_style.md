@@ -240,7 +240,9 @@ Table 1. Naming Conventions
 |***sm\_****ClassStaticMemberName*                                     |`class C { static double sm_MyClassStaticData; };`          |
 |                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Class Member Functions (Methods)**              |
 |*ClassMethod*                                                         |`bool MyClassMethod(void);`                                 |
+|*ClassStaticMethod*                                                   |`bool MyClassStaticMethod(void);`                           |
 |***x\_****ClassPrivateMethod*                                         |`int x_MyClassPrivateMethod(char c);`                       |
+|***x\_****ClassPrivateStaticMethod*                                   |`int x_MyClassPrivateStaticMethod(char c);`                 |
 |                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Module Static Functions and Data**              |
 |***s\_****StaticFunc*                                                 |`static char s_MyStaticFunc(void);`                         |
 |***s\_****StaticVar*                                                  |`static int s_MyStaticVar;`                                 |
