@@ -72,7 +72,7 @@ Computing pairwise global sequence alignments
 
 Generic **pairwise** global alignment functionality is provided by ***CNWAligner***.
 
-***NOTE:*** ***CNWAligner*** is not a multiple sequence aligner. An example of using ***CNWAligner*** can be seen [here](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/nw_aligner).
+***NOTE:*** ***CNWAligner*** is not a multiple sequence aligner. An example of using ***CNWAligner*** can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/nw_aligner).
 
 This functionality is discussed in the following topics:
 
