@@ -51,6 +51,8 @@ The following is an outline of the topics presented in this chapter:
 
         -   [CNcbiDiag](#ch_core.CNcbiDiag)
 
+        -   [CVersion](#ch_core.CVersion)
+
     -   [Creating a Simple Application](#ch_core.creating_simple_app)
 
         -   [Unix-like Systems](#ch_core.creating_unix_app)
@@ -354,6 +356,8 @@ The following five fundamental classes form the foundation of the C++ Toolkit Ap
 
 -   [CNcbiDiag](#ch_core.CNcbiDiag)
 
+-   [CVersion](#ch_core.CVersion)
+
 Each of these classes is discussed in the following sections:
 
 <a name="ch_core.CNcbiApplication"></a>
@@ -466,6 +470,39 @@ Complete details for the ***CNcbiRegistry*** can be found in the section on [The
 #### CNcbiDiag
 
 The [CNcbiDiag](#ch_core.diag) class implements much of the functionality of the NCBI C++ Toolkit error-processing mechanisms; however, it is not intended to be used directly. Instead, use the [`{ERR|LOG}_POST*`](#ch_core.ERR_POST) and [`_TRACE`](#ch_core._TRACE) macros. See the sections on [Diagnostic Streams](ch_log.html) and [Message Posting](ch_debug.html#ch_debug.std_cpp_message_post) for related information.
+
+<a name="ch_core.CVersion"></a>
+
+#### CVersion
+
+To set compile-time application version info, use class CVersion. It allows to store and output the following data:
+- Application version info in format "%major%.%minor%.%patch% (%version_name%)"
+- Components version info. For each component there will be "%component_name%: %major%.%minor%.%patch% (%version_name%)"
+- Package version info in format "%major%.%minor%.%patch% (%version_name%)"
+- Build info (build date and build tag)
+- Build signature (contains compiler, build configuration, platform, OS, hostname)
+- TeamCity build number
+
+You can output all this info by using argument *`-version-full`* when running your application. Using argument *`-version`* will output only application version info and package version info.
+
+To add build date and build tag to a custom NCBI application (e.g. based on CNcbiApplication or CCgiApplication), pass pre-processor macro **`NCBI_BUILD_TAG`** to your build and follow this example:
+
+    + #ifdef NCBI_BUILD_TAG
+    + #   define APP_BUILD_TAG NCBI_AS_STRING(NCBI_BUILD_TAG)
+    + #else
+    + #   define APP_BUILD_TAG kEmptyStr
+    + #endif
+    + 
+      class CMyNcbiApp : public CNcbiApplication
+      {
+      public:
+          CMyNcbiApp() 
+          {
+    +        CVersionInfo version_info("0.0.0");
+    +        SBuildInfo build_info(__DATE__ " " __TIME__, APP_BUILD_TAG);
+    +        SetVersion(version_info, build_info);
+          }
+
 
 <a name="ch_core.creating_simple_app"></a>
 
