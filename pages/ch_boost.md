@@ -21,7 +21,7 @@ The overview for this chapter consists of the following topics:
 
 ### Introduction
 
-This chapter discusses the Boost Unit Test Framework and how to use it within NCBI. The NCBI C++ Toolkit has incorporated and extended the open source [Boost.Test Library](http://www.boost.org/doc/libs/1_53_0/libs/test/doc/html/index.html), and provides a simplified way for the developers to create Boost-based C++ unit tests.
+This chapter discusses the Boost Unit Test Framework and how to use it within NCBI. The NCBI C++ Toolkit has incorporated and extended the open source [Boost.Test Library](https://www.boost.org/doc/libs/1_53_0/libs/test/doc/html/index.html), and provides a simplified way for the developers to create Boost-based C++ unit tests.
 
 The NCBI extensions add the ability to:
 
@@ -37,7 +37,7 @@ The NCBI extensions add the ability to:
 
 -   use convenience macros for combining **`NO_THROW`** with other test tools.
 
-While the framework may be of interest to outside organizations, this chapter is intended for NCBI C++ developers. See also the Doxygen documentation for [tests](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Tests.html).
+While the framework may be of interest to outside organizations, this chapter is intended for NCBI C++ developers. See also the Doxygen documentation for [tests](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Tests.html).
 
 ### Chapter Outline
 
@@ -253,7 +253,7 @@ Many Boost testing tools have variants for each error level. The most common Boo
 
 Note that **`BOOST_<level>_EQUAL(var1,var2)`** is equivalent to **`BOOST_<level> (var1==var2)`**, but in the case of failure it prints the value of each variable, which can be helpful. Also, it is not a good idea to compare floating point values directly - instead, use **`BOOST_<level>_CLOSE(var1,var2,tolerance)`**.
 
-See the Boost testing tools [reference page](http://www.boost.org/doc/libs/1_53_0/libs/test/doc/html/utf/testing-tools/reference.html) for documentation on these and other testing tools.
+See the Boost testing tools [reference page](https://www.boost.org/doc/libs/1_53_0/libs/test/doc/html/utf/testing-tools/reference.html) for documentation on these and other testing tools.
 
 The NCBI extensions to the Boost library add a number of convenience testing tools that enclose the similarly-named Boost testing tools in a **`NO_THROW`** test:
 
@@ -313,7 +313,7 @@ It is possible to retrieve command-line arguments from your test cases using the
                                       CArgDescriptions::eString);
     }
 
-For more examples of argument processing, see [test\_ncbiargs\_sample.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs_sample.cpp).
+For more examples of argument processing, see [test\_ncbiargs\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs_sample.cpp).
 
 Next, add code like the following to access the argument from within a test case:
 
@@ -411,7 +411,7 @@ There is a special entry `GLOBAL` that can be used to disable all tests. For exa
 
 ##### Library-Defined Variables
 
-When the NCBI-extended Boost Test library is built, it defines a set of unit test variables based on the build, compiler, operating system, and platform. See [Table 1](#ch_boost.IT1) for a list of related variables ([test\_boost.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test_boost.cpp) has the latest [list of variables](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_InitCommonParserVars&d=)).
+When the NCBI-extended Boost Test library is built, it defines a set of unit test variables based on the build, compiler, operating system, and platform. See [Table 1](#ch_boost.IT1) for a list of related variables ([test\_boost.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test_boost.cpp) has the latest [list of variables](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_InitCommonParserVars&d=)).
 
 <a name="ch_boost.IT1"></a>
 
@@ -433,7 +433,7 @@ Table 1. Build Generated Predefined Variables
 
 <div class="table-scroll"></div>
 
-At run-time, the library also checks the `FEATURES` environment variable and creates unit test variables based on the current set of features. See [Table 2](#ch_boost.IT2) for a list of feature, package, and project related variables ([test\_boost.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test_boost.cpp) has the latest [list of features](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=s_NcbiFeatures&d=)).
+At run-time, the library also checks the `FEATURES` environment variable and creates unit test variables based on the current set of features. See [Table 2](#ch_boost.IT2) for a list of feature, package, and project related variables ([test\_boost.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test_boost.cpp) has the latest [list of features](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=s_NcbiFeatures&d=)).
 
 <a name="ch_boost.IT2"></a>
 
@@ -575,7 +575,7 @@ The difference between these functions is that globally disabled unit tests will
 
 ### Viewing Unit Tests Results from the Nightly Build
 
-The Boost Unit Test Framework provides more than just command-line testing. Each unit test built with the framework becomes incorporated into nightly testing and is tested on multiple platforms and under numerous configurations. All such results are archived in the database and available through a [web interface](http://intranet/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi).
+The Boost Unit Test Framework provides more than just command-line testing. Each unit test built with the framework becomes incorporated into nightly testing and is tested on multiple platforms and under numerous configurations. All such results are archived in the database and available through a [web interface](https://intranet/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi).
 
 The main page (see [Figure 1](#ch_boost.F20.1)) provides many ways to narrow down the vast quantity of statistics available. The top part of the page allows you to select test date, test result, build configuration (branch, compiler, operating system, etc), debug/release, and more. The page also has a column for selecting tests, and a column for configurations. For best results, refine the selection as much as possible, and then click on the “See test statistics” button.
 
@@ -623,7 +623,7 @@ To see warning messages, use this:
 
     ./foo --log_level=warning
 
-Additional runtime parameters can be set. For a complete list, see the online [documentation](http://www.boost.org/doc/libs/1_53_0/libs/test/doc/html/utf/user-guide/runtime-config/reference.html).
+Additional runtime parameters can be set. For a complete list, see the online [documentation](https://www.boost.org/doc/libs/1_53_0/libs/test/doc/html/utf/user-guide/runtime-config/reference.html).
 
 <a name="ch_boost.Limitations_of_the_B"></a>
 
