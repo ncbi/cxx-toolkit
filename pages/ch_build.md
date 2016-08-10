@@ -321,7 +321,7 @@ Makefile Macros and `Makefile.mk`
 
 There is a wide assortment of configured tools, flags, third party packages and [paths (see above)](#ch_build.T1). They can be specified for the whole build tree with the appropriate entry in `Makefile.mk`, which is silently included at the very beginning of the customized makefiles used to build [libraries](ch_proj.html#ch_proj.make_proj_lib) and [applications](ch_proj.html#ch_proj.make_proj_app).
 
-Many makefile macros are supplied with defaults **`ORIG_*`** in `Makefile.mk`. See the list of **`ORIG_*`** macros, and all others currently defined, in the [Makefile.mk.in](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in) template for details. One should not override these defaults in normal use, but add your own flags to them as needed in the corresponding working macro; e.g., set `CXX = $(ORIG_CXX) -DFOO_BAR`.
+Many makefile macros are supplied with defaults **`ORIG_*`** in `Makefile.mk`. See the list of **`ORIG_*`** macros, and all others currently defined, in the [Makefile.mk.in](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in) template for details. One should not override these defaults in normal use, but add your own flags to them as needed in the corresponding working macro; e.g., set `CXX = $(ORIG_CXX) -DFOO_BAR`.
 
 `Makefile.mk` defines makefile macros obtained during the configuration process for flags (see[Table 3](#ch_build.T3)), system and third-party packages (see [Table 4](#ch_build.T4)) and development tools (see [Table 5](#ch_build.T5)).
 
