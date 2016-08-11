@@ -22,3 +22,13 @@ GRID
 Inhouse Only Documentation
 -------------------------------
 -   The inhouse only documentation can be seen [HERE](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=36408685)
+-   TestRes
+    -   [TestRes documentation](https://confluence.ncbi.nlm.nih.gov/display/CT/TestRes+documentation)
+-   Connect
+    -   LBOS
+        -   [Introduction to LBOS in Connect library](https://confluence.ncbi.nlm.nih.gov/display/CT/Introduction+to+LBOS+in+Connect+library)
+        -   [Integration with LBOS via C++ Toolkit library](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=51121913)
+    -   Chaos Monkey
+        -   [Chaos Monkey documentation](https://confluence.ncbi.nlm.nih.gov/display/~elisovdn/Chaos+Monkey+documentation)
+        -   [Chaos Monkey standard testing procedure](https://confluence.ncbi.nlm.nih.gov/display/~elisovdn/Chaos+Monkey+standard+testing+procedure)
+-  [UTTP and JSON Over UTTP Protocols](https://confluence.ncbi.nlm.nih.gov/display/CT/UTTP+and+JSON+Over+UTTP+Protocols) 
