@@ -21,7 +21,8 @@ GRID
     
 Inhouse Only Documentation
 -------------------------------
--   The inhouse only documentation can be seen [HERE](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=36408685)
+The [inhouse only documentation](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=36408685) can be seen here:
+
 -   TestRes
     -   [TestRes documentation](https://confluence.ncbi.nlm.nih.gov/display/CT/TestRes+documentation)
 -   Connect
