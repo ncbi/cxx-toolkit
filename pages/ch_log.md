@@ -21,7 +21,7 @@ Working with Diagnostic Streams ([\*](ch_debug.html#ch_debug.std_cpp_message_pos
 
 
 
-The [CNcbiDiag](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiDiag.html) class implements the functionality of an output stream enhanced with error posting mechanisms similar to those found in the NCBI C Toolkit. A ***CNcbiDiag*** object has the look and feel of an output stream; its member functions and friends include output operators and format manipulators. A ***CNcbiDiag*** object is not itself a stream, but serves as an interface to a stream which allows multiple threads to write to the same output. Each instance of ***CNcbiDiag*** includes the following private data members:
+The [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiDiag.html) class implements the functionality of an output stream enhanced with error posting mechanisms similar to those found in the NCBI C Toolkit. A ***CNcbiDiag*** object has the look and feel of an output stream; its member functions and friends include output operators and format manipulators. A ***CNcbiDiag*** object is not itself a stream, but serves as an interface to a stream which allows multiple threads to write to the same output. Each instance of ***CNcbiDiag*** includes the following private data members:
 
 -   a buffer to store (a single) message text
 
@@ -143,7 +143,7 @@ The boolean `TryRootLogFirst` argument in the `[LOG]` section of the application
 
 ### Setting Diagnostic Severity Levels
 
-Each diagnostic message has its own severity level ([EDiagSev](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDiagSev)), which is compared to a global severity threshold to determine whether or not its message should be posted. Six levels of severity are defined by the ***EDiagSev*** enumeration:
+Each diagnostic message has its own severity level ([EDiagSev](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDiagSev)), which is compared to a global severity threshold to determine whether or not its message should be posted. Six levels of severity are defined by the ***EDiagSev*** enumeration:
 
     /// Severity level for the posted diagnostics.
     enum EDiagSev {
@@ -157,9 +157,9 @@ Each diagnostic message has its own severity level ([EDiagSev](http://www.ncbi.n
 
 Please note that eDiag_Trace is a value of EDiagSev for historical reasons. It is NOT treated as a severity level. It is a separate entity that is just a part of enum EDiagSev.
 
-The default is to post only those messages whose severity level exceeds the **`eDiag_Warning`** level (i.e. **`eDiag_Error, eDiag_Critical`**, and **`eDiag_Fatal`**). The global severity threshold for posting messages can be reset using [SetDiagPostLevel](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagPostLevel) ***(EDiagSev postSev)***. A parallel function, [SetDiagDieLevel](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagDieLevel) ***(EDiagSev dieSev)***, defines the severity level at which execution will abort.
+The default is to post only those messages whose severity level exceeds the **`eDiag_Warning`** level (i.e. **`eDiag_Error, eDiag_Critical`**, and **`eDiag_Fatal`**). The global severity threshold for posting messages can be reset using [SetDiagPostLevel](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagPostLevel) ***(EDiagSev postSev)***. A parallel function, [SetDiagDieLevel](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagDieLevel) ***(EDiagSev dieSev)***, defines the severity level at which execution will abort.
 
-Tracing is considered to be a special, debug-oriented feature, and therefore messages with severity level **`eDiag_Trace`** are not affected by these global `post/die` levels. Instead, [SetDiagTrace](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagTrace) ***(EDiagTrace enable, EDiagTrace default)*** is used to turn tracing on or off. By default, the tracing is off - unless you assign the environment variable **`DIAG_TRACE`** to an arbitrary non-empty string or, alternatively, define a **`DIAG_TRACE`** entry in the **`[DEBUG]`** section of your [registry](#ch_core.registry) file.
+Tracing is considered to be a special, debug-oriented feature, and therefore messages with severity level **`eDiag_Trace`** are not affected by these global `post/die` levels. Instead, [SetDiagTrace](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagTrace) ***(EDiagTrace enable, EDiagTrace default)*** is used to turn tracing on or off. By default, the tracing is off - unless you assign the environment variable **`DIAG_TRACE`** to an arbitrary non-empty string or, alternatively, define a **`DIAG_TRACE`** entry in the **`[DEBUG]`** section of your [registry](#ch_core.registry) file.
 
 The severity level can be set directly in **`POST`** and **`TRACE`** statements, using the severity level manipulators including **`Info`**, **`Warning`**, **`Error`**, **`Critical`**, **`Fatal`**, and **`Trace`**, for example:
 
@@ -171,7 +171,7 @@ The severity level can be set directly in **`POST`** and **`TRACE`** statements,
 
 Diagnostic messages from the ***CNcbiDiag*** and ***CException*** classes can be filtered by the source file path; message severity; or by the module, class, or function name. Messages from the ***CNcbiDiag*** class can also be filtered by error code. If a ***CException*** object is created by chaining to a previous exception, then all exceptions in the chain will be checked against the filter and the exception will pass if any exception in the chain passes (even if one of them is suppressed by a negative condition).
 
-The filter can be set by the **`TRACE_FILTER`** or **`POST_FILTER`** entry in the **`[DIAG]`** section of the registry file or during runtime through [SetDiagFilter()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagFilter). Messages with a severity level of **`Fatal`** are not filtered; messages with a severity level of **`Trace`** are filtered by **`TRACE_FILTER`**; and all other messages are filtered by **`POST_FILTER`**.
+The filter can be set by the **`TRACE_FILTER`** or **`POST_FILTER`** entry in the **`[DIAG]`** section of the registry file or during runtime through [SetDiagFilter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagFilter). Messages with a severity level of **`Fatal`** are not filtered; messages with a severity level of **`Trace`** are filtered by **`TRACE_FILTER`**; and all other messages are filtered by **`POST_FILTER`**.
 
 Filter strings contain filtering conditions separated by a space. An empty filter string means that all messages will appear in the log unfiltered. Filtering conditions are processed from left to right until a condition that matches the message is found. If the message does not match any of the conditions, then the message will be filtered out. Filtering conditions in the string may be preceded by an exclamation mark, which reverses the behavior (so if a message matches the condition it will be suppressed). See [Table 4](#ch_core.T4) for filtering condition samples and syntax.
 
@@ -427,7 +427,7 @@ Fields in the new post format:
 | tid         | Thread ID                                                                                             | ≥ 3                                           | Uint8 (decimal)                                                                                                                                                      |
 | rid         | Request ID (e.g. iteration number for a CGI)                                                          | ≥ 4                                           | int (decimal)                                                                                                                                                        |
 | state       | Application state code                                                                                | 2                                             | string                                                                                                                                                               |
-| guid        | [Globally unique process ID](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_CreateUID) | 16                                            | Int8 (hexadecimal)                                                                                                                                                   |
+| guid        | [Globally unique process ID](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_CreateUID) | 16                                            | Int8 (hexadecimal)                                                                                                                                                   |
 | psn         | Serial number of the posting within the process                                                       | ≥ 4                                           | int (decimal)                                                                                                                                                        |
 | tsn         | Serial number of the posting within the thread                                                        | ≥ 4                                           | int (decimal)                                                                                                                                                        |
 | time        | Astronomical date and time at which the message was posted                                            | ≥ 23<br/>(often 26) | `YYYY-MM-DDThh:mm:ss.sss[sss[sss]]`<br/>While seconds typically have six digits after the decimal, there could be more or as few as three. |
@@ -671,7 +671,7 @@ The post flags define additional information that will be inserted into the outp
     <err_code_message>\n
     <err_code_explanation>
 
-where the presence of each field in the output is controlled by the post flags [EDiagPostFlag](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDiagPostFlag) associated with the particular diagnostic message. The post flags are:
+where the presence of each field in the output is controlled by the post flags [EDiagPostFlag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDiagPostFlag) associated with the particular diagnostic message. The post flags are:
 
     enum EDiagPostFlag {
         eDPF_File               = 0x1, ///< Set by default #if _DEBUG; else not set
@@ -740,7 +740,7 @@ where the presence of each field in the output is controlled by the post flags [
         eDPF_UseExactUserFlags  = 0x20000000
     };
 
-The default message format displays only the severity level and the message body. This can be overridden inside the constructor for a specific message, or globally, using [SetDiagPostFlag()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagPostFlag) on a selected flag. For example:
+The default message format displays only the severity level and the message body. This can be overridden inside the constructor for a specific message, or globally, using [SetDiagPostFlag()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagPostFlag) on a selected flag. For example:
 
         SetDiagPostFlag(eDPF_DateTime); // set flag globally
 
@@ -755,7 +755,7 @@ The logging framework uses a global output stream. The default is to post messag
 
 This function can be called numerous times, thus allowing different sections of the executable to write to different files. At any given time however, all messages will be associated with the same global output stream. Because the messages are completely buffered, each message will appear on whatever stream is active at the time the message actually completes.
 
-And, of course, you can [provide](#ch_core.diag_handlers) (using [SetDiagHandler](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagHandler)) your own message posting handler [CDiagHandler](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagHandler.html), which does not necessarily write the messages to a standard C++ output stream. To preserve compatibility with old code, SetDiagHandler also continues to accept raw callback functions of type [FDiagHandler](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FDiagHandler).
+And, of course, you can [provide](#ch_core.diag_handlers) (using [SetDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagHandler)) your own message posting handler [CDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagHandler.html), which does not necessarily write the messages to a standard C++ output stream. To preserve compatibility with old code, SetDiagHandler also continues to accept raw callback functions of type [FDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FDiagHandler).
 
 If the output is sent to a file, you can split it into separate files:
 
@@ -826,7 +826,7 @@ Implicit message termination also occurs as a side effect of applying one of the
 
 -   ***Reset*** -- empty the contents of the current message buffer
 
-When the message controlled by an instance of ***CNcbiDiag*** is complete, ***CNcbiDiag*** calls a global callback function (of type [FDiagHandler](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FDiagHandler)) and passes the message (along with its severity level) as the function arguments. The default callback function posts errors to the currently designated output stream, with the action (continue or abort) determined by the severity level of the message.
+When the message controlled by an instance of ***CNcbiDiag*** is complete, ***CNcbiDiag*** calls a global callback function (of type [FDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FDiagHandler)) and passes the message (along with its severity level) as the function arguments. The default callback function posts errors to the currently designated output stream, with the action (continue or abort) determined by the severity level of the message.
 
 <a name="ch_core.Request_Exit_Status_Codes"></a>
 
@@ -882,7 +882,7 @@ So far we have the following NCBI specific status codes:
 
 ### Error codes and their Descriptions
 
-Error codes and subcodes are posted to an output stream only if applicable [post flags](#ch_core.diag_post_flags) were set. In addition to error codes, the logging framework can also post text explanations. The [CDiagErrCodeInfo](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagErrCodeInfo.html) class is used to find the error message that corresponds to a given error code/subcode. Such descriptions could be specified directly in the program code or placed in a separate message file. It is even possible to use several such files simultaneously. ***CDiagErrCodeInfo*** can also read error descriptions from any input stream(s), not necessarily files.
+Error codes and subcodes are posted to an output stream only if applicable [post flags](#ch_core.diag_post_flags) were set. In addition to error codes, the logging framework can also post text explanations. The [CDiagErrCodeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagErrCodeInfo.html) class is used to find the error message that corresponds to a given error code/subcode. Such descriptions could be specified directly in the program code or placed in a separate message file. It is even possible to use several such files simultaneously. ***CDiagErrCodeInfo*** can also read error descriptions from any input stream(s), not necessarily files.
 
 <a name="ch_core.err_msg_file"></a>
 
@@ -938,7 +938,7 @@ Error message files can be automatically read by setting a configuration paramet
 
 ### Defining Custom Handlers using CDiagHandler
 
-The user can install his own handler (of type [CDiagHandler](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagHandler.html),) using [SetDiagHandler()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagHandler). CDiagHandler is a simple abstract class:
+The user can install his own handler (of type [CDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagHandler.html),) using [SetDiagHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagHandler). CDiagHandler is a simple abstract class:
 
     class  CDiagHandler
     {
@@ -949,7 +949,7 @@ The user can install his own handler (of type [CDiagHandler](http://www.ncbi.nlm
         virtual void Post(const SDiagMessage& mess) = 0;
     };
 
-where [SDiagMessage](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SDiagMessage) is a simple struct defined in `ncbidiag.hpp` whose data members' values are obtained from the ***CNcbiDiag*** object. The transfer of data values occurs at the time that ***Post*** is invoked. See also the section on [Message posting](ch_debug.html#ch_debug.std_cpp_message_post) for a more technical discussion.
+where [SDiagMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SDiagMessage) is a simple struct defined in `ncbidiag.hpp` whose data members' values are obtained from the ***CNcbiDiag*** object. The transfer of data values occurs at the time that ***Post*** is invoked. See also the section on [Message posting](ch_debug.html#ch_debug.std_cpp_message_post) for a more technical discussion.
 
 <a name="ch_core.ERR_POST"></a>
 
@@ -1020,7 +1020,7 @@ Now you can use the error code in your library's implementation:
     ...
         ERR_POST_X(5, Critical << "Your message here."); // uses the default error code
 
-Generally, the default error code and the **`ERR_POST_X`** macro should be used. If it is necessary to use a non-default error code, that error code and the appropriate subcode may be used with the [ErrCode](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ErrCode) manipulator in the **`ERR_POST`** macro. For example:
+Generally, the default error code and the **`ERR_POST_X`** macro should be used. If it is necessary to use a non-default error code, that error code and the appropriate subcode may be used with the [ErrCode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ErrCode) manipulator in the **`ERR_POST`** macro. For example:
 
     // use a non-default error code (1501 in this example) and subcode 3
     ERR_POST(ErrCode(1501, 3) << "My error message.");
@@ -1029,7 +1029,7 @@ Generally, the default error code and the **`ERR_POST_X`** macro should be used.
 
 ### The \_TRACE macro
 
-The **`_TRACE(message)`** macro is a debugging tool that allows the user to insert trace statements that will only be posted if the code was [compiled in debug mode](ch_debug.html#ch_debug.debug_mode_internal), and provided that the tracing has been turned on. If **`DIAG_TRACE`** is defined as an environment variable, or as an entry in the [DEBUG] section of your configuration file (`*.ini`), the initial state of tracing is `on`. By default, if no such variable or registry entry is defined, tracing is `off`. [SetDiagTrace](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagTrace) ***(EDiagTrace enable, EDiagTrace default)*** is used to turn tracing on/off.
+The **`_TRACE(message)`** macro is a debugging tool that allows the user to insert trace statements that will only be posted if the code was [compiled in debug mode](ch_debug.html#ch_debug.debug_mode_internal), and provided that the tracing has been turned on. If **`DIAG_TRACE`** is defined as an environment variable, or as an entry in the [DEBUG] section of your configuration file (`*.ini`), the initial state of tracing is `on`. By default, if no such variable or registry entry is defined, tracing is `off`. [SetDiagTrace](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagTrace) ***(EDiagTrace enable, EDiagTrace default)*** is used to turn tracing on/off.
 
 Just like **`ERR_POST`**, the **`_TRACE`** macro takes a message, and the message will be posted only if tracing has been enabled. For example:
 
@@ -1044,13 +1044,13 @@ Here, only the second trace message will be posted, as tracing is disabled when 
 
 ### Performance Logging
 
-The C++ Toolkit includes a [performance logging API](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/perf_log.hpp) that is independent of the general diagnostics API. This allows independent control, analysis, and management of the performance data. Performance log files are created just like [other log files](#ch_core.diag_set_stream), except that the extension is `.perf` instead of `.log`, for example. Performance data can be found in AppLog by searching for the "perf" event (see the [events and messages](#ch_core.Events_and_Messages) section for more details about events).
+The C++ Toolkit includes a [performance logging API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/perf_log.hpp) that is independent of the general diagnostics API. This allows independent control, analysis, and management of the performance data. Performance log files are created just like [other log files](#ch_core.diag_set_stream), except that the extension is `.perf` instead of `.log`, for example. Performance data can be found in AppLog by searching for the "perf" event (see the [events and messages](#ch_core.Events_and_Messages) section for more details about events).
 
 The performance logging classes and macros are:
 
 -   ***CPerfLogGuard***
 
-    -   The [CPerfLogGuard](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogGuard.html) class will generally be the first choice for performance logging. If you want to use a **`PERF_POST*`** macro, then use [CPerfLogger](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogger.html) to create the logger object.
+    -   The [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogGuard.html) class will generally be the first choice for performance logging. If you want to use a **`PERF_POST*`** macro, then use [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogger.html) to create the logger object.
 
     -   ***CPerfLogGuard*** measures elapsed time and posts a one-line entry in the performance log.
 
@@ -1066,17 +1066,17 @@ The performance logging classes and macros are:
 
 -   ***CPerfLogger***
 
-    -   The [CPerfLogger](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogger.html) class can be used on its own, but it's best to only use it if you need to create a logger for use in a **`PERF_POST*`** macro. ***CPerfLogger*** is slightly lower-level than ***CPerfLogGuard*** but is otherwise very similar, except that ***CPerfLogGuard*** offers generally desirable guard features.
+    -   The [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogger.html) class can be used on its own, but it's best to only use it if you need to create a logger for use in a **`PERF_POST*`** macro. ***CPerfLogger*** is slightly lower-level than ***CPerfLogGuard*** but is otherwise very similar, except that ***CPerfLogGuard*** offers generally desirable guard features.
 
     -   ***Note:*** If you use ***CPerfLogger*** on its own, and logging is off, then neither logging nor timing will be done. However, the extra record will be put into the log if the following construct is used:<br/><br/>`perf_logger.Post(...).Print(...)`<br/><br/>Therefore, it's best to avoid that construct and use the ***CPerfLogGuard*** class or a **`PERF_POST`** macro instead.
 
 -   **`PERF_POST`**
 
-    -   Use the [PERF\_POST](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Diagnostics.html#ga8da8da548df436e673c0274f9bcb6770) macro if you find it more convenient than ***CPerfLogGuard***, or if you'd like to possibly save a few CPU cycles when performance logging is globally turned off.
+    -   Use the [PERF\_POST](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Diagnostics.html#ga8da8da548df436e673c0274f9bcb6770) macro if you find it more convenient than ***CPerfLogGuard***, or if you'd like to possibly save a few CPU cycles when performance logging is globally turned off.
 
 -   **`PERF_POST_DB`**
 
-    -   Use the [PERF\_POST\_DB](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Diagnostics.html#ga89e52c8d2496233dd47fdbb91980d9f8) macro for the same reasons as the **`PERF_POST`** macro, but specifically when working with a database.
+    -   Use the [PERF\_POST\_DB](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Diagnostics.html#ga89e52c8d2496233dd47fdbb91980d9f8) macro for the same reasons as the **`PERF_POST`** macro, but specifically when working with a database.
 
 Performance logging is turned off by default, but can be globally turned on using the environment variable **`LOG_PerfLogging`** or the registry:
 
@@ -1197,7 +1197,7 @@ Native C++ logging. You can find description of all parameters in the [Logging](
 
 #### CLog
 
-[CLog](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/misc/clog/ncbi_c_log.h) is a pure C library to provide the C++ Toolkit-like logging semantics and output for C/C++ programs and CGIs.
+[CLog](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/misc/clog/ncbi_c_log.h) is a pure C library to provide the C++ Toolkit-like logging semantics and output for C/C++ programs and CGIs.
 
 These parameters tune the usage and behavior of the library and all based on it applications:
 
@@ -1208,7 +1208,7 @@ These parameters tune the usage and behavior of the library and all based on it 
 | **`NCBI_LOG_SESSION_ID`** | Defines the default session ID, which is used for any request which has no explicit session ID set. | any valid session ID string | "UNK_SESSION" |
 | **`HTTP_NCBI_SID`**  | Same as **`NCBI_LOG_SESSION_ID`**, but passed through HTTP headers. Have a priority over **`NCBI_LOG_SESSION_ID`**. | any valid session ID string | "UNK_SESSION" |
 | **`SERVER_PORT`**  | Web server/service port. Specifies one of the possible locations to store logging files for CGI, see [Where Diagnostic Messages Go](#ch_core.Where_Diagnostic_Messages_Go). | a positive integer | (none) |
-| **`NCBI_CONFIG__LOG__FILE`**  | Reset the log file to the specified file. By default, if [NcbiLog_SetDestination()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiLog_SetDestination) is not called or set to ***eNcbiLog_Default***, and environment variable **`$NCBI_CONFIG__LOG__FILE`** points to some location on a file system, its value will be used as base name for logging. Also, it can have special value "-" to redirect all output to ***STDERR***. | a valid file name, or "-" | (none) |
+| **`NCBI_CONFIG__LOG__FILE`**  | Reset the log file to the specified file. By default, if [NcbiLog_SetDestination()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiLog_SetDestination) is not called or set to ***eNcbiLog_Default***, and environment variable **`$NCBI_CONFIG__LOG__FILE`** points to some location on a file system, its value will be used as base name for logging. Also, it can have special value "-" to redirect all output to ***STDERR***. | a valid file name, or "-" | (none) |
 
 <a name="ch_core.Logging_Modules_ncbi_applog"></a>
 
@@ -1224,7 +1224,7 @@ To allow logging from scripts we have a command-line utility &mdash; ***ncbi_app
 | **`NCBI_CONFIG__NCBIAPPLOG_DESTINATION`**<br/><br/>**`[NCBI]`**<br/>**`NcbiApplogDestination = ...`**  | Set logging destnation. If this parameter is specified and not 'default', it disable CGI redirecting. See [Where Diagnostic Messages Go](#ch_core.Where_Diagnostic_Messages_Go). | default, cwd, stdlog, stdout, stderr | default (stdlog) |
 | **`NCBI_CONFIG__LOG__FILE`**  | Same as for [CLog](#ch_core.Logging_Modules_CLog), but also disable CGI-redirecting. All logging will be done locally, to the provided in this variable base name for logging files or to standard error for special value "-". If for some reason specified location is non-writable, you will have an error. This environment variable have a higher priority than the output destination in **`NCBI_CONFIG__NCBIAPPLOG_DESTINATION`**. | a valid file name, or "-" | (none) |
 
-Below is an example how to use it. Please note that this example is very simplified and present for illustration purposes only. You can find real working wrapper script that allow to run an arbitrary application and report its calls to AppLog [here](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/misc/clog/app/ncbi_applog_run_app.sh).
+Below is an example how to use it. Please note that this example is very simplified and present for illustration purposes only. You can find real working wrapper script that allow to run an arbitrary application and report its calls to AppLog [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/misc/clog/app/ncbi_applog_run_app.sh).
 
     #!/bin/sh
     #

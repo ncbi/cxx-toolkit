@@ -21,7 +21,7 @@ The overview for this chapter consists of the following topics:
 
 ### Introduction
 
-This chapter describes in detail how to configure, build, and use the NCBI C++ Toolkit (or selected components of it) on supported platforms. See the [Getting Started](ch_start.html#ch_start.basic_install) chapter for a general overview of the process. A list of all supported platforms can be seen [here](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi).
+This chapter describes in detail how to configure, build, and use the NCBI C++ Toolkit (or selected components of it) on supported platforms. See the [Getting Started](ch_start.html#ch_start.basic_install) chapter for a general overview of the process. A list of all supported platforms can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi).
 
 ***Note:*** Users insde NCBI who just want to use the Toolkit don't need to configure and build it - there are [various configurations](ch_proj.html#ch_proj.daily_builds) of the Toolkit prebuilt and ready to use. See the [new\_project](ch_proj.html#ch_proj.new_project_Starting) script for more information.
 
@@ -583,7 +583,7 @@ After choosing a build scope, configuring, and building the Toolkit, you can now
 
 The term “platform” in this chapter has a specific meaning: the combination of operating system, architecture, and compiler. A supported platform is one for which the Toolkit has been configured, built, tested, and used by other applications.
 
-The list of supported platforms may change with new releases. For the platforms supported in the release you are using, see the [Supported Platforms](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi) section in the release notes. Note that some platforms are only partially supported.
+The list of supported platforms may change with new releases. For the platforms supported in the release you are using, see the [Supported Platforms](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi) section in the release notes. Note that some platforms are only partially supported.
 
 <a name="ch_config.UNIX"></a>
 
@@ -616,7 +616,7 @@ This section covers the following topics:
 
 This section provides information on configuring, building, and using the Toolkit that is applicable to all Unix platforms. The section [Special Considerations for Specific Unix Platforms](#ch_config.Special_Consideratio) addresses platform-specific details.
 
-Note, however, that the sections on specific platforms do not address the level of support for specific compilers. See the [Supported Platforms](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi) section in the release notes for information on partially supported compilers.
+Note, however, that the sections on specific platforms do not address the level of support for specific compilers. See the [Supported Platforms](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi) section in the release notes for information on partially supported compilers.
 
 The following topics are discussed in this section:
 
@@ -1099,13 +1099,13 @@ Some of the above system and third-party packages can be prohibited from use by 
 
 You can control whether to build the following core packages using the following ***configure*** flags:
 
-*--without-serial* -- do not build C++ ASN.1 serialization library and [datatool](ch_app.html#ch_app.datatool); see in `internal/c++/{ `[src](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/serial) *\|* [include](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial)`}/serial` directories
+*--without-serial* -- do not build C++ ASN.1 serialization library and [datatool](ch_app.html#ch_app.datatool); see in `internal/c++/{ `[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/serial) *\|* [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial)`}/serial` directories
 
-*--without-ctools* -- do not build projects that use NCBI C Toolkit see in `internal/c++/{ `[src](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/ctools) *\|* [include](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/ctools)`}/ctools` directories
+*--without-ctools* -- do not build projects that use NCBI C Toolkit see in `internal/c++/{ `[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/ctools) *\|* [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/ctools)`}/ctools` directories
 
-*--without-gui* -- do not build projects that use wxWindows GUI package see in `internal/c++/{ `[src](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/gui) *\|* [include](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/gui)`}/gui` directories
+*--without-gui* -- do not build projects that use wxWindows GUI package see in `internal/c++/{ `[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/gui) *\|* [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/gui)`}/gui` directories
 
-*--with-objects* -- generate and build libraries to serialize ASN.1 objects; see in `internal/c++/{ `[src](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) *\|* [include](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects)`}/objects` directories
+*--with-objects* -- generate and build libraries to serialize ASN.1 objects; see in `internal/c++/{ `[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) *\|* [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects)`}/objects` directories
 
 *--with-internal* -- build of internal projects is by default disabled on most platforms; see in `internal/c++/{ `[src](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal) *\|* [include](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/internal)`}/internal` directories
 
@@ -1437,9 +1437,9 @@ If you chose a standard solution then you will need to configure. Each standard 
 
 The Visual Studio specific configuration files are:
 
--   [src\\build-system\\Makefile.mk.in.msvc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in.msvc)
+-   [src\\build-system\\Makefile.mk.in.msvc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in.msvc)
 
--   [src\\build-system\\project\_tree\_builder.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini)
+-   [src\\build-system\\project\_tree\_builder.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini)
 
 -   [src\\....\\Makefile.\*.msvc](#ch_config.FineTuning_MSVC_Proj)
 
@@ -1486,7 +1486,7 @@ The following topics discuss configuring with Visual C++ in more detail:
 
 ##### Site-Specific Build Tree Configuration
 
-File [project\_tree\_builder.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) (see [Table 4](#ch_config.proj_tree_build_ini_file_lo)) describes build and source tree configurations, contains information about the location of 3rd-party libraries and applications, and includes information used to resolve macro definitions found in the Unix-style makefile templates.
+File [project\_tree\_builder.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) (see [Table 4](#ch_config.proj_tree_build_ini_file_lo)) describes build and source tree configurations, contains information about the location of 3rd-party libraries and applications, and includes information used to resolve macro definitions found in the Unix-style makefile templates.
 
 <a name="ch_config.proj_tree_build_ini_file_lo"></a>
 
@@ -1545,7 +1545,7 @@ Toolkit project makefiles can list (in a pseudo-macro entry called '`REQUIRES`')
 
 Some of the Toolkit projects can be built differently depending on the availability of non-Toolkit components. For them, there is a list of macros - defined in '`Defines`' entry - that define conditional compilation. To establish a link between such a macro and a specific component, the configuration file also has sections with the names of the macro. For each build configuration, project tree builder creates a header file (see '`DefinesPath`' entry) and defines these macros there depending on the availability of corresponding components.
 
-Many of the requirements define dependency on components that are 3rd-party packages, such as BerkeleyDB. For each one of these there is a special section (e.g. [BerkeleyDB]) in [project\_tree\_builder.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) that describes the path(s) to the `include` and `library` directories of the package, as well as the preprocessor definitions to compile with and the libraries to link against. The Toolkit configurator checks if the package's directories and libraries do exist, and uses this information when generating appropriate MSVS projects.
+Many of the requirements define dependency on components that are 3rd-party packages, such as BerkeleyDB. For each one of these there is a special section (e.g. [BerkeleyDB]) in [project\_tree\_builder.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) that describes the path(s) to the `include` and `library` directories of the package, as well as the preprocessor definitions to compile with and the libraries to link against. The Toolkit configurator checks if the package's directories and libraries do exist, and uses this information when generating appropriate MSVS projects.
 
 There are a few indispensable external components that have analogs in the Toolkit. If the external component is not found, the analog in the Toolkit is used. The '`LibChoices`' entry identifies such pairs, and '`LibChoiceIncludes`' provides additional include paths to the builtin headers.
 
@@ -1555,7 +1555,7 @@ There are a few indispensable external components that have analogs in the Toolk
 
 ##### Fine-Tuning with MSVC Project Files
 
-While default MSVS project settings are defined in the [Makefile.mk.in.msvc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in.msvc) file, each project can require additional MSVC-specific fine-tuning, such as compiler or linker options, additional source code, etc. These tune-ups can be specified in `Makefile.<project_name>.[ `[lib](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/Makefile.corelib.lib.msvc)\|[app](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/dbapi/Makefile.dbapi_advanced_features.app.msvc)`].msvc` file located in the project source directory. All entries in such `*.msvc` file are optional.
+While default MSVS project settings are defined in the [Makefile.mk.in.msvc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in.msvc) file, each project can require additional MSVC-specific fine-tuning, such as compiler or linker options, additional source code, etc. These tune-ups can be specified in `Makefile.<project_name>.[ `[lib](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/Makefile.corelib.lib.msvc)\|[app](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/dbapi/Makefile.dbapi_advanced_features.app.msvc)`].msvc` file located in the project source directory. All entries in such `*.msvc` file are optional.
 
 Any section name can have one or several optional suffixes, so it can take the following forms:
 
@@ -1691,7 +1691,7 @@ To exclude files from a project, set the '`SourceFiles`' or '`LIB`' entries of t
 
 ##### Adjusting Build Tools Settings
 
-The build tools are '`Compiler`', '`Linker`', '`Librarian`', and '`ResourceCompiler`' - that is, the tools used by the MS Visual Studio build system. The names of available entries in any one of these sections can be found in the [Makefile.mk.in.msvc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/find?string=Makefile.mk.in.msvc) file. For the meaning and possible values of these entries, see Microsoft's [VCProjectEngine reference](http://msdn.microsoft.com/en-us/library/ms168475.aspx), or the specific reference pages for the [VCCLCompilerTool](http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.vcprojectengine.vcclcompilertool.aspx), [VCLinkerTool](http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.vcprojectengine.vclinkertool.aspx), [VCLibrarianTool](http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.vcprojectengine.vclibrariantool.aspx), and [VCResourceCompilerTool](http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.vcprojectengine.vcresourcecompilertool.aspx) Interfaces.
+The build tools are '`Compiler`', '`Linker`', '`Librarian`', and '`ResourceCompiler`' - that is, the tools used by the MS Visual Studio build system. The names of available entries in any one of these sections can be found in the [Makefile.mk.in.msvc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/find?string=Makefile.mk.in.msvc) file. For the meaning and possible values of these entries, see Microsoft's [VCProjectEngine reference](http://msdn.microsoft.com/en-us/library/ms168475.aspx), or the specific reference pages for the [VCCLCompilerTool](http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.vcprojectengine.vcclcompilertool.aspx), [VCLinkerTool](http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.vcprojectengine.vclinkertool.aspx), [VCLibrarianTool](http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.vcprojectengine.vclibrariantool.aspx), and [VCResourceCompilerTool](http://msdn.microsoft.com/en-us/library/microsoft.visualstudio.vcprojectengine.vcresourcecompilertool.aspx) Interfaces.
 
 Here are some example settings, with some illustrating how section name suffixes can be used:
 
@@ -1724,7 +1724,7 @@ Relative paths specified in build tool settings are relative to **`$(ProjectDir)
 
 ***Note:*** '`AdditionalOptions`' entries are applied when the tool executes - they do not modify other project properties. For example, if you add an include path using '`AdditionalOptions`', it will not affect the '`AdditionalIncludeDirectories`' property, which is used by the IDE. In this case, Visual C++ will not be able to check syntax, lookup definitions, use IntelliSense, etc. for files in that location while you're editing - but they will compile normally. Therefore, use the '`AddToProject`' section (see [above](#ch_config.Adding_files_to_proj)) for include directories unless you must use an absolute path.
 
-See the [Makefile.mk.in.msvc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in.msvc) file for the default MSVS project settings.
+See the [Makefile.mk.in.msvc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in.msvc) file for the default MSVS project settings.
 
 <a name="ch_config.Specifying_custom_bu"></a>
 
@@ -1832,7 +1832,7 @@ Note that the project directory, `msvc1000_prj`, may be different for your versi
 
 Some of the NCBI C++ Toolkit projects make use of the [NCBI C Toolkit](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/NCBI_C_Toolkit/README) (not to be confused with the NCBI C++ Toolkit) and/or freely distributed [3rd-party packages](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/ThirdParty/README) (such as BerkeleyDB, LibZ, FLTK, etc.).
 
-At NCBI, these libraries are already installed, and their locations are [hard coded](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) in the C++ Toolkit configuration files. If you are outside of NCBI, you may need to build and install these libraries before building the C++ Toolkit.
+At NCBI, these libraries are already installed, and their locations are [hard coded](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) in the C++ Toolkit configuration files. If you are outside of NCBI, you may need to build and install these libraries before building the C++ Toolkit.
 
 Alternatively, the source code for the [NCBI C Toolkit](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/NCBI_C_Toolkit/README) and the [3rd-party packages](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/ThirdParty/README) can be downloaded from the NCBI FTP site and built - ideally, in all available configurations.
 
@@ -2067,7 +2067,7 @@ The following topics discuss additional information about configuring with Xcode
 
 ##### Site-Specific Build Tree Configuration
 
-The build tree configuration can be tailored to your site by modifying the file [src/build-system/project\_tree\_builder.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) (see [Table 4](#ch_config.proj_tree_build_ini_file_lo)). For example, you may need to change the location of 3<sup>rd</sup>-party libraries to match your systems. Or you may need to specify conditions under which a certain project is excluded from the build.
+The build tree configuration can be tailored to your site by modifying the file [src/build-system/project\_tree\_builder.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) (see [Table 4](#ch_config.proj_tree_build_ini_file_lo)). For example, you may need to change the location of 3<sup>rd</sup>-party libraries to match your systems. Or you may need to specify conditions under which a certain project is excluded from the build.
 
 `project_tree_builder.ini` describes build and source tree configurations; contains information about the location of 3rd-party libraries and applications; and includes information used to resolve macro definitions found in the Unix-style makefile templates.
 
@@ -2075,7 +2075,7 @@ Toolkit project makefiles can list a set of requirements that must be met in ord
 
 Some of the Toolkit projects can be built differently depending on the availability of non-Toolkit components. For those projects, there is a list of macros - defined in the '`Defines`' entry - that define conditional compilation. Each of these macros also has its own section in `project_tree_builder.ini` that links the macro to a specific component. Using the '`Defines`' entry and the associated macro sections, a project can be linked to a list of components. For each build configuration, project tree builder creates a header file (see '`DefinesPath`' entry) and defines these macros there depending on the availability of the corresponding components.
 
-Many of the requirements define dependencies on 3rd-party packages, such as BerkeleyDB. For each one of these there is a special section (e.g. [BerkeleyDB]) in [project\_tree\_builder.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) that describes the path(s) to the `include` and `library` directories of the package, as well as the preprocessor definitions to compile with and the libraries to link against. The Toolkit configurator checks if the package's directories and libraries do exist, and uses this information when generating appropriate projects.
+Many of the requirements define dependencies on 3rd-party packages, such as BerkeleyDB. For each one of these there is a special section (e.g. [BerkeleyDB]) in [project\_tree\_builder.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) that describes the path(s) to the `include` and `library` directories of the package, as well as the preprocessor definitions to compile with and the libraries to link against. The Toolkit configurator checks if the package's directories and libraries do exist, and uses this information when generating appropriate projects.
 
 There are a few indispensable external components that have analogs in the Toolkit. If external libraries for these components are not available then the internal analog can be used. The '`LibChoices`' entry identifies such pairs, and '`LibChoiceIncludes`' provides additional include paths to the built-in headers.
 
@@ -2193,7 +2193,7 @@ Following are some examples of how to build specific projects and some additiona
 
 Some of the NCBI C++ Toolkit projects make use of the [NCBI C Toolkit](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/NCBI_C_Toolkit/README) (not to be confused with the NCBI C++ Toolkit) and/or freely distributed 3rd-party packages (such as BerkeleyDB, LibZ, FLTK, etc.).
 
-At NCBI, these libraries are already installed, and their locations are [hard coded](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) in the C++ Toolkit configuration files. If you are outside of NCBI, you may need to build and install these libraries before building the C++ Toolkit.
+At NCBI, these libraries are already installed, and their locations are [hard coded](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) in the C++ Toolkit configuration files. If you are outside of NCBI, you may need to build and install these libraries before building the C++ Toolkit.
 
 If you do not have the external libraries already installed, you can download, build, and install the NCBI C Toolkit and the freely distributed 3rd-party packages. The source code for the NCBI C Toolkit and the freely distributed 3rd-party packages can be downloaded from the NCBI FTP site and built in all available configurations. Refer to the documentation on the specific packages you wish to install for more information.
 

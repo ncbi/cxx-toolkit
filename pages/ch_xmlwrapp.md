@@ -162,7 +162,7 @@ The NCBI enhancements retain the generic nature of `libxmlwrapp`, and are not ta
 
 XmlWrapp demo [applications](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/internal/c++/src/internal/demo/misc/xmlwrapp) and [unit tests](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/internal/c++/src/internal/test/misc/xmlwrapp) are available inside NCBI, but the most common and basic usage examples are given in the [next section](#ch_xmlwrapp.How_To).
 
-All the XmlWrapp functionality resides in the C++ namespaces [xml::](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/namespacexml.html) and [xslt::](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/namespacexslt.html), and all the code is Doxygen-style commented.
+All the XmlWrapp functionality resides in the C++ namespaces [xml::](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/namespacexml.html) and [xslt::](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/namespacexslt.html), and all the code is Doxygen-style commented.
 
 <a name="ch_xmlwrapp.XmlWrapp_Classes"></a>
 
@@ -258,7 +258,7 @@ For example, if you do not want to have the XML declaration at the beginning of 
 
 Note that all the ***save\_to\_...()*** functions use the same underlying formatting code and therefore respond to flags in the same way.
 
-For further discussion, see the [Formatting of Programmatically Added Content](#ch_xmlwrapp.Formatting_of_Programmatical) section. For a complete list of available formatting flags, see [`enum xml::save_options`](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/namespacexml.html#8599801d006476631c27a732819b9995).
+For further discussion, see the [Formatting of Programmatically Added Content](#ch_xmlwrapp.Formatting_of_Programmatical) section. For a complete list of available formatting flags, see [`enum xml::save_options`](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/namespacexml.html#8599801d006476631c27a732819b9995).
 
 <a name="ch_xmlwrapp.Iterate_Over_Nodes"></a>
 
@@ -360,7 +360,7 @@ For those within NCBI, there is [sample code](https://svn.ncbi.nlm.nih.gov/viewv
     // you can also specify save options, e.g. to omit the XML declaration:
     result.save_to_string( tempString, xml::save_op_no_decl );
 
-Other methods and options are available for saving the transformation result - see [save\_to\_stream()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_stream), [save\_to\_file()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_file), and [save\_options](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_options).
+Other methods and options are available for saving the transformation result - see [save\_to\_stream()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_stream), [save\_to\_file()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_file), and [save\_options](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_options).
 
 ***Note:*** The transformation output will be affected by a number of factors:
 
@@ -490,7 +490,7 @@ The solution is to create a special namespace with the sole purpose of associati
     
         std::cout << result << std::endl; // "42"
 
-Please also see the ***xslt::extension-function*** [class reference](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classxslt_1_1extension__function.html).
+Please also see the ***xslt::extension-function*** [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classxslt_1_1extension__function.html).
 
 Users inside NCBI can view the [extension function unit tests](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/internal/c++/src/internal/test/misc/xmlwrapp/xslt_ext_func/) for more usage examples.
 
@@ -541,7 +541,7 @@ Users inside NCBI can view the [extension function unit tests](https://svn.ncbi.
         std::cout << result_root.get_name() << std::endl; // "inserted"
         std::cout << result_root.get_content() << std::endl; // "content"
 
-Please also see the ***xslt::extension-element*** [class reference](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classxslt_1_1extension__element.html).
+Please also see the ***xslt::extension-element*** [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classxslt_1_1extension__element.html).
 
 Users inside NCBI can view the [extension element unit tests](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/internal/c++/src/internal/test/misc/xmlwrapp/xslt_ext_elem/) for more usage examples.
 

@@ -558,7 +558,7 @@ The alternative tokens "`and`", "`not_eq`", "`:>`", etc. should not be used in p
 
 ### Standard Header Template
 
-A standard header template file, [header\_template.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/common/header_template.hpp), has been provided in the `include/common` directory that can be used as a template for creating header files. This header file adheres to the standards outlined in the previous sections and uses a documentation style for files, classes, methods, macros etc. that allows for automatic generation of documentation from the source code. It is strongly suggested that you obtain a copy of this file and model your documentation using the examples in that file.
+A standard header template file, [header\_template.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/common/header_template.hpp), has been provided in the `include/common` directory that can be used as a template for creating header files. This header file adheres to the standards outlined in the previous sections and uses a documentation style for files, classes, methods, macros etc. that allows for automatic generation of documentation from the source code. It is strongly suggested that you obtain a copy of this file and model your documentation using the examples in that file.
 
 <a name="ch_style.Doxygen_Comments"></a>
 
@@ -567,7 +567,7 @@ Doxygen Comments
 
 [Doxygen](http://www.stack.nl/~dimitri/doxygen/) is an automated API documentation tool. It relies on special comments placed at appropriate places in the source code. Because the comments are in the source code near what they document, the documentation is more likely to be kept up-to-date when the code changes. A configuration and parsing system scans the code and creates the desired output (e.g. HTML).
 
-Doxygen documentation is a valuable tool for software developers, as it automatically creates comprehensive cross-referencing of modules, namespaces, classes, and files. It creates inheritance diagrams, collaboration diagrams, header dependency graphs, and documents each class, struct, union, interface, define, typedef, enum, function, and variable (see the NCBI C++ Toolkit [Doxygen browser](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/)). However, developers must write meaningful comments to get the most out of it.
+Doxygen documentation is a valuable tool for software developers, as it automatically creates comprehensive cross-referencing of modules, namespaces, classes, and files. It creates inheritance diagrams, collaboration diagrams, header dependency graphs, and documents each class, struct, union, interface, define, typedef, enum, function, and variable (see the NCBI C++ Toolkit [Doxygen browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/)). However, developers must write meaningful comments to get the most out of it.
 
 Doxygen-style comments are essentially extensions of C/C++ comments, e.g. the use of a triple-slash instead of a double-slash. Doxygen-style comments refer to the entity following them by default, but can be made to refer to the entity preceding them by appending the ‘`<`’ symbol to the comment token (e.g. ‘`///<`’).
 
@@ -803,7 +803,7 @@ If you pass a container to a function, don't add a local object to the container
 
 -   Don't use the ***rope*** class from some versions of the STL. This is a non-standard addition. If you have questions about what is/isn't in the standard library, consult the [C++ standards](http://www.parashift.com/c++-faq-lite/big-picture.html#faq-6.12).
 
--   The NCBI C++ Toolkit includes ***hash\_map***, ***hash\_multimap***, ***hash\_set***, and ***hash\_multiset*** classes (from headers [\<corelib/hash\_map.hpp\>](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)). These classes are more portable than, and should be used instead of, the STL's respective ***hash\_\**** classes.
+-   The NCBI C++ Toolkit includes ***hash\_map***, ***hash\_multimap***, ***hash\_set***, and ***hash\_multiset*** classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)). These classes are more portable than, and should be used instead of, the STL's respective ***hash\_\**** classes.
 
 <a name="ch_style.cpp_bad_guys"></a>
 

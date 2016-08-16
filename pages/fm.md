@@ -67,7 +67,7 @@ Contributing Authors
 License
 -------
 
-DISCLAIMER: This (book-located) copy of the license may be out-of-date - please see the up-to-date version at: <http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/doc/public/LICENSE>
+DISCLAIMER: This (book-located) copy of the license may be out-of-date - please see the up-to-date version at: <https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/doc/public/LICENSE>
 
     CONTENTS
 

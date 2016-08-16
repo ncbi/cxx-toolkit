@@ -148,7 +148,7 @@ Before creating the new project, you must decide if you need to work within a C+
 
 -   [Work in a Separate Directory](#ch_proj.outside_tree)
 
-Regardless of where you build your new project, it must adopt and maintain a particular structure. Specifically, each project's [source tree](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src) relative to `$NCBI/c++` should contain:
+Regardless of where you build your new project, it must adopt and maintain a particular structure. Specifically, each project's [source tree](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src) relative to `$NCBI/c++` should contain:
 
 -   `include/*.hpp` -- project's public headers
 
@@ -653,7 +653,7 @@ and running:
 
 Of course, it wasn't necessary to set up the directories and makefiles to accomplish this much, as this example does not use any of the C++ classes or resources defined in the NCBI C++ Toolkit. But having accomplished this, you are now prepared to write an actual application, such as described in [Writing a simple application project](ch_core.html#ch_core.writing_simple_app)
 
-Most real applications will at a minimum, require that you `#include `[ncbistd.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistd.hpp) in your header file. In addition to defining some basic NCBI C++ Toolkit objects and templates, this header file in turn includes other header files that define the C Toolkit data types, NCBI namespaces, debugging macros, and exception classes. A set of [template](#ch_proj.new_modules) files are also provided for your use in developing new applications.
+Most real applications will at a minimum, require that you `#include `[ncbistd.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistd.hpp) in your header file. In addition to defining some basic NCBI C++ Toolkit objects and templates, this header file in turn includes other header files that define the C Toolkit data types, NCBI namespaces, debugging macros, and exception classes. A set of [template](#ch_proj.new_modules) files are also provided for your use in developing new applications.
 
 <a name="ch_proj.work_sub_tree"></a>
 
@@ -893,7 +893,7 @@ In addition, any of the make variables defined in `build/Makefile.mk`, such as *
     CPPFLAGS = $(ORIG_CPPFLAGS) -UFOO -DP1_PROJECT -I$(NCBI_C_INCLUDE)
     LINK     = purify $(ORIG_LINK)
 
-For an example from the Toolkit, see [Makefile.corelib.lib](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/Makefile.corelib.lib).
+For an example from the Toolkit, see [Makefile.corelib.lib](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/Makefile.corelib.lib).
 
 For a more detailed example, including information about shared libraries, see [example 1 above](#ch_proj.make_proj_lib).
 
@@ -917,7 +917,7 @@ For example, if C Toolkit libraries should also be included in the linking, use:
 
     LIBS = $(NCBI_C_LIBPATH) -lncbi $(ORIG_LIBS)
 
-The project's application makefile can also redefine the compiler and linker, along with other flags and tools affecting the build process, as described above for `Makefile.*.lib` files. For an example from the Toolkit, see [Makefile.coretest.app](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/Makefile.coretest.app), and for a documented example, see [example 2 above](#ch_proj.make_proj_app).
+The project's application makefile can also redefine the compiler and linker, along with other flags and tools affecting the build process, as described above for `Makefile.*.lib` files. For an example from the Toolkit, see [Makefile.coretest.app](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/Makefile.coretest.app), and for a documented example, see [example 2 above](#ch_proj.make_proj_app).
 
 <a name="ch_proj.inside_tests"></a>
 
@@ -971,7 +971,7 @@ For information about using Boost for unit testing, see the "[Boost Unit Test Fr
 
 #### The configure scripts
 
-A number of [compiler-specific wrappers](ch_config.html#ch_config.Special_Consideratio) for different platforms are described in the chapter on [configuring and building](ch_config.html). Each of these wrappers performs some pre-initialization for the tools and flags used in the **configure** script before running it. The compiler-specific wrappers are in the [c++/compilers](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/compilers) directory. The **configure** script serves two very different types of function: (1) it tests the selected compiler and environment for a multitude of features and generates `#include` and `#define` statements accordingly, and (2) it reads the `Makefile.in` files in the `src` directories and creates the corresponding `build` subtrees and makefiles accordingly.
+A number of [compiler-specific wrappers](ch_config.html#ch_config.Special_Consideratio) for different platforms are described in the chapter on [configuring and building](ch_config.html). Each of these wrappers performs some pre-initialization for the tools and flags used in the **configure** script before running it. The compiler-specific wrappers are in the [c++/compilers](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/compilers) directory. The **configure** script serves two very different types of function: (1) it tests the selected compiler and environment for a multitude of features and generates `#include` and `#define` statements accordingly, and (2) it reads the `Makefile.in` files in the `src` directories and creates the corresponding `build` subtrees and makefiles accordingly.
 
 Frequently during development it is necessary to make minor adjustments to the `Makefile.in` files, such as adding new projects or subprojects to the list of targets. In these contexts however, the compiler, environment, and source directory structures remain unchanged, and **configure** is actually doing much more work than is necessary. In fact, there is even some risk of failing to re-create the same configuration environment if the user does not exactly duplicate the same set of configure flags when re-running **configure**. In these situations, it is preferable to run an auxiliary script named [config.status](ch_config.html#ch_config.ch_configpre_built_h), located at the top level of the `build` directory in a subdirectory named `status`.
 
@@ -999,7 +999,7 @@ The following topics are discussed in this section:
 
 #### Serializable Objects
 
-All of the ASN.1 data types defined in the C Toolkit have been re-implemented in the C++ Toolkit as serializable objects. Header files for these classes can be found in the [include/objects](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directories, and their implementations are located in the [src/objects](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) directories. and
+All of the ASN.1 data types defined in the C Toolkit have been re-implemented in the C++ Toolkit as serializable objects. Header files for these classes can be found in the [include/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directories, and their implementations are located in the [src/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) directories. and
 
 The implementation of these classes as serializable objects has a number of implications. It must be possible to use expressions like: `instream >> myObject` and `outstream << myObject, `where specializations are entailed for the `serial format` of the iostreams (ASN.1, XML, etc.), as well as for the internal structure of the object. The C++ Toolkit deploys several [object stream classes](ch_ser.html#ch_ser.objstream.html) that specialize in various formats, and which know how to access and apply the [type information](ch_ser.html#ch_ser.typeinfo.html)that is associated with the serializable object.
 
@@ -1009,13 +1009,13 @@ The type information for each class is defined in a separate static [CTypeInfo](
 
 #### Locating and browsing serializable objects in the C++ Toolkit
 
-The top level of the [include/objects](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) subtree is a set of subdirectories, where each subdirectory includes the public header files for a separately compiled library. Similarly, the [src/objects](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) subtree includes a set of subtrees containing the source files for these libraries. Finally, your `build/objects` directory will contain a corresponding set of build subtrees where these libraries are actually built.
+The top level of the [include/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) subtree is a set of subdirectories, where each subdirectory includes the public header files for a separately compiled library. Similarly, the [src/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) subtree includes a set of subtrees containing the source files for these libraries. Finally, your `build/objects` directory will contain a corresponding set of build subtrees where these libraries are actually built.
 
 If you checked out the entire C++ SVN tree, you may be surprised to find that initially, the `include/objects` subtrees are empty, and the subdirectories in the `src/objects` subtree contain only ASN.1 modules. This is because both the header files and source files are auto-generated from the ASN.1 specifications by the [datatool](ch_app.html#ch_app.datatool) program. As described in [Working within the C++ source tree](#ch_proj.inside_tree), you can build everything by running `make all_r` in the build directory.
 
 ***Note:*** If you would like to have the `objects` libraries built locally, you **must** use the `--with-objects` flag when running the **configure** script.
 
-You can also access the pre-generated serializable objects in the public area, using the source browsers to locate the objects you are particularly interested in. For example, if you are seeking the new class definition for the `Bioseq struct` defined in the C Toolkit, you can search for the ***CBioseq*** class, using either the [LXR](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) identifier search tool, or the Doxygen [class hierarchy](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html) browser. Starting with the name of the data object as it appears in the ASN.1 module, two simple rules apply in deriving the new C++ class name:
+You can also access the pre-generated serializable objects in the public area, using the source browsers to locate the objects you are particularly interested in. For example, if you are seeking the new class definition for the `Bioseq struct` defined in the C Toolkit, you can search for the ***CBioseq*** class, using either the [LXR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) identifier search tool, or the Doxygen [class hierarchy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html) browser. Starting with the name of the data object as it appears in the ASN.1 module, two simple rules apply in deriving the new C++ class name:
 
 -   The one letter 'C' (for class) prefix should precede the ASN.1 name
 
@@ -1111,7 +1111,7 @@ and in the source file, `Seq_inst.cpp`, we implement
         // implementation goes here
     }
 
-These files are in the [include/objects/seq](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/seq) and [src/objects/seq](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq) subdirectories, respectively. Once you have made the modifications to the files, you need to recompile the `seq` library, `libseq.a`, i.e.:
+These files are in the [include/objects/seq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/seq) and [src/objects/seq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq) subdirectories, respectively. Once you have made the modifications to the files, you need to recompile the `seq` library, `libseq.a`, i.e.:
 
     cd path_to_compile_dir/GCC-Debug/build/objects/seq
     make

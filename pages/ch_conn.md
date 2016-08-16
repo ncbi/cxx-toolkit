@@ -10,7 +10,7 @@ nav: pages/ch_conn
 
 Last Update: October 26, 2014.
 
-Connection Library [Library `xconnect`: [include](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect) \| [src](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect)]
+Connection Library [Library `xconnect`: [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect)]
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The overview for this chapter consists of the following topics:
@@ -37,27 +37,27 @@ The following is an outline of the topics presented in this chapter, with links 
 
     -   The notions of a connection and a ***CONNECTOR***; different types of connections that the library provides; programming API.
 
-    -   Open and Manage Connections to an Abstract I/O -- `ncbi_connection`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connection.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_connection.c)]
+    -   Open and Manage Connections to an Abstract I/O -- `ncbi_connection`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connection.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_connection.c)]
 
-    -   Abstract I/O -- `ncbi_connector`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connector.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_connector.c)]
+    -   Abstract I/O -- `ncbi_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_connector.c)]
 
-    -   [Socket Connector](#ch_conn.socket_connector) -- `ncbi_socket_connector`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket_connector.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_socket_connector.c)]
+    -   [Socket Connector](#ch_conn.socket_connector) -- `ncbi_socket_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_socket_connector.c)]
 
-    -   [File Connector](#ch_conn.file_connector) -- `ncbi_file_connector`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_file_connector.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_file_connector.c)]
+    -   [File Connector](#ch_conn.file_connector) -- `ncbi_file_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_file_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_file_connector.c)]
 
-    -   In-memory Connector -- `ncbi_memory_connector`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_memory_connector.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_memory_connector.c)]
+    -   In-memory Connector -- `ncbi_memory_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_memory_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_memory_connector.c)]
 
     -   Higher level connection protocols:
 
         -   [Common Parameters](#ch_conn.Connection_related_parameters) for higher level connectors
 
-        -   [HTTP Connector](#ch_conn.HTTP_Connector) -- `ncbi_http_connector`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_http_connector.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_http_connector.c)]
+        -   [HTTP Connector](#ch_conn.HTTP_Connector) -- `ncbi_http_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_http_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_http_connector.c)]
 
-        -   [Service Connector](#ch_conn.service_connector) -- `ncbi_service_connector`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service_connector.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_service_connector.c)]
+        -   [Service Connector](#ch_conn.service_connector) -- `ncbi_service_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_service_connector.c)]
 
 -   [Debugging Tools and Troubleshooting Documentation](#ch_conn.conn_debug_tools)
 
--   [CONN-Based C++ Streams and Stream Buffers](#ch_conn.cpp_connection_streams) -- `ncbi_conn_stream`[[.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_conn_stream.hpp) \| [.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_stream.cpp)], `ncbi_conn_streambuf`[[.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_streambuf.hpp) \| [.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_streambuf.cpp)]
+-   [CONN-Based C++ Streams and Stream Buffers](#ch_conn.cpp_connection_streams) -- `ncbi_conn_stream`[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_conn_stream.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_stream.cpp)], `ncbi_conn_streambuf`[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_streambuf.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_conn_streambuf.cpp)]
 
     -   Built on top of connection objects
 
@@ -67,13 +67,13 @@ The following is an outline of the topics presented in this chapter, with links 
     
     -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce)
 
-    -   NCBI Server Meta-Address Info -- `ncbi_server_info`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h) \| [p.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_infop.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_info.c)]
+    -   NCBI Server Meta-Address Info -- `ncbi_server_info`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h) \| [p.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_infop.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_info.c)]
 
-    -   Resolve NCBI Service Name to the Server Meta-Address -- `ncbi_service`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) \| [p.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_servicep.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_service.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address -- `ncbi_service`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) \| [p.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_servicep.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_service.c)]
 
-    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI Network Dispatcher ([DISPD](ch_app.html#ch_app.DISPD_Network_Dispat)) -- `ncbi_dispd`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_dispd.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_dispd.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI Network Dispatcher ([DISPD](ch_app.html#ch_app.DISPD_Network_Dispat)) -- `ncbi_dispd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_dispd.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_dispd.c)]
 
-    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI [Load-Balancing Service Mapper (LBSM)](ch_app.html#ch_app.Load_Balancing_Servi) -- `ncbi_lbsmd`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.c) \| [\_stub.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd_stub.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI [Load-Balancing Service Mapper (LBSM)](ch_app.html#ch_app.Load_Balancing_Servi) -- `ncbi_lbsmd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.c) \| [\_stub.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd_stub.c)]
 
     -   [NCBI LBSM client-server data exchange API](#ch_conn.service_mapping_api) -- `ncbi_lbsm`[[.h](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.c)]
 
@@ -85,31 +85,31 @@ For additional related information, see:
 
 -   C++ Interfaces to the Library
 
-    -   [Diagnostic Handler for E-Mailing Logs](ch_cgi.html#ch_cgi.cgi_diag.html) -- `email_diag_handler`[[.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/email_diag_handler.hpp) \| [.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/email_diag_handler.cpp)]
+    -   [Diagnostic Handler for E-Mailing Logs](ch_cgi.html#ch_cgi.cgi_diag.html) -- `email_diag_handler`[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/email_diag_handler.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/email_diag_handler.cpp)]
 
-    -   [Using the CONNECT Library with the C++ Toolkit](ch_res.html#ch_res.c_cxx.html) -- `ncbi_core_cxx`[[.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core_cxx.hpp) \| [.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_core_cxx.cpp)]
+    -   [Using the CONNECT Library with the C++ Toolkit](ch_res.html#ch_res.c_cxx.html) -- `ncbi_core_cxx`[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core_cxx.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_core_cxx.cpp)]
 
-    -   Multithreaded Network Server Framework -- `threaded_server`[[.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/threaded_server.hpp) \| [.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/threaded_server.cpp)]
+    -   Multithreaded Network Server Framework -- `threaded_server`[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/threaded_server.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/threaded_server.cpp)]
 
--   [Basic Types and Functionality (for Registry, Logging and MT Locks)](ch_res.html#ch_res.c_cxx.html_ref_RunTimeResources) -- `ncbi_core`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_core.c)], `ncbi_types`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_types.h)]
+-   [Basic Types and Functionality (for Registry, Logging and MT Locks)](ch_res.html#ch_res.c_cxx.html_ref_RunTimeResources) -- `ncbi_core`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_core.c)], `ncbi_types`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_types.h)]
 
--   Portable TCP/IP Socket Interface -- `ncbi_socket`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_socket.c)]
+-   Portable TCP/IP Socket Interface -- `ncbi_socket`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_socket.c)]
 
 -   Memory Management
 
-    -   Memory-Resident FIFO Storage Area -- `ncbi_buffer`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_buffer.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_buffer.c)]
+    -   Memory-Resident FIFO Storage Area -- `ncbi_buffer`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_buffer.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_buffer.c)]
 
-    -   Simple Heap Manager With Primitive Garbage Collection -- `ncbi_heapmgr`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_heapmgr.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_heapmgr.c)]
+    -   Simple Heap Manager With Primitive Garbage Collection -- `ncbi_heapmgr`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_heapmgr.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_heapmgr.c)]
 
 -   Connection Library Utilities
 
-    -   Connection Utilities -- `ncbi_connutil`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connutil.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_connutil.c)]
+    -   Connection Utilities -- `ncbi_connutil`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connutil.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_connutil.c)]
 
-    -   Send Mail (in accordance with RFC821 [protocol] and RFC822 [headers]) -- `ncbi_sendmail`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_sendmail.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_sendmail.c)]
+    -   Send Mail (in accordance with RFC821 [protocol] and RFC822 [headers]) -- `ncbi_sendmail`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_sendmail.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_sendmail.c)]
 
-    -   Auxiliary (optional) Code for `ncbi_core`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_core.c)] -- `ncbi_util`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_util.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_util.c)]
+    -   Auxiliary (optional) Code for `ncbi_core`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_core.c)] -- `ncbi_util`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_util.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_util.c)]
 
-    -   Non-ANSI, Widely Used Functions -- `ncbi_ansi_ext`[[.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.h) \| [.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.c)]
+    -   Non-ANSI, Widely Used Functions -- `ncbi_ansi_ext`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.c)]
 
 -   daemons [[src/connect/daemons](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons)]
 
@@ -119,14 +119,14 @@ For additional related information, see:
 
     -   [Firewall Daemon](ch_app.html#ch_app.Firewall_Daemon_FWDa)
 
--   Test cases [[src/connect/test](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test)]
+-   Test cases [[src/connect/test](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test)]
 
 <a name="ch_conn.conn_interf_lib"></a>
 
 Overview
 --------
 
-The NCBI C++ platform-independent connection library ([src/connect](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect) and [include/connect](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect)) consists of two parts:
+The NCBI C++ platform-independent connection library ([src/connect](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect) and [include/connect](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect)) consists of two parts:
 
 -   Lower-level library written in C (also used as a replacement of the existing connection library in the NCBI C Toolkit)
 
@@ -142,7 +142,7 @@ Functionality of the library includes:
 
 -   C++ streams built on top of the ***CONN*** interface
 
-***Note***: The lowest level (***SOCK***) interface is not covered in this document. A well-commented API can be found in [connect/ncbi\_socket.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h).
+***Note***: The lowest level (***SOCK***) interface is not covered in this document. A well-commented API can be found in [connect/ncbi\_socket.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h).
 
 To use the CONNECT library, your makefile should include:
 
@@ -158,16 +158,16 @@ This section discusses the "C API" for connections and connectors. There is a co
 
 There are three simple types of connections: `socket`, `file` and `http`; and one hybrid type, `service` connection.
 
-A connection is created with a call to [CONN\_Create()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONN_Create), declared in [connect/ncbi\_connection.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connection.h), and returned by a pointer to ***CONN*** passed as a second argument:
+A connection is created with a call to [CONN\_Create()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONN_Create), declared in [connect/ncbi\_connection.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connection.h), and returned by a pointer to ***CONN*** passed as a second argument:
 
     CONN conn; /* connection handle */
     EIO_Status status = CONN_Create(connector, &conn);
 
-The first argument of this function is a handle of a `connector`, a special object implementing the functionality of the connection being built. For each type of connection there is a special connector in the library. For each connector, one or more "constructors" are defined, e.g. ***SOCK\_CreateConnector()***, each returning the connector's handle. Connectors' constructors are defined in individual header files, such as [connect/ncbi\_socket\_connector.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket_connector.h), [connect/ncbi\_http\_connector.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_http_connector.h), [connect/ncbi\_service\_connector.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service_connector.h), etc. ***CONN\_Create()*** resets all timeouts to the default value [kDefaultTimeout](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=kDefaultTimeout).
+The first argument of this function is a handle of a `connector`, a special object implementing the functionality of the connection being built. For each type of connection there is a special connector in the library. For each connector, one or more "constructors" are defined, e.g. ***SOCK\_CreateConnector()***, each returning the connector's handle. Connectors' constructors are defined in individual header files, such as [connect/ncbi\_socket\_connector.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket_connector.h), [connect/ncbi\_http\_connector.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_http_connector.h), [connect/ncbi\_service\_connector.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service_connector.h), etc. ***CONN\_Create()*** resets all timeouts to the default value [kDefaultTimeout](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=kDefaultTimeout).
 
 ***Note:*** Connectors, connections, and the objects represented by their metadata are all separate. Furthermore, connections are created in "closed" state, so invalid parameters given to the connector aren't detected when the connector and connections based on it are created. This means, for example, that a connection created by passing an invalid file name to ***FILE\_CreateConnector()*** will not fail for either the connector or connection, because both objects themselves are fine. A failure will only occur if the file name is invalid when an attempt is made to use the connection.
 
-After successful creation with ***CONN\_Create()***, the following calls from ***CONN*** API [connect/ncbi\_connection.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connection.h) become available. All calls (except ***CONN\_GetTimeout()*** and ***CONN\_GetType()*** ) return an I/O completion status of type [EIO\_Status](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EIO_Status). Normal completion has code **`eIO_Success`**.
+After successful creation with ***CONN\_Create()***, the following calls from ***CONN*** API [connect/ncbi\_connection.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connection.h) become available. All calls (except ***CONN\_GetTimeout()*** and ***CONN\_GetType()*** ) return an I/O completion status of type [EIO\_Status](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EIO_Status). Normal completion has code **`eIO_Success`**.
 
 ***Note***: There is no means to "open" a connection: it is done automatically when actually needed, and in most cases at the first I/O operation. But the forming of an actual link between source and destination can be postponed even longer. These details are hidden and made transparent to the connection's user. The connection is seen as a two-way communication channel, which is clear for use immediately after a call to ***CONN\_Create()***.
 
@@ -184,7 +184,7 @@ After successful creation with ***CONN\_Create()***, the following calls from **
 
 Read or peek data, depending on read method **`how`**, up to **`size`** bytes from connection to specified buffer **`buf`**, return (via pointer argument **`n_read`**) the number of bytes actually read. The last argument **`how`** can be one of the following:
 
--   [eIO\_ReadPlain](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EIO_ReadMethod) - to read data in a regular way, that is, extracting data from the connection;
+-   [eIO\_ReadPlain](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EIO_ReadMethod) - to read data in a regular way, that is, extracting data from the connection;
 
 -   **`eIO_ReadPeek`** - to peek data from the connection, i.e., the next read operation will see the data again;
 
@@ -218,7 +218,7 @@ This call utilizes **`eIO_Read`** timeout as set by ***CONN\_SetTimeout().***
 
 Write up to **`size`** bytes from the buffer **`buf`** to the connection. Return the number of actually written bytes in **`n_written`**. It may not return **`eIO_Success`** if no data at all can be written before the write timeout expired or an error occurred. Parameter **`how`** modifies the write behavior:
 
--   [eIO\_WritePlain](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EIO_WriteMethod) - return immediately after having written as little as 1 byte of data, or if an error has occurred;
+-   [eIO\_WritePlain](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EIO_WriteMethod) - return immediately after having written as little as 1 byte of data, or if an error has occurred;
 
 -   **`eIO_WritePersist`** - return only after having written all of the data from **`buf`** (**`eIO_Success`**), or if an error has occurred (fewer bytes written, non-**`eIO_Success`**).
 
@@ -268,7 +268,7 @@ Explicitly flush connection from any pending data written by ***CONN\_Write()***
 
 <div class="table-scroll"></div>
 
-Set the timeout on the specified I/O action, [eIO\_Read](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EIO_Event), **`eIO_Write`**, **`eIO_ReadWrite`**, **`eIO_Open`**, and **`eIO_Close`**. The latter two actions are used in a phase of opening and closing the link, respectively. If the connection cannot be read (written, established, closed) within the specified period, **`eIO_Timeout`** would result from connection I/O calls. A timeout can be passed as the **`NULL`**-pointer. This special case denotes an infinite value for that timeout. Also, a special value **`kDefaultTimeout`** may be used for any timeout. This value specifies the timeout set by default for the current connection type.
+Set the timeout on the specified I/O action, [eIO\_Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EIO_Event), **`eIO_Write`**, **`eIO_ReadWrite`**, **`eIO_Open`**, and **`eIO_Close`**. The latter two actions are used in a phase of opening and closing the link, respectively. If the connection cannot be read (written, established, closed) within the specified period, **`eIO_Timeout`** would result from connection I/O calls. A timeout can be passed as the **`NULL`**-pointer. This special case denotes an infinite value for that timeout. Also, a special value **`kDefaultTimeout`** may be used for any timeout. This value specifies the timeout set by default for the current connection type.
 
 <a name="ch_conn.T.nc_conn_gettimeoutconn_conn_ei"></a>
 
@@ -277,7 +277,7 @@ Set the timeout on the specified I/O action, [eIO\_Read](http://www.ncbi.nlm.nih
 
 <div class="table-scroll"></div>
 
-Obtain (via the return value of type ***const*** [STimeout](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=STimeout)***\****) timeouts set by the ***CONN\_SetTimeout()*** routine, or active by default (i.e., special value **`kDefaultTimeout`**).
+Obtain (via the return value of type ***const*** [STimeout](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=STimeout)***\****) timeouts set by the ***CONN\_SetTimeout()*** routine, or active by default (i.e., special value **`kDefaultTimeout`**).
 
 ***Caution***: The returned pointer is valid only for the time that the connection handle is valid, i.e., up to a call to ***CONN\_Close().***
 
@@ -351,11 +351,11 @@ Return a human-readable description of the connection as a character '\\0'-termi
 
 <div class="table-scroll"></div>
 
-Set user callback function to be invoked upon an event specified by callback **`type`**. The old callback (if any) gets returned via the passed pointer **`old_cb`** (if not **`NULL`**). Callback structure [SCONN\_Callback](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SCONN_Callback) has the following fields: callback function `func` and `void* data`. Callback function **`func`** should have the following prototype:
+Set user callback function to be invoked upon an event specified by callback **`type`**. The old callback (if any) gets returned via the passed pointer **`old_cb`** (if not **`NULL`**). Callback structure [SCONN\_Callback](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SCONN_Callback) has the following fields: callback function `func` and `void* data`. Callback function **`func`** should have the following prototype:
 
 `typedef void (*FCONN_Callback)(CONN conn, TCONN_Callback type, void* data)`
 
-When called, both **`type`** of callback and **`data`** pointer are supplied. The [callback types](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ECONN_Callback) defined at the time of this writing are:
+When called, both **`type`** of callback and **`data`** pointer are supplied. The [callback types](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ECONN_Callback) defined at the time of this writing are:
 
 -   **`eCONN_OnClose`**
 
@@ -371,7 +371,7 @@ The callback function is always called prior to the event happening, e.g., a clo
 
 ***Note:*** When an **`eCONN_OnTimeout`** callback occurs, the callback type **`eCONN_OnTimeout`** gets OR'ed with the I/O direction, which timed out (**`eIO_Read`**, **`eIO_Write`**, or both when flushing), then passed as the type argument.
 
-See the preamble to [ECONN\_Callback](http://www.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=ECONN_Callback) for more details.
+See the preamble to [ECONN\_Callback](https://www.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=ECONN_Callback) for more details.
 
 <a name="ch_conn.socket_connector"></a>
 
@@ -381,7 +381,7 @@ Constructors are defined in:
 
     #include <connect/ncbi_socket_connector.h>
 
-A socket connection, based on the socket connector, brings almost direct access to the [SOCK](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h) API. It allows the user to create a peer-to-peer data channel between two programs, which can be located anywhere on the Internet.
+A socket connection, based on the socket connector, brings almost direct access to the [SOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h) API. It allows the user to create a peer-to-peer data channel between two programs, which can be located anywhere on the Internet.
 
 To create a socket connection, user has to create a socket connector first, then pass it to ***CONN\_Create()***, as in the following example:
 
@@ -407,9 +407,9 @@ To create a socket connection, user has to create a socket connector first, then
         }
     }
 
-A variant form of this connector's constructor, [SOCK\_CreateConnectorEx()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_CreateConnectorEx), takes three more arguments: a pointer to data (of type ***void\****), data size (bytes) to specify the data to be sent as soon as the link has been established, and [flags](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSOCK_Flags).
+A variant form of this connector's constructor, [SOCK\_CreateConnectorEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_CreateConnectorEx), takes three more arguments: a pointer to data (of type ***void\****), data size (bytes) to specify the data to be sent as soon as the link has been established, and [flags](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSOCK_Flags).
 
-The `CONN` library defines two more constructors, which build SOCKET connectors on top of existing [SOCK](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h) objects: [SOCK\_CreateConnectorOnTop()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_CreateConnectorOnTop) and [SOCK\_CreateConnectorOnTopEx()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_CreateConnectorOnTopEx), the description of which is intentionally omitted here because SOCK is not discussed either. Please refer to the [description](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket_connector.h) in the Toolkit code.
+The `CONN` library defines two more constructors, which build SOCKET connectors on top of existing [SOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h) objects: [SOCK\_CreateConnectorOnTop()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_CreateConnectorOnTop) and [SOCK\_CreateConnectorOnTopEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_CreateConnectorOnTopEx), the description of which is intentionally omitted here because SOCK is not discussed either. Please refer to the [description](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket_connector.h) in the Toolkit code.
 
 <a name="ch_conn.file_connector"></a>
 
@@ -423,13 +423,13 @@ Constructors defined in:
 
 This connector could be used for both reading and writing files, when input goes from one file and output goes to another file. (This differs from normal file I/O, when a single handle is used to access only one file, but rather resembles data exchange via socket.)
 
-Extended variant of this connector's constructor, [FILE\_CreateConnectorEx()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FILE_CreateConnectorEx), takes an additional argument, a pointer to a structure of type [SFILE\_ConnAttr](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SFileConnAttr) describing file connector attributes, such as the initial read position to start from in the input file, an open mode for the output file (append [eFCM\_Append](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EFILE_ConnMode), truncate **`eFCM_Truncate`**, or seek **`eFCM_Seek`** to start writing at a specified file position), and the position in the output file, where to begin output. The attribute pointer passed as **`NULL`** is equivalent to a call to ***FILE\_CreateConnector()***, which reads from the very beginning of the input file and entirely overwrites the output file (if any), implicitly using **`eFCM_Truncate`**.
+Extended variant of this connector's constructor, [FILE\_CreateConnectorEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FILE_CreateConnectorEx), takes an additional argument, a pointer to a structure of type [SFILE\_ConnAttr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SFileConnAttr) describing file connector attributes, such as the initial read position to start from in the input file, an open mode for the output file (append [eFCM\_Append](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EFILE_ConnMode), truncate **`eFCM_Truncate`**, or seek **`eFCM_Seek`** to start writing at a specified file position), and the position in the output file, where to begin output. The attribute pointer passed as **`NULL`** is equivalent to a call to ***FILE\_CreateConnector()***, which reads from the very beginning of the input file and entirely overwrites the output file (if any), implicitly using **`eFCM_Truncate`**.
 
 <a name="ch_conn.Connection_related_parameters"></a>
 
 ### Connection-related parameters for higher-level connection protocols
 
-The network information structure (from [connect/ncbi\_connutil.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connutil.h)) defines parameters of the connection point, where a server is running. See the [Library Configuration](ch_libconfig.html#ch_libconfig.libconfig_connect) chapter for descriptions of the corresponding configuration parameters.
+The network information structure (from [connect/ncbi\_connutil.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connutil.h)) defines parameters of the connection point, where a server is running. See the [Library Configuration](ch_libconfig.html#ch_libconfig.libconfig_connect) chapter for descriptions of the corresponding configuration parameters.
 
 ***Note***: Not all parameters of the structure shown below apply to every network connector.
 
@@ -482,11 +482,11 @@ The network information structure (from [connect/ncbi\_connutil.h](http://www.nc
 
 #### ConnNetInfo convenience API
 
-Although nothing prevents users from creating and populating the above ***SConnNetInfo*** structure field-by-field, this can lead to memory leaks, and there is a better, easier, much safer, and configurable way to deal with this structure. Unless there's a compelling reason not to, users should create this structure using ***ConnNetInfo\_Create()*** and destroy it with ***ConnNetInfo\_Destroy()***. The creation step will populate the structure with configured values, if any, and the destruction step will properly free allocated memory, if any. See [connect/ncbi\_connutil.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connutil.h) for the interface definition.
+Although nothing prevents users from creating and populating the above ***SConnNetInfo*** structure field-by-field, this can lead to memory leaks, and there is a better, easier, much safer, and configurable way to deal with this structure. Unless there's a compelling reason not to, users should create this structure using ***ConnNetInfo\_Create()*** and destroy it with ***ConnNetInfo\_Destroy()***. The creation step will populate the structure with configured values, if any, and the destruction step will properly free allocated memory, if any. See [connect/ncbi\_connutil.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connutil.h) for the interface definition.
 
 The convenience API consists of these functions:
 
--   [ConnNetInfo\_Create](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnNetInfo_Create)`(const char* service)`<br/><br/>Create and return a pointer to a new ***SConnNetInfo*** structure, filled either with parameters specific to a named **`service`** or with default values (if the **`service`** is specified as **`NULL`**, which is typical in the case of ordinary HTTP connections). Parameters for the structure are taken from (in order of precedence):
+-   [ConnNetInfo\_Create](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnNetInfo_Create)`(const char* service)`<br/><br/>Create and return a pointer to a new ***SConnNetInfo*** structure, filled either with parameters specific to a named **`service`** or with default values (if the **`service`** is specified as **`NULL`**, which is typical in the case of ordinary HTTP connections). Parameters for the structure are taken from (in order of precedence):
 
     1.  environment variables of the form **`<service>_CONN_<name>`**, where **`name`** is the name of the field;
 
@@ -498,15 +498,15 @@ The convenience API consists of these functions:
 
 <!-- -->
 
--   [ConnNetInfo\_Destroy](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnNetInfo_Destroy)`(SConnNetInfo* info)`<br/><br/>Delete and free the info structure via a passed pointer (note that the HTTP user header http\_user\_header is freed as well).
+-   [ConnNetInfo\_Destroy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnNetInfo_Destroy)`(SConnNetInfo* info)`<br/><br/>Delete and free the info structure via a passed pointer (note that the HTTP user header http\_user\_header is freed as well).
 
 <!-- -->
 
--   [ConnNetInfo\_SetUserHeader](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnNetInfo_SetUserHeader)`(SConnNetInfo* info, const char* new_user_header)`<br/><br/>Set the new HTTP user header (freeing the previous one, if any) by cloning the passed string argument and storing it in the http\_user\_header field. New\_user\_header passed as NULL resets the field.
+-   [ConnNetInfo\_SetUserHeader](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnNetInfo_SetUserHeader)`(SConnNetInfo* info, const char* new_user_header)`<br/><br/>Set the new HTTP user header (freeing the previous one, if any) by cloning the passed string argument and storing it in the http\_user\_header field. New\_user\_header passed as NULL resets the field.
 
 <!-- -->
 
--   [ConnNetInfo\_Clone](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnNetInfo_Clone)`(SConnNetInfo* info)`<br/><br/>Create and return a pointer to a new ***SConnNetInfo*** structure, which is an exact copy of the passed structure. This function is recognizes the dynamic nature of the HTTP [user header field](#ch_conn.Connection_related_parameters).
+-   [ConnNetInfo\_Clone](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnNetInfo_Clone)`(SConnNetInfo* info)`<br/><br/>Create and return a pointer to a new ***SConnNetInfo*** structure, which is an exact copy of the passed structure. This function is recognizes the dynamic nature of the HTTP [user header field](#ch_conn.Connection_related_parameters).
 
 ***Note about the registry:*** The registry used by the `connect` library is separate from the [CNcbiRegistry](ch_core.html#ch_core.registry) class. To learn more about the difference and how to use both objects together in a single program, please see [Using NCBI C and C++ Toolkits Together](ch_res.html#ch_res.c_cxx.html).
 
@@ -532,13 +532,13 @@ The following fields of ***SConnNetInfo*** pertain to the HTTP connector: **`cli
 
 #### HTTP connector's flags
 
-Argument [flags](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSOCK_Flags) in the HTTP connector's constructor is a bitwise OR of the following values:
+Argument [flags](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSOCK_Flags) in the HTTP connector's constructor is a bitwise OR of the following values:
 
 -   **`fHTTP_AutoReconnect`** - By default, only one request/reply is allowed and subsequent write attempts will result in **`eIO_Closed`**. This flag allows multiple request/reply HTTP transactions, using the same URL and parameters for each request.<br/>
 
 -   **`fHTTP_Flushable`** - By default, all data written to the connection are kept until a read begins (even though ***CONN\_Flush()*** might have been called in between the writes). With this flag set, ***CONN\_Flush()*** will result in the data actually being sent to the server side, so a subsequent write will form a new request and not get added to the previous one. Also, this flag ensures that the connector sends at least an HTTP header on "CLOSE" and re-"CONNECT", even if no data for an HTTP body have been written.<br/>
 
--   **`fHTTP_KeepHeader`** - By default, the HTTP connection parses the HTTP header and any HTTP errors. Thus, reading from the connection normally only returns data from the HTTP body. This flag disables that feature, and the HTTP header is not parsed but instead is passed "as is" to the application on a call to [CONN\_Read()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONN_Create). The HTTP header (i.e. everything up to and including the first "`\r\n\r\n` ") from the CGI script's response (including any server error), is then made available for reading. ***Note:*** This flag disables automatic authorization and redirection.<br/>
+-   **`fHTTP_KeepHeader`** - By default, the HTTP connection parses the HTTP header and any HTTP errors. Thus, reading from the connection normally only returns data from the HTTP body. This flag disables that feature, and the HTTP header is not parsed but instead is passed "as is" to the application on a call to [CONN\_Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONN_Create). The HTTP header (i.e. everything up to and including the first "`\r\n\r\n` ") from the CGI script's response (including any server error), is then made available for reading. ***Note:*** This flag disables automatic authorization and redirection.<br/>
 
 -   **`fHTTP_UrlDecodeInput`** - Perform URL decoding of the HTTP response body on read (interpreting it as single-part and URL-encoded), and deliver decoded data to the user.<br/>
 
@@ -597,7 +597,7 @@ A more elaborate form of the HTTP connector's constructor has the following prot
 
 This form is assumed to be used rarely by the users directly, but it provides rich access to the internal management of HTTP connections.
 
-The first two arguments are identical to their counterparts in the arguments number one and three of [HTTP\_CreateConnector()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HTTP_CreateConnector). The HTTP user header field (if any) is taken directly from the `http_user_header` field of ***SConnNetInfo***, a pointer to which is passed as **`net_info`** (which in turn can be passed as **`NULL`**, meaning to use the environment, registry, and defaults as described above).
+The first two arguments are identical to their counterparts in the arguments number one and three of [HTTP\_CreateConnector()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HTTP_CreateConnector). The HTTP user header field (if any) is taken directly from the `http_user_header` field of ***SConnNetInfo***, a pointer to which is passed as **`net_info`** (which in turn can be passed as **`NULL`**, meaning to use the environment, registry, and defaults as described above).
 
 The third parameter specifies a callback to be activated to parse the HTTP reply header (passed as a single string, with CR-LF (carriage return/line feed) characters incorporated to divide header lines). This callback also gets some custom data **`user_data`** as supplied in the fourth argument of the connector's constructor and a boolean value of `true` if the parsed response code from the server was not okay. The callback can return `false` (zero), which is considered the same way as having an error from the HTTP server. However, the pre-parsed error condition (passed in **`server_error`**) is retained, even if the return value of the callback is `true`, i.e. the callback is unable to "fix" the error code from the server. This callback is **not called** if [fHTTP\_KeepHeader](#ch_conn.fHCC_KeepHeader_ref) is set in flags.
 
@@ -627,7 +627,7 @@ The library provides two forms of the connector's constructor:
         const SConnNetInfo*   net_info, /* Connection parameters */
         const SSERVICE_Extra* params);  /* Additional set of parameters, may be NULL */
 
-The first form is equivalent to `SERVICE_CreateConnectorEx(service_name, fSERV_Any, 0, 0)`. A named NCBI service is a CGI program or a stand-alone server (can be one of two supported types), which runs at the NCBI site and is accessible by the outside world. A special dispatcher (which runs on the [NCBI Web servers](http://www.ncbi.nlm.nih.gov)) performs automatic switching to the appropriate server without the client having to know the actual connection point. The client just uses the main entry gate of the NCBI Web (usually, [www.ncbi.nlm.nih.gov](http://www.ncbi.nlm.nih.gov)) with a request to have a service "`service_name`". Then, depending on the service availability, the request will be declined, rejected, or honored by switching and routing the client to the machine actually running the server.
+The first form is equivalent to `SERVICE_CreateConnectorEx(service_name, fSERV_Any, 0, 0)`. A named NCBI service is a CGI program or a stand-alone server (can be one of two supported types), which runs at the NCBI site and is accessible by the outside world. A special dispatcher (which runs on the [NCBI Web servers](https://www.ncbi.nlm.nih.gov)) performs automatic switching to the appropriate server without the client having to know the actual connection point. The client just uses the main entry gate of the NCBI Web (usually, [www.ncbi.nlm.nih.gov](https://www.ncbi.nlm.nih.gov)) with a request to have a service "`service_name`". Then, depending on the service availability, the request will be declined, rejected, or honored by switching and routing the client to the machine actually running the server.
 
 To the client, the entire process of dispatching is completely transparent (for example, try clicking several times on either of the latter two links and see that the error replies are actually sent from different hosts, and the successful processing of the first link is done by one of several hosts running the bouncing service).
 
@@ -653,7 +653,7 @@ The named service facility uses the following distinction of server types:
 
 -   ***DNS*** servers are beyond the scope of this document because they are used to declare domain names, which are used internally at the NCBI site to help load-balancing based on DNS lookup (see [here](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/mghbn.c)).
 
-A formal description of these types is given in [connect/ncbi\_server\_info.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h):
+A formal description of these types is given in [connect/ncbi\_server\_info.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h):
 
     /* Server types
      */
@@ -712,7 +712,7 @@ The next-to-last parameter of the extended constructor is the network info, desc
 
 As with the HTTP connector, if the network information structure is specified as **`NULL`**, the default values are obtained as described above, as with the call to [ConnNetInfo\_Create(service\_name)](#ch_conn.ref_ConnNetInfo_Create_ref).
 
-Normally, the last parameter of ***SERVICE\_CreateConnectorEx()*** is left **`NULL`**, which sets all additional parameters to their default values. Among others, this includes the default procedure of choosing an appropriate server when the connector is looking for a mapping of the service name into a server address. To see how this parameter can be used to change the mapping procedure, please see the [service mapping API](#ch_conn.service_mapping_api) section. The library provides an additional interface to the service mapper, which can be found in [connect/ncbi\_service.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h).
+Normally, the last parameter of ***SERVICE\_CreateConnectorEx()*** is left **`NULL`**, which sets all additional parameters to their default values. Among others, this includes the default procedure of choosing an appropriate server when the connector is looking for a mapping of the service name into a server address. To see how this parameter can be used to change the mapping procedure, please see the [service mapping API](#ch_conn.service_mapping_api) section. The library provides an additional interface to the service mapper, which can be found in [connect/ncbi\_service.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h).
 
 ***Note***: Requesting **`fSERV_Firewall`** in the **`types`** parameter effectively selects the firewall mode regardless of the network parameters, loaded via the ***SConnNetInfo*** structure.
 
@@ -727,28 +727,28 @@ Services can be redirected without changing any code - for example, to test prod
 Debugging Tools and Troubleshooting
 -----------------------------------
 
-Each connector (except for the ***FILE*** connector) provides a means to view data flow in the connection. In case of the [SOCKET](#ch_conn.socket_connector) connector, debugging information can be turned on by the last argument in [SOCK\_CreateConnectorEx()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_CreateConnectorEx) or by using the global routine [SOCK\_SetDataLoggingAPI()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_SetDataLoggingAPI) (declared in [connect/ncbi\_socket.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h))
+Each connector (except for the ***FILE*** connector) provides a means to view data flow in the connection. In case of the [SOCKET](#ch_conn.socket_connector) connector, debugging information can be turned on by the last argument in [SOCK\_CreateConnectorEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_CreateConnectorEx) or by using the global routine [SOCK\_SetDataLoggingAPI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK_SetDataLoggingAPI) (declared in [connect/ncbi\_socket.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_socket.h))
 
 ***Note***: In the latter case, every socket (including sockets implicitly used by other connectors such as ***HTTP*** or ***SERVICE***) will generate debug printouts.
 
-In case of [HTTP](#ch_conn.Connection_related_parameters) or [SERVICE](#ch_conn.service_connector) connectors, which use [SConnNetInfo](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SConnNetInfo), debugging can be activated directly from the environment by setting **`CONN_DEBUG_PRINTOUT`** to `TRUE` or `SOME`. Similarly, a registry key **`DEBUG_PRINTOUT`** with a value of either `TRUE` or **`SOME`** found in the section **`[CONN]`** will have the same effect: it turns on logging of the connection parameters each time the link is established. When set to `ALL`, this variable (or key) also turns on debugging output on all underlying sockets ever created during the life of the connection. The value `FALSE` (default) turns debugging printouts off. Moreover, for the ***SERVICE*** connector, the debugging output option can be set on a per-service basis using **`<service>_CONN_DEBUG_PRINTOUT`** environment variables or individual registry sections **`[<service>]`** and the key **`CONN_DEBUG_PRINTOUT`** in them.
+In case of [HTTP](#ch_conn.Connection_related_parameters) or [SERVICE](#ch_conn.service_connector) connectors, which use [SConnNetInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SConnNetInfo), debugging can be activated directly from the environment by setting **`CONN_DEBUG_PRINTOUT`** to `TRUE` or `SOME`. Similarly, a registry key **`DEBUG_PRINTOUT`** with a value of either `TRUE` or **`SOME`** found in the section **`[CONN]`** will have the same effect: it turns on logging of the connection parameters each time the link is established. When set to `ALL`, this variable (or key) also turns on debugging output on all underlying sockets ever created during the life of the connection. The value `FALSE` (default) turns debugging printouts off. Moreover, for the ***SERVICE*** connector, the debugging output option can be set on a per-service basis using **`<service>_CONN_DEBUG_PRINTOUT`** environment variables or individual registry sections **`[<service>]`** and the key **`CONN_DEBUG_PRINTOUT`** in them.
 
 ***Note***: Debugging printouts can only be controlled in a described way via environment or registry if and only if ***SConnNetInfo*** is always created with the use of [convenience routines](#ch_conn.Connection_related_parameters).
 
-Debugging output is always sent to the same destination, the CORE log file, which is a C object shared between both C and C++ Toolkits. As said previously, the logger is an abstract object, i.e. it is empty and cannot produce any output if not populated accordingly. The library defines a few calls gathered in [connect/ncbi\_util.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_util.h), which allow the logger to output via the ***FILE*** file pointer, such as **`stderr`**: [CORE\_SetLOGFILE()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOGFILE) for example, as shown in [test\_ncbi\_service\_connector.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_service_connector.c), or to be a regular file on disk. Moreover, both Toolkits define [interfaces](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/ctools) to deal with registries, loggers, and locks that use native objects of each toolkit and use them as replacements for the objects of the corresponding abstract layers.
+Debugging output is always sent to the same destination, the CORE log file, which is a C object shared between both C and C++ Toolkits. As said previously, the logger is an abstract object, i.e. it is empty and cannot produce any output if not populated accordingly. The library defines a few calls gathered in [connect/ncbi\_util.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_util.h), which allow the logger to output via the ***FILE*** file pointer, such as **`stderr`**: [CORE\_SetLOGFILE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOGFILE) for example, as shown in [test\_ncbi\_service\_connector.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_service_connector.c), or to be a regular file on disk. Moreover, both Toolkits define [interfaces](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/ctools) to deal with registries, loggers, and locks that use native objects of each toolkit and use them as replacements for the objects of the corresponding abstract layers.
 
 There is a common problem that has been reported several times and actually concerns network configuration rather than representing a malfunction in the library. If a test program, which connects to a named NCBI service, is not getting anything back from the NCBI site, one first has to check whether there is a transparent proxying/caching between the host and NCBI. Because the service dispatching is implemented on top of the ordinary HTTP protocol, the transparent proxying may latch unsuccessful service searches (which can happen and may not indicate a real problem) as error responses from the NCBI server. Afterwards, instead of actually connecting to NCBI, the proxy returns those cached errors (or sometimes just an empty document), which breaks the service dispatcher code. In most cases, there are configurable ways to exclude certain URLs from proxying and caching, and they are subject for discussion with a local network administrator.
 
 Here is another tip: Make sure that all custom HTTP header tags (as passed, for example, in the [SConnNetInfo::user\_header](#ch_conn.Connection_related_parameters) field) have "\\r\\n" as tag separators (including the last tag). Many proxy servers (including transparent proxies, of which the user may not even be aware) are known to be sensitive to whether each and every HTTP tag is closed by "\\r\\n" (and not by a single "\\n" character). Otherwise, the HTTP packet may be treated as a defective one and can be discarded.
 
-Additional discussion on parameters of the service dispatcher as well as the trouble shooting tips can be found [here](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/NETWORK/dispatcher.html).
+Additional discussion on parameters of the service dispatcher as well as the trouble shooting tips can be found [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/NETWORK/dispatcher.html).
 
 <a name="ch_conn.cpp_connection_streams"></a>
 
 C++ Connection Streams
 ----------------------
 
-This section discusses the "C++ API" for [connection streams](http://www.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/doxyhtml/group__ConnStreams.html), which should generally be preferred over the corresponding "C API" for [connections and connectors](#ch_conn.conn_def).
+This section discusses the "C++ API" for [connection streams](https://www.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/doxyhtml/group__ConnStreams.html), which should generally be preferred over the corresponding "C API" for [connections and connectors](#ch_conn.conn_def).
 
 Using connections and connectors (via the entirely procedural approach) in C++ programs would fail to take advantage of the power of the language. Therefore, the C++ API for connection streams was created to provide C++ users with an improved connections API that takes advantage of the power of C++. Because the C++ API is built on top of the corresponding C API connections and connectors, the C++ API contains essentially a superset of the C API functionality. Also, these classes all derive from ***CNcbiIostream*** (which is typedef'd as ***std::iostream***) so they can be used with all the common stream I/O operators, manipulators, etc. The hierarchy for the C++ API connection stream classes is shown in [Figure 1](#ch_conn.fig1):
 
@@ -758,7 +758,7 @@ Using connections and connectors (via the entirely procedural approach) in C++ p
 
 Figure 1. C++ API connection stream classes
 
-The declarations of the connection stream constructors can be found in [connect/ncbi\_conn\_stream.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_conn_stream.hpp). We tried to keep the number and order of the constructors' parameters in the C++ API the same as their counterparts in the C API. For example:
+The declarations of the connection stream constructors can be found in [connect/ncbi\_conn\_stream.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_conn_stream.hpp). We tried to keep the number and order of the constructors' parameters in the C++ API the same as their counterparts in the C API. For example:
 
     /* C API */
     extern NCBI_XCONNECT_EXPORT CONNECTOR SOCK_CreateConnector
@@ -785,7 +785,7 @@ The code below is a C++ style example for a service connection:
         ios << "Data to be passed to the server";
     } STD_CATCH_ALL ("Connection problem");
 
-***Note***: The stream constructor may throw an exception if, for instance, the requested service is not found, or some other kind of problem arose. To see the actual reason, we used a standard toolkit macro [STD\_CATCH\_ALL()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=STD_CATCH_ALL), which prints the message and problem description into the log file (**`cerr`**, by default).
+***Note***: The stream constructor may throw an exception if, for instance, the requested service is not found, or some other kind of problem arose. To see the actual reason, we used a standard toolkit macro [STD\_CATCH\_ALL()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=STD_CATCH_ALL), which prints the message and problem description into the log file (**`cerr`**, by default).
 
 The next example establishes a TCP socket connection with a specified host/port, allowing direct access to the stream for subsequent operations:
 
@@ -846,21 +846,21 @@ The next example is a complete program that fetches the response from a URL and 
         return 0;
     }
 
-***Note:*** HTTP error responses are generally not well-formed, and they generally don't originate from the accessed resource (but instead often originate from the server on behalf of the resource). Therefore, by default, HTTP connections and streams in the connection library prevent access to data in the response in such cases. However, the above example shows how to tell the stream that it's okay to pass the message data through to the user level. Specifically, it installs the ***ParseHeader()*** callback (of type [FHTTP\_ParseHeader](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Connectors.html#ga397d6d094a398603a9d45abbf2727314)) to parse the HTTP header and return a code indicating how the stream should handle header errors. In this case, it simply returns values that will release the HTTP response body as stream / connection data. A more sophisticated callback could involve an actual header analysis and return different codes depending on the outcome.
+***Note:*** HTTP error responses are generally not well-formed, and they generally don't originate from the accessed resource (but instead often originate from the server on behalf of the resource). Therefore, by default, HTTP connections and streams in the connection library prevent access to data in the response in such cases. However, the above example shows how to tell the stream that it's okay to pass the message data through to the user level. Specifically, it installs the ***ParseHeader()*** callback (of type [FHTTP\_ParseHeader](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Connectors.html#ga397d6d094a398603a9d45abbf2727314)) to parse the HTTP header and return a code indicating how the stream should handle header errors. In this case, it simply returns values that will release the HTTP response body as stream / connection data. A more sophisticated callback could involve an actual header analysis and return different codes depending on the outcome.
 
 
 Additional examples can be found in the test files:
 
--   [test\_ncbi\_conn\_stream.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_conn_stream.cpp)
+-   [test\_ncbi\_conn\_stream.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_conn_stream.cpp)
 
--   [test\_ncbi\_ftp\_download.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_ftp_download.cpp)
+-   [test\_ncbi\_ftp\_download.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_ftp_download.cpp)
 
 <a name="ch_conn.service_mapping_api"></a>
 
 Service mapping API
 -------------------
 
-The API defined in [connect/ncbi\_service.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) is designed to map the required service name into the server address. Internally, the mapping is done either directly or indirectly by means of the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) and starting from SC-17 by means of [LBOS](https://confluence.ncbi.nlm.nih.gov/display/CT/Introduction+to+LBOS+in+Connect+library), running at the NCBI site. For the client, the mapping is seen as reading from an iterator created by a call to ***SERV\_Open()***, similar to the following fragment (for more examples, please refer to the test program [test\_ncbi\_disp.c](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_disp.c)):
+The API defined in [connect/ncbi\_service.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) is designed to map the required service name into the server address. Internally, the mapping is done either directly or indirectly by means of the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) and starting from SC-17 by means of [LBOS](https://confluence.ncbi.nlm.nih.gov/display/CT/Introduction+to+LBOS+in+Connect+library), running at the NCBI site. For the client, the mapping is seen as reading from an iterator created by a call to ***SERV\_Open()***, similar to the following fragment (for more examples, please refer to the test program [test\_ncbi\_disp.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_disp.c)):
 
     #include <connect/ncbi_service.h>
     SERV_ITER iter = SERV_Open("my_service", fSERV_Any, SERV_ANYHOST, 0);
@@ -882,17 +882,17 @@ The API defined in [connect/ncbi\_service.h](http://www.ncbi.nlm.nih.gov/IEB/Too
 
 ***Note***: A non-**`NULL`** iterator returned from ***SERV\_Open()*** **does not** yet guarantee that the service is available, whereas the **`NULL`** iterator definitely means that the service does not exist.
 
-As shown in the above example, a loop over reading from the iterator results in the sequence of successive structures (none of which is to be freed by the program!) that along with the conversion functions [SERV\_ReadInfo()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_ReadInfo), [SERV\_WriteInfo()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_WriteInfo) and others are defined in [connect/ncbi\_server\_info.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h). Structure [SSERV\_Info](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSERV_Info) describes a server that implements the requested service. **`NULL`** gets returned when no more servers (if any) could be found. The iterator returns servers in the order that the load-balancing algorithm arranges them. Each server has a rating, and the larger the rating the better the chance for the server to be coming out first (but not necessarily in the order of the rates).
+As shown in the above example, a loop over reading from the iterator results in the sequence of successive structures (none of which is to be freed by the program!) that along with the conversion functions [SERV\_ReadInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_ReadInfo), [SERV\_WriteInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_WriteInfo) and others are defined in [connect/ncbi\_server\_info.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h). Structure [SSERV\_Info](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSERV_Info) describes a server that implements the requested service. **`NULL`** gets returned when no more servers (if any) could be found. The iterator returns servers in the order that the load-balancing algorithm arranges them. Each server has a rating, and the larger the rating the better the chance for the server to be coming out first (but not necessarily in the order of the rates).
 
 ***Note***: Servers returned from the iterator are all of the requested type, with only one exception: they can include servers of type **`fSERV_Firewall`**, even if this type has not been explicitly requested. Therefore, the application must sort these servers out. But if **`fSERV_Firewall`** is set in the types, then the search is done for whichever else types are requested, and with the assumption that the client has chosen a firewall connection mode, regardless of the network parameters supplied in ***SConnNetInfo*** or read out from either the registry or environment.
 
 ***Note***: A search for servers of type **`fSERV_Dns`** is not inclusive with **`fSERV_Any`** specified as a server type. That is, servers of type DNS are only returned if specifically requested in the server mask at the time the iterator was opened.
 
-There is a simplified version of ***SERV\_Open()***, called [SERV\_OpenSimple()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_OpenSimple), as well as an advanced version, called [SERV\_OpenEx()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_OpenEx). The former takes only one argument, the service name. The latter takes two more arguments, which describe the set of servers **not** to be returned from the iterator (server descriptors that to be excluded).
+There is a simplified version of ***SERV\_Open()***, called [SERV\_OpenSimple()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_OpenSimple), as well as an advanced version, called [SERV\_OpenEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_OpenEx). The former takes only one argument, the service name. The latter takes two more arguments, which describe the set of servers **not** to be returned from the iterator (server descriptors that to be excluded).
 
-There is also an advanced version of ***SERV\_GetNextInfo()***, called [SERV\_GetNextInfoEx()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_GetNextInfoEx), that, via its second argument, provides the ability to get many host parameters, among which is so-called host environment; a `"\0"`-terminated string, consisting of a set of lines separated by `"\n"` characters and specified in the configuration file of the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) of the host, where the returned server has been found. The typical line within the set has a form `"name=value"` and resembles very much the shell environment, where its name comes after. The host environment could be very handy for passing additional information to applications if the host has some limitations or requires special handling, should the server be selected and used on this host. The example below shall give an idea. At the time of writing, getting the host information is only implemented when the service is obtained via direct access to the load-balancing daemon. Unlike returned server descriptors, the returned host information handle is not a constant object and must be explicitly freed by the application when no longer needed. All operations (getter methods) that are defined on the host information handle are declared in [connect/ncbi\_host\_info.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_host_info.h). If the server descriptor was obtained using dispatching CGI (indirect dispatching, see below), then the host information handle is always returned as **`NULL`** (no host information available).
+There is also an advanced version of ***SERV\_GetNextInfo()***, called [SERV\_GetNextInfoEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_GetNextInfoEx), that, via its second argument, provides the ability to get many host parameters, among which is so-called host environment; a `"\0"`-terminated string, consisting of a set of lines separated by `"\n"` characters and specified in the configuration file of the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) of the host, where the returned server has been found. The typical line within the set has a form `"name=value"` and resembles very much the shell environment, where its name comes after. The host environment could be very handy for passing additional information to applications if the host has some limitations or requires special handling, should the server be selected and used on this host. The example below shall give an idea. At the time of writing, getting the host information is only implemented when the service is obtained via direct access to the load-balancing daemon. Unlike returned server descriptors, the returned host information handle is not a constant object and must be explicitly freed by the application when no longer needed. All operations (getter methods) that are defined on the host information handle are declared in [connect/ncbi\_host\_info.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_host_info.h). If the server descriptor was obtained using dispatching CGI (indirect dispatching, see below), then the host information handle is always returned as **`NULL`** (no host information available).
 
-The back end of the service mapping API is split into two independent parts: *direct* access to [LBSMD](ch_app.html#ch_app.Load_Balancing_Servi), if the one is both available on the current host and is not disabled by parameter [lb\_disable](#ch_conn.Connection_related_parameters) at the iterator opening. If **LBSMD** is either unavailable or disabled, the second (*indirect*) part of the back-end API is used, which involves a connection to the [dispatching CGI](ch_app.html#ch_app.DISPD_Network_Dispat), which in turn connects to **LBSMD** to carry out the request. An attempt to use the CGI is done only if the [net\_info](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_OpenEx) argument is provided as non-**`NULL`** in the calls to ***SERV\_Open()*** or ***SERV\_OpenEx()***.
+The back end of the service mapping API is split into two independent parts: *direct* access to [LBSMD](ch_app.html#ch_app.Load_Balancing_Servi), if the one is both available on the current host and is not disabled by parameter [lb\_disable](#ch_conn.Connection_related_parameters) at the iterator opening. If **LBSMD** is either unavailable or disabled, the second (*indirect*) part of the back-end API is used, which involves a connection to the [dispatching CGI](ch_app.html#ch_app.DISPD_Network_Dispat), which in turn connects to **LBSMD** to carry out the request. An attempt to use the CGI is done only if the [net\_info](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_OpenEx) argument is provided as non-**`NULL`** in the calls to ***SERV\_Open()*** or ***SERV\_OpenEx()***.
 
 ***Note***: In a call to ***SERV\_OpenSimple()***, **`net_info`** gets created internally before an upcall to ***SERV\_Open()*** and thus CGI dispatching is likely to happen, unless either **`net_info`** could not be constructed from the environment, or the environment variable **`CONN_LB_DISABLE`** (or a service-specific one, or either of the corresponding registry keys) is set to `TRUE`.
 
@@ -1080,6 +1080,6 @@ You can read about how to announce and deannounce your application in LBOS from 
 Threaded Server Support
 -----------------------
 
-This library also provides [CServer](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CServer&d=), an abstract base class for multithreaded network servers. [Here](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/connect/test/test_server.cpp) is a demonstration of its use. For more information, see the [Implementing a Server with CServer](ch_grid.html#ch_grid.CServer_Multithreade) section.
+This library also provides [CServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CServer&d=), an abstract base class for multithreaded network servers. [Here](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/connect/test/test_server.cpp) is a demonstration of its use. For more information, see the [Implementing a Server with CServer](ch_grid.html#ch_grid.CServer_Multithreade) section.
 
 

@@ -212,7 +212,7 @@ Seq-annot, or sequence annotation, is a collection of information ABOUT a sequen
 
 #### Feature Tables
 
-A feature table is a collection of Seq-feat, or [sequence features](#ch_datamod.datamodel.seqfeat). A Seq-feat is designed to tie a Seq-loc together with a datablock, a block of specific data. Datablocks are defined objects themselves, many of which are objects used in their own right in some other context, such as publications ([CPub\_Base](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPub__Base.html)) or references to organisms (Org-ref) or genes (Gene-ref). Some datablocks, such as coding regions (CdRegion) make sense only in the context of a Seq-loc. However, since by design there is no intention that one datablock need to have anything in common with any other datablock, each can be tailored exactly to do a particular job. If a change or addition is required to one datablock, no others are affected. In those cases where a pre-existing object from another context is used as a datablock, any software that can use that object can now operate on the feature as well. For example, a piece of code to display a publication can operate on a publication from a bibliographic database or one used as a sequence feature with no change.
+A feature table is a collection of Seq-feat, or [sequence features](#ch_datamod.datamodel.seqfeat). A Seq-feat is designed to tie a Seq-loc together with a datablock, a block of specific data. Datablocks are defined objects themselves, many of which are objects used in their own right in some other context, such as publications ([CPub\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPub__Base.html)) or references to organisms (Org-ref) or genes (Gene-ref). Some datablocks, such as coding regions (CdRegion) make sense only in the context of a Seq-loc. However, since by design there is no intention that one datablock need to have anything in common with any other datablock, each can be tailored exactly to do a particular job. If a change or addition is required to one datablock, no others are affected. In those cases where a pre-existing object from another context is used as a datablock, any software that can use that object can now operate on the feature as well. For example, a piece of code to display a publication can operate on a publication from a bibliographic database or one used as a sequence feature with no change.
 
 Since the Seq-feat data structure itself and the Seq-loc used to attach it to the sequence are common to all features, it is also possible to support a class of operations over all features without regard to the different types of datablocks attached to them. So a function to determine all features in a particular region of a Bioseq need not care what type of features they are.
 
@@ -348,7 +348,7 @@ Types (such as Person-id) that contain other types can be constructed by assigni
 General Use Objects
 -------------------
 
-This section describes the data objects defined in [general.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/general/general.asn) and their C++ classes and APIs. They are a miscellaneous collection of generally useful types.
+This section describes the data objects defined in [general.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/general/general.asn) and their C++ classes and APIs. They are a miscellaneous collection of generally useful types.
 
 -   [The Date: Date-std and Date](#ch_datamod.The_Date_Datestd_and)
 
@@ -376,14 +376,14 @@ When possible, the Date-std type should be used. In this case year is an integer
 
 The Date type can accommodate both the representation of the CHOICE itself (which kind of Date is this?) and the data for either CHOICE.
 
-The Date and Date-std types are implemented with the [CDate](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html) and [CDate\_std](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate__std.html) classes.
+The Date and Date-std types are implemented with the [CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html) and [CDate\_std](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate__std.html) classes.
 
-The [CDate](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html) class should be used to create dates that can't be parsed into standard fields, for example:
+The [CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html) class should be used to create dates that can't be parsed into standard fields, for example:
 
     CDate adate;
     adate.SetStr("The birth of modern genetics.");
 
-The [CDate\_std](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate__std.html) class should be used for parseable dates, i.e. dates with a given year, and optionally a month and day:
+The [CDate\_std](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate__std.html) class should be used for parseable dates, i.e. dates with a given year, and optionally a month and day:
 
     CDate_std adate;
     adate.SetYear(2009);
@@ -400,7 +400,7 @@ To include a time in the date:
 
 An Object-id is a simple structure used to identify a data object. It is just a CHOICE of an INTEGER or a VisibleString. It must always be used within some defining context (e.g. see Dbtag below) in order to have some global meaning. It allows flexibility in a host system's preference for identifying things by integers or strings.
 
-The Object-id type is implemented by the [CObject\_id](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html) class. [CObject\_id](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html) includes the ***Match()***, ***Compare()***, and ***operator\<()*** methods for determining whether two Object-id's are identical.
+The Object-id type is implemented by the [CObject\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html) class. [CObject\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html) includes the ***Match()***, ***Compare()***, and ***operator\<()*** methods for determining whether two Object-id's are identical.
 
 Types that include choices, such as Object-id, retain the last CHOICE assigned to them. For example, the following results in the Object-id being a string:
 
@@ -414,7 +414,7 @@ Types that include choices, such as Object-id, retain the last CHOICE assigned t
 
 A Dbtag is an Object-id within the context of a database. The database is just defined by a VisibleString. The strings identifying the database are not centrally controlled, so it is possible that a conflict could occur. If there is a proliferation of Dbtags, then a registry might be considered at NCBI. Dbtags provide a simple, general way for small database providers to supply their own internal identifiers in a way which will, usually, be globally unique as well, yet requires no official sanction. So, for example, identifiers for features on sequences are not widely available at the present time. However, the Eukaryotic Promotor Database (EPD) can be provided as a set of features on sequences. The internal key to each EPD entry can be propagated as the Feature-id by using a Dbtag where "EPD" is the "db" field and an integer is used in the Object-id, which is the same integer identifying the entry in the normal EPD release.
 
-The Dbtag type is implemented by the [CDbtag](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDbtag.html) class.
+The Dbtag type is implemented by the [CDbtag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDbtag.html) class.
 
 <a name="ch_datamod._Identifying_People_N"></a>
 
@@ -422,7 +422,7 @@ The Dbtag type is implemented by the [CDbtag](http://www.ncbi.nlm.nih.gov/IEB/To
 
 A Name-std is a structured type for representing names with readily understood meanings for the fields. The full field is free-form and can include any or all of the other fields. The suffix field can be used for things like "Jr", "Sr", "III", etc. The title field can be used for things like "Dr.", "Sister", etc.
 
-The Name-std type is implemented by the [CName\_std](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCName__std.html) class.
+The Name-std type is implemented by the [CName\_std](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCName__std.html) class.
 
 <a name="ch_datamod._Identifying_People_P_1"></a>
 
@@ -438,7 +438,7 @@ The next three choices contain just a single string. MEDLINE stores names in str
 
 The pure string form should be the CHOICE of last resort because no assumptions of any kind can be made about the structure of the name. It could be last name first, first name first, comma after last name, periods between initials, etc.
 
-The Person-id type is implemented by the [CPerson\_id](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerson__id.html) class.
+The Person-id type is implemented by the [CPerson\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerson__id.html) class.
 
 <a name="ch_datamod.Expressing_Uncertain"></a>
 
@@ -448,7 +448,7 @@ Lengths of [Biological Sequences](#ch_datamod._Biological_Sequences_1) and locat
 
 Fuzziness can take a variety of forms. It can be plus or minus some fixed value. It can be somewhere in a range of values. It can be plus or minus a percentage of the best guess value. It may also be certain boundary conditions (greater than the value, less than the value) or refer to the bond BETWEEN residues of the biological sequence (bond to the right of this residue, bond to the left of that residue).
 
-The Int-fuzz type is implemented by the [CInt\_fuzz](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCInt__fuzz.html) class.
+The Int-fuzz type is implemented by the [CInt\_fuzz](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCInt__fuzz.html) class.
 
 <a name="ch_datamod.Creating_Your_Own_Ob"></a>
 
@@ -462,14 +462,14 @@ The attributes of the User-object are contained in one or more User-fields. Each
 
 The User-object is provided in a number of places in the public ASN.1 specifications to allow users to add their own structured features to Feature-tables or their own custom extensions to existing features. This allows new ideas to be tried out publicly, and allows software tools to be written to accommodate them, without requiring consensus among scientists or constant revisions to specifications. Those new ideas which time and experience indicate have become important concepts in molecular biology can be "graduated" to real ASN.1 specifications in the public scheme. A large body of structured data would presumably already exist in User-objects of this type, and these could all be back fitted into the new specified type, allowing data to "catch up" to the present specification. Those User-objects which do not turn out to be generally useful or important remain as harmless historical artifacts. User-objects could also be used for custom software to attach data only required for use by a particular tool to an existing standard object without harming it for use by standard tools.
 
-The User-object and User-field types are implemented with the [CUser\_object](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUser__object.html) and [CUser\_field](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUser__field.html) classes.
+The User-object and User-field types are implemented with the [CUser\_object](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUser__object.html) and [CUser\_field](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUser__field.html) classes.
 
 <a name="ch_datamod.datamodel.biblio"></a>
 
 Bibliographic References
 ------------------------
 
-The Bibliographic References section documents types for storing publications of any sort and collections of publications. The types are defined in [biblio.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/biblio/biblio.asn) and [pub.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/pub/pub.asn) modules.
+The Bibliographic References section documents types for storing publications of any sort and collections of publications. The types are defined in [biblio.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/biblio/biblio.asn) and [pub.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/pub/pub.asn) modules.
 
 <a name="ch_datamod.Content"></a>
 
@@ -533,7 +533,7 @@ Affiliation is effectively the institutional affiliation of an author. Since it 
 
 The structured form has a number of fields taken from the ANSI guidelines. "affil" is institutional affiliation, such as "Harvard University". "div" is division within institution, such as "Department of Molecular Biology". "sub" is a subdivision of a country - in the United States this would be the state. "street" has been added to the specification (it is not included in ANSI) so that it is possible to produce a valid mailing address.
 
-The Affil type is implemented by the [CAffil](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCAffil.html) class.
+The Affil type is implemented by the [CAffil](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCAffil.html) class.
 
 <a name="ch_datamod._Citation_Components__1"></a>
 
@@ -543,7 +543,7 @@ The Auth-list type represents the list of authors for the citation. It is a SEQU
 
 If fully structured Authors are used, each Author can have an individual Affil. The Author uses Person-id as defined [above](#ch_datamod._Identifying_People_P_1). The structured form also allows specification of the role of individual authors in producing the citation. The primary author(s) does not mean the "first" author, but rather that this author had a role in the original writing or experimental work. A secondary author is a reviewer or editor of the article. It is rare in a scientific work that a secondary author is ever mentioned by name. Authors may play different roles in the work, compiling, editing, and translating. Again, in a scientific work, the authors mentioned did none of these things, but were involved in the actual writing of the paper, although it would not be unusual anymore for one author to be the patent assignee. For scientific work, then, the main advantages of using the Author form are the use of fielded names and of individual Affils. For a book, being able to indicate the editors vs. the authors is useful also.
 
-The Auth-list type is implemented by the [CAuth\_list](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCAuth__list.html) class and the Author type is implemented by the [CAuthor](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCAuthor.html) class.
+The Auth-list type is implemented by the [CAuth\_list](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCAuth__list.html) class and the Author type is implemented by the [CAuthor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCAuthor.html) class.
 
 <a name="ch_datamod._Citation_Components__2"></a>
 
@@ -551,7 +551,7 @@ The Auth-list type is implemented by the [CAuth\_list](http://www.ncbi.nlm.nih.g
 
 Imprint provides information about the physical form in which the citation appeared, such as what volume and issue of a journal it was in. For the "date" a structured Date is preferred. While "volume", "issue", and "pages" are commonly integers, there are many cases where they are not pure integers (e.g. pages xvi-xvii or issue 10A). Pages is given as a single string to simplify input from different sources. The convention is first page (hyphen) last page, or just page if it is on a single page. "section" may be relevant to a book or proceedings. "pub" is an Affil used to give the publisher of a book. The Affil.affil field is used to give the name of the publisher. "cprt" is the copyright date for a book. "part-sup" is for part or supplement and is not part of ANSI, but is used by MEDLINE. "language" is for the original language of the publication, which is also used by MEDLINE, but is not part of the ANSI standard. "prepub" is not part of the ANSI standard, but was added by NCBI to accommodate citations for as yet unpublished papers that can accompany data directly submitted by authors to the database.
 
-The Imprint type is implemented by the [CImprint](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCImprint.html) class.
+The Imprint type is implemented by the [CImprint](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCImprint.html) class.
 
 <a name="ch_datamod._Citation_Components__3"></a>
 
@@ -565,7 +565,7 @@ Title can be of a number of types. "name" is the full title of an article, or th
 
 "abr" is strictly the abbreviated title of a book. "isbn" is similar to "issn" in that it is a publishers abbreviation for a book. "isbn" is very useful, but one must be careful since it is used by publishers to list books, and to a publisher a hard cover book is different from a paperback (they have different "isbn"s) even if they have the same title.
 
-The Title type is implemented by the [CTitle](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTitle.html) class.
+The Title type is implemented by the [CTitle](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTitle.html) class.
 
 <a name="ch_datamod.Citing_an_Article"></a>
 
@@ -573,7 +573,7 @@ The Title type is implemented by the [CTitle](http://www.ncbi.nlm.nih.gov/IEB/To
 
 An article always occurs within some other published medium. It can be an article in a journal or a chapter or section in a book or proceedings. Thus there are two components to an article citation; a citation for the work it was published in and a citation for the article within that work. Cit-art.title is the Title of the article and Cit-art.authors are the authors of the article. The "from" field is used to indicate the medium the article was published in, and reuses the standard definitions for citing a journal, book, or proceedings.
 
-The Cit-art type is implemented by the [CCit\_art](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__art.html) class.
+The Cit-art type is implemented by the [CCit\_art](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__art.html) class.
 
 <a name="ch_datamod.Citing_a_Journal"></a>
 
@@ -581,7 +581,7 @@ The Cit-art type is implemented by the [CCit\_art](http://www.ncbi.nlm.nih.gov/I
 
 Cit-jour is used to cite an issue of a journal, not an article within a journal (see Cit-art, above). Cit-jour.title is the title of the journal, and Cit-jour.imp gives the date, volume, issue of the journal. Cit-jour.imp also gives the pages of an article within the issue when used as part of a Cit-art. This is not the purest possible split between article and journal, book, or proceedings, but does have the practical advantage of putting all such physical medium information together in a single common data structure. A controlled list of journal titles is maintained by NCBI, and database builders are encouraged to use this list to facilitate exchange and linking of data between databases.
 
-The Cit-jour type is implemented by the [CCit\_jour](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__jour.html) class.
+The Cit-jour type is implemented by the [CCit\_jour](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__jour.html) class.
 
 <a name="ch_datamod.Citing_a_Book"></a>
 
@@ -589,7 +589,7 @@ The Cit-jour type is implemented by the [CCit\_jour](http://www.ncbi.nlm.nih.gov
 
 Cit-book is used to cite a whole book, not an article within a book (see Cit-art, [above](#ch_datamod.Citing_an_Article)). Cit-book.title is the title of this particular book. Cit-book.coll is used if the book if part of a collection, or muti-volume set (e.g. "The Complete Works of Charles Darwin"). Cit-book.authors is for the authors or editors of the book itself (not necessarily of any particular chapter). Cit-book.imp contains the publication information about the book. As with a Cit-art, if the Cit-book is being used to cite a chapter in a book, the pages in given in Cit-book.imp.
 
-The Cit-book type is implemented by the [CCit\_book](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__book.html) class.
+The Cit-book type is implemented by the [CCit\_book](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__book.html) class.
 
 <a name="ch_datamod.Citing_a_Proceedings"></a>
 
@@ -597,7 +597,7 @@ The Cit-book type is implemented by the [CCit\_book](http://www.ncbi.nlm.nih.gov
 
 A proceedings is a book published as a result or byproduct of a meeting. As such it contains all the same fields as a Cit-book and an additional block of information describing the meeting. These extra fields are the meeting number (as a string to accommodate things like "10A"), the date the meeting occurred, and an OPTIONAL Affil to record the place of the meeting. The name of the organization or meeting is normally the book title. Don't be confused by things like the Proceedings of the National Academy of Sciences, USA, which is really a journal.
 
-The Cit-proc type is implemented by the [CCit\_proc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__proc.html) class.
+The Cit-proc type is implemented by the [CCit\_proc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__proc.html) class.
 
 <a name="ch_datamod.Citing_a_Letter__Man"></a>
 
@@ -605,7 +605,7 @@ The Cit-proc type is implemented by the [CCit\_proc](http://www.ncbi.nlm.nih.gov
 
 A letter, manuscript, or a thesis share most components and so are grouped together under type Cit-let. They all require most of the attributes of a book, and thus Cit-let incorporates the Cit-book structure. Unlike a normal book, they will not have a copyright date. A letter or manuscript will not have a publisher, although a thesis may. In addition, a manuscript may have a manuscript identifier (e.g. "Technical Report X1134").
 
-The Cit-let type is implemented by the [CCit\_let](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__let.html) class.
+The Cit-let type is implemented by the [CCit\_let](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__let.html) class.
 
 <a name="ch_datamod.Citing_Directly_Subm"></a>
 
@@ -613,7 +613,7 @@ The Cit-let type is implemented by the [CCit\_let](http://www.ncbi.nlm.nih.gov/I
 
 The Cit-sub type is used to cite the submission of data directly to a database, independent of any publication(s) which may be associated with the data as well. Authors (of the submission) and Date (in an Imprint) are required. The Affiliation of the Authors should be filled in the Author-list. Optionally one may also record the medium in which the submission was made.
 
-The Cit-sub type is implemented by the [CCit\_sub](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__sub.html) class.
+The Cit-sub type is implemented by the [CCit\_sub](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__sub.html) class.
 
 <a name="ch_datamod.Citing_a_Patent"></a>
 
@@ -621,7 +621,7 @@ The Cit-sub type is implemented by the [CCit\_sub](http://www.ncbi.nlm.nih.gov/I
 
 A full patent citation, Cit-pat conveys not only enough information to identify a patent (see below) but to characterize it somewhat as well. A patent has a title and authors, the country in which the patent was issued, a document type and number, and the date the patent was issued. Patents are grouped into classes based on the patent subject, and this may be useful to know. In addition, when a patent is first filed it is issued an application number (different from the document number assigned to the issued patent). For tracking purposes, or issues of precedence, it is also helpful to know the application number and filing date.
 
-The Cit-pat type is implemented by the [CCit\_pat](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__pat.html) class.
+The Cit-pat type is implemented by the [CCit\_pat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__pat.html) class.
 
 <a name="ch_datamod.Identifying_a_Patent"></a>
 
@@ -629,7 +629,7 @@ The Cit-pat type is implemented by the [CCit\_pat](http://www.ncbi.nlm.nih.gov/I
 
 When citing a patent, it may be sufficient to merely unambiguously identify it, on the assumption that more extensive information will be available from some other source, given the identifier. The Id-pat type contains fields only for the country in which the patent was applied for, or issued in, then a CHOICE of the patent document number (if issued) or the application number (if pending).
 
-The CId-pat type is implemented by the [CId\_pat](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCId__pat.html) class.
+The CId-pat type is implemented by the [CId\_pat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCId__pat.html) class.
 
 <a name="ch_datamod.Citing_an_Article_or"></a>
 
@@ -647,7 +647,7 @@ Less standard citation types, such as a MEDLINE unique identifier, or the serial
 
 Software developed to display or print a Cit-gen must be opportunistic about using whatever information is available. Obviously it is not possible to assume that all Cit-gens can be displayed in a uniform manner, but in practice at NCBI we have found they can generally be made fairly regular.
 
-The Cit-gen type is implemented by the [CCit\_gen](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__gen.html) class.
+The Cit-gen type is implemented by the [CCit\_gen](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCit__gen.html) class.
 
 <a name="ch_datamod.Accommodating_Any_Pu"></a>
 
@@ -655,7 +655,7 @@ The Cit-gen type is implemented by the [CCit\_gen](http://www.ncbi.nlm.nih.gov/I
 
 The Pub type is designed to accommodate a citation of any kind defined in the bibliographic specification, the MEDLINE specification, and more. It can also accommodate a collection of publications. It is very useful when one wishes to be able to associate a bibliographic reference in a very general way with a software tool or data item, yet still preserve the attributes specific for each class of citation. Pub is widely used for this purpose in the NCBI specifications.
 
-The Pub type is implemented by the [CPub](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPub.html) class.
+The Pub type is implemented by the [CPub](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPub.html) class.
 
 <a name="ch_datamod.Grouping_Different_F"></a>
 
@@ -663,7 +663,7 @@ The Pub type is implemented by the [CPub](http://www.ncbi.nlm.nih.gov/IEB/ToolBo
 
 In some cases a database builder may wish to present more than one form of citation for the same bibliographic work. For example, in a sequence entry from the NCBI Backbone database, it is useful to provide the MEDLINE uid (for use as a link by other software tools), the Cit-art (for display to the user), and a Cit-gen containing the internal NCBI Backbone identifier for this publication as the string "pub\_id = 188824" (for use in checking the database by in-house staff) for the same article. The Pub-equiv type provides this capability. It is a SET OF Pub. Each element in the SET is an equivalent citation for the same bibliographic work. Software can examine the SET and select the form most appropriate to the job at hand.
 
-The Pub-equiv type is implemented by the [CPub\_equiv](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPub__equiv.html) class.
+The Pub-equiv type is implemented by the [CPub\_equiv](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPub__equiv.html) class.
 
 <a name="ch_datamod.Sets_of_Citations"></a>
 
@@ -671,14 +671,14 @@ The Pub-equiv type is implemented by the [CPub\_equiv](http://www.ncbi.nlm.nih.g
 
 One often needs to collect a set of citations together. Unlike the Pub-equiv type, the Pub-set type represents a set of citations for DIFFERENT bibliographic works. It is a CHOICE of types for a mixture of publication classes, or for a collection of the same publication class.
 
-The Pub-set type is implemented by the [CPub\_set](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPub__set.html) class.
+The Pub-set type is implemented by the [CPub\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPub__set.html) class.
 
 <a name="ch_datamod.datamodel.medline"></a>
 
 MEDLINE Data
 ------------
 
-This section is an introduction to MEDLINE and the structure of a MEDLINE record. It describes types defined in the [medline.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/medline/medline.asn) module.
+This section is an introduction to MEDLINE and the structure of a MEDLINE record. It describes types defined in the [medline.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/medline/medline.asn) module.
 
 <a name="ch_datamod.datamodel.types.medline"></a>
 
@@ -757,7 +757,7 @@ As an experiment, Library Operations at the NLM is putting in mnemonic symbols f
 Biological Sequences
 --------------------
 
-This section describes types used to represent biological data. These types are defined in the [seq.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq/seq.asn), [seqblock.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn), and [seqcode.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) modules.
+This section describes types used to represent biological data. These types are defined in the [seq.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq/seq.asn), [seqblock.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn), and [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) modules.
 
 <a name="ch_datamod.datamodel.cpp.seq"></a>
 
@@ -807,9 +807,9 @@ A Bioseq represents a single, continuous molecule of nucleic acid or protein. It
 
 The differences in Bioseqs arise primarily from the way they are instantiated (represented). Different data elements are required to represent a map than are required to represent a sequence of residues.
 
-The C++ class for a Bioseq ([CBioseq](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq.html)) has a list of Seq-id's, a Seq-descr, and a list of Seq-annot's, mapping quite directly from the ASN.1. However, since a Seq-inst is always required for a Bioseq, those fields have been incorporated into the Bioseq itself. Serialization is handled by [CSerialObject](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSerialObject.html) from which [CBioseq](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq.html) derives.
+The C++ class for a Bioseq ([CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq.html)) has a list of Seq-id's, a Seq-descr, and a list of Seq-annot's, mapping quite directly from the ASN.1. However, since a Seq-inst is always required for a Bioseq, those fields have been incorporated into the Bioseq itself. Serialization is handled by [CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSerialObject.html) from which [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq.html) derives.
 
-Related classes, such as [CSeqdesc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqdesc.html), provide enumerations for representing types of description, molecule types, and sequence encoding types used in the [CBioseq](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq.html) class. Sequence encoding is discussed in more detail below.
+Related classes, such as [CSeqdesc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqdesc.html), provide enumerations for representing types of description, molecule types, and sequence encoding types used in the [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq.html) class. Sequence encoding is discussed in more detail below.
 
 The C++ Toolkit introduced some new methods for Bioseq's:
 
@@ -825,7 +825,7 @@ The C++ Toolkit introduced some new methods for Bioseq's:
 
 -   ***IsAa*** - true if the Bioseq is a protein.
 
-In addition, many utility functions for working with Bioseqs and sequence data are defined in the [CSeqportUtil](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqportUtil.html) class.
+In addition, many utility functions for working with Bioseqs and sequence data are defined in the [CSeqportUtil](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqportUtil.html) class.
 
 <a name="ch_datamod._Seqid_Identifying_th"></a>
 
@@ -843,7 +843,7 @@ A Seq-annot may contain a feature table, a set of sequence alignments, or a set 
 
 A Bioseq may have many Seq-annots. This means it is possible for one Bioseq to have feature tables from several different sources, or a feature table and set of alignments. A collection of sequences (see Sets Of Bioseqs) can have Seq-annots as well. Finally, a Seq-annot can stand alone, not directly attached to anything. This is because each element in the Seq-annot has specific references to locations on Bioseqs so the information is very explicitly associated with Bioseqs, not implicitly associated by attachment. This property makes possible the exchange of information about Bioseqs as naturally as the exchange of the Bioseqs themselves, be it among software tools or between scientists or as contributions to public databases.
 
-Some of the important methods for the [CSeq\_annot](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__annot.html) class are:
+Some of the important methods for the [CSeq\_annot](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__annot.html) class are:
 
 -   ***AddName()*** - adds or replaces annotation descriptor of type `name`.
 
@@ -861,7 +861,7 @@ Some of the important methods for the [CSeq\_annot](http://www.ncbi.nlm.nih.gov/
 
 A Seq-descr is meant to describe a Bioseq (or a set of Bioseqs) and place it in a biological and/or bibliographic context. Seq-descrs apply to the whole Bioseq. Some Seq-descr classes appear also as features, when used to describe a specific part of a Bioseq. But anything appearing at the Seq-descr level applies to the whole thing.
 
-The C++ implementation of [CSeq\_descr](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__descr.html) uses a list of [CSeqdesc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqdesc.html) objects, where each object contains a choice indicating what kind of [CSeqdesc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqdesc.html) it is as well as the data representation of that choice. The [CSeqdesc\_Base](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqdesc__Base.html) header file lists the choice enumeration which are summarized in the following table. The Value column shows the numeric value of the choice.
+The C++ implementation of [CSeq\_descr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__descr.html) uses a list of [CSeqdesc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqdesc.html) objects, where each object contains a choice indicating what kind of [CSeqdesc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqdesc.html) it is as well as the data representation of that choice. The [CSeqdesc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqdesc__Base.html) header file lists the choice enumeration which are summarized in the following table. The Value column shows the numeric value of the choice.
 
 **Seqdesc Choice Variants**
 
@@ -1047,7 +1047,7 @@ The map location given here is a Dbtag, to be able to cite a map location given 
 
 ##### pdb: PDB Data
 
-NCBI produces ASN.1 encoded entries from data provided by many different sources. Almost all of the data items from these widely differing sources are mapped into the common ASN.1 specifications described in this document. However, in all cases a small number of elements are unique to a particular data source, or cannot be unambiguously mapped into the common ASN.1 specification. Rather than lose such elements, they are carried in small data structures unique to each data source. These are specified in [seqblock.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn) and implemented by the C++ classes [CGB\_block](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGB__block.html), [CEMBL\_block](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCEMBL__block.html), [CSP\_block](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSP__block.html), [CPIR\_block](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPIR__block.html), [CPRF\_block](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPRF__block.html), and [CPDB\_block](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPDB__block.html).
+NCBI produces ASN.1 encoded entries from data provided by many different sources. Almost all of the data items from these widely differing sources are mapped into the common ASN.1 specifications described in this document. However, in all cases a small number of elements are unique to a particular data source, or cannot be unambiguously mapped into the common ASN.1 specification. Rather than lose such elements, they are carried in small data structures unique to each data source. These are specified in [seqblock.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn) and implemented by the C++ classes [CGB\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGB__block.html), [CEMBL\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCEMBL__block.html), [CSP\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSP__block.html), [CPIR\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPIR__block.html), [CPRF\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPRF__block.html), and [CPDB\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPDB__block.html).
 
 <a name="ch_datamod.genbank_GenBank_Flat"></a>
 
@@ -1133,7 +1133,7 @@ For example, a segmented Bioseq (called "X") has a SEQUENCE OF Seq-loc which are
 
 The type of segmented Bioseq described above might be used to represent the putative mRNA by simply pointing to the exons on two pieces of genomic sequence. Suppose however, that we had only sequenced around the exons on the genomic sequence, but wanted to represent the putative complete genomic sequence. Let us assume that Bioseq "A" is the genomic sequence of the first exon and some small amount of flanking DNA and that Bioseq "B" is the genomic sequence around the second exon. Further, we may know from mapping that the exons are separated by about two kilobases of DNA. We can represent the genomic region by creating a segmented sequence in which the first location is all of Bioseq "A". The second location will be all of a virtual Bioseq (call it "C") whose length is two thousand and which has a Seq-inst.fuzz representing whatever uncertainty we may have about the exact length of the intervening genomic sequence. The third location will be all of Bioseq "B". If "A" is 100 base pairs long and "B" is 200 base pairs, then the segmented entry is 2300 base pairs long ("A"+"C"+"B") and has the same Seq-inst.fuzz as "C" to express the uncertainty of the overall length.
 
-A variation of the case above is when one has no idea at all what the length of the intervening genomic region is. A segmented Bioseq can also represent this case. The Seq-inst.ext location chain would be first all of "A", then a Seq-loc of type "null", then all of "B". The "null" indicates that there is no available information here. The length of the segmented Bioseq is just the sum of the length of "A" and the length of "B", and Seq-inst.fuzz is set to indicate the real length is greater-than the length given. The "null" location does not add to the overall length of the segmented Bioseq and is ignored in determining the integer value of a location on the segmented Bioseq itself. If "A" is 100 base pairs long and "B" is 50 base pairs long, then position 0 on the segmented Bioseq is equivalent to the first residue of "A" and position 100 on the segmented Bioseq is equivalent to the first residue of "B", despite the intervening "null" location indicating the gap of unknown length. Utility functions in the [CSeqportUtil](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqportUtil.html) class can be configured to signal when crossing such boundaries, or to ignore them.
+A variation of the case above is when one has no idea at all what the length of the intervening genomic region is. A segmented Bioseq can also represent this case. The Seq-inst.ext location chain would be first all of "A", then a Seq-loc of type "null", then all of "B". The "null" indicates that there is no available information here. The length of the segmented Bioseq is just the sum of the length of "A" and the length of "B", and Seq-inst.fuzz is set to indicate the real length is greater-than the length given. The "null" location does not add to the overall length of the segmented Bioseq and is ignored in determining the integer value of a location on the segmented Bioseq itself. If "A" is 100 base pairs long and "B" is 50 base pairs long, then position 0 on the segmented Bioseq is equivalent to the first residue of "A" and position 100 on the segmented Bioseq is equivalent to the first residue of "B", despite the intervening "null" location indicating the gap of unknown length. Utility functions in the [CSeqportUtil](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqportUtil.html) class can be configured to signal when crossing such boundaries, or to ignore them.
 
 The Bioseqs referenced by a segmented Bioseq should always be from the same Seq-inst.mol class as the segmented Bioseq, but may well come from a mixture of Seq-inst.repr classes (as for example the mixture of virtual and raw Bioseq references used to describe sequenced and unsequenced genomic regions above). Other reasonable mixtures might be raw and map (see below) Bioseqs to describe a region which is fully mapped and partially sequenced, or even a mixture of virtual, raw, and map Bioseqs for a partially mapped and partially sequenced region. The "character" of any region of a segmented Bioseq is always taken from the underlying Bioseq to which it points in that region. However, a segmented Bioseq can have its own annotations. Things like feature tables are not automatically propagated to the segmented Bioseq.
 
@@ -1203,11 +1203,11 @@ Another fate which may await a Bioseq is that it is completely withdrawn. This i
 
 In the case of a raw or constructed Bioseq, the sequence data itself is stored in Seq-inst.seq-data, which is the data type Seq-data. Seq-data is a CHOICE of different ways of encoding the data, allowing selection of the optimal type for the case in hand. Both nucleic acid and amino acid encoding are given as CHOICEs of Seq-data rather than further subclassing first. But it is still not reasonable to encode a Bioseq of Seq-inst.mol of "aa" using a nucleic acid Seq-data type.
 
-The Seq-data type is implemented in C++ with the [CSeq\_data](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data.html) class. This class has an [E\_Choice](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data__Base.html#4ebe9e4dab723da143541cd84b40fbd3) enumeration to identify the data representation scheme and a union to hold the sequence data.
+The Seq-data type is implemented in C++ with the [CSeq\_data](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data.html) class. This class has an [E\_Choice](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data__Base.html#4ebe9e4dab723da143541cd84b40fbd3) enumeration to identify the data representation scheme and a union to hold the sequence data.
 
-The ASN.1 module [seqcode.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) and C++ class [CSeq\_code\_table](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__code__table.html) define the allowed values for the various sequence encoding and the ways to display or map between codes. This permits useful information about the allowed encoding to be stored as ASN.1 data and read into a program at runtime. Some of the encodings are presented in tables in the following discussion of the different sequence encodings. The "value" is the internal numerical value of a residue in the C++ code. The "symbol" is a one letter or multi-letter symbol to be used in display to a human. The "name" is a descriptive name for the residue.
+The ASN.1 module [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) and C++ class [CSeq\_code\_table](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__code__table.html) define the allowed values for the various sequence encoding and the ways to display or map between codes. This permits useful information about the allowed encoding to be stored as ASN.1 data and read into a program at runtime. Some of the encodings are presented in tables in the following discussion of the different sequence encodings. The "value" is the internal numerical value of a residue in the C++ code. The "symbol" is a one letter or multi-letter symbol to be used in display to a human. The "name" is a descriptive name for the residue.
 
-Some of the important methods for [CSeq\_data](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data.html) are:
+Some of the important methods for [CSeq\_data](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data.html) are:
 
 -   ***CSeq\_data()*** - constructors to create objects from string or vector of char
 
@@ -1393,7 +1393,7 @@ The C++ implementation encodes one value for a nucleic acid residue per byte.
 
 ##### NCBI4na: A Four Bit Encoding of Nucleic Acids
 
-It is possible to represent the same set of nucleic acid and ambiguities with a four bit code, where one bit corresponds to each possible base and where more than one bit is set to represent ambiguity. The particular encoding used for NCBI4na is the same as that used on the GenBank Floppy Disk Format. A four bit encoding has several advantages over the direct mapping of the ASCII IUPAC codes. One can represent "no base" as 0000. One can match various ambiguous or unambiguous bases by a simple AND. For example, in NCBI4na 0001=A, 0010=C, 0100=G, 1000=T/U. Adenine (0001) then matches Purine (0101) by the AND method. Finally, it is possible to store the sequence in half the space by storing two bases per byte. This is done both in the ASN.1 encoding and in the NCBI C++ software implementation. Utility functions (see the [CSeqportUtil](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqportUtil.html) class) allow the developer to ignore the complexities of storage while taking advantage of the greater packing. Since nucleic acid sequences can be very long, this is a real savings.
+It is possible to represent the same set of nucleic acid and ambiguities with a four bit code, where one bit corresponds to each possible base and where more than one bit is set to represent ambiguity. The particular encoding used for NCBI4na is the same as that used on the GenBank Floppy Disk Format. A four bit encoding has several advantages over the direct mapping of the ASCII IUPAC codes. One can represent "no base" as 0000. One can match various ambiguous or unambiguous bases by a simple AND. For example, in NCBI4na 0001=A, 0010=C, 0100=G, 1000=T/U. Adenine (0001) then matches Purine (0101) by the AND method. Finally, it is possible to store the sequence in half the space by storing two bases per byte. This is done both in the ASN.1 encoding and in the NCBI C++ software implementation. Utility functions (see the [CSeqportUtil](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqportUtil.html) class) allow the developer to ignore the complexities of storage while taking advantage of the greater packing. Since nucleic acid sequences can be very long, this is a real savings.
 
 **NCBI4na**
 
@@ -1424,7 +1424,7 @@ It is possible to represent the same set of nucleic acid and ambiguities with a 
 
 ##### NCBI2na: A Two Bit Encoding for Nucleic Acids
 
-If no ambiguous bases are present in a nucleic acid sequence it can be completely encoded using only two bits per base. This allows encoding into ASN.1 or storage in the NCBI C++ implementation with a four fold savings in space. As with the four bit packing, the [CSeqportUtil](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeqportUtil) class allows the programmer to ignore the complexities introduced by the packing. The two bit encoding selected is the same as that proposed for the GenBank CDROM.
+If no ambiguous bases are present in a nucleic acid sequence it can be completely encoded using only two bits per base. This allows encoding into ASN.1 or storage in the NCBI C++ implementation with a four fold savings in space. As with the four bit packing, the [CSeqportUtil](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeqportUtil) class allows the programmer to ignore the complexities introduced by the packing. The two bit encoding selected is the same as that proposed for the GenBank CDROM.
 
 **NCBI2na**
 
@@ -1457,7 +1457,7 @@ The sequence is encoded as a simple linear sequence of bytes where the first fiv
 
 #### Tables of Sequence Codes
 
-Various sequence alphabets can be stored in tables of type Seq-code-table, defined in [seqcode.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn). An enumerated type, Seq-code-type is used as a key to each table. Each code can be thought of as a square table essentially like those presented above in describing each alphabet. Each "residue" of the code has a numerical one-byte value used to represent that residue both in ASN.1 data and in internal C++ structures. The information necessary to display the value is given by the "symbol". A symbol can be in a one-letter series (e.g. A,G,C,T) or more than one letter (e.g. Met, Leu, etc.). The symbol gives a human readable representation that corresponds to each numerical residue value. A name, or explanatory string, is also associated with each.
+Various sequence alphabets can be stored in tables of type Seq-code-table, defined in [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn). An enumerated type, Seq-code-type is used as a key to each table. Each code can be thought of as a square table essentially like those presented above in describing each alphabet. Each "residue" of the code has a numerical one-byte value used to represent that residue both in ASN.1 data and in internal C++ structures. The information necessary to display the value is given by the "symbol". A symbol can be in a one-letter series (e.g. A,G,C,T) or more than one letter (e.g. Met, Leu, etc.). The symbol gives a human readable representation that corresponds to each numerical residue value. A name, or explanatory string, is also associated with each.
 
 So, the NCBI2na code above would be coded into a Seq-code-table very simply as:
 
@@ -1539,14 +1539,14 @@ The "aligns" reference requires that the Num-ref-aligns alignment be filled in w
 
 ##### Numbering: C++ Class
 
-A Numbering object is implemented by the C++ class [CNumbering](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNumbering.html). The choice of numbering type is represented by the [E\_Choice](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNumbering__Base.html#431389cd64d215c294e8f46f416372e0) enumeration. The class contains methods for getting and setting the various types of numbering.
+A Numbering object is implemented by the C++ class [CNumbering](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNumbering.html). The choice of numbering type is represented by the [E\_Choice](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNumbering__Base.html#431389cd64d215c294e8f46f416372e0) enumeration. The class contains methods for getting and setting the various types of numbering.
 
 <a name="ch_datamod.datamodel.seqset"></a>
 
 Collections of Sequences
 ------------------------
 
-This section describes the types used to organize multiple Bioseqs into tree structures. The types are located in the [seqset.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn) module.
+This section describes the types used to organize multiple Bioseqs into tree structures. The types are located in the [seqset.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn) module.
 
 <a name="ch_datamod.datamodel.cpp.seqset"></a>
 
@@ -1574,7 +1574,7 @@ A biological sequence is often most appropriately stored in the context of other
 
 Sometimes a sequence is not part of a collection (e.g. a single annotated protein). Thus a sequence entry could be either a single Bioseq or a collection of them. A Seq-entry is an entity which represents this choice. A great deal of NCBI software is designed to accept a Seq-entry as the primary unit of data. This is the most powerful and flexible object to use as a target software development in general.
 
-Some of the important methods for [CSeq\_entry](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__entry.html) are:
+Some of the important methods for [CSeq\_entry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__entry.html) are:
 
 -   ***GetLabel()*** - append a label based on type or content of the current Seq-entry
 
@@ -1588,11 +1588,11 @@ Some of the important methods for [CSeq\_entry](http://www.ncbi.nlm.nih.gov/IEB/
 
 A Bioseq-set contains a convenient collection of Seq-entry's. It can have descriptors and annotations just like a single Bioseq (see [Biological Sequences](#ch_datamod._Biological_Sequences)). It can have identifiers for the set, although these are less thoroughly controlled than Seq-ids at this time. Since the "heart" of a Bioseq-set is a collection of Seq-entry's, which themselves are either a Bioseq or a Bioseq-set, a Bioseq-set can recursively contain other sets. This recursive property makes for a very rich data structure, and a necessary one for biological sequence data, but presents new challenges for software to manipulate and display it. We will discuss some guidelines for building and using Bioseq-sets below, based on the NCBI experience to date.
 
-Some of the important methods for [CBioseq\_set](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html) are:
+Some of the important methods for [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html) are:
 
--   ***GetLabel()*** - append a label based on type or content of [CBioseq\_set](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html)
+-   ***GetLabel()*** - append a label based on type or content of [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html)
 
--   ***GetParentSet()*** - gets the parent of the current [CBioseq\_set](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html)
+-   ***GetParentSet()*** - gets the parent of the current [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html)
 
 <a name="ch_datamod.id_local_identifier_"></a>
 
@@ -1726,7 +1726,7 @@ Remember that Bioseq-sets are just convenient ways to package Bioseqs and associ
 Sequence Locations and Identifiers
 ----------------------------------
 
-This section contains documentation for types used to identify Bioseqs and describe locations on them. These types are defined in the [seqloc.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqloc/seqloc.asn) module.
+This section contains documentation for types used to identify Bioseqs and describe locations on them. These types are defined in the [seqloc.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqloc/seqloc.asn) module.
 
 <a name="ch_datamod.datamodel.cpp.seqloc"></a>
 
@@ -1758,7 +1758,7 @@ Locations of regions on Bioseqs are always given as integer offsets, also descri
 
 There are no implicit Bioseq locations. All locations include a sequence identifier. This means Features, Alignments, and Graphs are always independent of context and can always be exchanged, submitted to databases, or stored as independent objects. The main consequence of this is that information ABOUT regions of Bioseqs can be developed and contributed to the public scientific discussion without any special rights of editing the Bioseq itself needing to be granted to anyone but the original author of the Bioseq. Bioseqs in the public databases, then, no longer need an anointed curator (beyond the original author) to be included in ongoing scientific discussion and data exchange by electronic media.
 
-In addition to the various sequence location and identifier classes, several convenience functions for comparing or manipulating Na-strands are defined in [Na\_strand.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/seqloc/Na_strand.hpp):
+In addition to the various sequence location and identifier classes, several convenience functions for comparing or manipulating Na-strands are defined in [Na\_strand.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/seqloc/Na_strand.hpp):
 
 -   ***IsForward()***
 
@@ -1778,7 +1778,7 @@ One Seq-id type, "gi", has been implemented specifically to make a simple, absol
 
 A Textseq-id structure is used in many Seq-ids described below. It has four possible fields; a name, an accession number, a release, and a version. Formally, all fields are OPTIONAL, although to be useful, a Textseq-id should have at least a name or an accession or both. This style of Seq-id is used by GenBank, EMBL, DDBJ, PIR, SWISS-PROT, and PRF, but the semantics of its use differ considerably depending on the database. However none of these databases guarantees the stability of name or accession (i.e. that it points at a specific sequence), so to be unambiguous the id must also have the version. See the discussion under [Seq-id: Semantics](#ch_datamod.Seqid_Semantics_of_U) for details.
 
-Some important methods of the [CSeq\_id](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html) class are:
+Some important methods of the [CSeq\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html) class are:
 
 -   ***CSeq\_id()*** -- constructors to simplify creation of Seq-ids from primitive types (string, int). Some of these constructors auto-detect the type of the Seq-id from its string representation.
 
@@ -1796,7 +1796,7 @@ Some important nonmember template functions are:
 
 -   ***FindTextseq\_id()*** -- returns text seq-id from id list if exists, returns 0 otherwise.
 
--   ***GetSeq\_idByType()*** -- search the container of [CRef](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html)\<[CSeq\_id](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html)\> for the id of given type.
+-   ***GetSeq\_idByType()*** -- search the container of [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html)\<[CSeq\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html)\> for the id of given type.
 
 <a name="ch_datamod.Seqid_Semantics_of_U"></a>
 
@@ -1814,7 +1814,7 @@ The local Seq-id is an Object-id (see discussion in [General Use Objects](#ch_da
 
 ##### refseq: From the Reference Sequence project at the NCBI
 
-The [Reference Sequence project](http://www.ncbi.nlm.nih.gov/RefSeq/) at the NCBI aims to provide a comprehensive, integrated, non-redundant, well-annotated set of sequences, including genomic DNA, transcripts, and proteins. RefSeq assigns accessions (but not a LOCUS) to all entries. RefSeq accessions begin with two letters followed by an underscore, with additional letters after the underscore for some accessions. The leading characters have a distinct meaning as described in the [RefSeq accession format reference](http://www.ncbi.nlm.nih.gov/projects/RefSeq/key.html#accession).
+The [Reference Sequence project](https://www.ncbi.nlm.nih.gov/RefSeq/) at the NCBI aims to provide a comprehensive, integrated, non-redundant, well-annotated set of sequences, including genomic DNA, transcripts, and proteins. RefSeq assigns accessions (but not a LOCUS) to all entries. RefSeq accessions begin with two letters followed by an underscore, with additional letters after the underscore for some accessions. The leading characters have a distinct meaning as described in the [RefSeq accession format reference](https://www.ncbi.nlm.nih.gov/projects/RefSeq/key.html#accession).
 
 <a name="ch_datamod.general_Ids_from_Loc"></a>
 
@@ -1924,7 +1924,7 @@ A Seq-id is implemented in C++ as a choice, summarized in the following table:
 
 <div class="table-scroll"></div>
 
-A large number of additional functions for manipulating SeqIds are described in the [Sequence Utilities](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/util/sequence.hpp) chapter.
+A large number of additional functions for manipulating SeqIds are described in the [Sequence Utilities](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/util/sequence.hpp) chapter.
 
 <a name="ch_datamod.NCBI_ID_Database_Imp"></a>
 
@@ -1948,7 +1948,7 @@ Since ID is attempting to order a chaotic world, mistakes will inevitably be mad
 
 A Seq-loc is a location on a Bioseq of any representation class, nucleic acid or protein. All Bioseqs provide a simple integer coordinate system from 0 to (length -1) and all Seq-locs refer to that coordinate system. All Seq-locs also explicitly the Bioseq (coordinate system) to which they apply with a Seq-id. Most objects which are attached to or reference sequences do so through a Seq-loc. Features are blocks of data attached by a Seq-loc. An alignment is just a collection of correlated Seq-locs. A segmented sequence is built from other sequences by reference to Seq-locs.
 
-Some important methods of the [CSeq\_loc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc.html) class and some of the subtype classes ([CSeq\_interval](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__interval.html), [CSeq\_loc\_mix](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc__mix.html) etc.) are:
+Some important methods of the [CSeq\_loc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc.html) class and some of the subtype classes ([CSeq\_interval](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__interval.html), [CSeq\_loc\_mix](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc__mix.html) etc.) are:
 
 -   ***CSeq\_loc()*** -- constructors to simplify creation of simple Seq-loc objects.
 
@@ -1966,7 +1966,7 @@ Some important methods of the [CSeq\_loc](http://www.ncbi.nlm.nih.gov/IEB/ToolBo
 
 -   ***Add()*** -- adds a sub-location to the existing one.
 
-Beside these methods, a new class [CSeq\_loc\_CI](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc__CI.html) is defined in Seq\_loc.hpp, which provides simplified access to individual ranges of any Seq-loc, regardless of its real type and structure.
+Beside these methods, a new class [CSeq\_loc\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc__CI.html) is defined in Seq\_loc.hpp, which provides simplified access to individual ranges of any Seq-loc, regardless of its real type and structure.
 
 <a name="ch_datamod.null_A_Gap"></a>
 
@@ -2046,7 +2046,7 @@ This one is really for the future, when not only Bioseqs, but features have stab
 
 #### Seq-loc: The C++ Implementation
 
-The following table summarizes the Choice variants for [CSeq\_loc](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc.html) objects.
+The following table summarizes the Choice variants for [CSeq\_loc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc.html) objects.
 
 **Seq-loc**
 
@@ -2069,7 +2069,7 @@ The following table summarizes the Choice variants for [CSeq\_loc](http://www.nc
 
 <div class="table-scroll"></div>
 
-Note that e\_Mix and e\_Equiv Seq-loc types can recursively contain other Seq-locs. Also, the e\_Int type (implemented by [CSeq\_interval](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__interval.html)) has the following strand enumeration:
+Note that e\_Mix and e\_Equiv Seq-loc types can recursively contain other Seq-locs. Also, the e\_Int type (implemented by [CSeq\_interval](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__interval.html)) has the following strand enumeration:
 
 <a name="ch_datamod.T16"></a>
 
@@ -2084,20 +2084,20 @@ Note that e\_Mix and e\_Equiv Seq-loc types can recursively contain other Seq-lo
 
 <div class="table-scroll"></div>
 
-In addition, there are a large number of utility functions for working with SeqLocs described in the chapter on [Sequence Utilities](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/util/sequence.hpp). This allow traversal of complex locations, comparison of locations for overlap, conversion of coordinates in locations, and ability to open a window on a Bioseq through a location.
+In addition, there are a large number of utility functions for working with SeqLocs described in the chapter on [Sequence Utilities](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/util/sequence.hpp). This allow traversal of complex locations, comparison of locations for overlap, conversion of coordinates in locations, and ability to open a window on a Bioseq through a location.
 
 <a name="ch_datamod.datamodel.seqfeat"></a>
 
 Sequence Features
 -----------------
 
-This section documents data structures used to describe regions of Bioseqs. The types are located in the [seqfeat.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqfeat/seqfeat.asn) module.
+This section documents data structures used to describe regions of Bioseqs. The types are located in the [seqfeat.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqfeat/seqfeat.asn) module.
 
 <a name="ch_datamod.datamodel.cpp.seqfeat"></a>
 
 ### C++ Implementation Notes
 
-In the C++ Toolkit, many types defined in the seqfeat ASN.1 module are extended to simplify access to the feature data. The [CSeq\_feat](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__feat.html) class has methods for comparing features by type and location. The [CSeqFeatData](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqFeatData.html) class defines feature subtypes and qualifiers so that you can better identify individual features.
+In the C++ Toolkit, many types defined in the seqfeat ASN.1 module are extended to simplify access to the feature data. The [CSeq\_feat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__feat.html) class has methods for comparing features by type and location. The [CSeqFeatData](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqFeatData.html) class defines feature subtypes and qualifiers so that you can better identify individual features.
 
 -   [Introduction](#ch_datamod.datamodel.seqalign)
 
@@ -2405,7 +2405,7 @@ In the PDB structural database, non-biopolymer atoms associated with a Bioseq ar
 
 #### Seq-feat Implementation in C++
 
-The C++ implementation of a Seq-feat is mostly straightforward. However, some explanation of the "id" and "data" slots will be helpful. Both are implemented as a Choice and contained in the [CSeq\_feat](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__feat.html) object. The tables below summarize the id and data choice variants.
+The C++ implementation of a Seq-feat is mostly straightforward. However, some explanation of the "id" and "data" slots will be helpful. Both are implemented as a Choice and contained in the [CSeq\_feat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__feat.html) object. The tables below summarize the id and data choice variants.
 
 **SeqFeat.id**
 
@@ -2452,7 +2452,7 @@ The C++ implementation of a Seq-feat is mostly straightforward. However, some ex
 
 <div class="table-scroll"></div>
 
-Of course, within the software tools for producing GenBank, report, or other formats from ASN.1 are functions to format and display features as well. There are some functions to manipulate the [CSeqFeatData](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqFeatData.html) objects, such as the translation of a CdRegion, and a host of functions to use and compare the Seq-locs of "product" and "location" or easily access and use the sequence regions they point to. These functions are discussed in the [Sequence Utilities](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/util/sequence.hpp) chapter. Additional functions, described in [Exploring The Data](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/misc/sequence_macros.hpp), allow one to easily locate features of interest by type, in arbitrarily complex objects.
+Of course, within the software tools for producing GenBank, report, or other formats from ASN.1 are functions to format and display features as well. There are some functions to manipulate the [CSeqFeatData](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqFeatData.html) objects, such as the translation of a CdRegion, and a host of functions to use and compare the Seq-locs of "product" and "location" or easily access and use the sequence regions they point to. These functions are discussed in the [Sequence Utilities](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/util/sequence.hpp) chapter. Additional functions, described in [Exploring The Data](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/misc/sequence_macros.hpp), allow one to easily locate features of interest by type, in arbitrarily complex objects.
 
 <a name="ch_datamod.CdRegion_Coding_Regi"></a>
 
@@ -2997,14 +2997,14 @@ Clearly the ***Std-seg*** method should only be used when its flexibility is req
 
 #### C++ Implementation Notes
 
-The C++ Toolkit adds several methods to the classes generated from ASN.1 specifications to simplify alignment data access and manipulation. The [CSeq\_align](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__align.html) class has methods returning ***Seq-id***, start, stop, and strand for a particular alignment row, regardless of its representation; it allows swapping alignment rows or converting the alignment from one type to another. The [CDense\_seg](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDense__seg.html) class extends the default set of alignment members with sequence character width (1 or 3, depending on molecule type).
+The C++ Toolkit adds several methods to the classes generated from ASN.1 specifications to simplify alignment data access and manipulation. The [CSeq\_align](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__align.html) class has methods returning ***Seq-id***, start, stop, and strand for a particular alignment row, regardless of its representation; it allows swapping alignment rows or converting the alignment from one type to another. The [CDense\_seg](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDense__seg.html) class extends the default set of alignment members with sequence character width (1 or 3, depending on molecule type).
 
 <a name="ch_datamod.datamodel.seqres"></a>
 
 Sequence Graphs
 ---------------
 
-The Sequence Graphs section describes the Seq-graph type used to associate some analytical data with a region on a Bioseq. The type definition is located in the [seqres.asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqres/seqres.asn) module.
+The Sequence Graphs section describes the Seq-graph type used to associate some analytical data with a region on a Bioseq. The type definition is located in the [seqres.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqres/seqres.asn) module.
 
 -   [Introduction](#ch_datamod._Introduction_9)
 
@@ -3061,7 +3061,7 @@ Following are the ASN.1 specifications referenced in this chapter:
 
 ### ASN.1 Specification: general.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/general/general.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/general/general.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -3220,7 +3220,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: biblio.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/biblio/biblio.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/biblio/biblio.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --****************************************************************
@@ -3473,7 +3473,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: pub.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/pub/pub.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/pub/pub.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --********************************************************************
@@ -3527,7 +3527,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: medline.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/medline/medline.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/medline/medline.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -3623,7 +3623,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: seq.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq/seq.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq/seq.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -4088,7 +4088,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: seqblock.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --*********************************************************************
@@ -4326,7 +4326,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: seqcode.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --  *********************************************************************
@@ -4398,7 +4398,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: seqset.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -4466,7 +4466,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: seqloc.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqloc/seqloc.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqloc/seqloc.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -4600,7 +4600,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: seqfeat.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqfeat/seqfeat.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqfeat/seqfeat.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -5733,7 +5733,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: seqalign.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqalign/seqalign.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqalign/seqalign.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -6035,7 +6035,7 @@ See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 ### ASN.1 Specification: seqres.asn
 
-See also the [online-version](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqres/seqres.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqres/seqres.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************

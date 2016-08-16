@@ -45,7 +45,7 @@ E-Utils: Access to Entrez Data
 
 ### EUtils requests
 
-The base class for all requests is [CEUtils\_Request](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEUtils_Request). Derived request classes provide *Get/Set* methods to specify arguments for each request. The returned data can be read in several ways:
+The base class for all requests is [CEUtils\_Request](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEUtils_Request). Derived request classes provide *Get/Set* methods to specify arguments for each request. The returned data can be read in several ways:
 
 -   ******Read()****** - reads the data returned by the server into a string.
 
@@ -57,18 +57,18 @@ The base class for all requests is [CEUtils\_Request](http://www.ncbi.nlm.nih.go
 
 ### Connection context
 
-[CEUtils\_ConnContext](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEUtils_ConnContext) allows transferring EUtils context from one request to another. It includes user-provided information (tool, email) and history data (WebEnv, query\_key). If no context is provided for a request (the *ctx* argument is *NULL*), a temporary context will be created while executing the request.
+[CEUtils\_ConnContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEUtils_ConnContext) allows transferring EUtils context from one request to another. It includes user-provided information (tool, email) and history data (WebEnv, query\_key). If no context is provided for a request (the *ctx* argument is *NULL*), a temporary context will be created while executing the request.
 
 <a name="ch_dataaccess.EUtils_objects"></a>
 
 ### EUtils objects
 
-Most requests return specific data types described in EUtils DTDs. The C++ classes generated from the DTDs can be found in [include/objtools/eutils/](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objtools/eutils)`<util-name>`.
+Most requests return specific data types described in EUtils DTDs. The C++ classes generated from the DTDs can be found in [include/objtools/eutils/](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objtools/eutils)`<util-name>`.
 
 <a name="ch_dataaccess.Sample_application"></a>
 
 ### Sample application
 
-An example of using EUtils API can be found in [sample/app/eutils/eutils\_sample.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/eutils/eutils_sample.cpp).
+An example of using EUtils API can be found in [sample/app/eutils/eutils\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/eutils/eutils_sample.cpp).
 
 

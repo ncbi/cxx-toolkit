@@ -129,39 +129,39 @@ Example Applications
 
 The suite of application examples below highlight important areas of the Toolkit and can be used as a starting point for your own development. Note that you may generate the sample application code by running the [new\_project](ch_proj.html#ch_proj.new_proj_struct) script for that application. The following examples are now available:
 
--   [app/basic](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic/) - This example builds two applications: a generic application (`basic_sample`) to demonstrate the use of [key Toolkit classes](#ch_start.key_classes), and an example program (`multi_command`) that accepts multiple command line forms.
+-   [app/basic](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic/) - This example builds two applications: a generic application (`basic_sample`) to demonstrate the use of [key Toolkit classes](#ch_start.key_classes), and an example program (`multi_command`) that accepts multiple command line forms.
 
--   [app/alnmgr](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/alnmgr/) - Creates an alignment manager application.
+-   [app/alnmgr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/alnmgr/) - Creates an alignment manager application.
 
--   [app/asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/asn/) - Creates a library based on an ASN.1 specification, and a test application.
+-   [app/asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/asn/) - Creates a library based on an ASN.1 specification, and a test application.
 
--   [app/blast](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/blast/) - Creates an application that uses BLAST.
+-   [app/blast](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/blast/) - Creates an application that uses BLAST.
 
--   [app/cgi](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/cgi/) - Creates a Web-enabled CGI application.
+-   [app/cgi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/cgi/) - Creates a Web-enabled CGI application.
 
--   [app/dbapi](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/dbapi/) - Creates a database application.
+-   [app/dbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/dbapi/) - Creates a database application.
 
--   [app/eutils](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/eutils/) - Creates an eUtils client application.
+-   [app/eutils](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/eutils/) - Creates an eUtils client application.
 
--   [app/lds](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/lds/) - Creates an application that uses local data storage (LDS).
+-   [app/lds](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/lds/) - Creates an application that uses local data storage (LDS).
 
--   [app/netcache](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/) - Creates an application that uses [NetCache](ch_app.html#ch_app.ncbi_netcache_service).
+-   [app/netcache](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/) - Creates an application that uses [NetCache](ch_app.html#ch_app.ncbi_netcache_service).
 
--   [app/netschedule](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/) - Creates an NCBI [GRID](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/GRID) application that uses [NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule).
+-   [app/netschedule](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/) - Creates an NCBI [GRID](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/GRID) application that uses [NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule).
 
--   [app/objects](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/objects/) - Creates an application that uses ASN.1 objects.
+-   [app/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/objects/) - Creates an application that uses ASN.1 objects.
 
--   [app/objmgr](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/objmgr/) - The Toolkit manipulates biological data objects in the context of an `Object Manager` class (***CObjectManager***). This example creates an application that uses the object manager.
+-   [app/objmgr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/objmgr/) - The Toolkit manipulates biological data objects in the context of an `Object Manager` class (***CObjectManager***). This example creates an application that uses the object manager.
 
--   [app/sdbapi](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/sdbapi/) - Creates a database application that uses `SDBAPI`.
+-   [app/sdbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/sdbapi/) - Creates a database application that uses `SDBAPI`.
 
--   [app/serial](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/serial/) - Creates a dozen applications that demonstrate using serial library hooks, plus a handful of other applications that demonstrate other aspects of the serial library.
+-   [app/serial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/serial/) - Creates a dozen applications that demonstrate using serial library hooks, plus a handful of other applications that demonstrate other aspects of the serial library.
 
--   [app/soap/client](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/soap/client/) - Creates a SOAP client application.
+-   [app/soap/client](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/soap/client/) - Creates a SOAP client application.
 
--   [app/soap/server](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/soap/server/) - Creates a SOAP server application.
+-   [app/soap/server](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/soap/server/) - Creates a SOAP server application.
 
--   [app/unit\_test](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/unit_test/) - Creates an NCBI unit test application.
+-   [app/unit\_test](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/unit_test/) - Creates an NCBI unit test application.
 
 To build an example use its accompanying `Makefile`.
 
@@ -172,13 +172,13 @@ Example Libraries
 
 The following example libraries can be created with [new\_project](ch_proj.html#ch_proj.new_proj_struct) and used as a starting point for a new library:
 
--   [lib/basic](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/lib/basic/) - Creates a trivial library (it finds files in **`PATH`**) for demonstrating the basics of the build system for libraries. This example library includes a simple test application.
+-   [lib/basic](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/lib/basic/) - Creates a trivial library (it finds files in **`PATH`**) for demonstrating the basics of the build system for libraries. This example library includes a simple test application.
 
--   [lib/asn](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/lib/asn_lib/) - Creates an ASN.1 object project.
+-   [lib/asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/lib/asn_lib/) - Creates an ASN.1 object project.
 
--   [lib/dtd](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/lib/dtd/) - Creates an XML DTD project.
+-   [lib/dtd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/lib/dtd/) - Creates an XML DTD project.
 
--   [lib/xsd](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/lib/xsd/) - Creates an XML Schema project.
+-   [lib/xsd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/lib/xsd/) - Creates an XML Schema project.
 
 <a name="ch_start.source_avail"></a>
 
@@ -254,7 +254,7 @@ The NCBI C++ Toolkit `source tree` (see [Figure 1](#ch_start.F1)) is organized a
 
 -   files for platform-specific [configuration and installation](ch_config.html#ch_config.Running_the_configur):
 
-    -   `compilers/` -- directory containing [compiler-specific configure wrappers](ch_config.html#ch_config.Special_Consideratio) (`unix/*.sh`) and miscellaneous resources and build scripts for [MS Windows](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/common/config/ncbiconf_msvc.h)/[MacOS](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/common/config/ncbiconf_xcode.h) platforms
+    -   `compilers/` -- directory containing [compiler-specific configure wrappers](ch_config.html#ch_config.Special_Consideratio) (`unix/*.sh`) and miscellaneous resources and build scripts for [MS Windows](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/common/config/ncbiconf_msvc.h)/[MacOS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/common/config/ncbiconf_xcode.h) platforms
 
     -   **configure** -- a multi-platform configuration shell script (generated from template `configure.ac` using [autoconf](http://www.gnu.org/software/autoconf))
 
@@ -282,7 +282,7 @@ For the overall NCBI C++ source tree structure see [Top-Level Source Organizatio
 
 An individual project contains the set of source code and/or scripts that are required to build a Toolkit library or executable. In the NCBI source tree, projects are identified as sub-trees of the `src`, and `include` directories of the main C++ tree root. For example, `corelib `and `objects/objmgr` are both projects. However, note that a project's code exists in two sibling directories: the public headers in `include/` and the source code, private headers and `makefiles` in `src`.
 
-The contents of each project's [source tree](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src) are:
+The contents of each project's [source tree](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src) are:
 
 -   `*.cpp, *.hpp` -- project's source files and private headers
 
@@ -440,21 +440,21 @@ Fortunately, for the common situations where a [script](ch_getcode_svn.html#ch_g
 
 Summarized below are some features of the global Toolkit infrastructure that users may commonly employ or encounter.
 
--   ***The NCBI Namespace Macros*** The header [ncbistl.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistl.hpp) defines three principal namespace macros: **`NCBI_NS_STD`**, **`NCBI_NS_NCBI`** and **`NCBI_USING_NAMESPACE_STD`**. Respectively, these refer to the standard C++ `std::` namespace, a local NCBI namespace `ncbi::` for Toolkit entities, and a namespace combining the names from **`NCBI_NS_STD`** and **`NCBI_NS_NCBI`**.
+-   ***The NCBI Namespace Macros*** The header [ncbistl.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistl.hpp) defines three principal namespace macros: **`NCBI_NS_STD`**, **`NCBI_NS_NCBI`** and **`NCBI_USING_NAMESPACE_STD`**. Respectively, these refer to the standard C++ `std::` namespace, a local NCBI namespace `ncbi::` for Toolkit entities, and a namespace combining the names from **`NCBI_NS_STD`** and **`NCBI_NS_NCBI`**.
 
--   ***Using the NCBI Namespaces*** Also in [ncbistl.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistl.hpp) are the macros **`BEGIN_NCBI_SCOPE`** and **`END_NCBI_SCOPE`**. These bracket code blocks which define names to be included in the NCBI namespace, and are invoked in nearly all of the Toolkit headers (see example). To use the NCBI namespace in a code block, place the **`USING_NCBI_SCOPE`** macro before the block references its first unqualified name. This macro also allows for unqualified use of the `std::` namespace. Much of the Toolkit source employs this macro (see example), although it is possible to define and work with other namespaces.
+-   ***Using the NCBI Namespaces*** Also in [ncbistl.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistl.hpp) are the macros **`BEGIN_NCBI_SCOPE`** and **`END_NCBI_SCOPE`**. These bracket code blocks which define names to be included in the NCBI namespace, and are invoked in nearly all of the Toolkit headers (see example). To use the NCBI namespace in a code block, place the **`USING_NCBI_SCOPE`** macro before the block references its first unqualified name. This macro also allows for unqualified use of the `std::` namespace. Much of the Toolkit source employs this macro (see example), although it is possible to define and work with other namespaces.
 
--   ***Configuration-Dependent Macros and*** `ncbiconf.h`` #ifdef` tests for the configuration-dependent macros, for example **`_DEBUG`** or **`NCBI_OS_UNIX`**, etc., are used throughout the Toolkit for conditional compilation and accommodate your environment's requirements. The **configure** script defines many of these macros; the resulting `#define`'s appear in the [ncbiconf.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/find?string=ncbiconf.h) header and is found in the `<builddir>/inc` directory. It is not typically included explicitly by the programmer, however. Rather, it is included by other basic Toolkit headers (e.g., `ncbitype.h, ncbicfg.h, ncbistl.hpp`) to pick up configuration-specific features.
+-   ***Configuration-Dependent Macros and*** `ncbiconf.h`` #ifdef` tests for the configuration-dependent macros, for example **`_DEBUG`** or **`NCBI_OS_UNIX`**, etc., are used throughout the Toolkit for conditional compilation and accommodate your environment's requirements. The **configure** script defines many of these macros; the resulting `#define`'s appear in the [ncbiconf.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/find?string=ncbiconf.h) header and is found in the `<builddir>/inc` directory. It is not typically included explicitly by the programmer, however. Rather, it is included by other basic Toolkit headers (e.g., `ncbitype.h, ncbicfg.h, ncbistl.hpp`) to pick up configuration-specific features.
 
--   ***NCBI Types (***`ncbitype.h, ncbi_limits.[h|hpp]`***)*** To promote code portability developers are strongly encouraged to use these standard C/C++ types whenever possible as they are ensured to have well-defined behavior throughout the Toolkit. Also see the current [type-use rules](ch_core.html#ch_core.types_policy). The [ncbitype.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbitype.h) header provides a set of [fixed-size integer types](ch_core.html#ch_core.fixed_size_integers) for special situations, while the `ncbi_limits.[`[h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_limits.h)`| `[hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_limits.h)`]` headers set numeric limits for the supported types.
+-   ***NCBI Types (***`ncbitype.h, ncbi_limits.[h|hpp]`***)*** To promote code portability developers are strongly encouraged to use these standard C/C++ types whenever possible as they are ensured to have well-defined behavior throughout the Toolkit. Also see the current [type-use rules](ch_core.html#ch_core.types_policy). The [ncbitype.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbitype.h) header provides a set of [fixed-size integer types](ch_core.html#ch_core.fixed_size_integers) for special situations, while the `ncbi_limits.[`[h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_limits.h)`| `[hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_limits.h)`]` headers set numeric limits for the supported types.
 
--   ***The*** `ncbistd.hpp` ***header*** The NCBI C++ standard \#include's and \#defin'itions are found in [ncbistd.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistd.hpp), which provides the interface to many of the basic Toolkit modules. The explicit NCBI headers included by `ncbistd.hpp` are: `ncbitype.h, ncbistl.hpp, ncbistr.hpp, ncbidbg.hpp, ncbiexpt.hpp` and `ncbi_limits.h`.
+-   ***The*** `ncbistd.hpp` ***header*** The NCBI C++ standard \#include's and \#defin'itions are found in [ncbistd.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistd.hpp), which provides the interface to many of the basic Toolkit modules. The explicit NCBI headers included by `ncbistd.hpp` are: `ncbitype.h, ncbistl.hpp, ncbistr.hpp, ncbidbg.hpp, ncbiexpt.hpp` and `ncbi_limits.h`.
 
--   ***Portable Stream Handling*** Programmers can ensure portable stream and buffer I/O operations by using the NCBI C++ Toolkit stream wrappers, `typedef`'s and `#define`'s declared in the [ncbistre.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistre.hpp). For example, always use ***CNcbiIstream*** instead of `YourFavoriteNamespace::istream` and favor ***NcbiCin*** over ***cin***. A variety of classes that perform case-conversion and other manipulations in conjunction with NCBI streams and buffers are also available. See the [source](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistre.hpp) for details.
+-   ***Portable Stream Handling*** Programmers can ensure portable stream and buffer I/O operations by using the NCBI C++ Toolkit stream wrappers, `typedef`'s and `#define`'s declared in the [ncbistre.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistre.hpp). For example, always use ***CNcbiIstream*** instead of `YourFavoriteNamespace::istream` and favor ***NcbiCin*** over ***cin***. A variety of classes that perform case-conversion and other manipulations in conjunction with NCBI streams and buffers are also available. See the [source](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistre.hpp) for details.
 
 -   ***Use of the C++ STL (Standard Template Library) in the Toolkit*** The Toolkit employs the STL's set of template container classes, algorithms and iterators for managing collections of objects. Being standardized interfaces, coding with them provides portability. However, one drawback is the inability of STL containers to deal with reference objects, a problem area the Toolkit's [CRef and CObject classes](ch_core.html#ch_core.CRef) largely remedy.
 
--   ***Serializable Objects, the ASN.1 Data Types and*** **datatool** The [ASN.1 data model](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/SDKDOCS/DATAMODL.HTML) for biological data underlies all of the C and C++ Toolkit development at NCBI. The C++ Toolkit represents the ASN.1 data types as [serializable objects](ch_proj.html#ch_proj.ser_object), that is, objects able to save, restore, or transmit their state. This requires knowledge of an object's type and as such a ***CTypeInfo*** object is provided in each class to encapsulate [type information](ch_ser.html#ch_ser.typeinfo.html).<br/>Additionally, [object stream](ch_ser.html#ch_ser.objstream.html) classes (***CObject[IO]Stream***, and subclasses) have been designed specifically to perform data object serialization. The nuts-and-bolts of doing this has been documented on the [Processing Serial Data](ch_ser.html#ch_ser.asn.html) page, with additional information about the contents and parsing of ASN.1-derived objects in [Traversing a Data Structure](ch_ser.html#ch_ser.traverse.html).Each of the serializable objects appears in its own subdirectory under `[`[src](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects)`| `[include](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects)`]/objects`. These `objects/*` projects are configured differently from the rest of the Toolkit, in that header and source files are auto-generated from the ASN.1 specifications by the [datatool](ch_app.html#ch_app.datatool) program. The --with-objects flag to **configure** also directs a build of the [user classes](ch_proj.html#ch_proj.base_classes) for the serializable objects.
+-   ***Serializable Objects, the ASN.1 Data Types and*** **datatool** The [ASN.1 data model](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/SDKDOCS/DATAMODL.HTML) for biological data underlies all of the C and C++ Toolkit development at NCBI. The C++ Toolkit represents the ASN.1 data types as [serializable objects](ch_proj.html#ch_proj.ser_object), that is, objects able to save, restore, or transmit their state. This requires knowledge of an object's type and as such a ***CTypeInfo*** object is provided in each class to encapsulate [type information](ch_ser.html#ch_ser.typeinfo.html).<br/>Additionally, [object stream](ch_ser.html#ch_ser.objstream.html) classes (***CObject[IO]Stream***, and subclasses) have been designed specifically to perform data object serialization. The nuts-and-bolts of doing this has been documented on the [Processing Serial Data](ch_ser.html#ch_ser.asn.html) page, with additional information about the contents and parsing of ASN.1-derived objects in [Traversing a Data Structure](ch_ser.html#ch_ser.traverse.html).Each of the serializable objects appears in its own subdirectory under `[`[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects)`| `[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects)`]/objects`. These `objects/*` projects are configured differently from the rest of the Toolkit, in that header and source files are auto-generated from the ASN.1 specifications by the [datatool](ch_app.html#ch_app.datatool) program. The --with-objects flag to **configure** also directs a build of the [user classes](ch_proj.html#ch_proj.base_classes) for the serializable objects.
 
 <a name="ch_start.key_classes"></a>
 

@@ -100,9 +100,9 @@ Users at NCBI have the following sources for help:
 
 -   Mailing lists:
 
-    -   The [grid](http://www.ncbi.nlm.nih.gov/mailman/listinfo/grid) mailing list (<span class="oem_span">nypkGujip5ust5upo5nv/</span>) for general GRID-related discussion and announcements.
+    -   The [grid](https://www.ncbi.nlm.nih.gov/mailman/listinfo/grid) mailing list (<span class="oem_span">nypkGujip5ust5upo5nv/</span>) for general GRID-related discussion and announcements.
 
-    -   The [grid-core](http://www.ncbi.nlm.nih.gov/mailman/listinfo/grid-core) mailing list (<span class="oem_span">nypk4jvylGujip5ust5upo5nv/</span>) for getting help using or trouble-shooting a GRID service.
+    -   The [grid-core](https://www.ncbi.nlm.nih.gov/mailman/listinfo/grid-core) mailing list (<span class="oem_span">nypk4jvylGujip5ust5upo5nv/</span>) for getting help using or trouble-shooting a GRID service.
 
 -   The GRID developers:
 
@@ -346,7 +346,7 @@ In this case a real CGI does not need to be modified at all and **remote\_cgi** 
 
 On the client side (front-end) **cgi2rcgi** sees that the job’s status is changed to “done” gets the data sent by the server side (back-end), deserializes it and writes it on its **`stdout`**.
 
-**cgi2rcgi** utility has two html template files to define its look. The first file is [cgi2rcgi.html](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/cgi2rcgi/cgi2rcgi.html) (can be redefined in [cgi2rcgi.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/cgi2rcgi/cgi2rcgi.ini) file) which is the main html template file and it contains all common html tags for the particular application. It also has to have two required tags.
+**cgi2rcgi** utility has two html template files to define its look. The first file is [cgi2rcgi.html](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/cgi2rcgi/cgi2rcgi.html) (can be redefined in [cgi2rcgi.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/cgi2rcgi/cgi2rcgi.ini) file) which is the main html template file and it contains all common html tags for the particular application. It also has to have two required tags.
 
 `<@REDIRECT@>` should be inside `<head>` tag and is used to inject a page reloading code.
 
@@ -374,17 +374,17 @@ The following sections describe how to wrap an existing CGI application into a G
 
 #### Running arbitrary applications through Grid Framework
 
-The client side collects a command line, a **`stdin`** stream and some other parameters, serialize them and through Grid Framework to the server side. On the server side **remote\_app** utility picks up submitted job, deserializes the command line, the **`stdin`** and other parameters, and starts a new process with the application and the input data. Then **remote\_app** waits for the process to finish collecting its **`stdout`**, **`stdin`** and **`errcode`**. After that it serializes collected data and sends it back to the client side. The application for run is set in [remote\_app.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/remote_app/remote_app.ini) configuration file.
+The client side collects a command line, a **`stdin`** stream and some other parameters, serialize them and through Grid Framework to the server side. On the server side **remote\_app** utility picks up submitted job, deserializes the command line, the **`stdin`** and other parameters, and starts a new process with the application and the input data. Then **remote\_app** waits for the process to finish collecting its **`stdout`**, **`stdin`** and **`errcode`**. After that it serializes collected data and sends it back to the client side. The application for run is set in [remote\_app.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/remote_app/remote_app.ini) configuration file.
 
-**Source code:** [src/app/grid/remote\_app/remote\_app\_wn.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/remote_app/remote_app_wn.cpp)
+**Source code:** [src/app/grid/remote\_app/remote\_app\_wn.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/remote_app/remote_app_wn.cpp)
 
-**Config file:** [remote\_app.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/remote_app/remote_app.ini)
+**Config file:** [remote\_app.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/remote_app/remote_app.ini)
 
-Classes that should be used to prepare an input data a remote application and get its results are [CRemoteAppRequest](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRemoteAppRequest&d=) and [CRemoteAppResult](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRemoteAppResult&d=). See also [CGridClient](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGridClient.html), [CGridClientApp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGridClientApp.html).
+Classes that should be used to prepare an input data a remote application and get its results are [CRemoteAppRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRemoteAppRequest&d=) and [CRemoteAppResult](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRemoteAppResult&d=). See also [CGridClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGridClient.html), [CGridClientApp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGridClientApp.html).
 
-**Client example:** [src/sample/app/netschedule/remote\_app\_client\_sample.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/remote_app_client_sample.cpp)
+**Client example:** [src/sample/app/netschedule/remote\_app\_client\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/remote_app_client_sample.cpp)
 
-**Config file:** [src/sample/app/netschedule/remote\_app\_client\_sample.ini](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/remote_app_client_sample.ini)
+**Config file:** [src/sample/app/netschedule/remote\_app\_client\_sample.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/remote_app_client_sample.ini)
 
 **grid\_cli** utility allows submitting a job for a remote application from its command line or a jobs file. See **grid\_cli help**.
 
@@ -484,7 +484,7 @@ An API is available to submit tasks to [Worker Nodes](#ch_grid.Worker_Nodes), an
 Implementing a Network Server
 -----------------------------
 
-The [CServer](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html), [IServer\_ConnectionFactory](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIServer__ConnectionFactory.html), and [IServer\_ConnectionHandler](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIServer__ConnectionHandler.html) classes provide a framework for creating multithreaded network servers with one-thread-per-request scheduling. The server creates a pool of connection handlers for maintaining the socket connections, and a pool of threads for handling the socket events. With each socket event, ***CServer*** allocates a thread from the thread pool to handle the event, thereby making it possible to serve a large number of concurrent requests efficiently.
+The [CServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html), [IServer\_ConnectionFactory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIServer__ConnectionFactory.html), and [IServer\_ConnectionHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIServer__ConnectionHandler.html) classes provide a framework for creating multithreaded network servers with one-thread-per-request scheduling. The server creates a pool of connection handlers for maintaining the socket connections, and a pool of threads for handling the socket events. With each socket event, ***CServer*** allocates a thread from the thread pool to handle the event, thereby making it possible to serve a large number of concurrent requests efficiently.
 
 The following topics discuss the various aspects of implementing a network server:
 
@@ -710,11 +710,11 @@ To facilitate logfile analysis, the more detailed "new" log posting format is re
         return CMyServerApp().AppMain(argc, argv);
     }
 
-Grouping diagnostics into request-specific blocks is very helpful for post-processing. To facilitate this, [CDiagContext](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagContext.html) provides the ***PrintRequestStart()***, ***PrintRequestStop()***, ***Extra()***, and various ***Print()***, methods.
+Grouping diagnostics into request-specific blocks is very helpful for post-processing. To facilitate this, [CDiagContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagContext.html) provides the ***PrintRequestStart()***, ***PrintRequestStop()***, ***Extra()***, and various ***Print()***, methods.
 
-The ***CDiagContext::SetRequestContext()*** method enables you to use a [CRequestContext](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) object to pass certain request-specific information - such as request ID, client IP, bytes sent, request status, etc. - to the diagnostics context. The request context information can be invaluable when analyzing logs.
+The ***CDiagContext::SetRequestContext()*** method enables you to use a [CRequestContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) object to pass certain request-specific information - such as request ID, client IP, bytes sent, request status, etc. - to the diagnostics context. The request context information can be invaluable when analyzing logs.
 
-[CRequestContext](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) objects are merely convenient packages for passing information - they can be preserved across multiple events or re-created as needed. However, as ***CObject***-derived objects, they should be wrapped by ***CRef*** to avoid inadvertent deletion by code accepting a ***CRef*** parameter.
+[CRequestContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) objects are merely convenient packages for passing information - they can be preserved across multiple events or re-created as needed. However, as ***CObject***-derived objects, they should be wrapped by ***CRef*** to avoid inadvertent deletion by code accepting a ***CRef*** parameter.
 
 The following code fragments show examples of API calls for creating request-specific blocks in the logfile. Your code will be slightly different and may make these calls in different event handlers (for example, you might call ***PrintRequestStart()*** in ***OnRead()*** and ***PrintRequestStop()*** in ***OnWrite()***).
 
@@ -784,7 +784,7 @@ See the [connection library configuration reference](ch_libconfig.html#ch_libcon
 
 Here are some places to look for reference and to see how to ***CServer*** is used in practice:
 
--   [CServer Class Reference](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html)
+-   [CServer Class Reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html)
 
 -   [CServer test application](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/connect/test/test_server.cpp)
 

@@ -27,7 +27,7 @@ This approach is appropriate for projects requiring complex GUIs with rich user 
 
 [wxWidgets](http://www.wxwidgets.org/) has a heavier API than [FOX](http://www.fox-toolkit.org/), but is not more resource intensive (it uses the underlying system's native rendering toolkit). It offers a GUI builder, support for automated code generation, and a carefully designed event model that makes it a much more capable solution if your application needs extend beyond a dialog-based application with multiple controls. It additionally offers substantial support for OpenGL. Also, its installations are maintained in NCBI for a variety of OS's.
 
-This approach is used in NCBI by the [Cn3D](http://www.ncbi.nlm.nih.gov/Structure/CN3D/cn3d.shtml) application, and the [Genome Workbench](http://www.ncbi.nlm.nih.gov/projects/gbench/) application is based on that too. Please see the [wxWidgets](http://www.wxwidgets.org/) and [OpenGL](http://www.opengl.org/) websites for further information.
+This approach is used in NCBI by the [Cn3D](https://www.ncbi.nlm.nih.gov/Structure/CN3D/cn3d.shtml) application, and the [Genome Workbench](https://www.ncbi.nlm.nih.gov/projects/gbench/) application is based on that too. Please see the [wxWidgets](http://www.wxwidgets.org/) and [OpenGL](http://www.opengl.org/) websites for further information.
 
 <a name="ch_gui.Using_FOX_as_a_third_party_packag"></a>
 
@@ -45,8 +45,8 @@ This approach is used in NCBI by the taskedit application. Please see the [FOX](
 Using the Genome Workbench wxWidgets-based GUI framework
 --------------------------------------------------------
 
-This approach currently may not be appropriate for projects other than the [Genome Workbench](http://www.ncbi.nlm.nih.gov/projects/gbench/) due to its complexity.
+This approach currently may not be appropriate for projects other than the [Genome Workbench](https://www.ncbi.nlm.nih.gov/projects/gbench/) due to its complexity.
 
-The [Genome Workbench](http://www.ncbi.nlm.nih.gov/projects/gbench/) project has developed an advanced wxWidgets-based GUI framework - somewhat skewed to dealing with NCBI ASN.1 data model representations. The core framework offers a set of widget extensions and signalling libraries on top of wxWidgets. It also uses [DialogBlocks](http://www.dialogblocks.com/) as a GUI RAD development tool. The Genome Workbench [project homepage](http://www.ncbi.nlm.nih.gov/projects/gbench/) has links for downloading various binaries and the source code. ***Note:*** This code makes extensive use of the [Object Manager](ch_objmgr.html) and has very specific build requirements - both of which are difficult to configure correctly and neither of which will be documented in the near future (i.e. use at your own risk).
+The [Genome Workbench](https://www.ncbi.nlm.nih.gov/projects/gbench/) project has developed an advanced wxWidgets-based GUI framework - somewhat skewed to dealing with NCBI ASN.1 data model representations. The core framework offers a set of widget extensions and signalling libraries on top of wxWidgets. It also uses [DialogBlocks](http://www.dialogblocks.com/) as a GUI RAD development tool. The Genome Workbench [project homepage](https://www.ncbi.nlm.nih.gov/projects/gbench/) has links for downloading various binaries and the source code. ***Note:*** This code makes extensive use of the [Object Manager](ch_objmgr.html) and has very specific build requirements - both of which are difficult to configure correctly and neither of which will be documented in the near future (i.e. use at your own risk).
 
 

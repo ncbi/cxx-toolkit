@@ -21,7 +21,7 @@ The overview for this chapter consists of the following topics:
 
 ### Introduction
 
--   **CORELIB library** `xncbi`:[include](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib) \| [src](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib)
+-   **CORELIB library** `xncbi`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib)
 
 The CORELIB provides a portable low-level API and many useful application framework classes for argument processing, diagnostics, environment interface, object and reference classes, portability definitions, portable exceptions, stream wrappers, string manipulation, threads, etc.
 
@@ -29,7 +29,7 @@ This chapter provides reference material for many of CORELIB's facilities. For a
 
 ***Note***: The CORELIB must be linked to every executable that uses the NCBI C++ Toolkit!
 
--   **UTIL library** `xutil`:[include](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util) \| [src](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util)
+-   **UTIL library** `xutil`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util)
 
 The UTIL module is a collection of useful classes which can be used in more then one application. This chapter provides reference material for many of UTIL's facilities. For an overview of the UTIL module please refer to the [UTIL section in the introductory chapter](ch_intro.html#ch_intro.intro_util) on the C++ Toolkit.
 
@@ -321,14 +321,14 @@ The following is an outline of the topics presented in this chapter:
 
 -   [Using the C++ Toolkit from a Third Party Application Framework](#ch_core.Using_the_C_Toolkit_from_a_Third)
 
-**Demo Cases** [[src/sample/app/basic](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic)]
+**Demo Cases** [[src/sample/app/basic](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic)]
 
 <a name="ch_core.writing_simple_app"></a>
 
 Writing a Simple Application
 ----------------------------
 
-This section discusses how to write a simple application using the [CNcbiApplication](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html) and related class. A [conceptual understanding of the uses of the CNcbiApplication and related classes](ch_intro.html#ch_intro.intro_appframe) is presented in the introductory chapter on the C++ Toolkit.
+This section discusses how to write a simple application using the [CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html) and related class. A [conceptual understanding of the uses of the CNcbiApplication and related classes](ch_intro.html#ch_intro.intro_appframe) is presented in the introductory chapter on the C++ Toolkit.
 
 This section discusses the following topics:
 
@@ -364,7 +364,7 @@ Each of these classes is discussed in the following sections:
 
 #### CNcbiApplication
 
-[CNcbiApplication](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html) is an abstract class used to define the basic functionality and behavior of an NCBI application. Because this application class effectively supersedes the C-style ***main()*** function, minimally, it must provide the same functionality, i.e.:
+[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html) is an abstract class used to define the basic functionality and behavior of an NCBI application. Because this application class effectively supersedes the C-style ***main()*** function, minimally, it must provide the same functionality, i.e.:
 
 -   a mechanism to execute the actual application
 
@@ -386,7 +386,7 @@ The mechanism to execute the application is provided by ***CNcbiApplication***'s
 
 #### CNcbiArguments
 
-The [CNcbiArguments](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiArguments.html) class provides a data structure for holding the application's command-line arguments, along with methods for accessing and modifying these. Access to the argument values is implemented using the built-in `[ ]` operator. For example, the first argument in **`argv`** (following the program name) can be retrieved using the ***CNcbiApplication::GetArguments()*** method:
+The [CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiArguments.html) class provides a data structure for holding the application's command-line arguments, along with methods for accessing and modifying these. Access to the argument values is implemented using the built-in `[ ]` operator. For example, the first argument in **`argv`** (following the program name) can be retrieved using the ***CNcbiApplication::GetArguments()*** method:
 
     string arg1_value = GetArguments()[1];
 
@@ -426,7 +426,7 @@ Arguments must be followed by an empty terminating line.
 
 #### CNcbiEnvironment
 
-The [CNcbiEnvironment](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiEnvironment.html) class provides a data structure for storing, accessing, and modifying the environment variables accessed by the C library routine ***getenv()***.
+The [CNcbiEnvironment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiEnvironment.html) class provides a data structure for storing, accessing, and modifying the environment variables accessed by the C library routine ***getenv()***.
 
 The following describes the public interface to the ***CNcbiEnvironment***:
 
@@ -576,7 +576,7 @@ Then open the solution file `example\compilers\msvc1000_prj\static\build\example
 
 #### Discussion of the Sample Application
 
-In the [sample application](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic/basic_sample.cpp) above:
+In the [sample application](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic/basic_sample.cpp) above:
 
 1. There is an application class derived from ***CNcbiApplication***, which overrides the purely virtual function ***Run()*** as well as the initialization (***Init()***) and cleanup (***Exit()***) functions:
 
@@ -946,7 +946,7 @@ The [Supporting Command-Based Command Lines](#ch_core.Supporting_CommandBased_Co
 
 <a name="ch_core.CArgDescriptions"></a>
 
-### The ***CArgDescriptions*** ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)) class
+### The ***CArgDescriptions*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)) class
 
 [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) contains a description of unparsed arguments, that is, user-specified descriptions that are then used to parse the arguments. ***CArgDescriptions*** is used as a container to store the command-line argument descriptions. The argument descriptions are used for parsing and verifying actual command-line arguments.
 
@@ -1000,19 +1000,19 @@ The methods for ***AddXxx()*** are passed the following argument attributes:
 
 #### Argument Types
 
-The [CArgDescriptions](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) class enables registration of command-line arguments that fit one of the following pattern types:
+The [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) class enables registration of command-line arguments that fit one of the following pattern types:
 
-**Mandatory named arguments:**`-<key> <value>` (example: `-age 31`) Position-independent arguments that **must** be present in the command line. [AddKey (key, synopsis, comment, value\_type, flags)](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
+**Mandatory named arguments:**`-<key> <value>` (example: `-age 31`) Position-independent arguments that **must** be present in the command line. [AddKey (key, synopsis, comment, value\_type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
 
-**Optional named arguments:**`[-<key> <value>]` (example: `-name Lisa`) Position-independent arguments that are **optional**. [AddOptionalKey (key, synopsis, comment, value\_type, flags)](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) A default value can be specified in the argument's description to cover those cases where the argument does not occur in the command line[. AddDefaultKey (key, synopsis, comment, value\_type, default\_value, flags)](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
+**Optional named arguments:**`[-<key> <value>]` (example: `-name Lisa`) Position-independent arguments that are **optional**. [AddOptionalKey (key, synopsis, comment, value\_type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) A default value can be specified in the argument's description to cover those cases where the argument does not occur in the command line[. AddDefaultKey (key, synopsis, comment, value\_type, default\_value, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
 
-**Optional named flags:**`[-<flag>]` (example: ***-reverse***) Position-independent boolean (without value) arguments. These arguments are **always** optional. [AddFlag (flag, comment, set\_value)](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
+**Optional named flags:**`[-<flag>]` (example: ***-reverse***) Position-independent boolean (without value) arguments. These arguments are **always** optional. [AddFlag (flag, comment, set\_value)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
 
-**Mandatory named positional arguments:**`<value>` (example: `12 Feb`) These are position-`dependent` arguments (of any type), which are read using a `value` only. They do, however, have names stored with their descriptions, which they are associated with in an order-dependent fashion. Specifically, the order in which untagged argument descriptions are added to the ***CArgDescriptions*** object using ***AddPositional()*** defines the order in which these arguments should appear in the command line. [AddPositional (key, comment, value\_type, flags)](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
+**Mandatory named positional arguments:**`<value>` (example: `12 Feb`) These are position-`dependent` arguments (of any type), which are read using a `value` only. They do, however, have names stored with their descriptions, which they are associated with in an order-dependent fashion. Specifically, the order in which untagged argument descriptions are added to the ***CArgDescriptions*** object using ***AddPositional()*** defines the order in which these arguments should appear in the command line. [AddPositional (key, comment, value\_type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
 
-**Optional named positional arguments:**`[value]` (example: `foo.txt bar`) Position-`dependent` arguments that are `optional`. They always go after the `mandatory` positional arguments. The order in which untagged argument descriptions are added to the ***CArgDescriptions*** object using ***Add[Optional\|Default]Positional()*** defines the order in which these arguments should appear in the command line. [AddOptionalPositional (key, comment, value\_type, flags)](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)[AddDefaultPositional (key, comment, value\_type, default\_value, flags)](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
+**Optional named positional arguments:**`[value]` (example: `foo.txt bar`) Position-`dependent` arguments that are `optional`. They always go after the `mandatory` positional arguments. The order in which untagged argument descriptions are added to the ***CArgDescriptions*** object using ***Add[Optional\|Default]Positional()*** defines the order in which these arguments should appear in the command line. [AddOptionalPositional (key, comment, value\_type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)[AddDefaultPositional (key, comment, value\_type, default\_value, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
 
-**Unnamed positional arguments** (all of the same type: `<value1> | [valueN]` (example: `foo.c bar.c xxx.c`). These are also position-`dependent` arguments that are read using a `value` only. They are expected to appear at the very end of the command line, after all named arguments. Unlike the previous argument type, however, these arguments do not have individual, named descriptions but share a single "unnamed" description. You can specify how many mandatory and how many optional arguments to expect using **`n_mandatory`** and **`n_optional`** parameters: [AddExtra (n\_mandatory, n\_optional, comment, type, flags)](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
+**Unnamed positional arguments** (all of the same type: `<value1> | [valueN]` (example: `foo.c bar.c xxx.c`). These are also position-`dependent` arguments that are read using a `value` only. They are expected to appear at the very end of the command line, after all named arguments. Unlike the previous argument type, however, these arguments do not have individual, named descriptions but share a single "unnamed" description. You can specify how many mandatory and how many optional arguments to expect using **`n_mandatory`** and **`n_optional`** parameters: [AddExtra (n\_mandatory, n\_optional, comment, type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)
 
 **Aliases** can be created for any arguments. They allow using an alternative argument name in the command line. However, only the original argument name can be used to access its value in the C++ code.
 
@@ -1027,7 +1027,7 @@ These methods can also be applied to the unnamed positional arguments (as a `gro
 
 #### Restricting the Input Argument Values
 
-Although each argument's input value is initially loaded as a simple character string, the argument's specified type implies a restricted set of possible values. For example, if the type is **`eInteger`**, then any integer value is acceptable, but floating point and non-numerical values are not. The [EType](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) enumeration quantifies the allowed types and is defined as:
+Although each argument's input value is initially loaded as a simple character string, the argument's specified type implies a restricted set of possible values. For example, if the type is **`eInteger`**, then any integer value is acceptable, but floating point and non-numerical values are not. The [EType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) enumeration quantifies the allowed types and is defined as:
 
     /// Available argument types.
     enum EType {
@@ -1044,7 +1044,7 @@ Although each argument's input value is initially loaded as a simple character s
 
 #### Implementing User-defined Restrictions Using the ***CArgAllow*** Class
 
-It may be necessary to specify a restricted range for argument values. For example, an integer argument that has a range between 5 and 10. Further restrictions on the allowed values can be specified using the ***CArgDescriptions::SetConstraint()*** method with the [CArgAllow](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow.html) class. For example:
+It may be necessary to specify a restricted range for argument values. For example, an integer argument that has a range between 5 and 10. Further restrictions on the allowed values can be specified using the ***CArgDescriptions::SetConstraint()*** method with the [CArgAllow](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow.html) class. For example:
 
     auto_ptr<CArgDescriptions> args(new CArgDescriptions);
     // add descriptions for "firstint" and "nextint" using AddXxx( ...)
@@ -1055,9 +1055,9 @@ It may be necessary to specify a restricted range for argument values. For examp
 
 This specifies that the arguments named `"firstInt"` and `"nextInt"` must both be in the range [5, 10].
 
-The [CArgAllow\_Integers](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Integers.html) class is derived from the **abstract*****CArgAllow*** class. The constructor takes the two integer arguments as lower and upper bounds for allowed values. Similarly, the [CArgAllow\_Doubles](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Doubles.html) class can be used to specify a range of allowed floating point values. For both classes, the order of the numeric arguments does not matter, because the constructors will use min/max comparisons to generate a valid range.
+The [CArgAllow\_Integers](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Integers.html) class is derived from the **abstract*****CArgAllow*** class. The constructor takes the two integer arguments as lower and upper bounds for allowed values. Similarly, the [CArgAllow\_Doubles](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Doubles.html) class can be used to specify a range of allowed floating point values. For both classes, the order of the numeric arguments does not matter, because the constructors will use min/max comparisons to generate a valid range.
 
-A third class derived from the ***CArgAllow*** class is the [CArgAllow\_Strings](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Strings.html) class. In this case, the set of allowed values cannot be specified by a ***range***, but the following construct can be used to enumerate all eligible string values:
+A third class derived from the ***CArgAllow*** class is the [CArgAllow\_Strings](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Strings.html) class. In this case, the set of allowed values cannot be specified by a ***range***, but the following construct can be used to enumerate all eligible string values:
 
     CArgAllow* constraint = (new CArgAllow_Strings())->
                                  Allow("this)->Allow("that")->Allow("etc");
@@ -1068,7 +1068,7 @@ Here, the constructor takes no arguments, and the ***Allow()*** method returns *
     args.SetConstraint("someString",
                        &(*new CArgAllow_Strings, "this", "that", "etc"));
 
-There are two other pre-defined constraint classes: [CArgAllow\_Symbols](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Symbols.html) and [CArgAllow\_String](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__String.html). If the value provided on the command line is not in the allowed set of values specified for that argument, then an exception will be generated. This exception can be caught and handled in the usual manner, as described in the discussion of [Generating a USAGE message.](#ch_core.CArgDescriptions_Usage)
+There are two other pre-defined constraint classes: [CArgAllow\_Symbols](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Symbols.html) and [CArgAllow\_String](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__String.html). If the value provided on the command line is not in the allowed set of values specified for that argument, then an exception will be generated. This exception can be caught and handled in the usual manner, as described in the discussion of [Generating a USAGE message.](#ch_core.CArgDescriptions_Usage)
 
 <a name="ch_core.CArgDescriptions_App"></a>
 
@@ -1121,7 +1121,7 @@ The arguments in the USAGE message can be arranged into groups by using ***SetCu
 
 <a name="ch_core.CArgs"></a>
 
-### The CArgs ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs.html)) Class: A Container Class for CArgValue ([\*](#ch_core.CArgValue)) Objects
+### The CArgs ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs.html)) Class: A Container Class for CArgValue ([\*](#ch_core.CArgValue)) Objects
 
 The [CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs.html) class provides a data structure where the values of the parsed arguments can be stored and includes access routines in its public interface. Argument values are obtained from the unprocessed command-line arguments via the ***CNcbiArguments*** class and then verified and processed according to the argument descriptions defined by the user in ***CArgDescriptions***. The following describes the public interface methods in ***CArgs***:
 
@@ -1166,7 +1166,7 @@ All `named` arguments can be accessed using the `[ ]` operator, as in: `myCArgs[
 
 <a name="ch_core.CArgValue"></a>
 
-### ***CArgValue*** ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html)) Class: The Internal Representation of Argument Values
+### ***CArgValue*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html)) Class: The Internal Representation of Argument Values
 
 The internal representation of an argument value, as it is stored and retrieved from its [CArgs](#ch_core.CArgs) container, is an instance of a [CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html). The primary purpose of this class is to provide type-validated loading through a set of ***AsXxx()*** methods where "***Xxx***" is the argument type such as "Integer", "Boolean", "Double", etc. The following describes the public interface methods in ***CArgValue***:
 
@@ -1247,7 +1247,7 @@ Command-based command lines have a requirement that command-less command lines d
 
 At a high level, setting up a program to support a command-less command-line requires creating a ***CArgDescriptions*** object, adding argument descriptions to it, and passing it to ***SetupArgDescriptions()***.
 
-Setting up a program to support command-based command lines is similar, but requires a ***CCommandArgDescriptions*** object instead. The [CCommandArgDescriptions](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCommandArgDescriptions.html) class is derived from [CArgDescriptions](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html), so all the same functionality is available; however, the ***AddCommand()*** method of ***CCommandArgDescriptions*** allows you to create multiple ***CArgDescriptions*** objects (one for each command) in addition to the overall program description. Other command-specific features are also provided, such as command grouping. ***Note:*** The ***ECommandPresence*** parameter of the ***CCommandArgDescriptions*** constructor controls whether or not the user must enter a command-based command line. Use **`eCommandOptional`** only when you are setting up both command-less and command-based command lines.
+Setting up a program to support command-based command lines is similar, but requires a ***CCommandArgDescriptions*** object instead. The [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCommandArgDescriptions.html) class is derived from [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html), so all the same functionality is available; however, the ***AddCommand()*** method of ***CCommandArgDescriptions*** allows you to create multiple ***CArgDescriptions*** objects (one for each command) in addition to the overall program description. Other command-specific features are also provided, such as command grouping. ***Note:*** The ***ECommandPresence*** parameter of the ***CCommandArgDescriptions*** constructor controls whether or not the user must enter a command-based command line. Use **`eCommandOptional`** only when you are setting up both command-less and command-based command lines.
 
 Programs that support command-based command lines must execute these steps:
 
@@ -1263,7 +1263,7 @@ Programs that support command-based command lines must execute these steps:
 
 6.  Process the appropriate arguments for the given command.
 
-For a sample program that demonstrates argument processing for command-based command lines, see [multi\_command.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic/multi_command.cpp).
+For a sample program that demonstrates argument processing for command-based command lines, see [multi\_command.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic/multi_command.cpp).
 
 For more information on standard command lines and general information applicable to all command line processing, see the [Command-Line Syntax](#ch_core.cmd_line_syntax) and [CArgDescriptions](#ch_core.CArgDescriptions) sections.
 
@@ -1296,7 +1296,7 @@ Or, in a group of four arguments  - "a", "b", "x", "y" - we require that either 
 
 ### Code Examples
 
-A simple application program, [test\_ncbiargs\_sample.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs_sample.cpp) demonstrates the usage of these classes for argument processing. See also [test\_ncbiargs.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs.cpp) (especially ***main()***, ***s\_InitTest0()*** and ***s\_RunTest0()*** there), and [asn2asn.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/asn2asn/asn2asn.cpp) for more examples.
+A simple application program, [test\_ncbiargs\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs_sample.cpp) demonstrates the usage of these classes for argument processing. See also [test\_ncbiargs.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs.cpp) (especially ***main()***, ***s\_InitTest0()*** and ***s\_RunTest0()*** there), and [asn2asn.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/asn2asn/asn2asn.cpp) for more examples.
 
 <a name="ch_core.namespace_concat"></a>
 
@@ -1427,7 +1427,7 @@ The **`flags`** macro parameter (a bitwise OR of enum values) can be used to con
 
 <div class="table-scroll"></div>
 
-See the [enum definition](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ENcbiParamFlags&d=) for an up-to-date list.
+See the [enum definition](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ENcbiParamFlags&d=) for an up-to-date list.
 
 The **`env`** macro parameter can be used to specify the environment variable to be searched. If the **`env`** macro parameter is not used, the environment will be searched for a variable having the form **`NCBI_CONFIG__<section>__<name>`** (***note:*** the first underscore is single; the others are double).
 
@@ -1504,7 +1504,7 @@ Important methods of the ***CParam*** class are:
 
 | Method                     | Static | Purpose                                                                                                                                                                                                                                                                                                                                                       |
 |----------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ***GetState()***           | Yes    | Get the current state of the parameter. The state indicates the last source checked when assigning its value. ***N.B.*** it specifically does *not* indicate the origin of the current value. See the [EParamState](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCParamBase.html#0f2898884063b661395c511bcdb1c6ea) enum for specific values. |
+| ***GetState()***           | Yes    | Get the current state of the parameter. The state indicates the last source checked when assigning its value. ***N.B.*** it specifically does *not* indicate the origin of the current value. See the [EParamState](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCParamBase.html#0f2898884063b661395c511bcdb1c6ea) enum for specific values. |
 | ***Get()***                | No     | Get the current parameter value.                                                                                                                                                                                                                                                                                                                              |
 | ***Set()***                | No     | Set a new parameter value (this instance only).                                                                                                                                                                                                                                                                                                               |
 | ***Reset()***              | No     | Reset the value as if it has not been initialized yet.                                                                                                                                                                                                                                                                                                        |
@@ -1580,7 +1580,7 @@ The following topics are discussed in this section:
 
 ### Working with the Registry Class: CNcbiRegistry
 
-The [CNcbiRegistry](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiRegistry.html) class is used to load, access, modify, and store runtime information read from configuration files. Previously, these files were by convention named `.*rc` files on Unix-like systems. The convention for all platforms now is to name such files `*.ini` (where `*` is by default the application name). An exception to this rule is the system-wide registry, which is named `.ncbirc` on Unix-like systems and `ncbi.ini` on Windows systems. The [CNcbiRegistry](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiRegistry.html) class can read and parse configuration files, search and edit retrieved information, and write back to the file.
+The [CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiRegistry.html) class is used to load, access, modify, and store runtime information read from configuration files. Previously, these files were by convention named `.*rc` files on Unix-like systems. The convention for all platforms now is to name such files `*.ini` (where `*` is by default the application name). An exception to this rule is the system-wide registry, which is named `.ncbirc` on Unix-like systems and `ncbi.ini` on Windows systems. The [CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiRegistry.html) class can read and parse configuration files, search and edit retrieved information, and write back to the file.
 
 The following resources are checked when loading a registry:
 
@@ -1600,7 +1600,7 @@ An environment registry is created from configuration parameters specified in th
 
 If the special environment variable **`NCBI_CONFIG_OVERRIDES`** is defined, the configuration file it names will be loaded as the overrides registry. This registry will have the next highest precedence after the environment.
 
-For the application registry, the name of the configuration file can be explicitly set with the `-conffile` command-line argument, set (or disabled) with the **`conf`** argument of [CNcbiApplication::AppMain()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html), or implicitly set (or disabled) according to [search order rules](#ch_core.ini_search_order). If the `-conffile` command-line argument is supplied, that path will be used. If the **`conf`** argument to ***AppMain()*** is supplied, the file will be determined according to [Table 2](#ch_core.T2). Otherwise, the file will be determined according to [search order rules](#ch_core.ini_search_order). The application registry follows the overrides registry in precedence.
+For the application registry, the name of the configuration file can be explicitly set with the `-conffile` command-line argument, set (or disabled) with the **`conf`** argument of [CNcbiApplication::AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html), or implicitly set (or disabled) according to [search order rules](#ch_core.ini_search_order). If the `-conffile` command-line argument is supplied, that path will be used. If the **`conf`** argument to ***AppMain()*** is supplied, the file will be determined according to [Table 2](#ch_core.T2). Otherwise, the file will be determined according to [search order rules](#ch_core.ini_search_order). The application registry follows the overrides registry in precedence.
 
 <a name="ch_core.T2"></a>
 
@@ -1614,7 +1614,7 @@ Table 2. Location of configuration files
 
 <div class="table-scroll"></div>
 
-When the application registry is successfully loaded, you can access it using the method [CNcbiApplication::GetConfig()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html). The application will throw an exception if the config file is found, is not empty, and either cannot be opened or contains invalid entries. If the **`conf`** argument to [CNcbiApplication::AppMain()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html) is not `NULL` and the config file cannot be found, then a warning will be posted to the application diagnostic stream.
+When the application registry is successfully loaded, you can access it using the method [CNcbiApplication::GetConfig()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html). The application will throw an exception if the config file is found, is not empty, and either cannot be opened or contains invalid entries. If the **`conf`** argument to [CNcbiApplication::AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html) is not `NULL` and the config file cannot be found, then a warning will be posted to the application diagnostic stream.
 
 System-wide configuration parameters can be defined in the system registry. The system registry will not be loaded if it contains the `DONT_USE_NCBIRC` entry in the `NCBI` section or if the environment variable **`NCBI_DONT_USE_NCBIRC`** is defined. See the [search order](#ch_core.ini_search_order) section below for details. The system registry follows the application registry in precedence.
 
@@ -1944,9 +1944,9 @@ The following topics are discussed in this section:
 
 ### Headers Files containing Portability Definitions
 
--   [corelib/ncbitype.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbitype.h) -- definitions of NCBI fixed-size integer types
+-   [corelib/ncbitype.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbitype.h) -- definitions of NCBI fixed-size integer types
 
--   [corelib/ncbi\_limits.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_limits.h) -- numeric limits for:
+-   [corelib/ncbi\_limits.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_limits.h) -- numeric limits for:
 
     -   NCBI fixed-size integer types
 
@@ -1954,7 +1954,7 @@ The following topics are discussed in this section:
 
     -   built-in floating-point types
 
--   [corelib/ncbi\_limits.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_limits.hpp) -- temporary (and incomplete) replacement for the Standard C++ Template Library's API
+-   [corelib/ncbi\_limits.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_limits.hpp) -- temporary (and incomplete) replacement for the Standard C++ Template Library's API
 
 <a name="ch_core.built_in_integral_types"></a>
 
@@ -2102,7 +2102,7 @@ C programmers are well-acquainted with the advantages and pitfalls of using poin
 
 C++ adds some additional considerations to pointer management: STL containers cannot hold `reference` objects, so you are left with the choice of using either pointers or `copies` of objects. Neither choice is attractive, as pointers can cause memory leaks and the copy constructor may be expensive.
 
-The idea behind a C++ `smart pointer` is to create a wrapper class capable of holding a pointer. The wrapper class's constructors and destructors can then handle memory management as the object goes in and out of scope. The problem with this solution is that it does not handle multiple pointers to the same resource properly, and it raises the issue of ownership. This is essentially what the [auto\_ptr](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr) offers, but this strategy is only safe to use when the resource maps to a single pointer variable.
+The idea behind a C++ `smart pointer` is to create a wrapper class capable of holding a pointer. The wrapper class's constructors and destructors can then handle memory management as the object goes in and out of scope. The problem with this solution is that it does not handle multiple pointers to the same resource properly, and it raises the issue of ownership. This is essentially what the [auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr) offers, but this strategy is only safe to use when the resource maps to a single pointer variable.
 
 For example, the following code has two very serious problems:
 
@@ -2121,9 +2121,9 @@ The problem with using ***auto\_ptr*** is that it provides semantics of strict o
 
 <a name="ch_core.CRef"></a>
 
-### The CRef ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html)) Class
+### The CRef ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html)) Class
 
-These issues are addressed in the NCBI C++ Toolkit by using `reference-counted` smart pointers: a resource cannot be deallocated until **all** references to it have ceased to exist. The implementation of a smart pointer in the NCBI C++ Toolkit is actually divided between two classes: [CRef](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html) and [CObject](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject.html).
+These issues are addressed in the NCBI C++ Toolkit by using `reference-counted` smart pointers: a resource cannot be deallocated until **all** references to it have ceased to exist. The implementation of a smart pointer in the NCBI C++ Toolkit is actually divided between two classes: [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html) and [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject.html).
 
 The ***CRef*** class essentially provides a pointer interface to a ***CObject***, while the ***CObject*** actually stores the data and maintains the reference count to it. The constructor used to create a new ***CRef*** pointing to a particular ***CObject*** automatically increments the object's reference count. Similarly, the ***CRef*** destructor automatically decrements the reference count. In both cases however, the modification of the reference count is implemented by a member function of the ***CObject***. The ***CRef*** class itself does not have direct access to the reference count and contains only a single data member - its pointer to a ***CObject***. In addition to the ***CRef*** class's constructors and destructors, its interface to the ***CObject*** pointer includes access/mutate functions such as:
 
@@ -2142,27 +2142,27 @@ Both the ***Release()*** and ***Reset()*** functions set the ***CRef*** object's
 
 If the ***CObject***'s internal reference count is 1 at the time ***Release()*** is invoked, that reference count will be decremented to 0, and a pointer to the ***CObject*** is returned. The ***Release()*** method can throw two types of exceptions: (1) a `null pointer` exception if **`m_ptr`** is already `0`, and (2) an `Illegal CObject::ReleaseReference()` exception if there are currently other references to that object. An object must be free of all references (but this one) before it can be "released". In contrast, the ***Reset(void)*** function simply resets the ***CRef***'s **`m_ptr`** to 0, decrements the ***CObject***'s reference count, and, if the ***CObject*** has no other references and was dynamically allocated, deletes the ***CObject***.
 
-Each member function of the ***CRef*** class also has a `const` implementation that is invoked when the pointer is to a `const` object. In addition, there is also a [CConstRef](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstRef.html) class that parallels the ***CRef*** class. Both ***CRef*** and ***CConstRef*** are implemented as template classes, where the template argument specifies the type of object which will be pointed to. For example, in the section on [Traversing an ASN.1 Data Structure](ch_ser.html#ch_ser.traverse.html_accessMember) we examined the structure of the ***CBiostruc*** class and found the following type definition
+Each member function of the ***CRef*** class also has a `const` implementation that is invoked when the pointer is to a `const` object. In addition, there is also a [CConstRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstRef.html) class that parallels the ***CRef*** class. Both ***CRef*** and ***CConstRef*** are implemented as template classes, where the template argument specifies the type of object which will be pointed to. For example, in the section on [Traversing an ASN.1 Data Structure](ch_ser.html#ch_ser.traverse.html_accessMember) we examined the structure of the ***CBiostruc*** class and found the following type definition
 
     typedef list< CRef< ::CBiostruc_id > > TId;
 
-As described there, this `typedef` defines ***TId*** to be a list of pointers to [CBiostruc\_id](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__id.html) objects. And as you might expect, ***CBiostruc\_id*** is a specialized subclass of ***CObject***.
+As described there, this `typedef` defines ***TId*** to be a list of pointers to [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__id.html) objects. And as you might expect, ***CBiostruc\_id*** is a specialized subclass of ***CObject***.
 
 <a name="ch_core.CObject"></a>
 
-### The CObject ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject.html)) Class
+### The CObject ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject.html)) Class
 
-The ***CObject*** class serves as a base class for all objects requiring a reference count. There is little overhead entailed by deriving a new class from this base class, and most objects in the NCBI C++ Toolkit are derived from the ***CObject*** class. For example, [CNCBINode](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNCBINode.html) is a direct descendant of ***CObject***, and all of the other ***HTML*** classes descend either directly or indirectly from ***CNCBINode***. Similarly, all of the ASN.1 classes defined in the [include/objects](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directory, as well as many of the classes defined in the [include/serial](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial) directory are derived either directly or indirectly from the ***CObject*** class.
+The ***CObject*** class serves as a base class for all objects requiring a reference count. There is little overhead entailed by deriving a new class from this base class, and most objects in the NCBI C++ Toolkit are derived from the ***CObject*** class. For example, [CNCBINode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNCBINode.html) is a direct descendant of ***CObject***, and all of the other ***HTML*** classes descend either directly or indirectly from ***CNCBINode***. Similarly, all of the ASN.1 classes defined in the [include/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directory, as well as many of the classes defined in the [include/serial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial) directory are derived either directly or indirectly from the ***CObject*** class.
 
 The ***CObject*** class contains a single private data member, the reference counter, and a set of member functions which provide an interface to the reference counter. As such, it is truly a base class which has no stand-alone utility, as it does not even provide allocation for data values. It is the `descendant` classes, which inherit all the functionality of the ***CObject*** class, that provide the necessary richness in representation and allocation required for the widely diverse set of objects implemented in the NCBI C++ Toolkit. Nevertheless, it is often necessary to use smart pointers on simple data types, such as ***int***, ***string*** etc. The ***CObjectFor*** class, described below, was designed for this purpose.
 
 <a name="ch_core.CObjectFor"></a>
 
-### The CObjectFor ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectFor.html)) class: using smart pointers for standard types
+### The CObjectFor ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectFor.html)) class: using smart pointers for standard types
 
 The ***CObjectFor*** class is derived directly from ***CObject***, and is implemented as a template class whose argument specifies the standard type that will be pointed to. In addition to the reference counter inherited from its parent class, ***CObjectFor*** has a private data member of the parameterized type, and a member function ***GetData()*** to access it.
 
-An example program, [smart.cpp](ch_demo.html#ch_demo.examples_1_4), uses the [CRef](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html) and [CObjectFor](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectFor.html) classes, and demonstrates the differences in memory management that arise using ***auto\_ptr*** and ***CRef***. Using an ***auto\_ptr*** to reference an ***int***, the program tests whether or not the reference is still accessible after an auxilliary ***auto\_ptr*** which goes out of scope has also been used to reference it. The same sequence is then tested using ***CRef*** objects instead.
+An example program, [smart.cpp](ch_demo.html#ch_demo.examples_1_4), uses the [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html) and [CObjectFor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectFor.html) classes, and demonstrates the differences in memory management that arise using ***auto\_ptr*** and ***CRef***. Using an ***auto\_ptr*** to reference an ***int***, the program tests whether or not the reference is still accessible after an auxilliary ***auto\_ptr*** which goes out of scope has also been used to reference it. The same sequence is then tested using ***CRef*** objects instead.
 
 In the first case, the original auto\_ptr, **`orig_ap`**, becomes `NULL` at the moment when ownership is transferred to **`copy_ap`** by the copy constructor. Using ***CRef*** objects however, the reference contained in the original ***CRef*** remains accessible (via **`orig`**) in all blocks where **`orig`** is defined. Moreover, the reference itself, i.e. the object pointed to, continues to exist until **all** references to it have been removed.
 
@@ -2366,7 +2366,7 @@ Once the DLL is loaded, you can call the DLL's functions by first getting the fu
 
 This method returns the entry point's address on success, or NULL on error. If the DLL is not loaded when this method is called, then this method will call ***Load()*** to load the DLL which can result in throwing an exception if ***Load()*** fails.
 
-Some sample code illustrating the use of these methods is shown in [src/corelib/test/test\_ncbidll.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbidll.cpp)
+Some sample code illustrating the use of these methods is shown in [src/corelib/test/test\_ncbidll.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbidll.cpp)
 
 <a name="ch_core.CExec"></a>
 
@@ -2451,9 +2451,9 @@ Using the above letter combinations as suffixes, the following spawn functions a
 
 -   ***SpawnVPE()***: In the ***SpawnVPE()*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1. The **`PATH`** environment variable is used to find the file to execute, and the environment is passed via an environment vector pointer.
 
-Refer to the [include/corelib/ncbiexec.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbiexec.hpp) file to view the exact form of the ***SpawnX()*** function calls.
+Refer to the [include/corelib/ncbiexec.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbiexec.hpp) file to view the exact form of the ***SpawnX()*** function calls.
 
-Some sample code illustrating the use of these methods is shown in [src/corelib/test/test\_ncbiexec.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiexec.cpp)
+Some sample code illustrating the use of these methods is shown in [src/corelib/test/test\_ncbiexec.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiexec.cpp)
 
 <a name="ch_core.wait_method"></a>
 
@@ -2472,7 +2472,7 @@ Implementing Parallelism using Threads and Synchronization Mechanisms
 
 This section provides reference information on how to add multithreading to your application and how to use basic synchronization objects. For an overview of these concepts refer to the [introductory topic on this subject](ch_intro.html#ch_intro.intro_threads).
 
-Note that all classes are defined in [include/corelib/ncbithr.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbithr.hpp) and [include/corelib/ncbimtx.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbimtx.hpp).
+Note that all classes are defined in [include/corelib/ncbithr.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbithr.hpp) and [include/corelib/ncbimtx.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbimtx.hpp).
 
 The following topics are discussed in this section:
 
@@ -2551,13 +2551,13 @@ The following subsections discuss the individual classes in more detail.
 
 <a name="ch_core.thread_public_methods"></a>
 
-### CThread ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)) class public methods
+### CThread ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)) class public methods
 
 ***CThread(void)*** Create the thread object (without running it). ***bool Run(void)*** Spawn the new thread, initialize internal ***CThread*** data and launch user-provided ***Main()***. The method guarantees that the new thread will start before it returns to the calling function. ***void Detach(void)*** Inform the thread that user does not need to wait for its termination. Detached thread will destroy itself after termination. If ***Detach()*** is called for a thread, which has already terminated, it will be scheduled for destruction immediately. Only one call to ***Detach()*** is allowed for each thread object. ***void Join(void\*\* exit\_data)*** Wait for the thread termination. ***Join()*** will store the ***void*** pointer as returned by the user's ***Main()*** method, or passed to the ***Exit()*** function to the **`exit_data`**. Then the thread will be scheduled for destruction. Only one call to ***Join()*** is allowed for each thread object. If called more than once, ***Join()*** will cause a runtime error. ***static void Exit(void\* exit\_data)*** This function may be called by a thread object itself to terminate the thread. The thread will be terminated and, if already detached, scheduled for destruction. **`exit_data`** value is transferred to the ***Join()*** function as if it was returned by the ***Main()***. ***Exit()*** will also call virtual method ***OnExit()*** to execute user-provided cleanup code (if any). ***bool Discard(void)*** Schedules the thread object for destruction if it has not been run yet. This function is provided since there is no other way to delete a thread object without running it. On success, return `true`. If the thread has already been run, ***Discard()*** do nothing and return `false`. ***static CThread::TID GetSelf(void)*** This method returns a unique thread ID. This ID may be then used to identify threads, for example, to track the owner of a shared resource. Since the main thread has no associated ***CThread*** object, a special value of 0 (zero) is reserved for the main thread ID.
 
 <a name="ch_core.thread_protected_methods"></a>
 
-### CThread ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)) class protected methods
+### CThread ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)) class protected methods
 
 ***virtual void\* Main(void)Main()*** is the thread's main function (just like an application ***main()*** function). This method is not defined in the ***CThread*** class. It must be provided by derived user-defined class. The return value is passed to the ***Join()*** function (and thus may be used by another thread for some sort of inter-thread communication). ***virtual void OnExit(void)*** This method is called (in the context of the thread) just before the thread termination to cleanup thread-specific resources. ***OnExit()*** is NOT called by ***Discard()***, since the thread has not been run in this case and there are no thread-specific data to destroy. ***virtual ~CThread(void)*** The destructor is protected to avoid thread object premature destruction. For this reason, no thread object can be static or stack-allocated. It is important to declare any ***CThread*** derived class destructor as `protected`.
 
@@ -2601,7 +2601,7 @@ It should be emphasized that regular (C) pointer to a thread object is not relia
 
 <a name="ch_core.thread_local_storage"></a>
 
-### Thread local storage (CTls\<\> class [[\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTls)])
+### Thread local storage (CTls\<\> class [[\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTls)])
 
 The library provides a template class to store thread specific data: ***CTls\<\>***. This means that each thread can keep its own data in the same TLS object. To perform any kind of cleanup one can provide cleanup function and additional cleanup data when storing a value in the TLS object. The following example demonstrates the usage of TLS:
 
@@ -2881,7 +2881,7 @@ where:
 
 The supported filename formats are for the Windows, Unix, and Mac file systems.
 
-The [CDirEntry](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDirEntry.html) class provides the base methods such as the following for dealing with the components of a path name :
+The [CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDirEntry.html) class provides the base methods such as the following for dealing with the components of a path name :
 
 -   ***GetPath()***: Get pathname.
 
@@ -2997,7 +2997,7 @@ These methods are inherited by the derived classes ***CDir*** and ***CFile*** th
 
 ### CFile class
 
-The [CFile](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCFile.html) is derived from the base class, ***CDirEntry***. Besides inheriting the methods discussed in the [previous section](#ch_core.CDirEntry), the following new methods specific to files are defined in the ***CFile*** class:
+The [CFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCFile.html) is derived from the base class, ***CDirEntry***. Besides inheriting the methods discussed in the [previous section](#ch_core.CDirEntry), the following new methods specific to files are defined in the ***CFile*** class:
 
 -   ***Exists()***: Check existence for a file.
 
@@ -3031,7 +3031,7 @@ Additionally, you can specify the type of operations (read, write) that should b
 
 ### CDir class
 
-The [CDir](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDir.html) is derived from the base class, ***CDirEntry***. Besides inheriting the methods discussed in the [CDirEntry section](#ch_core.CDirEntry), the following new methods specific to directories are defined in the ***CDir*** class:
+The [CDir](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDir.html) is derived from the base class, ***CDirEntry***. Besides inheriting the methods discussed in the [CDirEntry section](#ch_core.CDirEntry), the following new methods specific to directories are defined in the ***CDir*** class:
 
 -   ***Exists()***: Check existence for a directory.
 
@@ -3053,7 +3053,7 @@ The last method on the list, the ***Remove()*** method accepts an enumeration ty
 
 ### CMemoryFile class
 
-The [CMemoryFile](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCMemoryFile.html) is derived from the base class, ***CDirEntry***. This class creates a virtual image of a disk file in memory that allow normal file operations to be permitted, but the file operations are actually performed on the image of the file in memory. This can result in considerable improvements in speed when there are many "disk intensive" file operations being performed on a file which is mapped to memory.
+The [CMemoryFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCMemoryFile.html) is derived from the base class, ***CDirEntry***. This class creates a virtual image of a disk file in memory that allow normal file operations to be permitted, but the file operations are actually performed on the image of the file in memory. This can result in considerable improvements in speed when there are many "disk intensive" file operations being performed on a file which is mapped to memory.
 
 Besides inheriting the methods discussed in the [CDirEntry section](#ch_core.CDirEntry), the following new methods specific to memory mapped are defined in the ***CMemoryFile*** class:
 
@@ -3123,7 +3123,7 @@ The **`SIZE_TYPE`** is an alias for the string::size\_type, and the **`NPOS`** d
 
 ### NStr Class
 
-The ***NStr*** class encapsulates a number of class-wide static methods. These include string concatenation, string conversion, string comparison, string search functions. Most of these string operations should be familiar to developers by name. For details, see the ***NStr*** [static methods documentation](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classNStr.html#pub-static-methods).
+The ***NStr*** class encapsulates a number of class-wide static methods. These include string concatenation, string conversion, string comparison, string search functions. Most of these string operations should be familiar to developers by name. For details, see the ***NStr*** [static methods documentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classNStr.html#pub-static-methods).
 
 <a name="ch_core.UTF_strings"></a>
 
@@ -3311,7 +3311,7 @@ Therefore, to make it easier to write code that will correctly and efficiently i
 
 **`ITERATE`** uses a constant iterator; **`NON_CONST_ITERATE`** uses a non-constant iterator.
 
-The **`ITERATE`** and **`NON_CONST_ITERATE`** macros are defined in [include/corelib/ncbimisc.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbimisc.hpp), along with related macros including **`NON_CONST_SET_ITERATE`**, **`ERASE_ITERATE`**, **`VECTOR_ERASE`**, **`REVERSE_ITERATE`**, **`ITERATE_SIMPLE`**, and more.
+The **`ITERATE`** and **`NON_CONST_ITERATE`** macros are defined in [include/corelib/ncbimisc.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbimisc.hpp), along with related macros including **`NON_CONST_SET_ITERATE`**, **`ERASE_ITERATE`**, **`VECTOR_ERASE`**, **`REVERSE_ITERATE`**, **`ITERATE_SIMPLE`**, and more.
 
 <a name="ch_core.seq_pos_types"></a>
 
@@ -3471,7 +3471,7 @@ If there’s necessity to implement some special per-thread logic in ***CThreadP
 
 ### Class CThreadPool\_Task
 
-Abstract class derived from [CObject](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject&d=C), encapsulating task for execution in a ***CThreadPool***. The pure virtual method ***EStatus Execute(void)*** is called when some thread in pool becomes free and ready to execute this task. The lifetime of the task is controlled inside pool by ***CRef***\<\> classes.
+Abstract class derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject&d=C), encapsulating task for execution in a ***CThreadPool***. The pure virtual method ***EStatus Execute(void)*** is called when some thread in pool becomes free and ready to execute this task. The lifetime of the task is controlled inside pool by ***CRef***\<\> classes.
 
 <a name="ch_core._template__typename_T_1"></a>
 
@@ -3608,7 +3608,7 @@ Abstract class for obtaining piece of [CByteSource](#ch_core.class_CByteSource) 
 Using the C++ Toolkit from a Third Party Application Framework
 --------------------------------------------------------------
 
-The NCBI C++ Toolkit includes an API, via [corelib/ncbi\_toolkit.hpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_toolkit.hpp), that provides an easy way to initialize the NCBI C++ Toolkit internals to use the Toolkit from other application frameworks. This is particularly helpful when those frameworks provide their own logging.
+The NCBI C++ Toolkit includes an API, via [corelib/ncbi\_toolkit.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbi_toolkit.hpp), that provides an easy way to initialize the NCBI C++ Toolkit internals to use the Toolkit from other application frameworks. This is particularly helpful when those frameworks provide their own logging.
 
 To initialize the NCBI C++ Toolkit internal infrastructure use the function:
 

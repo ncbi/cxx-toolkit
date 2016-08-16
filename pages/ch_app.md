@@ -367,7 +367,7 @@ With the addition of XML Schema parser and generator, when converting ASN.1 spec
 
 Here, ‘module’ means ASN.1 module. Single ASN.1 specification file may contain several modules. When converting it into DTD or XML schema, it might be convenient to put each module definitions into a separate file. To do so, one should specify a special file name in `-fx` or `-fxs` command line parameter. The names of output DTD or Schema files will then be chosen automatically - they will be named after ASN.1 modules defined in the source. ‘Modular’ output does not make much sense when the source specification is DTD or Schema.
 
-You can find a number of DTDs and Schema converted by **DATATOOL** from NCBI public ASN.1 specifications [here](http://www.ncbi.nlm.nih.gov/data_specs).
+You can find a number of DTDs and Schema converted by **DATATOOL** from NCBI public ASN.1 specifications [here](https://www.ncbi.nlm.nih.gov/data_specs).
 
 <a name="ch_app.Converting_XML_Schem"></a>
 
@@ -851,7 +851,7 @@ See [Figure 2](#ch_app.specs_dtd).
 
 #### Data Types
 
-See [CDataType](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDataType.html).
+See [CDataType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDataType.html).
 
 <a name="ch_app.dt_inside.html_data_values"></a>
 
@@ -1064,7 +1064,7 @@ A configuration line of the form
 
     name=value
 
-goes into the host environment. The host environment can be accessed by clients when they perform the service name resolution. The host environment is designed to help the client to know about limitations/options that the host has, and based on this additional information the client can make a decision whether the server (despite the fact that it implements the service) is suitable for carrying out the client's request. For example, the host environment can give the client an idea about what databases are available on the host. The host environment is not interpreted or used in any way by either the daemon or by the load balancing algorithm, except that the name must be a valid identifier. The value may be practically anything, even empty. It is left solely for the client to parse the environment and to look for the information of interest. The host environment can be obtained from the service iterator by a call to `SERV_GetNextInfoEx()` (<http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_GetNextInfoEx>), which is documented in the [service mapping API](ch_conn.html#ch_conn.service_mapping_api)
+goes into the host environment. The host environment can be accessed by clients when they perform the service name resolution. The host environment is designed to help the client to know about limitations/options that the host has, and based on this additional information the client can make a decision whether the server (despite the fact that it implements the service) is suitable for carrying out the client's request. For example, the host environment can give the client an idea about what databases are available on the host. The host environment is not interpreted or used in any way by either the daemon or by the load balancing algorithm, except that the name must be a valid identifier. The value may be practically anything, even empty. It is left solely for the client to parse the environment and to look for the information of interest. The host environment can be obtained from the service iterator by a call to `SERV_GetNextInfoEx()` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_GetNextInfoEx>), which is documented in the [service mapping API](ch_conn.html#ch_conn.service_mapping_api)
 
 ***Note***: White space characters which surround the name are not preserved but they are preserved in the value i.e. when they appear after the “=” sign.
 
@@ -1160,7 +1160,7 @@ Servers are called SUPPRESSED when they are 100% penalized (see server penalties
 
 ##### Server Descriptor Specification
 
-The **`server_descriptor`**, also detailed in `connect/ncbi_server_info.h` (<http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h>), consists of the following fields:
+The **`server_descriptor`**, also detailed in `connect/ncbi_server_info.h` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h>), consists of the following fields:
 
 `server_type [host][:port] [arguments] [flags]`
 
@@ -1186,11 +1186,11 @@ where:
 
 -   **`arguments`** are required for HTTP\* servers and must specify the local part of the URL of the CGI program and, optionally, parameters such as `/somepath/somecgi.cgi?param1&param2=value2&param3=value3`. If no parameters are to be supplied, then the question mark (?) must be omitted, too. For **NCBID** servers, arguments are parameters to pass to the server and are formed as arguments for CGI programs, i.e., param1&param2&param3=value. As a special rule, '' (two single quotes) may be used to denote an empty argument for the **NCBID** server. ***STANDALONE*** and ***DNS*** servers do not take any **`arguments`**.
 
--   **`flags`** can come in any order (but no more than one instance of a flag is allowed) and essentially are the optional modifiers of values used by default. The following flags are recognized (see [ncbi\_server\_info.h](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h)):
+-   **`flags`** can come in any order (but no more than one instance of a flag is allowed) and essentially are the optional modifiers of values used by default. The following flags are recognized (see [ncbi\_server\_info.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h)):
 
     -   load calculation keyword:
 
-        -   ***Blast*** to use special algorithm for rate calculation acceptable for BLAST (<http://www.ncbi.nlm.nih.gov/blast/Blast.cgi>) applications. The algorithm uses instant values of the host load and thus is less conservative and more reactive than the ordinary one.
+        -   ***Blast*** to use special algorithm for rate calculation acceptable for BLAST (<https://www.ncbi.nlm.nih.gov/blast/Blast.cgi>) applications. The algorithm uses instant values of the host load and thus is less conservative and more reactive than the ordinary one.
 
         -   ***Regular*** to use an ordinary rate calculation (default, and the only load calculation option allowed for static servers).
 
@@ -1404,7 +1404,7 @@ Technically, the penalty is maintained by a daemon, which has the server configu
 
 ***Note:*** Once a daemon is restarted, the penalty information is lost.
 
-[Service mapping API](ch_conn.html#ch_conn.service_mapping_api) has a call `SERV_Penalize()` (<http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_Penalize>) declared in `connect/ncbi_service.h` (<http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h>), which can be used to set the penalty for the last server obtained from the mapping iterator.
+[Service mapping API](ch_conn.html#ch_conn.service_mapping_api) has a call `SERV_Penalize()` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_Penalize>) declared in `connect/ncbi_service.h` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h>), which can be used to set the penalty for the last server obtained from the mapping iterator.
 
 For script files (similar to the ones used to start/stop servers), there is a dedicated utility program called `lbsm_feedback` (<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsm_feedback.c>), which sets the penalty from the command line. This command should be used with extreme care because it affects the load-balancing mechanism substantially,.
 
@@ -2001,7 +2001,7 @@ Please note that there is a port range that might not be presently used by any c
 
 The FWDaemon could be monitored using the following web page:
 
-<http://www.ncbi.nlm.nih.gov/IEB/ToolBox/NETWORK/fwd_check.cgi>
+<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/NETWORK/fwd_check.cgi>
 
 Having the page loaded into a browser the user will see the following.
 
@@ -2311,13 +2311,13 @@ There are multiple ways to write data to **NetCache** and read it back, but the 
 
     -   Reading a blob won't delete it - it will be removed automatically when its TTL has expired, or it can be removed explicitly.
 
-    -   **NetCache** server daemons can specify a default TTL for their blobs using the `blob_ttl` entry in the `[netcache]` section of [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log). There is no direct way to find the server's default TTL, but you can find it indirectly by creating a blob and calling ***GetBlobInfo()*** on the new blob. For an example of this, see [CSampleNetCacheClient::DemoPutRead()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_client_sample.cpp).
+    -   **NetCache** server daemons can specify a default TTL for their blobs using the `blob_ttl` entry in the `[netcache]` section of [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log). There is no direct way to find the server's default TTL, but you can find it indirectly by creating a blob and calling ***GetBlobInfo()*** on the new blob. For an example of this, see [CSampleNetCacheClient::DemoPutRead()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_client_sample.cpp).
 
     -   Blob lifetime can be prolonged.
 
         -   By default, each time a blob is accessed its lifetime will be extended by the server's default `blob_ttl`. The default prolongation can be overridden by passing a TTL when accessing the blob (the passed value will apply only to that access).
 
-        -   Lifetime prolongation can be disabled by setting the `prolong_on_read` entry to `false` in [netcached.ini](http://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log).
+        -   Lifetime prolongation can be disabled by setting the `prolong_on_read` entry to `false` in [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log).
 
         -   ***Note:*** Calling ***GetBlobSize()*** will prolong a blob's lifetime (unless `prolong_on_read` is `false`), but calling ***GetBlobInfo()*** will not.
 
@@ -2403,7 +2403,7 @@ With all the storage methods, you can supply a "time-to-live" parameter, which s
 
 ##### Storing data using CNetCacheAPI
 
-If you are saving a new blob using ***CNetCacheAPI***, it will create a unique blob key and pass it back to you. Here are several ways to store data using ***CNetCacheAPI*** (see the [class reference](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) for additional methods):
+If you are saving a new blob using ***CNetCacheAPI***, it will create a unique blob key and pass it back to you. Here are several ways to store data using ***CNetCacheAPI*** (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) for additional methods):
 
     CNetCacheAPI nc_api(GetConfig());
 
@@ -2429,7 +2429,7 @@ If you are saving a new blob using ***CNetCacheAPI***, it will create a unique b
 
 ##### Storing data using CNetICacheClient
 
-If you are saving a new blob using ***CNetICacheClient***, you must supply a unique { blob key / version / subkey / cache name } combination. Here are two ways (with the cache name coming from the registry) to store data using ***CNetICacheClient*** (see the [class reference](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) for additional methods):
+If you are saving a new blob using ***CNetICacheClient***, you must supply a unique { blob key / version / subkey / cache name } combination. Here are two ways (with the cache name coming from the registry) to store data using ***CNetICacheClient*** (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) for additional methods):
 
     CNetICacheClient ic_client(CNetICacheClient::eAppRegistry);
 
@@ -2455,7 +2455,7 @@ If an attempt is made to retrieve a blob after its time-to-live has expired, an 
 
 ##### Retrieving data using CNetCacheAPI
 
-The following code snippet demonstrates three ways of retrieving data using ***CNetCacheAPI*** (see the [class reference](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) for additional methods):
+The following code snippet demonstrates three ways of retrieving data using ***CNetCacheAPI*** (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) for additional methods):
 
     // Read a simple object.
     nc_api.ReadData(key, message);
@@ -2482,7 +2482,7 @@ The following code snippet demonstrates three ways of retrieving data using ***C
 
 ##### Retrieving data using CNetICacheClient
 
-The following code snippet demonstrates two ways to retrieve data using ***CNetICacheClient***, with the cache name coming from the registry (see the [class reference](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) for additional methods):
+The following code snippet demonstrates two ways to retrieve data using ***CNetICacheClient***, with the cache name coming from the registry (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) for additional methods):
 
     // Read a simple object.
     ic_client.Read(key, version, subkey, chunk_buf, kMyBufSize);
@@ -2507,17 +2507,17 @@ The following code snippet demonstrates two ways to retrieve data using ***CNetI
 
 Here is a sample client application that demonstrates a variety of ways to use **NetCache**:
 
-[src/sample/app/netcache/netcache\_client\_sample.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_client_sample.cpp)
+[src/sample/app/netcache/netcache\_client\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_client_sample.cpp)
 
 Here is a sample application that uses **NetCache** from a CGI application:
 
-[src/sample/app/netcache/netcache\_cgi\_sample.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_cgi_sample.cpp)
+[src/sample/app/netcache/netcache\_cgi\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_cgi_sample.cpp)
 
 Here are test applications for ***CNetCacheAPI*** and ***CNetICacheClient***:
 
-[src/connect/services/test/test\_netcache\_api.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/services/test/test_netcache_api.cpp)
+[src/connect/services/test/test\_netcache\_api.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/services/test/test_netcache_api.cpp)
 
-[src/connect/services/test/test\_ic\_client.cpp](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/services/test/test_ic_client.cpp)
+[src/connect/services/test/test\_ic\_client.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/services/test/test_ic_client.cpp)
 
 Please see the [NetCache and NetSchedule](ch_libconfig.html#ch_libconfig.NetCache_and_NetSchedule) section of the Library Configuration chapter for documentation on the **NetCache** configuration parameters.
 
@@ -2539,7 +2539,7 @@ A:We usually (except for PubMed) administer NC servers, most of which are shared
 
 **Q:I assume what's in c++/include/connect/services/\*hpp is the api to use for a client?**
 
-A:Yes, also try the samples under [src/sample/app/netcache](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/) - for example:
+A:Yes, also try the samples under [src/sample/app/netcache](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/) - for example:
 
     new_project  pc_nc_client  app/netcache
     cd  pc_nc_client

@@ -343,7 +343,7 @@ The **`STD_CATCH_X(subcode, message)`** and **`STD_CATCH_XX(name, subcode, messa
 
 The **`STD_CATCH_ALL_X(subcode, message)`** and **`STD_CATCH_ALL_XX(name, subcode, message)`** macros first try to catch a ***std::exception***-derived exception (using the **`STD_CATCH_X`** and **`STD_CATCH_XX`** macros, respectively), and if the thrown exception was not caught (i.e. if it is not derived from ***std::exception***) then they catch all exceptions and post the given error name, subcode, and message.
 
-The name argument must match one of the pre-defined values in the `error_codes.hpp` header for the relevant module (e.g. [connect](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/connect_2error__codes_8hpp.html)), and the subcode argument must be within the range specified in the same place. The message argument can be of any form acceptable by the [diagnostic class CNcbiDiag](#ch_debug.std_cpp_message_post).
+The name argument must match one of the pre-defined values in the `error_codes.hpp` header for the relevant module (e.g. [connect](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/connect_2error__codes_8hpp.html)), and the subcode argument must be within the range specified in the same place. The message argument can be of any form acceptable by the [diagnostic class CNcbiDiag](#ch_debug.std_cpp_message_post).
 
 Using these macros makes dealing with exceptions in NCBI C++ code easy:
 
@@ -377,7 +377,7 @@ If you use one of **`THROW*_TRACE(...)`** macros to `throw` an exception, and th
 
 -   If the [tracing is on](#ch_debug.turn_on_tracing), then the location of the `throw` in the source code and the thrown exception will be printed out to the current diagnostic stream, e.g.:<br/>`THROW_TRACE(CParseException, ("Failed parsing(at pos. 123)", 123));`<br/><br/>`"coretest.cpp", line 708: Trace: CParseException: {123}`<br/>`Failed parsing(at pos. 123)`<br/><br/>`---------------------------------`<br/><br/>`strtod("1e-999999", 0);`<br/>`THROW1_TRACE(CErrnoException, "Failed strtod('1e-999999', 0)");`<br/><br/>`"coretest.cpp", line 718: Trace: CErrnoException:`<br/>`Failed strtod('1e-999999', 0): Result too large`
 
--   Sometimes, it can be convenient to just abort the program execution at the place where you throw an exception, e.g. in order to examine the program stack and overall state that led to this `throw`. By default, this feature is not activated. You can turn it on for your whole application by either setting the environment variable **`$ABORT_ON_THROW`** to an arbitrary non-empty string, or by setting the application's registry entry **`ABORT_ON_THROW`** (in the **`[DEBUG]`** section) to an arbitrary non-empty value. You also can turn it on and off in your program code, calling function [SetThrowTraceAbort()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/ncbiexpt_8cpp.html#a2).
+-   Sometimes, it can be convenient to just abort the program execution at the place where you throw an exception, e.g. in order to examine the program stack and overall state that led to this `throw`. By default, this feature is not activated. You can turn it on for your whole application by either setting the environment variable **`$ABORT_ON_THROW`** to an arbitrary non-empty string, or by setting the application's registry entry **`ABORT_ON_THROW`** (in the **`[DEBUG]`** section) to an arbitrary non-empty value. You also can turn it on and off in your program code, calling function [SetThrowTraceAbort()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/ncbiexpt_8cpp.html#a2).
 
 NOTE: if the source was not compiled in the debug mode, then the **`THROW*_TRACE(...)`** would just `throw` the specified exception, without doing any of the "fancy stuff" we just described.
 
@@ -584,7 +584,7 @@ There is an **`ERR_POST(message)`** macro that can be used to shorten the error 
 
 #### Turn on the Tracing
 
-The tracing (messages with severity level **`eDiag_Trace`**) is considered to be a special, debug-oriented feature, and therefore it is not affected by ***SetDiagPostLevel()*** and ***SetDiagDieLevel()***. To turn the tracing on or off in your code you can use function [SetDiagTrace()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/ncbidiag_8cpp.html#a22).
+The tracing (messages with severity level **`eDiag_Trace`**) is considered to be a special, debug-oriented feature, and therefore it is not affected by ***SetDiagPostLevel()*** and ***SetDiagDieLevel()***. To turn the tracing on or off in your code you can use function [SetDiagTrace()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/ncbidiag_8cpp.html#a22).
 
 By default, the tracing is off -- unless you assign environment variable **`$DIAG_TRACE`** to an arbitrary non-empty string (or, alternatively, you can set **`DIAG_TRACE`** entry in the **`[DEBUG]`** section of your registry to any non-empty value).
 
@@ -795,7 +795,7 @@ The ***DebugDump*** function should look like this:
 
 <a name="ch_debug.excep_cpp_toolkit"></a>
 
-Exception Handling ([\*](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbiexpt.hpp)) in the NCBI C++ Toolkit
+Exception Handling ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbiexpt.hpp)) in the NCBI C++ Toolkit
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 The following topics are discussed in this section:
@@ -888,7 +888,7 @@ The following topics are discussed in this section:
 
 ##### CException
 
-There is a single system-wide exception base class -- [CException](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException&d=C). Each subsystem **must** implement its own type of exceptions, which must be be derived from this class. The class defines basic requirements of an exception construction, backlog and reporting mechanisms.
+There is a single system-wide exception base class -- [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException&d=C). Each subsystem **must** implement its own type of exceptions, which must be be derived from this class. The class defines basic requirements of an exception construction, backlog and reporting mechanisms.
 
 The ***CException*** constructor includes location information, exception id and a message. Each exception class defines its own error codes. So, the error code "by itself" is meaningless -- one should also know the the exception class, which produced it.
 
@@ -1082,7 +1082,7 @@ Choosing and interpreting error codes can potentially create some problems becau
 
 Now, suppose an exception ***CBiggersystemException*** has been thrown somewhere. On a higher level it has been caught as ***CSubsystemException***. It is easy to see that the error code returned by the ***CSubsystemException*** object would be completely meaningless: the error code of ***CBiggersystemException*** cannot be interpreted in terms of ***CSubsystemException***.
 
-One reasonable solution seems to be isolating error codes of different exception classes -- by assigning different numeric values to them. And this has to be done by the developer. Such isolation should only be done within each branch of derivatives only. Another solution is to make sure that the exception in question does belong to the desired class, not to any intermediate classes in the derivation hierarchy. The template function [UppermostCast()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UppermostCast) can be used to perform this check:
+One reasonable solution seems to be isolating error codes of different exception classes -- by assigning different numeric values to them. And this has to be done by the developer. Such isolation should only be done within each branch of derivatives only. Another solution is to make sure that the exception in question does belong to the desired class, not to any intermediate classes in the derivation hierarchy. The template function [UppermostCast()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UppermostCast) can be used to perform this check:
 
     /// Return valid pointer to uppermost derived class only if "from" is _really_
     /// the object of the desired type.
@@ -1340,7 +1340,7 @@ The most commonly used of these macros, `THROW1_TRACE(class_name, init_arg)`, in
         throw NCBI_NS_NCBI::DbgPrint(DIAG_COMPILE_INFO, \
             exception_class(exception_arg), #exception_class)
 
-From the ***throw()*** statement here, we see that the object actually being thrown by this macro is the value returned by [DbgPrint()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). ***DbgPrint()*** in turn calls [DoDbgPrint()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). The latter is an overloaded function that simply creates a diagnostic stream and writes the file name, line number, and the exception's ***what()*** message to that stream. The exception object (which is of type **`class_name`**) is then the value returned by ***DbgPrint()***.
+From the ***throw()*** statement here, we see that the object actually being thrown by this macro is the value returned by [DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). ***DbgPrint()*** in turn calls [DoDbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). The latter is an overloaded function that simply creates a diagnostic stream and writes the file name, line number, and the exception's ***what()*** message to that stream. The exception object (which is of type **`class_name`**) is then the value returned by ***DbgPrint()***.
 
 More generally, three sets of **`THROW*_TRACE`** macros are defined:
 
@@ -1376,6 +1376,6 @@ The remaining six macros accept two arguments: an "exception" class name and an 
 
 The last three macros parallel the previous two sets of macros in their specializations, and may be applied where the exception object's constructor takes multiple arguments. (See also the discussion on [Exception handling](#ch_debug.cpp_exceptions)).
 
-It is also possible to specify that execution should abort immediately when an exception occurs. By default, this feature is not activated, but the [SetThrowTraceAbort()](http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetThrowTraceAbort) function can be used to activate it. Alternatively, you can turn it on for the entire application by setting either the **`$ABORT_ON_THROW`** environment variable, or the application's registry **`ABORT_ON_THROW`** entry (in the **`[DEBUG]`** section) to an arbitrary non-empty value.
+It is also possible to specify that execution should abort immediately when an exception occurs. By default, this feature is not activated, but the [SetThrowTraceAbort()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetThrowTraceAbort) function can be used to activate it. Alternatively, you can turn it on for the entire application by setting either the **`$ABORT_ON_THROW`** environment variable, or the application's registry **`ABORT_ON_THROW`** entry (in the **`[DEBUG]`** section) to an arbitrary non-empty value.
 
 
