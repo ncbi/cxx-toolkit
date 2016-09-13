@@ -1226,7 +1226,7 @@ The recommended algorithm for inserting text/image data is:
 
 -   Use a SQL `select` statement to select all text/image columns from this row.
 
--   Fetch the row result and get an [I\_ITDescriptor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classI__ITDescriptor.html) for each column.
+-   Fetch the row result and get an [I\_BlobDescriptor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classI__BlobDescriptor.html) for each column.
 
 -   Finish the results loop.
 
@@ -1274,7 +1274,7 @@ The recommended algorithm for updating the text/image data is:
 
 -   Use a SQL `select` statement to select all text/image columns you want to update in this row.
 
--   Fetch the row result and get an [I\_ITDescriptor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classI__ITDescriptor.html) for each column.
+-   Fetch the row result and get an [I\_BlobDescriptor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classI__BlobDescriptor.html) for each column.
 
 -   Finish the results loop.
 
