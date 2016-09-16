@@ -2554,7 +2554,7 @@ A:Yes, you can mirror NC servers, master-master style, including between BETH an
 
 **Q:Is there a limit to the size of the data blobs that can be stored?**
 
-A:Theoretical limit is high enough to say that there is no limit; in practice, limits are imposed by hardware. I have seen 400MB blobs there being written and read without an incident a thousand times a day (<http://mini.ncbi.nlm.nih.gov/1k3ru>). We can do experiments to see how your load will be handled. As a general rule, you should ask <span class="oem_span">nypk4jvylGujip5ust5upo5nv/</span> for guidance when changing your NC usage.
+A:Theoretical limit is high enough to say that there is no limit; in practice, limits are imposed by hardware. I have seen 400MB blobs there being written and [read without an incident a thousand times a day] (<https://intranet.ncbi.nlm.nih.gov/projects/applog/browser/?src=applog&mintime=08:05:00&maxtime=16:09:59&mindate=yesterday&maxdate=yesterday&nobots=0&nointernal=0&random=0&warning=1&sessions=0&fmt=split&retmax=50&run=1&term=app%3Dnetcached%20AND%20blob_size%3E300000000#noBots=0&noApp=0&noInternal=0&warning=0&notes=0&metric=>). We can do experiments to see how your load will be handled. As a general rule, you should ask <span class="oem_span">nypk4jvylGujip5ust5upo5nv/</span> for guidance when changing your NC usage.
 
 **Q:How is the expiration of BLOBs handled by NetCache? My thinking is coming from two directions. First, I wouldn’t want BLOBs deleted out from under me, but also, if the expiration is too long, I don’t want to be littering the NetCache. That is: do I need to work hard to remove all of my BLOBs or can I just trust the automatic clean-up?**
 
