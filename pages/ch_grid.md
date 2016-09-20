@@ -106,7 +106,7 @@ Users at NCBI have the following sources for help:
 
 -   The GRID developers:
 
-    -   [Dmitry Kazimirov](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/Dmitry_Kazimirov) for questions about Client-side APIs, [Worker Nodes](#ch_grid.Worker_Nodes), [NetCache](ch_app.html#ch_app.ncbi_netcache_service) and [NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) deployment, auxiliary tools and utilities, administration - setup, installation, and upgrades.
+    -   [Rafael Sadyrov](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Rafael_Sadyrov) for questions about Client-side APIs, [Worker Nodes](#ch_grid.Worker_Nodes), [NetCache](ch_app.html#ch_app.ncbi_netcache_service) and [NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) deployment, auxiliary tools and utilities, administration - setup, installation, and upgrades.
 
     -   [Andrei Gourianov](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Andrei_Gourianov) for [NetCache](ch_app.html#ch_app.ncbi_netcache_service) server questions.
 
