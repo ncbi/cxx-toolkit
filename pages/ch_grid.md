@@ -23,7 +23,7 @@ The overview for this chapter consists of the following topics:
 
 This chapter describes the NCBI GRID framework. This framework allows creating, running and maintaining a scalable, load-balanced and fault-tolerant pool of network servers ([Worker Nodes](#ch_grid.Worker_Nodes)).
 
-Note: Users within NCBI may find additional information on the [internal Wiki page](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/GRID).
+Note: Users within NCBI may find additional information on the [internal Wiki page](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/GRID).
 
 ### Chapter Outline
 
@@ -96,7 +96,7 @@ Getting Help
 
 Users at NCBI have the following sources for help:
 
--   [JIRA](http://jira/secure/CreateIssue!default.jspa) for submitting a request or bug report. Select project [C++ Toolkit](http://jira.be-md.ncbi.nlm.nih.gov/browse/CXX) and component [GRID](http://jira.be-md.ncbi.nlm.nih.gov/browse/CXX/component/10197).
+-   [JIRA](https://jira.ncbi.nlm.nih.gov/CreateIssue!default.jspa) for submitting a request or bug report. Select project [C++ Toolkit](https://jira.ncbi.nlm.nih.gov/browse/CXX) and component [GRID](https://jira.ncbi.nlm.nih.gov/browse/CXX/component/10197).
 
 -   Mailing lists:
 
@@ -106,15 +106,13 @@ Users at NCBI have the following sources for help:
 
 -   The GRID developers:
 
-    -   [Dmitry Kazimirov](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/Dmitry_Kazimirov) for questions about Client-side APIs, [Worker Nodes](#ch_grid.Worker_Nodes), [NetCache](ch_app.html#ch_app.ncbi_netcache_service) and [NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule) deployment, auxiliary tools and utilities, administration - setup, installation, and upgrades.
+    -   [Dmitry Kazimirov](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/Dmitry_Kazimirov) for questions about Client-side APIs, [Worker Nodes](#ch_grid.Worker_Nodes), [NetCache](ch_app.html#ch_app.ncbi_netcache_service) and [NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) deployment, auxiliary tools and utilities, administration - setup, installation, and upgrades.
 
-    -   [Andrei Gourianov](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/Andrei_Gourianov) for [NetCache](ch_app.html#ch_app.ncbi_netcache_service) server questions.
+    -   [Andrei Gourianov](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Andrei_Gourianov) for [NetCache](ch_app.html#ch_app.ncbi_netcache_service) server questions.
 
-    -   [Sergey Satskiy](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/Sergey_Satskiy) for [NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule) server questions.
+    -   [Sergey Satskiy](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Sergey_Satskiy) for [NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) server questions.
 
-    -   [David McElhany](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/David_McElhany) for questions about related documentation in the C++ Toolkit book.
-
-    -   [Denis Vakatov](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/Denis_Vakatov) for supervision questions.
+    -   [Denis Vakatov](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Denis_Vakatov) for supervision questions.
 
 <a name="ch_grid.GRID_Overview"></a>
 
@@ -155,7 +153,7 @@ Two PowerPoint presentations have additional information about the NCBI GRID:
 
 The NCBI GRID framework is built of the following components:
 
-1.  Network job queue ([NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule))
+1.  Network job queue ([NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule))
 
 2.  Network data storage ([NetCache](ch_app.html#ch_app.ncbi_netcache_service))
 
@@ -187,7 +185,7 @@ To provide more flexibility, load balancing, and fault-tolerance, it is highly a
 
 ### Architecture and Data Flow
 
-[NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule) and [NetCache](ch_app.html#ch_app.ncbi_netcache_service) servers create a media which Submitters and [Worker Nodes](#ch_grid.Worker_Nodes) use to pass and control jobs and related data:
+[NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) and [NetCache](ch_app.html#ch_app.ncbi_netcache_service) servers create a media which Submitters and [Worker Nodes](#ch_grid.Worker_Nodes) use to pass and control jobs and related data:
 
 1.  Submitter prepares input data and stores it in the pool of NetCache servers, recording keys to the data in the job's description.
 
@@ -219,7 +217,7 @@ To help developers jump-start their distributed computation projects, there is a
 
 ***NOTE:*** Most of the GRID components can be deployed or used outside of the GRID framework (applications can communicate with the components directly via the components' own client APIs). However, in many cases it is beneficial to use the whole GRID framework from the start.
 
-NCBI users can find more information on the [GRID farm Wiki page](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/GRID_Farm).
+NCBI users can find more information on the [GRID farm Wiki page](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/GRID_Farm).
 
 <a name="ch_grid.Worker_Nodes"></a>
 
@@ -252,7 +250,7 @@ The following sections describe how to Create a GRID Worker Node from scratch:
 
 #### Purpose
 
-Framework to create a multithreaded server that can run on a number of machines and serve the requests using [NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule) and [NetCache](ch_app.html#ch_app.ncbi_netcache_service) services to exchange the job info and data.
+Framework to create a multithreaded server that can run on a number of machines and serve the requests using [NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) and [NetCache](ch_app.html#ch_app.ncbi_netcache_service) services to exchange the job info and data.
 
 <a name="ch_grid._Diagram"></a>
 
@@ -534,11 +532,11 @@ Typical client-server interactions differ in the following categories:
 
 #### Protocols
 
-The simplest protocol is probably a consistent pattern of a client request followed by a server response. The [Track Manager](http://mini.ncbi.nlm.nih.gov/1k2qd) server uses this protocol.
+The simplest protocol is probably a consistent pattern of a client request followed by a server response. The [Track Manager](https://mini.ncbi.nlm.nih.gov/1k2qd) server uses this protocol.
 
 The [NetScheduler](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netschedule/) server follows a modified request / response protocol. It expects three "messages" - two information lines followed by a command line - then it returns a response.
 
-The [Genome Pipeline](http://mini.ncbi.nlm.nih.gov/1k2qn) server protocol adds a client acknowledgment to the interaction. A missing or corrupt acknowledgment triggers a rollback of the transaction.
+The [Genome Pipeline](https://mini.ncbi.nlm.nih.gov/1k2qn) server protocol adds a client acknowledgment to the interaction. A missing or corrupt acknowledgment triggers a rollback of the transaction.
 
 Your server can follow whatever pattern of requests and responses is appropriate for the service. Note that a given server is not limited to a fixed communication pattern. As long as the client and server follow the same rules, the protocol can be adapted to whatever is appropriate at the moment.
 
@@ -552,13 +550,13 @@ Perhaps the easiest request format to parse simply delimits requests with newlin
 
 A more robust way to define the request and response formats is with an ASN.1 specification. NCBI servers that use an ASN.1-defined request format include:
 
--   [Ideogram](http://mini.ncbi.nlm.nih.gov/1k2qe)
+-   [Ideogram](https://mini.ncbi.nlm.nih.gov/1k2qe)
 
--   [OS Gateway](http://mini.ncbi.nlm.nih.gov/1k2qo)
+-   [OS Gateway](https://mini.ncbi.nlm.nih.gov/1k2qo)
 
--   [Track Manager](http://mini.ncbi.nlm.nih.gov/1k2qd)
+-   [Track Manager](https://mini.ncbi.nlm.nih.gov/1k2qd)
 
--   [Genome Pipeline](http://mini.ncbi.nlm.nih.gov/1k2qn)
+-   [Genome Pipeline](https://mini.ncbi.nlm.nih.gov/1k2qn)
 
 <a name="ch_grid.Response_Handling"></a>
 
@@ -570,15 +568,15 @@ NCBI Servers that use respond immediately include:
 
 -   [NetScheduler](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netschedule/)
 
--   [Ideogram](http://mini.ncbi.nlm.nih.gov/1k2qe)
+-   [Ideogram](https://mini.ncbi.nlm.nih.gov/1k2qe)
 
 NCBI servers that delay their response include:
 
--   [OS Gateway](http://mini.ncbi.nlm.nih.gov/1k2qo)
+-   [OS Gateway](https://mini.ncbi.nlm.nih.gov/1k2qo)
 
--   [Track Manager](http://mini.ncbi.nlm.nih.gov/1k2qd)
+-   [Track Manager](https://mini.ncbi.nlm.nih.gov/1k2qd)
 
--   [Genome Pipeline](http://mini.ncbi.nlm.nih.gov/1k2qn)
+-   [Genome Pipeline](https://mini.ncbi.nlm.nih.gov/1k2qn)
 
 <a name="ch_grid.The_CServer_Framework_Classes"></a>
 
@@ -743,7 +741,7 @@ The following code fragments show examples of API calls for creating request-spe
     rqst_ctx->SetRequestStatus(eStatus_OK);
     diag_ctx.PrintRequestStop();
 
-Code like the above will result in [AppLog](http://mini.ncbi.nlm.nih.gov/1k2vj) entries that look similar to:
+Code like the above will result in [AppLog](https://mini.ncbi.nlm.nih.gov/1k2vj) entries that look similar to:
 
 [![Image ch\_grid\_cserver\_applog.png](/cxx-toolkit/static/img/ch_grid_cserver_applog.png)](/cxx-toolkit/static/img/ch_grid_cserver_applog.png "Click to see the full-resolution image")
 
@@ -790,13 +788,13 @@ Here are some places to look for reference and to see how to ***CServer*** is us
 
 -   [NetScheduler](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netschedule/)
 
--   [Ideogram](http://mini.ncbi.nlm.nih.gov/1k2qe) (NCBI only)
+-   [Ideogram](https://mini.ncbi.nlm.nih.gov/1k2qe) (NCBI only)
 
--   [OS Gateway](http://mini.ncbi.nlm.nih.gov/1k2qo) (NCBI only)
+-   [OS Gateway](https://mini.ncbi.nlm.nih.gov/1k2qo) (NCBI only)
 
--   [Track Manager](http://mini.ncbi.nlm.nih.gov/1k2qd) (NCBI only)
+-   [Track Manager](https://mini.ncbi.nlm.nih.gov/1k2qd) (NCBI only)
 
--   [Genome Pipeline](http://mini.ncbi.nlm.nih.gov/1k2qn) (NCBI only)
+-   [Genome Pipeline](https://mini.ncbi.nlm.nih.gov/1k2qn) (NCBI only)
 
 <a name="ch_grid.GRID_Cli"></a>
 
