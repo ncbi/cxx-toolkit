@@ -557,7 +557,7 @@ Table 8. CGI-related configuration parameters
 
 <a name="ch_libconfig.TF_8_G"></a>
 
-<sup>g</sup> some information from [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS) by Mozilla Contributors, adapted under [CC-BY-SA](http://creativecommons.org/licenses/by-sa/2.5/)
+<sup>g</sup> some information from [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS) by Mozilla Contributors, adapted under [CC-BY-SA](https://creativecommons.org/licenses/by-sa/2.5/)
 
 <a name="ch_libconfig.FCGI"></a>
 
@@ -807,7 +807,7 @@ Table 14. DBAPI configuration parameters
 | The timeout, in seconds, to be used for all connection attempts (0 means to use either the default value or a value set specifically for the driver context).                                                                                                                                                                                                                      | **`[DB_CONNECTION_FACTORY]`**<br/>**`CONNECTION_TIMEOUT`**<br/><br/>**`NCBI_CONFIG__DB_CONNECTION_FACTORY__CONNECTION_TIMEOUT`**  [<sup>c</sup>](#ch_libconfig.TF.43)             | unsigned int                                                                                                             | 30                                                                                                  |
 | The timeout, in seconds, to be used while logging into the server for all connection attempts (0 means to use either the default value or a value set specifically for the driver context).                                                                                                                                                                                        | **`[DB_CONNECTION_FACTORY]`**<br/>**`LOGIN_TIMEOUT`**<br/><br/>**`NCBI_CONFIG__DB_CONNECTION_FACTORY__LOGIN_TIMEOUT`**  [<sup>c</sup>](#ch_libconfig.TF.43)                       | unsigned int                                                                                                             | 30                                                                                                  |
 | If DBAPI resolved the passed name as a service name and then couldn't connect to any server associated with that service name, then this parameter determines whether DBAPI should also try to resolve the passed name as a server name (a database alias from  "interfaces" file or a DNS name). See also: [database load balancing](ch_dbapi.html#ch_dbapi.Database_loadbalanci). | **`[DB_CONNECTION_FACTORY]`**<br/>**`TRY_SERVER_AFTER_SERVICE`**<br/><br/>**`NCBI_CONFIG__DB_CONNECTION_FACTORY__TRY_SERVER_AFTER_SERVICE`**  [<sup>c</sup>](#ch_libconfig.TF.43) | Boolean  [<sup>a</sup>](#ch_libconfig.TF.41)                                                                              | false                                                                                               |
-| See '[PRAGMA cache\_size](http://www.sqlite.org/pragma.html#pragma_cache_size)' in the SQLite documentation.                                                                                                                                                                                                                                                                       | **`[LDS2]`**<br/>**`SQLiteCacheSize`**<br/><br/>**`LDS2_SQLITE_CACHE_SIZE`**                                                                                                     | any valid cache size for an SQLite database                                                                              | 2000                                                                                                |
+| See '[PRAGMA cache\_size](https://www.sqlite.org/pragma.html#pragma_cache_size)' in the SQLite documentation.                                                                                                                                                                                                                                                                       | **`[LDS2]`**<br/>**`SQLiteCacheSize`**<br/><br/>**`LDS2_SQLITE_CACHE_SIZE`**                                                                                                     | any valid cache size for an SQLite database                                                                              | 2000                                                                                                |
 
 <div class="table-scroll"></div>
 
@@ -835,7 +835,7 @@ Table 15. eutils library configuration parameters
 
 | Purpose                                   | [Registry section]<br/>Registry name<br/><br/>Environment variable | Valid values | Default                                                                                                                                        |
 |-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| Specify the base URL for Eutils requests. | **`[Eutils]`**<br/>**`Base_URL`**<br/><br/>**`EUTILS_BASE_URL`**   | a valid URL  | http://eutils.ncbi.nlm.nih.gov/entrez/eutils/ (see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=kDefaultEUtils_Base_URL)) |
+| Specify the base URL for Eutils requests. | **`[Eutils]`**<br/>**`Base_URL`**<br/><br/>**`EUTILS_BASE_URL`**   | a valid URL  | https://www.ncbi.nlm.nih.gov/books/NBK25501/ (see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=kDefaultEUtils_Base_URL)) |
 
 <div class="table-scroll"></div>
 
@@ -856,7 +856,7 @@ The following sections discuss configuration parameters that are specific to sel
 
 ***Note:*** This section only applies within NCBI.
 
-[Table 16](#ch_libconfig.1.2) describes configuration parameters that are common to both [NetCache](ch_app.html#ch_app.ncbi_netcache_service) and [NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule) client APIs. These parameters are found in the `netservice_api` registry section.
+[Table 16](#ch_libconfig.1.2) describes configuration parameters that are common to both [NetCache](ch_app.html#ch_app.ncbi_netcache_service) and [NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) client APIs. These parameters are found in the `netservice_api` registry section.
 
 <a name="ch_libconfig.1.2"></a>
 
@@ -958,7 +958,7 @@ Configuration parameters for NetCache daemons are described in the file:
 
 ***Note:*** This applies only inside NCBI.
 
-[These parameters](#ch_libconfig.T.seqfetchcgi_application_c) tune the behavior of the [`seqfetch.cgi`](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal/cppcore/seqfetch_cgi/) application.
+[These parameters](#ch_libconfig.T.seqfetchcgi_application_c) tune the behavior of the [`seqfetch.cgi`](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal/cppcore/seqfetch_cgi/) application.
 
 <a name="ch_libconfig.T.seqfetchcgi_application_c"></a>
 
