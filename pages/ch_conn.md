@@ -1043,9 +1043,8 @@ All service entries can be (optionally) grouped together in a list as a value of
 
 The list of local services is only used in cases of wildcard searches, or in cases of reverse lookups, and is never consulted in regular cases of forward searches by a complete service name.
 
-Examples:
 
-1. In `.ini` file
+Example 1. In `.ini` file
 
     [CONN]
     LOCAL_ENABLE=yes
@@ -1059,7 +1058,7 @@ Examples:
 
 Note that entries for MSSQL14, 16, and 17 are not shown, and they are not required (inexistent definitions for declared services are simply ignored).
 
-2. In environment set the following variables (equivalent to the `.ini` fragment above but having a higher precedence):
+Example 2. In environment set the following variables (equivalent to the `.ini` fragment above but having a higher precedence):
 
     CONN_LOCAL_ENABLE=yes
     CONN_LOCAL_SERVICES="MSSQL10 MSSQL14 MSSQL15 MSSQL16 MSSQL17"
