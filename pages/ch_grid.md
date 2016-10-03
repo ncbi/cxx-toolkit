@@ -708,46 +708,7 @@ To facilitate logfile analysis, the more detailed "new" log posting format is re
         return CMyServerApp().AppMain(argc, argv);
     }
 
-Grouping diagnostics into request-specific blocks is very helpful for post-processing. To facilitate this, [CDiagContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagContext.html) provides the ***PrintRequestStart()***, ***PrintRequestStop()***, ***Extra()***, and various ***Print()***, methods.
-
-The ***CDiagContext::SetRequestContext()*** method enables you to use a [CRequestContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) object to pass certain request-specific information - such as request ID, client IP, bytes sent, request status, etc. - to the diagnostics context. The request context information can be invaluable when analyzing logs.
-
-[CRequestContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) objects are merely convenient packages for passing information - they can be preserved across multiple events or re-created as needed. However, as ***CObject***-derived objects, they should be wrapped by ***CRef*** to avoid inadvertent deletion by code accepting a ***CRef*** parameter.
-
-The following code fragments show examples of API calls for creating request-specific blocks in the logfile. Your code will be slightly different and may make these calls in different event handlers (for example, you might call ***PrintRequestStart()*** in ***OnRead()*** and ***PrintRequestStop()*** in ***OnWrite()***).
-
-    // Set up the request context:
-    CRef<CRequestContext> rqst_ctx(new CRequestContext());
-    rqst_ctx->SetRequestID();
-    rqst_ctx->SetClientIP(socket.GetPeerAddress(eSAF_IP));
-
-    // Access the diagnostics context:
-    CDiagContext & diag_ctx(GetDiagContext());
-    diag_ctx.SetRequestContext(rqst_ctx.GetPointer());
-
-    // Start the request block in the log:
-    diag_ctx.PrintRequestStart()
-            .Print("peer", "1.2.3.4")
-            .Print("port", 5555);
-
-    // Other relevant info...
-    CDiagContext_Extra extra(diag_ctx.Extra());
-    extra.Print("name1", "value1")
-         .Print("name2", "value2");
-
-    // Terminate the request block in the log.
-    rqst_ctx->SetBytesRd(socket.GetCount(eIO_Read));
-    rqst_ctx->SetBytesWr(socket.GetCount(eIO_Write));
-    rqst_ctx->SetRequestStatus(eStatus_OK);
-    diag_ctx.PrintRequestStop();
-
-Code like the above will result in [AppLog](https://mini.ncbi.nlm.nih.gov/1k2vj) entries that look similar to:
-
-[![Image ch\_grid\_cserver\_applog.png](/cxx-toolkit/static/img/ch_grid_cserver_applog.png)](/cxx-toolkit/static/img/ch_grid_cserver_applog.png "Click to see the full-resolution image")
-
-Each thread has its own diagnostics context. Therefore, simultaneous calls to ***GetDiagContext().SetRequestContext()*** in multiple event handlers will not interfere with each other.
-
-The connection handler should ensure that each request-start has a corresponding request-stop - for example by writing the request-stop in a destructor if it wasn't already written.
+See also [Logging Requests](#ch_core.Logging_Requests) section for logging request-specific information.
 
 <a name="ch_grid.Handling_Exceptions"></a>
 
