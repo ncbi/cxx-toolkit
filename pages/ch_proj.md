@@ -929,41 +929,53 @@ To include an application into the test suite it is necessary to add just one li
 
     CHECK_CMD =
 
-or
+Where nothing specified by the **`CHECK_CMD`** macro, the program specified by the makefile variable **`APP`** will be executed (without any arguments). For more advanced usage you can specify something like:
 
     CHECK_CMD = command line to run application test
+    CHECK_CMD = command line to run application test /CHECK_NAME=app_test_name
 
-For the first form, where no command line is specified by the **`CHECK_CMD`** macro, the program specified by the makefile variable **`APP`** will be executed (without any parameters).
+Note, that you can use optional **`/CHECK_NAME`** to add alias for specified command line, especially if it is long. This alias will be used instead for reporting and collecting statistics. Application's makefile can have some **`CHECK_CMD`** lines for different tests in the same directory, or for the same test but with different arguments. So assigning unique **`CHECK_NAME`** for each command line could be very useful. Note, that test name should include only letters, digits, "_" and "-".
 
-For the second form: If your application is executed by a script specified in a **`CHECK_CMD`** command line, and it doesn't read from `STDIN`, then the script should invoke it like this:
+Regarding command line, it could be an application name from **`APP`** line with added required arguments, or some script name instead. See below for more details.
 
-    $CHECK_EXEC app_name arg1 arg2 ...
+***Note:*** Executing applications / scripts in the **`CHECK_CMD`** definition should **NOT** use "`.`" or any relative path, because (depending from platform) it could be executed not from a current directory, but from some directory added to **`$PATH`** by test suite.
 
-If your application *does* read from `STDIN`, then **`CHECK_CMD`** scripts should invoke it like this:
+In addition there are some optional macro than can help with setting up tests:
 
-    $CHECK_EXEC_STDIN app_name arg1 arg2 ...
+| Macro          | Usage | Description |
+|----------------|-------|-------------|
+| CHECK_COPY     | CHECK_COPY = file1 file2 dir1 dir2 | If your test program needs additional files (for example, a configuration file, data files, or helper scripts referenced in **`CHECK_CMD`**), then set **`CHECK_COPY`** to point to them. Before the tests are run, all specified files and directories will be copied to the build or special check directory (which is platform-dependent). Note that all paths to copied files and directories must be relative to the application source directory.|
+| CHECK_TIMEOUT  | CHECK_TIMEOUT = 200                | By default, the application's execution time is limited to 200 seconds. But you can change it using this macro. If application continues execution after specified time, it will be terminated and test marked as TIMEOUT. |
+| CHECK_REQUIRES | CHECK_REQUIRES = req1 req2 ...     | Counterpart for makefiles's **`REQUIRES`** macro. If last one specifies features and projects required to build the current project, that **`CHECK_REQUIRES`** could have additional requirements to allow to run a built test. See [project makefiles](ch_proj.html#ch_proj.proj_makefiles) section. |
+| WATCHERS       | WATCHERS = username1 username2 | Allow to get email notifications from a build system about all compilation errors and failed tests for the current application. Each user name is an email alias. |
 
-***Note:*** Applications / scripts in the **`CHECK_CMD`** definition should **not** use "`.`", for example:
 
-    $CHECK_EXEC ./app_name arg1 arg2 ... # Do not prefix app_name with ./
+Some words about using helper scripts to execute tests. All such scripts should observe some rules:
 
-Scripts invoked via **`CHECK_CMD`** should pass an exit code to the testing framework via the **`exitcode`** variable, for example:
+-   All testing application executed inside script should be run using timeout guard. To use it, you should prepend it call with **`$CHECK_EXEC`** or **`$CHECK_EXEC_STDIN`** (shell notation). First one is used if `app_name` doesn't read from `STDIN`, second one if does. On succesful run both macro returns exit code from the application.
 
-    exitcode=$?
+    `$CHECK_EXEC app_name arg1 arg2 ... ; exitcode=$?`
 
-If your test program needs additional files (for example, a configuration file, data files, or helper scripts referenced in **`CHECK_CMD`**), then set **`CHECK_COPY`** to point to them:
+-   It should return an exit code to the testing framework, for example, using shell `exit` command.
 
-    CHECK_COPY = file1 file2 dir1 dir2
+    `exit $exitcode`
+    
+-   Note, that if you run testing application several times from the script, that **`CHECK_TIMEOUT`** applies to whole script.
 
-Before the tests are run, all specified files and directories will be copied to the build or special check directory (which is platform-dependent). Note that all paths to copied files and directories must be relative to the application source directory.
 
-By default, the application's execution time is limited to 200 seconds. You can set a new limit using:
+We expect that all tests finishes in the specified timeout and do all necessary cleanup itself, if not, the test suite trying to kill what it can, probably some junk files or directories could be left on a file system.
 
-    CHECK_TIMEOUT = <time in seconds>
+The test suite set some environment variables that could affect tests execution or be used inside testing application or helping scripts:
 
-If application continues execution after specified time, it will be terminated and test marked as FAILED.
-
-If you'd like to get nightly test results automatically emailed to you, add your email address to the **`WATCHERS`** macro in the makefile. Note that the **`WATCHERS`** macro has replaced the **`CHECK_AUTHORS`** macro which had a similar purpose.
+| Environment variable | Description |
+|----------------------|-------------|
+| NCBI_CHECK_SETLIMITS | By default on Unix platforms the test suite sets limits for virtual memory to 4 GiB for regular runs and 16 GiB if run under memory checking tool like `valgrind`. To disable setting any limits, you can set **`NCBI_CHECK_SETLIMITS=0`** before running checks, it is not possible to increase limits from **`CHECK_CMD`** tests. So this method to disable limits don't work for our regular automatic builds and tests, only for yours own. |
+| NCBI_TEST_DATA | Path to test data directory, that could store big data for the applications, that is not appropriate for placing into C++ Toolkit SVN. |
+| FEATURES | Lists available features and projects, uses space as delimiter. See [project makefiles](ch_proj.html#ch_proj.proj_makefiles) section. |
+| CHECK_SIGNATURE | Current build signature, that include compiler, version, machine name and etc. |
+| CFG_BIN | Path to **`/bin`** directory, containing all binaries from the current build. |
+| CFG_LIB | Path to **`/lib`** directory, containing all static and dynamic libraries from the current build. |
+| PATH | The test suite modify it, adding some paths: "`.`", **`CFG_BIN`**, **`CFG_LIB`** and "`scripts/common/impl`". |
 
 For information about using Boost for unit testing, see the "[Boost Unit Test Framework](ch_boost.html)" chapter.
 
