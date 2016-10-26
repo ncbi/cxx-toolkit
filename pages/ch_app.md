@@ -1743,13 +1743,13 @@ The CAF module uses the Apache web server log files to put CAF module’s messag
 
 The status of the CAF modules can be seen via a web interface using the following links:
 
-<http://web1.be-md.ncbi.nlm.nih.gov/caf-status>
+<http://web11.be-md.ncbi.nlm.nih.gov/caf-status>
 
-<http://web2.be-md.ncbi.nlm.nih.gov/caf-status>
+<http://web12.be-md.ncbi.nlm.nih.gov/caf-status>
 
-<http://web3.be-md.ncbi.nlm.nih.gov/caf-status>
+<http://web21.be-md.ncbi.nlm.nih.gov/caf-status>
 
-<http://web4.be-md.ncbi.nlm.nih.gov/caf-status>
+<http://web22.be-md.ncbi.nlm.nih.gov/caf-status>
 
 <http://webdev1.be-md.ncbi.nlm.nih.gov/caf-status>
 
