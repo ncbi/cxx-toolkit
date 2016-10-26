@@ -2529,15 +2529,15 @@ You can also email <span class="oem_span">nypk4jvylGujip5ust5upo5nv/</span> if y
 
 ### Questions and answers
 
-**Q:What exactly is netcache's architecture, it is memory-based (like memcached), or does it use filesystem/sql/whatever?**
+**Q: What exactly is netcache's architecture, it is memory-based (like memcached), or does it use filesystem/sql/whatever?**
 
 A:It keeps its database on disk, memory-mapped; it also has a (configurable) "write-back buffer" - to use when there is a lot of data coming in, and a lot of this data gets re-written quickly (this is to help avoid thrashing the disk with relatively transient blob versions - when the OS's automatic memory swap mechanism may become sub-optimal).
 
-**Q:Is there an NCBI "pool" of netcache servers that we can simply tie in to, or do we have to set up netcache servers on our group's own machines?**
+**Q: Is there an NCBI "pool" of netcache servers that we can simply tie in to, or do we have to set up netcache servers on our group's own machines?**
 
 A:We usually (except for PubMed) administer NC servers, most of which are shared. Depending on your load (hit rate, blob size distribution, blob lifetime, redundancy, etc.) we can point you to the shared NC servers or create a new NC server pool.
 
-**Q:I assume what's in c++/include/connect/services/\*hpp is the api to use for a client?**
+**Q: I assume what's in c++/include/connect/services/\*hpp is the api to use for a client?**
 
 A:Yes, also try the samples under [src/sample/app/netcache](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/) - for example:
 
@@ -2548,15 +2548,15 @@ A:Yes, also try the samples under [src/sample/app/netcache](https://www.ncbi.nlm
     ./netcache_client_sample2  NC_test
     ./netcache_client_sample3  NC_test
 
-**Q:Is there a way to build in some redundancy, e.g. so that if an individual server/host goes down, we don't lose data?**
+**Q: Is there a way to build in some redundancy, e.g. so that if an individual server/host goes down, we don't lose data?**
 
 A:Yes, you can mirror NC servers, master-master style, including between BETH and COLO sites. Many NC users use mirrored instances nowadays, including PubMed.
 
-**Q:Is there a limit to the size of the data blobs that can be stored?**
+**Q: Is there a limit to the size of the data blobs that can be stored?**
 
 A:Theoretical limit is high enough to say that there is no limit; in practice, limits are imposed by hardware. I have seen 400MB blobs there being written and [read without an incident a thousand times a day](https://intranet.ncbi.nlm.nih.gov/projects/applog/browser/?src=applog&mintime=08:05:00&maxtime=16:09:59&mindate=yesterday&maxdate=yesterday&nobots=0&nointernal=0&random=0&warning=1&sessions=0&fmt=split&retmax=50&run=1&term=app%3Dnetcached%20AND%20blob_size%3E300000000#noBots=0&noApp=0&noInternal=0&warning=0&notes=0&metric=). We can do experiments to see how your load will be handled. As a general rule, you should ask <span class="oem_span">nypk4jvylGujip5ust5upo5nv/</span> for guidance when changing your NC usage.
 
-**Q:How is the expiration of BLOBs handled by NetCache? My thinking is coming from two directions. First, I wouldn’t want BLOBs deleted out from under me, but also, if the expiration is too long, I don’t want to be littering the NetCache. That is: do I need to work hard to remove all of my BLOBs or can I just trust the automatic clean-up?**
+**Q: How is the expiration of BLOBs handled by NetCache? My thinking is coming from two directions. First, I wouldn’t want BLOBs deleted out from under me, but also, if the expiration is too long, I don’t want to be littering the NetCache. That is: do I need to work hard to remove all of my BLOBs or can I just trust the automatic clean-up?**
 
 A:You can specify a "time-to-live" when you create a blob. If you don't specify a value, you can find the service's default value by calling ***GetBlobInfo()***. See the [basic ideas](#ch_app.The_basic_ideas) section for more details.
 
