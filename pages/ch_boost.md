@@ -108,7 +108,7 @@ The value of unit testing is clearly recognized at the highest levels of managem
 
     -   All tests are run nightly on many platforms.
 
-    -   All results are archived and available through a [web interface](http://intranet/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi).
+    -   All results are archived and available through a [web interface](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi).
 
 <a name="ch_boost.How_to_Use_the_Boost"></a>
 
