@@ -292,7 +292,7 @@ In general, if a header file is commonly used, it must be on the INCLUDE path an
 
 **4-space indentation only**! Tabulation symbol **must not** be used for indentation.
 
-Try not to cross the "standard page boundary" of **80** symbols.
+In many contexts (especially in the header files) it is beneficial to try and keep the code line width within **80** symbols; however this rule is not universal, so -- use your best judgement.
 
 In `if, for, while, do, switch, case`, etc. and type definition statements:
 
@@ -632,19 +632,19 @@ This section discusses the following topics:
 
 <a name="ch_style.Limitations_on_Using_C11_Featur"></a>
 
-##### Limitations on Using C++11 Features
+##### Using C++11 Features
 
-Many new features of the C++11 Standard are not yet implemented (or implemented poorly) by at least some actual compilers, so - please be very careful about using these new C++11 features.
+Some new features of the C++11 Standard are not yet implemented (or implemented poorly) by at least some actual compilers (see e.g. [MS VS 2013](https://msdn.microsoft.com/en-us/library/hh567368.aspx) so - please be careful about using some of the "more advanced" C++11 features.
 
-Do not use C++11 features in code that is:
+Do not use such C++11 features in code that is:
 
 -   Platform-portable, such as the ["core" (public, non-GUI, non-INTERNAL) part of the C++ Toolkit](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/);
 
 -   Part of regular [coremake builds](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/c++/scripts/internal/projects/netopt.lst?view=markup);
 
--   Supposed to be compiled with older compilers (like GCC-4.4.2, MSVC10, etc) that don't support C++11; or
+-   Supposed to be compiled with the relatively old compilers (like MSVC13, etc) that don't support many features; or
 
--   Known to be a dependency for the projects that still need to be compiled with older compilers.
+-   Known to be a dependency for the projects that still need to be compiled with the older compilers.
 
 <a name="ch_style.stl_templ_lib"></a>
 
@@ -656,7 +656,7 @@ Use the [Standard Template Library (STL)](#ch_style.style_templ_library), which 
 
 ##### Use of C++ Exceptions
 
--   Exceptions are useful. However, since exceptions unwind the stack, you must be careful to destroy all resources (such as memory on the heap and file handles) in every intermediate step in the stack unwinding. That means you must always catch exceptions, even those you don't handle, and delete everything you are using locally. In most cases it's very convenient and safe to use the [auto\_ptr](http://www.parashift.com/c++-faq-lite/exceptions.html#faq-17.4) template to ensure the freeing of temporary allocated dynamic memory for the case of exception.
+-   Exceptions are useful. However, since exceptions unwind the stack, you must be careful to destroy all resources (such as memory on the heap and file handles) in every intermediate step in the stack unwinding. That means you must always catch exceptions, even those you don't handle, and delete everything you are using locally. In most cases it's very convenient and safe to use the [unique\_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) template to ensure the freeing of temporary allocated dynamic memory for the case of exception.
 
 -   Avoid using exception specifications in function declarations, such as:
 
@@ -803,7 +803,7 @@ If you pass a container to a function, don't add a local object to the container
 
 -   Don't use the ***rope*** class from some versions of the STL. This is a non-standard addition. If you have questions about what is/isn't in the standard library, consult the [C++ standards](http://www.parashift.com/c++-faq-lite/big-picture.html#faq-6.12).
 
--   The NCBI C++ Toolkit includes ***hash\_map***, ***hash\_multimap***, ***hash\_set***, and ***hash\_multiset*** classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)). These classes are more portable than, and should be used instead of, the STL's respective ***hash\_\**** classes.
+-   The NCBI C++ Toolkit includes ***hash\_map***, ***hash\_multimap***, ***hash\_set***, and ***hash\_multiset*** classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)) -- or, better yet, use the C++11's ***unordered_map***, ***unordered_multimap***, ***unordered_set*** and ***unordered_multiset***. These classes are more portable than, and should be used instead of, the STL's respective ***hash\_\**** classes.
 
 <a name="ch_style.cpp_bad_guys"></a>
 
