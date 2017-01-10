@@ -1930,7 +1930,7 @@ Here's an example showing all the steps needed to build and debug the COBALT tes
 
 If this doesn't work (for whatever reasons) on your own PC, you're welcome to use the communal PC servers (via Remote Desktop):
 
-<http://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Software_Development#Software_Development9>
+<https://confluence.ncbi.nlm.nih.gov/display/CT/Software+Development#SoftwareDevelopment-Generaldevelopment>
 
 <a name="ch_config.Cygwin_GCC"></a>
 
