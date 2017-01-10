@@ -21,11 +21,11 @@ The overview for this chapter consists of the following topics:
 
 ### Introduction
 
-The tools used in-house by software developers at NCBI -- such as debuggers, memory checkers, profilers, etc. are discussed in [C++ Toolkit Wiki](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Development_Tools).
+The tools used in-house by software developers at NCBI -- such as debuggers, memory checkers, profilers, etc. are discussed in [C++ Toolkit Confluence](https://confluence.ncbi.nlm.nih.gov/display/CT).
 
 ### Chapter Outline
 
-As mentioned above, the tools used in-house by software developers at NCBI -- such as debuggers, memory checkers, profilers, etc. are discussed in [C++ Toolkit Wiki](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Development_Tools).
+As mentioned above, the tools used in-house by software developers at NCBI -- such as debuggers, memory checkers, profilers, etc. are discussed in [C++ Toolkit Confluence](https://confluence.ncbi.nlm.nih.gov/display/CT).
 
 <a name="ch_devtools.s1"></a>
 
