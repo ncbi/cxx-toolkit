@@ -3185,7 +3185,7 @@ There is also a copy constructor defined that permits copy operations for ***CTi
 
 ### Other ***CTime*** Methods
 
-Once the ***CTime*** object is constructed, it can be accessed using the ***SetTimeT()*** and ***GetTimeT()*** methods. The ***SetTimeT()*** method is used to set the ***CTime*** with the timestamp passed by the ***time\_t*** parameter. The ***GetTimeT()*** method returns the time stored in the ***CTime*** object as a ***time\_t*** value. The ***time\_t*** value measures seconds since January 1, 1900; therefore, do not use these methods if the timestamp is less than 1900. Also, time formats are in GMT time format.
+Once the ***CTime*** object is constructed, it can be accessed using the ***SetTimeT()*** and ***GetTimeT()*** methods. The ***SetTimeT()*** method is used to set the ***CTime*** with the timestamp passed by the ***time\_t*** parameter. The ***GetTimeT()*** method returns the time stored in the ***CTime*** object as a ***time\_t*** value. The ***time\_t*** value measures seconds since January 1, 1970; therefore, do not use these methods if the timestamp is less than 1970. Also, note that time_t represent a time in GMT time format.
 
 A series of methods that set the time using the database formats ***TDBTimeI*** and ***TDBTimeU*** are also defined. These database time formats contain local time only and are defined as typedefs in `ncbitime.hpp`. The mutator methods are ***SetTimeDBI()*** and ***SetTimeDBU()***, and the accessor methods are ***GetTimeDBI()*** and ***GetTimeDBU()***.
 
