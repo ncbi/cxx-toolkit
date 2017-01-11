@@ -100,31 +100,16 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 
 |Package   |Versions expected to work (obtained by build-environment inspection in some cases)  |Versions known to work (used in-house on any platform)  |
 |-------|----------------------------------|--------------|
-|[BerkeleyDB](http://www.oracle.com/us/products/database/berkeley-db/index.html)  |4.3.0 or newer   |4.5.20, 4.6.21.1, 4.7.25,
- 4.6.21.NC  |
+|[BerkeleyDB](http://www.oracle.com/us/products/database/berkeley-db/index.html)  |4.3.0 or newer   |4.5.20, 4.6.21.1, 4.7.25, 4.6.21.NC  |
+|[Boost Test](http://www.boost.org)                   |1.35.0 or newer |1.40.0.1, 1.42.0, 1.45.0   |
+|[FastCGI](http://www.fastcgi.com)                    |All versions    |2.1, 2.4.0                 |
+|[libbzip2](http://www.bzip.org)                      |All versions    |1.0.2, 1.0.5               | 
+|[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8.0                    |
+|[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.2.26, 1.2.7, 1.5.13      |
+|[libtiff](http://www.libtiff.org)                    |All versions    |3.6.1, 3.9.2, 4.0.0        |
+|[libungif](http://sourceforge.net/projects/giflib/files/libungif-4.x/libungif-4.1.4/) |All versions |4.1.3 (libungif),
+ 4.1.6 (giflib) |
  
-[Boost Test](http://www.boost.org)
-1.35.0 or newer
-1.40.0.1, 1.42.0, 1.45.0
-[FastCGI](http://www.fastcgi.com)
-All versions
-2.1, 2.4.0
-[libbzip2](http://www.bzip.org)
-All versions
-1.0.2, 1.0.5
-[libjpeg](http://freshmeat.net/projects/libjpeg)
-All versions
-6b, 8.0
-[libpng](http://www.libpng.org/pub/png/libpng.html)
-All versions
-1.2.26, 1.2.7, 1.5.13
-[libtiff](http://www.libtiff.org)
-All versions
-3.6.1, 3.9.2, 4.0.0
-[libungif](http://sourceforge.net/projects/giflib/files/libungif-4.x/libungif-4.1.4/)
-All versions
-4.1.3 (libungif),
- 4.1.6 (giflib)
 [libxml2](http://xmlsoft.org/)
 All versions
 2 2.7.3, 2.7.6, 2.7.8,
