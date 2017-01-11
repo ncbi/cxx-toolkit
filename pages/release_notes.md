@@ -125,29 +125,16 @@ Table 2. Versions of Third Party Packages Included in the FTP Archive
 |Package            |Depends On               |Included Version <sup>a</sup>  |
 |-------------------|-------------------------|-------------------------------|
 |BerkeleyDB         |                         |4.6.21.NC                      |
-
-Boost Test
-1.42.0
-libbzip2
-1.0.2
-libjpeg
-6b
-libpng
-zlib 1.2.3
-1.2.7
-libtiff
-libjpeg 6b, zlib 1.2.3
-3.6.1
-libungif
-4.1.3
-LZO
-2.05
-PCRE
-7.9
-SQLite3
-3.6.14.2
-zlib
-1.2.3
+|Boost Test         |                         |1.42.0                         |
+|libbzip2           |                         |1.0.2                          |
+|libjpeg            |                         |6b                             |
+|libpng             |zlib 1.2.3               |1.2.7                          |
+|libtiff            |libjpeg 6b, zlib 1.2.3   |3.6.1                          |
+|libungif           |                         |4.1.3                          |
+|LZO                |                         |2.05                           |
+|PCRE               |                         |7.9                            |
+|SQLite3            |                         |3.6.14.2                       |
+|zlib               |                         |1.2.3                          |
 
 <sup>a</sup> Applies to MSVC 9, MSVC 10
 
