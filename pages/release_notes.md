@@ -98,9 +98,10 @@ For more information, see the [FTP README](ftp://ftp.ncbi.nlm.nih.gov/toolbox/nc
 
 Table 1. Currently Supported/Tested Versions of Third Party Packages
 
-Package
-Versions expected to work (obtained by build-environment inspection in some cases)
-Versions known to work (used in-house on any platform)
+|Package
+|Versions expected to work (obtained by build-environment inspection in some cases)
+|Versions known to work (used in-house on any platform)|
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|--------------|
 [BerkeleyDB](http://www.oracle.com/us/products/database/berkeley-db/index.html)
 4.3.0 or newer
 4.5.20, 4.6.21.1, 4.7.25,
