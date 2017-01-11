@@ -649,28 +649,14 @@ In cases where multiple versions of a compiler are supported, the mainstream ver
 
 Table 3. Unix OS's and Supported Compilers
 
-Operating System
-Architecture
-Compilers
-CentOS 5.x (LIBC 2.5)
-x86-64
-**GCC 4.4.2,** 4.0.1<sup>a</sup>, 4.1.2<sup>a</sup>, 4.3.3<sup>a</sup>, 4.6.0<sup>a</sup>, 4.6.3<sup>a</sup>
- <sup>,</sup>GCC 4.7.2 <sup>a</sup>
-CentOS 5.x (LIBC 2.5)
-x86-32
-**GCC** 4.4.5 <sup>a</sup>**, 4.6.0**
-CentOS 6.x (LIBC 2.12)
-x86-64
-**GCC 4.4.2**, 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup>
-Ubuntu 9.04 ("jaunty") (LIBC 2.9)
-x86-32
- x86-64
-**GCC 4.3.3**
-Solaris 10, 11<sup>a</sup>
-SPARC
-GCC 4.1.1<sup>b</sup>, 4.5.3<sup>b</sup>
- **Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup>
- Oracle Studio 12.2 (C++ 5.11)<sup>a</sup>
+|Operating System                   |Architecture    |Compilers                                |
+|-----------------------------------|----------------|-----------------------------------------|
+|CentOS 5.x (LIBC 2.5)              |x86-64          |**GCC 4.4.2,** 4.0.1<sup>a</sup>, 4.1.2<sup>a</sup>, 4.3.3<sup>a</sup>, 4.6.0<sup>a</sup>, 4.6.3<sup>a</sup><sup>,</sup>GCC 4.7.2 <sup>a</sup> |
+| CentOS 5.x (LIBC 2.5)             |x86-32          |**GCC** 4.4.5 <sup>a</sup>**, 4.6.0**    |
+|CentOS 6.x (LIBC 2.12)             |x86-64          |**GCC 4.4.2**, 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup> |
+|Ubuntu 9.04 ("jaunty") (LIBC 2.9)  |x86-32 x86-64   |**GCC 4.3.3**                            |
+|Solaris 10, 11<sup>a</sup>         |SPARC           |GCC 4.1.1<sup>b</sup>, 4.5.3<sup>b</sup> **Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup> Oracle Studio 12.2 (C++ 5.11)<sup>a</sup> |
+
 Solaris 10, 11<sup>a</sup>
 x86-32
 GCC 4.2.3
