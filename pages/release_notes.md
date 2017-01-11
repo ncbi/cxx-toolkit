@@ -122,11 +122,10 @@ To facilitate the building of these 3rd-party libraries on Windows, there is an 
 
 Table 2. Versions of Third Party Packages Included in the FTP Archive
 
-Package
-Depends On
-Included Version <sup>a</sup>
-BerkeleyDB
-4.6.21.NC
+|Package            |Depends On               |Included Version <sup>a</sup>  |
+|-------------------|-------------------------|-------------------------------|
+|BerkeleyDB         |                         |4.6.21.NC                      |
+
 Boost Test
 1.42.0
 libbzip2
