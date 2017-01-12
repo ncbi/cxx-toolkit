@@ -105,9 +105,9 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 |Package   |Versions expected to work (obtained by build-environment inspection in some cases)  |Versions known to work (used in-house on any platform)  |
 |-------|----------------------------------|--------------|
 |[BerkeleyDB](http://www.oracle.com/us/products/database/berkeley-db/index.html)  |4.3.0 or newer   |4.5.20, 4.6.21.1, 4.7.25, 4.6.21.NC  |
-|[Boost Test](http://www.boost.org)                   |1.35.0 or newer |1.40.0.1, 1.42.0, 1.45.0   |
+|[Boost Test](http://www.boost.org)                   |1.35.0 or newer |1.40.0.1, 1.42.0, 1.45.0, 1.56.0 |
 |[FastCGI](http://www.fastcgi.com)                    |All versions    |2.1, 2.4.0                 |
-|[libbzip2](http://www.bzip.org)                      |All versions    |1.0.2, 1.0.5               | 
+|[libbzip2](http://www.bzip.org)                      |All versions    |1.0.2, 1.0.5, 1.0.6        | 
 |[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8.0                    |
 |[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.2.26, 1.2.7, 1.5.13      |
 |[libtiff](http://www.libtiff.org)                    |All versions    |3.6.1, 3.9.2, 4.0.0        |
@@ -117,8 +117,8 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 |[<span class="small-caps">LZO</span>](http://www.oberhumer.com/opensource/lzo) |2.x |2.05         |
 |[PCRE](http://www.pcre.org)                          |All versions    |7.8, 7.9, 8.32,            |
 |[SQLite3](http://www.sqlite.org)                     |3.6.6 or newer  |3.6.12, 3.6.14.2, 3.6.22, 3.7.13 |
-|[Sybase](http://www.sybase.com)                      |All versions    |12.5                       |
-|[zlib](http://www.zlib.org)                          |All versions    |1.2.3, 1.2.3.3             |
+|[Sybase](http://www.sybase.com)                      |All versions    |12.5, 15.5                 |
+|[zlib](http://www.zlib.org)                          |All versions    |1.2.3, 1.2.8               |
 
 For Mac OS X and Unix OS’s, the user is expected to download and build the 3<sup>rd</sup> party packages themselves. The release’s package list includes links to download sites. However, the user still needs a list of the 3<sup>rd</sup> party packages and which versions of them are compatible with the release.
 
@@ -129,18 +129,18 @@ Table 2. Versions of Third Party Packages Included in the FTP Archive
 |Package            |Depends On               |Included Version <sup>a</sup>  |
 |-------------------|-------------------------|-------------------------------|
 |BerkeleyDB         |                         |4.6.21.NC                      |
-|Boost Test         |                         |1.42.0                         |
-|libbzip2           |                         |1.0.2                          |
+|Boost Test         |                         |1.56.0                         |
+|libbzip2           |                         |1.0.6                          |
 |libjpeg            |                         |6b                             |
-|libpng             |zlib 1.2.3               |1.2.7                          |
-|libtiff            |libjpeg 6b, zlib 1.2.3   |3.6.1                          |
+|libpng             |zlib 1.2.8               |1.2.8                          |
+|libtiff            |libjpeg 6b, zlib 1.2.8   |3.6.1                          |
 |libungif           |                         |4.1.3                          |
 |LZO                |                         |2.05                           |
 |PCRE               |                         |7.9                            |
 |SQLite3            |                         |3.6.14.2                       |
-|zlib               |                         |1.2.3                          |
+|zlib               |                         |1.2.8                          |
 
-<sup>a</sup> Applies to MSVC 9, MSVC 10
+<sup>a</sup> Applies to MSVC 12 (Visual Studio 2013) and MSVC 14 (Visual Studio 2015)
 
 <a name="release_notes.Build"></a>
 
@@ -665,11 +665,13 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 #### <span class="title">CHANGES TO COMPILER SUPPORT</span>
 
-Linux ICC support extends up to version 13.
+-   Linux ICC support extends up to version 13.
 
-Mac OS X support extends to version 10.8.x, with Clang, FSF GCC, or LLVM GCC (also via Xcode).
+-   Mac OS X support extends to version 10.8.x, with Clang, FSF GCC, or LLVM GCC (also via Xcode).
 
-Solaris support extends to version 11, with GCC or WorkShop (as with older OS versions).
+-   Solaris support extends to version 11, with GCC or WorkShop (as with older OS versions).
+
+-   Windows support extends to Visual Studio 2015 (MSVC 14).
 
 <a name="release_notes.Documentation"></a>
 
@@ -745,9 +747,11 @@ Table 4. MS Windows and Supported Compilers
 
 |Operating System          |Architecture                    |Compilers                      |
 |--------------------------|--------------------------------|-------------------------------|
-|MS Windows                |x86-32                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform. |
-|MS Windows                |x86-64                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform |
-|Cygwin 1.7.9              |x86-32                          |[GCC 4.5.3](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
+|MS Windows                |x86-32                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2013 (MSVC 12)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/18_0_0/ThirdParty/README) packages for this platform. |
+|MS Windows                |x86-64                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2013 (MSVC 12)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/18_0_0/ThirdParty/README) packages for this platform |
+|MS Windows                |x86-32                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/18_0_0/ThirdParty/README) packages for this platform. |
+|MS Windows                |x86-64                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/18_0_0/ThirdParty/README) packages for this platform |
+|Cygwin 1.7.34             |x86-64                          |[GCC 4.9.2](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
 
 <a name="release_notes.Mac_OS_X"></a>
 
@@ -789,7 +793,7 @@ Table 7. Discontinued Platforms
 
 |Operating System            |Architecture                          |Compilers                           |
 |----------------------------|--------------------------------------|------------------------------------|
-|MS Windows                  |x86-32, 64                            |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2008 (C++ 9.0)|
+|MS Windows                  |x86-32, 64                            |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (MSVC 10)|
 |Mac OS X 10.4.x(Darwin 8.x),<br/> Mac OS X 10.5.x(Darwin 9.x) |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32)|[GCC 4.0.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC), Clang 3.0|
 |FreeBSD-6.1                 |x86-32                                |GCC 3.4.6                           |
 |All                         |All                                   |All GCC 4.0.1 and below             |
