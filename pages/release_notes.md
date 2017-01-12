@@ -657,7 +657,7 @@ Table 3. Unix OS's and Supported Compilers
 |Ubuntu 9.04 ("jaunty") (LIBC 2.9)  |x86-32 x86-64   |**GCC 4.3.3**                            |
 |Solaris 10, 11<sup>a</sup>         |SPARC           |GCC 4.1.1<sup>b</sup>, 4.5.3<sup>b</sup> **Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup> Oracle Studio 12.2 (C++ 5.11)<sup>a</sup> |
 |Solaris 10, 11<sup>a</sup>         |x86-32          |GCC 4.2.3 **Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup> Oracle Studio 12.2 (C++ 5.11)<sup>a</sup> |
-|Solaris 10, 11<sup>a</sup>         |x86-64          |**Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup> </br>Oracle Studio 12.2 (C++ 5.11)<sup>a</sup>|
+|Solaris 10, 11<sup>a</sup>         |x86-64          |**Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup> <br/>Oracle Studio 12.2 (C++ 5.11)<sup>a</sup>|
 |FreeBSD-8.3                        |x86-32          |GCC 4.2.2 |
 
 <sup>a</sup> some support
@@ -668,32 +668,20 @@ Table 3. Unix OS's and Supported Compilers
 
 Table 4. MS Windows and Supported Compilers
 
-Operating System
-Architecture
-Compilers
-MS Windows
-x86-32
-[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)
- NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform.
-MS Windows
-x86-64
-[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)
- NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform
-Cygwin 1.7.9
-x86-32
-[GCC 4.5.3](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Cygwin_GCC)- nominal support only.
+|Operating System          |Architecture                    |Compilers                      |
+|--------------------------|--------------------------------|-------------------------------|
+|MS Windows                |x86-32                          |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0) NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform. |
+|MS Windows                |x86-64                          |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0) NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform |
+|Cygwin 1.7.9              |x86-32                          |[GCC 4.5.3](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
 
 ### <span class="title">[Mac OS X](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Mac_OS_X)</span>
 
 Table 5. Mac OS and Supported Compilers
 
-Operating System
-Architecture
-Compilers
-Mac OS X 10.6
- Mac OS X 10.8
-Native (PowerPC or x86-32 or x86-64 )
-[Xcode](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Xcode_30__31) 3.0 - 3.2.6
+|Operating System        |Architecture                          |Compilers                           |
+|------------------------|--------------------------------------|------------------------------------|
+|Mac OS X 10.6
+ Mac OS X 10.8           |Native (PowerPC or x86-32 or x86-64 ) |[Xcode](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Xcode_30__31) 3.0 - 3.2.6 |
 Darwin 10.x
 Native (PowerPC or x86-32 or x86-64),
  Universal (PowerPC and x86-32)
