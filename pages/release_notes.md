@@ -66,7 +66,7 @@ Created: June 18, 2013; Last Update: May 9, 2014.
 
 -   [Supported Platforms (OS's and Compilers)](#release_notes.Platforms_OSs__compi)
 
-    -   [Unix](#release_notes.HYPERLINK__bookpartch_co_1)
+    -   [Unix](#release_notes.Unix)
 
     -   [MS Windows](#release_notes.MS_Windows)
 
@@ -281,7 +281,7 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-class">CCgiUserAgent</span> -- update list of browsers and mobile devices.
 
-<a name=""></a>
+<a name="release_notes.UTILITES"></a>
 
 ### <span class="title">UTILITES</span>
 
@@ -303,7 +303,7 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-class">CTextJoiner</span> -- New template for collecting and joining strings with a minimum of heap churn.
 
-<a name=""></a>
+<a name="release_notes.DBAPI"></a>
 
 ### <span class="title">DBAPI</span>
 
@@ -313,11 +313,9 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Added support for Kerberos authentication (copied from FreeTDS 0.91).
 
-<a name=""></a>
+<a name="release_notes.BIOOBJECTS"></a>
 
 ### <span class="title">BIO-OBJECTS</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
@@ -335,11 +333,9 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-func">objects::CGC\_Replicon</span> now has accessors to return molecule type (‘Chromosome’, ‘Plasmid’, etc.) and location (‘Nuclear’, ‘Mitochondrion’, ‘Chloroplast’, etc.). You can also retrieve a label (<span class="nctnt ncbi-func">GetMoleculeLabel()</span>) which summarizes molecule type and location in one string.
 
-<a name=""></a>
+<a name="release_notes.BIOTOOLS"></a>
 
 ### <span class="title">BIO-TOOLS</span>
-
-<a name=""></a>
 
 #### <span class="title">New Development:</span>
 
@@ -405,11 +401,9 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Incorrect alignments with sequence clustering
 
-<a name=""></a>
+<a name="release_notes.BIOOBJECT_MANAGER"></a>
 
 ### <span class="title">BIO-OBJECT MANAGER</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
@@ -473,21 +467,17 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Exclude removed features from un-indexed search.
 
-<a name=""></a>
+<a name="release_notes.OBJECT_LIBRARIES"></a>
 
 ### <span class="title">OBJECT LIBRARIES</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Implemeted multi-id Seq-loc comparison.
 
-<a name=""></a>
+<a name="release_notes.GENBANK_DATA_LOADER"></a>
 
 ### <span class="title">GENBANK DATA LOADER</span>
-
-<a name=""></a>
 
 #### <span class="title">Bug fixes:</span>
 
@@ -503,37 +493,29 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Lock split TSE only after receiving split info.
 
-<a name=""></a>
+<a name="release_notes.BAM_DATA_LOADER"></a>
 
 ### <span class="title">BAM DATA LOADER</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Implemented pileup graphs for BAM loader.
 
-<a name=""></a>
-
 #### <span class="title">Improvements:</span>
 
 -   Generate simple ID2 split info to postpone record loading.
 
-<a name=""></a>
+<a name="release_notes.SRA_DATA_LOADER"></a>
 
 ### <span class="title">SRA DATA LOADER</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Added option to clip SRA sequences.
 
-<a name=""></a>
+<a name="release_notes.cSRA_DATA_LOADER"></a>
 
 ### <span class="title">cSRA DATA LOADER</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
@@ -609,39 +591,31 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Set max value of quality graph properly.
 
-<a name=""></a>
-
 #### <span class="title">Bug fixes:</span>
 
 -   Fixed MISMATCH generation for I segments.
 
 -   Added missing <span class="nctnt ncbi-func">RegisterInObjectManager()</span>.
 
-<a name=""></a>
+<a name="release_notes.WGS_DATA_LOADER"></a>
 
 ### <span class="title">WGS DATA LOADER</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Implemented VDB WGS reader and data loader.
 
-<a name=""></a>
+<a name="release_notes.VDB_DATA_LOADER"></a>
 
 ### <span class="title">VDB DATA LOADER</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Implemented VDB graph reader and data loader.
 
-<a name=""></a>
+<a name="release_notes.BLAST"></a>
 
 ### <span class="title">BLAST</span>
-
-<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
@@ -661,7 +635,7 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Fix ASN 1 input for makeblastdb
 
-<a name=""></a>
+<a name="release_notes.APPLICATIONS"></a>
 
 ### <span class="title">APPLICATIONS</span>
 
@@ -677,7 +651,7 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-app">asn2asn</span> -- added ability to read and write Seq-submits
 
-<a name=""></a>
+<a name="release_notes.BUILD_FRAMEWORK_UNIX"></a>
 
 ### <span class="title">BUILD FRAMEWORK (Unix)</span>
 
@@ -697,12 +671,12 @@ Mac OS X support extends to version 10.8.x, with Clang, FSF GCC, or LLVM GCC (al
 
 Solaris support extends to version 11, with GCC or WorkShop (as with older OS versions).
 
-<a name=""></a>
+<a name="release_notes.Documentation"></a>
 
 <span class="title">Documentation</span>
 ----------------------------------------
 
-<a name=""></a>
+<a name="release_notes.Location"></a>
 
 ### <span class="title">Location</span>
 
@@ -710,7 +684,7 @@ The documentation is available online as a searchable book "The NCBI C++ Toolkit
 
 The C++ Toolkit book also provides PDF version of the chapters. The PDF version can be accessed by a link that appears on each page.
 
-<a name=""></a>
+<a name="release_notes.Content"></a>
 
 ### <span class="title">Content</span>
 
@@ -724,7 +698,7 @@ Public assess to our SVN trunk:
 
 -   For retrieval: <https://anonsvn.ncbi.nlm.nih.gov/repos/v1/trunk/c++> (<span class="nctnt highlight">NOTE:</span> Some WebDAV clients may require dav:// instead of http://)
 
-<a name=""></a>
+<a name="release_notes.Platforms_OSs__compi"></a>
 
 <span class="title">Supported Platforms (OS's and Compilers)</span>
 -------------------------------------------------------------------
@@ -743,7 +717,7 @@ This release was successfully tested on at least the following platforms (but ma
 
 In cases where multiple versions of a compiler are supported, the mainstream version is shown in **bold**.
 
-<a name=""></a>
+<a name="release_notes.Unix"></a>
 
 ### <span class="title">[Unix](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.UNIX)</span>
 
@@ -764,7 +738,7 @@ Table 3. Unix OS's and Supported Compilers
 
 <sup>b</sup> 32-bit only
 
-<a name=""></a>
+<a name="release_notes.MS_Windows"></a>
 
 ### <span class="title">[MS Windows](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Windows)</span>
 
@@ -776,7 +750,7 @@ Table 4. MS Windows and Supported Compilers
 |MS Windows                |x86-64                          |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform |
 |Cygwin 1.7.9              |x86-32                          |[GCC 4.5.3](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
 
-<a name=""></a>
+<a name="release_notes.Mac_OS_X"></a>
 
 ### <span class="title">[Mac OS X](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Mac_OS_X)</span>
 
@@ -793,7 +767,7 @@ Darwin 10.x = Mac OS 10.6.x
 
 Darwin 12.x = Mac OS 10.8.x
 
-<a name=""></a>
+<a name="release_notes.Added_Platforms"></a>
 
 ### <span class="title">Added Platforms</span>
 
@@ -808,7 +782,7 @@ Table 6. Added Platforms
 
 <sup>a</sup> some support
 
-<a name=""></a>
+<a name="release_notes.Discontinued"></a>
 
 ### <span class="title">Discontinued Platforms</span>
 
