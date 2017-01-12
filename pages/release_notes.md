@@ -91,6 +91,8 @@ Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools
 
 The sources correspond to the NCBI production tree [sources](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from March 11, 2013 but also include many hundreds of important and safe code updates made since then and through May 17, 2013 (and then some).
 
+<a name="release_notes.Third_Party_Packages"></a>
+
 <span class="title">Third Party Packages</span>
 -----------------------------------------------
 
@@ -140,13 +142,19 @@ Table 2. Versions of Third Party Packages Included in the FTP Archive
 
 <sup>a</sup> Applies to MSVC 9, MSVC 10
 
+<a name="release_notes.Build"></a>
+
 <span class="title">Build</span>
 --------------------------------
 
 For guidelines to configure, build and install the Toolkit see [here](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config).
 
+<a name="release_notes.New_Developments"></a>
+
 <span class="title">New Developments</span>
 -------------------------------------------
+
+<a name="release_notes.release_notes_HIGHLIGHTS"></a>
 
 ### <span class="title">HIGHLIGHTS</span>
 
@@ -158,6 +166,8 @@ Redesigned Unicode support (stage 1) - added new <span class="nctnt ncbi-class">
  Significant additions and improvements in the XML and JSON serialization APIs.
 
 Cleaned up the code (again) from non-MT-safe static objects.
+
+<a name="release_notes.CORELIB"></a>
 
 ### <span class="title">CORELIB</span>
 
@@ -209,6 +219,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-class">NStr</span> -- <span class="nctnt ncbi-func">Split</span>, <span class="nctnt ncbi-func">Tokenize</span>, etc. now accept flags, controlling not only delimiter merging but also whether to treat multi-character delimiters as patterns (generalizing <span class="nctnt ncbi-func">TokenizePattern</span>) and to treat any subset of \\'" as special.
 
+<a name="release_notes.SERIAL"></a>
+
 ### <span class="title">DATA SERIALIZATION</span>
 
 #### <span class="title">New functionality:</span>
@@ -231,6 +243,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Store serialization format flags for correct delayed parsing.
 
+<a name=""></a>
+
 #### <span class="title">XMLWrapp:</span>
 
 -   Safe dereferencing node iterators
@@ -247,11 +261,15 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-func">run\_xpath\_expression(…)</span> to handle boolean, number and string types as return values
 
+<a name="release_notes.DATATOOL"></a>
+
 ### <span class="title">DATATOOL</span>
 
 -   Enhanced SOAP client code generation to support WSDL specification which contains several XML schemas - to handle elements with identical names in different namespaces.
 
 -   Added possibility of converting data to and from JSON format.
+
+<a name="release_notes.CGI"></a>
 
 ### <span class="title">CGI</span>
 
@@ -262,6 +280,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 -   Added flags to allow use external pattern lists on the parsing step to identify bots, phones, tablets and mobile devices. Return iPad back to the list of mobile devices. Interpret all Android based devices as mobile devices.
 
 -   <span class="nctnt ncbi-class">CCgiUserAgent</span> -- update list of browsers and mobile devices.
+
+<a name=""></a>
 
 ### <span class="title">UTILITES</span>
 
@@ -283,6 +303,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-class">CTextJoiner</span> -- New template for collecting and joining strings with a minimum of heap churn.
 
+<a name=""></a>
+
 ### <span class="title">DBAPI</span>
 
 -   Support Sybase ASE 15.5 servers.
@@ -291,7 +313,11 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Added support for Kerberos authentication (copied from FreeTDS 0.91).
 
+<a name=""></a>
+
 ### <span class="title">BIO-OBJECTS</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
@@ -309,7 +335,11 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-func">objects::CGC\_Replicon</span> now has accessors to return molecule type (‘Chromosome’, ‘Plasmid’, etc.) and location (‘Nuclear’, ‘Mitochondrion’, ‘Chloroplast’, etc.). You can also retrieve a label (<span class="nctnt ncbi-func">GetMoleculeLabel()</span>) which summarizes molecule type and location in one string.
 
+<a name=""></a>
+
 ### <span class="title">BIO-TOOLS</span>
+
+<a name=""></a>
 
 #### <span class="title">New Development:</span>
 
@@ -365,13 +395,21 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
     -   created <span class="nctnt ncbi-class">CAgpToSeqEntry</span> for converting an AGP file into a Seq-entry.
 
+<a name=""></a>
+
 #### <span class="title">COBALT</span>
+
+<a name=""></a>
 
 ##### <span class="title">Bug fixes:</span>
 
 -   Incorrect alignments with sequence clustering
 
+<a name=""></a>
+
 ### <span class="title">BIO-OBJECT MANAGER</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
@@ -389,6 +427,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Added recursive mode and seq-entry type filtering to <span class="nctnt ncbi-class"> CSeq\_entry\_CI</span>.
 
+<a name=""></a>
+
 #### <span class="title">Improvements:</span>
 
 -   Allow non-scope bioseq lookup in <span class="nctnt ncbi-class">CSeq\_Map</span> (for segset entries).
@@ -402,6 +442,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 -   More detailed error message in annots.
 
 -   Allow iteration over non-set entries in <span class="nctnt ncbi-class">CSeq\_entry\_CI</span> - treat them as empty sets.
+
+<a name=""></a>
 
 #### <span class="title">Bug fixes:</span>
 
@@ -431,13 +473,21 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Exclude removed features from un-indexed search.
 
+<a name=""></a>
+
 ### <span class="title">OBJECT LIBRARIES</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Implemeted multi-id Seq-loc comparison.
 
+<a name=""></a>
+
 ### <span class="title">GENBANK DATA LOADER</span>
+
+<a name=""></a>
 
 #### <span class="title">Bug fixes:</span>
 
@@ -453,23 +503,37 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Lock split TSE only after receiving split info.
 
+<a name=""></a>
+
 ### <span class="title">BAM DATA LOADER</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Implemented pileup graphs for BAM loader.
 
+<a name=""></a>
+
 #### <span class="title">Improvements:</span>
 
 -   Generate simple ID2 split info to postpone record loading.
 
+<a name=""></a>
+
 ### <span class="title">SRA DATA LOADER</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Added option to clip SRA sequences.
 
+<a name=""></a>
+
 ### <span class="title">cSRA DATA LOADER</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
@@ -490,6 +554,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 -   Added clippig by quality.
 
 -   Added option to exclude cSRA file path from short read ids.
+
+<a name=""></a>
 
 #### <span class="title">Improvements:</span>
 
@@ -543,25 +609,39 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   Set max value of quality graph properly.
 
+<a name=""></a>
+
 #### <span class="title">Bug fixes:</span>
 
 -   Fixed MISMATCH generation for I segments.
 
 -   Added missing <span class="nctnt ncbi-func">RegisterInObjectManager()</span>.
 
+<a name=""></a>
+
 ### <span class="title">WGS DATA LOADER</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Implemented VDB WGS reader and data loader.
 
+<a name=""></a>
+
 ### <span class="title">VDB DATA LOADER</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
 -   Implemented VDB graph reader and data loader.
 
+<a name=""></a>
+
 ### <span class="title">BLAST</span>
+
+<a name=""></a>
 
 #### <span class="title">New functionality:</span>
 
@@ -575,9 +655,13 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   For more details, see BLAST+ 2.2.27 and 2.2.28 release notes (<https://www.ncbi.nlm.nih.gov/books/NBK131777/>)
 
+<a name=""></a>
+
 #### <span class="title">Bug fix</span>
 
 -   Fix ASN 1 input for makeblastdb
+
+<a name=""></a>
 
 ### <span class="title">APPLICATIONS</span>
 
@@ -593,6 +677,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 
 -   <span class="nctnt ncbi-app">asn2asn</span> -- added ability to read and write Seq-submits
 
+<a name=""></a>
+
 ### <span class="title">BUILD FRAMEWORK (Unix)</span>
 
 -   configure and frontends (<span class="nctnt ncbi-path">compilers/unix/\*.sh</span>) -- Don't override explicitly specified optimization flags with default FAST settings (but do still apply custom FAST settings if also specified).
@@ -600,6 +686,8 @@ Cleaned up the code (again) from non-MT-safe static objects.
 -   <span class="nctnt ncbi-path">compilers/unix/Clang.sh, .../LLVM-GCC.sh</span> -- New frontends for configure to simplify compiler selection.
 
 -   <span class="nctnt ncbi-path">new\_project.sh</span> -- Improve support for projects involving libraries.
+
+<a name=""></a>
 
 #### <span class="title">CHANGES TO COMPILER SUPPORT</span>
 
@@ -609,14 +697,20 @@ Mac OS X support extends to version 10.8.x, with Clang, FSF GCC, or LLVM GCC (al
 
 Solaris support extends to version 11, with GCC or WorkShop (as with older OS versions).
 
+<a name=""></a>
+
 <span class="title">Documentation</span>
 ----------------------------------------
+
+<a name=""></a>
 
 ### <span class="title">Location</span>
 
 The documentation is available online as a searchable book "The NCBI C++ Toolkit": <https://www.ncbi.nlm.nih.gov/toolkit/doc/book/>.
 
 The C++ Toolkit book also provides PDF version of the chapters. The PDF version can be accessed by a link that appears on each page.
+
+<a name=""></a>
 
 ### <span class="title">Content</span>
 
@@ -629,6 +723,8 @@ Public assess to our SVN trunk:
 -   For browsing: <https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++>
 
 -   For retrieval: <https://anonsvn.ncbi.nlm.nih.gov/repos/v1/trunk/c++> (<span class="nctnt highlight">NOTE:</span> Some WebDAV clients may require dav:// instead of http://)
+
+<a name=""></a>
 
 <span class="title">Supported Platforms (OS's and Compilers)</span>
 -------------------------------------------------------------------
@@ -646,6 +742,8 @@ Public assess to our SVN trunk:
 This release was successfully tested on at least the following platforms (but may also work on other platforms). Since the previous release, some platforms were dropped from this list and some were added. Also, it can happen that some projects would not work (or even compile) in the absence of 3rd-party packages, or with older or newer versions of such packages. In these cases, just skipping such projects (e.g. using flag "<span class="nctnt ncbi-monospace">-k</span>" for <span class="nctnt ncbi-app"> make</span> on Unix), can get you through.
 
 In cases where multiple versions of a compiler are supported, the mainstream version is shown in **bold**.
+
+<a name=""></a>
 
 ### <span class="title">[Unix](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.UNIX)</span>
 
@@ -666,6 +764,8 @@ Table 3. Unix OS's and Supported Compilers
 
 <sup>b</sup> 32-bit only
 
+<a name=""></a>
+
 ### <span class="title">[MS Windows](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Windows)</span>
 
 Table 4. MS Windows and Supported Compilers
@@ -675,6 +775,8 @@ Table 4. MS Windows and Supported Compilers
 |MS Windows                |x86-32                          |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform. |
 |MS Windows                |x86-64                          |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform |
 |Cygwin 1.7.9              |x86-32                          |[GCC 4.5.3](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
+
+<a name=""></a>
 
 ### <span class="title">[Mac OS X](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Mac_OS_X)</span>
 
@@ -691,6 +793,8 @@ Darwin 10.x = Mac OS 10.6.x
 
 Darwin 12.x = Mac OS 10.8.x
 
+<a name=""></a>
+
 ### <span class="title">Added Platforms</span>
 
 Table 6. Added Platforms
@@ -704,6 +808,8 @@ Table 6. Added Platforms
 
 <sup>a</sup> some support
 
+<a name=""></a>
+
 ### <span class="title">Discontinued Platforms</span>
 
 Table 7. Discontinued Platforms
@@ -714,6 +820,8 @@ Table 7. Discontinued Platforms
 |Mac OS X 10.4.x(Darwin 8.x),<br/> Mac OS X 10.5.x(Darwin 9.x) |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32)|[GCC 4.0.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC), Clang 3.0|
 |FreeBSD-6.1                 |x86-32                                |GCC 3.4.6                           |
 |All                         |All                                   |All GCC 4.0.1 and below             |
+
+<a name=""></a>
 
 <span class="title">Last Updated</span>
 ---------------------------------------
