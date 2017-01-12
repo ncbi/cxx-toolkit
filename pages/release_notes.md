@@ -140,7 +140,7 @@ Table 2. Versions of Third Party Packages Included in the FTP Archive
 |SQLite3            |                         |3.6.14.2                       |
 |zlib               |                         |1.2.8                          |
 
-<sup>a</sup> Applies to MSVC 12 (Visual Studi 2013) and MSVC 14 (Visual Studi 2015)
+<sup>a</sup> Applies to MSVC 12 (Visual Studio 2013) and MSVC 14 (Visual Studio 2015)
 
 <a name="release_notes.Build"></a>
 
