@@ -678,16 +678,10 @@ Table 4. MS Windows and Supported Compilers
 
 Table 5. Mac OS and Supported Compilers
 
-|Operating System        |Architecture                          |Compilers                           |
-|------------------------|--------------------------------------|------------------------------------|
-|Mac OS X 10.6
- Mac OS X 10.8           |Native (PowerPC or x86-32 or x86-64 ) |[Xcode](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Xcode_30__31) 3.0 - 3.2.6 |
-Darwin 10.x
-Native (PowerPC or x86-32 or x86-64),
- Universal (PowerPC and x86-32)
-[GCC 4.0.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC)
- [GCC 4.2.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC) (only available under Darwin 10.x)
- LLVM Clang 3.0
+|Operating System            |Architecture                          |Compilers                           |
+|----------------------------|--------------------------------------|------------------------------------|
+|Mac OS X 10.6 Mac OS X 10.8 |Native (PowerPC or x86-32 or x86-64 ) |[Xcode](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Xcode_30__31) 3.0 - 3.2.6 |
+|Darwin 10.x                 |Native (PowerPC or x86-32 or x86-64), Universal (PowerPC and x86-32) |[GCC 4.0.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC) [GCC 4.2.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC) (only available under Darwin 10.x) LLVM Clang 3.0 |
 
 <span class="nctnt highlight">NOTE:</span> the correspondence between Darwin kernel versions and Mac OS versions:
 
@@ -699,23 +693,12 @@ Darwin 12.x = Mac OS 10.8.x
 
 Table 6. Added Platforms
 
-Operating System
-Architecture
-Compilers
-CentOS 5.x (LIBC 2.5)
-x86-32
-GCC 4.4.5 <sup>a</sup>**,** 4.6.0
-CentOS 5.x
-x86-64
-GCC 4.7.2 <sup>a</sup>
-CentOS 6.x (LIBC 2.12)
-x86-64
-GCC 4.4.2 , 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup>
-Mac OS X 10.5,
- MacOS x 10.6,
-Native (PowerPC or x86-32 or x86-64)
-[Xcode](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Xcode_30__31) 3.2.3 - 3.2.6
- LLVM Clang 3.0
+|Operating System            |Architecture                          |Compilers                           |
+|----------------------------|--------------------------------------|------------------------------------|
+|CentOS 5.x (LIBC 2.5)       |x86-32                                |GCC 4.4.5 <sup>a</sup>**,** 4.6.0   |
+|CentOS 5.x                  |x86-64                                |GCC 4.7.2 <sup>a</sup>
+|CentOS 6.x (LIBC 2.12)      |x86-64                                |GCC 4.4.2 , 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup>|
+|Mac OS X 10.5, MacOS x 10.6 |Native (PowerPC or x86-32 or x86-64)  |[Xcode](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Xcode_30__31) 3.2.3 - 3.2.6 LLVM Clang 3.0|
 
 <sup>a</sup> some support
 
@@ -723,24 +706,12 @@ Native (PowerPC or x86-32 or x86-64)
 
 Table 7. Discontinued Platforms
 
-Operating System
-Architecture
-Compilers
-MS Windows
-x86-32, 64
-[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2008 (C++ 9.0)
-Mac OS X 10.4.x(Darwin
- 8.x), Mac OS X 10.5.x(Darwin
- 9.x)
-Native (PowerPC or x86-32 or x86-64),
- Universal (PowerPC and x86-32)
-[GCC 4.0.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC), Clang 3.0
-FreeBSD-6.1
-x86-32
-GCC 3.4.6
-All
-All
-All GCC 4.0.1 and below
+|Operating System            |Architecture                          |Compilers                           |
+|----------------------------|--------------------------------------|------------------------------------|
+|MS Windows                  |x86-32, 64                            |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2008 (C++ 9.0)|
+|Mac OS X 10.4.x(Darwin 8.x), Mac OS X 10.5.x(Darwin 9.x) |Native (PowerPC or x86-32 or x86-64), Universal (PowerPC and x86-32)|[GCC 4.0.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC), Clang 3.0|
+|FreeBSD-6.1                 |x86-32                                |GCC 3.4.6                           |
+|All                         |All                                   |All GCC 4.0.1 and below             |
 
 <span class="title">Last Updated</span>
 ---------------------------------------
