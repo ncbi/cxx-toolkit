@@ -107,7 +107,7 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 |[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8.0                    |
 |[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.2.26, 1.2.7, 1.5.13      |
 |[libtiff](http://www.libtiff.org)                    |All versions    |3.6.1, 3.9.2, 4.0.0        |
-|[libungif](http://sourceforge.net/projects/giflib/files/libungif-4.x/libungif-4.1.4/) |All versions |4.1.3 (libungif), 4.1.6 (giflib) |
+|[libungif](http://sourceforge.net/projects/giflib/files/libungif-4.x/libungif-4.1.4/) |All versions |4.1.3 (libungif),<br/> 4.1.6 (giflib) |
 |[libxml2](http://xmlsoft.org/)                       |All versions    |2 2.7.3, 2.7.6, 2.7.8,     |
 |[libxslt](http://xmlsoft.org/)                       |1.1.14          |1.1.24, 1.1.26             |
 |[<span class="small-caps">LZO</span>](http://www.oberhumer.com/opensource/lzo) |2.x |2.05         |
