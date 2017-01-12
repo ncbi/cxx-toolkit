@@ -76,6 +76,8 @@ Created: June 18, 2013; Last Update: May 9, 2014.
 
     -   [Discontinued Platforms](#release_notes.Discontinued)
 
+<a name="release_notes.Download"></a>
+
 <span class="title">Download</span>
 -----------------------------------
 
