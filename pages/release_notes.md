@@ -89,7 +89,7 @@ Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools
 
 -   [ncbi\_cxx--12\_0\_0.zip](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ncbi_cxx--12_0_0.zip) — for MS-Windows (32- and 64-bit) / MSVC++ 10.0
 
-The sources correspond to the NCBI production tree [sources](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from March 11, 2013 but also include many hundreds of important and safe code updates made since then and through May 17, 2013 (and then some).
+The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from March 11, 2013 but also include many hundreds of important and safe code updates made since then and through May 17, 2013 (and then some).
 
 <a name="release_notes.Third_Party_Packages"></a>
 
@@ -147,7 +147,7 @@ Table 2. Versions of Third Party Packages Included in the FTP Archive
 <span class="title">Build</span>
 --------------------------------
 
-For guidelines to configure, build and install the Toolkit see [here](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config).
+For guidelines to configure, build and install the Toolkit see [here](https://ncbi.github.io/cxx-toolkit/pages/ch_config).
 
 <a name="release_notes.New_Developments"></a>
 
@@ -680,9 +680,8 @@ Solaris support extends to version 11, with GCC or WorkShop (as with older OS ve
 
 ### <span class="title">Location</span>
 
-The documentation is available online as a searchable book "The NCBI C++ Toolkit": <https://www.ncbi.nlm.nih.gov/toolkit/doc/book/>.
+The documentation is available online as a searchable book "The NCBI C++ Toolkit": <https://ncbi.github.io/cxx-toolkit/>.
 
-The C++ Toolkit book also provides PDF version of the chapters. The PDF version can be accessed by a link that appears on each page.
 
 <a name="release_notes.Content"></a>
 
@@ -703,7 +702,7 @@ Public assess to our SVN trunk:
 <span class="title">Supported Platforms (OS's and Compilers)</span>
 -------------------------------------------------------------------
 
--   [Unix](release_notes.html#release_notes.HYPERLINK__bookpartch_co_1)
+-   [Unix](release_notes.html#release_notes.Unix)
 
 -   [MS Windows](release_notes.html#release_notes.MS_Windows)
 
@@ -719,7 +718,7 @@ In cases where multiple versions of a compiler are supported, the mainstream ver
 
 <a name="release_notes.Unix"></a>
 
-### <span class="title">[Unix](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.UNIX)</span>
+### <span class="title">[Unix](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.UNIX)</span>
 
 Table 3. Unix OS's and Supported Compilers
 
@@ -740,26 +739,26 @@ Table 3. Unix OS's and Supported Compilers
 
 <a name="release_notes.MS_Windows"></a>
 
-### <span class="title">[MS Windows](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Windows)</span>
+### <span class="title">[MS Windows](ch_config#ch_config.MS_Windows)</span>
 
 Table 4. MS Windows and Supported Compilers
 
 |Operating System          |Architecture                    |Compilers                      |
 |--------------------------|--------------------------------|-------------------------------|
-|MS Windows                |x86-32                          |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform. |
-|MS Windows                |x86-64                          |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform |
-|Cygwin 1.7.9              |x86-32                          |[GCC 4.5.3](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
+|MS Windows                |x86-32                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform. |
+|MS Windows                |x86-64                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (C++ 10.0)<br/> NOTE: We also ship an easily buildable archive of [3rd-party](ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools++/ARCHIVE/12_0_0/ThirdParty/README) packages for this platform |
+|Cygwin 1.7.9              |x86-32                          |[GCC 4.5.3](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
 
 <a name="release_notes.Mac_OS_X"></a>
 
-### <span class="title">[Mac OS X](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Mac_OS_X)</span>
+### <span class="title">[Mac OS X](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Mac_OS_X)</span>
 
 Table 5. Mac OS and Supported Compilers
 
 |Operating System            |Architecture                          |Compilers                           |
 |----------------------------|--------------------------------------|------------------------------------|
-|Mac OS X 10.6 Mac OS X 10.8 |Native (PowerPC or x86-32 or x86-64 ) |[Xcode](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Xcode_30__31) 3.0 - 3.2.6 |
-|Darwin 10.x                 |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32) |[GCC 4.0.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC)<br/> [GCC 4.2.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC) (only available under Darwin 10.x) LLVM Clang 3.0 |
+|Mac OS X 10.6 Mac OS X 10.8 |Native (PowerPC or x86-32 or x86-64 ) |[Xcode](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Xcode_30__31) 3.0 - 3.2.6 |
+|Darwin 10.x                 |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32) |[GCC 4.0.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.GCC)<br/> [GCC 4.2.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.GCC) (only available under Darwin 10.x) LLVM Clang 3.0 |
 
 <span class="nctnt highlight">NOTE:</span> the correspondence between Darwin kernel versions and Mac OS versions:
 
@@ -778,7 +777,7 @@ Table 6. Added Platforms
 |CentOS 5.x (LIBC 2.5)       |x86-32                                |GCC 4.4.5 <sup>a</sup>**,** 4.6.0   |
 |CentOS 5.x                  |x86-64                                |GCC 4.7.2 <sup>a</sup>
 |CentOS 6.x (LIBC 2.12)      |x86-64                                |GCC 4.4.2 , 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup>|
-|Mac OS X 10.5,<br/> MacOS x 10.6 |Native (PowerPC or x86-32 or x86-64)  |[Xcode](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.Xcode_30__31) 3.2.3 - 3.2.6<br/> LLVM Clang 3.0|
+|Mac OS X 10.5,<br/> MacOS x 10.6 |Native (PowerPC or x86-32 or x86-64)  |[Xcode](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Xcode_30__31) 3.2.3 - 3.2.6<br/> LLVM Clang 3.0|
 
 <sup>a</sup> some support
 
@@ -790,8 +789,8 @@ Table 7. Discontinued Platforms
 
 |Operating System            |Architecture                          |Compilers                           |
 |----------------------------|--------------------------------------|------------------------------------|
-|MS Windows                  |x86-32, 64                            |[MS Visual C++](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.MS_Visual_C_2008) 2008 (C++ 9.0)|
-|Mac OS X 10.4.x(Darwin 8.x),<br/> Mac OS X 10.5.x(Darwin 9.x) |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32)|[GCC 4.0.1](https://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_config#ch_config.GCC), Clang 3.0|
+|MS Windows                  |x86-32, 64                            |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2008 (C++ 9.0)|
+|Mac OS X 10.4.x(Darwin 8.x),<br/> Mac OS X 10.5.x(Darwin 9.x) |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32)|[GCC 4.0.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC), Clang 3.0|
 |FreeBSD-6.1                 |x86-32                                |GCC 3.4.6                           |
 |All                         |All                                   |All GCC 4.0.1 and below             |
 
