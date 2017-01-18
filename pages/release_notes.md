@@ -6,7 +6,12 @@ nav: pages/release_notes
 
 
 Release Notes (Version 18, January 2017)
-====================================
+=============
+
+The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/RN_index.html).
+
+
+> These notes give a somewhat superficial and incomplete (albeit still useful) description of the latest NCBI C++ Toolkit changes, fixes and additions. Some important topics (especially numerous bug fixes and feature improvements, but possibly a bigger fish) are just out of scope of these notes. Feel free to write to the mailing group <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp> with any questions or reports.
 
 
 -   [Download](#release_notes.Download)
@@ -221,3 +226,4 @@ Official support for **all** of the above platforms is new in this release (thou
 ---------------------------------------
 
 This document was last updated on January 18, 2017.
+
