@@ -53,7 +53,6 @@ Contents
 -   [Part 7. Library and Applications Configuration](pages/part7)
     -   [32. Library Configuration](pages/ch_libconfig)
 -   [Miscellaneous](pages/misc)
--   [Release Notes](pages/part8)
 -   [Appendix - Books and Styles](pages/appendix)
 
 
