@@ -378,6 +378,12 @@ Here's a sample code snippet that constructs a ***CFeatTree*** based on selected
     feature::CFeatTree feat_tree;
     feat_tree.AddFeatures(feat_it);
 
+***Note:*** The ***IncludeFeatType()*** method adds the given feature subtype to those already selected. For example, if you constructed the ***SAnnotSelector*** like:
+
+    SAnnotSelector sel(CSeq_annot::C_Data::e_Ftable);
+
+then all features would already be selected and calling ***sel.IncludeFeatType(...)*** would have no effect.
+
 The ***CFeatTree*** class can also improve the performance of the ***feature::GetBestXxxForYyy()*** functions, such as [GetBestGeneForMrna()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBestGeneForMrna). Simply create the ***CFeatTree*** and pass it to the ***GetBestXxxForYyy()*** functions.
 
 ***Note:*** There are "old" and "new" ***GetBestXxxForYyy()*** functions. The "new" functions are in the `feature` namespace, are located in `include/objmgr/util/feature.hpp`, and should be used for new development, as they are more efficient. The "old" functions are in the `sequence` namespace and are located in `include/objmgr/util/sequence.hpp`.
