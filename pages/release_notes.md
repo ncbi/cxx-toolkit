@@ -716,7 +716,7 @@ Public assess to our SVN trunk:
 
 This release was successfully tested on at least the following platforms (but may also work on other platforms). Since the previous release, some platforms were dropped from this list and some were added. Also, it can happen that some projects would not work (or even compile) in the absence of 3rd-party packages, or with older or newer versions of such packages. In these cases, just skipping such projects (e.g. using flag "<span class="nctnt ncbi-monospace">-k</span>" for <span class="nctnt ncbi-app"> make</span> on Unix), can get you through.
 
-In cases where multiple versions of a compiler are supported, the mainstream version is shown in **bold**.
+In cases where multiple compilers or versions are supported, the mainstream one is shown in **bold**.  Other versions might also work, but **must** support C++11; minimum versions are GCC 4.8.x, Clang 3.4.x, and ICC 15.x.
 
 <a name="release_notes.Unix"></a>
 
@@ -724,20 +724,12 @@ In cases where multiple versions of a compiler are supported, the mainstream ver
 
 Table 3. Unix OS's and Supported Compilers
 
-|Operating System                   |Architecture    |Compilers                                |
-|-----------------------------------|----------------|-----------------------------------------|
-|CentOS 5.x (LIBC 2.5)              |x86-64          |**GCC 4.4.2,** 4.0.1<sup>a</sup>, 4.1.2<sup>a</sup>, 4.3.3<sup>a</sup>, 4.6.0<sup>a</sup>, 4.6.3<sup>a</sup><sup>,</sup>GCC 4.7.2 <sup>a</sup> |
-| CentOS 5.x (LIBC 2.5)             |x86-32          |**GCC** 4.4.5 <sup>a</sup>**, 4.6.0**    |
-|CentOS 6.x (LIBC 2.12)             |x86-64          |**GCC 4.4.2**, 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup> |
-|Ubuntu 9.04 ("jaunty") (LIBC 2.9)  |x86-32<br/> x86-64   |**GCC 4.3.3**                            |
-|Solaris 10, 11<sup>a</sup>         |SPARC           |GCC 4.1.1<sup>b</sup>, 4.5.3<sup>b</sup><br/> **Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup><br/> Oracle Studio 12.2 (C++ 5.11)<sup>a</sup> |
-|Solaris 10, 11<sup>a</sup>         |x86-32          |GCC 4.2.3<br/> **Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup><br/> Oracle Studio 12.2 (C++ 5.11)<sup>a</sup> |
-|Solaris 10, 11<sup>a</sup>         |x86-64          |**Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup> <br/>Oracle Studio 12.2 (C++ 5.11)<sup>a</sup>|
-|FreeBSD-8.3                        |x86-32          |GCC 4.2.2 |
-
-<sup>a</sup> some support
-
-<sup>b</sup> 32-bit only
+|Operating System                   |Architecture    |Compilers                    |
+|-----------------------------------|----------------|-----------------------------|
+|CentOS 6.x (LIBC 2.12)             |x86-64          |**GCC 4.9.3**, 4.8.1; ICC 15 |
+|CentOS 7.x (LIBC 2.17)             |x86-64          |**GCC 4.9.3**; ICC 15        |
+|Ubuntu 14.04 ("trusty") (LIBC 2.19)|x86-32<br/>x86-64|GCC 4.8.4                   |
+|FreeBSD 10.2, 10.3                 |x86-64          |Clang 3.4.1                  |
 
 <a name="release_notes.MS_Windows"></a>
 
@@ -759,16 +751,11 @@ Table 4. MS Windows and Supported Compilers
 
 Table 5. Mac OS and Supported Compilers
 
-|Operating System            |Architecture                          |Compilers                           |
-|----------------------------|--------------------------------------|------------------------------------|
-|Mac OS X 10.6 Mac OS X 10.8 |Native (PowerPC or x86-32 or x86-64 ) |[Xcode](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Xcode_30__31) 3.0 - 3.2.6 |
-|Darwin 10.x                 |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32) |[GCC 4.0.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.GCC)<br/> [GCC 4.2.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.GCC) (only available under Darwin 10.x) LLVM Clang 3.0 |
-
-<span class="nctnt highlight">NOTE:</span> the correspondence between Darwin kernel versions and Mac OS versions:
-
-Darwin 10.x = Mac OS 10.6.x
-
-Darwin 12.x = Mac OS 10.8.x
+|Operating System              |Architecture|Compilers                             |
+|------------------------------|------------|--------------------------------------|
+|Mac OS X 10.9.x (Darwin 13.x) |x86-64      |**Apple Clang 6.0** (based on LLVM 3.5), [Xcode](ch_config#ch_config.Xcode_30__31) 6.2|
+|Mac OS X 10.10.x (Darwin 14.x)|x86-64      |**Apple Clang 7.0.2**, Xcode 7.2.1    |
+|Mac OS X 10.11.x (Darwin 15.x)|x86-64      |**Apple Clang 8.0.0**, Xcode 8.2.1    |
 
 <a name="release_notes.Added_Platforms"></a>
 
@@ -776,14 +763,7 @@ Darwin 12.x = Mac OS 10.8.x
 
 Table 6. Added Platforms
 
-|Operating System            |Architecture                          |Compilers                           |
-|----------------------------|--------------------------------------|------------------------------------|
-|CentOS 5.x (LIBC 2.5)       |x86-32                                |GCC 4.4.5 <sup>a</sup>**,** 4.6.0   |
-|CentOS 5.x                  |x86-64                                |GCC 4.7.2 <sup>a</sup>
-|CentOS 6.x (LIBC 2.12)      |x86-64                                |GCC 4.4.2 , 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup>|
-|Mac OS X 10.5,<br/> MacOS x 10.6 |Native (PowerPC or x86-32 or x86-64)  |[Xcode](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Xcode_30__31) 3.2.3 - 3.2.6<br/> LLVM Clang 3.0|
-
-<sup>a</sup> some support
+Official support for **all** of the above platforms is new in this release (though some may have worked unofficially).
 
 <a name="release_notes.Discontinued"></a>
 
@@ -794,9 +774,14 @@ Table 7. Discontinued Platforms
 |Operating System            |Architecture                          |Compilers                           |
 |----------------------------|--------------------------------------|------------------------------------|
 |MS Windows                  |x86-32, 64                            |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (MSVC 10)|
-|Mac OS X 10.4.x(Darwin 8.x),<br/> Mac OS X 10.5.x(Darwin 9.x) |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32)|[GCC 4.0.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC), Clang 3.0|
-|FreeBSD-6.1                 |x86-32                                |GCC 3.4.6                           |
-|All                         |All                                   |All GCC 4.0.1 and below             |
+|CentOS 5.x                  |x86-32, 64                            |All                                 |
+|Ubuntu 9.04 ("jaunty")      |x86-32, 64                            |All                                 |
+|Solaris                     |All                                   |All                                 |
+|FreeBSD 8.3                 |x86-32                                |All                                 |
+|Mac OS X 10.8.x (Darwin 12.x) and below|All                        |All                                 |
+|All                         |All                                   |GCC 4.7.x and below                 |
+|All                         |All                                   |Clang 3.3.x and below               |
+|CentOS 6.x                  |x86-32, 64                            |ICC 13.x and below                  |
 
 <a name=""></a>
 
