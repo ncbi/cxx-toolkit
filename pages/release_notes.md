@@ -104,21 +104,21 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 
 |Package   |Versions expected to work (obtained by build-environment inspection in some cases)  |Versions known to work (used in-house on any platform)  |
 |-------|----------------------------------|--------------|
-|[BerkeleyDB](http://www.oracle.com/us/products/database/berkeley-db/index.html)  |4.3.0 or newer   |4.5.20, 4.6.21.1, 4.7.25, 4.6.21.NC  |
-|[Boost Test](http://www.boost.org)                   |1.35.0 or newer |1.40.0.1, 1.42.0, 1.45.0, 1.56.0 |
+|[BerkeleyDB](http://www.oracle.com/us/products/database/berkeley-db/index.html)  |4.3.0 or newer   |4.5.20, 4.6.21.NC, 4.6.21.1, 4.7.25  |
+|[Boost Test](http://www.boost.org)                   |1.35.0 or newer |1.45.0, 1.53.0, 1.54.0, 1.56.0, 1.57.0 |
 |[FastCGI](http://www.fastcgi.com)                    |All versions    |2.1, 2.4.0                 |
-|[libbzip2](http://www.bzip.org)                      |All versions    |1.0.2, 1.0.5, 1.0.6        | 
-|[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8.0                    |
-|[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.2.26, 1.2.7, 1.5.13      |
-|[libtiff](http://www.libtiff.org)                    |All versions    |3.6.1, 3.9.2, 4.0.0        |
-|[libungif](http://sourceforge.net/projects/giflib/files/libungif-4.x/libungif-4.1.4/) |All versions |4.1.3 (libungif),<br/> 4.1.6 (giflib) |
-|[libxml2](http://xmlsoft.org/)                       |All versions    |2 2.7.3, 2.7.6, 2.7.8,     |
-|[libxslt](http://xmlsoft.org/)                       |1.1.14          |1.1.24, 1.1.26             |
-|[<span class="small-caps">LZO</span>](http://www.oberhumer.com/opensource/lzo) |2.x |2.05         |
-|[PCRE](http://www.pcre.org)                          |All versions    |7.8, 7.9, 8.32,            |
-|[SQLite3](http://www.sqlite.org)                     |3.6.6 or newer  |3.6.12, 3.6.14.2, 3.6.22, 3.7.13 |
-|[Sybase](http://www.sybase.com)                      |All versions    |12.5, 15.5                 |
-|[zlib](http://www.zlib.org)                          |All versions    |1.2.3, 1.2.8               |
+|[libbzip2](http://www.bzip.org)                      |All versions    |1.0.5, 1.0.6               | 
+|[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8c, 8d                 |
+|[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.2.7, 1.2.49, 1.2.50, 1.5.13, 1.6.20 |
+|[libtiff](http://www.libtiff.org)                    |All versions    |3.6.1, 3.9.4, 4.0.3, 4.0.6 |
+|[libungif](http://sourceforge.net/projects/giflib)   |All versions    |4.1.3 (libungif),<br/> 4.1.6, 5.1.2 (giflib) |
+|[libxml2](http://xmlsoft.org/)                       |All versions    |2.7.6, 2.7.8, 2.9.0, 2.9.1, 2.9.4 |
+|[libxslt](http://xmlsoft.org/)                       |1.1.14 or newer |1.1.26, 1.1.28             |
+|[<span class="small-caps">LZO</span>](http://www.oberhumer.com/opensource/lzo) |2.x |2.05, 2.09   |
+|[PCRE](http://www.pcre.org)                          |All versions    |7.8, 7.9, 8.31, 8.32, 8.38 |
+|[SQLite3](http://www.sqlite.org)                     |3.6.6 or newer  |3.6.14.2, 3.6.20, 3.7.13, 3.7.17, 3.8.2 |
+|[Sybase](http://www.sybase.com)                      |All versions    |15.5, 15.7                 |
+|[zlib](http://www.zlib.org)                          |All versions    |1.2.3, 1.2.5, 1.2.7, 1.2.8 |
 
 For Mac OS X and Unix OS’s, the user is expected to download and build the 3<sup>rd</sup> party packages themselves. The release’s package list includes links to download sites. However, the user still needs a list of the 3<sup>rd</sup> party packages and which versions of them are compatible with the release.
 
@@ -716,7 +716,7 @@ Public assess to our SVN trunk:
 
 This release was successfully tested on at least the following platforms (but may also work on other platforms). Since the previous release, some platforms were dropped from this list and some were added. Also, it can happen that some projects would not work (or even compile) in the absence of 3rd-party packages, or with older or newer versions of such packages. In these cases, just skipping such projects (e.g. using flag "<span class="nctnt ncbi-monospace">-k</span>" for <span class="nctnt ncbi-app"> make</span> on Unix), can get you through.
 
-In cases where multiple versions of a compiler are supported, the mainstream version is shown in **bold**.
+In cases where multiple compilers or versions are supported, the mainstream one is shown in **bold**.  Other versions might also work, but **must** support C++11; minimum versions are GCC 4.8.x, Clang 3.4.x, and ICC 15.x.
 
 <a name="release_notes.Unix"></a>
 
@@ -724,20 +724,12 @@ In cases where multiple versions of a compiler are supported, the mainstream ver
 
 Table 3. Unix OS's and Supported Compilers
 
-|Operating System                   |Architecture    |Compilers                                |
-|-----------------------------------|----------------|-----------------------------------------|
-|CentOS 5.x (LIBC 2.5)              |x86-64          |**GCC 4.4.2,** 4.0.1<sup>a</sup>, 4.1.2<sup>a</sup>, 4.3.3<sup>a</sup>, 4.6.0<sup>a</sup>, 4.6.3<sup>a</sup><sup>,</sup>GCC 4.7.2 <sup>a</sup> |
-| CentOS 5.x (LIBC 2.5)             |x86-32          |**GCC** 4.4.5 <sup>a</sup>**, 4.6.0**    |
-|CentOS 6.x (LIBC 2.12)             |x86-64          |**GCC 4.4.2**, 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup> |
-|Ubuntu 9.04 ("jaunty") (LIBC 2.9)  |x86-32<br/> x86-64   |**GCC 4.3.3**                            |
-|Solaris 10, 11<sup>a</sup>         |SPARC           |GCC 4.1.1<sup>b</sup>, 4.5.3<sup>b</sup><br/> **Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup><br/> Oracle Studio 12.2 (C++ 5.11)<sup>a</sup> |
-|Solaris 10, 11<sup>a</sup>         |x86-32          |GCC 4.2.3<br/> **Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup><br/> Oracle Studio 12.2 (C++ 5.11)<sup>a</sup> |
-|Solaris 10, 11<sup>a</sup>         |x86-64          |**Sun Studio 12 (C++ 5.9)**, Sun Studio 12 Update 1 (C++ 5.10)<sup>a</sup> <br/>Oracle Studio 12.2 (C++ 5.11)<sup>a</sup>|
-|FreeBSD-8.3                        |x86-32          |GCC 4.2.2 |
-
-<sup>a</sup> some support
-
-<sup>b</sup> 32-bit only
+|Operating System                   |Architecture    |Compilers                    |
+|-----------------------------------|----------------|-----------------------------|
+|CentOS 6.x (LIBC 2.12)             |x86-64          |**GCC 4.9.3**, 4.8.1; ICC 15 |
+|CentOS 7.x (LIBC 2.17)             |x86-64          |**GCC 4.9.3**; ICC 15        |
+|Ubuntu 14.04 ("trusty") (LIBC 2.19)|x86-32<br/>x86-64|GCC 4.8.4                   |
+|FreeBSD 10.2, 10.3                 |x86-64          |Clang 3.4.1                  |
 
 <a name="release_notes.MS_Windows"></a>
 
@@ -759,16 +751,11 @@ Table 4. MS Windows and Supported Compilers
 
 Table 5. Mac OS and Supported Compilers
 
-|Operating System            |Architecture                          |Compilers                           |
-|----------------------------|--------------------------------------|------------------------------------|
-|Mac OS X 10.6 Mac OS X 10.8 |Native (PowerPC or x86-32 or x86-64 ) |[Xcode](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Xcode_30__31) 3.0 - 3.2.6 |
-|Darwin 10.x                 |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32) |[GCC 4.0.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.GCC)<br/> [GCC 4.2.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.GCC) (only available under Darwin 10.x) LLVM Clang 3.0 |
-
-<span class="nctnt highlight">NOTE:</span> the correspondence between Darwin kernel versions and Mac OS versions:
-
-Darwin 10.x = Mac OS 10.6.x
-
-Darwin 12.x = Mac OS 10.8.x
+|Operating System              |Architecture|Compilers                             |
+|------------------------------|------------|--------------------------------------|
+|Mac OS X 10.9.x (Darwin 13.x) |x86-64      |**Apple Clang 6.0** (based on LLVM 3.5), [Xcode](ch_config#ch_config.Xcode_30__31) 6.2|
+|Mac OS X 10.10.x (Darwin 14.x)|x86-64      |**Apple Clang 7.0.2**, Xcode 7.2.1    |
+|Mac OS X 10.11.x (Darwin 15.x)|x86-64      |**Apple Clang 8.0.0**, Xcode 8.2.1    |
 
 <a name="release_notes.Added_Platforms"></a>
 
@@ -776,14 +763,7 @@ Darwin 12.x = Mac OS 10.8.x
 
 Table 6. Added Platforms
 
-|Operating System            |Architecture                          |Compilers                           |
-|----------------------------|--------------------------------------|------------------------------------|
-|CentOS 5.x (LIBC 2.5)       |x86-32                                |GCC 4.4.5 <sup>a</sup>**,** 4.6.0   |
-|CentOS 5.x                  |x86-64                                |GCC 4.7.2 <sup>a</sup>
-|CentOS 6.x (LIBC 2.12)      |x86-64                                |GCC 4.4.2 , 4.6.3 <sup>a</sup>, 4.7.2 <sup>a</sup>, 4.8.0 <sup>a</sup>|
-|Mac OS X 10.5,<br/> MacOS x 10.6 |Native (PowerPC or x86-32 or x86-64)  |[Xcode](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Xcode_30__31) 3.2.3 - 3.2.6<br/> LLVM Clang 3.0|
-
-<sup>a</sup> some support
+Official support for **all** of the above platforms is new in this release (though some may have worked unofficially).
 
 <a name="release_notes.Discontinued"></a>
 
@@ -794,9 +774,14 @@ Table 7. Discontinued Platforms
 |Operating System            |Architecture                          |Compilers                           |
 |----------------------------|--------------------------------------|------------------------------------|
 |MS Windows                  |x86-32, 64                            |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (MSVC 10)|
-|Mac OS X 10.4.x(Darwin 8.x),<br/> Mac OS X 10.5.x(Darwin 9.x) |Native (PowerPC or x86-32 or x86-64),<br/> Universal (PowerPC and x86-32)|[GCC 4.0.1](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC), Clang 3.0|
-|FreeBSD-6.1                 |x86-32                                |GCC 3.4.6                           |
-|All                         |All                                   |All GCC 4.0.1 and below             |
+|CentOS 5.x                  |x86-32, 64                            |All                                 |
+|Ubuntu 9.04 ("jaunty")      |x86-32, 64                            |All                                 |
+|Solaris                     |All                                   |All                                 |
+|FreeBSD 8.3                 |x86-32                                |All                                 |
+|Mac OS X 10.8.x (Darwin 12.x) and below|All                        |All                                 |
+|All                         |All                                   |GCC 4.7.x and below                 |
+|All                         |All                                   |Clang 3.3.x and below               |
+|CentOS 6.x                  |x86-32, 64                            |ICC 13.x and below                  |
 
 <a name=""></a>
 
