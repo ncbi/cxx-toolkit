@@ -135,7 +135,7 @@ The documentation is available online as a searchable book "The NCBI C++ Toolkit
 
 A C/C++ Symbol Search query appears on each page of the online Toolkit documentation. You can use this to perform a symbol search on the up-to-date public or in-house versions using source browsers [LXR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime&d=), [Doxygen](https://www.ncbi.nlm.nih.gov/toolkit/?term=ctime) and [Library](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?symbol=CTime) - or do an [overall](https://www.ncbi.nlm.nih.gov/toolkitall?term=CTime) search.
 
-Public assess to our SVN trunk:
+Public access to our SVN trunk:
 
 -   For browsing: <https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++>
 
