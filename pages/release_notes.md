@@ -226,4 +226,4 @@ Official support for **all** of the above platforms is new in this release (thou
 ---------------------------------------
 
 This document was last updated on January 18, 2017.
-
+This document was last updated on {{ page.last-modified-date | date: "%Y-%m-%d %T %Z" }}
