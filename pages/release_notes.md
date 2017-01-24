@@ -67,19 +67,19 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 
 |Package   |Versions expected to work (obtained by build-environment inspection in some cases)  |Versions known to work (used in-house on any platform)  |
 |-------|----------------------------------|--------------|
-|[BerkeleyDB](http://www.oracle.com/us/products/database/berkeley-db/index.html)  |4.3.0 or newer   |4.5.20, 4.6.21.NC, 4.6.21.1, 4.7.25  |
-|[Boost Test](http://www.boost.org)                   |1.35.0 or newer |1.45.0, 1.53.0, 1.54.0, 1.56.0, 1.57.0 |
+|[BerkeleyDB](https://www.oracle.com/database/berkeley-db/db.html)  |4.3.0 or newer   |4.5.20, 4.6.21.NC, 4.6.21.1, 4.7.25  |
+|[Boost Test](https://www.boost.org)                   |1.35.0 or newer |1.45.0, 1.53.0, 1.54.0, 1.56.0, 1.57.0 |
 |FastCGI                                              |All versions    |2.1, 2.4.0                 |
 |[libbzip2](http://www.bzip.org)                      |All versions    |1.0.5, 1.0.6               | 
 |[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8c, 8d                 |
 |[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.2.7, 1.2.49, 1.2.50, 1.5.13, 1.6.20 |
 |[libtiff](http://www.libtiff.org)                    |All versions    |3.6.1, 3.9.4, 4.0.3, 4.0.6 |
-|[libungif](http://sourceforge.net/projects/giflib)   |All versions    |4.1.3 (libungif),<br/> 4.1.6, 5.1.2 (giflib) |
+|[libungif](https://sourceforge.net/projects/giflib)   |All versions    |4.1.3 (libungif),<br/> 4.1.6, 5.1.2 (giflib) |
 |[libxml2](http://xmlsoft.org/)                       |All versions    |2.7.6, 2.7.8, 2.9.0, 2.9.1, 2.9.4 |
 |[libxslt](http://xmlsoft.org/)                       |1.1.14 or newer |1.1.26, 1.1.28             |
-|[<span class="small-caps">LZO</span>](http://www.oberhumer.com/opensource/lzo) |2.x |2.05, 2.09   |
+|[<span class="small-caps">LZO</span>](https://www.oberhumer.com/opensource/lzo) |2.x |2.05, 2.09   |
 |[PCRE](http://www.pcre.org)                          |All versions    |7.8, 7.9, 8.31, 8.32, 8.38 |
-|[SQLite3](http://www.sqlite.org)                     |3.6.6 or newer  |3.6.14.2, 3.6.20, 3.7.13, 3.7.17, 3.8.2 |
+|[SQLite3](https://www.sqlite.org)                     |3.6.6 or newer  |3.6.14.2, 3.6.20, 3.7.13, 3.7.17, 3.8.2 |
 |Sybase                                               |All versions    |15.5, 15.7                 |
 |[zlib](http://www.zlib.org)                          |All versions    |1.2.3, 1.2.5, 1.2.7, 1.2.8 |
 
