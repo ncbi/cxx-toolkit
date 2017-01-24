@@ -4,6 +4,8 @@ highlighter: rouge
 safe: true
 baseurl: /book
 exclude: ['.ruby-version', 'node_modules', 'package.json', 'bower.json']
+gems:
+  - jekyll-last-modified-at
 sass:
   sass_dir: static/_sass
 syntax-highlighting:
