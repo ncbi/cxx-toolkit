@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
-gem 'github-pages'
-gem 'jekyll-last-modified-at'
+group :jekyll_plugins do
+  gem 'github-pages'
+  gem 'jekyll-last-modified-at'
+end
 
