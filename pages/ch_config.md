@@ -905,7 +905,6 @@ Table 2. User-defined localization variables
 | SYBASE\_PATH    | /netopt/Sybase/clients/current       | Path to Sybase package (but see note below) |
 | FTDS\_PATH      | /netopt/Sybase/clients-mssql/current | Path to FreeTDS package                     |
 | FASTCGI\_PATH   | $NCBI/fcgi-current                   | Path to the in-house FastCGI client lib     |
-| FLTK\_PATH      | $NCBI/fltk                           | Path to the FLTK package                    |
 | WXWIN\_PATH     | $NCBI/wxwin                          | Path to the wxWindows package               |
 | NCBI\_C\_PATH   | $NCBI                                | Path to the NCBI C Toolkit                  |
 | NCBI\_SSS\_PATH | $NCBI/sss/BUILD                      | Path to the NCBI SSS package                |
@@ -922,7 +921,7 @@ Note: It is also possible to make configure look elsewhere for Sybase by means o
 
 <a name="ch_config.TF.2"></a>
 
-It is also possible to override WXWIN\_PATH by --with-wxwin=DIR, FLTK\_PATH by --\> --with-fltk=DIR, and ORBACUS\_PATH by --with-orbacus=DIR.
+It is also possible to override WXWIN\_PATH by --with-wxwin=DIR, and ORBACUS\_PATH by --with-orbacus=DIR.
 
 On the basis of [Table 2](#ch_config.ref_TableLocalization1), ***configure*** will derive the variables shown in [Table 3](#ch_config.ref_TableLocalization2) to use in the generated makefiles.
 
@@ -945,8 +944,6 @@ Table 3. Derived localization variables for makefiles
 | FTDS\_LIBS         | -L$FTDS\_PATH/lib -lsybdb -ltds                                                                                   | Link with the FreeTDS API.        |
 | FASTCGI\_INCLUDE   | -I$FASTCGI\_PATH/include[64]                                                                                      | \#include Fast-CGI headers        |
 | FASTCGI\_LIBS      | -L$FASTCGI\_PATH/lib[64] -lfcgi or -L$FASTCGI\_PATH/altlib[64] -lfcgi                                             | Link with FastCGI lib.            |
-| FLTK\_INCLUDE      | -I$FLTK\_PATH/include                                                                                             | \#include FLTK headers            |
-| FLTK\_LIBS         | -L$FLTK\_PATH/[GCC-]{Release\\|Debug}[MT][64]/lib -lfltk ... -lXext -lX11 ... or -L$FLTK\_PATH/lib .....          | Link with FLTK libs.              |
 | WXWIN\_INCLUDE     | -I$WXWIN\_PATH/include                                                                                            | \#include wxWindows headers       |
 | WXWIN\_LIBS        | -L$WXWIN\_PATH/[GCC-]{Release\\|Debug}/lib -lwx\_gtk[d] -lgtk -lgdk -lgmodule -lglib or -L$WXWIN\_PATH/lib .....  | Link with wxWindows libs.         |
 | NCBI\_C\_INCLUDE   | -I$NCBI\_C\_PATH/include[64]                                                                                      | \#include NCBI C Toolkit headers  |
@@ -1071,8 +1068,6 @@ Some of the above system and third-party packages can be prohibited from use by 
 
 *--without-fastcgi* (FastCGI)
 
-*--without-fltk* (FLTK)
-
 *--without-wxwin* (wxWindows)
 
 *--without-ncbi-c* (NCBI C Toolkit)
@@ -1183,7 +1178,7 @@ Use this key for the examples in the “Building with Unix” sections:
 | $YOUR\_CONFIG\_OPTIONS | any optional configuration options you’ve chosen                                          |
 | --with-flat-makefile   | creates a makefile that can build all or selected projects                                |
 | --without-internal     | excludes NCBI-internal projects from the makefile                                         |
-| --without-gui          | excludes FLTK-based projects from the makefile                                            |
+| --without-gui          | excludes GUI projects from the makefile                                            |
 | --with-gbench          | ensures that the makefile will contain everything necessary to build the Genome Workbench |
 | GCC401-Debug           | will be replaced based on the compiler and configuration options you’re using             |
 | gui/                   | selects the GUI libraries target in the flat makefile                                     |
@@ -1524,7 +1519,7 @@ Table 4. Project Tree Builder INI file (Local Site)
 | [Debug],[DebugDLL],etc...        | debug                                                                                                                                                                   | TRUE means that the debug configuration will be created.                                                                                                                                    |
 |              | runtimeLibraryOption                                                                                                                                                    | C++ Runtime library to use.                                                                                                                                                                 |
 |              |                                                                                                                                                     |                                                                                                                                                                         |
-| [NCBI\_C\_LIBS],[FLTK\_LIBS\_GL] | Component                                                                                                                                                               | List of libraries to use.                                                                                                                                                                   |
+| [NCBI\_C\_LIBS],[FOO\_LIBS] | Component                                                                                                                                                               | List of libraries to use.                                                                                                                                                                   |
 | [\<LIBRARY\>]                    | INCLUDE                                                                                                                                                                 | Include path to the library headers.                                                                                                                                                        |
 |              | DEFINES                                                                                                                                                                 | Preprocessor definition for library usage.                                                                                                                                                  |
 |              | LIBPATH                                                                                                                                                                 | Path to library.                                                                                                                                                                            |
@@ -1830,7 +1825,7 @@ Note that the project directory, `msvc1000_prj`, may be different for your versi
 
 ##### Building External Libraries (Optional)
 
-Some of the NCBI C++ Toolkit projects make use of the [NCBI C Toolkit](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/NCBI_C_Toolkit/README) (not to be confused with the NCBI C++ Toolkit) and/or freely distributed [3rd-party packages](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/ThirdParty/README) (such as BerkeleyDB, LibZ, FLTK, etc.).
+Some of the NCBI C++ Toolkit projects make use of the [NCBI C Toolkit](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/NCBI_C_Toolkit/README) (not to be confused with the NCBI C++ Toolkit) and/or freely distributed [3rd-party packages](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/ThirdParty/README) (such as BerkeleyDB, LibZ, etc.).
 
 At NCBI, these libraries are already installed, and their locations are [hard coded](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) in the C++ Toolkit configuration files. If you are outside of NCBI, you may need to build and install these libraries before building the C++ Toolkit.
 
@@ -2191,7 +2186,7 @@ Following are some examples of how to build specific projects and some additiona
 
 ##### Build 3<sup>rd</sup>-Party Libraries (optional)
 
-Some of the NCBI C++ Toolkit projects make use of the [NCBI C Toolkit](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/NCBI_C_Toolkit/README) (not to be confused with the NCBI C++ Toolkit) and/or freely distributed 3rd-party packages (such as BerkeleyDB, LibZ, FLTK, etc.).
+Some of the NCBI C++ Toolkit projects make use of the [NCBI C Toolkit](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/2008/Mar_17_2008/NCBI_C_Toolkit/README) (not to be confused with the NCBI C++ Toolkit) and/or freely distributed 3rd-party packages (such as BerkeleyDB, LibZ, etc.).
 
 At NCBI, these libraries are already installed, and their locations are [hard coded](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/project_tree_builder.ini) in the C++ Toolkit configuration files. If you are outside of NCBI, you may need to build and install these libraries before building the C++ Toolkit.
 
