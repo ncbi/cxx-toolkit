@@ -227,7 +227,6 @@ Table 2. Optional Packages, Features, and Projects
 |  | **... packages**                             |                                                                                                              |
 | `C-Toolkit`          | NCBI C Toolkit                               | `--without-ncbi-c`                                                                                                               |
 | `Fast-CGI`           | Fast-CGI library                             | `--without-fastcgi`                                                                                                              |
-| `FLTK`               | the Fast Light ToolKit                       | `--without-fltk,`<br/>`--with-fltk=DIR`                                                                |
 | `FreeTDS`            | FreeTDS libraries                            | `--without-ftds,`<br/>`--with-ftds=DIR`                                                                |
 | `GEO`                | NCBI GEO libraries                           | `--without-geo`                                                                                                                  |
 | `ORBacus`            | ORBacus CORBA                                | `--without-orbacus,`<br/>`--with-orbacus=DIR`                                                          |
