@@ -454,7 +454,7 @@ Table 2. Check Script Generated Predefined Variables
 | `in_house_resources` | `CPPUNIT`                                                             | `ncbi_crypt`         |
 | `IRIX`               | `EXPAT`                                                               | `objects`            |
 | `KCC`                | `Fast_CGI`                                                            | `serial`             |
-| `Linux`              | `FLTK`                                                                |  |
+| `Linux`              | `LIBEXSLT`                                                            |  |
 | `MIPSpro`            | `FreeTDS`                                                             |  |
 | `MSVC`               | `FreeType`                                                            |  |
 | `MSWin`              | `FUSE`                                                                |  |
