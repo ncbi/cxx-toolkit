@@ -317,10 +317,11 @@ Table 3. Directories that may be checked out depending on branch and platform op
 | `compilers`               | yes        | `<platform>` = all                   |
 | `compilers`               | ***no***   | `<platform>` != all                  |
 | `compilers/cygwin`        | yes        | `<platform>` = cygwin                |
-| `compilers/msvc1000_prj`  | yes        | `<platform>` = msvc                  |
+| `compilers/vs2013`        | yes        | `<platform>` = msvc                  |
+| `compilers/vs2015`        | yes        | `<platform>` = msvc                  |
 | `compilers/unix`          | yes        | `<platform>` = cygwin or mac or unix |
 | `compilers/xCode`         | yes        | `<platform>` = max                   |
-| `compilers/xcode90_prj`   | yes        | `<platform>` = mac                   |
+| `compilers/xcode30_prj`   | yes        | `<platform>` = mac                   |
 | `doc`                     | yes        | `<branch>` = development             |
 | `include/connect/daemons` | yes        | `<platform>` = all or unix           |
 | `src/check`               | yes        | `<platform>` != mac                  |
