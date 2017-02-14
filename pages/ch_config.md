@@ -1698,10 +1698,11 @@ Here are some example settings, with some illustrating how section name suffixes
     EnableFunctionLevelLinking=FALSE
     GlobalOptimizations=FALSE
 
-    [Compiler.900]
-    PreprocessorDefinitions=UCS2;_CRT_SECURE_NO_DEPRECATE=1;
-    [Compiler.900.release]
-    PreprocessorDefinitions=UCS2;_SECURE_SCL=0;_CRT_SECURE_NO_DEPRECATE=1;
+    [Compiler.1400]
+    PreprocessorDefinitions=UCS2;_CRT_SECURE_NO_DEPRECATE=1;;%(PreprocessorDefinitions)
+    [Compiler.1400.release]
+    Optimization=2
+    PreprocessorDefinitions=UCS2;_CRT_SECURE_NO_DEPRECATE=1;;%(PreprocessorDefinitions)
 
 
     [Linker]
