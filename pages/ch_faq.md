@@ -271,7 +271,7 @@ Our 64-bit Linux systems only support building 64-bit code; to produce 32-bit bi
 
 #### Which Visual C++ project should I build?
 
-After creating a new project, you may notice quite a few projects appear in the solution, besides your program, and that the **-HIERARCHICAL-VIEW-** project is bold (indicating that it's the startup project). Do not build any of these projects or the solution as a whole. Instead, set your program as the default startup project and build it.
+After creating a new project, you may notice quite a few projects appear in the solution, besides your program. Do not build any of these projects or the solution as a whole. Instead, set your program as the default startup project and build it.
 
 You can build **-CONFIGURE-DIALOG-** if you need to reconfigure your project (see the section on [using the configuration GUI](ch_config.html#ch_config.Configuring_with_the_Java_GUI)), and you will need to build **-CONFIGURE-** if you add libraries (see the question below on [adding a library to a Visual C++ project](#ch_faq.How_do_I_add_a_library_to_a_Visua)).
 
@@ -284,8 +284,6 @@ These compiler options must be properly set under Microsoft Visual C++:
 -   [C++ exceptions](#ch_faq.C_exceptions)
 
 -   [Runtime library](#ch_faq.Runtime_library)
-
--   [Checked iterators](#ch_faq.Checked_iterators)
 
 <a name="ch_faq.C_exceptions"></a>
 
@@ -319,75 +317,6 @@ You must specify the appropriate Visual C++ runtime library to link with:
 <div class="table-scroll"></div>
 
 For more information, see the MSDN [page](http://msdn.microsoft.com/en-us/library/2kzt1wy3.aspx) on runtime library options.
-
-<a name="ch_faq.Checked_iterators"></a>
-
-##### Checked iterators
-
-***Note:*** Parts of this section refer to Visual C++ 2008, which is no longer supported. This content is currently retained for historical reference only, and may be removed in the future.
-
-Microsoft Visual C++ provides the option of using "Checked Iterators" to ensure that you do not overwrite the bounds of your STL containers. Checked iterators have a different internal structure than, and are therefore incompatible with, non-checked iterators. If both are used in the same program, it will probably crash. Checked iterators also have somewhat lower performance than non-checked iterators.
-
-Therefore, when building with Visual C++, you must ensure that the same checked iterators setting is used for all compilation units that use STL iterators. This includes the Visual C++ standard libraries, the NCBI C++ Toolkit libraries, your code, and any other libraries you link with.
-
-To disable checked iterators, set `_SECURE_SCL=0`; to enable them, set `_SECURE_SCL=1`.
-
-The Visual C++ defaults for `_SECURE_SCL` are:
-
-<a name="ch_faq.T.nc_visual_c_versiondebugrelease"></a>
-
-| Visual C++ Version | Debug | Release |
-|--------------------|-------|---------|
-| 2010               | 1     | 0       |
-| 2008               | 1     | 1       |
-
-<div class="table-scroll"></div>
-
-By default, the compiler options for NCBI C++ Toolkit libraries do not specify the `_SECURE_SCL` option for debug configurations, and specify `_SECURE_SCL=0` for release configurations. Therefore they use checked iterators for debug configurations, but not for release configurations.
-
-***Note:*** Your code may crash if any two libraries you link with don't use the same settings. For example:
-
--   You're building a release configuration using Visual C++ 2008. You build the C++ Toolkit separately and use it as a third party package (in which case it will use `_SECURE_SCL=0`). Your other code and/or other libraries are compiled with default settings (which for release in VS2008 sets `_SECURE_SCL=1`).
-
--   You're using a third party library that uses different settings than the C++ Toolkit.
-
-If you need to use a different setting for `_SECURE_SCL` than the Toolkit uses, you will have to recompile all Toolkit libraries that you want to link with. To change this setting and rebuild the Toolkit:
-
-1.  Open [src\\build-system\\Makefile.mk.in.msvc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/build-system/Makefile.mk.in.msvc).
-
-2.  Edit the `PreprocessorDefinitions` entry in the `[Compiler.*release]` section for the desired configuration(s), using `_SECURE_SCL=0;` or `_SECURE_SCL=1;`.
-
-3.  Build the `-CONFIGURE-` project in the solution that contains all the Toolkit libraries you want to use. See the section on [choosing a build scope](ch_config.html#ch_config.Choosing_a_Build_Scope) for tips on picking the solution. Ignore the reload solution prompts - when the build completes, then close and reopen the solution.
-
-4.  Build the `-BUILD-ALL-` project to rebuild the libraries.
-
-A similar situation exists for the `_HAS_ITERATOR_DEBUGGING` macro, however the C++ Toolkit does not set this macro for either 2008 or 2010, so you are unlikely to encounter any problems due to this setting. It's possible (however unlikely) that other third party libraries could turn this macro off in debug, in which case you'd have to rebuild so the settings for all libraries match.
-
-By default, `_HAS_ITERATOR_DEBUGGING` is turned on in debug but can be turned off. However, it cannot be turned on in release.
-
-Finally, the macro `_ITERATOR_DEBUG_LEVEL` was introduced with Visual C++ 2010 to simplify the use of `_SECURE_SCL` and `_HAS_ITERATOR_DEBUGGING`.
-
-If you set `_ITERATOR_DEBUG_LEVEL`, then `_SECURE_SCL` and `_HAS_ITERATOR_DEBUGGING` will be set according to this table:
-
-<a name="ch_faq.T.nc__iterator_debug_level_secure"></a>
-
-| `_ITERATOR_DEBUG_LEVEL` | `_SECURE_SCL` | `_HAS_ITERATOR_DEBUGGING` |
-|-------------------------|---------------|---------------------------|
-| 0                       | 0             | 0                         |
-| 1                       | 1             | 0                         |
-| 2                       | 1             | 1                         |
-
-<div class="table-scroll"></div>
-
-If you don't set `_ITERATOR_DEBUG_LEVEL`, it will be set automatically according to the values of `_SECURE_SCL` and `_HAS_ITERATOR_DEBUGGING` per the above table. Therefore, you can use either `_ITERATOR_DEBUG_LEVEL` or `_SECURE_SCL` and `_HAS_ITERATOR_DEBUGGING` as you see fit. In most cases, you won't need to set any of them. You just need to know about them in case you link with libraries that use different settings.
-
-For more information, see:
-
--   [Checked Iterators](http://msdn.microsoft.com/en-us/library/aa985965.aspx)
-
--   [What's New in Visual C++](http://msdn.microsoft.com/en-us/library/dd465215.aspx)
-
--   [Breaking Changes in Visual C++](http://msdn.microsoft.com/en-us/library/bb531344.aspx)
 
 <a name="ch_faq.linker"></a>
 
