@@ -44,6 +44,8 @@ The following is an outline of the topics presented in this chapter:
             -   [Checking Out the Development NCBI C++ Toolkit Source Tree](#ch_getcode_svn.chkout_complete_tree)
 
             -   [Checking Out the Production NCBI C++ Toolkit Source Tree](#ch_getcode_svn.chkout_production_tree)
+            
+            -   [svn\_toolkit\_tree: Quickly checking out the whole Toolkit source tree](#ch_getcode_svn.svn_toolkit_tree_Quickly)
 
             -   [svn\_core: Retrieving core components](#ch_getcode_svn.core_sh)
 
