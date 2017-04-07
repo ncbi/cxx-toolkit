@@ -577,8 +577,6 @@ Mailing Lists
 
 -   Object Manager: <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp-objmgr>
 
--   GUI: <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp-gui>
-
 -   SVN and CVS logs: <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp-cvs> (read-only)
 
 [Internal mailing lists](http://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Internal_Mailing_Lists) are also available to those inside NCBI.
