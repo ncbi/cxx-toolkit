@@ -1,6 +1,6 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Getting Started
 nav: pages/ch_start
 ---
 
