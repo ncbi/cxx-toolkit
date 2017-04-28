@@ -580,36 +580,42 @@ In the [sample application](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr
 
 1. There is an application class derived from ***CNcbiApplication***, which overrides the purely virtual function ***Run()*** as well as the initialization (***Init()***) and cleanup (***Exit()***) functions:
 
-    class CSampleBasicApplication : public CNcbiApplication
-    {
-    private:
-        virtual void Init(void);
-        virtual int  Run(void);
-        virtual void Exit(void);
-    };
+```cpp
+class CSampleBasicApplication : public CNcbiApplication
+{
+private:
+    virtual void Init(void);
+    virtual int  Run(void);
+    virtual void Exit(void);
+};
+```
 
 2. The program's main function creates an object of the application class and calls its ***AppMain()*** function:
 
-    int main(int argc, const char* argv[])
-    {
-        // Execute main application function
-        return CSampleBasicApplication().AppMain(argc, argv);
-    }
+```cpp
+int main(int argc, const char* argv[])
+{
+    // Execute main application function
+    return CSampleBasicApplication().AppMain(argc, argv);
+}
+```
 
 3. The application's initialization function creates an [argument descriptions object](#ch_core.cmd_line_args), which describes the expected command-line arguments and the usage context:
 
-    void CSampleBasicApplication::Init(void)
-    {
-        // Create command-line argument descriptions
-        auto_ptr<CArgDescriptions> arg_desc(new CArgDescriptions);
+```cpp
+void CSampleBasicApplication::Init(void)
+{
+    // Create command-line argument descriptions
+    auto_ptr<CArgDescriptions> arg_desc(new CArgDescriptions);
 
-        // Specify USAGE context
-        arg_desc->SetUsageContext(GetArguments().GetProgramBasename(),
-                                  "CArgDescriptions demo program");
-        ...
-        // Setup arg.descriptions for this application
-        SetupArgDescriptions(arg_desc.release());
-    }
+    // Specify USAGE context
+    arg_desc->SetUsageContext(GetArguments().GetProgramBasename(),
+                              "CArgDescriptions demo program");
+    ...
+    // Setup arg.descriptions for this application
+    SetupArgDescriptions(arg_desc.release());
+}
+```
 
 4. The application's ***Run()*** function prints those arguments into the standard output stream or in a file.
 
