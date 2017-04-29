@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: JSONWRAPP (JSON parsing and handling)
 nav: pages/ch_jsonwrapp
 ---
 
 
-23\. JSONWRAPP (JSON parsing and handling)
+23\. {{ page.title }}
 ===================================================================
 
 Created: March 14, 2016; Last Update: March 16, 2016.

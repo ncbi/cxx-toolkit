@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Introduction to the C++ Toolkit
 nav: pages/ch_intro
 ---
 
 
-1\. Introduction to the C++ Toolkit
+1\. {{ page.title }}
 =================================================
 
 Last Update: February 27, 2014.

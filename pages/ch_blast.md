@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: BLAST API
 nav: pages/ch_blast
 ---
 
 
-17\. BLAST API
+17\. {{ page.title }}
 ============================
 
 Created: August 22, 2006; Last Update: April 13, 2010.

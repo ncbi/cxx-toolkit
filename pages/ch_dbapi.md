@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Database Access Support
 nav: pages/ch_dbapi
 ---
 
 
-11\. Database Access Support
+11\. {{ page.title }}
 ==========================================
 
 Last Update: April 2, 2015.

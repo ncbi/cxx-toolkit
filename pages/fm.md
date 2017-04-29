@@ -1,6 +1,6 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Book Information
 nav: pages/fm
 ---
 To cite this book:
@@ -10,7 +10,7 @@ Vakatov D, editor. The NCBI C++ Toolkit Book [Internet]. Bethesda (MD): National
 
 [http://ncbi.github.io/cxx-toolkit/](http://ncbi.github.io/cxx-toolkit/)
 
-Book Information
+{{ page.title }}
 ================
 
 <a name="A2"></a>

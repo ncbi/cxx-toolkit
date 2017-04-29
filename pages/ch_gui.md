@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: GUI and Graphics
 nav: pages/ch_gui
 ---
 
 
-20\. GUI and Graphics
+20\. {{ page.title }}
 ===================================
 
 Last Update: November 13, 2013.

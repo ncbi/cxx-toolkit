@@ -1,10 +1,10 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Miscellaneous
 nav: pages/misc
 ---
 
-Miscellaneous
+{{ page.title }}
 ===============================
 
 GRID

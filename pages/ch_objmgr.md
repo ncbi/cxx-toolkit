@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Biological Object Manager
 nav: pages/ch_objmgr
 ---
 
 
-16\. Biological Object Manager
+16\. {{ page.title }}
 ============================================
 
 Last Update: November 15, 2013.

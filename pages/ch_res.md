@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: C Toolkit Resources for C++ Toolkit Users
 nav: pages/ch_res
 ---
 
 
-28\. C Toolkit Resources for C++ Toolkit Users
+28\. {{ page.title }}
 ============================================================
 
 Last Update: February 3, 2014.

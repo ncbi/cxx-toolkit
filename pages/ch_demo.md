@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Examples and Demos
 nav: pages/ch_demo
 ---
 
 
-27\. Examples and Demos
+27\. {{ page.title }}
 =====================================
 
 Last Update: July 12, 2013.

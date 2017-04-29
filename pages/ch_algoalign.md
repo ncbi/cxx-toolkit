@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Biological Sequence Alignment
 nav: pages/ch_algoalign
 ---
 
 
-19\. Biological Sequence Alignment
+19\. {{ page.title }}
 ================================================
 
 Last Update: October 18, 2013.

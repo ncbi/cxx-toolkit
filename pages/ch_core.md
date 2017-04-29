@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Portability, Core Functionality and Application Framework
 nav: pages/ch_core
 ---
 
 
-8\. Portability, Core Functionality and Application Framework
+8\. {{ page.title }}
 ===========================================================================
 
 Last Update: December 29, 2014.

@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Configure, Build, and Use the Toolkit
 nav: pages/ch_config
 ---
 
 
-4\. Configure, Build, and Use the Toolkit
+4\. {{ page.title }}
 =======================================================
 
 Last Update: November 13, 2014.

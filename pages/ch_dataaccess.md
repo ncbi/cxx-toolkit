@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Access to NCBI data
 nav: pages/ch_dataaccess
 ---
 
 
-18\. Access to NCBI data
+18\. {{ page.title }}
 ======================================
 
 Created: January 26, 2009.

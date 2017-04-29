@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Biological Sequence Data Model
 nav: pages/ch_datamod
 ---
 
 
-15\. Biological Sequence Data Model
+15\. {{ page.title }}
 =================================================
 
 Last Update: April 24, 2014.

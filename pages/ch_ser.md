@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Data Serialization (ASN.1, XML, JSON)
 nav: pages/ch_ser
 ---
 
 
-14\. Data Serialization (ASN.1, XML, JSON)
+14\. {{ page.title }}
 ==================================================
 
 Last Update: April 7, 2015.

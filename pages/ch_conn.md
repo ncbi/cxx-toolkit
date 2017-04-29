@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Networking and IPC
 nav: pages/ch_conn
 ---
 
 
-10\. Networking and IPC
+10\. {{ page.title }}
 ====================================
 
 Last Update: October 26, 2014.

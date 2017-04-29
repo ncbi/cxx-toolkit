@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: FAQs, Useful Documentation Links, and Mailing Lists
 nav: pages/ch_faq
 ---
 
 
-31\. FAQs, Useful Documentation Links, and Mailing Lists
+31\. {{ page.title }}
 ======================================================================
 
 Last Update: August 8, 2014.

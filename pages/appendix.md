@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Appendix - Books and Styles
 nav: pages/appendix
 ---
 
 
-Appendix - Books and Styles
+{{ page.title }}
 ===========================
 
 <a name="app1.books.html"></a>

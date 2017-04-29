@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit book
+title: Logging and Diagnostics
 nav: pages/ch_log
 ---
 
 
-9\. Logging and Diagnostics
+9\. {{ page.title }}
 ================================================
 
 Overview

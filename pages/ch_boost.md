@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Using the Boost Unit Test Framework
 nav: pages/ch_boost
 ---
 
 
-21\. Using the Boost Unit Test Framework
+21\. {{ page.title }}
 ======================================================
 
 Last Update: November 13, 2014.

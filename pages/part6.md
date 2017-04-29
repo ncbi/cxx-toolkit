@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Part 6. Help and Support
 nav: pages/part6
 ---
 
 
-Part 6\. Help and Support
+{{ page.title }}
 =======================================
 
 Part 6 discusses the different source code browsers, FAQs, XML Authoring, and other useful documentation. The following is a list of chapters in this part:

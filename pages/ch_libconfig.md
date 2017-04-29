@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Library Configuration
 nav: pages/ch_libconfig
 ---
 
 
-32\. Library Configuration
+32\. {{ page.title }}
 ========================================
 
 

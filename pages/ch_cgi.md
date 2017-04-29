@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: CGI and Fast-CGI
 nav: pages/ch_cgi
 ---
 
 
-12\. CGI and Fast-CGI
+12\. {{ page.title }}
 ===================================
 
 Created: January 1, 2005; Last Update: February 2, 2015.

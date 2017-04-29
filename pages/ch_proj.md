@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Project Creation and Management
 nav: pages/ch_proj
 ---
 
 
-6\. Project Creation and Management
+6\. {{ page.title }}
 =================================================
 
 Last Update: December 2, 2014.

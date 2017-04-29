@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Debugging, Exceptions, and Error Handling
 nav: pages/ch_debug
 ---
 
 
-24\. Debugging, Exceptions, and Error Handling
+24\. {{ page.title }}
 ============================================================
 
 Last Update: April 24, 2014.

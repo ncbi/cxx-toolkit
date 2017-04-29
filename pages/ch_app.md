@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Applications
 nav: pages/ch_app
 ---
 
 
-26\. Applications
+26\. {{ page.title }}
 ===============================
 
 Overview

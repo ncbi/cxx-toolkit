@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Retrieve the Source Code (FTP and Subversion)
 nav: pages/ch_getcode_svn
 ---
 
 
-3\. Retrieve the Source Code (FTP and Subversion)
+3\. {{ page.title }}
 ===============================================================
 
 Created: April 1, 2003; Last Update: October 1, 2014.

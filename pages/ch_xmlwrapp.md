@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: XmlWrapp (XML parsing and handling, XSLT, XPath)
 nav: pages/ch_xmlwrapp
 ---
 
 
-22\. XmlWrapp (XML parsing and handling, XSLT, XPath)
+22\. {{ page.title }}
 ===================================================================
 
 Created: August 2, 2009; Last Update: November 7, 2014.

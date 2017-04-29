@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: HTML
 nav: pages/ch_html
 ---
 
 
-13\. HTML
+13\. {{ page.title }}
 =======================
 
 Last Update: November 15, 2013.

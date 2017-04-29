@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Distributed Computing
 nav: pages/ch_grid
 ---
 
 
-25\. Distributed Computing
+25\. {{ page.title }}
 ========================================
 
 Created: May 14, 2007; Last Update: November 13, 2013.

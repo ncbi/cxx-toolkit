@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Release Notes (Version 18, January 2017)
 nav: pages/release_notes
 ---
 
 
-Release Notes (Version 18, January 2017)
+{{ page.title }}
 =============
 
 The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/RN_index.html).

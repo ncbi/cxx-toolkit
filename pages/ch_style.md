@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Programming Policies and Guidelines
 nav: pages/ch_style
 ---
 
 
-7\. Programming Policies and Guidelines
+7\. {{ page.title }}
 =====================================================
 
 Last Update: September 24, 2014.

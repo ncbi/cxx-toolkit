@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: NCBI C++ Toolkit Source Browser
 nav: pages/ch_browse
 ---
 
 
-29\. NCBI C++ Toolkit Source Browser
+29\. {{ page.title }}
 ==================================================
 
 Source Browsers

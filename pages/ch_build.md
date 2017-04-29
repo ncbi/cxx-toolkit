@@ -1,11 +1,11 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: Working with Makefiles
 nav: pages/ch_build
 ---
 
 
-5\. Working with Makefiles
+5\. {{ page.title }}
 ========================================
 
 Last Update: September 26, 2014.
