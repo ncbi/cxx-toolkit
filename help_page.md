@@ -1,10 +1,10 @@
 ---
 layout: default
-title: How to edit the book
+title: How to edit this book
 nav: help_page
 ---
 
-How to edit this book
+{{ page.title }}
 =================================================
 
 Getting started

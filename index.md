@@ -1,10 +1,10 @@
 ---
 layout: default
-title: C++ Toolkit test
+title: The NCBI C++ Toolkit Book
 nav: index
 ---
 
-The NCBI C++ Toolkit Book
+{{ page.title }}
 =========================
 
 National Center for Biotechnology Information (US): Bethesda (MD); 2004.
