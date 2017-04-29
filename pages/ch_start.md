@@ -5,7 +5,7 @@ nav: pages/ch_start
 ---
 
 
-2\. Getting Started
+2\. {{ page.title }}
 =================================
 
 Last Update: September 27, 2014.
