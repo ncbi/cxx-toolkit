@@ -10,7 +10,7 @@ sass:
   sass_dir: static/_sass
 syntax-highlighting:
   enabled : true
-  
+
 defaults:
   -
     scope:
@@ -19,4 +19,4 @@ defaults:
       organization-name: "NCBI"
       organization-url: "http://www.ncbi.nlm.nih.gov"
       organization-email: pubmedlabs@ncbi.nlm.nih.gov
-      source-code-policy.url: 
+      source-code-policy.url:
