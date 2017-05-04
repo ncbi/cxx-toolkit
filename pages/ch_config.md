@@ -1732,7 +1732,7 @@ To specify custom build rules for selected files in the project (usually non C++
 
 The Toolkit Unix-style makefile templates give a choice of building the library as dynamic or static (or both). However, it is often convenient to assemble a "bigger" DLL made of the sources of several static libraries.
 
-In the Toolkit, such compound DLLs are described using a set of special makefiles in the `src/dl`l subdirectory. Each such file – `Makefile.*.dll` – contains the following entries:
+In the Toolkit, such compound DLLs are described using a set of special makefiles in the `src/dll` subdirectory. Each such file – `Makefile.*.dll` – contains the following entries:
 
 <a name="ch_config.T6"></a>
 
