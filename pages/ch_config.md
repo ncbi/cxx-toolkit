@@ -1418,8 +1418,6 @@ The first two solutions build console applications and required libraries only; 
 
 You can also choose between static and shared libraries. Building with static libraries will result in much larger applications and require much more disk space. Using static libraries is not an option for the Genome Workbench.
 
-If you want to build the entire Toolkit, choose
-
 <a name="ch_config.Configuring_with_Vis"></a>
 
 #### Configuring with Visual C++
