@@ -860,7 +860,7 @@ Additional examples can be found in the test files:
 Service mapping API
 -------------------
 
-The API defined in [connect/ncbi\_service.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) is designed to map the required service name to the server address. Internally, a number of mappers are available to perform the mapping. For more details, see the section on [local specification of the LBSM table](ch_conn.Local_specification_).
+The API defined in [connect/ncbi\_service.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) is designed to map the required service name to the server address. Internally, a number of mappers are available to perform the mapping. For more details, see the section on [local specification of the LBSM table](#ch_conn.Local_specification_).
 
 Service name mappings can be iterated by calling ***SERV\_Open()***, similar to the following fragment (for more examples, please refer to the test program [test\_ncbi\_disp.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_disp.c)):
 
