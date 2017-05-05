@@ -860,7 +860,9 @@ Additional examples can be found in the test files:
 Service mapping API
 -------------------
 
-The API defined in [connect/ncbi\_service.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) is designed to map the required service name into the server address. Internally, the mapping is done either directly or indirectly by means of the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) and starting from SC-17 by means of [LBOS](https://confluence.ncbi.nlm.nih.gov/display/CT/Introduction+to+LBOS+in+Connect+library), running at the NCBI site. For the client, the mapping is seen as reading from an iterator created by a call to ***SERV\_Open()***, similar to the following fragment (for more examples, please refer to the test program [test\_ncbi\_disp.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_disp.c)):
+The API defined in [connect/ncbi\_service.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h) is designed to map the required service name to the server address. Internally, a number of mappers are available to perform the mapping. For more details, see the section on [local specification of the LBSM table](ch_conn.Local_specification_).
+
+Service name mappings can be iterated by calling ***SERV\_Open()***, similar to the following fragment (for more examples, please refer to the test program [test\_ncbi\_disp.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/test/test_ncbi_disp.c)):
 
     #include <connect/ncbi_service.h>
     SERV_ITER iter = SERV_Open("my_service", fSERV_Any, SERV_ANYHOST, 0);
@@ -1007,21 +1009,26 @@ Service lookup process now involves looking up through the following sources, in
 
 -   Local environment/registry settings;
 
--   LBSM table (only in-house; this step does not exist in the outside builds);
+-   LBSM table (only in-house; this source does not exist in the outside builds);
 
--   LBOS (only in-house; this step does not exist in the outside builds); 
+-   NAMERD (only in-house; this source does not exist in the outside builds); 
+
+-   LBOS (only in-house; this source does not exist in the outside builds); 
 
 -   Network dispatcher.
 
-Only one source containing the information about the service is used; the next source is only tried if the previous one did not yield in any servers (for the service).
+Only one source containing the information about the service is used; the next source is only tried if the previous one was disabled or did not yield any servers (for the service).
 
-Steps 1 and 3 are disabled by default. 
-To enable the 1st step - set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file. 
-To enable the 3rd step - set **`CONN_LBOS_ENABLE`** environment variable to "1" or add **`LBOS_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+Sources 1, 3, and 4 are disabled by default. 
+To enable the 1st source - set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file. 
+To enable the 3rd source - set **`CONN_NAMERD_ENABLE`** environment variable to "1" or add **`NAMERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+To enable the 4th source - set **`CONN_LBOS_ENABLE`** environment variable to "1" or add **`LBOS_ENABLE`**=1 to [`CONN`] section in `.ini` file.
 
-Steps 2 and 4 are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
+Sources 2 and 5 are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
 
 ***Note:*** Alternatively, and for the sake of backward compatibility with older application, the use of local LBSM table can be controlled by **`CONN_LB_DISABLE`**={0,1} in the environment or **`LB_DISABLE`**={0,1} in the "[`CONN`]" section of the registry, or individually on a per service basis:
+
+See the [CONNECT library configuration parameters reference](ch_libconfig.html#ch_libconfig.T7) for more details on configuring the mappers.  Search [Table 7](ch_libconfig.html#ch_libconfig.T7) for the config param name.
 
 For a service "ANAME", **`ANAME_CONN_LB_DISABLE`**={0,1} in the environment, or **`CONN_LB_DISABLE`**={0,1} in the section "[`ANAME`]" in the registry (to affect setting of this particular service, and no others).
 
