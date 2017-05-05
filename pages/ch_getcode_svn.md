@@ -57,6 +57,8 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Source Code Retrieval under MS Windows](#ch_getcode_svn.windows)
 
+        -   [Retrieval via Script in Windows](#ch_getcode_svn.windows_scripts)
+
     -   [Source Code Retrieval under Mac OS X](#ch_getcode_svn.mac)
 
 -   [Source Tree Structure Summary](#ch_getcode_svn.src_tree_struct)
@@ -127,6 +129,8 @@ The following is an outline of the topics presented in this section. Select the 
         -   [update\_projects: Check out and Update Sources of Selected Projects](#ch_getcode_svn.update_projects_sh)
 
 -   [Source Code Retrieval under MS Windows](#ch_getcode_svn.windows)
+
+    -   [Retrieval via Script in Windows](#ch_getcode_svn.windows_scripts)
 
 -   [Source Code Retrieval under Mac OS X](#ch_getcode_svn.mac)
 
@@ -452,6 +456,18 @@ The parameter to **update\_projects** indicates the target directory where the s
 3.  Modify source files as required. Refer to [Svnbook](http://svnbook.red-bean.com) for the documentation on particular Subversion commands. Monitor your changes using `svn diff`, synchronize your working copy with the trunk using `svn update`, and finally commit them using `svn commit`.
 
 The rest should be the same as when using Subversion under UNIX systems. See [Source Code Retrieval under Unix](#ch_getcode_svn.unix).
+
+<a name="ch_getcode_svn.windows_scripts"></a>
+
+#### Retrieval via Script in Windows
+
+Some of the source code retrieval scripts are available in Windows:
+
+-   [svn\_toolkit\_tree](#ch_getcode_svn.svn_toolkit_tree_Quickly)
+
+-   [import\_project](#ch_getcode_svn.import_project_sh)
+
+-   [update\_projects](#ch_getcode_svn.update_projects_sh)
 
 <a name="ch_getcode_svn.mac"></a>
 
