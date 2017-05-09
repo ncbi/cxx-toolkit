@@ -65,7 +65,7 @@ The following is an outline of the topics presented in this chapter, with links 
 
     -   Description of service name resolution API
     
-    -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce)
+    -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce) - **DEPRECATED**
 
     -   NCBI Server Meta-Address Info -- `ncbi_server_info`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h) \| [p.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_infop.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_info.c)]
 
@@ -1013,7 +1013,7 @@ Service lookup process now involves looking up through the following sources, in
 
 -   NAMERD (only in-house; this source does not exist in the outside builds); 
 
--   LBOS (only in-house; this source does not exist in the outside builds); 
+-   LBOS (only in-house; this source does not exist in the outside builds) - **DEPRECATED**;
 
 -   Network dispatcher.
 
@@ -1076,7 +1076,7 @@ You can also look at the [detailed description of LBSMD](ch_app.html#ch_app.Load
 
 <a name="ch_conn.Lbos_Self_Announce_Deannounce"></a>
 
-### Announcement/deannouncement of servers in LBOS
+### Announcement/deannouncement of servers in LBOS - **DEPRECATED**
 
 You can read about how to announce and deannounce your application in LBOS from within the source code in [Confluence](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=51121913) (in-house only).
 

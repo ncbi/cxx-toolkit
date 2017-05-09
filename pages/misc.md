@@ -26,7 +26,7 @@ The [inhouse only documentation](https://confluence.ncbi.nlm.nih.gov/pages/viewp
 -   TestRes
     -   [TestRes documentation](https://confluence.ncbi.nlm.nih.gov/display/CT/TestRes+documentation)
 -   Connect
-    -   LBOS
+    -   LBOS - **DEPRECATED**
         -   [Introduction to LBOS in Connect library](https://confluence.ncbi.nlm.nih.gov/display/CT/Introduction+to+LBOS+in+Connect+library)
         -   [Integration with LBOS via C++ Toolkit library](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=51121913)
     -   Chaos Monkey
