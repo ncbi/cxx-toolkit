@@ -44,7 +44,7 @@ The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/T
 
 <a name="release_notes.Download"></a>
 
-<span class="title">Download</span>
+Download
 -----------------------------------
 
 Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2017/Jan_10_2017/>
@@ -57,7 +57,7 @@ The sources correspond to the NCBI production tree [sources](https://ncbi.github
 
 <a name="release_notes.Third_Party_Packages"></a>
 
-<span class="title">Third Party Packages</span>
+Third Party Packages
 -----------------------------------------------
 
 Some parts of the C++ Toolkit just cannot be built without 3<sup>rd</sup> party libraries, and other parts of the Toolkit will work more efficiently or provide more functionality if some 3rd-party packages (such as BerkeleyDB which is used for local data cache and for local data storage) are available.
