@@ -88,19 +88,19 @@ The user is expected to download and build the 3<sup>rd</sup> party packages the
 
 <a name="release_notes.Build"></a>
 
-<span class="title">Build</span>
+Build
 --------------------------------
 
 For guidelines to configure, build and install the Toolkit see [here](https://ncbi.github.io/cxx-toolkit/pages/ch_config).
 
 <a name="release_notes.New_Developments"></a>
 
-<span class="title">New Developments</span>
+New Developments
 -------------------------------------------
 
 <a name="release_notes.release_notes_HIGHLIGHTS"></a>
 
-### <span class="title">HIGHLIGHTS</span>
+### HIGHLIGHTS
 
 
 
@@ -118,19 +118,19 @@ The NCBI VDB package is not embedded into the Toolkit source tree anymore. Rathe
 <a name="release_notes.Documentation"></a>
 
 
-<span class="title">Documentation</span>
+Documentation
 ----------------------------------------
 
 <a name="release_notes.Location"></a>
 
-### <span class="title">Location</span>
+### Location
 
 The documentation is available online as a searchable book "The NCBI C++ Toolkit": <https://ncbi.github.io/cxx-toolkit/>.
 
 
 <a name="release_notes.Content"></a>
 
-### <span class="title">Content</span>
+### Content
 
 
 A C/C++ Symbol Search query appears on each page of the online Toolkit documentation. You can use this to perform a symbol search on the up-to-date public or in-house versions using source browsers [LXR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime&d=), [Doxygen](https://www.ncbi.nlm.nih.gov/toolkit/?term=ctime) and [Library](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?symbol=CTime) - or do an [overall](https://www.ncbi.nlm.nih.gov/toolkitall?term=CTime) search.
@@ -143,7 +143,7 @@ Public access to our SVN trunk:
 
 <a name="release_notes.Platforms_OSs__compi"></a>
 
-<span class="title">Supported Platforms (OS's and Compilers)</span>
+Supported Platforms (OS's and Compilers)
 -------------------------------------------------------------------
 
 -   [Unix](release_notes.html#release_notes.Unix)
@@ -162,7 +162,7 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 <a name="release_notes.Unix"></a>
 
-### <span class="title">[Unix](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.UNIX)</span>
+### [Unix](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.UNIX)
 
 
 |Operating System                   |Architecture    |Compilers                    |
@@ -174,7 +174,7 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 <a name="release_notes.MS_Windows"></a>
 
-### <span class="title">[MS Windows](ch_config#ch_config.MS_Windows)</span>
+### [MS Windows](ch_config#ch_config.MS_Windows)
 
 
 |Operating System          |Architecture                    |Compilers                      |
@@ -187,7 +187,7 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 <a name="release_notes.Mac_OS_X"></a>
 
-### <span class="title">[Mac OS X](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Mac_OS_X)</span>
+### [Mac OS X](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Mac_OS_X)
 
 
 |Operating System              |Architecture|Compilers                             |
@@ -198,14 +198,14 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 <a name="release_notes.Added_Platforms"></a>
 
-### <span class="title">Added Platforms</span>
+### Added Platforms
 
 
 Official support for **all** of the above platforms is new in this release (though some may have worked unofficially).
 
 <a name="release_notes.Discontinued"></a>
 
-### <span class="title">Discontinued Platforms</span>
+### Discontinued Platforms
 
 
 |Operating System            |Architecture                          |Compilers                           |
@@ -222,7 +222,7 @@ Official support for **all** of the above platforms is new in this release (thou
 
 <a name=""></a>
 
-<span class="title">Last Updated</span>
+Last Updated
 ---------------------------------------
 
 This document was last updated on January 18, 2017.
