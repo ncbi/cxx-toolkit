@@ -980,7 +980,7 @@ The main purpose of the LBSMD daemon is to maintain a table of all services avai
 
 The principle of load balancing is simple: each server which implements a service is assigned a (calculated) rate. The higher the rate, the better the chance for that server to be chosen when a request for the service comes up. Note that load balancing is thus almost never deterministic.
 
-The LBSMD daemon calculates two parameters for the host on which it is running. The parameters are a normal host status and a BLAST host status (based on the instant load of the system). These parameters are then used to calculate the rate of all (non static) servers on the host. The rates of all other hosts are not calculated but received and stored in the LBSDM table.
+The LBSMD daemon calculates two parameters for the host on which it is running. The parameters are a normal host status and a BLAST host status (based on the instant load of the system). These parameters are then used to calculate the rate of all (non static) servers on the host. The rates of all other hosts are not calculated but received and stored in the LBSMD table.
 
 The LBSMD daemon can be restarted from a crontab every few minutes on all the production hosts to ensure that the daemon is always running. This technique is safe because no more than one instance of the daemon is permitted on a certain host and any attempt to start more than one is ignored. Normally, though, a running daemon instance is maintained afloat by some kind of monitoring software, such as “puppet” or “monit” that makes use of the crontabs unnecessary.
 
