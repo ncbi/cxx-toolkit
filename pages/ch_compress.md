@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Compression API
+title: Data compression (ZIP, GZIP, BZip2, LZO)  
 nav: pages/ch_compress
 ---
 
