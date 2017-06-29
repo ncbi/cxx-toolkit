@@ -16,6 +16,7 @@ Part 3 discusses the the core library and the different specialized libraries su
 -   [11. Database Access Support](ch_dbapi.html)
 -   [12. CGI and Fast-CGI](ch_cgi.html)
 -   [13. HTML](ch_html.html)
+-   [14. Tabular data processing](pages/ch_tabular)
 -   [14. Data Serialization (ASN.1, XML)](ch_ser.html)
 -   [15. Biological Sequence Data Model](ch_datamod.html)
 -   [16. Biological Object Manager](ch_objmgr.html)
