@@ -29,6 +29,7 @@ Contents
     -   [11. Database Access Support](pages/ch_dbapi)
     -   [12. CGI and Fast-CGI](pages/ch_cgi)
     -   [13. HTML](pages/ch_html)
+    -   [14. Tabular data processing](pages/ch_tabular)    
     -   [14. Data Serialization (ASN.1, XML, JSON)](pages/ch_ser)
     -   [15. Biological Sequence Data Model](pages/ch_datamod)
     -   [16. Biological Object Manager](pages/ch_objmgr)
