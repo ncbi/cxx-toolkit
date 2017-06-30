@@ -1,0 +1,51 @@
+@startuml
+
+hide footbox
+title Iterating Over a Data Source
+
+actor "User Code" as UserCode
+participant CRowReader
+participant Traits
+
+UserCode -> CRowReader: Constructing
+note left: Instead of constructing\nthe SetDataSource() could be used
+
+CRowReader -> Traits: GetFlags()
+note right: GetFlags is issued only in\ncase of a file (not a stream)
+Traits --> CRowReader: flags
+
+
+UserCode -> CRowReader: begin()
+note left: begin() and ++iterator are equivalent
+
+CRowReader -> Traits: OnEvent(eRR_Event_SourceBegin)
+Traits --> CRowReader: event action
+note right: An action can instruct\nto continue or to stop
+
+|||
+== Repeated for each ++iterator ==
+
+CRowReader -> Traits: ReadRowData()
+
+CRowReader -> Traits: OnNextLine()
+Traits --> CRowReader: action
+note right: An action can instruct\nto continue or to stop
+
+CRowReader -> Traits: Tokenize()
+Traits --> CRowReader: action
+note right: An action can instruct\nto continue or to stop
+
+CRowReader -> Traits: Translate()
+Traits --> CRowReader: translation results
+note right: It could be one of the following:\n- use original\n- translated to null\n- translated to a new value
+
+CRowReader --> UserCode: iterator
+note left: the row data are prepared\nand available via an iterator
+
+== End of repetition ==
+|||
+
+CRowReader -> Traits: OnEvent(eRR_Event_SourceEnd)
+Traits --> CRowReader: event action
+
+@enduml

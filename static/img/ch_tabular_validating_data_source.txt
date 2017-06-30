@@ -1,0 +1,48 @@
+@startuml
+
+hide footbox
+title Validating a Data Source
+
+actor "User Code" as UserCode
+participant CRowReader
+participant Traits
+
+UserCode -> CRowReader: Constructing
+note left: Instead of constructing\nthe SetDataSource() could be used
+
+CRowReader -> Traits: GetFlags()
+note right: GetFlags is issued only in\ncase of a file (not a stream)
+Traits --> CRowReader: flags
+
+
+UserCode -> CRowReader: Validate()
+
+CRowReader -> Traits: SetValidationMode()
+
+
+CRowReader -> Traits: OnEvent(eRR_Event_SourceBegin)
+Traits --> CRowReader: event action
+note right: An action can instruct\nto continue or to stop
+
+|||
+== Repeated for each row ==
+
+CRowReader -> Traits: ReadRowData()
+
+
+CRowReader -> Traits: Validate
+Traits --> CRowReader: action
+note right: An action can instruct\nto continue or to stop
+
+
+== End of repetition ==
+|||
+
+
+CRowReader -> Traits: OnEvent(eRR_Event_SourceEnd)
+Traits --> CRowReader: event action
+
+CRowReader --> UserCode: return from Validate()
+
+
+@enduml

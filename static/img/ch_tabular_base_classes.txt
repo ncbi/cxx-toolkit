@@ -1,0 +1,31 @@
+@startuml
+
+package "row_reader_base.hpp" {
+    class CRowReaderStreamBase
+}
+
+CRowReaderStreamBase : SetValidationMode()
+CRowReaderStreamBase : Validate()
+CRowReaderStreamBase : OnNextLine()
+CRowReaderStreamBase : Tokenize()
+CRowReaderStreamBase : Translate()
+CRowReaderStreamBase : GetFlags()
+CRowReaderStreamBase : GetContext()
+CRowReaderStreamBase : OnEvent()
+CRowReaderStreamBase : ReadRowData()
+
+
+package "row_reader_char_delimited.hpp" {
+    class CRowReaderStream_CharDelimited
+
+    class CRowReaderStream_SingleCharDelimited
+    class CRowReaderStream_MultiCharDelimited
+    class CRowReaderStream_StringDelimited
+}
+
+CRowReaderStream_CharDelimited --|> CRowReaderStreamBase
+
+CRowReaderStream_SingleCharDelimited --|> CRowReaderStream_CharDelimited
+CRowReaderStream_MultiCharDelimited --|> CRowReaderStream_CharDelimited
+CRowReaderStream_StringDelimited --|> CRowReaderStream_CharDelimited
+@enduml
