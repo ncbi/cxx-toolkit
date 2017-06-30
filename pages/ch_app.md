@@ -5,7 +5,7 @@ nav: pages/ch_app
 ---
 
 
-26\. {{ page.title }}
+{{ page.title }}
 ===============================
 
 Overview
@@ -1490,9 +1490,6 @@ Here is an example of a LBSMD configuration file:
     bounce[60]NCBID '' L=yes C=x-ncbi-data/x-unknown | \
     ..../web/public/htdocs/Service/bounce
 
-NCBI intranet users can also visit the following link to get a sample configuration file:
-
-<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi?cfg>
 
 <a name="ch_app.Database_Load_Balancing"></a>
 
