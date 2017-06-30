@@ -8,10 +8,41 @@ nav: pages/ch_tab
 14\. {{ page.title }}
 =================================================
 
-Created: June 29, 2017
+Created: June 29, 2017; Last Update: June 30, 2017
 
+## TOC
+
+- [Parsing CSV and TSV like data (including Excel CSV)](#ch_tabular.Parsing_CSV)
+    - [Introduction](#ch_tabular.Introduction)
+    - [Basic Usage Example](#ch_tabular.Basic_Usage_Example)
+    - [Implementation Approach](#ch_tabular.Implementation_Approach)
+    - [CRowReader](#ch_tabular.CRowReader)
+    - [Iterators](#ch_tabular.Iterators)
+    - [Constructing CRowReader and Switching Data Sources](#ch_tabular.Constructing_CRowReader_and_Switching_Data_Sources)
+    - [Fields Meta Info](#ch_tabular.Fields_Meta_Info)
+    - [Validation](#ch_tabular.Validation)
+    - [Error Handling](#ch_tabular.Error_Handling)
+- [CRowReader Traits](#ch_tabular.CRowReader_Traits)
+    - [Iterating Over Data Source Rows](#ch_tabular.Iterating_Over_Data_Source_Rows)
+    - [Validating Data Source](#ch_tabular.Validating_Data_Source)
+    - [Error Context](#ch_tabular.Error_Context)
+    - [Implementation Details](#ch_tabular.Implementation_Details)
+        - [Events](#ch_tabular.Events)
+        - [Exceptions](#ch_tabular.Exceptions)
+        - [Recommendations for Traits Developers](#ch_tabular.Recommendations_for_Traits_Developers)
+    - [Ready-to-use Traits](#ch_tabular.Ready_to_use_Traits)
+        - [IANA CSV](#ch_tabular.IANA_CSV)
+        - [IANA TSV](#ch_tabular.IANA_TSV)
+        - [NCBI TSV](#ch_tabular.NCBI_TSV)
+        - [EXCEL CSV](#ch_tabular.EXCEL_CSV)
+        - [Generic Traits](#ch_tabular.Generic_Traits)
+- [FAQ](#ch_tabular.FAQ)
+    
+
+<a name="ch_tabular.Parsing_CSV"></a>
 ## Parsing CSV and TSV like data (including Excel CSV)
 
+<a name="ch_tabular.Introduction"></a>
 ### Introduction
 
 The C++ Toolkit offers a unified API to read lines with separated values from files and C++ streams. The API is implemented as a set of templates and resides in the include/util directory of the source tree. At the moment of writing the following formats are supported:
@@ -22,6 +53,7 @@ The C++ Toolkit offers a unified API to read lines with separated values from fi
 
 The specific data formats are covered by traits and can be extended in the future.
 
+<a name="ch_tabular.Basic_Usage_Example"></a>
 ### Basic Usage Example
 
 Here is an example of using the API to read an NCBI TSV file.
@@ -49,6 +81,7 @@ First of all the code above includes the NCBI TSV traits for the row reader. The
 Then the example creates an appropriate instance of the stream by providing a file name from which the data should be read. The following ***for*** loop iterates over all the data rows from the file and the nested ***for*** loop iterates over all the fields in a row.
 Both the line numbers and the field numbers are zero based.
 
+<a name="ch_tabular.Implementation_Approach"></a>
 ### Implementation Approach
 
 The API is split into two large parts: the CRowReader template and the traits which are specific to each data source. CRowReader represents a stable interface regardless of the used traits. It includes:
@@ -71,6 +104,7 @@ The traits cover specifics related to particular data sources. Here are a few ex
 
 The CRowReader interface is for the users who would like to read from the data sources which are covered by already developed traits. The traits interface is for those who develop the reading facilities for new data sources. 
 
+<a name="ch_tabular.CRowReader"></a>
 ### CRowReader
 
 The row reader introduces a few entities. The most important ones are: lines, rows and fields.
@@ -112,6 +146,7 @@ Get<>()	| Converts the field value to the required type. There are available con
 GetWithDefault<>(default value)	| It is a convenience method. If the field is null then the default value is provided.
 Get(CTime format string)	| A specialization to convert to a CTime value using the provided format string.
 
+<a name="ch_tabular.Iterators"></a>
 ### Iterators
 
 The examples above used range iterators, but it's also possible to use explicit iterators, e.g.
@@ -134,6 +169,7 @@ Some of these limitations come from the fact that there is an optimization in th
 
 One more caveat is that the iterators are valid only while the corresponding CRowReader instance exists. So it seems to be not the safest idea to store iterators and use them later.
 
+<a name="ch_tabular.Constructing_CRowReader_and_Switching_Data_Sources"></a>
 ### Constructing CRowReader and Switching Data Sources
 
 The CRowReader can be constructed by providing a file name or by providing a pointer to a C++ input stream. In the case of a stream, the ownership could be specified as well as an arbitrary stream name. The stream name is used in diagnostic messages and serves the purpose of an easy identification of what data source caused a problem.
@@ -142,6 +178,7 @@ CRowReader also provides a feature of switching to another data source. The swit
 
 When the source switching is done, the collected meta information (which includes field names, field data types and extended field data types) is cleared except for the user-provided info. This is because some data sources may have embedded information about field names and field data types. In this case the traits populate the corresponding data structures and do not provide the rows to the stream iteration loop. On the other hand the user code may set the field meta info explicitly and this is a higher priority action. For example, if the traits set the type of a field as eRR_Boolean and later on the user sets the type of the same field as eRR_Double then the type will be overwritten. If it happens in the reverse order then the traits request is ignored. Coming back to the source switching, it is possible that the new source has different meta info so the info previously collected by traits is reset while the user-provided info is retained. Certainly, the user can also reset the meta info explicitly by calling the ClearFieldsInfo() method.
 
+<a name="ch_tabular.Fields_Meta_Info"></a>
 ### Fields Meta Info
 
 The field meta info includes:
@@ -193,7 +230,7 @@ src_stream.SetFieldType(
 The example above sets the field #0 type as eRR_DateTime and the string property of the field is 
 ```"Y M D h:m:s"```. At the moment this feature is used during validation of a data source.
 
-
+<a name="ch_tabular.Validation"></a>
 ### Validation
 
 CRowReader provides a unified interface for validating data sources. How to validate a data source depends on its type and thus the traits may validate each data source in a unique way.
@@ -237,6 +274,7 @@ The example validates the values of a field 1 in each row by converting strings 
 
 Certainly the other traits may use the property string in a different way and the way may depend on a field type. At the moment however the property string is used only for the eRR_DateTime fields and implemented uniformly across the traits.
 
+<a name="ch_tabular.Error_Handling"></a>
 ### Error Handling
 
 The CRowReader uses C++ exceptions to notify about detected problems. Here are a few examples of detected problems:
@@ -286,10 +324,12 @@ A context may be not available if for example a row is copied and then that row 
 
 The last word is about iterators in case of exceptions. When an exception is generated further iterating becomes unavailable. The iterators are considered to have reached end() and the only way to continue using them is to set a new data source.
 
+<a name="ch_tabular.CRowReader_Traits"></a>
 ## CRowReader Traits
 
 The traits interface is only to be used by those who are covering new types of data sources. Essentially the traits are classes which implement a set of callbacks which are called by CRowReader.
 
+<a name="ch_tabular.Iterating_Over_Data_Source_Rows"></a>
 ### Iterating Over Data Source Rows
 
 The diagram below describes the interactions between CRowReader and traits in the case of looping over data source rows.
@@ -333,6 +373,7 @@ Upon the tokenization stage completion the recognized tokens may need to be tran
 
 At this moment all the row data are populated and an iterator is provided for the user. When the user advances the iterator the steps of reading, tokenizing and translating are repeated as needed.
 
+<a name="ch_tabular.Validating_Data_Source"></a>
 ### Validating Data Source
 
 The diagram below describes the interactions between CRowReader and traits in the case of validating a data source.
@@ -349,6 +390,7 @@ my_stream.Validate();
 
 The validation starts very similar to iterating over the stream. The difference is what happens after reading a row from the stream. In the case of validating, CRowReader invokes exactly one traits method, Validate(), providing the row's raw data and a validation mode. The traits Validate() method returns an action which should be respected by CRowReader. Only one action value is taken into account and this value is for interrupting the process. In all other cases the validation continues.
 
+<a name="ch_tabular.Error_Context"></a>
 ### Error Context
 
 In case of errors a context is available for the user. CRowReader provides a basic context which traits may extend. To support this feature the traits need to implement the GetContext() method which returns a pointer to a basic context instance.
@@ -357,8 +399,10 @@ Consequently if traits are extending an error context they need to fulfill the f
 - The traits extended context class must derive from the basic context class CRR_Context
 - The traits extended context class must properly re-implement the CRR_Context::Clone() method
 
-
+<a name="ch_tabular.Implementation_Details"></a>
 ### Implementation Details
+
+<a name="ch_tabular.Events"></a>
 #### Events
 
 The event interface includes three events:
@@ -377,6 +421,7 @@ continue	| CRowReader expects that the traits have fixed the stream so that it b
 default	| CRowReader generates an exception.
 
 
+<a name="ch_tabular.Exceptions"></a>
 #### Exceptions
 
 If traits generate an exception in any of the methods that CRowReader invokes then a few things are done:
@@ -384,6 +429,7 @@ If traits generate an exception in any of the methods that CRowReader invokes th
 - The data source is considered as broken and further iteration over it cannot be done
 - The "source end" event is not delivered to the traits
 
+<a name="ch_tabular.Recommendations_for_Traits_Developers"></a>
 #### Recommendations for Traits Developers
 
 The diagram below shows the hierarchy of some generic base classes available for traits:
@@ -413,10 +459,12 @@ typedef CRowReaderStream_StringDelimited<'*', '*', '*'> TRowReaderStream_ThreeSt
 It is recommended that a new traits implementation derives from one of the mentioned classes or typedefs and re-implements the required methods.
 
 
+<a name="ch_tabular.Ready_to_use_Traits"></a>
 ### Ready-to-use Traits
 
 As mentioned at the very beginning a few common case data source traits have already been developed. Here is a brief description of how to start using them in your code.
 
+<a name="ch_tabular.IANA_CSV"></a>
 #### IANA CSV
 
 The traits follow the specification available at https://tools.ietf.org/html/rfc4180.
@@ -434,7 +482,7 @@ CRowReader<CRowReaderStream_IANA_CSV_no_header>  stream_2("file2.csv");
 stream_1.GetTraits().SetHasHeader(false);
 ```
 
-
+<a name="ch_tabular.IANA_TSV"></a>
 #### IANA TSV
 
 The traits follow the specification available at https://www.iana.org/assignments/media-types/text/tab-separated-values.
@@ -455,7 +503,7 @@ tsv_stream.Validate();
 // tsv_stream.Validate(CRowReaderStream_IANA_TSV::eRR_ValidationMode_Strict);
 ```
 
-
+<a name="ch_tabular.NCBI_TSV"></a>
 #### NCBI TSV
 
 There is no formal specification for the NCBI TSV data source so the traits implementation is based on the following rules:
@@ -497,6 +545,7 @@ Here is a declaration example:
 CRowReader<CRowReaderStream_NCBI_TSV>  ncbi_tsv_stream("file.tsv");
 ```
 
+<a name="ch_tabular.EXCEL_CSV"></a>
 #### EXCEL CSV
 
 There is no formal specification available for Microsoft Excel CSV format so the implementation is based on a set of experiments with various options of data representation in CSV files. The traits try to mimic MS Excel behavior as close as possible.
@@ -508,6 +557,7 @@ Here is a declaration example:
 CRowReader<CRowReaderStream_Excel_CSV>  excel_csv_stream("file.csv");
 ```
 
+<a name="ch_tabular.Generic_Traits"></a>
 #### Generic Traits
 
 On some occasions a generic implementation of the traits with custom delimiters could be helpful. Here is an example of a few specializations which use single and multiple character field separators.
@@ -533,11 +583,12 @@ typedef CRowReaderStream_MultiCharDelimited<'\t', ' ', '\v'> TRowReaderStream_Mu
 typedef CRowReaderStream_StringDelimited<'*', '*', '*'> TRowReaderStream_ThreeStarDelimited;
 ```
 
+<a name="ch_tabular.FAQ"></a>
+## FAQ
+**Q**. What libraries do I need to add to my Makefile?
 
-### FAQ
-_Q_. What libraries do I need to add to my Makefile?
-_A_. None. The CRowReader and the traits mentioned here are implemented as C++ template classes so you only need to include the proper header files.
+**A**. None. The CRowReader and the traits mentioned here are implemented as C++ template classes so you only need to include the proper header files.
 
-_Q_. Where the files related to the API are located?
-_A_. They are in include/util directory in the C++ Toolkit source code tree
+**Q**. Where the files related to the API are located?
 
+**A**. They are in include/util directory in the C++ Toolkit source code tree
