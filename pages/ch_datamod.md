@@ -5,10 +5,8 @@ nav: pages/ch_datamod
 ---
 
 
-15\. {{ page.title }}
+{{ page.title }}
 =================================================
-
-Last Update: April 24, 2014.
 
 Overview
 --------
