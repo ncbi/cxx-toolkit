@@ -5,10 +5,8 @@ nav: pages/ch_gui
 ---
 
 
-20\. {{ page.title }}
+{{ page.title }}
 ===================================
-
-Last Update: November 13, 2013.
 
 The following approaches to developing GUI applications have been proved to work reasonably well:
 
