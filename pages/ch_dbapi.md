@@ -5,10 +5,8 @@ nav: pages/ch_dbapi
 ---
 
 
-11\. {{ page.title }}
+{{ page.title }}
 ==========================================
-
-Last Update: April 2, 2015.
 
 Overview
 --------
