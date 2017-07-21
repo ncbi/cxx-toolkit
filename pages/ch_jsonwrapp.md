@@ -5,10 +5,8 @@ nav: pages/ch_jsonwrapp
 ---
 
 
-23\. {{ page.title }}
+{{ page.title }}
 ===================================================================
-
-Created: March 14, 2016; Last Update: March 16, 2016.
 
 
 -  [Introduction](#ch_jsonwrapp.Introduction)
