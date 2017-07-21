@@ -5,10 +5,8 @@ nav: pages/ch_grid
 ---
 
 
-25\. {{ page.title }}
+{{ page.title }}
 ========================================
-
-Created: May 14, 2007; Last Update: November 13, 2013.
 
 Overview
 --------
