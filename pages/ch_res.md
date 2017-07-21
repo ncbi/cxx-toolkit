@@ -5,10 +5,8 @@ nav: pages/ch_res
 ---
 
 
-28\. {{ page.title }}
+{{ page.title }}
 ============================================================
-
-Last Update: February 3, 2014.
 
 Overview
 --------
