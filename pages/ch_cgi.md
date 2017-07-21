@@ -5,10 +5,8 @@ nav: pages/ch_cgi
 ---
 
 
-12\. {{ page.title }}
+{{ page.title }}
 ===================================
-
-Created: January 1, 2005; Last Update: February 2, 2015.
 
 Overview
 --------
