@@ -5,10 +5,8 @@ nav: pages/ch_ser
 ---
 
 
-14\. {{ page.title }}
+{{ page.title }}
 ==================================================
-
-Last Update: April 7, 2015.
 
 The SERIAL API [Library `xserial`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/serial)]
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
