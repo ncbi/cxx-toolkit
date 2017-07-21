@@ -5,10 +5,8 @@ nav: pages/ch_demo
 ---
 
 
-27\. {{ page.title }}
+{{ page.title }}
 =====================================
-
-Last Update: July 12, 2013.
 
 Overview
 --------
