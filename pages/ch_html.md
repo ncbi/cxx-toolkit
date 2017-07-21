@@ -5,10 +5,8 @@ nav: pages/ch_html
 ---
 
 
-13\. {{ page.title }}
+{{ page.title }}
 =======================
-
-Last Update: November 15, 2013.
 
 The HTML API [Library `xhtml`: [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/html) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/html)]
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
