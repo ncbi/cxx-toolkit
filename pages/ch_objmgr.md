@@ -5,10 +5,8 @@ nav: pages/ch_objmgr
 ---
 
 
-16\. {{ page.title }}
+{{ page.title }}
 ============================================
-
-Last Update: November 15, 2013.
 
 Overview
 --------
