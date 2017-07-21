@@ -5,10 +5,8 @@ nav: pages/ch_boost
 ---
 
 
-21\. {{ page.title }}
+{{ page.title }}
 ======================================================
-
-Last Update: November 13, 2014.
 
 Overview
 --------
