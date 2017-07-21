@@ -5,10 +5,8 @@ nav: pages/ch_intro
 ---
 
 
-1\. {{ page.title }}
+{{ page.title }}
 =================================================
-
-Last Update: February 27, 2014.
 
 Overview
 --------
