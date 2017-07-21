@@ -5,9 +5,8 @@ nav: pages/ch_libconfig
 ---
 
 
-32\. {{ page.title }}
+{{ page.title }}
 ========================================
-
 
 Overview
 --------
