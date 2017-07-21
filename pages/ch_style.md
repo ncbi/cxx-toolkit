@@ -5,10 +5,8 @@ nav: pages/ch_style
 ---
 
 
-7\. {{ page.title }}
+{{ page.title }}
 =====================================================
-
-Last Update: September 24, 2014.
 
 Overview
 --------
