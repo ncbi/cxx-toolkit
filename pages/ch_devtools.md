@@ -5,10 +5,8 @@ nav: pages/ch_devtools
 ---
 
 
-30\. {{ page.title }}
+{{ page.title }}
 =============================================
-
-Created: April 1, 2003; Last Update: November 12, 2013.
 
 Software Development Tools
 --------------------------
