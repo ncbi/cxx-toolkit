@@ -5,7 +5,7 @@ nav: pages/ch_algoalign
 ---
 
 
-19\. {{ page.title }}
+{{ page.title }}
 ================================================
 
 Last Update: October 18, 2013.
