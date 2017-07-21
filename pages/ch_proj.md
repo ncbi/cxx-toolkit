@@ -5,10 +5,8 @@ nav: pages/ch_proj
 ---
 
 
-6\. {{ page.title }}
+{{ page.title }}
 =================================================
-
-Last Update: December 2, 2014.
 
 Overview
 --------
