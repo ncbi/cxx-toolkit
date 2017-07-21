@@ -5,10 +5,8 @@ nav: pages/ch_dataaccess
 ---
 
 
-18\. {{ page.title }}
+{{ page.title }}
 ======================================
-
-Created: January 26, 2009.
 
 Overview
 --------
