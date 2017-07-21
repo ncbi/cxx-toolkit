@@ -5,10 +5,9 @@ nav: pages/ch_tab
 ---
 
 
-14\. {{ page.title }}
+{{ page.title }}
 =================================================
 
-Created: June 29, 2017; Last Update: June 30, 2017
 
 ## TOC
 
