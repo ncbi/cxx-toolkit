@@ -1168,6 +1168,44 @@ Application configuration is stored in a file with the same name as application,
     ; number of connection retries in case of error (default: 5)
     retry = 3
 
+<a name="ch_objmgr.Processors_id2sect"></a>
+
+##### ID2 processors<br/>
+
+Additional processors for ID2 reader are enabled by setting GENBANK_ID2_PROCESSOR
+environment variable. Multiple processors should be separated with semicolon.
+
+    GENBANK_ID2_PROCESSOR=cdd;wgs;snp
+
+<a name="ch_objmgr.Processor_id2_cddsect"></a>
+
+###### CDD prosessor<br/>section [id2proc/cdd]
+    [id2proc/cdd]
+    ; CDD service name (default: getCddSeqAnnot).
+    service_name=getCddSeqAnnot
+    ; Enable or disable data compression (default: false).
+    compress_data=false
+
+<a name="ch_objmgr.Processor_id2_snpsect"></a>
+
+###### SNP prosessor<br/>section [id2proc/snp]
+    [id2proc/snp]
+    ; VDB cache size (default: 10).
+    vdb_cache_size=10
+    ; Data compression level: 0=never, 1=some, 2=always (default: 1).
+    compress_data=1
+
+<a name="ch_objmgr.Processor_id2_wgssect"></a>
+
+###### WGS prosessor<br/>section [id2proc/wgs]
+    [id2proc/wgs]
+    ; VDB cache size (default: 100).
+    vdb_cache_size=100
+    ; Index update time (default: 6000).
+    index_update_time=600
+    ; Data compression level: 0=never, 1=some, 2=always (default: 1).
+    compress_data=1
+
 <a name="ch_objmgr.Readers_pubseqos___p"></a>
 
 #### Readers pubseqos & pubseqos2<br/>section [genbank/pubseqos] or [genbank/pubseqos2]
