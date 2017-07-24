@@ -1183,8 +1183,8 @@ environment variable. Multiple processors should be separated with semicolon.
     [id2proc/cdd]
     ; CDD service name (default: getCddSeqAnnot).
     service_name=getCddSeqAnnot
-    ; Enable or disable data compression (default: off).
-    compress_data=0
+    ; Enable or disable data compression (default: false).
+    compress_data=false
 
 <a name="ch_objmgr.Processor_id2_snpsect"></a>
 
