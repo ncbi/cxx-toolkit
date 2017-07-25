@@ -69,6 +69,8 @@ Object Manager [[include/objmgr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DO
 
         -   [Seqdesc iterator](#ch_objmgr.om_attrib.Seqdesc_iterator) seqdesc\_ci[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/seqdesc_ci.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objmgr/seqdesc_ci.cpp)]
 
+        -   [The ups and downs of descriptor iteration](#ch_objmgr.om_attrib.iter_ups_and_downs)
+
     -   [Annotation iterators](#ch_objmgr.Annotation_iterators)
 
         -   [Seq-annot iterator](#ch_objmgr.om_attrib.Seq_annot_iterator) seq\_annot\_ci[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/seq_annot_ci.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objmgr/seq_annot_ci.cpp)]
@@ -291,7 +293,7 @@ Most objects received from the Object Manager are accessed through handles. One 
 
 -   [Seq-graph handle](#ch_objmgr.om_attrib.Seq_graph_handle)
 
-Most handles have two versions: simple read-only handle and edit handle, which may be used to modify the data.
+Most handles have two versions: a simple read-only handle, and an edit handle which may be used to modify the data.
 
 <a name="ch_objmgr.om_def.html_Seq_map"></a>
 
@@ -431,6 +433,8 @@ The ***CFeatTree*** class can also improve the performance of the ***feature::Ge
     -   [Seq-descr iterator](#ch_objmgr.om_attrib.Seq_descr_iterator)
 
     -   [Seqdesc iterator](#ch_objmgr.om_attrib.Seqdesc_iterator)
+
+    -   [The ups and downs of descriptor iteration](#ch_objmgr.om_attrib.iter_ups_and_downs)
 
     -   [Seq-annot iterator](#ch_objmgr.om_attrib.Seq_annot_iterator)
 
@@ -777,6 +781,89 @@ The Seq-descr iterator ([CSeq\_descr\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolB
 ##### Seqdesc iterator
 
 Another type of descriptor iterator is [CSeqdesc\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeqdesc_CI). It enumerates individual descriptors ([CSeqdesc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeqdesc)) rather than sets of them. Optional flags allow selecting type of descriptors to be included and depth of the search. The iteration starts from the requested Seq-entry or Bioseq and proceeds to the top-level Seq-entry or stops after going selected number of Seq-entry's up the tree.
+
+<a name="ch_objmgr.om_attrib.iter_ups_and_downs"></a>
+
+##### The ups and downs of descriptor iteration
+
+Depending on your use case, you may want to iterate either up or down the object tree.  Suppose you have the following Seq-entry:
+
+    Seq-entry ::= set {
+      id str "Set Level 1" ,
+      descr { title "Set Level 1 Descriptor" } ,
+      seq-set {
+        seq {
+          id { local str "L1S1" } ,
+          descr { title "Level 1 Sequence 1 Descriptor" },
+          inst { repr not-set , mol not-set }
+        },
+        set {
+          id str "Set Level 2" ,
+          descr { title "Set Level 2 Descriptor" } ,
+          seq-set {
+            seq {
+              id { local str "L2S1" } ,
+              descr { title "Level 2 Sequence 1 Descriptor" },
+              inst { repr not-set , mol not-set }
+            },
+            set {
+              id str "Set Level 3" ,
+              descr { title "Set Level 3 Descriptor" } ,
+              seq-set {
+                seq {
+                  id { local str "L3S1" } ,
+                  descr { title "Level 3 Sequence 1 Descriptor" },
+                  inst { repr not-set , mol not-set }
+                },
+                seq {
+                  id { local str "L3S2" } ,
+                  descr { title "Level 3 Sequence 2 Descriptor" },
+                  inst { repr not-set , mol not-set }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+If you want to find all the descriptors that _apply to_ a given Bioseq, then you'll want to iterate "up" the tree because descriptors apply to their own object and all that object's nested objects.  Thus, iterating up results in objects that contain (and therefore apply to) the starting point.  This is the usual case that the C++ Toolkit object model was designed to support, so that's the direction that both ([CSeq\_descr\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_descr_CI&d=)) and [CSeqdesc\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeqdesc_CI) work.
+
+For example, this code iterates "up" through all objects with title descriptors that apply to the given Seq-id:
+
+    CSeqdesc_CI desc_iter(scope->GetBioseqHandle(seqid));
+    for( ;  desc_iter;  ++desc_iter) {
+        cout << desc_iter->GetTitle() << endl;
+    }
+
+With the example Seq-entry, and starting with Bioseq `lcl|L2S1`, this will produce:
+
+    Level 2 Sequence 1 Descriptor
+    Set Level 2 Descriptor
+    Set Level 1 Descriptor
+
+But if you want to find all the descriptors _within_ a given Seq-entry, then you'll want to iterate "down" the tree.
+
+For example, this code iterates "down" through all the title descriptors within a given Seq-entry:
+
+    CSeq_entry_CI   entry_it(start_seqentry,
+                             CSeq_entry_CI::fRecursive |
+                             CSeq_entry_CI::fIncludeGivenEntry);
+    for ( ;  entry_it;  ++entry_it)
+    {
+        CSeqdesc_CI desc_iter(*entry_it);
+        cout << desc_iter->GetTitle() << endl;
+    }
+
+With the given Seq-entry, this will produce:
+
+    Set Level 1 Descriptor
+    Level 1 Sequence 1 Descriptor
+    Set Level 2 Descriptor
+    Level 2 Sequence 1 Descriptor
+    Set Level 3 Descriptor
+    Level 3 Sequence 1 Descriptor
+    Level 3 Sequence 2 Descriptor
 
 <a name="ch_objmgr.Annotation_iterators"></a>
 
