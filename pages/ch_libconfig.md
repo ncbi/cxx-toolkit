@@ -127,6 +127,7 @@ For configuration parameters defined by either ***CParam*** or the registry, the
 ***Note:*** Registry section and entry names may contain some characters that are difficult or impossible to use in environment variable names on some platforms.  To obtain corresponding environment variable names, you can and should make some formal substitutions as detailed below.  For example, the equivalent environment variable for **`[FastCGI]`**<br/>**`WatchFile.Name`** is **`NCBI_CONFIG__FASTCGI__WATCHFILE_DOT_NAME`**.
 
 |**Character**                         |**Substitution**|
+|--------------------------------------|----------------|
 |**`'.'`** (dot, full stop, period)    |**`_DOT_`**     |
 |**`'-'`** (hyphen, minus)             |**`_HYPHEN_`**  |
 |**`'/'`** (\[forward\] slash, solidus)|**`_SLASH_`**   |
