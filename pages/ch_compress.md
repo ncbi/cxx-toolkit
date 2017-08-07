@@ -99,6 +99,7 @@ See [Tar archive API](#ch_compress.archiver.tar) for more information.
 
 
 <a name="ch_compress.basic"></a>
+
 Basic methods
 -------------
 
@@ -113,6 +114,7 @@ All archive file formats are supported independently, see [archivers](#ch_compre
 
 
 <a name="ch_compress.memory"></a>
+
 Memory comression and decompression
 -----------------------------------
 
@@ -139,6 +141,7 @@ In spite of all, these compression/decompression methods are very usefull in con
 
 
 <a name="ch_compress.files"></a>
+
 Files
 -------------------------
 
@@ -185,6 +188,7 @@ All ***C\*CompressionFile*** classes imply that memory always have uncompressed 
 
 
 <a name="ch_compress.streams"></a>
+
 Streams
 -------
 
@@ -254,6 +258,7 @@ Here is an example how to read some data from a stream and decompress it on-the-
 
 	
 <a name="ch_compress.manipulators"></a>
+
 Stream manipulators
 -------------------
 
@@ -306,12 +311,14 @@ But this simplicity have a price. All manipulators use default parameters and fl
 
 
 <a name="ch_compress.archivers"></a>
+
 Archivers
----------
+-----------------------
 
 The C++ Toolkit Compression API include two subsets to work with compression archives: `Compression archive API` and `Tar archive API`. Historicaly `Tar archive API` was added first, it implements [TAR file format](#ch_compress.methods.tar.file) support. `Compression archive API` was designed to be a wrapper for a wide range of possible file archive formats and originally intended to include tar format support also, but due to some format specifics that has not done yet. The interfaces of both mentioned subsets are very similar, indeed.
 
 <a name="ch_compress.archiver.arc"></a>
+
 Compression archive API
 -----------------------
 
@@ -325,6 +332,7 @@ That small library is very usefull but have some limitation, so be aware:
 
 
 <a name="ch_compress.archiver.tar"></a>
+
 Tar archive API
 ---------------
 
@@ -351,8 +359,9 @@ Note that if stream constructor is used, then ***CTar*** can only perform one pa
 
 
 <a name="ch_compress.FAQ"></a>
+
 FAQ
----
+----------------
 
 **Q. What header files do I need to include?**
 
