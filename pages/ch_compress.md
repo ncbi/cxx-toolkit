@@ -8,9 +8,6 @@ nav: pages/ch_compress
 15\. {{ page.title }}
 ================================================
 
-The Compression API [Library `xcompress`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util/compress/api/)]
---------
-
 Overview
 --------
 
@@ -20,6 +17,8 @@ The overview for this chapter consists of the following topics:
 -   Chapter Outline
 
 ### Introduction
+
+**The Compression API** `xcompress`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util/compress/api/)
 
 To support data compression and decompression the C++ Toolkit have the [Compression API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Compression.html), a collection of classes that provide uniform way to compress and decompress data in memory, files and standard [streams](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__CompressionStreams.html) using different compression algorithms. Such support based on using third party libraries:
 
@@ -323,9 +322,9 @@ The C++ Toolkit Compression API include two subsets to work with compression arc
 Compression archive API
 -----------------------
 
-Compression archive API implemented in [CArchive](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchive.html) class and two derived classes [CArchiveFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveFile.html) and [CArchiveMemory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveMemory.html), that support file- and memory-based archives accordingly. These classes have methods to create archives, add or extract files, list existing files, and etc, that we usually do with an archive files.
+Compression archive API implemented in [***CArchive***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchive.html) class and two derived classes [***CArchiveFile***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveFile.html) and [***CArchiveMemory***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveMemory.html), that support file- and memory-based archives accordingly. These classes have methods to create archives, add or extract files, list existing files, and etc, that we usually do with an archive files.
 
-On the current moment archive API have support for [ZIP file format](#ch_compress.methods.zip.file) only. This is possible due to [Miniz](https://github.com/richgel999/miniz) compression library. Toolkit have embedded copy for `miniz`, see [miniz.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util/compress/api/miniz/miniz.c), that is a part of the compression API.
+On the current moment archive API have support for [ZIP file format](#ch_compress.methods.zip.file) only. This is possible due to [miniz](https://github.com/richgel999/miniz) compression library. Toolkit have embedded copy for `miniz`, see [miniz.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util/compress/api/miniz/miniz.c), that is a part of the compression API.
 	
 That small library is very useful but have some limitation, so be aware:
 -	No support for encrypted archives;
@@ -375,6 +374,7 @@ This depends what functionality do you need.
 -	For archive file format support: [<util/compress/archive.hpp>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/archive.hpp) or [<util/compress/tar.hpp>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/tar.hpp).
 
 
+
 **Q. What do I need to add to my Makefile?**
 
 You need to add the following:
@@ -388,6 +388,7 @@ For specific library, you can use more detailed `LIB` and `LIBS`, and omit all n
     LIB  =  xcompress $(BZ2_LIB) $(Z_LIB) $(LZO_LIB) xncbi
     LIBS =  $(BZ2_LIBS) $(Z_LIBS) $(LZO_LIBS) $(ORIG_LIBS)
 	
+
 
 **Q. Can we compress/decompress data more than 4GB?**
 
@@ -406,9 +407,11 @@ Output streams:
     size_t Write(const void* buf, size_t len);
 
 
+
 **Q. What is `CCompressStream::eNone` compression method for streams and its difference from `CCompress::eLevel_NoCompression` compression level?**
 
 `CCompress::eLevel_NoCompression` is a library-defined compression level. Each library store data not compressed, but wrap it into its own footer and header, add checksums or other information depends on used compression format. `CCompressStream::eNone` is a specific compression method for our [compression streams](#ch_compress.streams). It uses [CTransparentStreamProcessor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTransparentStreamProcessor.html), that do not perform any compression or decompression, do not add any header or footer, it just copy data "as is", and ignores specified compression level at all. See [streams](#ch_compress.streams) section for details.
+
 
 
 **Q. How to read `.gz` file (decompress gzip data in-memory), the Compression API produces error code -3 on decompression?**
@@ -418,6 +421,7 @@ The Compression API supports [ZIP](#ch_compress.methods.zip) and [GZIP](#ch_comp
 [CZipCompressionFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZipCompressionFile.html) uses `gzip` format by default, so no additional steps are required.
 
 Utility streams in [include/util/compress/stream_util.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/stream_util.hpp) supports 2 `ZLIB` based methods: `CCompressStream::eZip` for DEFLATE and gzip-compatible `CCompressStream::eGZipFile`, use second one to add .gz support.
+
 
 
 **Q. It is unknown is data compressed or not, but I need to read it anyway. How to do this?**
