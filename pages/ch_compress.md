@@ -46,6 +46,7 @@ The following is an outline of the topics presented in this chapter:
 
 
 <a name="ch_compress.methods"></a>
+
 Supported compression methods
 -----------------------------
 
