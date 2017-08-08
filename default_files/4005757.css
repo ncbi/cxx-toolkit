@@ -166,6 +166,11 @@ div#besetsel-form a:hover {
 /* typography */
 body{font:62.5%/1.3846 arial,helvetica,clean,sans-serif;background-color:#ccc;margin:0}
 .grid{font-size: 1.3em}
+.content {
+    font-size: 1.09em;
+    line-height: 1.45em;
+}
+
 
 /*general*/
 img{border:0}
@@ -192,6 +197,7 @@ textarea {font-family: monospace; font-size: 1.2296em; *font-size:1em; vertical-
 h1,.h1{font-size: 1.3846em; line-height:1.5; margin:1em 0 .5em; } /* font-size of 18px, line-height of 27px */
 h2,.h2{font-size: 1.2307em; line-height:1.125; margin:1.125em 0 .5625em;} /* font-size of 16px, line-height of 18px */
 h3,.h3{font-size: 1.0769em; line-height:1.2857; margin:1.2856em 0 .6428em; } /* font-size of 14px, line-height of 18px */
+
 h4,h5,h6,h3.inline{font-size: 1em; margin:1.3846em 0 .6923em; } /* line-height of 18px */
 h5,.h5{font-style:italic;font-weight:normal;}
 h6, .h6 {font-weight: normal;}
@@ -201,8 +207,26 @@ h3,.h3{color:#724128;}
 h2,.h2{color:#985735;}
 h1,.h1{color:#000;}
 
+
+h2, .h2 {
+    margin: 2.6em 0px 1em;
+}
+h3, .h3 {
+    margin: 2em 0px .5em;
+}
+h4, .h4 {
+    margin: 1.6em 0px .2em;
+}
+
+
+h2 { 
+    border-top: 1px solid rgb(151, 176, 200);
+    padding-top: .9em;
+}
+
 /*InlineHeaders*/
 h3.inline,h4.inline,h5.inline,h6.inline{display:inline;float:left;margin:0 0 -0.125em;padding-right:.3em}
+
 
 /* typography helpers */
 /* use in context of 13px font-size */
@@ -335,7 +359,7 @@ padding: 6px;
 }
 
 body div.portal-debug-location {
-	font-size: 1.2em;
+    font-size: 1.2em;
     font-weight: normal;
     background-color: #ddddd0;
     border: none;
@@ -346,7 +370,7 @@ body div.portal-debug-location {
 }
 
 body div.portal-debug-header {
-	font-size: 1.2em;
+    font-size: 1.2em;
     font-weight: bold;
     margin:0;
     padding:3px 0 0 3px;
@@ -1089,14 +1113,16 @@ ul.messages li.hi_warn em.detail{
 
 /* Temporary fix for wide tables (adding scroll bars (CXX-3856)) */
 div.table-scroll {
-	overflow: auto;
-	max-width: none;
-	max-height: 500px;
+    overflow: auto;
+    max-width: none;
+    max-height: 500px;
+    line-height: 1.3em;
+    font-size: .9em;
 }
 /* Added top space for tables to display consecutive tables better (CXX-4144)) */
 div.table {
- padding-top: 0.5em;
- }
+    padding-top: 0.5em;
+}
 
 
 .grid{ min-width:800px; max-width:none; width:100%; clear:both; margin:0 auto; text-align:left }
@@ -1155,10 +1181,21 @@ pre.highlight {
   max-width: none;
   max-height: 500px;
   font-family: Courier, Monospace;
+  padding: 10px;
 }
 
-/* Made top level headers underlined */
-h2 { border-bottom: 1px solid rgb(151, 176, 200);}
+pre.highlight code {
+  font-weight: 400;
+  line-height: 1.4em;
+  font-size: 1.1em;
+}
+
+code.highlighter-rouge {
+  background-color: #eee;
+  padding: 3px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
 
 /* Remove underline for 'Go To' link and for the items from the drop down list (see CXX-4213) */
 
