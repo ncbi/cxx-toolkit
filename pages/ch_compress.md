@@ -5,7 +5,7 @@ nav: pages/ch_compress
 ---
 
 
-15\. {{ page.title }}
+{{ page.title }}
 ================================================
 
 
