@@ -9,19 +9,19 @@ nav: pages/ch_compress
 ================================================
 
 
-### Introduction
+## Introduction
 
 **The Compression API** `xcompress`:  [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util/compress/api/)
 
-To support data compression and decompression the C++ Toolkit have the [Compression API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Compression.html), a collection of classes that provide uniform way to compress and decompress data in memory, files and standard [streams](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__CompressionStreams.html) using different compression algorithms. Such support based on using third party libraries:
+To support data compression and decompression the C++ Toolkit have the [Compression API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Compression.html), a collection of classes that provide uniform way to compress and decompress data in memory, files and standard [streams](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__CompressionStreams.html) using different compression algorithms. Such support is based on using third party libraries:
 
 -    bzip2 - [http://www.bzip.org/](http://www.bzip.org/)
 -    lzo - [http://www.oberhumer.com/opensource/lzo/](http://www.oberhumer.com/opensource/lzo/)
 -    zlib - [http://zlib.org/](http://zlib.org/)
 
-The C++ Toolkit tries to use system version of these libraries installed on host. If they are missing though, then the embedded versions of `bzip2` and `zlib` will be automatically used instead. `lzo` is supported as a pure 3-rd party package.
+C++ Toolkit tries to use system version of these libraries installed on host. If they are missing though, then the embedded versions of `bzip2` and `zlib` will be automatically used instead. `lzo` is supported as a pure 3-rd party package.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -53,12 +53,12 @@ The Compression API supports the following compression methods:
 Each compression library have its own set of functions and wrapper classes in the C++ Toolkit, declared in separate headers. Most have a similar structure and methods, allowing for an easily switch of a compression method with minimal changes in the source code.
 
 <a name="ch_compress.methods.bzip2"></a>
-#### BZIP2 [[bzip2.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/bzip2.hpp)]
+### BZIP2 [[bzip2.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/bzip2.hpp)]
  
 `BZIP2` is known for good compression ratio and slow speed. It compresses data more effectively than `DEFLATE` method implemented in `zlib` library but is considerably slower. `BZIP2` performance is asymmetric, and decompression is relatively fast but still slower than `ZIP`.
 
 <a name="ch_compress.methods.lzo"></a>
-#### LZO [[lzo.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/lzo.hpp)]
+### LZO [[lzo.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/lzo.hpp)]
 
 `lzo` is a data compression library which is suitable for data (de)compression in real-time. This means it favours speed over compression ratio. `LZO` is good to compress some sort of data only, that have a limited set of characters or many recurring sequences. It is not suitable for a random data, that limits its usage. It is better to test this compression on yours own data before making decision to use `LZO` compression method. Use [ZIP](#ch_compress.methods.zip) if you need more universal and robust solution, even though it is slower and requires more memory.
 
@@ -67,24 +67,24 @@ We don't support all possible compression algorithms, implemented in `lzo` libra
 `LZO` is a memory block algorithm and is not suitable for stream or file operations from the box, it does not have a corresponding file format as well. So, we use our own wrapper for `LZO` blocks to implement a streams/files support. See [lzo.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util/compress/api/lzo.cpp) for details.
  
 <a name="ch_compress.methods.zip"></a>
-#### ZIP [[zlib.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/zlib.hpp)]
+### ZIP [[zlib.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/zlib.hpp)]
 
 The `zlib` library uses `DEFLATE` compression algorithm. It is widely used and very universal, providing good compression/decompression ratio and speed for a wide range of data. `ZIP` compression method uses regular `zlib` format, which is a wrapper around a deflate stream (RFC 1950). It provides identification and error detection that are not provided by the raw `DEFLATE` algorithm.
 
 <a name="ch_compress.methods.gzip"></a>
-#### GZIP [[zlib.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/zlib.hpp)]
+### GZIP [[zlib.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/zlib.hpp)]
 
 This method add support for gzip (.gz) file format. This is a flavor of `ZIP` that uses special header and footer which allows to store a file name and other file system information (RFC 1952). It is fully compatible with .gz file format, and it allows to store/process concatenated gzip files as well. But, regardless of its relation to files this format can be used for memory and stream operations as well, if needed.
 
 <a name="ch_compress.methods.zip.file"></a>
-#### ZIP (file format) [[archive.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/archive.hpp)]
+### ZIP (file format) [[archive.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/archive.hpp)]
 
 The Compression API also supports `ZIP` file format. `ZIP` is an archive file format that supports lossless data compression. A .zip file may contain one or more files or directories that may have been compressed. 
 
 See [Compression archive API](#ch_compress.archiver.arc) for more information.
 
 <a name="ch_compress.methods.tar.file"></a>
-#### TAR (file format) [[tar.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/tar.hpp)]
+### TAR (file format) [[tar.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/tar.hpp)]
 
 `TAR` is an archive format for collecting many files into one archive file (often referred to as a "tarball") for distribution or backup purposes. The name is derived from *T*ape *AR*(ar)chive, as it was originally developed to write data to sequential I/O devices with no file system of their own. The archive data sets created by tar contain various file system parameters, such as name, time stamps, ownership, file access permissions, and etc.
 
