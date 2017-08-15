@@ -5,7 +5,7 @@ nav: pages/ch_log
 ---
 
 
-9\. {{ page.title }}
+{{ page.title }}
 ================================================
 
 Overview

@@ -5,10 +5,8 @@ nav: pages/ch_debug
 ---
 
 
-24\. {{ page.title }}
+{{ page.title }}
 ============================================================
-
-Last Update: April 24, 2014.
 
 Overview
 --------

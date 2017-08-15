@@ -5,7 +5,7 @@ nav: pages/ch_browse
 ---
 
 
-29\. {{ page.title }}
+{{ page.title }}
 ==================================================
 
 Source Browsers

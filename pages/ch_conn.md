@@ -5,10 +5,8 @@ nav: pages/ch_conn
 ---
 
 
-10\. {{ page.title }}
+{{ page.title }}
 ====================================
-
-Last Update: October 26, 2014.
 
 Connection Library [Library `xconnect`: [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect)]
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

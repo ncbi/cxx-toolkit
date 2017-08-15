@@ -5,10 +5,8 @@ nav: pages/ch_faq
 ---
 
 
-31\. {{ page.title }}
+{{ page.title }}
 ======================================================================
-
-Last Update: August 8, 2014.
 
 Overview
 --------

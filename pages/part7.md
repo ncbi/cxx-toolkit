@@ -10,6 +10,6 @@ nav: pages/part7
 
 Part 7 discusses configuration parameters for libraries and applications:
 
--   [34. Library Configuration](ch_libconfig.html)
+-   [Library Configuration](ch_libconfig.html)
 
 

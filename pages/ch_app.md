@@ -5,7 +5,7 @@ nav: pages/ch_app
 ---
 
 
-26\. {{ page.title }}
+{{ page.title }}
 ===============================
 
 Overview
@@ -1272,7 +1272,7 @@ Figure 9. LBSMD Configuration Files Structure
 
 The common for all the configuration file prefix `/etc/lbsmd` is omitted on the figure. The arrows on the diagram show how the files are included.
 
-The files `servrc.cfg` and `servrc.cfg.systems` have fixed structure and should not be changed at all. The purpose of the file `local/servrc.cfg.systems` is to be modified by the systems group while the purpose of the file `local/servrc.cfg.ieb` isto be modified by the delegated members of the respected groups. To make it easier for changes all the `local/servrc.cfg.ieb` files from all the hosts in the NCBI network are stored in a centralized SVN repository. The repository can be received by issuing the following command:
+The files `servrc.cfg` and `servrc.cfg.systems` have fixed structure and should not be changed at all. The purpose of the file `local/servrc.cfg.systems` is to be modified by the systems group while the purpose of the file `local/servrc.cfg.ieb` is to be modified by the delegated members of the respected groups. To make it easier for changes all the `local/servrc.cfg.ieb` files from all the hosts in the NCBI network are stored in a centralized SVN repository. The repository can be received by issuing the following command:
 
 `svn co svn+ssh://subvert.be-md.ncbi.nlm.nih.gov/export/home/LBSMD_REPO`
 
@@ -1490,9 +1490,6 @@ Here is an example of a LBSMD configuration file:
     bounce[60]NCBID '' L=yes C=x-ncbi-data/x-unknown | \
     ..../web/public/htdocs/Service/bounce
 
-NCBI intranet users can also visit the following link to get a sample configuration file:
-
-<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi?cfg>
 
 <a name="ch_app.Database_Load_Balancing"></a>
 

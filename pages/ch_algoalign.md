@@ -5,10 +5,8 @@ nav: pages/ch_algoalign
 ---
 
 
-19\. {{ page.title }}
+{{ page.title }}
 ================================================
-
-Last Update: October 18, 2013.
 
 The Global Alignment Library [`xalgoalign`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/algo/align) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/algo/align)]
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

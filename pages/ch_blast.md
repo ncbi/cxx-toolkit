@@ -5,10 +5,9 @@ nav: pages/ch_blast
 ---
 
 
-17\. {{ page.title }}
+{{ page.title }}
 ============================
 
-Created: August 22, 2006; Last Update: April 13, 2010.
 
 Overview
 --------

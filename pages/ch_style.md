@@ -5,10 +5,8 @@ nav: pages/ch_style
 ---
 
 
-7\. {{ page.title }}
+{{ page.title }}
 =====================================================
-
-Last Update: September 24, 2014.
 
 Overview
 --------
@@ -91,7 +89,7 @@ The following is an outline of the topics presented in this chapter:
 
             -   [Assignment and Copy Constructor Overload](#ch_style.assign_copy_constr)
 
-            -   [Omitting "void" in a No-Argument Function Prototype](#ch_style.no_arg_prototype)
+            -   [Constructible (non-POD) static objects](#ch_style.static_non_pod)
 
             -   [Do Not Mix malloc and new](#ch_style.malloc_new)
 
@@ -352,7 +350,7 @@ In `if, for, while, do, switch, case`, etc. and type definition statements:
 
  
 
-    class | struct | union <[C|I|P|S|U]TypeName>
+    class|struct|union <[C|I|P|S|U]TypeName>
     {
         .....;
     };
@@ -616,7 +614,7 @@ This section discusses the following topics:
 
         -   [Assignment and Copy Constructor Overload](#ch_style.assign_copy_constr)
 
-        -   [Omitting "void" in a No-Argument Function Prototype](#ch_style.no_arg_prototype)
+        -   [Constructible (non-POD) static objects](#ch_style.static_non_pod)
 
         -   [Do Not Mix malloc and new](#ch_style.malloc_new)
 
@@ -733,8 +731,6 @@ As an added benefit, using an enumerated type for parameters instead of **`bool`
 
 #### C++ Tips and Tricks
 
--   Writing something like `map<int, int, less<int>>` will give you weird errors; instead write `map<int, int, less<int> >`. This is because `>>` is reserved word.
-
 -   Do use pass-by-reference. It'll cut down on the number of pointer related errors.
 
 -   Use `const` (or `enum`) instead of `#define` when you can. This is much easier to debug.
@@ -787,7 +783,7 @@ If you pass a container to a function, don't add a local object to the container
 
     -   [Assignment and Copy Constructor Overload](#ch_style.assign_copy_constr)
 
-    -   [Omitting "void" in a No-Argument Function Prototype](#ch_style.no_arg_prototype)
+    -   [Constructible (non-POD) static objects](#ch_style.static_non_pod)
 
     -   [Do Not Mix malloc and new](#ch_style.malloc_new)
 
@@ -801,9 +797,7 @@ If you pass a container to a function, don't add a local object to the container
 
 ##### Non-Standard STL Classes
 
--   Don't use the ***rope*** class from some versions of the STL. This is a non-standard addition. If you have questions about what is/isn't in the standard library, consult the [C++ standards](http://www.parashift.com/c++-faq-lite/big-picture.html#faq-6.12).
-
--   The NCBI C++ Toolkit includes ***hash\_map***, ***hash\_multimap***, ***hash\_set***, and ***hash\_multiset*** classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)) -- or, better yet, use the C++11's ***unordered_map***, ***unordered_multimap***, ***unordered_set*** and ***unordered_multiset***. These classes are more portable than, and should be used instead of, the STL's respective ***hash\_\**** classes.
+-   Avoid using ***hash\_map***, ***hash\_multimap***, ***hash\_set***, and ***hash\_multiset*** classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)). -- Nowadays there are standard C++11's ***unordered_map***, ***unordered_multimap***, ***unordered_set*** and ***unordered_multiset*** classes that provide a similar functionality.
 
 <a name="ch_style.cpp_bad_guys"></a>
 
@@ -846,11 +840,11 @@ In many cases when you don't want to have the assignment and copy constructor at
         CFooClass& operator=(const CFooClass&);
     };
 
-<a name="ch_style.no_arg_prototype"></a>
+<a name="ch_style.static_non_pod"></a>
 
-##### Omitting `"void"` in a No-Argument Function Prototype
+##### Constructible (non-POD) static objects
 
-Do not omit `"void"` in the prototype of a function without arguments (e.g. always write ***"int f(void)"*** rather than just ***"int f()"***).
+Avoid having global and static constructible objects such as ***static const string s_MyStringFoo("foo");***. There are issues with the order of their construction and destruction (especially in case of DLLs) as well as a lack of MT-safety on some platforms. If you absolutely have to have a static constructible object -- the C++ Toolkit has a special class [CSafeStatic](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSafeStatic.html) to manage such cases. It provides MT-safe construction as well as a lifespan management (relative to the other objects created using [CSafeStatic](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSafeStatic.html) approach).
 
 <a name="ch_style.malloc_new"></a>
 

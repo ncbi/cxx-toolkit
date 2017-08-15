@@ -5,10 +5,8 @@ nav: pages/ch_core
 ---
 
 
-8\. {{ page.title }}
+{{ page.title }}
 ===========================================================================
-
-Last Update: December 29, 2014.
 
 Overview
 --------

@@ -5,10 +5,8 @@ nav: pages/ch_build
 ---
 
 
-5\. {{ page.title }}
+{{ page.title }}
 ========================================
-
-Last Update: September 26, 2014.
 
 Overview
 --------

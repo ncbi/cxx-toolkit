@@ -5,10 +5,8 @@ nav: pages/ch_xmlwrapp
 ---
 
 
-22\. {{ page.title }}
+{{ page.title }}
 ===================================================================
-
-Created: August 2, 2009; Last Update: November 7, 2014.
 
 Overview
 --------

@@ -3,12 +3,6 @@ layout: default
 title: Book Information
 nav: pages/fm
 ---
-To cite this book:
---------------------
-
-Vakatov D, editor. The NCBI C++ Toolkit Book [Internet]. Bethesda (MD): National Center for Biotechnology Information (US); 2004-. 
-
-[http://ncbi.github.io/cxx-toolkit/](http://ncbi.github.io/cxx-toolkit/)
 
 {{ page.title }}
 ================

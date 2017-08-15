@@ -5,9 +5,8 @@ nav: pages/ch_libconfig
 ---
 
 
-32\. {{ page.title }}
+{{ page.title }}
 ========================================
-
 
 Overview
 --------
@@ -125,7 +124,14 @@ The registry is case-insensitive for section and entry names. More [details on t
 
 For configuration parameters defined by either ***CParam*** or the registry, there is an equivalent environment variable having the form **`NCBI_CONFIG__<section>__<name>`** (note the double-underscores preceding **`<section>`** and **`<name>`**). The equivalent form is all uppercase.
 
-***Note:*** Environment variables may not contain dots (a.k.a. period or full stop) on many platforms. However, dots are allowed in registry section and entry names. The equivalent environment variable for parameters containing a dot in the section or entry name is formed by replacing the period with **`_DOT_`**. For example, the equivalent environment variable for **`[FastCGI]`**<br/>**`WatchFile.Name`** is **`NCBI_CONFIG__FASTCGI__WATCHFILE_DOT_NAME`**.
+***Note:*** Registry section and entry names may contain some characters that are difficult or impossible to use in environment variable names on some platforms.  To obtain corresponding environment variable names, you can and should make some formal substitutions as detailed below.  For example, the equivalent environment variable for **`[FastCGI]`**<br/>**`WatchFile.Name`** is **`NCBI_CONFIG__FASTCGI__WATCHFILE_DOT_NAME`**.
+
+|**Character**                         |**Substitution**|
+|--------------------------------------|----------------|
+|**`'.'`** (dot, full stop, period)    |**`_DOT_`**     |
+|**`'-'`** (hyphen, minus)             |**`_HYPHEN_`**  |
+|**`'/'`** (\[forward\] slash, solidus)|**`_SLASH_`**   |
+|**`' '`** (space)                     |**`_SPACE_`**   |
 
 ***Note:*** Environment variables are case-sensitive on many platforms. Therefore, when setting a configuration parameter via the environment, be sure to use the case shown in the tables below.
 
