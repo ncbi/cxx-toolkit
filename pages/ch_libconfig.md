@@ -68,9 +68,11 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Eutils](#ch_libconfig.Eutils)
 
--   [Application-Specific Parameters](#ch_libconfig.Internal_ApplicationSpecifi)
+-   [Distributed Computing (GRID) Specific Parameters](#ch_libconfig.Internal_GridSpecifi)
 
     -   [NetCache and NetSchedule](#ch_libconfig.NetCache_and_NetSchedule)
+
+-   [Application-Specific Parameters](#ch_libconfig.Internal_ApplicationSpecifi)
 
     -   [Seqfetch.cgi](#ch_libconfig.Seqfetchcgi)
 
@@ -848,22 +850,20 @@ Table 15. eutils library configuration parameters
 
 <div class="table-scroll"></div>
 
-<a name="ch_libconfig.Internal_ApplicationSpecifi"></a>
+<a name="ch_libconfig.Internal_GridSpecifi"></a>
 
-Application-Specific Parameters
+Distributed Computing (GRID) Specific Parameters
 -------------------------------
 
-The following sections discuss configuration parameters that are specific to selected applications.
+The following sections discuss configuration parameters that are specific to NCBI Distributed Computing (GRID).
+
+***Note:*** This section only applies within NCBI.
 
 -   [NetCache and NetSchedule](#ch_libconfig.NetCache_and_NetSchedule)
-
--   [Seqfetch.cgi](#ch_libconfig.Seqfetchcgi)
 
 <a name="ch_libconfig.NetCache_and_NetSchedule"></a>
 
 ### NetCache and NetSchedule
-
-***Note:*** This section only applies within NCBI.
 
 [Table 16](#ch_libconfig.1.2) describes configuration parameters that are common to both [NetCache](ch_app.html#ch_app.ncbi_netcache_service) and [NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) client APIs. These parameters are found in the `netservice_api` registry section.
 
@@ -960,6 +960,15 @@ See the [Distributed Computing](ch_grid.html) chapter for more information on Ne
 Configuration parameters for NetCache daemons are described in the file:
 
 <https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log>
+
+<a name="ch_libconfig.Internal_ApplicationSpecifi"></a>
+
+Application-Specific Parameters
+-------------------------------
+
+The following sections discuss configuration parameters that are specific to selected applications.
+
+-   [Seqfetch.cgi](#ch_libconfig.Seqfetchcgi)
 
 <a name="ch_libconfig.Seqfetchcgi"></a>
 
