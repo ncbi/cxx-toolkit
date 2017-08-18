@@ -455,7 +455,18 @@ typedef CRowReaderStream_MultiCharDelimited<'\t', ' ', '\v'> TRowReaderStream_Mu
 typedef CRowReaderStream_StringDelimited<'*', '*', '*'> TRowReaderStream_ThreeStarDelimited;
 ```
 
-It is recommended that a new traits implementation derives from one of the mentioned classes or typedefs and re-implements the required methods.
+It is recommended that a new traits implementation derives from one of the mentioned classes or typedefs and re-implements the required methods. A new deriving implementation should also add a macro at the end of the new class as follows:
+
+```
+class MyTraits : public TRowReaderStream_SingleTabDelimited
+{
+    // ...
+private:
+    RR_TRAITS_PARENT_STREAM(MyTraits);
+};
+```
+
+The RR_TRAITS_PARENT_STREAM macro must have the new traits class name as an argument. Basically the macro overrides a few items to make the types compatible for the common calls.
 
 
 <a name="ch_tabular.Ready_to_use_Traits"></a>
