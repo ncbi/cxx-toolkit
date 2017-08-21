@@ -68,9 +68,11 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Eutils](#ch_libconfig.Eutils)
 
--   [Application-Specific Parameters](#ch_libconfig.Internal_ApplicationSpecifi)
+-   [Distributed Computing (GRID) Specific Parameters](#ch_libconfig.Internal_GridSpecifi)
 
     -   [NetCache and NetSchedule](#ch_libconfig.NetCache_and_NetSchedule)
+
+-   [Application-Specific Parameters](#ch_libconfig.Internal_ApplicationSpecifi)
 
     -   [Seqfetch.cgi](#ch_libconfig.Seqfetchcgi)
 
@@ -428,9 +430,6 @@ Table 7. Connection library configuration parameters
 | Set the mail gateway port. | **`[CONN]`**<br/>**`MX_PORT`**<br/><br/>**`CONN_MX_PORT`** | 1 to 65535 | 25 (SMTP) |
 | Set the mail gateway communication timeout in seconds. | **`[CONN]`**<br/>**`MX_TIMEOUT`**<br/><br/>**`CONN_MX_TIMEOUT`** | floating point \>= 0.0 (zero means default) | 120 | 
 | Enable [CServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html) to catch exceptions. | **`[server]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`** | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
-| Deprecated. | **`[server]`**<br/>**`allow_implicit_job_return`**<br/><br/>**`NCBI_CONFIG__SERVER__ALLOW_IMPLICIT_JOB_RETURN`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | false |
-| Maximum time worker nodes are allowed to live without a single NetSchedule server. | **`[server]`**<br/>**`max_wait_for_servers`**<br/><br/>**`NCBI_CONFIG__SERVER__MAX_WAIT_FOR_SERVERS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | unsigned int | 24 \* 60 \* 60 seconds |
-| Causes the worker node to shut down if any jobs fail. | **`[server]`**<br/>**`stop_on_job_errors`**<br/><br/>**`NCBI_CONFIG__SERVER__STOP_ON_JOB_ERRORS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
 | Enable [CThreadInPool\_ForServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCThreadInPool__ForServer.html) to catch exceptions. | **`[ThreadPool]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`NCBI_CONFIG__THREADPOOL__CATCH_UNHANDLED_EXCEPTIONS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
 
 
@@ -848,22 +847,22 @@ Table 15. eutils library configuration parameters
 
 <div class="table-scroll"></div>
 
-<a name="ch_libconfig.Internal_ApplicationSpecifi"></a>
+<a name="ch_libconfig.Internal_GridSpecifi"></a>
 
-Application-Specific Parameters
+Distributed Computing (GRID) Specific Parameters
 -------------------------------
 
-The following sections discuss configuration parameters that are specific to selected applications.
+The following sections discuss configuration parameters that are specific to NCBI Distributed Computing (GRID).
+
+***Note:*** This section only applies within NCBI.
 
 -   [NetCache and NetSchedule](#ch_libconfig.NetCache_and_NetSchedule)
 
--   [Seqfetch.cgi](#ch_libconfig.Seqfetchcgi)
+-   [Worker Node](#ch_libconfig.WorkerNode)
 
 <a name="ch_libconfig.NetCache_and_NetSchedule"></a>
 
 ### NetCache and NetSchedule
-
-***Note:*** This section only applies within NCBI.
 
 [Table 16](#ch_libconfig.1.2) describes configuration parameters that are common to both [NetCache](ch_app.html#ch_app.ncbi_netcache_service) and [NetSchedule](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/NetSchedule) client APIs. These parameters are found in the `netservice_api` registry section.
 
@@ -955,11 +954,36 @@ Table 18. NetSchedule client API configuration parameters (netschedule\_api)
 
 <div class="table-scroll"></div>
 
+<a name="ch_libconfig.WorkerNode"></a>
+
+[Table 19](#ch_libconfig.T19) describes configuration parameters for Worker Nodes.
+
+<a name="ch_libconfig.T19"></a>
+
+Table 19. Worker Node configuration parameters
+
+| Purpose                                                                                                              | [Registry section]<br/>Registry name<br/><br/>Environment variable   | Valid values                                                                                                      | Default      |
+|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|--------------|
+| Deprecated. | **`[server]`**<br/>**`allow_implicit_job_return`**<br/><br/>**`NCBI_CONFIG__SERVER__ALLOW_IMPLICIT_JOB_RETURN`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | false |
+| Maximum time worker nodes are allowed to live without a single NetSchedule server. | **`[server]`**<br/>**`max_wait_for_servers`**<br/><br/>**`NCBI_CONFIG__SERVER__MAX_WAIT_FOR_SERVERS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | unsigned int | 24 \* 60 \* 60 seconds |
+| Causes the worker node to shut down if any jobs fail. | **`[server]`**<br/>**`stop_on_job_errors`**<br/><br/>**`NCBI_CONFIG__SERVER__STOP_ON_JOB_ERRORS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
+
+<div class="table-scroll"></div>
+
 See the [Distributed Computing](ch_grid.html) chapter for more information on NetCache and NetSchedule.
 
 Configuration parameters for NetCache daemons are described in the file:
 
 <https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log>
+
+<a name="ch_libconfig.Internal_ApplicationSpecifi"></a>
+
+Application-Specific Parameters
+-------------------------------
+
+The following sections discuss configuration parameters that are specific to selected applications.
+
+-   [Seqfetch.cgi](#ch_libconfig.Seqfetchcgi)
 
 <a name="ch_libconfig.Seqfetchcgi"></a>
 
