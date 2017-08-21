@@ -11,13 +11,8 @@ nav: pages/ch_conn
 Connection Library [Library `xconnect`: [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect)]
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-The overview for this chapter consists of the following topics:
 
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 The connection library includes a generic socket interface (***SOCK***), connection object (***CONN***), and specialized ***CONNECTOR*** constructors (for sockets, files, HTTP, and services) to be used as engines for connections. It also provides access to the load-balancing daemon and NCBI named service dispatching facilities.
 
@@ -25,7 +20,7 @@ Although the core of the Connection Library is written in C and has an underlyin
 
 ***Note***: Because of security issues, not all links in the public version of this file are accessible by outside NCBI users.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter, with links to relevant source files:
 
