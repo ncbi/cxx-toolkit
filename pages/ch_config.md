@@ -8,16 +8,7 @@ nav: pages/ch_config
 {{ page.title }}
 =======================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter describes in detail how to configure, build, and use the NCBI C++ Toolkit (or selected components of it) on supported platforms. See the [Getting Started](ch_start.html#ch_start.basic_install) chapter for a general overview of the process. A list of all supported platforms can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi).
 
@@ -33,7 +24,7 @@ Successful builds result in immediately usable libraries and applications, and g
 
 In addition to building the Toolkit libraries and applications, this chapter also discusses building test suites and sample applications. You might want to build and run a test suite if you are having trouble using the Toolkit and you aren’t sure if it is working properly. While it isn’t necessary to build a test suite to use the Toolkit, it can be useful for ensuring that the Toolkit has been properly configured and built. Building a sample application may be a good first step toward learning how to build your own applications.
 
-### Chapter Outline
+## Chapter Outline
 
 [General Information for All Platforms](#ch_config._General_Information_)
 
