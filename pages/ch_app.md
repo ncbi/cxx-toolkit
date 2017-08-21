@@ -8,18 +8,11 @@ nav: pages/ch_app
 {{ page.title }}
 ===============================
 
-Overview
---------
-
--   [Introduction](#ch_app.Intro)
-
--   [Chapter Outline](#ch_app.Outline)
-
-### Introduction
+## Introduction
 
 Most of the applications discussed in this chapter are built on a regular basis, at least once a day from the latest sources, and if you are in NCBI, then you can find the latest version in the directory: `$NCBI/c++/Release/bin/` (or `$NCBI/c++/Debug/bin/`).
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
