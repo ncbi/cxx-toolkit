@@ -8,16 +8,8 @@ nav: pages/ch_cgi
 {{ page.title }}
 ===================================
 
-Overview
---------
 
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 **CGI and Fast-CGI** [Libraries `xcgi` and `xfcgi`: [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/cgi) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/cgi)]
 
@@ -57,7 +49,7 @@ CGI Interface
 
 .
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
