@@ -430,9 +430,6 @@ Table 7. Connection library configuration parameters
 | Set the mail gateway port. | **`[CONN]`**<br/>**`MX_PORT`**<br/><br/>**`CONN_MX_PORT`** | 1 to 65535 | 25 (SMTP) |
 | Set the mail gateway communication timeout in seconds. | **`[CONN]`**<br/>**`MX_TIMEOUT`**<br/><br/>**`CONN_MX_TIMEOUT`** | floating point \>= 0.0 (zero means default) | 120 | 
 | Enable [CServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html) to catch exceptions. | **`[server]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`** | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
-| Deprecated. | **`[server]`**<br/>**`allow_implicit_job_return`**<br/><br/>**`NCBI_CONFIG__SERVER__ALLOW_IMPLICIT_JOB_RETURN`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | false |
-| Maximum time worker nodes are allowed to live without a single NetSchedule server. | **`[server]`**<br/>**`max_wait_for_servers`**<br/><br/>**`NCBI_CONFIG__SERVER__MAX_WAIT_FOR_SERVERS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | unsigned int | 24 \* 60 \* 60 seconds |
-| Causes the worker node to shut down if any jobs fail. | **`[server]`**<br/>**`stop_on_job_errors`**<br/><br/>**`NCBI_CONFIG__SERVER__STOP_ON_JOB_ERRORS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
 | Enable [CThreadInPool\_ForServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCThreadInPool__ForServer.html) to catch exceptions. | **`[ThreadPool]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`NCBI_CONFIG__THREADPOOL__CATCH_UNHANDLED_EXCEPTIONS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
 
 
@@ -861,6 +858,8 @@ The following sections discuss configuration parameters that are specific to NCB
 
 -   [NetCache and NetSchedule](#ch_libconfig.NetCache_and_NetSchedule)
 
+-   [Worker Node](#ch_libconfig.WorkerNode)
+
 <a name="ch_libconfig.NetCache_and_NetSchedule"></a>
 
 ### NetCache and NetSchedule
@@ -952,6 +951,22 @@ Table 18. NetSchedule client API configuration parameters (netschedule\_api)
 | The name of your application, as identified to NetSchedule.                                                          | **`[netschedule_api]`**<br/>**`client_name`**<br/><br/>N/A           | your application's name                                                                                           | (none)       |
 | Can be used to override **`NCBI_CONFIG__NETSERVICE_API__COMMUNICATION_TIMEOUT`**. Please see that entry for details. | **`[netschedule_api]`**<br/>**`communication_timeout`**<br/><br/>N/A | floating point \>= 0.0 (zero means use the default from **`NCBI_CONFIG__NETSERVICE_API__COMMUNICATION_TIMEOUT`**) | 12.0 seconds |
 | Can be used to override **`[netservice_api]/connection_timeout`**. Please see that entry for details.                | **`[netschedule_api]`**<br/>**`connection_timeout`**<br/><br/>N/A    | floating point \>= 0.0 (zero means use the default from **`[netservice_api]/connection_timeout`**)                | 2.0 seconds  |
+
+<div class="table-scroll"></div>
+
+<a name="ch_libconfig.WorkerNode"></a>
+
+[Table 19](#ch_libconfig.T19) describes configuration parameters for Worker Nodes.
+
+<a name="ch_libconfig.T19"></a>
+
+Table 19. Worker Node configuration parameters
+
+| Purpose                                                                                                              | [Registry section]<br/>Registry name<br/><br/>Environment variable   | Valid values                                                                                                      | Default      |
+|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|--------------|
+| Deprecated. | **`[server]`**<br/>**`allow_implicit_job_return`**<br/><br/>**`NCBI_CONFIG__SERVER__ALLOW_IMPLICIT_JOB_RETURN`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | false |
+| Maximum time worker nodes are allowed to live without a single NetSchedule server. | **`[server]`**<br/>**`max_wait_for_servers`**<br/><br/>**`NCBI_CONFIG__SERVER__MAX_WAIT_FOR_SERVERS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | unsigned int | 24 \* 60 \* 60 seconds |
+| Causes the worker node to shut down if any jobs fail. | **`[server]`**<br/>**`stop_on_job_errors`**<br/><br/>**`NCBI_CONFIG__SERVER__STOP_ON_JOB_ERRORS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
 
 <div class="table-scroll"></div>
 
