@@ -8,20 +8,12 @@ nav: pages/ch_dataaccess
 {{ page.title }}
 ======================================
 
-Overview
---------
 
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter describes access to the NCBI data using the NCBI C++ Toolkit.
 
-### Chapter Outline
+## Chapter Outline
 
 -   [Object Manager: Generic API for retrieving and manipulating biological sequence data](#ch_dataaccess.Object_Manager)
 
