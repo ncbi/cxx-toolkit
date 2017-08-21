@@ -8,16 +8,7 @@ nav: pages/ch_core
 {{ page.title }}
 ===========================================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 -   **CORELIB library** `xncbi`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib)
 
@@ -31,7 +22,7 @@ This chapter provides reference material for many of CORELIB's facilities. For a
 
 The UTIL module is a collection of useful classes which can be used in more then one application. This chapter provides reference material for many of UTIL's facilities. For an overview of the UTIL module please refer to the [UTIL section in the introductory chapter](ch_intro.html#ch_intro.intro_util) on the C++ Toolkit.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
