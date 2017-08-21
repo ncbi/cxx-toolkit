@@ -8,16 +8,8 @@ nav: pages/ch_build
 {{ page.title }}
 ========================================
 
-Overview
---------
 
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 Building executables and libraries for a large, integrated set of software tools such as the C++ Toolkit, and doing so consistently on different platforms and architectures, is a daunting task. Therefore, the Toolkit developers have expended considerable effort to design a build system based upon the **make** utility as controlled by `makefiles`. Although it is, of course, possible to write one's own Toolkit `makefile` from scratch, it is seldom desirable. To take advantage of the experience, wisdom, and alchemy invested in Toolkit and to help avoid often inscrutable compilation issues:
 
@@ -27,7 +19,7 @@ Building executables and libraries for a large, integrated set of software tools
 
 With minimal manual editing (and after invoking the [configure](ch_config.html) script in your build tree), the build system adapts to your environment, compiler options, defines all relevant `makefile` macros and targets, allows for recursive builds of the entire Toolkit and targeted builds of single modules, and handles many other details that can confound manual builds.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
