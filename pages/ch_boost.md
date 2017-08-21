@@ -8,16 +8,7 @@ nav: pages/ch_boost
 {{ page.title }}
 ======================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter discusses the Boost Unit Test Framework and how to use it within NCBI. The NCBI C++ Toolkit has incorporated and extended the open source [Boost.Test Library](https://www.boost.org/doc/libs/1_53_0/libs/test/doc/html/index.html), and provides a simplified way for the developers to create Boost-based C++ unit tests.
 
@@ -37,7 +28,7 @@ The NCBI extensions add the ability to:
 
 While the framework may be of interest to outside organizations, this chapter is intended for NCBI C++ developers. See also the Doxygen documentation for [tests](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Tests.html).
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
