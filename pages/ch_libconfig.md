@@ -371,8 +371,6 @@ The following sections discuss library-specific configuration parameters.
 
 -   [Connection](#ch_libconfig.libconfig_connect)
 
--   [NetCache and NetSchedule](#ch_libconfig.NetCache_and_NetSchedule)
-
 -   [CGI and FCGI](#ch_libconfig.libconfig_cgi)
 
 -   [Serial](#ch_libconfig.Serial)
@@ -955,6 +953,8 @@ Table 18. NetSchedule client API configuration parameters (netschedule\_api)
 <div class="table-scroll"></div>
 
 <a name="ch_libconfig.WorkerNode"></a>
+
+### Worker Node
 
 [Table 19](#ch_libconfig.T19) describes configuration parameters for Worker Nodes.
 
