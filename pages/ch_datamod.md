@@ -8,16 +8,7 @@ nav: pages/ch_datamod
 {{ page.title }}
 =================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter describes the NCBI Biological Sequence Data Model, with emphasis on the ASN.1 files and C++ API. ASN.1 type names and the corresponding C++ class or data member names are used almost interchangeably throughout the chapter. Another good source of information about the NCBI data model is:
 
@@ -25,7 +16,7 @@ This chapter describes the NCBI Biological Sequence Data Model, with emphasis on
 
 > Bioinformatics<br/>A Practical Guide to the Analysis of Genes and Proteins<br/>Second Edition (2001)<br/>Edited by Andreas D. Baxevanis, B. F. Francis Ouellette<br/>ISBN 0-471-38391-0<br/><br/>Chapter 2 - The NCBI Data Model
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
