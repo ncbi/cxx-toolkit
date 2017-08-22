@@ -371,8 +371,6 @@ The following sections discuss library-specific configuration parameters.
 
 -   [Connection](#ch_libconfig.libconfig_connect)
 
--   [NetCache and NetSchedule](#ch_libconfig.NetCache_and_NetSchedule)
-
 -   [CGI and FCGI](#ch_libconfig.libconfig_cgi)
 
 -   [Serial](#ch_libconfig.Serial)
@@ -956,6 +954,8 @@ Table 18. NetSchedule client API configuration parameters (netschedule\_api)
 
 <a name="ch_libconfig.WorkerNode"></a>
 
+### Worker Node
+
 [Table 19](#ch_libconfig.T19) describes configuration parameters for Worker Nodes.
 
 <a name="ch_libconfig.T19"></a>
@@ -967,6 +967,26 @@ Table 19. Worker Node configuration parameters
 | Deprecated. | **`[server]`**<br/>**`allow_implicit_job_return`**<br/><br/>**`NCBI_CONFIG__SERVER__ALLOW_IMPLICIT_JOB_RETURN`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | false |
 | Maximum time worker nodes are allowed to live without a single NetSchedule server. | **`[server]`**<br/>**`max_wait_for_servers`**<br/><br/>**`NCBI_CONFIG__SERVER__MAX_WAIT_FOR_SERVERS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | unsigned int | 24 \* 60 \* 60 seconds |
 | Causes the worker node to shut down if any jobs fail. | **`[server]`**<br/>**`stop_on_job_errors`**<br/><br/>**`NCBI_CONFIG__SERVER__STOP_ON_JOB_ERRORS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
+| Maximum number of jobs(threads) can be served simultaneously.  This parameter defines job parallelism. For computationally intensive algorithms this value should not be more than number of CPUs if set to 'auto', the node will determine the number of CPUs on the system and use this number.  | **`[server]`**<br/>**`max_threads`** | | auto |
+| Initial number of threads created for incoming jobs | **`[server]`**<br/>**`init_threads`** | | 1 |
+| TCP/IP and UDP port number for control messages (like shutdown, version) and job notifications. It runs special control thread for incoming administrative requests (from netschedule_control and netschedule_admin) Can take a ports range (ex. 9300-9310). In this case the system will try to find an available port in the given range | **`[server]`**<br/>**`control_port`** | | |
+| Server side logging. A worker node can ask its context if this flag is set to true | **`[server]`**<br/>**`log`** | | |
+| Internal.  Delay in seconds node task dispatcher waits for free space in the job queue. Lower value usually gives better response to shutdown command (CPU traded off) | **`[server]`**<br/>**`thread_pool_timeout`** | | |
+| Time worker node spends waiting for new jobs without connecting to the netschedule server queue. Server sends UPD requests to wake the node up. Bigger values of this parameter reduces the netschedule server load in expense of job delivery latency (because of potential loss of UDP packages) | **`[server]`**<br/>**`job_wait_timeout`** | | |
+| The max total number of jobs after which the node will shutdown itself.  Restarting the node periodically is useful due to accumulating heap fragmentation possible leaks etc.  | **`[server]`**<br/>**`max_total_jobs `** | | 0 - means unlimited number of jobs. |
+| The max number of failed jobs after which the node will shutdown itself.  | **`[server]`**<br/>**`max_failed_jobs `** | | 0 - means unlimited number of failed jobs. |
+| When true, server transforms into a daemon, detached from the current program group (for UNIX only) | **`[server]`**<br/>**`daemon`** | | |
+| The list of worker nodes which this node will check before attempting to retrieve a job from the NetSchedule queue. If at least one of these worker nodes has an ideal thread, this node will not connect to the queue for a job. This node and all nodes from the given list must be connected to the same NetSchedule service, the same queue and must run the same job.  If the list is empty (defult) then this node is a master.  | **`[server]`**<br/>**`master_nodes `** | | empty - this node is a master. |
+| List of network hosts which are allowed admin access to the worker node if this worker node is controled by grid_node_watcher.sh don't forget to to add "localhost" to this list.  | **`[server]`**<br/>**`admin_hosts `** | | |
+| Time delay (in seconds) between the node enters an idle mode (all jobs are done and there are no new jobs in the queue) and the idle task gets executed.  Can not be less then 1 sec.  | **`[server]`**<br/>**`idle_run_delay `** | | 30 |
+| Specifies if an idle task works in an exclusive mode, which means that no real job will be processed until the idle task is running.  | **`[server]`**<br/>**`idle_exclusive `** | | true |
+| The node will automatically shut itself down if it is idle for a continuous period of time longer than this (in seconds): | **`[server]`**<br/>**`auto_shutdown_if_idle `** | | 0 - means never auto shutdown |
+| Specifies if the framework should reuse an instance of the job class.  Setting this parameter to true means that only one instance of the job class will be create per each execution thread. False means that an instance of job class will be created per each incoming job.  | **`[server]`**<br/>**`reuse_job_object `** | | false |
+| Allows the node to detect infinite loops in job execution. If a job is being executed for more then the specified time, it is assumed to be stuck in an infinite loop.  It this happens, the node enters shutdown mode, and when all other jobs, which may be running on this node, are done, the node terminates.  | **`[server]`**<br/>**`infinite_loop_time`** | | 0, which means that the node will not detect infinite loops. |
+| Time in seconds. Specifies how often the node should check states of jobs it is processing. It is used as a feedback from the client to see if it wants  to cancel the job execution | **`[server]`**<br/>**`check_status_period `** | | |
+| Sets the maximum limit for total memory consumption by this worker node.  When this limit is reached, the worker node shuts down.  | **`[server]`**<br/>**`total_memory_limit `** | | |
+| Sets the maximum limit for total runtime of this worker node (in seconds).  When this limit is reached, the worker node shuts down.  | **`[server]`**<br/>**`total_time_limit `** | | 0, which means there is no limit. |
+| Default timeout before the job is terminated in case of pullback.  This value can be overridden by the '--timeout' option specified with 'grid_cli suspend --pullback'.  | **`[server]`**<br/>**`default_pullback_timeout`** | | |
 
 <div class="table-scroll"></div>
 
