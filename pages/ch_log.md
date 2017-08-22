@@ -527,11 +527,11 @@ The `<event> <message>` portion of the log output will contain:
 
 Application stop event - message sub-fields:
 
-| Sub-field     | Description                                          |
-|---------------|------------------------------------------------------|
-| `exit_code`   | Application exit code (zero if not set)              |
-| `timespan`    | Application execution time                           |
-| `exit_signal` | Signal number, if application exited due to a signal |
+| Sub-field     | Description                                             |
+|---------------|---------------------------------------------------------|
+| `exit_code`   | Application exit code (zero if not set)                 |
+| `timespan`    | Application execution time (in seconds; floating-point) |
+| `exit_signal` | Signal number, if application exited due to a signal    |
 
 <div class="table-scroll"></div>
 
@@ -571,7 +571,7 @@ The message field for the `extra` event has the same format as the message field
 
 The `<event> <message>` portion of the log output will contain:
 
-    request-stop <status> <request_timespan> [bytes_read] [bytes_written]
+    request-stop <status> <req_timespan> [bytes_read] [bytes_written]
 
 The message sub-fields for `request-stop` events are:
 
@@ -582,7 +582,7 @@ Request stop event - message sub-fields:
 | Sub-field       | Description                                                                        |
 |-----------------|------------------------------------------------------------------------------------|
 | `status`        | [Exit status of the request](#ch_core.Request_Exit_Status_Codes) (zero if not set) |
-| `timespan`      | Request execution time (zero if not set)                                           |
+| `req_timespan`  | Request execution time (zero if not set; in seconds, floating-point)               |
 | `bytes_read`    | Input data read during the request execution, in bytes (zero if not set)           |
 | `bytes_written` | Output data written during the request execution, in bytes (zero if not set)       |
 
