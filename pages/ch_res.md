@@ -19,7 +19,7 @@ For certain tasks in the C++ Toolkit environment, it is necessary to use, or at 
 
 -   [C Toolkit Queryable Source Browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/SB/hbr.html)
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
