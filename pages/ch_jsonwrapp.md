@@ -37,7 +37,7 @@ There are several libraries which do this, NCBI does not endorse any of them in 
 
 <a name="ch_jsonwrapp.Overview"></a>
 
-### Overview.
+### Overview
 
 JSON value can represent four primitive types (*string*, *number*, *boolean*, and *null*) and two structured types - *object* and *array*). An *object* is an unordered collection of zero or more name/value pairs, where a name is a string and a value is a string, number, boolean, null, object, or array. An *array* is an ordered sequence of zero or more values.
 
@@ -197,7 +197,7 @@ It is also possible to initialize Document with the contents of Node of another 
 
 <a name="ch_jsonwrapp.Parsing"></a>
 
-### JSON data parsing (DOM and SAX).
+### JSON data parsing (DOM and SAX)
 
 There are two types of data parsing – DOM and SAX. `JsonWrapp` library supports both.
 The DOM stands for Document Object Model. This type of parser loads the whole object into memory.  The document has methods to access, insert, and delete data nodes. For example, to read data from file, do the following:
