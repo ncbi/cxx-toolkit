@@ -8,23 +8,13 @@ nav: pages/ch_libconfig
 {{ page.title }}
 ========================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-
-### Introduction
+## Introduction
 
 This chapter describes the run-time configuration parameters of the NCBI C++ Toolkit libraries. Such parameters change the default behavior of applications built using the Toolkit.
 
 Configuration parameters can be set by environment variables, entered into a configuration file, defined by code, or any combination of those methods. ***Note:*** If a parameter is specified in both a configuration file and the environment, the environment takes precedence. The methods supported by each library and application are described below.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
