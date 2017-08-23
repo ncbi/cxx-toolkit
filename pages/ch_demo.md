@@ -8,20 +8,11 @@ nav: pages/ch_demo
 {{ page.title }}
 =====================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 See [Getting Started](ch_start.html) for basic information on using the NCBI C++ Toolkit.
 
-### Chapter Outline
+## Chapter Outline
 
 -   Examples
 
