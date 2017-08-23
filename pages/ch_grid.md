@@ -8,22 +8,13 @@ nav: pages/ch_grid
 {{ page.title }}
 ========================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter describes the NCBI GRID framework. This framework allows creating, running and maintaining a scalable, load-balanced and fault-tolerant pool of network servers ([Worker Nodes](#ch_grid.Worker_Nodes)).
 
 Note: Users within NCBI may find additional information on the [internal Wiki page](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/GRID).
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
