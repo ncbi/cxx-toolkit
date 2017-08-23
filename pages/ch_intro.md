@@ -8,16 +8,7 @@ nav: pages/ch_intro
 {{ page.title }}
 =================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 One difficulty in understanding a major piece of software such as the C++ Toolkit is knowing where to begin in understanding the overall framework or getting the 'big picture' of how all the different components relate to each other. One approach is to dive into the details of one component and understand it in sufficient detail to get a roadmap of the rest of the components, and then repeat this process with the other components. Without a formal road map, this approach can be very time consuming and it may take a long time to locate the functionality one needs.
 
@@ -25,7 +16,7 @@ When trying to understand a major piece of software, it would be more effective 
 
 This chapter provides an introduction to the major components that make up the Toolkit. You can use this chapter as a roadmap for the rest of the chapters that follow.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
