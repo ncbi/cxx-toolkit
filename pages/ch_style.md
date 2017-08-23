@@ -8,20 +8,11 @@ nav: pages/ch_style
 {{ page.title }}
 =====================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter discusses policies and guidelines for the development of NCBI software.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
