@@ -956,7 +956,7 @@ Table 18. NetSchedule client API configuration parameters (netschedule\_api)
 | Use affinity information when requesting jobs.  | **`[netschedule_api]`**<br/>**`use_affinities`** | true/false | false |
 | Initial set of preferred affinities. Initial (comma/space separated) list of preferred affinities. Example: job_type_a, job_type_b | **`[netschedule_api]`**<br/>**`affinity_list`** | comma/space separated list | "" |
 | A prioritized lists of affinities, which overrides the default job processing order. Cannot be used with affinity_list. Example: high_priority_job, mid_priority_job, low_priority_job | **`[netschedule_api]`**<br/>**`affinity_ladder`** | comma/space separated list | "" |
-| Use affinity information and accept new affinities automatically. Cannot be used with affinity_ladder.  | **`[netschedule_api]`**<br/>**`claim_new_affinities`** | | false |
+| Use affinity information and accept new affinities automatically. Cannot be used with affinity_ladder.  | **`[netschedule_api]`**<br/>**`claim_new_affinities`** | true/false | false |
 | Allow the worker node to process jobs without affinities as well as jobs with "non-preferred" affinities. Cannot be used in combination with 'claim_new_affinities'.  | **`[netschedule_api]`**<br/>**`process_any_job`** | true/false | false |
 
 <div class="table-scroll"></div>
