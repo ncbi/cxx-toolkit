@@ -953,11 +953,11 @@ Table 18. NetSchedule client API configuration parameters (netschedule\_api)
 | The name of your application, as identified to NetSchedule.                                                          | **`[netschedule_api]`**<br/>**`client_name`**<br/><br/>N/A           | your application's name                                                                                           | (none)       |
 | Can be used to override **`NCBI_CONFIG__NETSERVICE_API__COMMUNICATION_TIMEOUT`**. Please see that entry for details. | **`[netschedule_api]`**<br/>**`communication_timeout`**<br/><br/>N/A | floating point \>= 0.0 (zero means use the default from **`NCBI_CONFIG__NETSERVICE_API__COMMUNICATION_TIMEOUT`**) | 12.0 seconds |
 | Can be used to override **`[netservice_api]/connection_timeout`**. Please see that entry for details.                | **`[netschedule_api]`**<br/>**`connection_timeout`**<br/><br/>N/A    | floating point \>= 0.0 (zero means use the default from **`[netservice_api]/connection_timeout`**)                | 2.0 seconds  |
-| Use affinity information when requesting jobs.  | **`[netschedule_api]`**<br/>**`use_affinities`** | | false |
-| Initial set of preferred affinities. Initial (comma/space separated) list of preferred affinities. Example: job_type_a, job_type_b | **`[netschedule_api]`**<br/>**`affinity_list`** | | "" |
-| A prioritized lists of affinities, which overrides the default job processing order. Cannot be used with affinity_list. Example: high_priority_job, mid_priority_job, low_priority_job | **`[netschedule_api]`**<br/>**`affinity_ladder`** | | "" |
+| Use affinity information when requesting jobs.  | **`[netschedule_api]`**<br/>**`use_affinities`** | true/false | false |
+| Initial set of preferred affinities. Initial (comma/space separated) list of preferred affinities. Example: job_type_a, job_type_b | **`[netschedule_api]`**<br/>**`affinity_list`** | comma/space separated list | "" |
+| A prioritized lists of affinities, which overrides the default job processing order. Cannot be used with affinity_list. Example: high_priority_job, mid_priority_job, low_priority_job | **`[netschedule_api]`**<br/>**`affinity_ladder`** | comma/space separated list | "" |
 | Use affinity information and accept new affinities automatically. Cannot be used with affinity_ladder.  | **`[netschedule_api]`**<br/>**`claim_new_affinities`** | | false |
-| Allow the worker node to process jobs without affinities as well as jobs with "non-preferred" affinities. Cannot be used in combination with 'claim_new_affinities'.  | **`[netschedule_api]`**<br/>**`process_any_job`** | false |
+| Allow the worker node to process jobs without affinities as well as jobs with "non-preferred" affinities. Cannot be used in combination with 'claim_new_affinities'.  | **`[netschedule_api]`**<br/>**`process_any_job`** | true/false | false |
 
 <div class="table-scroll"></div>
 
