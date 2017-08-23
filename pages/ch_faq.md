@@ -8,20 +8,11 @@ nav: pages/ch_faq
 {{ page.title }}
 ======================================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter contains frequently asked questions and useful links.
 
-### Chapter Outline
+## Chapter Outline
 
 -   [FAQs](#ch_faq.)
 
