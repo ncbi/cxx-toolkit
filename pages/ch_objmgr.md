@@ -8,10 +8,7 @@ nav: pages/ch_objmgr
 {{ page.title }}
 ============================================
 
-Overview
---------
-
-### Introduction
+## Introduction
 
 **The Object Manager**[Library `xobjmgr`: [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objmgr)]
 
@@ -97,7 +94,7 @@ Object Manager [[include/objmgr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DO
 
 **Object Manager Utilities** [[include/objmgr/util](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/util) \| [src/objmgr/util](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objmgr/util)]
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
