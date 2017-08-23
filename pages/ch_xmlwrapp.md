@@ -8,14 +8,11 @@ nav: pages/ch_xmlwrapp
 {{ page.title }}
 ===================================================================
 
-Overview
---------
-
-### Introduction
+## Introduction
 
 The NCBI C++ Toolkit has forked and enhanced the open-source [xmlwrapp](http://vslavik.github.io/xmlwrapp/) project, which provides a simplified way for developers to work with XML. This chapter discusses the NCBI fork (also available as [ncbi-xmlwrapp on GitHub](https://github.com/ncbi/ncbi-xmlwrapp)) and how to use it. This chapter refers to NCBI's project as "XmlWrapp" and the open-source project as "xmlwrapp". Both projects produce a library named `libxmlwrapp`.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
