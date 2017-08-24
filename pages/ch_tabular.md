@@ -9,8 +9,6 @@ nav: pages/ch_tab
 =================================================
 
 
-## TOC
-
 - [Parsing CSV and TSV like data (including Excel CSV)](#ch_tabular.Parsing_CSV)
     - [Introduction](#ch_tabular.Introduction)
     - [Basic Usage Example](#ch_tabular.Basic_Usage_Example)
