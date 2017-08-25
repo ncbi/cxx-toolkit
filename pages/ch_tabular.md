@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Tabular data processing
+title: Row-based data processing (TSV, CSV, etc.)
 nav: pages/ch_tab
 ---
 
