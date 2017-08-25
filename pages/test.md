@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Test page 
-nav: pages/ch_algoalign
+nav: pages/test
 ---
 
 
