@@ -154,3 +154,81 @@ The following is an outline of the topics presented in this chapter:
     -   [Advantages of using DBLB](#ch_dbapi.Advantages_of_using_)
 
     -   [How it works (by default)](#ch_dbapi.HOW_IT_WORKS_by_defa)
+
+<a name="ch_dbapi.Security"></a>
+
+Security
+--------
+
+<a name="ch_dbapi.Preventing_SQL_Injection"></a>
+
+### Preventing SQL Injection
+
+This section is not intended to cover all the important aspects of security because a lot of good information on the topic is already published elsewhere. Please use other resources to find the security-related information needed for your work.
+
+However, it's worth pointing out a couple of the most important ways to protect against SQL injection:
+
+1.  Never construct a SQL statement from user-supplied input if the same functionality can be achieved by passing the user input to stored procedures or parameterized SQL.
+
+2.  If constructing a SQL statement from user-supplied input cannot be avoided, then you MUST sanitize the user input.
+
+The following sample programs illustrates how to protect against SQL injection for basic SQL statements using SDBAPI and DBAPI:
+
+-   <https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/sdbapi/sdbapi_simple.cpp>
+
+-   <https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/dbapi/dbapi_simple.cpp>
+
+See the [Security FAQ](ch_faq.html#ch_faq.Security) for more information.
+
+<a name="ch_dbapi.Using_Kerberos_with_DBAPI"></a>
+
+### Using Kerberos with DBAPI
+
+Within NCBI, individual users (i.e. not service accounts) can use Kerberos with DBAPI, provided the following conditions are met:
+
+1.  The database must allow them to connect using Kerberos. (Email <span class="oem_span">kiolswGujip5ust5upo5nv/</span> if you need help with this.)
+
+2.  DBAPI must be configured to enable Kerberos.
+
+    -   Either the **`NCBI_CONFIG__DBAPI__CAN_USE_KERBEROS`** environment variable must be set to `true`; or
+
+    -   the `can_use_kerberos` entry in the `dbapi` section of the application configuration file must be set to `true`.
+
+3.  Their Kerberos ticket must not be expired.
+
+4.  They must pass an empty string for the user name.
+
+This is also covered in the [DBAPI section](ch_libconfig.html#ch_libconfig.DBAPI) of the Library Configuration chapter.
+
+<a name="ch_dbapi.SDBAPI__DBAPI_Feature_Compariso"></a>
+
+SDBAPI / DBAPI Feature Comparison
+---------------------------------
+
+SDBAPI is mostly a wrapper over DBAPI, and as such it introduces some overhead - some of which is unavoidable. SDBAPI and DBAPI each have some features that aren't available in the other, but SDBAPI is usually more than sufficient for 95% of real-life tasks (and it makes them easier to code too). So, in most cases you should use SDBAPI.
+
+The following features are only available in DBAPI:
+
+-   Choice of driver (e.g. CTLIB, ODBC, etc.).
+
+-   Support for cursors.
+
+-   Writing BLOBs to streams.
+
+The following features are only available in SDBAPI:
+
+-   Bookmarking BLOBs.
+
+The following table compares the implementation of various features in DBAPI and SDBAPI:
+
+<a name="ch_dbapi.T.nc_featuresdbapidbapisample_c"></a>
+
+| Feature                              | SDBAPI                   | DBAPI                        |    
+|--------------------------------------|--------------------------|------------------------------|
+| sample code | [src/sample/app/sdbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/sdbapi/)                                                 | [src/sample/app/dbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/dbapi/)                                                   |
+| available drivers | FTDS                                                                                                                                                        | CTLIB, FTDS, MYSQL, ODBC  |
+| cursor support | no | yes |
+| writing BLOBs to streams | no | yes|
+| bookmarking BLOBs | yes  | no|
+| access to stored procedure parameters | only by name | by name or position (note: if possible, prefer using names over positions because using positions creates maintenance difficulties) |
+| makefile `REQUIRES` | `REQUIRES = dbapi FreeTDS`  | `# choose driver, e.g. FreeTDS, BerkeleyDB, or SQLITE3`<br/>`REQUIRES = dbapi FreeTDS` |
