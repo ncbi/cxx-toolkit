@@ -16,7 +16,7 @@ Part 3 discusses the the core library and the different specialized libraries su
 -   [Database Access Support](ch_dbapi.html)
 -   [CGI and Fast-CGI](ch_cgi.html)
 -   [HTML](ch_html.html)
--   [Tabular data processing](pages/ch_tabular.html)
+-   [Row-based data processing (TSV, CSV, etc.)](pages/ch_tabular.html)
 -   [Data compression (ZIP, GZIP, BZip2, LZO)](pages/ch_compress.html)
 -   [Data Serialization (ASN.1, XML)](ch_ser.html)
 -   [Biological Sequence Data Model](ch_datamod.html)
