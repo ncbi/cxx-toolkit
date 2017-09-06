@@ -8,7 +8,7 @@ nav: pages/test
 {{ page.title }}
 ================================================
 
-### Introduction
+## Introduction
 
 This chapter covers the C++ Toolkit support for database access using:
 
@@ -28,7 +28,7 @@ The "BDB wrapper" is part of the NCBI C++ Toolkit and serves as a high-level int
 
 The "SQLite wrapper" is part of the NCBI C++ Toolkit and serves as a high-level interface to the open source SQLite library. The SQLite wrapper is architecturally different from the DBAPI library and does not follow its design - rather, it is compatible with SQLite v. 3.6.14 and higher. The primary purpose of the SQLite library is to provide small, fast, and reliable in-process full-SQL database access. The SQLite wrapper provides convenient wrappers for SQLite-related objects and most commonly used functions. The wrapper requires SQLite 3.6.14 or higher with the asynchronous VFS extension and assumes that no SQLite calls are made except via the wrapper itself. For more information about SQLite, see the official [documentation](http://sqlite.org/docs.html).
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
