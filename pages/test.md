@@ -8,15 +8,6 @@ nav: pages/test
 {{ page.title }}
 ================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
 ### Introduction
 
 This chapter covers the C++ Toolkit support for database access using:
