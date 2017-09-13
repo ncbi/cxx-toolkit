@@ -40,6 +40,12 @@ The following is an outline of the topics presented in this chapter:
 
 -   [SDBAPI / DBAPI Feature Comparison](#ch_dbapi.SDBAPI__DBAPI_Feature_Compariso)
 
+    -   [To set up a connection](#ch_dbapi.to_set_up_connection)
+    
+    -   [To execute a stored procedure](#ch_dbapi.to_execute_a_stored_procedure)
+    
+    -   [To retrieve results](#ch_dbapi.to_retrieve_results)
+
 -   [The SDBAPI Library](#ch_dbapi.SDBAPI_UserLayer_Reference)
 
     -   [SDBAPI Overview](#ch_dbapi.Simple_Database_Access_via_C)
