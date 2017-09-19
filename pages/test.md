@@ -231,7 +231,7 @@ The following table compares the implementation of various features in DBAPI and
 | makefile `REQUIRES` | `REQUIRES = dbapi FreeTDS`  | `# choose driver, e.g. FreeTDS, BerkeleyDB, or SQLITE3`<br/>`REQUIRES = dbapi FreeTDS` |
 | makefile `LIB` | `LIB = $(SDBAPI_LIB) xconnect xutil xncbi`  | `LIB = ncbi_xdbapi_ftds $(FTDS_LIB) \`<br/>`      dbapi_util_blobstore$(STATIC) dbapi$(STATIC) dbapi_driver$(STATIC) \`<br/>`      $(XCONNEXT) xconnect $(COMPRESS_LIBS) xutil xncbi` |
 | makefile `LIBS` | `LIBS = $(SDBAPI_LIBS) $(NETWORK_LIBS) $(DL_LIBS) $(ORIG_LIBS)` | `LIBS = $(FTDS_LIBS) $(CMPRS_LIBS) $(NETWORK_LIBS) $(DL_LIBS) $(ORIG_LIBS)` |
-| includes   | `<dbapi/simple/sdbapi.hpp>`|`#include <dbapi/driver/dbapi_conn_factory.hpp>`<br/>`#include <dbapi/driver/dbapi_svc_mapper.hpp>`<br/>`#include <dbapi/driver/drivers.hpp>`<br/>`#include <dbapi/driver/exception.hpp>`  |
+| includes   | `#include <dbapi/simple/sdbapi.hpp>`|`#include <dbapi/driver/dbapi_conn_factory.hpp>`<br/>`#include <dbapi/driver/dbapi_svc_mapper.hpp>`<br/>`#include <dbapi/driver/drivers.hpp>`<br/>`#include <dbapi/driver/exception.hpp>`  |
 
 <div class="table-scroll"></div>
 
