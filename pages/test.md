@@ -266,7 +266,24 @@ The following table compares the implementation of various features in DBAPI and
 
 #### SDBAPI
 
-`// Print the results.`<br/>`//`<br/>`// NOTE: For database APIs, array-like indexes are 1-based, not 0-based!`<br/>`//`<br/>`NcbiCout << "int_val    fl_val" << NcbiEndl;`<br/>`ITERATE(CQuery, row, query.SingleSet()) {`<br/>`    NcbiCout`<br/>`        << row[1].AsInt4() << "    "`<br/>`        << row[2].AsFloat() << NcbiEndl;`<br/>`}`<br/><br/>`// Confirm having read all results.`<br/>`query.VerifyDone();`<br/><br/>`// Print the number of result rows.`<br/>`NcbiCout`<br/>`    << "Number of rows: "`<br/>`    << query.GetParameter("@num_rows").AsInt4() << NcbiEndl;`
+`// Print the results.`<br/>
+`//`<br/>
+`// NOTE: For database APIs, array-like indexes are 1-based, not 0-based!`<br/>
+`//`<br/>
+`NcbiCout << "int_val    fl_val" << NcbiEndl;`<br/>
+`ITERATE(CQuery, row, query.SingleSet()) {`<br/>
+`    NcbiCout`<br/>
+`        << row[1].AsInt4() << "    "`<br/>
+`        << row[2].AsFloat() << NcbiEndl;`<br/>
+`}`<br/>
+<br/>
+`// Confirm having read all results.`<br/>
+`query.VerifyDone();`<br/>
+<br/>
+`// Print the number of result rows.`<br/>
+`NcbiCout`<br/>
+`    << "Number of rows: "`<br/>
+`    << query.GetParameter("@num_rows").AsInt4() << NcbiEndl;`
 
 #### DBAPI
 
