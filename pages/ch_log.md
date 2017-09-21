@@ -55,7 +55,7 @@ The following topics are discussed in this section:
 
 -   [Logging Requests](#ch_core.Logging_Requests)
 
--   [Using subhit IDs to express call tree hierarchy](#ch_core.Using subhit IDs to express call tree hierarchy)
+-   [Using subhit IDs to express call tree hierarchy](#ch_core.Using_subhit_IDs_to_express_call_tree_hierarchy)
 
 -   [Request Exit Status Codes](#ch_core.Request_Exit_Status_Codes)
 
