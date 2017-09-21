@@ -55,6 +55,8 @@ The following topics are discussed in this section:
 
 -   [Logging Requests](#ch_core.Logging_Requests)
 
+-   [Using subhit IDs to express call tree hierarchy](#ch_core.Using subhit IDs to express call tree hierarchy)
+
 -   [Request Exit Status Codes](#ch_core.Request_Exit_Status_Codes)
 
     -   [Standard (HTTP-like) status codes](#ch_core.Standard_HTTPlike_status_codes)
@@ -878,6 +880,10 @@ It is possible to pass request context from one thread to another. In this case 
 The request handler should ensure that each request-start has a corresponding request-stop - for example by writing the request-stop in a destructor if it wasn't already written. ***PrintRequestStop()*** resets request context's properties so that a new request does not inherit any information from the previous request.
 
 <a name="ch_core.Request_Exit_Status_Codes"></a>
+
+### Using subhit IDs to express call tree hierarchy
+
+See [here](https://confluence.ncbi.nlm.nih.gov/display/DO/Developer+Guidance%3A+Correctly+logging+service+calls).
 
 ### Request Exit Status Codes
 
