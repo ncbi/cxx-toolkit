@@ -922,6 +922,8 @@ So far we have the following NCBI specific status codes:
 | Value        | Description                                                                                                              |
 |--------------|--------------------------------------------------------------------------------------------------------------------------|
 | 0            | Unknown error                                                                                                            |
+| 299          | Broken connection while serving partial-content request (usually expected)                                                                                                     |
+| 499          | Broken connection while serving regular request (usually unexpected, indicates n/w, communication protocol or cliend-side problem)                                                                                                            |
 | 555          | NCBI Network Dispatcher refused a request from and outside user which is in its "abusers list"                           |
 | 1000 + errno | Unclassifiable server error when only errno is known (NOTE: the value of errno can be different on different platforms!) |
 
