@@ -389,7 +389,7 @@ When using the C++ Toolkit on the Mac OS, you can specify command-line arguments
 
 Table 1. Example of Command-line Arguments
 
-| Command-Line Parameters                                                                                                                                                                                                      | File Content                                |
+| Command-Line Parameters    | File Content  |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
 | -gi "Integer" (GI id of the Seq-Entry to examine) OPTIONAL ARGUMENTS: -h (Print this USAGE message; ignore other arguments) -reconstruct (Reconstruct title) -accession (Prepend accession) -organism (Append organism name) | -gi 10200 -reconstruct -accession -organism |
 
@@ -863,10 +863,10 @@ See [Table 3](#ch_core.T3) for the standard command-line options for the default
 
 Table 3. Standard command-line options for the default instance of CArgDescriptions
 
-| Flag      | Description                                                     | Example                      |
+| Flag      | Description           | Example    |
 |-----------|-----------------------------------------------------------------|------------------------------|
-| -h        | Print description of the application's command-line parameters. | theapp -h                    |
-| -logfile  | Redirect program's log into the specified file.                 | theapp -logfile theapp\_log  |
+| -h  | Print description of the application's command-line parameters. | theapp -h  |
+| -logfile  | Redirect program's log into the specified file.     | theapp -logfile theapp\_log  |
 | -conffile | Read the program's configuration data from the specified file.  | theapp -conffile theapp\_cfg |
 
 <div class="table-scroll"></div>
@@ -910,16 +910,16 @@ where:
 <a name="ch_core.T.nc_arg_keykey_value__mandatory"></a>
 
 |-----------------|-----------------------------------------------------------|
-| arg\_key        | -\<key\> \<value\> -- (mandatory)                         |
+| arg\_key  | -\<key\> \<value\> -- (mandatory) |
 | arg\_key\_opt   | [-\<key\> \<value\>] -- (optional, without default value) |
 | arg\_key\_dflt  | [-\<key\> \<value\>] -- (optional, with default value)    |
-| arg\_flag       | -\<flag\> -- (always optional)                            |
-| --              | optional delimiter to indicate the beginning of pos. args |
-| arg\_pos        | \<value\> -- (mandatory)                                  |
-| arg\_pos\_opt   | [\<value\>] -- (optional, without default value)          |
-| arg\_pos\_dflt  | [\<value\>] -- (optional, with default value)             |
-| arg\_extra      | \<value\> -- (dep. on the constraint policy)              |
-| arg\_extra\_opt | [\<value\>] -- (dep. on the constraint policy)            |
+| arg\_flag | -\<flag\> -- (always optional)    |
+| --  | optional delimiter to indicate the beginning of pos. args |
+| arg\_pos  | \<value\> -- (mandatory)    |
+| arg\_pos\_opt   | [\<value\>] -- (optional, without default value)    |
+| arg\_pos\_dflt  | [\<value\>] -- (optional, with default value) |
+| arg\_extra      | \<value\> -- (dep. on the constraint policy)  |
+| arg\_extra\_opt | [\<value\>] -- (dep. on the constraint policy)      |
 
 <div class="table-scroll"></div>
 
@@ -1414,11 +1414,11 @@ The **`flags`** macro parameter (a bitwise OR of enum values) can be used to con
 
 <a name="ch_core.T.nc_Enum_ValuePurposeeParam_Def"></a>
 
-| Enum Value       | Purpose                                  |
+| Enum Value | Purpose    |
 |------------------|------------------------------------------|
-| eParam\_Default  | Default flags                            |
+| eParam\_Default  | Default flags    |
 | eParam\_NoLoad   | Do not load from registry or environment |
-| eParam\_NoThread | Do not use per-thread values             |
+| eParam\_NoThread | Do not use per-thread values |
 
 <div class="table-scroll"></div>
 
@@ -1497,18 +1497,18 @@ Important methods of the ***CParam*** class are:
 
 <a name="ch_core.T.nc_MethodStaticPurposeGetState"></a>
 
-| Method                     | Static | Purpose                                                                                                                                                                                                                                                                                                                                                       |
+| Method   | Static | Purpose                |
 |----------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ***GetState()***           | Yes    | Get the current state of the parameter. The state indicates the last source checked when assigning its value. ***N.B.*** it specifically does *not* indicate the origin of the current value. See the [EParamState](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCParamBase.html#0f2898884063b661395c511bcdb1c6ea) enum for specific values. |
-| ***Get()***                | No     | Get the current parameter value.                                                                                                                                                                                                                                                                                                                              |
-| ***Set()***                | No     | Set a new parameter value (this instance only).                                                                                                                                                                                                                                                                                                               |
-| ***Reset()***              | No     | Reset the value as if it has not been initialized yet.                                                                                                                                                                                                                                                                                                        |
-| ***GetDefault()***         | Yes    | Get the global default value.                                                                                                                                                                                                                                                                                                                                 |
-| ***SetDefault()***         | Yes    | Set a new global default value.                                                                                                                                                                                                                                                                                                                               |
-| ***ResetDefault()***       | Yes    | Reload the global default value from the environment/registry or reset it to the initial value specified in NCBI\_PARAM\_DEF.                                                                                                                                                                                                                                 |
-| ***GetThreadDefault()***   | Yes    | Get the thread-local default value if set, otherwise the global default value.                                                                                                                                                                                                                                                                                |
-| ***SetThreadDefault()***   | Yes    | Set a new thread-local default value.                                                                                                                                                                                                                                                                                                                         |
-| ***ResetThreadDefault()*** | Yes    | Reset the thread default value as if it has not been set.                                                                                                                                                                                                                                                                                                     |
+| ***GetState()***     | Yes    | Get the current state of the parameter. The state indicates the last source checked when assigning its value. ***N.B.*** it specifically does *not* indicate the origin of the current value. See the [EParamState](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCParamBase.html#0f2898884063b661395c511bcdb1c6ea) enum for specific values. |
+| ***Get()***    | No     | Get the current parameter value.          |
+| ***Set()***    | No     | Set a new parameter value (this instance only).              |
+| ***Reset()***  | No     | Reset the value as if it has not been initialized yet.       |
+| ***GetDefault()***   | Yes    | Get the global default value.             |
+| ***SetDefault()***   | Yes    | Set a new global default value.           |
+| ***ResetDefault()*** | Yes    | Reload the global default value from the environment/registry or reset it to the initial value specified in NCBI\_PARAM\_DEF.            |
+| ***GetThreadDefault()***   | Yes    | Get the thread-local default value if set, otherwise the global default value.  |
+| ***SetThreadDefault()***   | Yes    | Set a new thread-local default value.     |
+| ***ResetThreadDefault()*** | Yes    | Reset the thread default value as if it has not been set.    |
 
 <div class="table-scroll"></div>
 
@@ -1601,11 +1601,11 @@ For the application registry, the name of the configuration file can be explicit
 
 Table 2. Location of configuration files
 
-| conf              | Where to Look for the config File                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| conf  | Where to Look for the config File   |
 |-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *empty* [default] | Compose the config file name from the base application name plus `.ini`. Also try to strip file extensions, e.g., for the application named **my\_app.cgi.exe** try subsequently: `my_app.cgi.exe.ini`, `my_app.cgi.ini`, `my_app.ini`. Using these names, search in directories as described in the "Otherwise" case for non-empty **`conf`** (see below).                                                                                                                                                                                           |
-| `NULL`            | Do not even try to load the registry at all                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| *non-empty*       | If **`conf`** contains a path, then try to load from the config file named **`conf`** (only and exactly!). If the path is not fully qualified and it starts from `../` or `./`, then look for the config file starting from the current working dir. **Otherwise** (only a basename, without path), the config file will be searched for in the following places (in the order of preference): 1. current work directory; 2. user home directory; 3. directory defined by environment variable **`NCBI`**; 4. system directory; 5. program directory. |
+| *empty* [default] | Compose the config file name from the base application name plus `.ini`. Also try to strip file extensions, e.g., for the application named **my\_app.cgi.exe** try subsequently: `my_app.cgi.exe.ini`, `my_app.cgi.ini`, `my_app.ini`. Using these names, search in directories as described in the "Otherwise" case for non-empty **`conf`** (see below).            |
+| `NULL`      | Do not even try to load the registry at all            |
+| *non-empty* | If **`conf`** contains a path, then try to load from the config file named **`conf`** (only and exactly!). If the path is not fully qualified and it starts from `../` or `./`, then look for the config file starting from the current working dir. **Otherwise** (only a basename, without path), the config file will be searched for in the following places (in the order of preference): 1. current work directory; 2. user home directory; 3. directory defined by environment variable **`NCBI`**; 4. system directory; 5. program directory. |
 
 <div class="table-scroll"></div>
 
@@ -1816,7 +1816,7 @@ Some pairs of these flags are mutually exclusive and have a default if neither f
 
 <a name="ch_core.T.nc_flag_pairdefaultftransient_"></a>
 
-| Flag Pair                            | Default           |
+| Flag Pair    | Default     |
 |--------------------------------------|-------------------|
 | **`fTransient`** / **`fPersistent`** | **`fPersistent`** |
 | **`fOverride`** / **`fNoOverride`**  | **`fOverride`**   |
@@ -1961,16 +1961,16 @@ We [encourage](#ch_core.types_policy) the use of standard C/C++ types shown in [
 
 Table 5. Standard C/C++ Types
 
-| Name                        | Size(bytes) | Min                                  | Max                                     | Note                                                                                                    |
+| Name      | Size(bytes) | Min    | Max | Note |
 |-----------------------------|-------------|--------------------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------|
-| ***char***                  | 1           | **`kMin_Char`** (0 or -128)          | **`kMax_Char`** (256 or 127)            | It can be either signed or unsigned! Use it wherever you don't care of +/- (e.g. in character strings). |
-| ***signed char***           | 1           | **`kMin_SChar`** (-128)              | **`kMax_SChar`** (127)                  |                                                                                     |
-| ***unsigned char***         | 1           | **`kMin_UChar`** (0)                 | **`kMax_UChar`** (255)                  |                                                                                     |
-| ***short, signed short***   | 2 or more   | **`kMin_Short`** (-32768 or less)    | **`kMax_Short`** (32767 or greater)     | Use ***"int"*** if size isn't critical                                                                  |
-| ***usigned short***         | 2 or more   | **`kMin_UShort`** (0)                | **`kMax_UShort`** (65535 or greater)    | Use ***"unsigned int"*** if size isn't critical                                                         |
-| **`int`**, **`signed int`** | 4 or more   | **`kMin_Int`** (-2147483648 or less) | **`kMax_Int`** (2147483647 or greater)  |                                                                                     |
-| ***unsigned int***          | 4 or more   | **`kMin_UInt`** (0)                  | **`kMax_UInt`** (4294967295 or greater) |                                                                                     |
-| ***double***                | 4 or more   | **`kMin_Double`**                    | **`kMax_Double`**                       |                                                                                     |
+| ***char***      | 1     | **`kMin_Char`** (0 or -128)    | **`kMax_Char`** (256 or 127)      | It can be either signed or unsigned! Use it wherever you don't care of +/- (e.g. in character strings). |
+| ***signed char***     | 1     | **`kMin_SChar`** (-128)  | **`kMax_SChar`** (127)      |     |
+| ***unsigned char***   | 1     | **`kMin_UChar`** (0)     | **`kMax_UChar`** (255)      |     |
+| ***short, signed short***   | 2 or more   | **`kMin_Short`** (-32768 or less)    | **`kMax_Short`** (32767 or greater)     | Use ***"int"*** if size isn't critical     |
+| ***usigned short***   | 2 or more   | **`kMin_UShort`** (0)    | **`kMax_UShort`** (65535 or greater)    | Use ***"unsigned int"*** if size isn't critical               |
+| **`int`**, **`signed int`** | 4 or more   | **`kMin_Int`** (-2147483648 or less) | **`kMax_Int`** (2147483647 or greater)  |     |
+| ***unsigned int***    | 4 or more   | **`kMin_UInt`** (0)      | **`kMax_UInt`** (4294967295 or greater) |     |
+| ***double***    | 4 or more   | **`kMin_Double`**  | **`kMax_Double`**     |     |
 
 <div class="table-scroll"></div>
 
@@ -2008,16 +2008,16 @@ NCBI C++ standard headers provide the fixed-size integer types shown in [Table 6
 
 Table 6. Fixed-integer Types
 
-| Name               | Size(bytes) | Min           | Max            |
+| Name   | Size(bytes) | Min     | Max      |
 |--------------------|-------------|---------------|----------------|
-| ***Char, Int1***   | 1           | **`kMin_I1`** | **`kMax_I1`**  |
-| ***Uchar, Uint1*** | 1           | 0             | **`kMax_UI1`** |
-| ***Int2***         | 2           | **`kMin_I2`** | **`kMax_I2`**  |
-| ***Uint2***        | 2           | 0             | **`kMax_UI2`** |
-| ***Int4***         | 4           | **`kMin_I4`** | **`kMax_I4`**  |
-| ***Uint4***        | 4           | 0             | **`kMax_UI4`** |
-| ***Int8***         | 8           | **`kMin_I8`** | **`kMax_I8`**  |
-| ***Uint8***        | 8           | 0             | **`kMax_UI8`** |
+| ***Char, Int1***   | 1     | **`kMin_I1`** | **`kMax_I1`**  |
+| ***Uchar, Uint1*** | 1     | 0 | **`kMax_UI1`** |
+| ***Int2***   | 2     | **`kMin_I2`** | **`kMax_I2`**  |
+| ***Uint2***  | 2     | 0 | **`kMax_UI2`** |
+| ***Int4***   | 4     | **`kMin_I4`** | **`kMax_I4`**  |
+| ***Uint4***  | 4     | 0 | **`kMax_UI4`** |
+| ***Int8***   | 8     | **`kMin_I8`** | **`kMax_I8`**  |
+| ***Uint8***  | 8     | 0 | **`kMax_UI8`** |
 
 <div class="table-scroll"></div>
 
@@ -2027,17 +2027,17 @@ In [Table 7](#ch_core.T7), the **`"kM*_*"`** are constants of relevant fixed-siz
 
 Table 7. Correspondence between the kM\*\_\* constants and the old style INT\*\_M\* constants
 
-| Constant(NCBI C++) | Value                 | Define(NCBI C)  |
+| Constant(NCBI C++) | Value     | Define(NCBI C)  |
 |--------------------|-----------------------|-----------------|
-| **`kMin_I1`**      | -128                  | **`INT1_MIN`**  |
-| **`kMax_I1`**      | +127                  | **`INT1_MAX`**  |
-| **`kMax_UI1`**     | +255                  | **`UINT1_MAX`** |
-| **`kMin_I2`**      | -32768                | **`INT2_MIN`**  |
-| **`kMax_I2`**      | +32767                | **`INT2_MAX`**  |
-| **`kMax_UI2`**     | +65535                | **`UINT2_MAX`** |
-| **`kMin_I4`**      | -2147483648           | **`INT4_MIN`**  |
-| **`kMax_I4`**      | +2147483647           | **`INT4_MAX`**  |
-| **`kMax_UI4`**     | +4294967295           | **`UINT4_MAX`** |
+| **`kMin_I1`**      | -128      | **`INT1_MIN`**  |
+| **`kMax_I1`**      | +127      | **`INT1_MAX`**  |
+| **`kMax_UI1`**     | +255      | **`UINT1_MAX`** |
+| **`kMin_I2`**      | -32768    | **`INT2_MIN`**  |
+| **`kMax_I2`**      | +32767    | **`INT2_MAX`**  |
+| **`kMax_UI2`**     | +65535    | **`UINT2_MAX`** |
+| **`kMin_I4`**      | -2147483648     | **`INT4_MIN`**  |
+| **`kMax_I4`**      | +2147483647     | **`INT4_MAX`**  |
+| **`kMax_UI4`**     | +4294967295     | **`UINT4_MAX`** |
 | **`kMin_I8`**      | -9223372036854775808  | **`INT8_MIN`**  |
 | **`kMax_I8`**      | +9223372036854775807  | **`INT8_MAX`**  |
 | **`kMax_UI8`**     | +18446744073709551615 | **`UINT8_MAX`** |
@@ -2313,7 +2313,7 @@ The DLL name is considered the basename if it does not contain embedded '/', '\\
 
 <a name="ch_core.T.nc_osruleunixlikename__libname"></a>
 
-| OS        | Rule                     |
+| OS  | Rule   |
 |-----------|--------------------------|
 | Unix-like | `<name> -> lib<name>.so` |
 | Windows   | `<name> -> <name>.dll`   |
@@ -3617,12 +3617,12 @@ where the parameter meanings are:
 
 <a name="ch_core.T.nc_parametermeaningargcargumen"></a>
 
-| Parameter         | Meaning                                                                                                                                                                 |
+| Parameter   | Meaning     |
 |-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`argc`**        | Argument count [argc in a regular main(argc, argv)].                                                                                                                    |
-| **`argv`**        | Argument vector [argv in a regular main(argc, argv)].                                                                                                                   |
-| **`envp`**        | Environment pointer [envp in a regular main(argc, argv, envp)]; a null pointer (the default) corresponds to the standard system array (environ on most Unix platforms). |
-| **`log_handler`** | Handler for diagnostic messages that are emitted by the C++ Toolkit code.                                                                                               |
+| **`argc`**  | Argument count [argc in a regular main(argc, argv)].                 |
+| **`argv`**  | Argument vector [argv in a regular main(argc, argv)].                |
+| **`envp`**  | Environment pointer [envp in a regular main(argc, argv, envp)]; a null pointer (the default) corresponds to the standard system array (environ on most Unix platforms). |
+| **`log_handler`** | Handler for diagnostic messages that are emitted by the C++ Toolkit code.               |
 
 <div class="table-scroll"></div>
 

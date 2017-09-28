@@ -808,10 +808,10 @@ Then the table below lists the callbacks that are called, depending on the value
 
 | Having this call before the parser is created:<br/>`xml::init::substitute_entities(true)`<br/>results in the following callbacks: | Having this call before the parser is created:<br/>`xml::init::substitute_entities(false)`<br/>results in the following callbacks: |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `xml::event_parser::text("Super ")`                                                                                                                                                   | `xml::event_parser::text("Super ")`                                                                                                                                                    |
-| `xml::event_parser::text("VALUE")`                                                                                                                                                    | `xml::event_parser::text("VALUE")`                                                                                                                                                     |
-|                                                                                                                                                                   | `xml::event_parser::entity_reference("my")`                                                                                                                                            |
-| `xml::event_parser::text(" oh!")`                                                                                                                                                     | `xml::event_parser::text(" oh!")`                                                                                                                                                      |
+| `xml::event_parser::text("Super ")`          | `xml::event_parser::text("Super ")`           |
+| `xml::event_parser::text("VALUE")`           | `xml::event_parser::text("VALUE")`            |
+|       | `xml::event_parser::entity_reference("my")`   |
+| `xml::event_parser::text(" oh!")`            | `xml::event_parser::text(" oh!")`             |
 
 <div class="table-scroll"></div>
 

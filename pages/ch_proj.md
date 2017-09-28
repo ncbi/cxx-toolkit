@@ -599,15 +599,15 @@ Several build environments have been pre-configured and are available for develo
 
 Table 1. Build Directories
 
-| Directory                                  | Compiler     | Version                     |
+| Directory    | Compiler     | Version   |
 |--------------------------------------------|--------------|-----------------------------|
-| `/netopt/ncbi_tools/c++/Debug/build `      | Sun Workshop | Debug                       |
-| `/netopt/ncbi_tools/c++/Debug64/build `    | Sun Workshop | Debug (64 bit)              |
+| `/netopt/ncbi_tools/c++/Debug/build `      | Sun Workshop | Debug     |
+| `/netopt/ncbi_tools/c++/Debug64/build `    | Sun Workshop | Debug (64 bit)  |
 | `/netopt/ncbi_tools/c++/DebugMT/build `    | Sun Workshop | Debug (Multi-thread safe)   |
-| `/netopt/ncbi_tools/c++/Release/build `    | Sun Workshop | Release                     |
+| `/netopt/ncbi_tools/c++/Release/build `    | Sun Workshop | Release   |
 | `/netopt/ncbi_tools/c++/ReleaseMT/build `  | Sun Workshop | Release (Multi-thread safe) |
-| `/netopt/ncbi_tools/c++/GCC-Debug/build `  | GCC          | Debug                       |
-| `/netopt/ncbi_tools/c++/GCC-Release/build` | GCC          | Release                     |
+| `/netopt/ncbi_tools/c++/GCC-Debug/build `  | GCC    | Debug     |
+| `/netopt/ncbi_tools/c++/GCC-Release/build` | GCC    | Release   |
 
 <div class="table-scroll"></div>
 
@@ -931,12 +931,12 @@ Regarding command line, it could be an application name from **`APP`** line with
 
 In addition there are some optional macro than can help with setting up tests:
 
-| Macro          | Usage | Description |
+| Macro    | Usage | Description |
 |----------------|-------|-------------|
 | CHECK_COPY     | CHECK_COPY = file1 file2 dir1 dir2 | If your test program needs additional files (for example, a configuration file, data files, or helper scripts referenced in **`CHECK_CMD`**), then set **`CHECK_COPY`** to point to them. Before the tests are run, all specified files and directories will be copied to the build or special check directory (which is platform-dependent). Note that all paths to copied files and directories must be relative to the application source directory.|
-| CHECK_TIMEOUT  | CHECK_TIMEOUT = 200                | By default, the application's execution time is limited to 200 seconds. But you can change it using this macro. If application continues execution after specified time, it will be terminated and test marked as TIMEOUT. |
+| CHECK_TIMEOUT  | CHECK_TIMEOUT = 200    | By default, the application's execution time is limited to 200 seconds. But you can change it using this macro. If application continues execution after specified time, it will be terminated and test marked as TIMEOUT. |
 | CHECK_REQUIRES | CHECK_REQUIRES = req1 req2 ...     | Counterpart for makefiles's **`REQUIRES`** macro. If last one specifies features and projects required to build the current project, that **`CHECK_REQUIRES`** could have additional requirements to allow to run a built test. See [project makefiles](ch_proj.html#ch_proj.proj_makefiles) section. |
-| WATCHERS       | WATCHERS = username1 username2 | Allow to get email notifications from a build system about all compilation errors and failed tests for the current application. Each user name is an email alias. |
+| WATCHERS | WATCHERS = username1 username2 | Allow to get email notifications from a build system about all compilation errors and failed tests for the current application. Each user name is an email alias. |
 
 
 Some words about using helper scripts to execute tests. All such scripts should observe some rules:

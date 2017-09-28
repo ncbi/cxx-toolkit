@@ -119,14 +119,14 @@ NEVER trust user-supplied strings - always sanitize them before using them.
 
 <a name="ch_faq.T.nc_before_including_a_usersuppl"></a>
 
-| Before including a user-supplied string in: | Sanitize the string with:                                                                                      |
+| Before including a user-supplied string in: | Sanitize the string with:      |
 |---------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| a URL                                       | ***[NStr::URLEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=URLEncode)***               |
-| JavaScript                                  | ***[NStr::JavaScriptEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=JavaScriptEncode)*** |
-| XML                                         | ***[NStr::XmlEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=XmlEncode)***               |
-| HTML                                        | ***[NStr::HtmlEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HtmlEncode)***             |
-| JSON                                        | ***[NStr::JsonEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=JsonEncode)***             |
-| SQL                                         | ***[NStr::SQLEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SQLEncode)***               |
+| a URL   | ***[NStr::URLEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=URLEncode)***   |
+| JavaScript    | ***[NStr::JavaScriptEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=JavaScriptEncode)*** |
+| XML     | ***[NStr::XmlEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=XmlEncode)***   |
+| HTML    | ***[NStr::HtmlEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HtmlEncode)*** |
+| JSON    | ***[NStr::JsonEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=JsonEncode)*** |
+| SQL     | ***[NStr::SQLEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SQLEncode)***   |
 
 <div class="table-scroll"></div>
 
@@ -298,10 +298,10 @@ You must specify the appropriate Visual C++ runtime library to link with:
 
 | Configuration | Compiler Option |
 |---------------|-----------------|
-| DebugDLL      | `/MDd`          |
-| DebugMT       | `/MTd`          |
-| ReleaseDLL    | `/MD`           |
-| ReleaseMT     | `/MT`           |
+| DebugDLL      | `/MDd`    |
+| DebugMT | `/MTd`    |
+| ReleaseDLL    | `/MD`     |
+| ReleaseMT     | `/MT`     |
 
 <div class="table-scroll"></div>
 
@@ -319,9 +319,9 @@ Two tools are available to resolve the common linking questions:
 
 <a name="ch_faq.T.nc_questiontoolwhich_libraries_"></a>
 
-| Question                                              | Tool                                                                                                  |
+| Question    | Tool                  |
 |-------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| Which libraries contain a given symbol?               | [Library search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=yes) |
+| Which libraries contain a given symbol?   | [Library search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=yes) |
 | Which other libraries does a given library depend on? | [Library dependencies](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/dglistdeps.cgi)      |
 
 <div class="table-scroll"></div>
@@ -340,11 +340,11 @@ To make it easier to work with the NCBI C++ Toolkit's many libraries, we have ge
 
 NCBI C++ Library Dependency Graphs (including internal libraries)
 
-|                                       | GIF                                                                                | PNG                                                                                     | PDF                                                                                     | PostScript                                                                       | Text                                                                                    |
+|   | GIF                   | PNG     | PDF     | PostScript          | Text    |
 |-----------------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| All libraries                                             |                                                                |                                                                     | [PDF](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-full.pdf) | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-full.ps) | [TXT](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-full.txt) |
-| Just C++ Toolkit libraries                                |                                                                |                                                                     | [PDF](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-c++.pdf)  | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-c++.ps)  |                                                                     |
-| Highly connected or otherwise noteworthy public libraries | [GIF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.gif) | [PNG](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-core.png) | [PDF](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-core.pdf) | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.ps) |                                                                     |
+| All libraries   |   |        | [PDF](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-full.pdf) | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-full.ps) | [TXT](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-full.txt) |
+| Just C++ Toolkit libraries  |   |        | [PDF](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-c++.pdf)  | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-c++.ps)  |        |
+| Highly connected or otherwise noteworthy public libraries | [GIF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.gif) | [PNG](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-core.png) | [PDF](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/depgraphs/depgraph-core.pdf) | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.ps) |        |
 
 <div class="table-scroll"></div>
 
@@ -352,12 +352,12 @@ NCBI C++ Library Dependency Graphs (including internal libraries)
 
 NCBI C++ Library Dependency Graphs (public libraries only)
 
-|                                       | GIF                                                                                | PNG                                                                                | PDF                                                                                        | PostScript                                                                               | Text                                                                                 |
+|   | GIF                   | PNG                   | PDF        | PostScript                  | Text |
 |-----------------------------------------------------------|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| All libraries                                             |                                                                |                                                                | [PDF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public.pdf)       | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public.ps)       | [TXT](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public.txt) |
-| Non-GUI libraries                                         |                                                                |                                                                | [PDF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public-nogui.pdf) | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public-nogui.ps) |                                                                  |
-| GUI libraries                                             | [GIF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-gui.gif)  | [PNG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-gui.png)  | [PDF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-gui.pdf)          | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-gui.ps)          |                                                                  |
-| Highly connected or otherwise noteworthy public libraries | [GIF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.gif) | [PNG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.png) | [PDF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.pdf)         | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.ps)         |                                                                  |
+| All libraries   |   |   | [PDF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public.pdf) | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public.ps) | [TXT](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public.txt) |
+| Non-GUI libraries     |   |   | [PDF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public-nogui.pdf) | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-public-nogui.ps) |     |
+| GUI libraries   | [GIF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-gui.gif)  | [PNG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-gui.png)  | [PDF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-gui.pdf)    | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-gui.ps)    |     |
+| Highly connected or otherwise noteworthy public libraries | [GIF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.gif) | [PNG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.png) | [PDF](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.pdf)   | [PS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/depgraph-core.ps)   |     |
 
 <div class="table-scroll"></div>
 
@@ -377,23 +377,23 @@ In some cases, the library name is a variant on the subdirectory name. These var
 
 Table 1. Examples where the library name is a variant on the sub directory name
 
-| Directory                              | Library                            |
+| Directory      | Library    |
 |----------------------------------------|------------------------------------|
-| corelib/test                           | test\_mt                           |
-| corelib                                | xncbi                              |
-| ctools/asn                             | xasn                               |
-| cgi                                    | xcgi or xfcgi                      |
-| connect                                | xconnect                           |
-| connect/test                           | xconntest                          |
-| ctools                                 | xctools                            |
-| html                                   | xhtml                              |
-| objects/mmdb{1,2,3}                    | mmdb (consolidated)                |
+| corelib/test   | test\_mt   |
+| corelib  | xncbi      |
+| ctools/asn     | xasn |
+| cgi      | xcgi or xfcgi    |
+| connect  | xconnect   |
+| connect/test   | xconntest  |
+| ctools   | xctools    |
+| html     | xhtml      |
+| objects/mmdb{1,2,3}  | mmdb (consolidated)    |
 | objects/seq{,align,block,feat,loc,res} | seq (consolidated) or $(SEQ\_LIBS) |
-| objmgr                                 | xobjmgr                            |
-| objmgr/util                            | xobjutil                           |
-| objtools/alnmgr                        | xalnmgr                            |
-| serial                                 | xser                               |
-| util                                   | xutil                              |
+| objmgr   | xobjmgr    |
+| objmgr/util    | xobjutil   |
+| objtools/alnmgr      | xalnmgr    |
+| serial   | xser |
+| util     | xutil      |
 
 <div class="table-scroll"></div>
 

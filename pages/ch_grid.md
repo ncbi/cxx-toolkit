@@ -717,9 +717,9 @@ The following configuration parameters can be used to fine-tune ***CServer***-de
 
 <a name="ch_grid.T.nc_parameterbrief_descriptiond"></a>
 
-| Parameter                                                 | Brief Description                                                        | Default |
+| Parameter       | Brief Description              | Default |
 |-----------------------------------------------------------|--------------------------------------------------------------------------|---------|
-| **`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`**                  | Controls whether ***CServer*** should catch exceptions.                  | true    |
+| **`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`**      | Controls whether ***CServer*** should catch exceptions.      | true    |
 | **`NCBI_CONFIG__THREADPOOL__CATCH_UNHANDLED_EXCEPTIONS`** | Controls whether ***CThreadInPool\_ForServer*** should catch exceptions. | true    |
 
 <div class="table-scroll"></div>

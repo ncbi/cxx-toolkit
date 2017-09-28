@@ -211,12 +211,12 @@ The archives that were available at the time of this writing (October 2014) were
 
 <a name="ch_getcode_svn.T.nc_archivecorresponding"></a>
 
-| Archive                                                 | Corresponding C++ Toolkit tree                                                       |
+| Archive       | Corresponding C++ Toolkit tree             |
 |---------------------------------------------------------|--------------------------------------------------------------------------------------|
-| production                                              | https://svn.ncbi.nlm.nih.gov/repos/toolkit/production/candidates/production.HEAD/c++ |
-| trial                                                   | https://svn.ncbi.nlm.nih.gov/repos/toolkit/production/candidates/trial/c++           |
-| trunk                                                   | https://svn.ncbi.nlm.nih.gov/repos/toolkit/trunk/internal/c++                        |
-| trunk-core<br/>(or just core) | https://svn.ncbi.nlm.nih.gov/repos/toolkit/trunk/c++                                 |
+| production    | https://svn.ncbi.nlm.nih.gov/repos/toolkit/production/candidates/production.HEAD/c++ |
+| trial         | https://svn.ncbi.nlm.nih.gov/repos/toolkit/production/candidates/trial/c++     |
+| trunk         | https://svn.ncbi.nlm.nih.gov/repos/toolkit/trunk/internal/c++      |
+| trunk-core<br/>(or just core) | https://svn.ncbi.nlm.nih.gov/repos/toolkit/trunk/c++   |
 
 <div class="table-scroll"></div>
 
@@ -251,21 +251,21 @@ For usage help, run **svn\_core** without arguments.
 
 Table 1. **svn\_core** Arguments
 
-| Argument             | Description                                                                                                                                                                                                                                                                                   | Permitted Values                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Argument | Description     | Permitted Values    |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<dir>`              | Path to where the source tree will be checked out. This argument is **required**.                                                                                                                                                                                                             | A valid writable directory name (must not exist already); name cannot start with "-".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `<branch>`           | Which branch of the source tree to check out. This argument is **required**.                                                                                                                                                                                                                  | `core` - `toolkit/trunk/c++`<br/>`development` - `toolkit/trunk/internal/c++`<br/>`production` - `toolkit/production/candidates/trial/c++`<br/>`prod-head` - `toolkit/production/candidates/production.HEAD/c++`<br/>`frozen-head` - `toolkit/production/candidates/frozen.HEAD/c++`<br/>`trial` - `toolkit/production/candidates/trial/c++`<br/>`release` - `toolkit/release/public/current/c++`<br/>`gbench` - `gbench/branches/1.1`<br/>`gbench2` - `gbench/trunk`<br/>(See [c++-branches.txt](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/internal/scripts/build/c%2B%2B-branches.txt?view=markup) for an up-to-date list of branches.) |
-| `--date `            | Check out as at the start of the specified timestamp. If the `--date` flag is missing, today’s date and current time are used.                                                                                                                                                                | A date in a format acceptable to the `svn -r` argument, for example `--date="2013-03-29 19:49:48 +0000"`. (Do not include curly braces and quote the timestamp if it contains spaces.) See the [Revision Dates](http://svnbook.red-bean.com/en/1.6/svn.tour.revs.specifiers.html#svn.tour.revs.dates) section in the Subversion manual for details.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--export`           | Get a clean source tree without `.svn` directories.                                                                                                                                                                                                                                           | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--<platform>`       | Obtain sources for the specified platform(s).                                                                                                                                                                                                                                                 | `--unix` - Unix systems;<br/>`--msvc` - Microsoft Visual C++ environment;<br/>`--mac` - Macintosh systems;<br/>`--cygwin` - Cygwin UNIX environment for Windows;<br/>`--all` - all platforms.<br/>If no value is supplied, `--all` is used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `--with-ctools`      | Check out core projects responsible for working together with the NCBI C Toolkit (the `ctools` directory). This option is effective by default unless `--without-ctools` is used.                                                                                                             | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--without-ctools`   | Do not check out core projects responsible for working together with the NCBI C Toolkit (the `ctools` directory).                                                                                                                                                                             | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--with-gui`         | Check out core projects responsible for providing cross-platform graphic user interface capability (the `gui` directory). This option is effective by default unless `--without-gui` is used.                                                                                                 | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--without-gui`      | No not check out core projects responsible for providing cross-platform graphic user interface capability (the `gui` directory).                                                                                                                                                              | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--with-internal`    | Check out a selection of NCBI-internal core projects. See [Table 4](#ch_getcode_svn.T4) for a detailed list of affected directories.                                                                                                                                                          | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--without-internal` | Do not check out NCBI-internal core projects.                                                                                                                                                                                                                                                 | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--with-objects`     | Check out the `objects`, `objmgr`, and `objtools` directories and generate serialization code from the ASN.1 specifications. If this flag is not present, those directories are still checked out (unless overridden by the `--without-objects` flag) but no serialization code is generated. | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `--without-objects`  | Do not check out the `objects`, `objmgr`, and `objtools` directories or generate ASN.1 serialization code. (On Unix platforms the code generation can be done later, during the build.)                                                                                                       | n/a                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `<dir>`  | Path to where the source tree will be checked out. This argument is **required**.           | A valid writable directory name (must not exist already); name cannot start with "-".           |
+| `<branch>`     | Which branch of the source tree to check out. This argument is **required**.                | `core` - `toolkit/trunk/c++`<br/>`development` - `toolkit/trunk/internal/c++`<br/>`production` - `toolkit/production/candidates/trial/c++`<br/>`prod-head` - `toolkit/production/candidates/production.HEAD/c++`<br/>`frozen-head` - `toolkit/production/candidates/frozen.HEAD/c++`<br/>`trial` - `toolkit/production/candidates/trial/c++`<br/>`release` - `toolkit/release/public/current/c++`<br/>`gbench` - `gbench/branches/1.1`<br/>`gbench2` - `gbench/trunk`<br/>(See [c++-branches.txt](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/internal/scripts/build/c%2B%2B-branches.txt?view=markup) for an up-to-date list of branches.) |
+| `--date `      | Check out as at the start of the specified timestamp. If the `--date` flag is missing, today’s date and current time are used.    | A date in a format acceptable to the `svn -r` argument, for example `--date="2013-03-29 19:49:48 +0000"`. (Do not include curly braces and quote the timestamp if it contains spaces.) See the [Revision Dates](http://svnbook.red-bean.com/en/1.6/svn.tour.revs.specifiers.html#svn.tour.revs.dates) section in the Subversion manual for details.    |
+| `--export`     | Get a clean source tree without `.svn` directories.   | n/a                 |
+| `--<platform>` | Obtain sources for the specified platform(s).         | `--unix` - Unix systems;<br/>`--msvc` - Microsoft Visual C++ environment;<br/>`--mac` - Macintosh systems;<br/>`--cygwin` - Cygwin UNIX environment for Windows;<br/>`--all` - all platforms.<br/>If no value is supplied, `--all` is used.                |
+| `--with-ctools`      | Check out core projects responsible for working together with the NCBI C Toolkit (the `ctools` directory). This option is effective by default unless `--without-ctools` is used.          | n/a                 |
+| `--without-ctools`   | Do not check out core projects responsible for working together with the NCBI C Toolkit (the `ctools` directory).                 | n/a                 |
+| `--with-gui`   | Check out core projects responsible for providing cross-platform graphic user interface capability (the `gui` directory). This option is effective by default unless `--without-gui` is used.                 | n/a                 |
+| `--without-gui`      | No not check out core projects responsible for providing cross-platform graphic user interface capability (the `gui` directory).  | n/a                 |
+| `--with-internal`    | Check out a selection of NCBI-internal core projects. See [Table 4](#ch_getcode_svn.T4) for a detailed list of affected directories.                 | n/a                 |
+| `--without-internal` | Do not check out NCBI-internal core projects.         | n/a                 |
+| `--with-objects`     | Check out the `objects`, `objmgr`, and `objtools` directories and generate serialization code from the ASN.1 specifications. If this flag is not present, those directories are still checked out (unless overridden by the `--without-objects` flag) but no serialization code is generated. | n/a                 |
+| `--without-objects`  | Do not check out the `objects`, `objmgr`, and `objtools` directories or generate ASN.1 serialization code. (On Unix platforms the code generation can be done later, during the build.)    | n/a                 |
 
 <div class="table-scroll"></div>
 
@@ -275,29 +275,29 @@ Some directories are always checked out, regardless of command-line arguments. T
 
 Table 2. List of the directories that are always checked out
 
-| Checked out directories           | Recursive? |
+| Checked out directories     | Recursive? |
 |-----------------------------------|------------|
-| `(include\|src)`                  | ***no***   |
-| `(include\|src)/algo`             | yes        |
-| `src/app`                         | yes        |
-| `src/build-system`                | yes        |
-| `(include\|src)/cgi`              | yes        |
-| `include/common`                  | yes        |
-| `(include\|src)/connect`          | ***no***   |
-| `(include\|src)/connect/ext`      | yes        |
-| `include/connect/impl`            | yes        |
-| `src/connect/test`                | yes        |
-| `(include\|src)/connect/services` | yes        |
-| `(include\|src)/corelib`          | yes        |
-| `(include\|src)/db`               | yes        |
-| `(include\|src)/dbapi`            | yes        |
-| `(include\|src)/html`             | yes        |
-| `(include\|src)/misc`             | yes        |
-| `(include\|src)/sample`           | yes        |
-| `(include\|src)/serial`           | yes        |
-| `include/test`                    | yes        |
-| `(include\|src)/util`             | yes        |
-| `scripts`                         | yes        |
+| `(include\|src)`      | ***no***   |
+| `(include\|src)/algo` | yes  |
+| `src/app` | yes  |
+| `src/build-system`    | yes  |
+| `(include\|src)/cgi`  | yes  |
+| `include/common`      | yes  |
+| `(include\|src)/connect`    | ***no***   |
+| `(include\|src)/connect/ext`      | yes  |
+| `include/connect/impl`      | yes  |
+| `src/connect/test`    | yes  |
+| `(include\|src)/connect/services` | yes  |
+| `(include\|src)/corelib`    | yes  |
+| `(include\|src)/db`   | yes  |
+| `(include\|src)/dbapi`      | yes  |
+| `(include\|src)/html` | yes  |
+| `(include\|src)/misc` | yes  |
+| `(include\|src)/sample`     | yes  |
+| `(include\|src)/serial`     | yes  |
+| `include/test`  | yes  |
+| `(include\|src)/util` | yes  |
+| `scripts` | yes  |
 
 <div class="table-scroll"></div>
 
@@ -307,22 +307,22 @@ Other directories may or may not be checked out, depending on the `<branch>` and
 
 Table 3. Directories that may be checked out depending on branch and platform options
 
-| Checked out directories   | Recursive? | Options                              |
+| Checked out directories   | Recursive? | Options      |
 |---------------------------|------------|--------------------------------------|
-| `compilers`               | yes        | `<platform>` = all                   |
-| `compilers`               | ***no***   | `<platform>` != all                  |
-| `compilers/cygwin`        | yes        | `<platform>` = cygwin                |
-| `compilers/vs2013`        | yes        | `<platform>` = msvc                  |
-| `compilers/vs2015`        | yes        | `<platform>` = msvc                  |
-| `compilers/unix`          | yes        | `<platform>` = cygwin or mac or unix |
-| `compilers/xCode`         | yes        | `<platform>` = max                   |
-| `compilers/xcode30_prj`   | yes        | `<platform>` = mac                   |
-| `doc`                     | yes        | `<branch>` = development             |
-| `include/connect/daemons` | yes        | `<platform>` = all or unix           |
-| `src/check`               | yes        | `<platform>` != mac                  |
-| `src/connect/daemons`     | yes        | `<platform>` = all or unix           |
-| `src/connect/mitsock`     | yes        | `<platform>` = mac                   |
-| `src/dll`                 | yes        | `<platform>` = all or mac or msvc    |
+| `compilers`   | yes  | `<platform>` = all |
+| `compilers`   | ***no***   | `<platform>` != all      |
+| `compilers/cygwin`  | yes  | `<platform>` = cygwin    |
+| `compilers/vs2013`  | yes  | `<platform>` = msvc      |
+| `compilers/vs2015`  | yes  | `<platform>` = msvc      |
+| `compilers/unix`    | yes  | `<platform>` = cygwin or mac or unix |
+| `compilers/xCode`   | yes  | `<platform>` = max |
+| `compilers/xcode30_prj`   | yes  | `<platform>` = mac |
+| `doc`   | yes  | `<branch>` = development |
+| `include/connect/daemons` | yes  | `<platform>` = all or unix     |
+| `src/check`   | yes  | `<platform>` != mac      |
+| `src/connect/daemons`     | yes  | `<platform>` = all or unix     |
+| `src/connect/mitsock`     | yes  | `<platform>` = mac |
+| `src/dll`     | yes  | `<platform>` = all or mac or msvc    |
 
 <div class="table-scroll"></div>
 
@@ -332,37 +332,37 @@ Still other directories may be checked out depending on the `--with/--without-<f
 
 Table 4. Directories that may be checked out depending on --with/--without options
 
-| Checked out directories                          | Recursive? | Options                                     |
+| Checked out directories  | Recursive? | Options |
 |--------------------------------------------------|------------|---------------------------------------------|
-| `(include\|src)/ctools`                          | yes        | `--with-ctools` or not `--without-ctools`   |
-| `(include\|src)/gui`                             | yes        | `--with-gui` or not `--without-gui`         |
-| `(include\|src)/internal`                        | ***no***   | `--with-internal`                           |
-| `(include\|src)/internal/algo`                   | ***no***   | `--with-internal`                           |
-| `(include\|src)/internal/algo/id_mapper`         | yes        | `--with-internal`                           |
-| `(include\|src)/internal/align_model`            | yes        | `--with-internal`                           |
-| `include/internal/asn_cache`                     | yes        | `--with-internal`                           |
-| `src/internal/asn_cache`                         | ***no***   | `--with-internal`                           |
-| `src/internal/asn_cache/lib`                     | yes        | `--with-internal`                           |
-| `(include\|src)/internal/blast`                  | ***no***   | `--with-internal`                           |
-| `(include\|src)/internal/blast/DistribDbSupport` | yes        | `--with-internal`                           |
-| `(include\|src)/internal/contigdb`               | ***no***   | `--with-internal`                           |
-| `src/internal/demo`                              | yes        | `--with-internal`                           |
-| `(include\|src)/internal/ID`                     | ***no***   | `--with-internal`                           |
-| `(include\|src)/internal/ID/utils`               | ***no***   | `--with-internal`                           |
-| `(include\|src)/internal/mapview`                | ***no***   | `--with-internal`                           |
-| `(include\|src)/internal/mapview/objects`        | yes        | `--with-internal`                           |
-| `(include\|src)/internal/mapview/util`           | yes        | `--with-internal`                           |
-| `(include\|src)/internal/myncbi`                 | yes        | `--with-internal`                           |
-| `include/internal/objects`                       | ***no***   | `--with-internal`                           |
-| `(include\|src)/objects`                         | yes        | `--with-objects` or not `--without-objects` |
-| `(include\|src)/objmgr`                          | yes        | `--with-objects` or not `--without-objects` |
-| `(include\|src)/objtools`                        | yes        | `--with-objects` or not `--without-objects` |
-| `src/internal/objects`                           | yes        | `--with-internal`                           |
-| `(include\|src)/internal/sra`                    | yes        | `--with-internal`                           |
-| `src/internal/test`                              | yes        | `--with-internal`                           |
-| `(include\|src)/internal/txclient`               | yes        | `--with-internal`                           |
-| `(include\|src)/internal/txserver`               | yes        | `--with-internal`                           |
-| `(include\|src)/internal/txxmldoc`               | yes        | `--with-internal`                           |
+| `(include\|src)/ctools`  | yes  | `--with-ctools` or not `--without-ctools`   |
+| `(include\|src)/gui`     | yes  | `--with-gui` or not `--without-gui`   |
+| `(include\|src)/internal`      | ***no***   | `--with-internal`   |
+| `(include\|src)/internal/algo` | ***no***   | `--with-internal`   |
+| `(include\|src)/internal/algo/id_mapper`   | yes  | `--with-internal`   |
+| `(include\|src)/internal/align_model`      | yes  | `--with-internal`   |
+| `include/internal/asn_cache`   | yes  | `--with-internal`   |
+| `src/internal/asn_cache` | ***no***   | `--with-internal`   |
+| `src/internal/asn_cache/lib`   | yes  | `--with-internal`   |
+| `(include\|src)/internal/blast`      | ***no***   | `--with-internal`   |
+| `(include\|src)/internal/blast/DistribDbSupport` | yes  | `--with-internal`   |
+| `(include\|src)/internal/contigdb`   | ***no***   | `--with-internal`   |
+| `src/internal/demo`      | yes  | `--with-internal`   |
+| `(include\|src)/internal/ID`   | ***no***   | `--with-internal`   |
+| `(include\|src)/internal/ID/utils`   | ***no***   | `--with-internal`   |
+| `(include\|src)/internal/mapview`    | ***no***   | `--with-internal`   |
+| `(include\|src)/internal/mapview/objects`  | yes  | `--with-internal`   |
+| `(include\|src)/internal/mapview/util`     | yes  | `--with-internal`   |
+| `(include\|src)/internal/myncbi`     | yes  | `--with-internal`   |
+| `include/internal/objects`     | ***no***   | `--with-internal`   |
+| `(include\|src)/objects` | yes  | `--with-objects` or not `--without-objects` |
+| `(include\|src)/objmgr`  | yes  | `--with-objects` or not `--without-objects` |
+| `(include\|src)/objtools`      | yes  | `--with-objects` or not `--without-objects` |
+| `src/internal/objects`   | yes  | `--with-internal`   |
+| `(include\|src)/internal/sra`  | yes  | `--with-internal`   |
+| `src/internal/test`      | yes  | `--with-internal`   |
+| `(include\|src)/internal/txclient`   | yes  | `--with-internal`   |
+| `(include\|src)/internal/txserver`   | yes  | `--with-internal`   |
+| `(include\|src)/internal/txxmldoc`   | yes  | `--with-internal`   |
 
 <div class="table-scroll"></div>
 

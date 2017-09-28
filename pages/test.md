@@ -220,10 +220,10 @@ The following table compares the implementation of various features in DBAPI and
 
 <a name="ch_dbapi.T.nc_featuresdbapidbapisample_c"></a>
 
-| Feature                              | SDBAPI                   | DBAPI                        |    
+| Feature      | SDBAPI | DBAPI      |    
 |--------------------------------------|--------------------------|------------------------------|
-| sample code | [src/sample/app/sdbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/sdbapi/)                                                 | [src/sample/app/dbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/dbapi/)                                                   |
-| available drivers | FTDS                                                                                                                                                        | CTLIB, FTDS, MYSQL, ODBC  |
+| sample code | [src/sample/app/sdbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/sdbapi/)       | [src/sample/app/dbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/dbapi/)         |
+| available drivers | FTDS               | CTLIB, FTDS, MYSQL, ODBC  |
 | cursor support | no | yes |
 | writing BLOBs to streams | no | yes|
 | bookmarking BLOBs | yes  | no|
@@ -421,12 +421,12 @@ The following settings should be made before executing a store procedure:
 <a name="ch_dbapi.T.nc_ansi_nullsonansi_paddingon"></a>
 
 |---------------------------|-------|
-| `ANSI_NULLS`              | `ON`  |
-| `ANSI_PADDING`            | `ON`  |
-| `ANSI_WARNINGS`           | `ON`  |
-| `ARITHABORT`              | `ON`  |
+| `ANSI_NULLS`  | `ON`  |
+| `ANSI_PADDING`      | `ON`  |
+| `ANSI_WARNINGS`     | `ON`  |
+| `ARITHABORT`  | `ON`  |
 | `CONCAT_NULL_YIELDS_NULL` | `ON`  |
-| `QUOTED_IDENTIFIER`       | `ON`  |
+| `QUOTED_IDENTIFIER` | `ON`  |
 | `NUMERIC_ROUNDABORT`      | `OFF` |
 
 <div class="table-scroll"></div>

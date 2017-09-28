@@ -428,9 +428,9 @@ There are three main **structural contexts** in which an object might be encount
 
 <a name="ch_ser.T.nc_ContextDescriptionObjectWhen"></a>
 
-| Context        | Description                                                                                                                                   |
+| Context  | Description             |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| Object         | When the stream object matches a specified type – for example, the ***Bioseq*** type.                                                         |
+| Object   | When the stream object matches a specified type – for example, the ***Bioseq*** type.               |
 | Class Member   | When the stream object matches a specified member of a specified `SEQUENCE` type – for example, the **`id`** member of the ***Bioseq*** type. |
 | Choice Variant | When the stream object matches a specified variant of a specified `CHOICE` type – for example, the **`std`** variant of the ***Date*** type.  |
 
@@ -442,12 +442,12 @@ There are four **processing modes** that can be applied to input/output streams:
 
 <a name="ch_ser.T.nc_ModeDescriptionReadWhen_obje"></a>
 
-| Mode  | Description                                                                              |
+| Mode  | Description                 |
 |-------|------------------------------------------------------------------------------------------|
 | Read  | When objects are parsed from an input stream and a deserialized instance is retained.    |
 | Skip  | When objects are parsed from an input stream but a deserialized instance is not retained |
 | Copy  | When objects are parsed from an input stream and written directly to an output stream.   |
-| Write | When objects are written to an output stream.                                            |
+| Write | When objects are written to an output stream.  |
 
 <div class="table-scroll"></div>
 
@@ -457,12 +457,12 @@ Hooks can be installed for all combinations of structural context and processing
 
 <a name="ch_ser.T.nc_ObjectClass_MemberChoice_Var"></a>
 
-|                        | Object                                               | Class Member                                                    | Choice Variant                                                      |
+|      | Object     | Class Member          | Choice Variant            |
 |--------------------------------------------|------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------|
 | [Read](#ch_ser.objstream.html_readhooks)   | [CReadObjectHook](#ch_ser.Read_Object_Hook_Sample)   | [CReadClassMemberHook](#ch_ser.Read_Class_Member_Hook_Sample)   | [CReadChoiceVariantHook](#ch_ser.Read_Choice_Variant_Hook_Sample)   |
 | [Write](#ch_ser.objstream.html_writehooks) | [CWriteObjectHook](#ch_ser.Write_Object_Hook_Sample) | [CWriteClassMemberHook](#ch_ser.Write_Class_Member_Hook_Sample) | [CWriteChoiceVariantHook](#ch_ser.Write_Choice_Variant_Hook_Sample) |
 | [Copy](#ch_ser.objstream.html_copyhooks)   | [CCopyObjectHook](#ch_ser.Copy_Object_Hook_Sample)   | [CCopyClassMemberHook](#ch_ser.Copy_Class_Member_Hook_Sample)   | [CCopyChoiceVariantHook](#ch_ser.Copy_Choice_Variant_Hook_Sample)   |
-| [Skip](#ch_ser.Skip_mode_hooks)            | [CSkipObjectHook](#ch_ser.Skip_Object_Hook_Sample)   | [CSkipClassMemberHook](#ch_ser.Skip_Class_Member_Hook_Sample)   | [CSkipChoiceVariantHook](#ch_ser.Skip_Choice_Variant_Hook_Sample)   |
+| [Skip](#ch_ser.Skip_mode_hooks)      | [CSkipObjectHook](#ch_ser.Skip_Object_Hook_Sample)   | [CSkipClassMemberHook](#ch_ser.Skip_Class_Member_Hook_Sample)   | [CSkipChoiceVariantHook](#ch_ser.Skip_Choice_Variant_Hook_Sample)   |
 
 <div class="table-scroll"></div>
 
@@ -1484,13 +1484,13 @@ In order to get [datatool](ch_app.html#ch_app.datatool) to generate classes for 
 
 Table 1. Network Service Client Generation Parameters
 
-| Name                     | Value                                                                                                                                                                                                                                                                           |
+| Name   | Value                |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`class`** (REQUIRED)   | C++ class name to use.                                                                                                                                                                                                                                                          |
-| **`service`**            | Named service to connect to; if you do not define this, you will need to override ***x\_Connect*** in the user class.                                                                                                                                                           |
-| **`serialformat`**       | Serialization format: normally `AsnBinary`, but `AsnText` and `Xml` are also legal.                                                                                                                                                                                             |
-| **`request`** (REQUIRED) | ASN.1 type for requests; may include a module name, a field name (as with `Entrez2`), or both. Must be a CHOICE.                                                                                                                                                                |
-| **`reply`** (REQUIRED)   | ASN.1 type for replies, as above.                                                                                                                                                                                                                                               |
+| **`class`** (REQUIRED)   | C++ class name to use.                  |
+| **`service`**      | Named service to connect to; if you do not define this, you will need to override ***x\_Connect*** in the user class.                  |
+| **`serialformat`** | Serialization format: normally `AsnBinary`, but `AsnText` and `Xml` are also legal.              |
+| **`request`** (REQUIRED) | ASN.1 type for requests; may include a module name, a field name (as with `Entrez2`), or both. Must be a CHOICE.    |
+| **`reply`** (REQUIRED)   | ASN.1 type for replies, as above.       |
 | **`reply.choice_name`**  | Reply choice appropriate for requests of type **`choice_name`**; defaults to **`choice_name`** as well, and determines the return type of ***AskChoice\_name***. May be set to `special` to suppress automatic method generation and let the user class handle the whole thing. |
 
 <div class="table-scroll"></div>
@@ -3006,7 +3006,7 @@ For example, suppose a specification is changed a la:
 
 <a name="ch_ser.T.nc_old_specificationnew_speci_1"></a>
 
-| Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                             |
+| Old Specification  | New Specification        |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Date ::= SEQUENCE {`<br/>`   year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` | `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`   epoch VisibleString OPTIONAL ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` |
 
@@ -3018,7 +3018,7 @@ However, suppose the specification is changed this way:
 
 <a name="ch_ser.T.nc_old_specificationnew_speci_2"></a>
 
-| Old Specification                                                                                                                                                              | New Specification                                                                                                                                                                                                                                                              |
+| Old Specification  | New Specification   |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER }` | `Date ::= SEQUENCE {`<br/>`    year INTEGER ,`<br/>`    month INTEGER ,`<br/>`    day INTEGER ,`<br/>`epoch VisibleString OPTIONAL`<br/>` }` |
 

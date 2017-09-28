@@ -88,18 +88,18 @@ The BLAST options classes were designed to allow a programmer to easily set the 
 Table 1: List of tasks supported by the CBlastOptionsHandle. “Translated nucleotide” means that the input was nucleotide, but the comparison is based upon the protein. PSSM is a “position-specific scoring matrix”. The “EProgram” can be used as an argument to CBlastOptionsFactory::Create
 
 |----------------------|-----------------------|-----------------------|-----------------------|-------------------------------------------------------|
-| **EProgram (enum)**  | **Default Word-size** | **Query type**        | **Target type**       | **Notes**                                             |
-| ***eBlastN***        | 11                    | Nucleotide            | Nucleotide            |                                   |
-| ***eMegablast***     | 28                    | Nucleotide            | Nucleotide            | Optimized for speed and closely related sequences     |
-| ***eDiscMegablast*** | 11                    | Nucleotide            | Nucleotide            | Optimized for cross-species matches                   |
-| ***eBlastp***        | 3                     | Protein               | Protein               |                                   |
-| ***eBlastx***        | 3                     | Translated nucleotide | Protein               |                                   |
-| ***eTblastn***       | 3                     | Protein               | Translated nucleotide |                                   |
-| ***eTblastx***       | 3                     | Translated nucleotide | Translated nucleotide |                                   |
-| ***eRPSBlast***      | 3                     | Protein               | PSSM                  | Can very quickly identify domains                     |
-| ***eRPSTblastn***    | 3                     | Translated nucleotide | PSSM                  |                                   |
-| ***ePSIBlast***      | 3                     | PSSM                  | Protein               | Extremely sensitive method to find distant homologies |
-| ***ePHIBlastp***     | 3                     | Protein               | Protein               | Uses pattern in query to start alignments             |
+| **EProgram (enum)**  | **Default Word-size** | **Query type**  | **Target type** | **Notes**   |
+| ***eBlastN***  | 11  | Nucleotide      | Nucleotide      |     |
+| ***eMegablast***     | 28  | Nucleotide      | Nucleotide      | Optimized for speed and closely related sequences     |
+| ***eDiscMegablast*** | 11  | Nucleotide      | Nucleotide      | Optimized for cross-species matches |
+| ***eBlastp***  | 3   | Protein   | Protein   |     |
+| ***eBlastx***  | 3   | Translated nucleotide | Protein   |     |
+| ***eTblastn*** | 3   | Protein   | Translated nucleotide |     |
+| ***eTblastx*** | 3   | Translated nucleotide | Translated nucleotide |     |
+| ***eRPSBlast***      | 3   | Protein   | PSSM      | Can very quickly identify domains   |
+| ***eRPSTblastn***    | 3   | Translated nucleotide | PSSM      |     |
+| ***ePSIBlast***      | 3   | PSSM      | Protein   | Extremely sensitive method to find distant homologies |
+| ***ePHIBlastp***     | 3   | Protein   | Protein   | Uses pattern in query to start alignments |
 
 <div class="table-scroll"></div>
 

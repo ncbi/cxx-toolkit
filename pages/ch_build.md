@@ -155,26 +155,26 @@ Some additional `meta-makefile` macros (listed in [Table 1](#ch_build.T1)) exist
 
 Table 1. Path Specification Makefile Macros
 
-| Macro                | Source                                                           | Synopsis                                                                                                                      |
+| Macro    | Source                 | Synopsis                   |
 |----------------------|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **`bindir`**         | **`@bindir@`**,<br/>`--bindir`         | Executables built inside the build tree                                                                                       |
-| **`build_root`**     | **`@build_root@`**                                               | Path to the whole build tree                                                                                                  |
-| **`builddir`**       | **`@builddir@`**                                                 | Top build directory inside the build tree                                                                                     |
-| **`datadir`**        | `--datadir`                                                      | Read-only architecture-independent data                                                                                       |
-| **`incdir`**         | **`@incdir@`**                                                   | Top include directory inside the build tree                                                                                   |
-| **`includedir`**     | **`@includedir@`**,<br/>`--includedir` | Top include directory in the source tree                                                                                      |
-| **`infodir`**        | `--infodir`                                                      | Info documentation                                                                                                            |
-| **`libdir`**         | **`@libdir@`**,<br/>`--libdir`         | Libraries built inside the build tree                                                                                         |
-| **`libexecdir`**     | `--libexecdir`                                                   | Program executables                                                                                                           |
-| **`localstatedir`**  | `--localstatedir`                                                | Modifiable single-machine data                                                                                                |
-| **`mandir`**         | `--mandir`                                                       | Man documentation                                                                                                             |
-| **`oldincludedir`**  | `--oldincludedir`                                                | C header files for non-gcc                                                                                                    |
-| **`sbindir`**        | `--sbindir`                                                      | System admin executables                                                                                                      |
-| **`sharedstatedir`** | `--sharedstatedir`                                               | Modifiable architecture-independent data                                                                                      |
-| **`srcdir`**         | **`@srcdir@`**,<br/>`--srcdir`         | Directory in the source tree that corresponds to the directory (`./`) in the build tree where the build is currently going on |
-| **`status_dir`**     | **`@status_dir@`**                                               | Configuration status files                                                                                                    |
-| **`sysconfdir`**     | `--sysconfdir`                                                   | Read-only single-machine data (default)                                                                                       |
-| **`top_srcdir`**     | **`@top_srcdir@`**                                               | Path to the whole NCBI C++ package                                                                                            |
+| **`bindir`**   | **`@bindir@`**,<br/>`--bindir`   | Executables built inside the build tree       |
+| **`build_root`**     | **`@build_root@`**     | Path to the whole build tree                  |
+| **`builddir`** | **`@builddir@`**       | Top build directory inside the build tree     |
+| **`datadir`**  | `--datadir`            | Read-only architecture-independent data       |
+| **`incdir`**   | **`@incdir@`**         | Top include directory inside the build tree   |
+| **`includedir`**     | **`@includedir@`**,<br/>`--includedir` | Top include directory in the source tree      |
+| **`infodir`**  | `--infodir`            | Info documentation         |
+| **`libdir`**   | **`@libdir@`**,<br/>`--libdir`   | Libraries built inside the build tree         |
+| **`libexecdir`**     | `--libexecdir`         | Program executables        |
+| **`localstatedir`**  | `--localstatedir`      | Modifiable single-machine data                |
+| **`mandir`**   | `--mandir`             | Man documentation          |
+| **`oldincludedir`**  | `--oldincludedir`      | C header files for non-gcc |
+| **`sbindir`**  | `--sbindir`            | System admin executables   |
+| **`sharedstatedir`** | `--sharedstatedir`     | Modifiable architecture-independent data      |
+| **`srcdir`**   | **`@srcdir@`**,<br/>`--srcdir`   | Directory in the source tree that corresponds to the directory (`./`) in the build tree where the build is currently going on |
+| **`status_dir`**     | **`@status_dir@`**     | Configuration status files |
+| **`sysconfdir`**     | `--sysconfdir`         | Read-only single-machine data (default)       |
+| **`top_srcdir`**     | **`@top_srcdir@`**     | Path to the whole NCBI C++ package            |
 
 <div class="table-scroll"></div>
 
@@ -211,33 +211,33 @@ Several examples are detailed on the "[Starting New Projects](ch_proj.html#ch_pr
 
 Table 2. Optional Packages, Features, and Projects
 
-| Keyword              | Optional ...                                 | Configure options                                                                                                                |
+| Keyword  | Optional ...   | Configure options             |
 |----------------------|----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-|  |                          |                                                                                                              |
-|  | **... packages**                             |                                                                                                              |
-| `C-Toolkit`          | NCBI C Toolkit                               | `--without-ncbi-c`                                                                                                               |
-| `Fast-CGI`           | Fast-CGI library                             | `--without-fastcgi`                                                                                                              |
-| `FreeTDS`            | FreeTDS libraries                            | `--without-ftds,`<br/>`--with-ftds=DIR`                                                                |
-| `GEO`                | NCBI GEO libraries                           | `--without-geo`                                                                                                                  |
-| `ORBacus`            | ORBacus CORBA                                | `--without-orbacus,`<br/>`--with-orbacus=DIR`                                                          |
-| `PubMed`             | NCBI PubMed libraries                        | `--without-pubmed`                                                                                                               |
-| `SP`                 | SP libraries                                 | `--without-sp`                                                                                                                   |
-| `SSSDB`              | NCBI SSS DB library                          | `--without-sssdb,`<br/>`--without-sss`                                                                 |
-| `SSSUTILS`           | NCBI SSS UTILS library                       | `--without-sssutils,`<br/>`--without-sss`                                                              |
-| `Sybase`             | Sybase libraries                             | `--without-sybase,`<br/>`--with-sybase-local(=DIR),`<br/>`--with-sybase-new` |
-| `wxWindows`          | wxWindows                                    | `--without-wxwin,`<br/>`--with-wxwin=DIR`                                                              |
-|  |                          |                                                                                                              |
-|  | **... features**                             |                                                                                                              |
-| `MT`                 | multithreading is available                  | `--with-mt`                                                                                                                      |
-|  |                          |                                                                                                              |
-|  | **... projects**                             |                                                                                                              |
-| `app`                | standalone applications like ID1\_FETCH      | `--with-app`                                                                                                                     |
-| `ctools`             | projects based on the NCBI C toolkit         | `--without-ctools`                                                                                                               |
-| `gui`                | projects that use the wxWindows GUI package  | `--without-gui`                                                                                                                  |
-| `internal`           | all internal projects                        | `--with-internal`                                                                                                                |
-| `objects`            | libraries to serialize ASN.1/XML objects     | `--with-objects`                                                                                                                 |
-| `serial`             | ASN.1/XML serialization library and datatool | `--without-serial`                                                                                                               |
-| `local_lbsm`         | IPC with locally running LBSMD               | `--without-local-lbsm`                                                                                                           |
+|  |  |           |
+|  | **... packages**     |           |
+| `C-Toolkit`    | NCBI C Toolkit | `--without-ncbi-c`            |
+| `Fast-CGI`     | Fast-CGI library     | `--without-fastcgi`           |
+| `FreeTDS`      | FreeTDS libraries    | `--without-ftds,`<br/>`--with-ftds=DIR`   |
+| `GEO`    | NCBI GEO libraries   | `--without-geo`               |
+| `ORBacus`      | ORBacus CORBA  | `--without-orbacus,`<br/>`--with-orbacus=DIR`                |
+| `PubMed` | NCBI PubMed libraries      | `--without-pubmed`            |
+| `SP`     | SP libraries   | `--without-sp`                |
+| `SSSDB`  | NCBI SSS DB library  | `--without-sssdb,`<br/>`--without-sss`    |
+| `SSSUTILS`     | NCBI SSS UTILS library     | `--without-sssutils,`<br/>`--without-sss` |
+| `Sybase` | Sybase libraries     | `--without-sybase,`<br/>`--with-sybase-local(=DIR),`<br/>`--with-sybase-new` |
+| `wxWindows`    | wxWindows      | `--without-wxwin,`<br/>`--with-wxwin=DIR` |
+|  |  |           |
+|  | **... features**     |           |
+| `MT`     | multithreading is available      | `--with-mt`                   |
+|  |  |           |
+|  | **... projects**     |           |
+| `app`    | standalone applications like ID1\_FETCH      | `--with-app`                  |
+| `ctools` | projects based on the NCBI C toolkit   | `--without-ctools`            |
+| `gui`    | projects that use the wxWindows GUI package  | `--without-gui`               |
+| `internal`     | all internal projects      | `--with-internal`             |
+| `objects`      | libraries to serialize ASN.1/XML objects     | `--with-objects`              |
+| `serial` | ASN.1/XML serialization library and datatool | `--without-serial`            |
+| `local_lbsm`   | IPC with locally running LBSMD   | `--without-local-lbsm`        |
 
 <div class="table-scroll"></div>
 
@@ -318,20 +318,20 @@ Many makefile macros are supplied with defaults **`ORIG_*`** in `Makefile.mk`. S
 
 Table 3. Flags
 
-| Macro               | [Source](ch_config.html#ch_config.ref_TableToolsAndFlags) | [Synopsis](ch_config.html#ch_config.ch_configconfig_flag)                                  |
+| Macro   | [Source](ch_config.html#ch_config.ref_TableToolsAndFlags) | [Synopsis](ch_config.html#ch_config.ch_configconfig_flag)    |
 |---------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| **`APP_LDFLAGS`**   | compiler test                                             | Compiler-dependent variaton on **`LDFLAGS`**                                               |
-| **`CFLAGS`**        | **`$CFLAGS`**                                             | C compiler flags                                                                           |
-| **`CPPFLAGS`**      | **`$CPPFLAGS`**                                           | C/C++ preprocessor flags                                                                   |
-| **`CXXFLAGS`**      | **`$CXXFLAGS`**                                           | C++ compiler flags                                                                         |
-| **`DEPFLAGS`**      | **`$DEPFLAGS`**                                           | Flags for file dependency lists                                                            |
-| **`DEPFLAGS_POST`** | compiler test                                             | Related to VisualAge (retained for historical reasons)                                     |
-| **`DLL_LDFLAGS`**   | compiler test                                             | Compiler-dependent variaton on **`LDFLAGS`**                                               |
-| **`FAST_CFLAGS`**   | **`$FAST_CFLAGS`**                                        | [(\*)](#ch_build.build_make_macros) C compiler flags to generate faster code               |
-| **`FAST_CXXFLAGS`** | **`$FAST_CXXFLAGS`**                                      | [(\*)](#ch_build.build_make_macros) C++ compiler flags to generate faster code             |
-| **`LDFLAGS`**       | **`$LDFLAGS`**                                            | Linker flags                                                                               |
-| **`LIB_OR_DLL`**    | **`@LIB_OR_DLL@`**                                        | Specify whether to build a library as static or dynamic                                    |
-| **`STATIC`**        | **`@STATIC@`**                                            | Library suffix to force static linkage (see [example](ch_proj.html#ch_proj.make_proj_app)) |
+| **`APP_LDFLAGS`**   | compiler test   | Compiler-dependent variaton on **`LDFLAGS`**     |
+| **`CFLAGS`**  | **`$CFLAGS`**   | C compiler flags              |
+| **`CPPFLAGS`**      | **`$CPPFLAGS`** | C/C++ preprocessor flags      |
+| **`CXXFLAGS`**      | **`$CXXFLAGS`** | C++ compiler flags            |
+| **`DEPFLAGS`**      | **`$DEPFLAGS`** | Flags for file dependency lists                  |
+| **`DEPFLAGS_POST`** | compiler test   | Related to VisualAge (retained for historical reasons) |
+| **`DLL_LDFLAGS`**   | compiler test   | Compiler-dependent variaton on **`LDFLAGS`**     |
+| **`FAST_CFLAGS`**   | **`$FAST_CFLAGS`**    | [(\*)](#ch_build.build_make_macros) C compiler flags to generate faster code   |
+| **`FAST_CXXFLAGS`** | **`$FAST_CXXFLAGS`**  | [(\*)](#ch_build.build_make_macros) C++ compiler flags to generate faster code |
+| **`LDFLAGS`** | **`$LDFLAGS`**  | Linker flags                  |
+| **`LIB_OR_DLL`**    | **`@LIB_OR_DLL@`**    | Specify whether to build a library as static or dynamic      |
+| **`STATIC`**  | **`@STATIC@`**  | Library suffix to force static linkage (see [example](ch_proj.html#ch_proj.make_proj_app)) |
 
 <div class="table-scroll"></div>
 
@@ -339,27 +339,27 @@ Table 3. Flags
 
 Table 4. System and third-party packages
 
-| Macro                  | Source                  | Synopsis                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Macro      | Source      | Synopsis   |
 |------------------------|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`FASTCGI_INCLUDE`**  | **`$FASTCGI_INCLUDE`**  | Fast-CGI headers                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **`FASTCGI_LIBS`**     | **`$FASTCGI_LIBS`**     | Fast-CGI libraries                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **`KSTAT_LIBS`**       | **`$KSTAT_LIBS`**       | KSTAT library (system)                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **`LIBS`**             | **`$LIBS`**             | Default libraries to link with                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **`MATH_LIBS`**        | **`$MATH_LIBS`**        | Math library (system)                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **`NETWORK_LIBS`**     | **`$NETWORK_LIBS`**     | Network library (system)                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **`NCBI_C_INCLUDE`**   | **`$NCBI_C_INCLUDE`**   | NCBI C toolkit headers                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **`NCBI_C_LIBPATH`**   | **`$NCBI_C_LIBPATH`**   | Path to the NCBI C Toolkit libraries                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **`NCBI_C_ncbi`**      | **`$NCBI_C_ncbi`**      | NCBI C CoreLib                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **`NCBI_PM_PATH`**     | **`$NCBI_PM_PATH`**     | Path to the PubMed package                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **`NCBI_SSS_INCLUDE`** | **`$NCBI_SSS_INCLUDE`** | NCBI SSS headers                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **`NCBI_SSS_LIBPATH`** | **`$NCBI_SSS_LIBPATH`** | Path to NCBI SSS libraries                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **`ORBACUS_INCLUDE`**  | **`$ORBACUS_LIBPATH`**  | Path to the ORBacus CORBA headers                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **`ORBACUS_LIBPATH`**  | **`$ORBACUS_LIBPATH`**  | Path to the ORBacus CORBA libraries                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| **`PRE_LIBS`**         | **`$PRE_LIBS`**         | Use **`PRE_LIBS`** to place specific libraries or library directories earlier in the link command line than the standard libraries or directories (i.e. to precede **`$LIBS`**). For example, if you wanted to link with your custom library `mylib/libmylib.a` and also use a locally modified version of an NCBI library saved in a directory called `ncbilibs` you could use a **`PRE_LIBS`** macro similar to:<br/>`PRE_LIBS = -lmylib/mylib -Lncbilibs` |
-| **`RPCSVC_LIBS`**      | **`$RPCSVC_LIBS`**      | RPCSVC library (system)                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **`SYBASE_INCLUDE`**   | **`$SYBASE_INCLUDE`**   | SYBASE headers                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **`SYBASE_LIBS`**      | **`$SYBASE_LIBS`**      | SYBASE libraries                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **`THREAD_LIBS`**      | **`$THREAD_LIBS`**      | Thread library (system)                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **`FASTCGI_INCLUDE`**  | **`$FASTCGI_INCLUDE`**  | Fast-CGI headers              |
+| **`FASTCGI_LIBS`**     | **`$FASTCGI_LIBS`**     | Fast-CGI libraries            |
+| **`KSTAT_LIBS`** | **`$KSTAT_LIBS`** | KSTAT library (system)        |
+| **`LIBS`** | **`$LIBS`** | Default libraries to link with                   |
+| **`MATH_LIBS`**  | **`$MATH_LIBS`**  | Math library (system)         |
+| **`NETWORK_LIBS`**     | **`$NETWORK_LIBS`**     | Network library (system)      |
+| **`NCBI_C_INCLUDE`**   | **`$NCBI_C_INCLUDE`**   | NCBI C toolkit headers        |
+| **`NCBI_C_LIBPATH`**   | **`$NCBI_C_LIBPATH`**   | Path to the NCBI C Toolkit libraries             |
+| **`NCBI_C_ncbi`**      | **`$NCBI_C_ncbi`**      | NCBI C CoreLib                |
+| **`NCBI_PM_PATH`**     | **`$NCBI_PM_PATH`**     | Path to the PubMed package    |
+| **`NCBI_SSS_INCLUDE`** | **`$NCBI_SSS_INCLUDE`** | NCBI SSS headers              |
+| **`NCBI_SSS_LIBPATH`** | **`$NCBI_SSS_LIBPATH`** | Path to NCBI SSS libraries    |
+| **`ORBACUS_INCLUDE`**  | **`$ORBACUS_LIBPATH`**  | Path to the ORBacus CORBA headers                |
+| **`ORBACUS_LIBPATH`**  | **`$ORBACUS_LIBPATH`**  | Path to the ORBacus CORBA libraries              |
+| **`PRE_LIBS`**   | **`$PRE_LIBS`**   | Use **`PRE_LIBS`** to place specific libraries or library directories earlier in the link command line than the standard libraries or directories (i.e. to precede **`$LIBS`**). For example, if you wanted to link with your custom library `mylib/libmylib.a` and also use a locally modified version of an NCBI library saved in a directory called `ncbilibs` you could use a **`PRE_LIBS`** macro similar to:<br/>`PRE_LIBS = -lmylib/mylib -Lncbilibs` |
+| **`RPCSVC_LIBS`**      | **`$RPCSVC_LIBS`**      | RPCSVC library (system)       |
+| **`SYBASE_INCLUDE`**   | **`$SYBASE_INCLUDE`**   | SYBASE headers                |
+| **`SYBASE_LIBS`**      | **`$SYBASE_LIBS`**      | SYBASE libraries              |
+| **`THREAD_LIBS`**      | **`$THREAD_LIBS`**      | Thread library (system)       |
 
 <div class="table-scroll"></div>
 

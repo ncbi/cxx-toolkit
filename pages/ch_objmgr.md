@@ -989,11 +989,11 @@ See the [CSeqMap\_CI API reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP
 
 <a name="ch_objmgr.ch_objmgr_CSeqMap_CI_import001"></a>
 
-| Method            | Calling Condition                                                                                                                                                                                                                                                                |
+| Method      | Calling Condition     |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ***GetData***     | Type must be `eSeqGap` or `eSeqData`. If type is `eSeqData` then ***GetRefPosition*** must return zero and ***GetRefMinusStrand*** must return false. If the data must be modified (e.g. for a delta sequence) then ***GetRefData*** should be called rather than ***GetData***. |
-| ***GetRefSeqid*** | Type must be `eSeqRef`.                                                                                                                                                                                                                                                          |
-| ***GetRefData***  | Type must be `eSeqGap` or `eSeqData`.                                                                                                                                                                                                                                            |
+| ***GetRefSeqid*** | Type must be `eSeqRef`.                  |
+| ***GetRefData***  | Type must be `eSeqGap` or `eSeqData`.    |
 
 <div class="table-scroll"></div>
 
@@ -1001,10 +1001,10 @@ See the [CSeqMap\_CI API reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP
 
 <a name="ch_objmgr.T.nc_methodcalling_conditionge"></a>
 
-| Method                  | Calling Condition                                                   |
+| Method      | Calling Condition         |
 |-------------------------|---------------------------------------------------------------------|
-| ***GetLength***         | ***IsUnknownLength*** must return false.                            |
-| ***GetEndPosition***    | ***IsUnknownLength*** must return false.                            |
+| ***GetLength***   | ***IsUnknownLength*** must return false.    |
+| ***GetEndPosition***    | ***IsUnknownLength*** must return false.    |
 | ***GetRefEndPosition*** | Type must be `eSeqRef` and ***IsUnknownLength*** must return false. |
 
 <div class="table-scroll"></div>
@@ -1613,7 +1613,7 @@ The required libraries are:
 
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | UNIX    | `LIB  = ncbi_xloader_lds2 lds2 xobjread id2 id1 seqsplit sqlitewrapp creaders $(COMPRESS_LIBS) $(SOBJMGR_LIBS)`<br/>`LIBS = $(SQLITE3_LIBS) $(CMPRS_LIBS) $(DL_LIBS) $(ORIG_LIBS)` |
-| Windows | `id1.lib, id2.lib, lds2.lib, sqlitewrapp.lib, sqlite3.lib, ncbi_xloader_lds2.lib, xobjread.lib`                                                                                                              |
+| Windows | `id1.lib, id2.lib, lds2.lib, sqlitewrapp.lib, sqlite3.lib, ncbi_xloader_lds2.lib, xobjread.lib`           |
 
 <div class="table-scroll"></div>
 
@@ -1721,11 +1721,11 @@ The following table summarizes the classes that perform short-term, in-memory ca
 
 <a name="ch_objmgr.T.nc_objectscaching_done_bymas"></a>
 
-| Object(s)            | Caching done by                                                                                     |
+| Object(s)      | Caching done by     |
 |----------------------|-----------------------------------------------------------------------------------------------------|
 | master TSE blob      | [CObjectManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectManager.html) |
 | id, gi, label, taxid | [CGBDataLoader](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGBDataLoader.html)   |
-| blob id              | [CGBDataLoader](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGBDataLoader.html)   |
+| blob id  | [CGBDataLoader](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGBDataLoader.html)   |
 
 <div class="table-scroll"></div>
 
@@ -2111,7 +2111,7 @@ IDs and description of the sequence to be used as a simple teaching example is s
 
 Table 1. Teaching Example: Sequence
 
-| Accession | Version    | Gi       | Definition                   |
+| Accession | Version    | Gi | Definition |
 |-----------|------------|----------|------------------------------|
 | AJ438945  | AJ438945.1 | 19584253 | Homo sapiens SLC16A1 gene... |
 
@@ -2139,16 +2139,16 @@ More complicated test Bioseqs are listed in [Table 2](#ch_objmgr.T2).
 
 Table 2. Test Examples: Sequences
 
-| Accession  | Version      | Gi       | Definition                                                  |
+| Accession  | Version      | Gi | Definition        |
 |------------|--------------|----------|-------------------------------------------------------------|
 | J01066     | J01066.1     | 156787   | D.melanogaster alcohol dehydrogenase gene, complete cds     |
-| U01317     | U01317.1     | 455025   | Human beta globin region on chromosome 11.                  |
+| U01317     | U01317.1     | 455025   | Human beta globin region on chromosome 11.      |
 | AJ293577   | AJ293577.1   | 14971422 | Homo sapiens partial MOCS1 gene, exon 1 and joined CDS      |
 | AH01100    | AH011004.1   | 19550966 | Mus musculus light ear protein (le) gene, complete cds      |
 | NT\_017168 | NT\_017168.8 | 18565551 | Homo sapiens chromosome 7 working draft sequence segment    |
 | AF022257   | AF022257.1   | 2415435  | HIV-1 patient ACH0039, clone 3918C6 from The Netherlands... |
-| AC116052   | AC116052.1   | 19697559 | Mus musculus chromosome UNK clone                           |
-| Q08345     | Q08345.1     | 729008   | Epithelial discoidin domain receptor 1 precursor...         |
+| AC116052   | AC116052.1   | 19697559 | Mus musculus chromosome UNK clone   |
+| Q08345     | Q08345.1     | 729008   | Epithelial discoidin domain receptor 1 precursor...   |
 
 <div class="table-scroll"></div>
 

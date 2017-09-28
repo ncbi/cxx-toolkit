@@ -883,24 +883,24 @@ There is some configuration info that usually cannot be guessed or detected auto
 
 Table 2. User-defined localization variables
 
-| Name            | Default                              | Synopsis                                    |
+| Name      | Default      | Synopsis      |
 |-----------------|--------------------------------------|---------------------------------------------|
-| THREAD\_LIBS    | -lpthread                            | System thread library                       |
-| NETWORK\_LIBS   | -lsocket -lnsl                       | System network libraries                    |
-| MATH\_LIBS      | -lm                                  | System math library                         |
-| KSTAT\_LIBS     | -lkstat                              | System kernel statistics library            |
-| RPCSVC\_LIBS    | -lrpcsvc                             | System RPC services library                 |
-| CRYPT\_LIBS     | -lcrypt[\_i]                         | System encrypting library                   |
-| SYBASE\_PATH    | /netopt/Sybase/clients/current       | Path to Sybase package (but see note below) |
-| FTDS\_PATH      | /netopt/Sybase/clients-mssql/current | Path to FreeTDS package                     |
-| FASTCGI\_PATH   | $NCBI/fcgi-current                   | Path to the in-house FastCGI client lib     |
-| WXWIN\_PATH     | $NCBI/wxwin                          | Path to the wxWindows package               |
-| NCBI\_C\_PATH   | $NCBI                                | Path to the NCBI C Toolkit                  |
-| NCBI\_SSS\_PATH | $NCBI/sss/BUILD                      | Path to the NCBI SSS package                |
-| NCBI\_GEO\_PATH | $NCBI/geo                            | Path to the NCBI GEO package                |
-| SP\_PATH        | $NCBI/SP                             | Path to the SP package                      |
-| NCBI\_PM\_PATH  | $NCBI/pubmed[64]                     | Path to the NCBI PubMed package             |
-| ORBACUS\_PATH   | $NCBI/corba/OB-4.0.1                 | Path to the ORBacus CORBA package           |
+| THREAD\_LIBS    | -lpthread    | System thread library     |
+| NETWORK\_LIBS   | -lsocket -lnsl     | System network libraries  |
+| MATH\_LIBS      | -lm    | System math library |
+| KSTAT\_LIBS     | -lkstat      | System kernel statistics library      |
+| RPCSVC\_LIBS    | -lrpcsvc     | System RPC services library     |
+| CRYPT\_LIBS     | -lcrypt[\_i] | System encrypting library |
+| SYBASE\_PATH    | /netopt/Sybase/clients/current | Path to Sybase package (but see note below) |
+| FTDS\_PATH      | /netopt/Sybase/clients-mssql/current | Path to FreeTDS package   |
+| FASTCGI\_PATH   | $NCBI/fcgi-current | Path to the in-house FastCGI client lib     |
+| WXWIN\_PATH     | $NCBI/wxwin  | Path to the wxWindows package   |
+| NCBI\_C\_PATH   | $NCBI  | Path to the NCBI C Toolkit      |
+| NCBI\_SSS\_PATH | $NCBI/sss/BUILD    | Path to the NCBI SSS package    |
+| NCBI\_GEO\_PATH | $NCBI/geo    | Path to the NCBI GEO package    |
+| SP\_PATH  | $NCBI/SP     | Path to the SP package    |
+| NCBI\_PM\_PATH  | $NCBI/pubmed[64]   | Path to the NCBI PubMed package |
+| ORBACUS\_PATH   | $NCBI/corba/OB-4.0.1     | Path to the ORBacus CORBA package     |
 
 <div class="table-scroll"></div>
 
@@ -918,35 +918,35 @@ On the basis of [Table 2](#ch_config.ref_TableLocalization1), ***configure*** wi
 
 Table 3. Derived localization variables for makefiles
 
-| Name               | Value                                                                                                             | Used to...                        |
+| Name   | Value          | Used to...      |
 |--------------------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| THREAD\_LIBS       | $THREAD\_LIBS                                                                                                     | Link with system thread lib.      |
-| NETWORK\_LIBS      | $NETWORK\_LIBS                                                                                                    | Link with system network libs.    |
-| MATH\_LIBS         | $MATH\_LIBS                                                                                                       | Link with system math lib.        |
-| KSTAT\_LIBS        | $KSTAT\_LIBS                                                                                                      | Link with system kernel stat lib. |
-| RPCSVC\_LIBS       | $RPCSVC\_LIBS                                                                                                     | Link with system RPC lib.         |
-| CRYPT\_LIBS        | $CRYPT\_LIBS                                                                                                      | Link with system encrypting lib.  |
-| SYBASE\_INCLUDE    | -I$SYBASE\_PATH/include                                                                                           | \#include Sybase headers          |
-| SYBASE\_LIBS       | -L$SYBASE\_PATH/lib[64] -lblk[\_r][64] -lct[\_r][64] -lcs[\_r][64] -ltcl[\_r][64] -lcomn[\_r][64] -lintl[\_r][64] | Link with Sybase libs.            |
-| SYBASE\_DLLS       | -ltli[\_r][64]                                                                                                    | Sybase DLL-only libs              |
-| FTDS\_INCLUDE      | -I$FTDS\_PATH/include                                                                                             | \#include FreeTDS headers         |
-| FTDS\_LIBS         | -L$FTDS\_PATH/lib -lsybdb -ltds                                                                                   | Link with the FreeTDS API.        |
-| FASTCGI\_INCLUDE   | -I$FASTCGI\_PATH/include[64]                                                                                      | \#include Fast-CGI headers        |
-| FASTCGI\_LIBS      | -L$FASTCGI\_PATH/lib[64] -lfcgi or -L$FASTCGI\_PATH/altlib[64] -lfcgi                                             | Link with FastCGI lib.            |
-| WXWIN\_INCLUDE     | -I$WXWIN\_PATH/include                                                                                            | \#include wxWindows headers       |
-| WXWIN\_LIBS        | -L$WXWIN\_PATH/[GCC-]{Release\\|Debug}/lib -lwx\_gtk[d] -lgtk -lgdk -lgmodule -lglib or -L$WXWIN\_PATH/lib .....  | Link with wxWindows libs.         |
-| NCBI\_C\_INCLUDE   | -I$NCBI\_C\_PATH/include[64]                                                                                      | \#include NCBI C Toolkit headers  |
-| NCBI\_C\_LIBPATH   | -L$NCBI\_C\_PATH/lib[64] or -L$NCBI\_C\_PATH/altlib[64]                                                           | Path to NCBI C Toolkit libs.      |
-| NCBI\_C\_ncbi      | -lncbi                                                                                                            | NCBI C Toolkit CoreLib            |
-| NCBI\_SSS\_INCLUDE | -I$NCBI\_SSS\_PATH/include                                                                                        | \#include NCBI SSS headers        |
-| NCBI\_SSS\_LIBPATH | -L$NCBI\_SSS\_PATH/lib/.... ....{Release\\|Debug}[GNU][64][mt]                                                    | Link with NCBI SSS libs.          |
-| NCBI\_GEO\_INCLUDE | -I$NCBI\_GEO\_PATH/include                                                                                        | \#include NCBI GEO headers        |
-| NCBI\_GEO\_LIBPATH | -L$NCBI\_GEO\_PATH/lib/.... ...[GCC-\\|KCC-\\|ICC-]{Release\\|Debug}[64]                                          | Link with NCBI GEO libs.          |
-| SP\_INCLUDE        | -I$SP\_PATH/include                                                                                               | \#include SP headers              |
-| SP\_LIBS           | -L$SP\_PATH/{Release\\|Debug}[MT][64] -lsp                                                                        | Link with the SP lib.             |
-| NCBI\_PM\_PATH     | $NCBI\_PM\_PATH                                                                                                   | Path to the PubMed package.       |
-| ORBACUS\_INCLUDE   | -I$ORBACUS\_PATH/include -I$ORBACUS\_PATH/{Release\\|Debug}[MT][64]/inc                                           | \#include ORBacus CORBA headers   |
-| ORBACUS\_LIBPATH   | -L$ORBACUS\_PATH/{Release\\|Debug}[MT][64]/lib                                                                    | Link with ORBacus CORBA libs.     |
+| THREAD\_LIBS | $THREAD\_LIBS  | Link with system thread lib.      |
+| NETWORK\_LIBS      | $NETWORK\_LIBS | Link with system network libs.    |
+| MATH\_LIBS   | $MATH\_LIBS    | Link with system math lib.  |
+| KSTAT\_LIBS  | $KSTAT\_LIBS   | Link with system kernel stat lib. |
+| RPCSVC\_LIBS | $RPCSVC\_LIBS  | Link with system RPC lib.   |
+| CRYPT\_LIBS  | $CRYPT\_LIBS   | Link with system encrypting lib.  |
+| SYBASE\_INCLUDE    | -I$SYBASE\_PATH/include           | \#include Sybase headers    |
+| SYBASE\_LIBS | -L$SYBASE\_PATH/lib[64] -lblk[\_r][64] -lct[\_r][64] -lcs[\_r][64] -ltcl[\_r][64] -lcomn[\_r][64] -lintl[\_r][64] | Link with Sybase libs.      |
+| SYBASE\_DLLS | -ltli[\_r][64] | Sybase DLL-only libs  |
+| FTDS\_INCLUDE      | -I$FTDS\_PATH/include             | \#include FreeTDS headers   |
+| FTDS\_LIBS   | -L$FTDS\_PATH/lib -lsybdb -ltds   | Link with the FreeTDS API.  |
+| FASTCGI\_INCLUDE   | -I$FASTCGI\_PATH/include[64]      | \#include Fast-CGI headers  |
+| FASTCGI\_LIBS      | -L$FASTCGI\_PATH/lib[64] -lfcgi or -L$FASTCGI\_PATH/altlib[64] -lfcgi   | Link with FastCGI lib.      |
+| WXWIN\_INCLUDE     | -I$WXWIN\_PATH/include            | \#include wxWindows headers |
+| WXWIN\_LIBS  | -L$WXWIN\_PATH/[GCC-]{Release\\|Debug}/lib -lwx\_gtk[d] -lgtk -lgdk -lgmodule -lglib or -L$WXWIN\_PATH/lib .....  | Link with wxWindows libs.   |
+| NCBI\_C\_INCLUDE   | -I$NCBI\_C\_PATH/include[64]      | \#include NCBI C Toolkit headers  |
+| NCBI\_C\_LIBPATH   | -L$NCBI\_C\_PATH/lib[64] or -L$NCBI\_C\_PATH/altlib[64]                 | Path to NCBI C Toolkit libs.      |
+| NCBI\_C\_ncbi      | -lncbi         | NCBI C Toolkit CoreLib      |
+| NCBI\_SSS\_INCLUDE | -I$NCBI\_SSS\_PATH/include        | \#include NCBI SSS headers  |
+| NCBI\_SSS\_LIBPATH | -L$NCBI\_SSS\_PATH/lib/.... ....{Release\\|Debug}[GNU][64][mt]          | Link with NCBI SSS libs.    |
+| NCBI\_GEO\_INCLUDE | -I$NCBI\_GEO\_PATH/include        | \#include NCBI GEO headers  |
+| NCBI\_GEO\_LIBPATH | -L$NCBI\_GEO\_PATH/lib/.... ...[GCC-\\|KCC-\\|ICC-]{Release\\|Debug}[64]      | Link with NCBI GEO libs.    |
+| SP\_INCLUDE  | -I$SP\_PATH/include               | \#include SP headers  |
+| SP\_LIBS     | -L$SP\_PATH/{Release\\|Debug}[MT][64] -lsp           | Link with the SP lib. |
+| NCBI\_PM\_PATH     | $NCBI\_PM\_PATH                   | Path to the PubMed package. |
+| ORBACUS\_INCLUDE   | -I$ORBACUS\_PATH/include -I$ORBACUS\_PATH/{Release\\|Debug}[MT][64]/inc | \#include ORBacus CORBA headers   |
+| ORBACUS\_LIBPATH   | -L$ORBACUS\_PATH/{Release\\|Debug}[MT][64]/lib       | Link with ORBacus CORBA libs.     |
 
 <div class="table-scroll"></div>
 
@@ -1163,16 +1163,16 @@ Use this key for the examples in the “Building with Unix” sections:
 <a name="ch_config.T3"></a>
 
 |------------------------|-------------------------------------------------------------------------------------------|
-| $YOUR\_WORK\_DIR       | your directory corresponding to the top-level c++ directory in the source tree            |
-| $YOUR\_CONFIG\_OPTIONS | any optional configuration options you’ve chosen                                          |
-| --with-flat-makefile   | creates a makefile that can build all or selected projects                                |
-| --without-internal     | excludes NCBI-internal projects from the makefile                                         |
-| --without-gui          | excludes GUI projects from the makefile                                            |
-| --with-gbench          | ensures that the makefile will contain everything necessary to build the Genome Workbench |
-| GCC401-Debug           | will be replaced based on the compiler and configuration options you’re using             |
-| gui/                   | selects the GUI libraries target in the flat makefile                                     |
-| gui/app/               | selects the sub-tree containing the primary Genome Workbench executable and its helpers   |
-| all\_r                 | selects a recursive build of all targets at this and lower levels in the source tree      |
+| $YOUR\_WORK\_DIR | your directory corresponding to the top-level c++ directory in the source tree      |
+| $YOUR\_CONFIG\_OPTIONS | any optional configuration options you’ve chosen      |
+| --with-flat-makefile   | creates a makefile that can build all or selected projects  |
+| --without-internal     | excludes NCBI-internal projects from the makefile     |
+| --without-gui    | excludes GUI projects from the makefile  |
+| --with-gbench    | ensures that the makefile will contain everything necessary to build the Genome Workbench |
+| GCC401-Debug     | will be replaced based on the compiler and configuration options you’re using |
+| gui/ | selects the GUI libraries target in the flat makefile |
+| gui/app/   | selects the sub-tree containing the primary Genome Workbench executable and its helpers   |
+| all\_r     | selects a recursive build of all targets at this and lower levels in the source tree      |
 
 <div class="table-scroll"></div>
 
@@ -1474,52 +1474,52 @@ File [project\_tree\_builder.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_D
 
 Table 4. Project Tree Builder INI file (Local Site)
 
-| Section                          | Key                                                                                                                                                                     | Comments                                                                                                                                                                                    |
+| Section  | Key         | Comments     |
 |----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Configure]                      | ThirdPartyBasePath,<br/>ThirdParty\_\*<br/>ThirdPartyAppsBasePath<br/>ThirdParty\_C\_ncbi | Location of 3<sup>rd</sup> party libraries and applications                                                                                                                                 |
-|              | ProvidedRequests<br/>StandardFeatures                                                                                                         | List of requirements from Unix makefiles that are always met                                                                                                                                |
-|              | NotProvidedRequests                                                                                                                                                     | List of requirements from Unix makefiles that are never met. Projects with that require any one of these, will be excluded                                                                  |
-|              | DefinesPath                                                                                                                                                             | Path to .h file that will contain HAVE\_XXXX definitions. The path is relative from the project tree root.                                                                                  |
-|              | Defines                                                                                                                                                                 | List of HAVE\_XXXX preprocessor definitions.                                                                                                                                                |
-|              | Macros                                                                                                                                                                  | List of optional macros. Definition of any such macro depends upon availability of Components                                                                                               |
-|              | LibChoices                                                                                                                                                              | List of pairs \<libID\>/\<Component\>. If the third-party library \<Component\> is present, then this library will be used instead of the internal library \<libID\>.                       |
-|              | ThirdPartyLibsBinPathSuffix                                                                                                                                             | Part of the naming convention for third-party DLLs installation makefile.                                                                                                                   |
-|              | ThirdPartyLibsBinSubDir                                                                                                                                                 | Part of the third-party DLLs installation target location.                                                                                                                                  |
-|              | ThirdPartyLibsToInstall                                                                                                                                                 | List of components, which DLLs will be automatically installed in the binary build directory.                                                                                               |
-| [ProjectTree]                    | MetaData                                                                                                                                                                | Makefile.mk.in - in this file the project tree builder will be looking for the Unix project tree macro definitions.                                                                         |
-|              | include                                                                                                                                                                 | include "include" branch of project tree                                                                                                                                                    |
-|              | src                                                                                                                                                                     | src "src" branch                                                                                                                                                                            |
-|              | dll                                                                                                                                                                     | Subdirectory with DLL Makefiles                                                                                                                                                             |
-|              | compilers                                                                                                                                                               | compilers "compilers" branch                                                                                                                                                                |
-|              | projects                                                                                                                                                                | scripts/projects "projects" branch                                                                                                                                                          |
-|              |                                                                                                                                                     |                                                                                                                                                                         |
-| [msvc\*]                         | Configurations                                                                                                                                                          | List of buid configurations that use static runtime libraries                                                                                                                               |
-|              |                                                                                                                                                     | List of build configurations that use dynamic runtime libraries                                                                                                                             |
-|              | msvc\_prj                                                                                                                                                               | Sub-branch of compilers branch for MSVC projects                                                                                                                                            |
-|              | MakefilesExt                                                                                                                                                            | Extension of MSVC-specific makefiles                                                                                                                                                        |
-|              | Projects                                                                                                                                                                | "build" sub-branch                                                                                                                                                                          |
-|              | MetaMakefile                                                                                                                                                            | Master .msvc makefile - Makefile.mk.in.msvc                                                                                                                                                 |
-| [LibChoicesIncludes]             | CMPRS\_INCLUDE et al.                                                                                                                                                   | Definition for the include directories for LibChoices.                                                                                                                                      |
-| [Defines]                        |                                                                                                                                                     | Contains definition of macros from Unix makefiles that cannot be resolved otherwise                                                                                                         |
-| [HAVE\_XXXX]                     | Component                                                                                                                                                               | List of the components to check. An empty list means that the component is always available. A non-empty list means that the component(s) must be checked on presentation during configure. |
-|              |                                                                                                                                                     |                                                                                                                                                                         |
-| [Debug],[DebugDLL],etc...        | debug                                                                                                                                                                   | TRUE means that the debug configuration will be created.                                                                                                                                    |
-|              | runtimeLibraryOption                                                                                                                                                    | C++ Runtime library to use.                                                                                                                                                                 |
-|              |                                                                                                                                                     |                                                                                                                                                                         |
-| [NCBI\_C\_LIBS],[FOO\_LIBS] | Component                                                                                                                                                               | List of libraries to use.                                                                                                                                                                   |
-| [\<LIBRARY\>]                    | INCLUDE                                                                                                                                                                 | Include path to the library headers.                                                                                                                                                        |
-|              | DEFINES                                                                                                                                                                 | Preprocessor definition for library usage.                                                                                                                                                  |
-|              | LIBPATH                                                                                                                                                                 | Path to library.                                                                                                                                                                            |
-|              | LIB                                                                                                                                                                     | Library files.                                                                                                                                                                              |
-|              | CONFS                                                                                                                                                                   | List of supported configurations.                                                                                                                                                           |
-| [DefaultLibs]                    | INCLUDE                                                                                                                                                                 | Default libraries will be added to each project. This section is to negotiate the differences in the default libraries on the Unix and Windows platforms. Same as for [\<LIBRARY\>].        |
-|              | LIBPATH                                                                                                                                                                 | Same as for [\<LIBRARY\>].                                                                                                                                                                  |
-|              | LIB                                                                                                                                                                     | Same as for [\<LIBRARY\>].                                                                                                                                                                  |
-|              |                                                                                                                                                     |                                                                                                                                                                         |
-| [Datatool]                       | datatool                                                                                                                                                                | ID of the datatool project. Some projects (with ASN or DTD sources) depend on the datatool.                                                                                                 |
-|              | Location.App                                                                                                                                                            | Location of datatool executable for APP projects.                                                                                                                                           |
-|              | Location.Lib                                                                                                                                                            | Location of datatool executable for LIB projects.                                                                                                                                           |
-|              | CommandLine                                                                                                                                                             | Partial command line for datatool.                                                                                                                                                          |
+| [Configure]    | ThirdPartyBasePath,<br/>ThirdParty\_\*<br/>ThirdPartyAppsBasePath<br/>ThirdParty\_C\_ncbi | Location of 3<sup>rd</sup> party libraries and applications           |
+|  | ProvidedRequests<br/>StandardFeatures      | List of requirements from Unix makefiles that are always met          |
+|  | NotProvidedRequests            | List of requirements from Unix makefiles that are never met. Projects with that require any one of these, will be excluded     |
+|  | DefinesPath | Path to .h file that will contain HAVE\_XXXX definitions. The path is relative from the project tree root.  |
+|  | Defines     | List of HAVE\_XXXX preprocessor definitions.       |
+|  | Macros      | List of optional macros. Definition of any such macro depends upon availability of Components               |
+|  | LibChoices  | List of pairs \<libID\>/\<Component\>. If the third-party library \<Component\> is present, then this library will be used instead of the internal library \<libID\>.     |
+|  | ThirdPartyLibsBinPathSuffix    | Part of the naming convention for third-party DLLs installation makefile.                |
+|  | ThirdPartyLibsBinSubDir        | Part of the third-party DLLs installation target location.            |
+|  | ThirdPartyLibsToInstall        | List of components, which DLLs will be automatically installed in the binary build directory.               |
+| [ProjectTree]  | MetaData    | Makefile.mk.in - in this file the project tree builder will be looking for the Unix project tree macro definitions.            |
+|  | include     | include "include" branch of project tree           |
+|  | src         | src "src" branch                |
+|  | dll         | Subdirectory with DLL Makefiles |
+|  | compilers   | compilers "compilers" branch    |
+|  | projects    | scripts/projects "projects" branch                 |
+|  |            |             |
+| [msvc\*] | Configurations                 | List of buid configurations that use static runtime libraries         |
+|  |            | List of build configurations that use dynamic runtime libraries       |
+|  | msvc\_prj   | Sub-branch of compilers branch for MSVC projects   |
+|  | MakefilesExt                   | Extension of MSVC-specific makefiles               |
+|  | Projects    | "build" sub-branch              |
+|  | MetaMakefile                   | Master .msvc makefile - Makefile.mk.in.msvc        |
+| [LibChoicesIncludes] | CMPRS\_INCLUDE et al.          | Definition for the include directories for LibChoices.                |
+| [Defines]      |            | Contains definition of macros from Unix makefiles that cannot be resolved otherwise      |
+| [HAVE\_XXXX]   | Component   | List of the components to check. An empty list means that the component is always available. A non-empty list means that the component(s) must be checked on presentation during configure. |
+|  |            |             |
+| [Debug],[DebugDLL],etc...  | debug       | TRUE means that the debug configuration will be created.              |
+|  | runtimeLibraryOption           | C++ Runtime library to use.     |
+|  |            |             |
+| [NCBI\_C\_LIBS],[FOO\_LIBS] | Component   | List of libraries to use.       |
+| [\<LIBRARY\>]  | INCLUDE     | Include path to the library headers.               |
+|  | DEFINES     | Preprocessor definition for library usage.         |
+|  | LIBPATH     | Path to library.                |
+|  | LIB         | Library files.                  |
+|  | CONFS       | List of supported configurations.                  |
+| [DefaultLibs]  | INCLUDE     | Default libraries will be added to each project. This section is to negotiate the differences in the default libraries on the Unix and Windows platforms. Same as for [\<LIBRARY\>].  |
+|  | LIBPATH     | Same as for [\<LIBRARY\>].      |
+|  | LIB         | Same as for [\<LIBRARY\>].      |
+|  |            |             |
+| [Datatool]     | datatool    | ID of the datatool project. Some projects (with ASN or DTD sources) depend on the datatool.                 |
+|  | Location.App                   | Location of datatool executable for APP projects.  |
+|  | Location.Lib                   | Location of datatool executable for LIB projects.  |
+|  | CommandLine | Partial command line for datatool.                 |
 
 <div class="table-scroll"></div>
 
@@ -1562,10 +1562,10 @@ Any section name can have one or several optional suffixes, so it can take the f
 <a name="ch_config.T4"></a>
 
 |----------------------|--------------------------------------------------------|
-| `CompilerVersion`    | 1400 (i.e. MSVC 2015)                                  |
-| `Platform`           | Win32 or x64                                           |
-| `static` or `dll`    | type of runtime libraries                              |
-| `debug` or `release` | build configuration type                               |
+| `CompilerVersion`    | 1400 (i.e. MSVC 2015)    |
+| `Platform`     | Win32 or x64 |
+| `static` or `dll`    | type of runtime libraries      |
+| `debug` or `release` | build configuration type |
 | `ConfigurationName`  | build configuration name (e.g. DebugDLL, or ReleaseMT) |
 
 <div class="table-scroll"></div>
@@ -1619,11 +1619,11 @@ To add files to a project, add entries to the '`AddToProject`' section. The sect
 <a name="ch_config.T5"></a>
 
 |--------------------|---------------------------------------------------------------------------|
-| `HeadersInInclude` | override default list of headers from include directory                   |
-| `HeadersInSrc`     | override default list of headers from source directory                    |
-| `IncludeDirs`      | additional include directories (relative to the source directory)         |
-| `LIB`              | additional C++ Toolkit libraries (without extension)                      |
-| `ResourceFiles`    | MS Windows resource files                                                 |
+| `HeadersInInclude` | override default list of headers from include directory |
+| `HeadersInSrc`     | override default list of headers from source directory  |
+| `IncludeDirs`      | additional include directories (relative to the source directory)   |
+| `LIB`  | additional C++ Toolkit libraries (without extension)    |
+| `ResourceFiles`    | MS Windows resource files       |
 | `SourceFiles`      | additional (usually MS Windows specific) source files (without extension) |
 
 <div class="table-scroll"></div>
@@ -1642,11 +1642,11 @@ All directories given in the '`IncludeDirs`' entry should be specified relative 
 
 | IncludeDirs Path -<br/>specified relative to source directory | AdditionalIncludeDirectories Path -<br/>saved relative to $(ProjectDir) |
 |-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| `somedir`                                                                               | `..\..\..\..\..\src\$(SolutionName)\somedir`                                                      |
-| `..\\somedir`                                                                           | `..\..\..\..\..\src\somedir`                                                                      |
-| `..\\..\\somedir`                                                                       | `..\..\..\..\..\somedir`                                                                          |
-| `..\\..\\..\\somedir`                                                                   | `..\..\..\..\..\..\somedir`                                                                       |
-| `..\\..\\..\\..\\somedir`, etc.                                                         | `..\..\..\..\..\..\..\somedir`, etc.                                                              |
+| `somedir`                  | `..\..\..\..\..\src\$(SolutionName)\somedir`            |
+| `..\\somedir`              | `..\..\..\..\..\src\somedir`         |
+| `..\\..\\somedir`          | `..\..\..\..\..\somedir`             |
+| `..\\..\\..\\somedir`      | `..\..\..\..\..\..\somedir`          |
+| `..\\..\\..\\..\\somedir`, etc.               | `..\..\..\..\..\..\..\somedir`, etc. |
 
 <div class="table-scroll"></div>
 
@@ -1726,8 +1726,8 @@ In the Toolkit, such compound DLLs are described using a set of special makefile
 <a name="ch_config.T6"></a>
 
 |--------------|---------------------------------------------------|
-| DLL          | name of the compound DLL                          |
-| HOSTED\_LIBS | names of the included static libraries            |
+| DLL    | name of the compound DLL  |
+| HOSTED\_LIBS | names of the included static libraries      |
 | DEPENDENCIES | dependencies on other static or dynamic libraries |
 | CPPFLAGS     | additional compiler flags, specific for this DLL  |
 
@@ -1860,9 +1860,9 @@ where:
 <a name="ch_config.T7"></a>
 
 |------------|--------------------------------------------------------------------------------------|
-| \<name\>   | is the name of the project to create                                                 |
-| \<type\>   | is one of the predefined project types                                               |
-| [builddir] | is the location of the C++ Toolkit libraries                                         |
+| \<name\>   | is the name of the project to create       |
+| \<type\>   | is one of the predefined project types     |
+| [builddir] | is the location of the C++ Toolkit libraries     |
 | [flags]    | selects a recursive build of all targets at this and lower levels in the source tree |
 
 <div class="table-scroll"></div>

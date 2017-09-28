@@ -131,15 +131,15 @@ Once your unit test is created, you must [customize](#ch_boost.Customizing_an_Ex
 <a name="ch_boost.T3"></a>
 
 |-------------------------------------|-------------------------------------------------------------------------------------------------|
-| **File**                            | **Purpose**                                                                                     |
-| `Makefile`                          | Main makefile for this directory - builds both the `foo` and `unit_test_alt_sample` unit tests. |
-| `Makefile.builddir`                 | Contains the path to a pre-built C++ Toolkit.                                                   |
-| `Makefile.foo_app`                  | Makefile for the `foo` unit test.                                                               |
-| `Makefile.in`                       |                                                                             |
-| `Makefile.unit_test_alt_sample_app` | Makefile for the `unit_test_alt_sample` unit test.                                              |
-| `foo.cpp`                           | Source code for the `foo` unit test.                                                            |
-| `unit_test_alt_sample.cpp`          | Source code for the `unit_test_alt_sample` unit test.                                           |
-| `unit_test_alt_sample.ini`          | Configuration file for the `unit_test_alt_sample` unit test.                                    |
+| **File**    | **Purpose**     |
+| `Makefile`  | Main makefile for this directory - builds both the `foo` and `unit_test_alt_sample` unit tests. |
+| `Makefile.builddir`     | Contains the path to a pre-built C++ Toolkit.         |
+| `Makefile.foo_app`      | Makefile for the `foo` unit test.  |
+| `Makefile.in`     |                |
+| `Makefile.unit_test_alt_sample_app` | Makefile for the `unit_test_alt_sample` unit test.    |
+| `foo.cpp`   | Source code for the `foo` unit test.                  |
+| `unit_test_alt_sample.cpp`    | Source code for the `unit_test_alt_sample` unit test. |
+| `unit_test_alt_sample.ini`    | Configuration file for the `unit_test_alt_sample` unit test.      |
 
 <div class="table-scroll"></div>
 
@@ -232,11 +232,11 @@ Many Boost testing tools have variants for each error level. The most common Boo
 <a name="ch_boost.T4"></a>
 
 |--------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| **Testing Tool**                                 | **Purpose**                                                                                                 |
-| **`BOOST_<level>(predicate)`**                   | Fails if the Boolean predicate (any logical expression) is false.                                           |
-| **`BOOST_<level>_EQUAL(left, right)`**           | Fails if the two values are not equal.                                                                      |
+| **Testing Tool**   | **Purpose**                 |
+| **`BOOST_<level>(predicate)`** | Fails if the Boolean predicate (any logical expression) is false. |
+| **`BOOST_<level>_EQUAL(left, right)`**     | Fails if the two values are not equal.         |
 | **`BOOST_<level>_THROW(expression, exception)`** | Fails if execution of the expression doesn’t throw an exception of the given type (or one derived from it). |
-| **`BOOST_<level>_NO_THROW(expression)`**         | Fails if execution of the expression throws any exception.                                                  |
+| **`BOOST_<level>_NO_THROW(expression)`**   | Fails if execution of the expression throws any exception.        |
 
 <div class="table-scroll"></div>
 
@@ -249,8 +249,8 @@ The NCBI extensions to the Boost library add a number of convenience testing too
 <a name="ch_boost.T5"></a>
 
 |----------------------------------------|-------------------------------------------|
-| **Boost Testing Tool**                 | **NCBI "NO\_THROW " Extension**           |
-| **`BOOST_<level>(predicate)`**         | **`NCBITEST_<level>(predicate)`**         |
+| **Boost Testing Tool**     | **NCBI "NO\_THROW " Extension**     |
+| **`BOOST_<level>(predicate)`**   | **`NCBITEST_<level>(predicate)`**   |
 | **`BOOST_<level>_EQUAL(left, right)`** | **`NCBITEST_<level>_EQUAL(left, right)`** |
 | **`BOOST_<level>_NE(left, right)`**    | **`NCBITEST_<level>_NE(left, right)`**    |
 | **`BOOST_<level>_MESSAGE(pred, msg)`** | **`NCBITEST_<level>_MESSAGE(pred, msg)`** |
@@ -406,19 +406,19 @@ When the NCBI-extended Boost Test library is built, it defines a set of unit tes
 
 Table 1. Build Generated Predefined Variables
 
-| `Builds`             | `Compilers`          | `Operating Systems` | `Platforms`             |
+| `Builds` | `Compilers`    | `Operating Systems` | `Platforms` |
 |----------------------|----------------------|---------------------|-------------------------|
-| `BUILD_Debug`        | `COMPILER_Compaq`    | `OS_AIX`            | `PLATFORM_BigEndian`    |
-| `BUILD_Dll`          | `COMPILER_GCC`       | `OS_BSD`            | `PLATFORM_Bits32`       |
-| `BUILD_Release`      | `COMPILER_ICC`       | `OS_Cygwin`         | `PLATFORM_Bits64`       |
-| `BUILD_Static`       | `COMPILER_KCC`       | `OS_Irix`           | `PLATFORM_LittleEndian` |
-|  | `COMPILER_MipsPro`   | `OS_Linux`          |     |
-|  | `COMPILER_MSVC`      | `OS_MacOS`          |     |
-|  | `COMPILER_VisualAge` | `OS_MacOSX`         |     |
-|  | `COMPILER_WorkShop`  | `OS_Solaris`        |     |
-|  |  | `OS_Tru64`          |     |
-|  |  | `OS_Unix`           |     |
-|  |  | `OS_Windows`        |     |
+| `BUILD_Debug`  | `COMPILER_Compaq`    | `OS_AIX`      | `PLATFORM_BigEndian`    |
+| `BUILD_Dll`    | `COMPILER_GCC` | `OS_BSD`      | `PLATFORM_Bits32` |
+| `BUILD_Release`      | `COMPILER_ICC` | `OS_Cygwin`   | `PLATFORM_Bits64` |
+| `BUILD_Static` | `COMPILER_KCC` | `OS_Irix`     | `PLATFORM_LittleEndian` |
+|  | `COMPILER_MipsPro`   | `OS_Linux`    |     |
+|  | `COMPILER_MSVC`      | `OS_MacOS`    |     |
+|  | `COMPILER_VisualAge` | `OS_MacOSX`   |     |
+|  | `COMPILER_WorkShop`  | `OS_Solaris`  |     |
+|  |  | `OS_Tru64`    |     |
+|  |  | `OS_Unix`     |     |
+|  |  | `OS_Windows`  |     |
 
 <div class="table-scroll"></div>
 
@@ -428,76 +428,76 @@ At run-time, the library also checks the `FEATURES` environment variable and cre
 
 Table 2. Check Script Generated Predefined Variables
 
-| `Features`           | `Packages`                                                            | `Projects`           |
+| `Features`     | `Packages`                  | `Projects`     |
 |----------------------|-----------------------------------------------------------------------|----------------------|
-| `AIX`                | `BerkeleyDB`                                                          | `algo`               |
-| `BSD`                | `BerkeleyDB__`<br/>`(use for BerkeleyDB++)` | `app`                |
-| `CompaqCompiler`     | `Boost_Regex`                                                         | `bdb`                |
-| `Cygwin`             | `Boost_Spirit`                                                        | `cgi`                |
-| `CygwinMT`           | `Boost_Test`                                                          | `connext`            |
-| `DLL`                | `Boost_Test_Included`                                                 | `ctools`             |
-| `DLL_BUILD`          | `Boost_Threads`                                                       | `dbapi`              |
-| `Darwin`             | `BZ2`                                                                 | `gbench`             |
-| `GCC`                | `C_ncbi`                                                              | `gui`                |
-| `ICC`                | `C_Toolkit`                                                           | `local_bsm`          |
-| `in_house_resources` | `CPPUNIT`                                                             | `ncbi_crypt`         |
-| `IRIX`               | `EXPAT`                                                               | `objects`            |
-| `KCC`                | `Fast_CGI`                                                            | `serial`             |
-| `Linux`              | `LIBEXSLT`                                                            |  |
-| `MIPSpro`            | `FreeTDS`                                                             |  |
-| `MSVC`               | `FreeType`                                                            |  |
-| `MSWin`              | `FUSE`                                                                |  |
-| `MT`                 | `GIF`                                                                 |  |
-| `MacOS`              | `GLUT`                                                                |  |
-| `Ncbi_JNI`           | `GNUTLS`                                                              |  |
-| `OSF`                | `HDF5`                                                                |  |
-| `PubSeqOS`           | `ICU`                                                                 |  |
-| `SRAT_internal`      | `JPEG`                                                                |  |
-| `Solaris`            | `LIBXML`                                                              |  |
-| `unix`               | `LIBXSLT`                                                             |  |
-| `VisualAge`          | `LocalBZ2`                                                            |  |
-| `WinMain`            | `LocalMSGMAIL2`                                                       |  |
-| `WorkShop`           | `LocalNCBILS`                                                         |  |
-| `XCODE`              | `LocalPCRE`                                                           |  |
-|  | `LocalSSS`                                                            |  |
-|  | `LocalZ`                                                              |  |
-|  | `LZO`                                                                 |  |
-|  | `MAGIC`                                                               |  |
-|  | `MESA`                                                                |  |
-|  | `MUPARSER`                                                            |  |
-|  | `MySQL`                                                               |  |
-|  | `NCBILS2`                                                             |  |
-|  | `ODBC`                                                                |  |
-|  | `OECHEM`                                                              |  |
-|  | `OpenGL`                                                              |  |
-|  | `OPENSSL`                                                             |  |
-|  | `ORBacus`                                                             |  |
-|  | `PCRE`                                                                |  |
-|  | `PNG`                                                                 |  |
-|  | `PYTHON`                                                              |  |
-|  | `PYTHON23`                                                            |  |
-|  | `PYTHON24`                                                            |  |
-|  | `PYTHON25`                                                            |  |
-|  | `SABLOT`                                                              |  |
-|  | `SGE`                                                                 |  |
-|  | `SP`                                                                  |  |
-|  | `SQLITE`                                                              |  |
-|  | `SQLITE3`                                                             |  |
-|  | `SQLITE3ASYNC`                                                        |  |
-|  | `SSSDB`                                                               |  |
-|  | `SSSUTILS`                                                            |  |
-|  | `Sybase`                                                              |  |
-|  | `SybaseCTLIB`                                                         |  |
-|  | `TIFF`                                                                |  |
-|  | `UNGIF`                                                               |  |
-|  | `UUID`                                                                |  |
-|  | `Xalan`                                                               |  |
-|  | `Xerces`                                                              |  |
-|  | `XPM`                                                                 |  |
-|  | `Z`                                                                   |  |
-|  | `wx2_8`                                                               |  |
-|  | `wxWidgets`                                                           |  |
-|  | `wxWindows`                                                           |  |
+| `AIX`    | `BerkeleyDB`                | `algo`   |
+| `BSD`    | `BerkeleyDB__`<br/>`(use for BerkeleyDB++)` | `app`    |
+| `CompaqCompiler`     | `Boost_Regex`               | `bdb`    |
+| `Cygwin` | `Boost_Spirit`              | `cgi`    |
+| `CygwinMT`     | `Boost_Test`                | `connext`      |
+| `DLL`    | `Boost_Test_Included`       | `ctools` |
+| `DLL_BUILD`    | `Boost_Threads`             | `dbapi`  |
+| `Darwin` | `BZ2`    | `gbench` |
+| `GCC`    | `C_ncbi` | `gui`    |
+| `ICC`    | `C_Toolkit`                 | `local_bsm`    |
+| `in_house_resources` | `CPPUNIT`                   | `ncbi_crypt`   |
+| `IRIX`   | `EXPAT`  | `objects`      |
+| `KCC`    | `Fast_CGI`                  | `serial` |
+| `Linux`  | `LIBEXSLT`                  |  |
+| `MIPSpro`      | `FreeTDS`                   |  |
+| `MSVC`   | `FreeType`                  |  |
+| `MSWin`  | `FUSE`   |  |
+| `MT`     | `GIF`    |  |
+| `MacOS`  | `GLUT`   |  |
+| `Ncbi_JNI`     | `GNUTLS` |  |
+| `OSF`    | `HDF5`   |  |
+| `PubSeqOS`     | `ICU`    |  |
+| `SRAT_internal`      | `JPEG`   |  |
+| `Solaris`      | `LIBXML` |  |
+| `unix`   | `LIBXSLT`                   |  |
+| `VisualAge`    | `LocalBZ2`                  |  |
+| `WinMain`      | `LocalMSGMAIL2`             |  |
+| `WorkShop`     | `LocalNCBILS`               |  |
+| `XCODE`  | `LocalPCRE`                 |  |
+|  | `LocalSSS`                  |  |
+|  | `LocalZ` |  |
+|  | `LZO`    |  |
+|  | `MAGIC`  |  |
+|  | `MESA`   |  |
+|  | `MUPARSER`                  |  |
+|  | `MySQL`  |  |
+|  | `NCBILS2`                   |  |
+|  | `ODBC`   |  |
+|  | `OECHEM` |  |
+|  | `OpenGL` |  |
+|  | `OPENSSL`                   |  |
+|  | `ORBacus`                   |  |
+|  | `PCRE`   |  |
+|  | `PNG`    |  |
+|  | `PYTHON` |  |
+|  | `PYTHON23`                  |  |
+|  | `PYTHON24`                  |  |
+|  | `PYTHON25`                  |  |
+|  | `SABLOT` |  |
+|  | `SGE`    |  |
+|  | `SP`     |  |
+|  | `SQLITE` |  |
+|  | `SQLITE3`                   |  |
+|  | `SQLITE3ASYNC`              |  |
+|  | `SSSDB`  |  |
+|  | `SSSUTILS`                  |  |
+|  | `Sybase` |  |
+|  | `SybaseCTLIB`               |  |
+|  | `TIFF`   |  |
+|  | `UNGIF`  |  |
+|  | `UUID`   |  |
+|  | `Xalan`  |  |
+|  | `Xerces` |  |
+|  | `XPM`    |  |
+|  | `Z`      |  |
+|  | `wx2_8`  |  |
+|  | `wxWidgets`                 |  |
+|  | `wxWindows`                 |  |
 
 <div class="table-scroll"></div>
 
