@@ -863,8 +863,6 @@ Load Balancing
 
 -   [Database Load Balancing](#ch_app.Database_Load_Balancing)
 
--   [Cookie / Argument Affinity Module (MOD\_CAF)](#ch_app.Cookie___Argument_Af)
-
 -   [DISPD Network Dispatcher](#ch_app.DISPD_Network_Dispat)
 
 -   [NCBID Server Launcher](#ch_app.NCBID_Server_Launche)
