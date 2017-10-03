@@ -57,8 +57,6 @@ The following is an outline of the topics presented in this chapter, with links 
 -   [Servers and Service Mapping API](#ch_conn.service_mapping_api)
 
     -   Description of service name resolution API
-    
-    -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce) - **DEPRECATED**
 
     -   NCBI Server Meta-Address Info -- `ncbi_server_info`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h) \| [p.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_infop.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_info.c)]
 
@@ -68,9 +66,15 @@ The following is an outline of the topics presented in this chapter, with links 
 
     -   Resolve NCBI Service Name to the Server Meta-Address using NCBI [Load-Balancing Service Mapper (LBSM)](ch_app.html#ch_app.Load_Balancing_Servi) -- `ncbi_lbsmd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.c) \| [\_stub.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd_stub.c)]
 
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI LINKERD -- `ncbi_linkerd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_linkerd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_linkerd.c)]
+
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI NAMERD -- `ncbi_namerd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_namerd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_namerd.c)]
+
     -   [NCBI LBSM client-server data exchange API](#ch_conn.service_mapping_api) -- `ncbi_lbsm`[[.h](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.c)]
 
     -   Implementation of LBSM Using SYSV IPC (shared memory and semaphores) -- `ncbi_lbsm_ipc`[[.h](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.c)]
+
+    -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce) - **DEPRECATED**
 
 -   [Threaded Server Support](#ch_conn.Threaded_Server_Supp)
 
@@ -562,7 +566,7 @@ A more elaborate form of the HTTP connector's constructor has the following prot
         eHTTP_HeaderSuccess  = 1,  /**< Parse succeeded, retain server status */
         eHTTP_HeaderContinue = 2,  /**< Parse succeeded, continue with body   */
         eHTTP_HeaderComplete = 3   /**< Parse succeeded, no more processing   */
-    } EHTTP_HeaderParse; 
+    } EHTTP_HeaderParse;
     typedef EHTTP_HeaderParse (*FHTTP_ParseHeader)
     (const char*         http_header,   /* HTTP header to parse                  */
      void*               user_data,     /* supplemental user data                */
@@ -806,7 +810,7 @@ The next example is a complete program that fetches the response from a URL and 
      int                 server_error   /**< != 0 if HTTP error (NOT 2xx code)   */
      )
     {
-        return (server_error >= 200 && server_error <= 299) 
+        return (server_error >= 200 && server_error <= 299)
                ? eHTTP_HeaderSuccess
                : eHTTP_HeaderContinue;
     }
@@ -1004,7 +1008,9 @@ Service lookup process now involves looking up through the following sources, in
 
 -   LBSM table (only in-house; this source does not exist in the outside builds);
 
--   NAMERD (only in-house; this source does not exist in the outside builds); 
+-   LINKERD (only in-house; this source does not exist in the outside builds);
+
+-   NAMERD (only in-house; this source does not exist in the outside builds);
 
 -   LBOS (only in-house; this source does not exist in the outside builds) - **DEPRECATED**;
 
@@ -1012,12 +1018,17 @@ Service lookup process now involves looking up through the following sources, in
 
 Only one source containing the information about the service is used; the next source is only tried if the previous one was disabled or did not yield any servers (for the service).
 
-Sources 1, 3, and 4 are disabled by default. 
-To enable the 1st source - set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file. 
-To enable the 3rd source - set **`CONN_NAMERD_ENABLE`** environment variable to "1" or add **`NAMERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
-To enable the 4th source - set **`CONN_LBOS_ENABLE`** environment variable to "1" or add **`LBOS_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+The "local environment/registry settings", LINKERD, NAMERD, and LBOS sources are disabled by default.
 
-Sources 2 and 5 are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
+To enable the the "local environment/registry settings" source - set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+To enable the LINKERD source - set **`CONN_LINKERD_ENABLE`** environment variable to "1" or add **`LINKERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+To enable the NAMERD source - set **`CONN_NAMERD_ENABLE`** environment variable to "1" or add **`NAMERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+To enable the LBOS source - set **`CONN_LBOS_ENABLE`** environment variable to "1" or add **`LBOS_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+The LBSM and "Network dispatcher" Sources are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
 
 ***Note:*** Alternatively, and for the sake of backward compatibility with older application, the use of local LBSM table can be controlled by **`CONN_LB_DISABLE`**={0,1} in the environment or **`LB_DISABLE`**={0,1} in the "[`CONN`]" section of the registry, or individually on a per service basis:
 
@@ -1067,6 +1078,12 @@ Example 2. In environment set the following variables (equivalent to the `.ini` 
 
 You can also look at the [detailed description of LBSMD](ch_app.html#ch_app.Load_Balancing_Servi) and a sample configuration file.
 
+<a name="ch_conn.Linkerd_Namerd_Dispatching"></a>
+
+### LINKERD and NAMERD Dispatching
+
+You can read about dispatching with LINKERD and NAMERD in [Confluence](https://confluence.ncbi.nlm.nih.gov/display/CT/Dispatching+with+NAMERD+and+LINKERD) (in-house only).
+
 <a name="ch_conn.Lbos_Self_Announce_Deannounce"></a>
 
 ### Announcement/deannouncement of servers in LBOS - **DEPRECATED**
@@ -1080,5 +1097,3 @@ Threaded Server Support
 -----------------------
 
 This library also provides [CServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CServer&d=), an abstract base class for multithreaded network servers. [Here](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/connect/test/test_server.cpp) is a demonstration of its use. For more information, see the [Implementing a Server with CServer](ch_grid.html#ch_grid.CServer_Multithreade) section.
-
-
