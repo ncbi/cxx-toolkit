@@ -1091,7 +1091,7 @@ You can control whether to build the following core packages using the following
 
 *--with-objects* -- generate and build libraries to serialize ASN.1 objects; see in `internal/c++/{ `[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) *\|* [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects)`}/objects` directories
 
-*--with-internal* -- build of internal projects is by default disabled on most platforms; see in `internal/c++/{ `[src](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal) *\|* [include](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/internal)`}/internal` directories
+*--with-internal* -- build of internal projects is by default disabled on most platforms; see in `internal/c++/{ `[src](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal) *\|* [include](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/internal)`}/internal` directories
 
 <a name="ch_config.Miscellaneous_withou"></a>
 
@@ -1475,7 +1475,7 @@ File [project\_tree\_builder.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_D
 Table 4. Project Tree Builder INI file (Local Site)
 
 | Section  | Key         | Comments     |
-|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|----------|-------------|--------------|
 | [Configure]    | ThirdPartyBasePath,<br/>ThirdParty\_\*<br/>ThirdPartyAppsBasePath<br/>ThirdParty\_C\_ncbi | Location of 3<sup>rd</sup> party libraries and applications           |
 |  | ProvidedRequests<br/>StandardFeatures      | List of requirements from Unix makefiles that are always met          |
 |  | NotProvidedRequests            | List of requirements from Unix makefiles that are never met. Projects with that require any one of these, will be excluded     |
@@ -1561,10 +1561,10 @@ Any section name can have one or several optional suffixes, so it can take the f
 
 <a name="ch_config.T4"></a>
 
-|----------------------|--------------------------------------------------------|
+|----------------------|--------------------------|
 | `CompilerVersion`    | 1400 (i.e. MSVC 2015)    |
-| `Platform`     | Win32 or x64 |
-| `static` or `dll`    | type of runtime libraries      |
+| `Platform`           | Win32 or x64             |
+| `static` or `dll`    | type of runtime libraries  |
 | `debug` or `release` | build configuration type |
 | `ConfigurationName`  | build configuration name (e.g. DebugDLL, or ReleaseMT) |
 
@@ -1641,7 +1641,7 @@ All directories given in the '`IncludeDirs`' entry should be specified relative 
 <a name="ch_config.T.nc_includedirs_path_specifie"></a>
 
 | IncludeDirs Path -<br/>specified relative to source directory | AdditionalIncludeDirectories Path -<br/>saved relative to $(ProjectDir) |
-|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+|---------------------------------------------------------------|------------------------------------------------------------------------------=-----|
 | `somedir`                  | `..\..\..\..\..\src\$(SolutionName)\somedir`            |
 | `..\\somedir`              | `..\..\..\..\..\src\somedir`         |
 | `..\\..\\somedir`          | `..\..\..\..\..\somedir`             |
@@ -1726,8 +1726,8 @@ In the Toolkit, such compound DLLs are described using a set of special makefile
 <a name="ch_config.T6"></a>
 
 |--------------|---------------------------------------------------|
-| DLL    | name of the compound DLL  |
-| HOSTED\_LIBS | names of the included static libraries      |
+| DLL          | name of the compound DLL                          |
+| HOSTED\_LIBS | names of the included static libraries            |
 | DEPENDENCIES | dependencies on other static or dynamic libraries |
 | CPPFLAGS     | additional compiler flags, specific for this DLL  |
 
@@ -1860,9 +1860,9 @@ where:
 <a name="ch_config.T7"></a>
 
 |------------|--------------------------------------------------------------------------------------|
-| \<name\>   | is the name of the project to create       |
-| \<type\>   | is one of the predefined project types     |
-| [builddir] | is the location of the C++ Toolkit libraries     |
+| \<name\>   | is the name of the project to create                                                 |
+| \<type\>   | is one of the predefined project types                                               |
+| [builddir] | is the location of the C++ Toolkit libraries                                         |
 | [flags]    | selects a recursive build of all targets at this and lower levels in the source tree |
 
 <div class="table-scroll"></div>
