@@ -689,8 +689,8 @@ As another example, suppose you have a ***CatalogEntry*** type comprised of a **
 
     <schema
         xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:tns="http://ncbi.nlm.nih.gov/some/unique/path"
-        targetNamespace="http://ncbi.nlm.nih.gov/some/unique/path"
+        xmlns:tns="https://ncbi.nlm.nih.gov/some/unique/path"
+        targetNamespace="https://ncbi.nlm.nih.gov/some/unique/path"
         elementFormDefault="qualified"
     >
 
@@ -969,7 +969,7 @@ The main loop of the LBSMD daemon:
 
 The LBSMD daemon can also periodically check whether the configured servers are alive: either by trying to establish a connection to them (and then disconnecting immediately, without sending/receiving any data) and / or by using a special plugin script that can do more intelligent, thorough, and server-specific diagnostics, and report the result back to LBSMD via an exit code.
 
-Lastly, LBSMD can pull port load information as posted by the running servers. This is done via a simple API <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/connect/daemons/lbsmdapi.h>. The information is then used to calculate the final server rates in run-time.
+Lastly, LBSMD can pull port load information as posted by the running servers. This is done via a simple API <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/connect/daemons/lbsmdapi.h>. The information is then used to calculate the final server rates in run-time.
 
 Although cients can [redirect services](ch_conn.html#ch_conn.Service_Redirection), LBSMD does not distinguish between direct and redirected services.
 
@@ -983,7 +983,7 @@ The LBSMD daemon is configured via command line options and via a configuration 
 
 The local NCBI users can also visit the following link:
 
-<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi>
+<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi>
 
 The default name of the LBSMD daemon configuration file is `/etc/lbsmd/servrc.cfg`. Each line can be one of the following:
 
@@ -1275,7 +1275,7 @@ Figure 10. Automatic Configuration Distribution
 
 The following web page can be used to search for a service:
 
-<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi>
+<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi>
 
 The following screen will appear
 
@@ -1283,17 +1283,17 @@ The following screen will appear
 
 Figure 11. NCBI Service Search Page
 
-As an example of usage a user might enter the partial name of the service like "TaxService" and click on the “Go” button. The search results will display "TaxService", "TaxService3" and "TaxService3Test" if those services are available (see <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=TaxService&host=&button=Go&db=>).
+As an example of usage a user might enter the partial name of the service like "TaxService" and click on the “Go” button. The search results will display "TaxService", "TaxService3" and "TaxService3Test" if those services are available (see <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=TaxService&host=&button=Go&db=>).
 
 <a name="ch_app.lbsmc_Utility"></a>
 
 ##### lbsmc Utility
 
-Another way of monitoring the LBSMD daemon is using the lbsmc (<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsmc.c>) utility. The utility periodically dumps onto the screen a table which represents the current content of the LBSMD daemon table. The utility output can be controlled by a number of command line options. The full list of available options and their description can be obtained by issuing the following command:
+Another way of monitoring the LBSMD daemon is using the lbsmc (<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsmc.c>) utility. The utility periodically dumps onto the screen a table which represents the current content of the LBSMD daemon table. The utility output can be controlled by a number of command line options. The full list of available options and their description can be obtained by issuing the following command:
 
 `lbsmc -h`
 
-The NCBI intranet users can also get the list of options by clicking on this link: <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h>.
+The NCBI intranet users can also get the list of options by clicking on this link: <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h>.
 
 For example, to print a list of hosts which names match the pattern “sutil\*” the user can issue the following command:
 
@@ -1349,9 +1349,9 @@ For example, to print a list of hosts which names match the pattern “sutil\*�
 
 The NCBI intranet users can also visit the following quick reference links:
 
--   Dead servers list: <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h+none+-w+-d>
+-   Dead servers list: <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h+none+-w+-d>
 
--   Search engine for all available hosts, all services and database affiliation: <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=&host=&button=Go&db=>
+-   Search engine for all available hosts, all services and database affiliation: <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=&host=&button=Go&db=>
 
 If the lbsmc utility is run with the -f option then the output contains two parts:
 
@@ -1379,7 +1379,7 @@ Technically, the penalty is maintained by a daemon, which has the server configu
 
 [Service mapping API](ch_conn.html#ch_conn.service_mapping_api) has a call `SERV_Penalize()` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_Penalize>) declared in `connect/ncbi_service.h` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h>), which can be used to set the penalty for the last server obtained from the mapping iterator.
 
-For script files (similar to the ones used to start/stop servers), there is a dedicated utility program called `lbsm_feedback` (<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsm_feedback.c>), which sets the penalty from the command line. This command should be used with extreme care because it affects the load-balancing mechanism substantially,.
+For script files (similar to the ones used to start/stop servers), there is a dedicated utility program called `lbsm_feedback` (<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsm_feedback.c>), which sets the penalty from the command line. This command should be used with extreme care because it affects the load-balancing mechanism substantially,.
 
 **lbsm\_feedback** is a part of the LBSM set of tools installed on all hosts which run **LBSMD**. As it was explained above, penalizing means to make a server less favorable as a choice of the load balancing mechanism. Because of the fact that the full penalty of 100% makes a server unavailable for clients completely, at the time when the server is about to shut down (restart), it is wise to increase the server penalty to the maximal value, i.e. to exclude the server from the service mapping. (Otherwise, the LBSMD daemon might not immediately notice that the server is down and may continue dispatching to that server.) Usually, the penalty takes at most 5 seconds to propagate to all participating network hosts. Before an actual server shutdown, the following sequence of commands can be used:
 
@@ -1433,7 +1433,7 @@ The log file size can be controlled by the -s command line option. By default, -
 
 NCBI intranet users can get few (no more than 100) recent lines of the log file on an NCBI internal host. It is also possible to visit the following link:
 
-<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi?log>
+<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi?log>
 
 <a name="ch_app._Configuration_Exampl"></a>
 
@@ -1746,7 +1746,7 @@ The outside NCBI network users can check the connection to the NAT service follo
     Connected to 130.14.29.112.
     Escape character is '^]'.
     NCBI Firewall Daemon:  Invalid ticket.  Connection closed.
-    See http://www.ncbi.nlm.nih.gov/cpp/network/firewall.html.
+    See https://www.ncbi.nlm.nih.gov/cpp/network/firewall.html.
     Connection closed by foreign host.
 
 <a name="ch_app._Log_Files_1"></a>
@@ -1819,7 +1819,7 @@ The directive above defines the NCBIQA cookie which triggers names substitutions
 
 To set the cookie the user can visit the following link:
 
-<http://qa.ncbi.nlm.nih.gov/portal/sysutils/qa_status.cgi>
+<https://qa.ncbi.nlm.nih.gov/portal/sysutils/qa_status.cgi>
 
 A screen similar to the following will appear:
 
