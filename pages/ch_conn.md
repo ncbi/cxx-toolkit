@@ -64,15 +64,15 @@ The following is an outline of the topics presented in this chapter, with links 
 
     -   Resolve NCBI Service Name to the Server Meta-Address using NCBI Network Dispatcher ([DISPD](ch_app.html#ch_app.DISPD_Network_Dispat)) -- `ncbi_dispd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_dispd.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_dispd.c)]
 
-    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI [Load-Balancing Service Mapper (LBSM)](ch_app.html#ch_app.Load_Balancing_Servi) -- `ncbi_lbsmd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.c) \| [\_stub.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd_stub.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI [Load-Balancing Service Mapper (LBSM)](ch_app.html#ch_app.Load_Balancing_Servi) -- `ncbi_lbsmd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.c) \| [\_stub.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd_stub.c)]
 
-    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI LINKERD -- `ncbi_linkerd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_linkerd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_linkerd.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI LINKERD -- `ncbi_linkerd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_linkerd.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_linkerd.c)]
 
-    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI NAMERD -- `ncbi_namerd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_namerd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_namerd.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI NAMERD -- `ncbi_namerd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_namerd.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_namerd.c)]
 
-    -   [NCBI LBSM client-server data exchange API](#ch_conn.service_mapping_api) -- `ncbi_lbsm`[[.h](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.c)]
+    -   [NCBI LBSM client-server data exchange API](#ch_conn.service_mapping_api) -- `ncbi_lbsm`[[.h](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.c)]
 
-    -   Implementation of LBSM Using SYSV IPC (shared memory and semaphores) -- `ncbi_lbsm_ipc`[[.h](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.c)]
+    -   Implementation of LBSM Using SYSV IPC (shared memory and semaphores) -- `ncbi_lbsm_ipc`[[.h](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.c)]
 
     -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce) - **DEPRECATED**
 
@@ -108,7 +108,7 @@ For additional related information, see:
 
     -   Non-ANSI, Widely Used Functions -- `ncbi_ansi_ext`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.c)]
 
--   daemons [[src/connect/daemons](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons)]
+-   daemons [[src/connect/daemons](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons)]
 
     -   [LBSMD](ch_app.html#ch_app.Load_Balancing_Servi)
 
@@ -343,7 +343,7 @@ Return a human-readable description of the connection as a character '\\0'-termi
 
 <a name="ch_conn.T.nc_conn_setcallbackconn_conn_e"></a>
 
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|---------------------------------------------------------------------------------------------------------------------------------|
 | `CONN_SetCallback(CONN conn, ECONN_Callback type,`<br/>`                 const SCONN_Callback* new_cb, SCONN_Callback* old_cb)` |
 
 <div class="table-scroll"></div>
@@ -630,7 +630,7 @@ To the client, the entire process of dispatching is completely transparent (for 
 
 ***Note:*** Services can be [redirected](#ch_conn.Service_Redirection).
 
-The [Dispatching Protocol](ch_app.html#ch_app.DISPD_Network_Dispat) per se is implemented on top of HTTP protocol and is parsed by a CGI program [dispd.cgi](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c) (or another dispatching CGI), which is available on the NCBI Web. On every server running the named services, another program, called the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) ([lbsmd](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsmd.c)), is executing. This daemon supports having the same service running on different machines and provides a choice of the one machine that is less loaded. When **dispd.cgi** receives a request for a named service, it first consults the load-balancing table, which is broadcasted by each load-balancing daemon and populated in a network-wide form on each server. When the corresponding server is found, the client request can be passed, or a dedicated connection to the server can be established. The dispatching is made in such a way that it can be also used directly from most Internet browsers.
+The [Dispatching Protocol](ch_app.html#ch_app.DISPD_Network_Dispat) per se is implemented on top of HTTP protocol and is parsed by a CGI program [dispd.cgi](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c) (or another dispatching CGI), which is available on the NCBI Web. On every server running the named services, another program, called the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) ([lbsmd](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsmd.c)), is executing. This daemon supports having the same service running on different machines and provides a choice of the one machine that is less loaded. When **dispd.cgi** receives a request for a named service, it first consults the load-balancing table, which is broadcasted by each load-balancing daemon and populated in a network-wide form on each server. When the corresponding server is found, the client request can be passed, or a dedicated connection to the server can be established. The dispatching is made in such a way that it can be also used directly from most Internet browsers.
 
 The named service facility uses the following distinction of server types:
 
@@ -642,13 +642,13 @@ The named service facility uses the following distinction of server types:
 
     -   ***HTTP*** servers are those accepting both of either ***GET*** or ***POST*** methods.
 
--   ***NCBID*** servers are those run by a special CGI engine, called [ncbid.cgi](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c), a configurable program (now integrated within [ncbid.cgi](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c) itself) that can convert byte-stream output from another program (server) started by the request from a dispatcher, to an HTTP-compliant reply (that is, a packet having both HTTP header and body, and suitable, for example, for Web browsers).
+-   ***NCBID*** servers are those run by a special CGI engine, called [ncbid.cgi](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c), a configurable program (now integrated within [ncbid.cgi](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c) itself) that can convert byte-stream output from another program (server) started by the request from a dispatcher, to an HTTP-compliant reply (that is, a packet having both HTTP header and body, and suitable, for example, for Web browsers).
 
 -   ***STANDALONE*** servers, similar to mailing daemons, are those listening to the network, on their own, for incoming connections.
 
 -   ***FIREWALL*** servers are the special pseudo-servers, not existing in reality, but that are created and used internally by the dispatcher software to indicate that only a firewall connection mode can be used to access the requested service.
 
--   ***DNS*** servers are beyond the scope of this document because they are used to declare domain names, which are used internally at the NCBI site to help load-balancing based on DNS lookup (see [here](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/mghbn.c)).
+-   ***DNS*** servers are beyond the scope of this document because they are used to declare domain names, which are used internally at the NCBI site to help load-balancing based on DNS lookup (see [here](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/mghbn.c)).
 
 A formal description of these types is given in [connect/ncbi\_server\_info.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h):
 
@@ -701,7 +701,7 @@ The next-to-last parameter of the extended constructor is the network info, desc
 
 -   **`firewall`** set to true (non-zero) disables the direct connection to the service; instead,
 
-    -   a connection to a proxy [firewall daemon](ch_app.html#ch_app.Firewall_Daemon_FWDa) ([fwdaemon](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/fwdaemon.c)), running at the NCBI site, is initiated to pass the data in stream mode;
+    -   a connection to a proxy [firewall daemon](ch_app.html#ch_app.Firewall_Daemon_FWDa) ([fwdaemon](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/fwdaemon.c)), running at the NCBI site, is initiated to pass the data in stream mode;
 
     -   or data get relayed via the dispatcher, if the stateless server is used
 
@@ -822,7 +822,7 @@ The next example is a complete program that fetches the response from a URL and 
         if (argc > 1) {
             url = argv[1];
         } else {
-            url = "http://www.ncbi.nlm.nih.gov/";
+            url = "https://www.ncbi.nlm.nih.gov/";
         }
 
         // Send an HTTP request to the URL.
