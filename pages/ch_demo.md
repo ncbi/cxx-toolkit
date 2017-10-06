@@ -96,7 +96,7 @@ See [Table 1](#ch_demo.T1).
 Table 1. Invocation flags
 
 | Argument     | Value   | Effect   |
-|--------------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|--------------|---------|----------|
 | `-h`   | | Print usage message and exit.                  |
 | `-gi N`      | integer | GenInfo ID of sequence to look up.             |
 | `-fmt fmt`   | [format type](#ch_demo.id1_fetch.html_ref_fmt)    | Output data format; default is `asn` (ASN.1 text).                |
@@ -127,7 +127,7 @@ The possible values of the `-fmt` argument are shown in [Table 2](#ch_demo.T2).
 Table 2. Output data formats
 
 | Value   | Format       | Comments               |
-|---------|------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+|---------|--------------|------------------------|
 | asn     | ASN.1 text (default)            |    |
 | asnb    | ASN.1 binary |    |
 | docsum  | [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) document summary                   | Lookup type is irrelevant.   |
@@ -150,7 +150,7 @@ The possible values of the `-lt` argument are shown in [Table 3](#ch_demo.T3).
 Table 3. Lookup types
 
 | Value     | Description  |
-|-----------|--------------------------------------------------------|
+|-----------|--------------|
 | entry     | The actual sequence entry (default)  |
 | history   | Summary of changes to the sequence data    |
 | ids | All of the sequence's IDs      |
@@ -171,7 +171,7 @@ The possible values of the `-maxplex` argument are shown in [Table 4](#ch_demo.T
 Table 4. Maximum output complexity level values
 
 | Value      | Description     |
-|------------|-----------------------------|
+|------------|-----------------|
 | bioseq     | Just the bioseq of interest |
 | bioseq-set | Minimal bioseq-set    |
 | entry      | Entire entry (default)      |
@@ -245,10 +245,10 @@ This format consists of a two- or three-letter tag indicating the ID's type, fol
 Table 5. FASTA sequence ID format values
 
 | Type                   | Format(s) [<sup>1</sup>](#ch_demo.TF.1)    | Example(s)               |
-|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| local                  | `lcl\|integer`<br/>`lcl\|string`   | `lcl\|123`<br/>`lcl\|hmm271` |
-| GenInfo backbone seqid | `bbs\|integer`    | `bbs\|123`               |
-| GenInfo backbone moltype                  | `bbm\|integer`    | `bbm\|123`               |
+|------------------------|--------------------------------------------|--------------------------|
+| local                  | `lcl\|integer`<br/>`lcl\|string`           | `lcl\|123`<br/>`lcl\|hmm271` |
+| GenInfo backbone seqid | `bbs\|integer`                             | `bbs\|123`               |
+| GenInfo backbone moltype                  | `bbm\|integer`          | `bbm\|123`               |
 | GenInfo import ID      | `gim\|integer`    | `gim\|123`               |
 | [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)   | `gb\|accession\|locus`               | `gb\|M73307\|AGMA13GT`   |
 | [EMBL](http://www.embl-heidelberg.de)     | `emb\|accession\|locus`              | `emb\|CAM43271.1\|`      |
