@@ -125,7 +125,7 @@ After [preparing the development environment](ch_faq.html#ch_faq.How_do_I_prepar
 
 #### Project List Files
 
-A very convenient way to explicitly define the build scope is to use a project list file. These files are simple line-oriented text files that essentially just list the set of projects you want included in (or excluded from) your build scope. Project list files can be referenced from various build-related tools including the **configure** script and the [Configuration GUI](#ch_config.Configuring_with_the_Java_GUI) (which pass the files to the build system); the [update\_projects](ch_getcode_svn.html#ch_getcode_svn.update_projects_sh) script; and the [`prepare_release`](http://mini.ncbi.nlm.nih.gov/376) framework (NCBI only).
+A very convenient way to explicitly define the build scope is to use a project list file. These files are simple line-oriented text files that essentially just list the set of projects you want included in (or excluded from) your build scope. Project list files can be referenced from various build-related tools including the **configure** script and the [Configuration GUI](#ch_config.Configuring_with_the_Java_GUI) (which pass the files to the build system); the [update\_projects](ch_getcode_svn.html#ch_getcode_svn.update_projects_sh) script; and the [`prepare_release`](https://confluence.ncbi.nlm.nih.gov/display/CT/General+guidelines+and+supporting+framework+for+product+releases) framework (NCBI only).
 
 Project list files consist of two types of lines (ignoring blank lines) - [path lines](#ch_config.Path_Lines_in_Project_List_Fil), and [hash lines](#ch_config.Hash_Lines_in_Project_List_Fil). Thus, any non-blank line that doesn't begin with the hash character "`#`" must be a path line.
 
@@ -919,7 +919,7 @@ On the basis of [Table 2](#ch_config.ref_TableLocalization1), ***configure*** wi
 Table 3. Derived localization variables for makefiles
 
 | Name   | Value          | Used to...      |
-|--------------------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+|--------|----------------|-----------------|
 | THREAD\_LIBS | $THREAD\_LIBS  | Link with system thread lib.      |
 | NETWORK\_LIBS      | $NETWORK\_LIBS | Link with system network libs.    |
 | MATH\_LIBS   | $MATH\_LIBS    | Link with system math lib.  |
@@ -1091,7 +1091,7 @@ You can control whether to build the following core packages using the following
 
 *--with-objects* -- generate and build libraries to serialize ASN.1 objects; see in `internal/c++/{ `[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects) *\|* [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects)`}/objects` directories
 
-*--with-internal* -- build of internal projects is by default disabled on most platforms; see in `internal/c++/{ `[src](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal) *\|* [include](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/internal)`}/internal` directories
+*--with-internal* -- build of internal projects is by default disabled on most platforms; see in `internal/c++/{ `[src](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal) *\|* [include](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/internal)`}/internal` directories
 
 <a name="ch_config.Miscellaneous_withou"></a>
 
@@ -1162,7 +1162,7 @@ Use this key for the examples in the “Building with Unix” sections:
 
 <a name="ch_config.T3"></a>
 
-|------------------------|-------------------------------------------------------------------------------------------|
+|------------------|-------------------------------------------------------------------------------------|
 | $YOUR\_WORK\_DIR | your directory corresponding to the top-level c++ directory in the source tree      |
 | $YOUR\_CONFIG\_OPTIONS | any optional configuration options you’ve chosen      |
 | --with-flat-makefile   | creates a makefile that can build all or selected projects  |
@@ -1618,7 +1618,7 @@ To add files to a project, add entries to the '`AddToProject`' section. The sect
 
 <a name="ch_config.T5"></a>
 
-|--------------------|---------------------------------------------------------------------------|
+|--------------------|---------------------------------------------------------|
 | `HeadersInInclude` | override default list of headers from include directory |
 | `HeadersInSrc`     | override default list of headers from source directory  |
 | `IncludeDirs`      | additional include directories (relative to the source directory)   |
