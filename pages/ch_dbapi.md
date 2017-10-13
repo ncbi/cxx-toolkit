@@ -344,6 +344,8 @@ After making the connection, it is recommended to set the connection session par
 
 It may also be appropriate to set, `TEXTSIZE`, depending on your project.
 
+Note: when a new connection to an MS SQL Server is created the **`SET XACT_ABORT ON`** option is sent to the server automatically (for more information about the option see the Microsoft [documentation](https://msdn.microsoft.com/en-us/library/ms188792(v=sql.100).aspx)). Whether or not this option is sent is controlled using an environment variable or a configuration file parameter (see [DBAPI configuration parameters reference](ch_libconfig.html#ch_libconfig.DBAPI)). The Sybase servers do not support this option so it will not be sent to them.
+
 <a name="ch_dbapi.Executing_Basic_Queries"></a>
 
 ### Executing Basic Queries
@@ -639,6 +641,8 @@ Related sample code:
 #### Data Source and Connections
 
 The [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIDataSource.html) interface defines the database platform. To create an object implementing this interface, use the method ***CreateDs(const string& driver)***. An [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIDataSource.html) can create objects represented by an [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html) interface, which is responsible for the connection to the database. It is highly recommended to specify the database name as an argument to the ***CreateConnection()*** method, or use the ***SetDatabase()*** method of a [CConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConnection.html) object instead of using a regular SQL statement. In the latter case, the library won't be able to track the current database.
+
+Note: when a new connection to an MS SQL Server is created the **`SET XACT_ABORT ON`** option is sent to the server automatically (for more information about the option see the Microsoft [documentation](https://msdn.microsoft.com/en-us/library/ms188792(v=sql.100).aspx)). Whether or not this option is sent is controlled using an environment variable or a configuration file parameter (see [DBAPI configuration parameters reference](ch_libconfig.html#ch_libconfig.DBAPI)). The Sybase servers do not support this option so it will not be sent to them.
 
     IDataSource *ds = dm.CreateDs("ctlib");
     IConnection *conn = ds->CreateConnection();
