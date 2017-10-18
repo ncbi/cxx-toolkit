@@ -464,33 +464,95 @@ The [CNcbiDiag](#ch_core.diag) class implements much of the functionality of the
 
 #### CVersion
 
-To set compile-time application version info, use class CVersion. It allows to store and output the following data:
-- Application version info in format "%major%.%minor%.%patch% (%version_name%)"
+To get or set compile-time application version info, use classes `CVersion` and `CVersionInfo`.  They allow storing and outputting the following data:
+
+_CVersionInfo_:
+- Application version info, for example in the format "%major%.%minor%.%patch% (%version_name%)"
+
+_CVersion_:
 - Components version info. For each component there will be "%component_name%: %major%.%minor%.%patch% (%version_name%)"
 - Package version info in format "%major%.%minor%.%patch% (%version_name%)"
 - Build info (build date and build tag)
 - Build signature (contains compiler, build configuration, platform, OS, hostname)
-- TeamCity build number
+- TeamCity build number (if applicable)
 
-You can output all this info by using argument *`-version-full`* when running your application. Using argument *`-version`* will output only application version info and package version info.
+Note that `CNcbiApplication`-derived applications automatically contain version info, which can be accessed programmatically through, for example, `SetVersion()` and `GetFullVersion()`.
 
-To add build date and build tag to a custom NCBI application (e.g. based on CNcbiApplication or CCgiApplication), pass pre-processor macro **`NCBI_BUILD_TAG`** to your build and follow this example:
+You can also output all this info by using argument *`-version-full`* when running your application.  Using argument *`-version`* will output only application version info and package version info.
 
-    + #ifdef NCBI_BUILD_TAG
-    + #   define APP_BUILD_TAG NCBI_AS_STRING(NCBI_BUILD_TAG)
-    + #else
-    + #   define APP_BUILD_TAG kEmptyStr
-    + #endif
-    + 
-      class CMyNcbiApp : public CNcbiApplication
-      {
-      public:
-          CMyNcbiApp() 
-          {
-    +        CVersionInfo version_info("0.0.0");
-    +        SBuildInfo build_info(__DATE__ " " __TIME__, APP_BUILD_TAG);
-    +        SetVersion(version_info, build_info);
-          }
+To add build date and build tag to a custom NCBI application (e.g. based on CNcbiApplication or CCgiApplication), add macro **`NCBI_BUILD_TAG`** to your makefile (e.g. `Makefile.foo.app`):
+
+    CXXFLAGS = -D NCBI_BUILD_TAG=foobar
+
+Here's a program that uses the custom build tag from the makefile plus hard-coded version info:
+
+    #include <ncbi_pch.hpp>
+    #include <corelib/ncbiapp.hpp>
+
+    USING_NCBI_SCOPE;
+
+    #ifdef NCBI_BUILD_TAG
+    #   define  APP_BUILD_TAG  NCBI_AS_STRING(NCBI_BUILD_TAG)
+    #else
+    #   define  APP_BUILD_TAG  kEmptyStr
+    #endif
+
+    class CFooApplication : public CNcbiApplication
+    {
+    public:
+        CFooApplication() 
+        {
+            CVersionInfo version_info(1, 2, 3, "meaningful name");
+            SBuildInfo build_info(__DATE__ " " __TIME__, APP_BUILD_TAG);
+            SetVersion(version_info, build_info);
+        }
+
+    private:
+        virtual int  Run(void);
+    };
+
+    int CFooApplication::Run(void)
+    {
+        CVersion ver(GetFullVersion());
+        cout << ver.PrintJson("foobarbaz") << endl;
+
+        return 0;
+    }
+
+    int NcbiSys_main(int argc, ncbi::TXChar* argv[])
+    {
+        return CFooApplication().AppMain(argc, argv);
+    }
+
+The output looks like:
+
+    $ ./foo -version-full
+    foo: 1.2.3 (meaningful name)
+     Build-Signature:  GCC_493-DebugMT64--x86_64-unknown-linux2.6.32-gnu2.12-coremake11
+     Build-Date:  Oct 18 2017 11:37:10
+     Build-Tag:  foobar
+
+    $ ./foo
+    {
+      "ncbi_version": {
+        "appname": "foobarbaz",
+        "version_info": {"major": "1", "minor": "2", "patch_level": "3", "name": "meaningful name"},
+        "components": [],
+        "build_signature": "GCC_493-DebugMT64--x86_64-unknown-linux2.6.32-gnu2.12-coremake11",
+        "build_info": {"date": "Oct 18 2017 11:37:10", "tag": "foobar"}
+      }
+    }
+
+For more information on:
+* getters and setters
+* parsing and printing in other formats
+* adding version info for components
+* version comparisons
+
+see the API:
+* https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVersion.html
+* https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVersionInfo.html
+* https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html
 
 
 <a name="ch_core.creating_simple_app"></a>
