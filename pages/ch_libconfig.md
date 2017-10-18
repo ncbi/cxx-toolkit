@@ -100,7 +100,7 @@ If the ***CParam*** class cannot be used, the registry (configuration file) may 
 Table 1. Registry configuration parameters
 
 | Purpose      | Environment variable | Valid values |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|--------------|
+|--------------|----------------------|--------------|
 | If this variable is defined, the value is an extra-high-priority configuration file whose entries override those from other configuration files.  | **`NCBI_CONFIG_OVERRIDES`**      | a valid path |
 | If this variable is defined, use it exclusively as the registry search path.             | **`NCBI_CONFIG_PATH`**     | a valid path |
 | If this variable is **not** defined, append the current directory and home directory to the registry search path (after **`NCBI_CONFIG_PATH`**).  | **`NCBI_DONT_USE_LOCAL_CONFIG`** | anything     |
@@ -123,9 +123,9 @@ For configuration parameters defined by either ***CParam*** or the registry, the
 |**Character** |**Substitution**|
 |--------------------------------------|----------------|
 |**`'.'`** (dot, full stop, period)    |**`_DOT_`**     |
-|**`'-'`** (hyphen, minus) |**`_HYPHEN_`**  |
+|**`'-'`** (hyphen, minus)             |**`_HYPHEN_`**  |
 |**`'/'`** (\[forward\] slash, solidus)|**`_SLASH_`**   |
-|**`' '`** (space)   |**`_SPACE_`**   |
+|**`' '`** (space)                     |**`_SPACE_`**   |
 
 ***Note:*** Environment variables are case-sensitive on many platforms. Therefore, when setting a configuration parameter via the environment, be sure to use the case shown in the tables below.
 
@@ -163,7 +163,7 @@ Log messages have different levels of severity. Setting the logging level is des
 Table 2. Log file configuration parameters
 
 | Purpose   | [Registry section]<br/>Registry name<br/><br/>Environment variable              | Valid values          | Default    |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|------------------|
+|-----------|---------------------------------------------------------------------------------|-----------------------|------------|
 | If true, post log messages when configuration parameters are read by one of the ***ncbi::g\_GetConfig\*()*** functions. Messages include the parameter; the value; and whether the value came from the application registry, the environment, or a default value.     | [N/A]<br/>N/A<br/><br/>**`NCBI_CONFIG__NCBI__CONFIG_DUMP_VARIABLES`**           | Boolean  [<sup>b</sup>](#ch_libconfig.TF.2)    | (none)     |
 | Used by logging framework if the real client IP can not be obtained.                  | **`[LOG]`**<br/>**`Client_Ip`**<br/><br/>**`NCBI_LOG_CLIENT_IP`**               | a valid IPv4 or IPv6 address      | ""   |
 | Reset the log file to the specified file.       | **`[LOG]`**<br/>**`File`**<br/><br/>**`NCBI_CONFIG__LOG__FILE`**  [<sup>c</sup>](#ch_libconfig.TF.3)     | a valid file name     | ""   |
@@ -221,7 +221,7 @@ See [Table 3](#ch_libconfig.T3).
 Table 3. Diagnostic trace configuration parameters
 
 | Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default  |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|----------------------------------|
+|-----------------|-------------------------------------------------------------------------|---------------|----------|
 | Specify the severity level threshold for posting diagnostic messages – i.e. less severe messages will not be posted. Special case:  Trace -- print all messages and show Trace level messages. ***Note:*** If the parameter is set then the function ***ncbi::SetDiagPostLevel()*** is ignored - except for setting the level to **`eDiag_Trace`**, in which case Trace level messages will be shown anyway. | **`[DEBUG]`**<br/>**`DIAG_POST_LEVEL`**<br/><br/>**`DIAG_POST_LEVEL`**  | CI  <sup>b</sup>: Info, Warning, Error, Critical, Fatal, Trace  | (none)   |
 | Messages with Trace level will be shown if this parameter is given any value.   | **`[DEBUG]`**<br/>**`DIAG_TRACE`**<br/><br/>**`DIAG_TRACE`** or **`NCBI_CONFIG__DEBUG__DIAG_TRACE`**  <sup>c</sup> | any non-empty string             | (none)   |
 | Specify a file that stores a mapping of error codes to their descriptions.                  | **`[DEBUG]`**<br/>**`MessageFile`**<br/><br/>**`NCBI_CONFIG__DEBUG__MESSAGEFILE`**  <sup>c</sup> | a valid file name                | (none)   |
@@ -268,7 +268,7 @@ Table 3. Diagnostic trace configuration parameters
 Table 4. Run-time configuration parameters
 
 | Purpose    | [Registry section]<br/>Registry name<br/><br/>Environment variable                | Valid values       | Default |
-|------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+|------------|-----------------------------------------------------------------------------------|--------------------|---------|
 | Set a CPU time limit for the application in seconds. | **`[NCBI]`**<br/>**`CpuTimeLimit`**<br/><br/>**`NCBI_CONFIG__NCBI__CPUTIMELIMIT`**  [<sup>b</sup>](#ch_libconfig.TF.8) | non-negative integer                  | 0 (unlimited) |
 | Set a memory size limit for the application.   | **`[NCBI]`**<br/>**`MemorySizeLimit`**<br/><br/>**`NCBI_CONFIG__NCBI__MEMORYSIZELIMIT`**  [<sup>b</sup>](#ch_libconfig.TF.8) | A positive integer percent (e.g. "70%") or an optionally suffixed non-negative real number (e.g. "123456789", "100MiB", or "1.25 G").<br/><br/>A percent limit is relative to the total system memory.<br/><br/>No suffix means the given value is in MiB; a "B" suffix means the value is in bytes.<br/><br/>If there is a suffix, there can be spaces between the number and the suffix. The default units are decimal (i.e. powers of 1000) - e.g. "MB". The final "B" is optional for decimal units (e.g. "M"). You can use "i" to indicate binary units (i.e. powers of 1024) – e.g. "MiB".<br/><br/>Supported suffix characters are: "K", "M", "G", "T", "P", and "E".<br/><br/>Suffixes are not case-sensitive. | 0 (unlimited) |
 | Specify the method for filling allocated memory.     | **`[NCBI]`**<br/>**`MEMORY_FILL`**<br/><br/>**`NCBI_MEMORY_FILL`**                | CI  [<sup>a</sup>](#ch_libconfig.TF.7): none, zero, pattern                  | pattern |
@@ -293,8 +293,8 @@ Table 4. Run-time configuration parameters
 
 Table 5. Abnormal program termination configuration parameters
 
-| Purpose                 | [Registry section]<br/>Registry name<br/><br/>Environment variable                 | Valid values  | Default |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|---------|
+| Purpose       | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default |
+|---------------|-------------------------------------------------------------------------|---------------|---------|
 | If this parameter is defined, abort the program if a CException is thrown.       | **`[DEBUG]`**<br/>**`ABORT_ON_THROW`**<br/><br/>**`NCBI_CONFIG__DEBUG__ABORT_ON_THROW`**  [<sup>c</sup>](#ch_libconfig.TF.11) | any non-empty string      | (none)  |
 | Specify whether the NCBI application framework should catch exceptions that are not otherwise caught.                  | **`[Debug]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`DEBUG_CATCH_UNHANDLED_EXCEPTIONS`**   | Boolean  [<sup>a</sup>](#ch_libconfig.TF.9)  | true    |
 | Specify whether ncbi::Abort() will call \_ASSERT(false). ***Note:*** this only applies to MSVC.     | **`[Diag]`**<br/>**`Assert_On_Abort`**<br/><br/>**`DIAG_ASSERT_ON_ABORT`**         | Boolean  [<sup>a</sup>](#ch_libconfig.TF.9)  | false   |
@@ -326,8 +326,8 @@ Table 5. Abnormal program termination configuration parameters
 
 Table 6. NCBI C++ Toolkit-wide configuration parameters
 
-| Purpose          | [Registry section]<br/>Registry name<br/><br/>Environment variable               | Valid values            | Default           |
-|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable     | Valid values            | Default           |
+|-------------|------------------------------------------------------------------------|-------------------------|-------------------|
 | Specify whether throwing an exception of at least Critical severity will cause an immediate abort().     | **`[EXCEPTION]`**<br/>**`Abort_If_Critical`**<br/><br/>**`EXCEPTION_ABORT_IF_CRITICAL`**     | Boolean  [<sup>a</sup>](#ch_libconfig.TF.12)      | false             |
 | Specify the minimum severity that will result in the stack trace being added to exceptions.  | **`[EXCEPTION]`**<br/>**`Stack_Trace_Level`**<br/><br/>**`EXCEPTION_STACK_TRACE_LEVEL`**     | CI  [<sup>b</sup>](#ch_libconfig.TF.13): Trace, Info, Warning, Error, Critical, Fatal | Critical          |
 | A single path to check for common data files via ***g\_FindDataFile()***. Takes a lower precedence than paths in **`NCBI_DATA_PATH`**. | **`[NCBI]`**<br/>**`Data`**<br/><br/>**`NCBI_CONFIG__NCBI__DATA`**  [<sup>c</sup>](#ch_libconfig.TF.14)   | a valid path            | ""                |
@@ -385,7 +385,7 @@ The following sections discuss library-specific configuration parameters.
 Table 7. Connection library configuration parameters
 
 | Purpose |[Registry section]<br/>Registry name<br/><br/>Environment variable (See [Note 2](#ch_libconfig.TF.22)) | Valid values | Default |
-|---------|-------------------------------------------------------------------------------------------------------|--------------|----------|
+|---------|-------------------------------------------------------------------------------------------------------|--------------|-------------|
 | **Service-specific parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21))**| **`[<service>]`**<br/>**`CONN_<param_name>`**<br/><br/>**`<service>_CONN_<param_name>`** |   |   |
 | **Global parameters follow this form.<br/>(See [Note 1](#ch_libconfig.TF.21))** |**`[CONN]`**<br/>**`<param_name>`**<br/><br/>**`CONN_<param_name>`** |      |   |
 | Specify arguments for the given service.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_ARGS`**<br/><br/>**`<service>_CONN_ARGS`** | (service-dependent) | "" |
@@ -484,7 +484,7 @@ The folowing sections show parameters that tune CGI and FCGI applications and CG
 Table 8. CGI-related configuration parameters
 
 | Purpose       | [Registry section]<br/>Registry name<br/><br/>Environment variable          | Valid values  | Default  |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+|---------------|-----------------------------------------------------------------------------|---------------|----------|
 | Set to the user agent string you would like to be used by the web server.                 | [N/A]<br/>N/A<br/><br/>**`HTTP_USER_AGENT`**             | A valid user agent string.       | (none)   |
 | Add to the user agent list of bot names. This parameter affect only ***CCgiUserAgent::IsBot()***.            | **`[CGI]`**<br/>**`Bots`**<br/><br/>**`NCBI_CONFIG__CGI__BOTS`**  [<sup>f</sup>](#ch_libconfig.TF.28) | Delimited list  [<sup>b</sup>](#ch_libconfig.TF.24) of bot names, e.g. "Googlebot Scooter WebCrawler Slurp".  | (none)   |
 | According to RFC-2109, cookies should not be encoded. Instead, they should be just quoted. However, for backward compatibility with code that decodes incoming cookies, both quoted cookies and encoded cookies can be parsed. This setting controls which method of encoding/decoding is used.            | **`[CGI]`**<br/>**`Cookie_Encoding`**<br/><br/>**`CGI_COOKIE_ENCODING`**    | "Url", "Quote"                   | "Url"    |
@@ -571,7 +571,7 @@ Table 8. CGI-related configuration parameters
 Table 9. FCGI-related configuration parameters
 
 | Purpose          | [Registry section]<br/>Registry name<br/><br/>Environment variable            | Valid values           | Default |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+|------------------|-------------------------------------------------------------------------------|------------------------|---------|
 | A true value enables logging of current iteration, max iterations, and process ID during the FastCGI run.       | **`[FastCGI]`**<br/>**`Debug`**<br/><br/>**`NCBI_CONFIG__FASTCGI__DEBUG`**  [<sup>b</sup>](#ch_libconfig.TF.30)     | Boolean  [<sup>a</sup>](#ch_libconfig.TF.29)                  | false   |
 | A true value enables termination of a FastCGI application by the presence of the request entry "exitfastcgi".   | **`[FastCGI]`**<br/>**`HonorExitRequest`**<br/><br/>**`NCBI_CONFIG__FASTCGI__HONOREXITREQUEST`**  [<sup>b</sup>](#ch_libconfig.TF.30) | Boolean  [<sup>a</sup>](#ch_libconfig.TF.29)                  | false   |
 | Specify the number of requests that the FCGI application will process before exiting.        | **`[FastCGI]`**<br/>**`Iterations`**<br/><br/>**`NCBI_CONFIG__FASTCGI__ITERATIONS`**  [<sup>b</sup>](#ch_libconfig.TF.30) | positive integer       | 10      |
@@ -603,7 +603,7 @@ Table 9. FCGI-related configuration parameters
 Table 10. CGI load balancing configuration parameters
 
 | Purpose                   | [Registry section]<br/>Registry name<br/><br/>Environment variable       | Valid values  | Default     |
-|---------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|-------------------|
+|---------------------------|--------------------------------------------------------------------------|---------------|-------------|
 | Specify the internet domain.    | **`[CGI-LB]`**<br/>**`Domain`**<br/><br/>**`NCBI_CONFIG__CGI-LB__DOMAIN`**  [<sup>b</sup>](#ch_libconfig.TF.32)     | a valid domain      | .ncbi.nlm.nih.gov |
 | Specify the host IP address.    | **`[CGI-LB]`**<br/>**`Host`**<br/><br/>**`NCBI_CONFIG__CGI-LB__HOST`**  [<sup>b</sup>](#ch_libconfig.TF.32)   | a valid host IP     | (none)      |
 | Specify the cookie expiration period in seconds.  | **`[CGI-LB]`**<br/>**`LifeSpan`**<br/><br/>**`NCBI_CONFIG__CGI-LB__LIFESPAN`**  [<sup>b</sup>](#ch_libconfig.TF.32) | integer | 0     |
@@ -631,8 +631,8 @@ Table 10. CGI load balancing configuration parameters
 
 Table 11. Serial library configuration parameters
 
-| Purpose              | [Registry section]<br/>Registry name<br/><br/>Environment variable              | Valid values        | Default  |
-|-------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable              | Valid values        | Default  |
+|-------------|---------------------------------------------------------------------------------|---------------------|----------|
 | Skip unknown data members in the input stream, or throw an exception.         | [N/A]<br/>N/A<br/><br/>**`SERIAL_SKIP_UNKNOWN_MEMBERS`**     | CI  [<sup>a</sup>](#ch_libconfig.TF.33): yes, no, never, always               | no (throw)     |
 | If true, causes ***CObjectOStream::WriteDouble()*** to use fast conversion.   | **`[SERIAL]`**<br/>**`FastWriteDouble`**<br/><br/>**`NCBI_CONFIG__SERIAL__FastWriteDouble`**  [<sup>b</sup>](#ch_libconfig.TF.34) | Boolean  [<sup>c</sup>](#ch_libconfig.TF.35)               | true     |
 | While reading binary ASN.1 data allow VisibleString tag where UTF-8 string tag is expected by specification.      | **`[SERIAL]`**<br/>**`READ_ANY_UTF8STRING_TAG`**<br/><br/>**`SERIAL_READ_ANY_UTF8STRING_TAG`**     | Boolean  [<sup>c</sup>](#ch_libconfig.TF.35)               | true     |
@@ -670,8 +670,8 @@ Table 11. Serial library configuration parameters
 
 Table 13. Objects-related configuration parameters
 
-| Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values       | Default                 |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default                 |
+|-----------------|-------------------------------------------------------------------------|---------------|-------------------------|
 | The Object Manager will attach WGS master descriptors to Bioseq data by default. Setting this parameter to false will disable this behavior.         | **`[GENBANK]`**<br/>**`ADD_WGS_MASTER`**<br/><br/>**`GENBANK_ADD_WGS_MASTER`**             | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
 | A non-zero value turns on debugging messages about GenBank loader's interaction with cache. | **`[GENBANK]`**<br/>**`CACHE_DEBUG`**<br/><br/>**`GENBANK_CACHE_DEBUG`**                   | \>=0, currently only zero and non-zero are distinguished | 0    |
 | Specify whether an attempt should be made to recompress the cache.       | **`[GENBANK]`**<br/>**`CACHE_RECOMPRESS`**<br/><br/>**`GENBANK_CACHE_RECOMPRESS`**         | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
@@ -754,7 +754,7 @@ The following parameters tune the behavior of the `sraread` library:
 <a name="ch_libconfig.T.nc_purposeregistry_sect_1"></a>
 
 | Purpose        | [Registry section]<br/>Registry name<br/><br/>Environment variable | Valid values | Default |
-|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|---------|
+|----------------|--------------------------------------------------------------------|--------------|---------|
 | If true, will add CIGAR info to Seq-align's returned by cSRA iterators.      | **`[csra]`**<br/>**`cigar_in_align_ext`**<br/><br/>**`CSRA_CIGAR_IN_ALIGN_EXT`**     | Boolean      | true    |
 | If true, will clip the read ranges returned by cSRA short read iterators according to quality. | **`[csra]`**<br/>**`clip_by_quality`**<br/><br/>**`CSRA_CLIP_BY_QUALITY`**     | Boolean      | true    |
 | If true, will add mate info to Seq-align's returned by cSRA iterators. | **`[csra]`**<br/>**`explicit_mate_info`**<br/><br/>**`CSRA_EXPLICIT_MATE_INFO`**     | Boolean      | false   |
@@ -773,7 +773,7 @@ The following parameters tune the behavior of the `ncbi_xloader_csra` library:
 <a name="ch_libconfig.T.nc_purposeregistry_sect_2"></a>
 
 | Purpose             | [Registry section]<br/>Registry name<br/><br/>Environment variable     | Valid values | Default |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|---------|
+|---------------------|------------------------------------------------------------------------|--------------|---------|
 | If \>= 9, log alignment chunks.<br/>If \>= 5, log major function calls.<br/>If \>= 2, log refseq stats.<br/>If \>= 1, log summary data. | **`[csra_loader]`**<br/>**`debug`**<br/><br/>**`CSRA_LOADER_DEBUG`**   | int    | 0 |
 | The max number of SRR files to keep open.                 | **`[csra_loader]`**<br/>**`gc_size`**<br/><br/>**`CSRA_LOADER_GC_SIZE`**     | size\_t      | 10      |
 | If \> 0, defines the max number of separate spot groups.  | **`[csra_loader]`**<br/>**`max_separate_spot_groups`**<br/><br/>**`CSRA_LOADER_MAX_SEPARATE_SPOT_GROUPS`** | int    | 0 |
@@ -792,8 +792,8 @@ The following parameters tune the behavior of the `ncbi_xloader_csra` library:
 
 Table 14. DBAPI configuration parameters
 
-| Purpose                  | [Registry section]<br/>Registry name<br/><br/>Environment variable            | Valid values          | Default             |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable       | Valid values          | Default       |
+|-------------|--------------------------------------------------------------------------|-----------------------|---------------|
 | If **`RESET_SYBASE`** is true, the Sybase client path will be set to the value in the **`SYBASE`** variable.            | [N/A]<br/>N/A<br/><br/>**`RESET_SYBASE`**                  | Boolean  [<sup>a</sup>](#ch_libconfig.TF.41)                 | (none)              |
 | If **`RESET_SYBASE`** is true, the Sybase client path will be set to the value in the **`SYBASE`** variable.            | [N/A]<br/>N/A<br/><br/>**`SYBASE`**     | a path containing a Sybase client        | (none)              |
 | The version of the TDS protocol to use with the CTLIB driver.  | **`[CTLIB]`**<br/>**`TDS_VERSION`**<br/><br/>**`CTLIB_TDS_VERSION`**          | an installed TDS version                 | 125 (see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NCBI_CTLIB_TDS_VERSION)) |
@@ -836,8 +836,8 @@ See more on MS SQL server [documentation](https://msdn.microsoft.com/en-us/libra
 
 Table 15. eutils library configuration parameters
 
-| Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable | Valid values | Default                  |
-|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable | Valid values | Default               |
+|-------------|--------------------------------------------------------------------|--------------|-----------------------|
 | Specify the base URL for Eutils requests. | **`[Eutils]`**<br/>**`Base_URL`**<br/><br/>**`EUTILS_BASE_URL`**   | a valid URL  | https://www.ncbi.nlm.nih.gov/books/NBK25501/ (see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=kDefaultEUtils_Base_URL)) |
 
 <div class="table-scroll"></div>
@@ -866,7 +866,7 @@ The following sections discuss configuration parameters that are specific to NCB
 Table 16. Common NetCache and NetSchedule client API configuration parameters (netservice\_api)
 
 | Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable                 | Valid values   | Default         |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+|-------------|------------------------------------------------------------------------------------|----------------|-----------------|
 | Fail the request if the network I/O is inactive (blocked waiting for the communication channel to become readable or writable) for more than the specified timeout in seconds. Applies to all socket operations after the initial connection is established (see **`NCBI_CONFIG__NETSERVICE_API__CONNECTION_TIMEOUT`**). Can be overridden by **`NCBI_CONFIG__NETCACHE_API__COMMUNICATION_TIMEOUT`** or **`NCBI_CONFIG__NETSCHEDULE_API__COMMUNICATION_TIMEOUT`**.   | **`[netservice_api]`**<br/>**`communication_timeout`**<br/><br/>**`NCBI_CONFIG__NETSERVICE_API__COMMUNICATION_TIMEOUT`**  [<sup>a</sup>](#ch_libconfig.TF.44) | floating point \>= 0.0 (zero means default)   | 12.0 (see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=COMMUNICATION_TIMEOUT_DEFAULT&d=) for up-to-date default) |
 | The maximum number of times the API will retry a communication command on a socket. Setting connection\_max\_retries to zero will prevent NetCache API from retrying the connection and command execution | **`[netservice_api]`**<br/>**`connection_max_retries`**<br/><br/>**`NCBI_CONFIG__NETSERVICE_API__CONNECTION_MAX_RETRIES`**  [<sup>a</sup>](#ch_libconfig.TF.44)     | unsigned int   | 4               |
 | The timeout in seconds for establishing a **new** connection to a server. Can be overridden by **`NCBI_CONFIG__NETCACHE_API__CONNECTION_TIMEOUT`** or **`NCBI_CONFIG__NETSCHEDULE_API__CONNECTION_TIMEOUT`**.                | **`[netservice_api]`**<br/>**`connection_timeout`**<br/><br/>N/A                   | floating point \> 0.0, millisecond precision, minimum 0.001 (1 millisecond) | 2.0 (see API for up-to-date default)                  |
