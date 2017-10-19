@@ -943,7 +943,7 @@ Table 17. NetCache client API configuration parameters (netcache\_api)
 Table 18. NetSchedule client API configuration parameters (netschedule\_api)
 
 | Purpose           | [Registry section]<br/>Registry name<br/><br/>Environment variable   | Valid values   | Default      |
-|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|--------------|
+|-------------------|----------------------------------------------------------------------|----------------|--------------|
 | Name of the queue (DO NOT use default queue for your application).         | **`[netschedule_api]`**<br/>**`queue_name`**<br/><br/>N/A      | your application's queue name     | (none) |
 | The name of your application, as identified to NetSchedule.                | **`[netschedule_api]`**<br/>**`client_name`**<br/><br/>N/A     | your application's name           | (none) |
 | Can be used to override **`NCBI_CONFIG__NETSERVICE_API__COMMUNICATION_TIMEOUT`**. Please see that entry for details. | **`[netschedule_api]`**<br/>**`communication_timeout`**<br/><br/>N/A | floating point \>= 0.0 (zero means use the default from **`NCBI_CONFIG__NETSERVICE_API__COMMUNICATION_TIMEOUT`**) | 12.0 seconds |
@@ -967,7 +967,7 @@ Table 18. NetSchedule client API configuration parameters (netschedule\_api)
 Table 19. Worker Node configuration parameters
 
 | Purpose           | [Registry section]<br/>Registry name<br/><br/>Environment variable   | Valid values   | Default      |
-|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|--------------|
+|-------------------|----------------------------------------------------------------------|----------------|--------------|
 | Deprecated. | **`[server]`**<br/>**`allow_implicit_job_return`**<br/><br/>**`NCBI_CONFIG__SERVER__ALLOW_IMPLICIT_JOB_RETURN`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | false |
 | Maximum time worker nodes are allowed to live without a single NetSchedule server. | **`[server]`**<br/>**`max_wait_for_servers`**<br/><br/>**`NCBI_CONFIG__SERVER__MAX_WAIT_FOR_SERVERS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | unsigned int | 24 \* 60 \* 60 seconds |
 | Causes the worker node to shut down if any jobs fail. | **`[server]`**<br/>**`stop_on_job_errors`**<br/><br/>**`NCBI_CONFIG__SERVER__STOP_ON_JOB_ERRORS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
@@ -1022,7 +1022,7 @@ The following sections discuss configuration parameters that are specific to sel
 Table 19. seqfetch.cgi application configuration parameters
 
 | Purpose | [Registry section]<br/>Registry name<br/><br/>Environment variable   | Valid values | Default  |
-|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|----------------------|
+|---------|----------------------------------------------------------------------|--------------|----------|
 | Point to the current script.    | **`[SeqFetch]`**<br/>**`Viewer_fcgi_path`**<br/><br/>**`SEQFETCH_VIEWER_FCGI_PATH`**   | a valid path | /sviewer/viewer.fcgi |
 | Name the current load-balanced proxy. | **`[SeqFetch]`**<br/>**`Viewer_fcgi_proxy`**<br/><br/>**`SEQFETCH_VIEWER_FCGI_PROXY`** | a valid proxy name | sviewer\_lb    |
 
