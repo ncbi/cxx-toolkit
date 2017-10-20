@@ -1084,6 +1084,31 @@ You can also look at the [detailed description of LBSMD](ch_app.html#ch_app.Load
 
 You can read about dispatching with LINKERD and NAMERD in [Confluence](https://confluence.ncbi.nlm.nih.gov/display/CT/Dispatching+with+NAMERD+and+LINKERD) (in-house only).
 
+<a name="ch_conn.Finding_servers_for_a_service"></a>
+
+#### Finding servers for a service with NAMERD
+
+You can use NAMERD to find all the currently running servers that support a given service.  Configure your application to use NAMERD - e.g.
+
+    [CONN]
+    DISABLE_LBSMD=1
+    ENABLE_NAMERD=1
+
+Then call `SERV_GetServers()`, for example:
+
+    #include <connect/ncbi_service_cxx.hpp>
+
+    vector<CSERV_Info>  hosts;
+    hosts = SERV_GetServers(sm_Service);
+    if (hosts.size() > 0) {
+        cout << "Hosts for service '" << sm_Service << "':" << endl;
+        for (const auto& h : hosts) {
+            cout << "    " << h.GetHost() << ":" << h.GetPort() << endl;
+        }
+    } else {
+        cout << "No up servers for service '" << sm_Service << "'." << endl;
+    }
+
 <a name="ch_conn.Lbos_Self_Announce_Deannounce"></a>
 
 ### Announcement/deannouncement of servers in LBOS - **DEPRECATED**
