@@ -1133,7 +1133,7 @@ The **`pool_name`** argument is just an arbitrary string. An application could u
     ...
     // Create a pool of four connections (two to one server and two to another)
     // with the default database "DatabaseA"
-    CDB_Connection* con[4];
+    CDB_Connection* con_array[4];
     int i;
     for (i = 4;  i--; ) {
         con[i]= my_context.Connect((i%2 == 0) ? "MyServer1" : "MyServer2",
