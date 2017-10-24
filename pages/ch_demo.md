@@ -8,20 +8,11 @@ nav: pages/ch_demo
 {{ page.title }}
 =====================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 See [Getting Started](ch_start.html) for basic information on using the NCBI C++ Toolkit.
 
-### Chapter Outline
+## Chapter Outline
 
 -   Examples
 
@@ -104,22 +95,22 @@ See [Table 1](#ch_demo.T1).
 
 Table 1. Invocation flags
 
-| Argument     | Value                                             | Effect                                                                                                                                                                                                                        |
-|--------------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `-h`         |                               | Print usage message and exit.                                                                                                                                                                                                 |
-| `-gi N`      | integer                                           | GenInfo ID of sequence to look up.                                                                                                                                                                                            |
-| `-fmt fmt`   | [format type](#ch_demo.id1_fetch.html_ref_fmt)    | Output data format; default is `asn` (ASN.1 text).                                                                                                                                                                            |
-| `-out file`  | filename                                          | Write output to specified file rather than stdout.                                                                                                                                                                            |
-| `-log file`  | filename                                          | Write errors and messages to specified file rather than stderr.                                                                                                                                                               |
-| `-db str`    | string                                            | Use specified database. **Mandatory for** [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) **queries**, where it is normally either Nucleotide or Protein. Also specifies satellite database for sequence-entry lookups. |
-| `-ent N`     | integer                                           | Dump specified subentity. Only relevant for sequence-entry lookups.                                                                                                                                                           |
-| `-lt type`   | [lookup type](#ch_demo.id1_fetch.html_ref_lt)     | Type of lookup; default is `entry` (sequence entry).                                                                                                                                                                          |
-| `-in file`   | filename                                          | Read sequence IDs from file rather than command line. May contain raw GI IDs, [flattened IDs](#ch_demo.id1_fetch.html_ref_flat), and [FASTA-format IDs](#ch_demo.id1_fetch.html_ref_fasta).                                   |
-| `-maxplex m` | [complexity](#ch_demo.id1_fetch.html_ref_maxplex) | Maximum output complexity level; default is `entry` (entire entry).                                                                                                                                                           |
-| `-flat id`   | [flat ID](#ch_demo.id1_fetch.html_ref_flat)       | Flattened ID of sequence to look up.                                                                                                                                                                                          |
-| `-fasta id`  | [FASTA ID](#ch_demo.id1_fetch.html_ref_fasta)     | [FASTA](http://blast.ncbi.nlm.nih.gov/blast/fasta.shtml)-style ID of sequence to look up.                                                                                                                                     |
-| `-query str` | string                                            | Generate ID list from specified [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) query.                                                                                                                                  |
-| `-qf file`   | file                                              | Generate ID list from [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) query in specified file.                                                                                                                          |
+| Argument     | Value   | Effect   |
+|--------------|---------|----------|
+| `-h`   | | Print usage message and exit.                  |
+| `-gi N`      | integer | GenInfo ID of sequence to look up.             |
+| `-fmt fmt`   | [format type](#ch_demo.id1_fetch.html_ref_fmt)    | Output data format; default is `asn` (ASN.1 text).                |
+| `-out file`  | filename      | Write output to specified file rather than stdout.                |
+| `-log file`  | filename      | Write errors and messages to specified file rather than stderr.   |
+| `-db str`    | string  | Use specified database. **Mandatory for** [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) **queries**, where it is normally either Nucleotide or Protein. Also specifies satellite database for sequence-entry lookups. |
+| `-ent N`     | integer | Dump specified subentity. Only relevant for sequence-entry lookups.                  |
+| `-lt type`   | [lookup type](#ch_demo.id1_fetch.html_ref_lt)     | Type of lookup; default is `entry` (sequence entry).              |
+| `-in file`   | filename      | Read sequence IDs from file rather than command line. May contain raw GI IDs, [flattened IDs](#ch_demo.id1_fetch.html_ref_flat), and [FASTA-format IDs](#ch_demo.id1_fetch.html_ref_fasta).     |
+| `-maxplex m` | [complexity](#ch_demo.id1_fetch.html_ref_maxplex) | Maximum output complexity level; default is `entry` (entire entry).                  |
+| `-flat id`   | [flat ID](#ch_demo.id1_fetch.html_ref_flat) | Flattened ID of sequence to look up.           |
+| `-fasta id`  | [FASTA ID](#ch_demo.id1_fetch.html_ref_fasta)     | [FASTA](https://blast.ncbi.nlm.nih.gov/blast/fasta.shtml)-style ID of sequence to look up.               |
+| `-query str` | string  | Generate ID list from specified [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) query.            |
+| `-qf file`   | file    | Generate ID list from [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) query in specified file.    |
 
 <div class="table-scroll"></div>
 
@@ -135,16 +126,16 @@ The possible values of the `-fmt` argument are shown in [Table 2](#ch_demo.T2).
 
 Table 2. Output data formats
 
-| Value   | Format                                                                                                                             | Comments                                                         |
-|---------|------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| asn     | ASN.1 text (default)                                                                                                               |                                              |
-| asnb    | ASN.1 binary                                                                                                                       |                                              |
-| docsum  | [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) document summary                                                             | Lookup type is irrelevant.                                       |
-| fasta   | [FASTA](http://blast.ncbi.nlm.nih.gov/blast/fasta.shtml)                                                                           | Produces state as simple text; produces history in tabular form. |
-| genbank | [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)[flat-file format](https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html) | Lookup type must be entry (default).                             |
-| genpept | GenPept flat-file format                                                                                                           | Lookup type must be entry (default).                             |
-| quality | Quality scores                                                                                                                     | Lookup type must be entry (default); data not always available.  |
-| xml     | XML                                                                                                                                | Isomorphic to ASN.1 output.                                      |
+| Value   | Format       | Comments               |
+|---------|--------------|------------------------|
+| asn     | ASN.1 text (default)            |    |
+| asnb    | ASN.1 binary |    |
+| docsum  | [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK21081/) document summary                   | Lookup type is irrelevant.   |
+| fasta   | [FASTA](https://blast.ncbi.nlm.nih.gov/blast/fasta.shtml)              | Produces state as simple text; produces history in tabular form. |
+| genbank | [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)[flat-file format](https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html) | Lookup type must be entry (default).     |
+| genpept | GenPept flat-file format        | Lookup type must be entry (default).     |
+| quality | Quality scores                  | Lookup type must be entry (default); data not always available.  |
+| xml     | XML          | Isomorphic to ASN.1 output.  |
 
 <div class="table-scroll"></div>
 
@@ -158,14 +149,14 @@ The possible values of the `-lt` argument are shown in [Table 3](#ch_demo.T3).
 
 Table 3. Lookup types
 
-| Value     | Description                                            |
-|-----------|--------------------------------------------------------|
-| entry     | The actual sequence entry (default)                    |
-| history   | Summary of changes to the sequence data                |
-| ids       | All of the sequence's IDs                              |
-| none      | Just the GI ID                                         |
+| Value     | Description  |
+|-----------|--------------|
+| entry     | The actual sequence entry (default)  |
+| history   | Summary of changes to the sequence data    |
+| ids | All of the sequence's IDs      |
+| none      | Just the GI ID     |
 | revisions | Summary of changes to the sequence data or annotations |
-| state     | The sequence's status                                  |
+| state     | The sequence's status    |
 
 <div class="table-scroll"></div>
 
@@ -179,13 +170,13 @@ The possible values of the `-maxplex` argument are shown in [Table 4](#ch_demo.T
 
 Table 4. Maximum output complexity level values
 
-| Value      | Description                 |
-|------------|-----------------------------|
+| Value      | Description     |
+|------------|-----------------|
 | bioseq     | Just the bioseq of interest |
-| bioseq-set | Minimal bioseq-set          |
+| bioseq-set | Minimal bioseq-set    |
 | entry      | Entire entry (default)      |
-| nuc-prot   | Minimal nuc-prot            |
-| pub-set    | Minimal pub-set             |
+| nuc-prot   | Minimal nuc-prot      |
+| pub-set    | Minimal pub-set |
 
 <div class="table-scroll"></div>
 
@@ -253,30 +244,30 @@ This format consists of a two- or three-letter tag indicating the ID's type, fol
 
 Table 5. FASTA sequence ID format values
 
-| Type                                                                                | Format(s) [<sup>1</sup>](#ch_demo.TF.1)                                        | Example(s)                                                         |
-|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| local                                                                               | `lcl\|integer`<br/>`lcl\|string`                     | `lcl\|123`<br/>`lcl\|hmm271`             |
-| GenInfo backbone seqid                                                              | `bbs\|integer`                                                                 | `bbs\|123`                                                         |
-| GenInfo backbone moltype                                                            | `bbm\|integer`                                                                 | `bbm\|123`                                                         |
-| GenInfo import ID                                                                   | `gim\|integer`                                                                 | `gim\|123`                                                         |
-| [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)                           | `gb\|accession\|locus`                                                         | `gb\|M73307\|AGMA13GT`                                             |
-| [EMBL](http://www.embl-heidelberg.de)                                               | `emb\|accession\|locus`                                                        | `emb\|CAM43271.1\|`                                                |
-| [PIR](http://pir.georgetown.edu)                                                    | `pir\|accession\|name`                                                         | `pir\|\|G36364`                                                    |
-| [SWISS-PROT](http://www.ebi.ac.uk/swissprot)                                        | `sp\|accession\|name`                                                          | `sp\|P01013\|OVAX_CHICK`                                           |
-| patent                                                                              | `pat\|country\|patent\|sequence`                                               | `pat\|US\|RE33188\|1`                                              |
-| pre-grant patent                                                                    | `pgp\|country\|application-number\|seq-number`                                 | `pgp\|EP\|0238993\|7`                                              |
-| [RefSeq](https://www.ncbi.nlm.nih.gov/projects/RefSeq) [<sup>2</sup>](#ch_demo.TF.2) | `ref\|accession\|name`                                                         | `ref\|NM_010450.1\|`                                               |
-| general database reference                                                          | `gnl\|database\|integer`<br/>`gnl\|database\|string` | `gnl\|taxon\|9606`<br/>`gnl\|PID\|e1632` |
-| GenInfo integrated database                                                         | `gi\|integer`                                                                  | `gi\|21434723`                                                     |
-| [DDBJ](http://www.ddbj.nig.ac.jp)                                                   | `dbj\|accession\|locus`                                                        | `dbj\|BAC85684.1\|`                                                |
-| [PRF](http://www.prf.or.jp)                                                         | `prf\|accession\|name`                                                         | `prf\|\|0806162C`                                                  |
-| [PDB](http://www.rcsb.org/pdb)                                                      | `pdb\|entry\|chain`                                                            | `pdb\|1I4L\|D`                                                     |
-| third-party [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)               | `tpg\|accession\|name`                                                         | `tpg\|BK003456\|`                                                  |
-| third-party [EMBL](http://www.embl-heidelberg.de)                                   | `tpe\|accession\|name`                                                         | `tpe\|BN000123\|`                                                  |
-| third-party [DDBJ](http://www.ddbj.nig.ac.jp)                                       | `tpd\|accession\|name`                                                         | `tpd\|FAA00017\|`                                                  |
-| TrEMBL                                                                              | `tr\|accession\|name`                                                          | `tr\|Q90RT2\|Q90RT2_9HIV1`                                         |
-| genome pipeline [<sup>3</sup>](#ch_demo.TF.3)                                       | `gpp\|accession\|name`                                                         | `gpp\|GPC_123456789\|`                                             |
-| named annotation track [<sup>3</sup>](#ch_demo.TF.3)                                | `nat\|accession\|name`                                                         | `nat\|AT_123456789.1\|`                                            |
+| Type                   | Format(s) [<sup>1</sup>](#ch_demo.TF.1)    | Example(s)               |
+|------------------------|--------------------------------------------|--------------------------|
+| local                  | `lcl\|integer`<br/>`lcl\|string`           | `lcl\|123`<br/>`lcl\|hmm271` |
+| GenInfo backbone seqid | `bbs\|integer`                             | `bbs\|123`               |
+| GenInfo backbone moltype                  | `bbm\|integer`          | `bbm\|123`               |
+| GenInfo import ID      | `gim\|integer`    | `gim\|123`               |
+| [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)   | `gb\|accession\|locus`               | `gb\|M73307\|AGMA13GT`   |
+| [EMBL](http://www.embl-heidelberg.de)     | `emb\|accession\|locus`              | `emb\|CAM43271.1\|`      |
+| [PIR](http://pir.georgetown.edu)          | `pir\|accession\|name`               | `pir\|\|G36364`          |
+| [SWISS-PROT](http://www.ebi.ac.uk/swissprot)    | `sp\|accession\|name`                | `sp\|P01013\|OVAX_CHICK` |
+| patent                 | `pat\|country\|patent\|sequence`     | `pat\|US\|RE33188\|1`    |
+| pre-grant patent       | `pgp\|country\|application-number\|seq-number`   | `pgp\|EP\|0238993\|7`    |
+| [RefSeq](https://www.ncbi.nlm.nih.gov/projects/RefSeq) [<sup>2</sup>](#ch_demo.TF.2) | `ref\|accession\|name`               | `ref\|NM_010450.1\|`     |
+| general database reference                | `gnl\|database\|integer`<br/>`gnl\|database\|string` | `gnl\|taxon\|9606`<br/>`gnl\|PID\|e1632` |
+| GenInfo integrated database               | `gi\|integer`     | `gi\|21434723`           |
+| [DDBJ](http://www.ddbj.nig.ac.jp)         | `dbj\|accession\|locus`              | `dbj\|BAC85684.1\|`      |
+| [PRF](http://www.prf.or.jp)               | `prf\|accession\|name`               | `prf\|\|0806162C`        |
+| [PDB](http://www.rcsb.org/pdb)            | `pdb\|entry\|chain`                  | `pdb\|1I4L\|D`           |
+| third-party [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)   | `tpg\|accession\|name`               | `tpg\|BK003456\|`        |
+| third-party [EMBL](http://www.embl-heidelberg.de)     | `tpe\|accession\|name`               | `tpe\|BN000123\|`        |
+| third-party [DDBJ](http://www.ddbj.nig.ac.jp)   | `tpd\|accession\|name`               | `tpd\|FAA00017\|`        |
+| TrEMBL                 | `tr\|accession\|name`                | `tr\|Q90RT2\|Q90RT2_9HIV1`     |
+| genome pipeline [<sup>3</sup>](#ch_demo.TF.3)   | `gpp\|accession\|name`               | `gpp\|GPC_123456789\|`   |
+| named annotation track [<sup>3</sup>](#ch_demo.TF.3)  | `nat\|accession\|name`               | `nat\|AT_123456789.1\|`  |
 
 <div class="table-scroll"></div>
 

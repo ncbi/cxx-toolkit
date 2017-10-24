@@ -7,7 +7,7 @@ nav: index
 {{ page.title }}
 =========================
 
-National Center for Biotechnology Information (US): Bethesda (MD); 2004.
+National Center for Biotechnology Information (US): Bethesda (MD); 2004-2018.
 
 Contents
 --------
@@ -29,7 +29,7 @@ Contents
     -   [Database Access Support](pages/ch_dbapi)
     -   [CGI and Fast-CGI](pages/ch_cgi)
     -   [HTML](pages/ch_html)
-    -   [Tabular data processing](pages/ch_tabular) 
+    -   [Row-based data processing (TSV, CSV, etc.)](pages/ch_tabular) 
     -   [Data compression (ZIP, GZIP, BZip2, LZO)](pages/ch_compress) 
     -   [Data Serialization (ASN.1, XML, JSON)](pages/ch_ser)
     -   [Biological Sequence Data Model](pages/ch_datamod)

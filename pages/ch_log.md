@@ -55,6 +55,8 @@ The following topics are discussed in this section:
 
 -   [Logging Requests](#ch_core.Logging_Requests)
 
+-   [Using subhit IDs to express call tree hierarchy](#ch_core.Request_Exit_Status_Codes)
+
 -   [Request Exit Status Codes](#ch_core.Request_Exit_Status_Codes)
 
     -   [Standard (HTTP-like) status codes](#ch_core.Standard_HTTPlike_status_codes)
@@ -407,9 +409,9 @@ A log file using new format is a binary file containing messages separated with 
 
 | Original byte | Encoded sequence |
 |---------------|------------------|
-| 0x0A (\n)     | 0x0B (\v)        |
-| 0x0B          | 0xFF 0x0B        |
-| 0xFF          | 0xFF 0xFF        |
+| 0x0A (\n)     | 0x0B (\v)  |
+| 0x0B    | 0xFF 0x0B  |
+| 0xFF    | 0xFF 0xFF  |
 
 ***Note:***
 
@@ -423,22 +425,22 @@ The new format for the application log and error postings is:
 
 Fields in the new post format:
 
-| Field       | Description                                                                                           | Width                                         | Type or format                                                                                                                                                       |
+| Field | Description           | Width     | Type or format              |
 |-------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pid         | Process ID                                                                                            | ≥ 5                                           | Uint8 (decimal)                                                                                                                                                      |
-| tid         | Thread ID                                                                                             | ≥ 3                                           | Uint8 (decimal)                                                                                                                                                      |
-| rid         | Request ID (e.g. iteration number for a CGI)                                                          | ≥ 4                                           | int (decimal)                                                                                                                                                        |
-| state       | Application state code                                                                                | 2                                             | string                                                                                                                                                               |
-| guid        | [Globally unique process ID](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_CreateUID) | 16                                            | Int8 (hexadecimal)                                                                                                                                                   |
-| psn         | Serial number of the posting within the process                                                       | ≥ 4                                           | int (decimal)                                                                                                                                                        |
-| tsn         | Serial number of the posting within the thread                                                        | ≥ 4                                           | int (decimal)                                                                                                                                                        |
-| time        | Astronomical date and time at which the message was posted                                            | ≥ 23<br/>(often 26) | `YYYY-MM-DDThh:mm:ss.sss[sss[sss]]`<br/>While seconds typically have six digits after the decimal, there could be more or as few as three. |
-| host        | Name of the host where the process runs                                                               | 15                                            | string (UNK\_HOST if unknown)                                                                                                                                        |
-| client      | Client IP address                                                                                     | 15                                            | valid IP address string (UNK\_CLIENT if unknown)                                                                                                                     |
-| session     | Session ID                                                                                            | ≥ 24                                          | string (UNK\_SESSION if unknown)                                                                                                                                     |
-| application | Name of the application (see note below)                                                              | varies                                        | string (UNK\_APP if unknown)                                                                                                                                         |
-| event       | What was happening to cause the post (e.g. app start)                                                 | 13                                            | string (see the [Events and Messages](#ch_core.Events_and_Messages) section)                                                                                         |
-| message     | The logged message                                                                                    | varies                                        | string (see the [Events and Messages](#ch_core.Events_and_Messages) section)                                                                                         |
+| pid   | Process ID            | ≥ 5 | Uint8 (decimal)             |
+| tid   | Thread ID             | ≥ 3 | Uint8 (decimal)             |
+| rid   | Request ID (e.g. iteration number for a CGI)                | ≥ 4 | int (decimal)               |
+| state | Application state code                   | 2   | string   |
+| guid  | [Globally unique process ID](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_CreateUID) | 16  | Int8 (hexadecimal)          |
+| psn   | Serial number of the posting within the process             | ≥ 4 | int (decimal)               |
+| tsn   | Serial number of the posting within the thread              | ≥ 4 | int (decimal)               |
+| time  | Astronomical date and time at which the message was posted  | ≥ 23<br/>(often 26) | `YYYY-MM-DDThh:mm:ss.sss[sss[sss]]`<br/>While seconds typically have six digits after the decimal, there could be more or as few as three. |
+| host  | Name of the host where the process runs  | 15  | string (UNK\_HOST if unknown)                  |
+| client      | Client IP address     | 15  | valid IP address string (UNK\_CLIENT if unknown)                  |
+| session     | Session ID            | ≥ 24      | string (UNK\_SESSION if unknown)               |
+| application | Name of the application (see note below) | varies    | string (UNK\_APP if unknown)                   |
+| event | What was happening to cause the post (e.g. app start)       | 13  | string (see the [Events and Messages](#ch_core.Events_and_Messages) section)         |
+| message     | The logged message    | varies    | string (see the [Events and Messages](#ch_core.Events_and_Messages) section)         |
 
 <div class="table-scroll"></div>
 
@@ -468,14 +470,14 @@ For more details, see:
 
 Application state codes:
 
-| Application State Code | Meaning                                     |
+| Application State Code | Meaning |
 |------------------------|---------------------------------------------|
-| `PB` (or `AB`)         | program is starting                         |
-| `P` (or `A`)           | program is running (outside of any request) |
-| `PE` (or `AE`)         | program is exiting                          |
-| `RB`                   | request is starting                         |
-| `R`                    | request is being processed                  |
-| `RE`                   | request is exiting                          |
+| `PB` (or `AB`)   | program is starting |
+| `P` (or `A`)     | program is running (outside of any request) |
+| `PE` (or `AE`)   | program is exiting  |
+| `RB` | request is starting |
+| `R`  | request is being processed      |
+| `RE` | request is exiting  |
 
 <div class="table-scroll"></div>
 
@@ -527,11 +529,11 @@ The `<event> <message>` portion of the log output will contain:
 
 Application stop event - message sub-fields:
 
-| Sub-field     | Description                                          |
-|---------------|------------------------------------------------------|
-| `exit_code`   | Application exit code (zero if not set)              |
-| `timespan`    | Application execution time                           |
-| `exit_signal` | Signal number, if application exited due to a signal |
+| Sub-field     | Description   |
+|---------------|---------------------------------------------------------|
+| `exit_code`   | Application exit code (zero if not set)     |
+| `timespan`    | Application execution time (in seconds; floating-point) |
+| `exit_signal` | Signal number, if application exited due to a signal    |
 
 <div class="table-scroll"></div>
 
@@ -571,7 +573,7 @@ The message field for the `extra` event has the same format as the message field
 
 The `<event> <message>` portion of the log output will contain:
 
-    request-stop <status> <request_timespan> [bytes_read] [bytes_written]
+    request-stop <status> <req_timespan> [bytes_read] [bytes_written]
 
 The message sub-fields for `request-stop` events are:
 
@@ -579,12 +581,12 @@ The message sub-fields for `request-stop` events are:
 
 Request stop event - message sub-fields:
 
-| Sub-field       | Description                                                                        |
+| Sub-field | Description           |
 |-----------------|------------------------------------------------------------------------------------|
-| `status`        | [Exit status of the request](#ch_core.Request_Exit_Status_Codes) (zero if not set) |
-| `timespan`      | Request execution time (zero if not set)                                           |
-| `bytes_read`    | Input data read during the request execution, in bytes (zero if not set)           |
-| `bytes_written` | Output data written during the request execution, in bytes (zero if not set)       |
+| `status`  | [Exit status of the request](#ch_core.Request_Exit_Status_Codes) (zero if not set) |
+| `req_timespan`  | Request execution time (zero if not set; in seconds, floating-point)   |
+| `bytes_read`    | Input data read during the request execution, in bytes (zero if not set)     |
+| `bytes_written` | Output data written during the request execution, in bytes (zero if not set) |
 
 <div class="table-scroll"></div>
 
@@ -606,18 +608,18 @@ Thus, the `<event>` field is really just the diagnostic message severity, and th
 
 Diagnostic message event / severity field - message sub-fields:
 
-| Field or sub-field        | Description                                                                                                                                                                         |
+| Field or sub-field  | Description             |
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `event` / `severity`      | Diagnostic message severity = { Trace \\| Info \\| Warning \\| Error \\| Critical \\| Fatal \\| Message[T\\|I\\|W\\|E\\|C\\|F] } - left-justified and space-padded to 10 characters |
-| `module`                  | Module where the post originates from (in most cases the module corresponds to a single library)                                                                                    |
-| `err_code`, `err_subcode` | Numeric error code and subcode                                                                                                                                                      |
-| `err_text`                | If the error has no numeric code, sometimes it can be represented as text                                                                                                           |
-| `file`, `line`            | File name and line number where the posting occured                                                                                                                                 |
-| `class`, `func`           | Class and/or function name where the posting occured: {Class:: \\| Class::Function() \\| ::Function()}                                                                              |
-| `prefixes`                | User-defined prefixes for the message                                                                                                                                               |
-| `user_message`            | The message itself                                                                                                                                                                  |
-| `err_code_message`        | Short error code description                                                                                                                                                        |
-| `err_code_explanation`    | Detailed explanation of the error code                                                                                                                                              |
+| `module`      | Module where the post originates from (in most cases the module corresponds to a single library)    |
+| `err_code`, `err_subcode` | Numeric error code and subcode             |
+| `err_text`    | If the error has no numeric code, sometimes it can be represented as text        |
+| `file`, `line`      | File name and line number where the posting occured           |
+| `class`, `func`     | Class and/or function name where the posting occured: {Class:: \\| Class::Function() \\| ::Function()}                 |
+| `prefixes`    | User-defined prefixes for the message      |
+| `user_message`      | The message itself      |
+| `err_code_message`  | Short error code description               |
+| `err_code_explanation`    | Detailed explanation of the error code     |
 
 <div class="table-scroll"></div>
 
@@ -635,10 +637,10 @@ The message sub-fields for `perf` events are:
 
 Performance logging event - message sub-fields:
 
-| Sub-field                | Description                                                                                                                                    |
+| Sub-field    | Description              |
 |--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| `exit_code`              | Application exit code (zero if not set)                                                                                                        |
-| `timespan`               | Application execution time                                                                                                                     |
+| `exit_code`  | Application exit code (zero if not set)     |
+| `timespan`   | Application execution time                  |
 | `performance_parameters` | URL-encoded name=value pairs -- the resource name given to the logger, the status message (if given), and any others from ***AddParameter()*** |
 
 <div class="table-scroll"></div>
@@ -790,7 +792,7 @@ Sometimes it is helpful to generate human-readable diagnostics on the console in
 
 <a name="ch_core.T.nc_severityformatlog_fileerror"></a>
 
-| Destination | Severity | Format                                                 |
+| Destination | Severity | Format       |
 |-------------|----------|--------------------------------------------------------|
 | Log File    | Error    | [new](#ch_core.The_New_Post_Format) (machine-parsable) |
 | Console     | Warning  | [old](#ch_core.The_Old_Post_Format) (human-readable)   |
@@ -801,12 +803,12 @@ To set up this sort of tee, set these configuration parameters (see the [library
 
 <a name="ch_core.T.nc_configuration_parameterexam"></a>
 
-| Configuration Parameter     | Example Value | Notes                                                            |
+| Configuration Parameter     | Example Value | Notes                  |
 |-----------------------------|---------------|------------------------------------------------------------------|
-| **`DIAG_TEE_TO_STDERR`**    | True          | This turns on the tee.                                           |
-| **`DIAG_OLD_POST_FORMAT`**  | False         | This makes the log file use the new format.                      |
-| **`DIAG_POST_LEVEL`**       | Error         | This sets the minimum severity required to post to the log file. |
-| **`DIAG_TEE_MIN_SEVERITY`** | Warning       | This sets the minimum severity required to post to the console.  |
+| **`DIAG_TEE_TO_STDERR`**    | True    | This turns on the tee. |
+| **`DIAG_OLD_POST_FORMAT`**  | False   | This makes the log file use the new format.    |
+| **`DIAG_POST_LEVEL`** | Error   | This sets the minimum severity required to post to the log file. |
+| **`DIAG_TEE_MIN_SEVERITY`** | Warning | This sets the minimum severity required to post to the console.  |
 
 <div class="table-scroll"></div>
 
@@ -879,6 +881,10 @@ The request handler should ensure that each request-start has a corresponding re
 
 <a name="ch_core.Request_Exit_Status_Codes"></a>
 
+### Using subhit IDs to express call tree hierarchy
+
+See [here](https://confluence.ncbi.nlm.nih.gov/display/DO/Developer+Guidance%3A+Correctly+logging+service+calls).
+
 ### Request Exit Status Codes
 
 This section describes the possible values of the request exit codes used in NCBI. They appear in the application access log as:
@@ -905,13 +911,13 @@ The NCBI-specific status codes must be different from the [standard (HTTP) statu
 
 <a name="ch_core.T.nc_rangedescription120__199inf"></a>
 
-| Range     | Description                        |
+| Range     | Description      |
 |-----------|------------------------------------|
 | 120 – 199 | Informational/provisional response |
-| 220 – 299 | Success                            |
-| 320 – 399 | Redirection                        |
-| 420 – 499 | Bad request (client error)         |
-| 520 – 599 | Server Error                       |
+| 220 – 299 | Success    |
+| 320 – 399 | Redirection      |
+| 420 – 499 | Bad request (client error)   |
+| 520 – 599 | Server Error     |
 
 <div class="table-scroll"></div>
 
@@ -919,10 +925,12 @@ So far we have the following NCBI specific status codes:
 
 <a name="ch_core.T.nc_valuedescription0unknown_er"></a>
 
-| Value        | Description                                                                                                              |
+| Value  | Description           |
 |--------------|--------------------------------------------------------------------------------------------------------------------------|
-| 0            | Unknown error                                                                                                            |
-| 555          | NCBI Network Dispatcher refused a request from and outside user which is in its "abusers list"                           |
+| 0      | Unknown error         |
+| 299    | Broken connection while serving partial-content request (usually expected)  |
+| 499    | Broken connection while serving regular request (usually unexpected, indicates n/w, communication protocol or cliend-side problem)         |
+| 555    | NCBI Network Dispatcher refused a request from and outside user which is in its "abusers list"   |
 | 1000 + errno | Unclassifiable server error when only errno is known (NOTE: the value of errno can be different on different platforms!) |
 
 <div class="table-scroll"></div>

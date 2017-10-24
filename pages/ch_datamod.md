@@ -8,16 +8,7 @@ nav: pages/ch_datamod
 {{ page.title }}
 =================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter describes the NCBI Biological Sequence Data Model, with emphasis on the ASN.1 files and C++ API. ASN.1 type names and the corresponding C++ class or data member names are used almost interchangeably throughout the chapter. Another good source of information about the NCBI data model is:
 
@@ -25,7 +16,7 @@ This chapter describes the NCBI Biological Sequence Data Model, with emphasis on
 
 > Bioinformatics<br/>A Practical Guide to the Analysis of Genes and Proteins<br/>Second Edition (2001)<br/>Edited by Andreas D. Baxevanis, B. F. Francis Ouellette<br/>ISBN 0-471-38391-0<br/><br/>Chapter 2 - The NCBI Data Model
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -232,7 +223,7 @@ A Seq-align is considered to be a SEQUENCE OF segments. Each segment is an unbro
         id=100        AAGGCCTTTTAGAGATGATGATGATGATGA
         id=200        AAGGCCTaTTAG.......GATGATGATGA
         id=300        ....CCTTTTAGAGATGATGAT....ATGA
-                      | 1 |   2   |   3  | 4| 5 | 6 |  Segments
+    | 1 |   2   |   3  | 4| 5 | 6 |  Segments
 
 [![Image ch\_datamod\_G3.jpg](/cxx-toolkit/static/img/ch_datamod_G3.jpg)](/cxx-toolkit/static/img/ch_datamod_G3.jpg "Click to see the full-resolution image")
 
@@ -866,32 +857,32 @@ The C++ implementation of [CSeq\_descr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox
 <a name="ch_datamod.T3"></a>
 
 |-----------|-----------------|----------------------------------------------------|
-| **Value** | **Name**        | **Explanation**                                    |
-| 0         | e\_not\_set     | choice not set                                     |
-| 1         | e\_Mol\_type    | role of molecule in life                           |
-| 2         | e\_Modif        | modifying keywords of mol-type                     |
-| 3         | e\_Method       | protein sequencing method used                     |
-| 4         | e\_Name         | a commonly used name (e.g. "SV40")                 |
-| 5         | e\_Title        | a descriptive title or definition                  |
-| 6         | e\_Org          | (single) organism from which mol comes             |
-| 7         | e\_Comment      | descriptive comment (may have many)                |
-| 8         | e\_Num          | a numbering system for whole Bioseq                |
-| 9         | e\_Maploc       | a map location from a mapping database             |
-| 10        | e\_Pir          | PIR specific data                                  |
-| 11        | e\_Genbank      | GenBank flatfile specific data                     |
-| 12        | e\_Pub          | Publication citation and descriptive info from pub |
-| 13        | e\_Region       | name of genome region (e.g. B-globin cluster)      |
-| 14        | e\_User         | user defined data object for any purpose           |
-| 15        | e\_Sp           | SWISSPROT specific data                            |
-| 16        | e\_Dbxref       | cross reference to other databases                 |
-| 17        | e\_Embl         | EMBL specific data                                 |
-| 18        | e\_Create\_date | date entry was created by source database          |
-| 19        | e\_Update\_date | date entry last updated by source database         |
-| 20        | e\_Prf          | PRF specific data                                  |
-| 21        | e\_Pdb          | PDB specific data                                  |
-| 22        | e\_Het          | heterogen: non-Bioseq atom/molecule                |
-| 23        | e\_Source       | source of materials, includes Org-ref              |
-| 24        | e\_Molinfo      | info on the molecule and techniques                |
+| **Value** | **Name**  | **Explanation**      |
+| 0   | e\_not\_set     | choice not set |
+| 1   | e\_Mol\_type    | role of molecule in life   |
+| 2   | e\_Modif  | modifying keywords of mol-type   |
+| 3   | e\_Method | protein sequencing method used   |
+| 4   | e\_Name   | a commonly used name (e.g. "SV40")     |
+| 5   | e\_Title  | a descriptive title or definition      |
+| 6   | e\_Org    | (single) organism from which mol comes |
+| 7   | e\_Comment      | descriptive comment (may have many)    |
+| 8   | e\_Num    | a numbering system for whole Bioseq    |
+| 9   | e\_Maploc | a map location from a mapping database |
+| 10  | e\_Pir    | PIR specific data    |
+| 11  | e\_Genbank      | GenBank flatfile specific data   |
+| 12  | e\_Pub    | Publication citation and descriptive info from pub |
+| 13  | e\_Region | name of genome region (e.g. B-globin cluster)      |
+| 14  | e\_User   | user defined data object for any purpose     |
+| 15  | e\_Sp     | SWISSPROT specific data    |
+| 16  | e\_Dbxref | cross reference to other databases     |
+| 17  | e\_Embl   | EMBL specific data   |
+| 18  | e\_Create\_date | date entry was created by source database    |
+| 19  | e\_Update\_date | date entry last updated by source database   |
+| 20  | e\_Prf    | PRF specific data    |
+| 21  | e\_Pdb    | PDB specific data    |
+| 22  | e\_Het    | heterogen: non-Bioseq atom/molecule    |
+| 23  | e\_Source | source of materials, includes Org-ref  |
+| 24  | e\_Molinfo      | info on the molecule and techniques    |
 
 <div class="table-scroll"></div>
 
@@ -914,35 +905,35 @@ The modifier concept permits a lot of flexibility. So a peptide with GIBB-mod = 
 <a name="ch_datamod.T4"></a>
 
 |-----------|----------------------------|--------------------------------------------------------------------------------------------------------------------|
-| **Value** | **Name**                   | **Explanation**                                                                                                    |
-| 0         | eGIBB\_mod\_dna            | molecule is DNA in life                                                                                            |
-| 1         | eGIBB\_mod\_rna            | molecule is RNA in life                                                                                            |
-| 2         | eGIBB\_mod\_extrachrom     | molecule is extrachromosomal                                                                                       |
-| 3         | eGIBB\_mod\_plasmid        | molecule is or is from a plasmid                                                                                   |
-| 4         | eGIBB\_mod\_mitochondrial  | molecule is from mitochondrion                                                                                     |
-| 5         | eGIBB\_mod\_chloroplast    | molecule is from chloroplast                                                                                       |
-| 6         | eGIBB\_mod\_kinetoplast    | molecule is from kinetoplast                                                                                       |
-| 7         | eGIBB\_mod\_cyanelle       | molecule is from cyanelle                                                                                          |
-| 8         | eGIBB\_mod\_synthetic      | molecule was synthesized artificially                                                                              |
-| 9         | eGIBB\_mod\_recombinant    | molecule was formed by recombination                                                                               |
-| 10        | eGIBB\_mod\_partial        | not a complete sequence for molecule                                                                               |
-| 11        | eGIBB\_mod\_complete       | sequence covers complete molecule                                                                                  |
-| 12        | eGIBB\_mod\_mutagen        | molecule subjected to mutagenesis                                                                                  |
-| 13        | eGIBB\_mod\_natmut         | molecule is a naturally occurring mutant                                                                           |
-| 14        | eGIBB\_mod\_transposon     | molecule is a transposon                                                                                           |
-| 15        | eGIBB\_mod\_insertion\_seq | molecule is an insertion sequence                                                                                  |
-| 16        | eGIBB\_mod\_no\_left       | partial molecule is missing left end <br/>5' end for nucleic acid, NH3 end for peptide   |
-| 17        | eGIBB\_mod\_no\_right      | partial molecule is missing right end <br/>3' end for nucleic acid, COOH end for peptide |
-| 18        | eGIBB\_mod\_macronuclear   | molecule is from macronucleus                                                                                      |
-| 19        | eGIBB\_mod\_proviral       | molecule is an integrated provirus                                                                                 |
-| 20        | eGIBB\_mod\_est            | molecule is an expressed sequence tag                                                                              |
-| 21        | eGIBB\_mod\_sts            | sequence tagged site                                                                                               |
-| 22        | eGIBB\_mod\_survey         | one pass survey sequence                                                                                           |
-| 23        | eGIBB\_mod\_chromoplast    |                                                                                                |
-| 24        | eGIBB\_mod\_genemap        | genetic map                                                                                                        |
-| 25        | eGIBB\_mod\_restmap        | ordered restriction map                                                                                            |
-| 26        | eGIBB\_mod\_physmap        | physical map (not ordered restriction map)                                                                         |
-| 255       | eGIBB\_mod\_other          |                                                                                                |
+| **Value** | **Name** | **Explanation** |
+| 0   | eGIBB\_mod\_dna      | molecule is DNA in life            |
+| 1   | eGIBB\_mod\_rna      | molecule is RNA in life            |
+| 2   | eGIBB\_mod\_extrachrom     | molecule is extrachromosomal       |
+| 3   | eGIBB\_mod\_plasmid  | molecule is or is from a plasmid   |
+| 4   | eGIBB\_mod\_mitochondrial  | molecule is from mitochondrion     |
+| 5   | eGIBB\_mod\_chloroplast    | molecule is from chloroplast       |
+| 6   | eGIBB\_mod\_kinetoplast    | molecule is from kinetoplast       |
+| 7   | eGIBB\_mod\_cyanelle | molecule is from cyanelle          |
+| 8   | eGIBB\_mod\_synthetic      | molecule was synthesized artificially                 |
+| 9   | eGIBB\_mod\_recombinant    | molecule was formed by recombination                  |
+| 10  | eGIBB\_mod\_partial  | not a complete sequence for molecule                  |
+| 11  | eGIBB\_mod\_complete | sequence covers complete molecule  |
+| 12  | eGIBB\_mod\_mutagen  | molecule subjected to mutagenesis  |
+| 13  | eGIBB\_mod\_natmut   | molecule is a naturally occurring mutant              |
+| 14  | eGIBB\_mod\_transposon     | molecule is a transposon           |
+| 15  | eGIBB\_mod\_insertion\_seq | molecule is an insertion sequence  |
+| 16  | eGIBB\_mod\_no\_left | partial molecule is missing left end <br/>5' end for nucleic acid, NH3 end for peptide   |
+| 17  | eGIBB\_mod\_no\_right      | partial molecule is missing right end <br/>3' end for nucleic acid, COOH end for peptide |
+| 18  | eGIBB\_mod\_macronuclear   | molecule is from macronucleus      |
+| 19  | eGIBB\_mod\_proviral | molecule is an integrated provirus |
+| 20  | eGIBB\_mod\_est      | molecule is an expressed sequence tag                 |
+| 21  | eGIBB\_mod\_sts      | sequence tagged site               |
+| 22  | eGIBB\_mod\_survey   | one pass survey sequence           |
+| 23  | eGIBB\_mod\_chromoplast    |                |
+| 24  | eGIBB\_mod\_genemap  | genetic map     |
+| 25  | eGIBB\_mod\_restmap  | ordered restriction map            |
+| 26  | eGIBB\_mod\_physmap  | physical map (not ordered restriction map)            |
+| 255 | eGIBB\_mod\_other    |                |
 
 <div class="table-scroll"></div>
 
@@ -957,13 +948,13 @@ The method ***GetMethod()*** gives the method used to obtain a protein sequence.
 <a name="ch_datamod.T5"></a>
 
 |-----------|-----------------------------------|--------------------------------------------------------|
-| **Value** | **Name**                          | **Explanation**                                        |
-| 1         | eGIBB\_method\_concept\_trans     | conceptual translation                                 |
-| 2         | eGIBB\_method\_seq\_pept          | peptide itself was sequenced                           |
-| 3         | eGIBB\_method\_both               | conceptual translation with partial peptide sequencing |
-| 4         | eGIBB\_method\_seq\_pept\_overlap | peptides sequenced, fragments ordered by overlap       |
-| 5         | eGIBB\_method\_seq\_pept\_homol   | peptides sequenced, fragments ordered by homology      |
-| 6         | eGIBB\_method\_concept\_trans\_a  | conceptual translation, provided by author of sequence |
+| **Value** | **Name**  | **Explanation**    |
+| 1   | eGIBB\_method\_concept\_trans     | conceptual translation   |
+| 2   | eGIBB\_method\_seq\_pept    | peptide itself was sequenced   |
+| 3   | eGIBB\_method\_both   | conceptual translation with partial peptide sequencing |
+| 4   | eGIBB\_method\_seq\_pept\_overlap | peptides sequenced, fragments ordered by overlap |
+| 5   | eGIBB\_method\_seq\_pept\_homol   | peptides sequenced, fragments ordered by homology      |
+| 6   | eGIBB\_method\_concept\_trans\_a  | conceptual translation, provided by author of sequence |
 
 <div class="table-scroll"></div>
 
@@ -1222,32 +1213,32 @@ In the NCBI C++ implementation, the values are stored one value per byte.
 <a name="ch_datamod.T6"></a>
 
 |-----------|------------|--------------------------|
-| **Value** | **Symbol** | **Name**                 |
-| 65        | A          | Alanine                  |
-| 66        | B          | Asp or Asn               |
-| 67        | C          | Cysteine                 |
-| 68        | D          | Aspartic Acid            |
-| 69        | E          | Glutamic Acid            |
-| 70        | F          | Phenylalanine            |
-| 71        | G          | Glycine                  |
-| 72        | H          | Histidine                |
-| 73        | I          | Isoleucine               |
-| 74        | J          | Leu or Ile               |
-| 75        | K          | Lysine                   |
-| 76        | L          | Leucine                  |
-| 77        | M          | Methionine               |
-| 78        | N          | Asparagine               |
-| 79        | O          | Pyrrolysine              |
-| 80        | P          | Proline                  |
-| 81        | Q          | Glutamine                |
-| 82        | R          | Arginine                 |
-| 83        | S          | Serine                   |
-| 84        | T          | Threoine                 |
-| 86        | V          | Valine                   |
-| 87        | W          | Tryptophan               |
-| 88        | X          | Undetermined or atypical |
-| 89        | Y          | Tyrosine                 |
-| 90        | Z          | Glu or Gln               |
+| **Value** | **Symbol** | **Name**     |
+| 65  | A    | Alanine      |
+| 66  | B    | Asp or Asn   |
+| 67  | C    | Cysteine     |
+| 68  | D    | Aspartic Acid      |
+| 69  | E    | Glutamic Acid      |
+| 70  | F    | Phenylalanine      |
+| 71  | G    | Glycine      |
+| 72  | H    | Histidine    |
+| 73  | I    | Isoleucine   |
+| 74  | J    | Leu or Ile   |
+| 75  | K    | Lysine |
+| 76  | L    | Leucine      |
+| 77  | M    | Methionine   |
+| 78  | N    | Asparagine   |
+| 79  | O    | Pyrrolysine  |
+| 80  | P    | Proline      |
+| 81  | Q    | Glutamine    |
+| 82  | R    | Arginine     |
+| 83  | S    | Serine |
+| 84  | T    | Threoine     |
+| 86  | V    | Valine |
+| 87  | W    | Tryptophan   |
+| 88  | X    | Undetermined or atypical |
+| 89  | Y    | Tyrosine     |
+| 90  | Z    | Glu or Gln   |
 
 <div class="table-scroll"></div>
 
@@ -1264,35 +1255,35 @@ In the NCBI C++ implementation, the values are stored one value per byte.
 <a name="ch_datamod.T7"></a>
 
 |-----------|------------|--------------------------|
-| **Value** | **Symbol** | **Name**                 |
-| 42        | \*         | Termination              |
-| 45        | -          | Gap                      |
-| 65        | A          | Alanine                  |
-| 66        | B          | Asp or Asn               |
-| 67        | C          | Cysteine                 |
-| 68        | D          | Aspartic Acid            |
-| 69        | E          | Glutamic Acid            |
-| 70        | F          | Phenylalanine            |
-| 71        | G          | Glycine                  |
-| 72        | H          | Histidine                |
-| 73        | I          | Isoleucine               |
-| 74        | J          | Leu or Ile               |
-| 75        | K          | Lysine                   |
-| 76        | L          | Leucine                  |
-| 77        | M          | Methionine               |
-| 78        | N          | Asparagine               |
-| 79        | O          | Pyrrolysine              |
-| 80        | P          | Proline                  |
-| 81        | Q          | Glutamine                |
-| 82        | R          | Arginine                 |
-| 83        | S          | Serine                   |
-| 84        | T          | Threoine                 |
-| 85        | U          | Selenocysteine           |
-| 86        | V          | Valine                   |
-| 87        | W          | Tryptophan               |
-| 88        | X          | Undetermined or atypical |
-| 89        | Y          | Tyrosine                 |
-| 90        | Z          | Glu or Gln               |
+| **Value** | **Symbol** | **Name**     |
+| 42  | \*   | Termination  |
+| 45  | -    | Gap    |
+| 65  | A    | Alanine      |
+| 66  | B    | Asp or Asn   |
+| 67  | C    | Cysteine     |
+| 68  | D    | Aspartic Acid      |
+| 69  | E    | Glutamic Acid      |
+| 70  | F    | Phenylalanine      |
+| 71  | G    | Glycine      |
+| 72  | H    | Histidine    |
+| 73  | I    | Isoleucine   |
+| 74  | J    | Leu or Ile   |
+| 75  | K    | Lysine |
+| 76  | L    | Leucine      |
+| 77  | M    | Methionine   |
+| 78  | N    | Asparagine   |
+| 79  | O    | Pyrrolysine  |
+| 80  | P    | Proline      |
+| 81  | Q    | Glutamine    |
+| 82  | R    | Arginine     |
+| 83  | S    | Serine |
+| 84  | T    | Threoine     |
+| 85  | U    | Selenocysteine     |
+| 86  | V    | Valine |
+| 87  | W    | Tryptophan   |
+| 88  | X    | Undetermined or atypical |
+| 89  | Y    | Tyrosine     |
+| 90  | Z    | Glu or Gln   |
 
 <div class="table-scroll"></div>
 
@@ -1309,35 +1300,35 @@ In the NCBI C++ implementation, the values are stored one value per byte.
 <a name="ch_datamod.T8"></a>
 
 |-----------|------------|--------------------------|
-| **Value** | **Symbol** | **Name**                 |
-| 0         | -          | Gap                      |
-| 1         | A          | Alanine                  |
-| 2         | B          | Asp or Asn               |
-| 3         | C          | Cysteine                 |
-| 4         | D          | Aspartic Acid            |
-| 5         | E          | Glutamic Acid            |
-| 6         | F          | Phenylalanine            |
-| 7         | G          | Glycine                  |
-| 8         | H          | Histidine                |
-| 9         | I          | Isoleucine               |
-| 10        | K          | Lysine                   |
-| 11        | L          | Leucine                  |
-| 12        | M          | Methionine               |
-| 13        | N          | Asparagine               |
-| 14        | P          | Proline                  |
-| 15        | Q          | Glutamine                |
-| 16        | R          | Arginine                 |
-| 17        | S          | Serine                   |
-| 18        | T          | Threoine                 |
-| 19        | V          | Valine                   |
-| 20        | W          | Tryptophan               |
-| 21        | X          | Undetermined or atypical |
-| 22        | Y          | Tyrosine                 |
-| 23        | Z          | Glu or Gln               |
-| 24        | U          | Selenocysteine           |
-| 25        | \*         | Termination              |
-| 26        | O          | Pyrrolysine              |
-| 27        | J          | Leu or Ile               |
+| **Value** | **Symbol** | **Name**     |
+| 0   | -    | Gap    |
+| 1   | A    | Alanine      |
+| 2   | B    | Asp or Asn   |
+| 3   | C    | Cysteine     |
+| 4   | D    | Aspartic Acid      |
+| 5   | E    | Glutamic Acid      |
+| 6   | F    | Phenylalanine      |
+| 7   | G    | Glycine      |
+| 8   | H    | Histidine    |
+| 9   | I    | Isoleucine   |
+| 10  | K    | Lysine |
+| 11  | L    | Leucine      |
+| 12  | M    | Methionine   |
+| 13  | N    | Asparagine   |
+| 14  | P    | Proline      |
+| 15  | Q    | Glutamine    |
+| 16  | R    | Arginine     |
+| 17  | S    | Serine |
+| 18  | T    | Threoine     |
+| 19  | V    | Valine |
+| 20  | W    | Tryptophan   |
+| 21  | X    | Undetermined or atypical |
+| 22  | Y    | Tyrosine     |
+| 23  | Z    | Glu or Gln   |
+| 24  | U    | Selenocysteine     |
+| 25  | \*   | Termination  |
+| 26  | O    | Pyrrolysine  |
+| 27  | J    | Leu or Ile   |
 
 <div class="table-scroll"></div>
 
@@ -1368,22 +1359,22 @@ The C++ implementation encodes one value for a nucleic acid residue per byte.
 <a name="ch_datamod.T10"></a>
 
 |-----------|------------|------------------|
-| **Value** | **Symbol** | **Name**         |
-| 65        | A          | Adenine          |
-| 66        | B          | G or T or C      |
-| 67        | C          | Cytosine         |
-| 68        | D          | G or A or T      |
-| 71        | G          | Guanine          |
-| 72        | H          | A or C or T      |
-| 75        | K          | G or T           |
-| 77        | M          | A or C           |
-| 78        | N          | A or G or C or T |
-| 82        | R          | G or A           |
-| 83        | S          | G or C           |
-| 84        | T          | Thymine          |
-| 86        | V          | G or C or A      |
-| 87        | W          | A or T           |
-| 89        | Y          | T or C           |
+| **Value** | **Symbol** | **Name**   |
+| 65  | A    | Adenine    |
+| 66  | B    | G or T or C      |
+| 67  | C    | Cytosine   |
+| 68  | D    | G or A or T      |
+| 71  | G    | Guanine    |
+| 72  | H    | A or C or T      |
+| 75  | K    | G or T     |
+| 77  | M    | A or C     |
+| 78  | N    | A or G or C or T |
+| 82  | R    | G or A     |
+| 83  | S    | G or C     |
+| 84  | T    | Thymine    |
+| 86  | V    | G or C or A      |
+| 87  | W    | A or T     |
+| 89  | Y    | T or C     |
 
 <div class="table-scroll"></div>
 
@@ -1398,23 +1389,23 @@ It is possible to represent the same set of nucleic acid and ambiguities with a 
 <a name="ch_datamod.T11"></a>
 
 |-----------|------------|------------------|
-| **Value** | **Symbol** | **Name**         |
-| 0         | -          | Gap              |
-| 1         | A          | Adenine          |
-| 2         | C          | Cytosine         |
-| 3         | M          | A or C           |
-| 4         | G          | Guanine          |
-| 5         | R          | G or A           |
-| 6         | S          | G or C           |
-| 7         | V          | G or C or A      |
-| 8         | T          | Thymine/Uracil   |
-| 9         | W          | A or T           |
-| 10        | Y          | T or C           |
-| 11        | H          | A or C or T      |
-| 12        | K          | G or T           |
-| 13        | D          | G or A or T      |
-| 14        | B          | G or T or C      |
-| 15        | N          | A or G or C or T |
+| **Value** | **Symbol** | **Name**   |
+| 0   | -    | Gap  |
+| 1   | A    | Adenine    |
+| 2   | C    | Cytosine   |
+| 3   | M    | A or C     |
+| 4   | G    | Guanine    |
+| 5   | R    | G or A     |
+| 6   | S    | G or C     |
+| 7   | V    | G or C or A      |
+| 8   | T    | Thymine/Uracil   |
+| 9   | W    | A or T     |
+| 10  | Y    | T or C     |
+| 11  | H    | A or C or T      |
+| 12  | K    | G or T     |
+| 13  | D    | G or A or T      |
+| 14  | B    | G or T or C      |
+| 15  | N    | A or G or C or T |
 
 <div class="table-scroll"></div>
 
@@ -1429,11 +1420,11 @@ If no ambiguous bases are present in a nucleic acid sequence it can be completel
 <a name="ch_datamod.T12"></a>
 
 |-----------|------------|----------------|
-| **Value** | **Symbol** | **Name**       |
-| 0         | A          | Adenine        |
-| 1         | C          | Cytosine       |
-| 2         | G          | Guanine        |
-| 3         | T          | Thymine/Uracil |
+| **Value** | **Symbol** | **Name** |
+| 0   | A    | Adenine  |
+| 1   | C    | Cytosine |
+| 2   | G    | Guanine  |
+| 3   | T    | Thymine/Uracil |
 
 <div class="table-scroll"></div>
 
@@ -1623,21 +1614,21 @@ The following table summarizes the types of Bioseq-sets:
 <a name="ch_datamod.T13"></a>
 
 |-----------|----------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| **Value** | **ASN.1 name** | **Explanation**                                                                                                                        |
-| 0         | not-set        | not determined                                                                                                                         |
-| 1         | nuc-prot       | a nucleic acid and the proteins from its coding regions                                                                                |
-| 2         | segset         | a segmented Bioseq and the Bioseqs it is made from                                                                                     |
-| 3         | conset         | a constructed Bioseq and the Bioseqs it was assembled from                                                                             |
-| 4         | parts          | a set cotained within a segset or conset holding the Bioseqs which are the components of the segmented or constructed Bioseq           |
-| 5         | gibb           | GenInfo Backbone entries (NCBI Journal Scanning Database)                                                                              |
-| 6         | gi             | GenInfo entries (NCBI ID Database)                                                                                                     |
-| 7         | genbank        | GenBank entries                                                                                                                        |
-| 8         | pir            | PIR entries                                                                                                                            |
-| 9         | pub-set        | all the Seq-entry's from a single publication                                                                                          |
-| 10        | equiv          | a set of equivalent representations of the same sequence (e.g. a genetic map Bioseq and a physical map Bioseq for the same chromosome) |
-| 11        | swissprot      | SWISSPROT entries                                                                                                                      |
-| 12        | pdb-entry      | all the Bioseqs associated with a single PDB structure                                                                                 |
-| 255       | other          | new type. Usually Bioseq-set.release will have an explanatory string                                                                   |
+| **Value** | **ASN.1 name** | **Explanation**  |
+| 0   | not-set  | not determined   |
+| 1   | nuc-prot | a nucleic acid and the proteins from its coding regions                   |
+| 2   | segset   | a segmented Bioseq and the Bioseqs it is made from     |
+| 3   | conset   | a constructed Bioseq and the Bioseqs it was assembled from                |
+| 4   | parts    | a set cotained within a segset or conset holding the Bioseqs which are the components of the segmented or constructed Bioseq     |
+| 5   | gibb     | GenInfo Backbone entries (NCBI Journal Scanning Database)                 |
+| 6   | gi | GenInfo entries (NCBI ID Database)  |
+| 7   | genbank  | GenBank entries  |
+| 8   | pir      | PIR entries      |
+| 9   | pub-set  | all the Seq-entry's from a single publication          |
+| 10  | equiv    | a set of equivalent representations of the same sequence (e.g. a genetic map Bioseq and a physical map Bioseq for the same chromosome) |
+| 11  | swissprot      | SWISSPROT entries                   |
+| 12  | pdb-entry      | all the Bioseqs associated with a single PDB structure |
+| 255 | other    | new type. Usually Bioseq-set.release will have an explanatory string      |
 
 <div class="table-scroll"></div>
 
@@ -1897,28 +1888,28 @@ A Seq-id is implemented in C++ as a choice, summarized in the following table:
 <a name="ch_datamod.T14"></a>
 
 |-----------|------------------------|---------------------------------------------|
-| **Value** | **Enum name**          | **Description**                             |
-| 0         | e\_not\_set            | no variant selected                         |
-| 1         | e\_Local               | local use                                   |
-| 2         | e\_Gibbsq              | GenInfo back-bone seq id                    |
-| 3         | e\_Gibbmt              | GenInfo back-bone molecule                  |
-| 4         | e\_Giim                | GenInfo import id                           |
-| 5         | e\_Genbank             | genbank                                     |
-| 6         | e\_Embl                | embl                                        |
-| 7         | e\_Pir                 | pir                                         |
-| 8         | e\_Swissprot           | swissprot                                   |
-| 9         | e\_Patent              | patent                                      |
-| 10        | e\_Other               | for historical reasons, 'other' = 'refseq'  |
-| 11        | e\_General             | general - for other databases               |
-| 12        | e\_Gi                  | GenInfo integrated database                 |
-| 13        | e\_Ddbj                | DDBJ                                        |
-| 14        | e\_Prf                 | PRF SEQDB                                   |
-| 15        | e\_Pdb                 | PDB sequence                                |
-| 16        | e\_Tpg                 | 3<sup>rd</sup> party annot/seq Genbank      |
-| 17        | e\_Tpeq                | 3<sup>rd</sup> party annot/seq EMBL         |
-| 18        | e\_Tpd                 | 3<sup>rd</sup> party annot/seq DDBJ         |
-| 19        | e\_Gpipe               | Internal NCBI genome pipeline processing id |
-| 20        | e\_Named\_annot\_track | Internal named annotation tracking id       |
+| **Value** | **Enum name**    | **Description**     |
+| 0   | e\_not\_set      | no variant selected |
+| 1   | e\_Local   | local use     |
+| 2   | e\_Gibbsq  | GenInfo back-bone seq id  |
+| 3   | e\_Gibbmt  | GenInfo back-bone molecule      |
+| 4   | e\_Giim    | GenInfo import id   |
+| 5   | e\_Genbank | genbank |
+| 6   | e\_Embl    | embl    |
+| 7   | e\_Pir     | pir     |
+| 8   | e\_Swissprot     | swissprot     |
+| 9   | e\_Patent  | patent  |
+| 10  | e\_Other   | for historical reasons, 'other' = 'refseq'  |
+| 11  | e\_General | general - for other databases   |
+| 12  | e\_Gi      | GenInfo integrated database     |
+| 13  | e\_Ddbj    | DDBJ    |
+| 14  | e\_Prf     | PRF SEQDB     |
+| 15  | e\_Pdb     | PDB sequence  |
+| 16  | e\_Tpg     | 3<sup>rd</sup> party annot/seq Genbank      |
+| 17  | e\_Tpeq    | 3<sup>rd</sup> party annot/seq EMBL   |
+| 18  | e\_Tpd     | 3<sup>rd</sup> party annot/seq DDBJ   |
+| 19  | e\_Gpipe   | Internal NCBI genome pipeline processing id |
+| 20  | e\_Named\_annot\_track | Internal named annotation tracking id |
 
 <div class="table-scroll"></div>
 
@@ -2051,19 +2042,19 @@ The following table summarizes the Choice variants for [CSeq\_loc](https://www.n
 <a name="ch_datamod.T15"></a>
 
 |----------------|----------------|----------------------|
-| **Enum Value** | **Enum name**  | **ASN.1 name**       |
-| 0              | e\_not\_set    |  |
-| 1              | e\_Null        | null                 |
-| 2              | e\_Empty       | empty                |
-| 3              | e\_Whole       | whole                |
-| 4              | e\_Int         | int                  |
-| 5              | e\_Packed\_int | packed-int           |
-| 6              | e\_Pnt         | pnt                  |
-| 7              | e\_Packed\_pnt | packed-pnt           |
-| 8              | e\_Mix         | mix                  |
-| 9              | e\_Equiv       | equiv                |
-| 10             | e\_Bond        | bond                 |
-| 11             | e\_Feat        | feat                 |
+| **Enum Value** | **Enum name**  | **ASN.1 name** |
+| 0  | e\_not\_set    |  |
+| 1  | e\_Null  | null     |
+| 2  | e\_Empty | empty    |
+| 3  | e\_Whole | whole    |
+| 4  | e\_Int   | int      |
+| 5  | e\_Packed\_int | packed-int     |
+| 6  | e\_Pnt   | pnt      |
+| 7  | e\_Packed\_pnt | packed-pnt     |
+| 8  | e\_Mix   | mix      |
+| 9  | e\_Equiv | equiv    |
+| 10 | e\_Bond  | bond     |
+| 11 | e\_Feat  | feat     |
 
 <div class="table-scroll"></div>
 
@@ -2072,13 +2063,13 @@ Note that e\_Mix and e\_Equiv Seq-loc types can recursively contain other Seq-lo
 <a name="ch_datamod.T16"></a>
 
 |----------------|--------------------------|----------------------|
-| **Enum Value** | **Enum name**            | **Notes**            |
-| 0              | e\_Na\_strand\_unknown   |  |
-| 1              | e\_Na\_strand\_plus      |  |
-| 2              | e\_Na\_strand\_minus     |  |
-| 3              | e\_Na\_strand\_both      | in forward direction |
-| 4              | e\_Na\_strand\_both\_rev | in reverse direction |
-| 5              | e\_Na\_strand\_other     |  |
+| **Enum Value** | **Enum name**      | **Notes**      |
+| 0  | e\_Na\_strand\_unknown   |  |
+| 1  | e\_Na\_strand\_plus      |  |
+| 2  | e\_Na\_strand\_minus     |  |
+| 3  | e\_Na\_strand\_both      | in forward direction |
+| 4  | e\_Na\_strand\_both\_rev | in reverse direction |
+| 5  | e\_Na\_strand\_other     |  |
 
 <div class="table-scroll"></div>
 
@@ -2411,11 +2402,11 @@ The C++ implementation of a Seq-feat is mostly straightforward. However, some ex
 
 |----------------|-----------|
 | **ASN.1 name** | **Value** |
-| (not present)  | 0         |
-| gibb           | 1         |
-| giim           | 2         |
-| local          | 3         |
-| general        | 4         |
+| (not present)  | 0   |
+| gibb     | 1   |
+| giim     | 2   |
+| local    | 3   |
+| general  | 4   |
 
 <div class="table-scroll"></div>
 
@@ -2425,28 +2416,28 @@ The C++ implementation of a Seq-feat is mostly straightforward. However, some ex
 
 |-----------------|-----------|
 | **ASN.1 name**  | **Value** |
-| (not present)   | 0         |
-| gene            | 1         |
-| org             | 2         |
-| cdregion        | 3         |
-| prot            | 4         |
-| rna             | 5         |
-| pub             | 6         |
-| seq             | 7         |
-| imp             | 8         |
-| region          | 9         |
-| comment         | 10        |
-| bond            | 11        |
-| site            | 12        |
-| rsite           | 13        |
-| user            | 14        |
-| txinit          | 15        |
-| num             | 16        |
-| psec-str        | 17        |
-| non-std-residue | 18        |
-| het             | 19        |
-| biosrc          | 20        |
-| clone           | 21        |
+| (not present)   | 0   |
+| gene      | 1   |
+| org | 2   |
+| cdregion  | 3   |
+| prot      | 4   |
+| rna | 5   |
+| pub | 6   |
+| seq | 7   |
+| imp | 8   |
+| region    | 9   |
+| comment   | 10  |
+| bond      | 11  |
+| site      | 12  |
+| rsite     | 13  |
+| user      | 14  |
+| txinit    | 15  |
+| num | 16  |
+| psec-str  | 17  |
+| non-std-residue | 18  |
+| het | 19  |
+| biosrc    | 20  |
+| clone     | 21  |
 
 <div class="table-scroll"></div>
 
@@ -2514,14 +2505,14 @@ The GeneticCode type is summarized as follows:
 
 |----------------|-----------|
 | **ASN.1 name** | **Value** |
-| name           | 1         |
-| id             | 2         |
-| ncbieaa        | 3         |
-| ncbi8aa        | 4         |
-| ncbistdaa      | 5         |
-| sncbieaa       | 6         |
-| sncbi8aa       | 7         |
-| sncbistdaa     | 8         |
+| name     | 1   |
+| id | 2   |
+| ncbieaa  | 3   |
+| ncbi8aa  | 4   |
+| ncbistdaa      | 5   |
+| sncbieaa | 6   |
+| sncbi8aa | 7   |
+| sncbistdaa     | 8   |
 
 <div class="table-scroll"></div>
 
@@ -2743,14 +2734,14 @@ All the forms of ***Seq-align*** are composed of segments. Each segment is an al
         id=100        AAGGCCTTTTAGAGATGATGATGATGATGA
         id=200        AAGGCCTaTTAG.......GATGATGATGA
         id=300        ....CCTTTTAGAGATGATGAT....ATGA
-                      | 1 |   2  |   3   |4| 5  | 6|  Segments
+    | 1 |   2  |   3   |4| 5  | 6|  Segments
 
 Taking only two of the sequences in a two way alignment, only three segments are needed to define the alignment:
 
         Seq-ids
         id=100        AAGGCCTTTTAGAGATGATGATGATGATGA
         id=200        AAGGCCTaTTAG.......GATGATGATGA
-                      |     1    |   2   |     3   |  Segments
+    |     1    |   2   |     3   |  Segments
 
 <a name="ch_datamod.Seqalign"></a>
 
@@ -2845,7 +2836,7 @@ The three dimensional alignment show above is repeated below, followed by its AS
         id=100        AAGGCCTTTTAGAGATGATGATGATGATGA
         id=200        AAGGCCTaTTAG.......GATGATGATGA
         id=300        ....CCTTTTAGAGATGATGAT....ATGA
-                      | 1 |   2  |   3   |4| 5  | 6|  Segments
+    | 1 |   2  |   3   |4| 5  | 6|  Segments
 
     Seq-align ::= {
         type global ,
@@ -2872,7 +2863,7 @@ Each ***Std-seg*** must give its dimension, so it can be used for ***diags***. O
         id=100          AAGGCCTTTTAGAGATGATGATGATGATGA
         id=200          AAGGCCTaTTAG.......GATGATGATGA
         id=300          ....CCTTTTAGAGATGATGAT....ATGA
-                        | 1 |   2  |   3   |4| 5  | 6|  Segments
+      | 1 |   2  |   3   |4| 5  | 6|  Segments
 
     Seq-align ::= {
         type global ,

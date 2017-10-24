@@ -19,7 +19,7 @@ For certain tasks in the C++ Toolkit environment, it is necessary to use, or at 
 
 -   [C Toolkit Queryable Source Browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/SB/hbr.html)
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -269,7 +269,7 @@ For a detailed description of the CVS utility see [the CVS online manual](http:/
 
 You must have a CVS account set up prior to using CVS - email <span class="oem_span">z/u4hktpuGujip5ust5upo5nv/</span> to get set up.
 
-The C Toolkit CVS repository is available [online](http://intranet/cvsutils/index.cgi/distrib) and may be [searched](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/C_DOC/lxr/source) using LXR.
+The C Toolkit CVS repository is available [online](https://intranet.ncbi.nlm.nih.gov/cvsutils/index.cgi/distrib/) and may be [searched](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/C_DOC/lxr/source) using LXR.
 
 -   [Using CVS from Unix or Mac OS X](#ch_res.Setting_up_CVS_clien)
 
@@ -303,7 +303,7 @@ Here the *username* is the user name of the person who did the initial CVS check
 
 #### Using CVS from Windows
 
-The preferred CVS client is [TortoiseCVS](http://www.tortoisecvs.org/). If this is not installed on your PC, ask [PC Systems](http://jira.be-md.ncbi.nlm.nih.gov/secure/CreateIssue!default.jspa?pid=10371) to have it installed. Your TortoiseCVS installation should include both a CVS command-line client and integration into Windows Explorer.
+The preferred CVS client is [TortoiseCVS](http://www.tortoisecvs.org/). If this is not installed on your PC, ask [PC Systems](https://jira.ncbi.nlm.nih.gov/secure/CreateIssue!default.jspa?pid=10371) to have it installed. Your TortoiseCVS installation should include both a CVS command-line client and integration into Windows Explorer.
 
 To use TortoiseCVS as integrated into Windows Explorer:
 
@@ -313,7 +313,7 @@ To use TortoiseCVS as integrated into Windows Explorer:
 
 -   Set the CVSROOT text field to `:pserver:%USERNAME%@cvsvault:/src/NCBI/vault.ncbi` (where `%USERNAME%` is replaced with your Windows user name).
 
--   Set the module text field to the portion of the C Toolkit you want to retrieve. If you want the whole Toolkit, use `distrib`. If you want just one library, for example the CONNECT library, use `distrib/connect`. There are also non C Toolkit modules (you can see them [here](http://intranet/cvsutils/index.cgi/distrib)). You can work with those as well by using their names instead of `distrib` (e.g. `internal`).
+-   Set the module text field to the portion of the C Toolkit you want to retrieve. If you want the whole Toolkit, use `distrib`. If you want just one library, for example the CONNECT library, use `distrib/connect`. There are also non C Toolkit modules (you can see them [here](https://intranet.ncbi.nlm.nih.gov/cvsutils/index.cgi/distrib/)). You can work with those as well by using their names instead of `distrib` (e.g. `internal`).
 
 -   Click OK. If you are asked for a password and don't know what to use, email <span class="oem_span">z/u4hktpuGujip5ust5upo5nv/</span>.
 

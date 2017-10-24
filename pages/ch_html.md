@@ -214,7 +214,7 @@ The following basic classes are discussed in more detail, next:
 
 **const string& GetName(void) const void SetName(const string& namein)** Get and set the name of the node.
 
-**bool HaveAttribute(const string& name) const** Check for an attribute. Attributes are like the href in \<a href="[http://www.ncbi.nlm.nih.gov](https://www.ncbi.nlm.nih.gov/)"\>
+**bool HaveAttribute(const string& name) const** Check for an attribute. Attributes are like the href in \<a href="[https://www.ncbi.nlm.nih.gov](https://www.ncbi.nlm.nih.gov/)"\>
 
 **string GetAttribute(const string& name) const** Return a copy of the attribute's value
 

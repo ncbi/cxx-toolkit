@@ -11,13 +11,8 @@ nav: pages/ch_conn
 Connection Library [Library `xconnect`: [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect)]
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-The overview for this chapter consists of the following topics:
 
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 The connection library includes a generic socket interface (***SOCK***), connection object (***CONN***), and specialized ***CONNECTOR*** constructors (for sockets, files, HTTP, and services) to be used as engines for connections. It also provides access to the load-balancing daemon and NCBI named service dispatching facilities.
 
@@ -25,7 +20,7 @@ Although the core of the Connection Library is written in C and has an underlyin
 
 ***Note***: Because of security issues, not all links in the public version of this file are accessible by outside NCBI users.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter, with links to relevant source files:
 
@@ -62,8 +57,6 @@ The following is an outline of the topics presented in this chapter, with links 
 -   [Servers and Service Mapping API](#ch_conn.service_mapping_api)
 
     -   Description of service name resolution API
-    
-    -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce) - **DEPRECATED**
 
     -   NCBI Server Meta-Address Info -- `ncbi_server_info`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h) \| [p.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_infop.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_server_info.c)]
 
@@ -71,11 +64,17 @@ The following is an outline of the topics presented in this chapter, with links 
 
     -   Resolve NCBI Service Name to the Server Meta-Address using NCBI Network Dispatcher ([DISPD](ch_app.html#ch_app.DISPD_Network_Dispat)) -- `ncbi_dispd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_dispd.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_dispd.c)]
 
-    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI [Load-Balancing Service Mapper (LBSM)](ch_app.html#ch_app.Load_Balancing_Servi) -- `ncbi_lbsmd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.c) \| [\_stub.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd_stub.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI [Load-Balancing Service Mapper (LBSM)](ch_app.html#ch_app.Load_Balancing_Servi) -- `ncbi_lbsmd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd.c) \| [\_stub.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsmd_stub.c)]
 
-    -   [NCBI LBSM client-server data exchange API](#ch_conn.service_mapping_api) -- `ncbi_lbsm`[[.h](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI LINKERD -- `ncbi_linkerd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_linkerd.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_linkerd.c)]
 
-    -   Implementation of LBSM Using SYSV IPC (shared memory and semaphores) -- `ncbi_lbsm_ipc`[[.h](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.h) \| [.c](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.c)]
+    -   Resolve NCBI Service Name to the Server Meta-Address using NCBI NAMERD -- `ncbi_namerd`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_namerd.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_namerd.c)]
+
+    -   [NCBI LBSM client-server data exchange API](#ch_conn.service_mapping_api) -- `ncbi_lbsm`[[.h](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm.c)]
+
+    -   Implementation of LBSM Using SYSV IPC (shared memory and semaphores) -- `ncbi_lbsm_ipc`[[.h](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.h) \| [.c](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_lbsm_ipc.c)]
+
+    -   [Announcement/deannouncement of servers in LBOS](#ch_conn.Lbos_Self_Announce_Deannounce) - **DEPRECATED**
 
 -   [Threaded Server Support](#ch_conn.Threaded_Server_Supp)
 
@@ -109,7 +108,7 @@ For additional related information, see:
 
     -   Non-ANSI, Widely Used Functions -- `ncbi_ansi_ext`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.c)]
 
--   daemons [[src/connect/daemons](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons)]
+-   daemons [[src/connect/daemons](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons)]
 
     -   [LBSMD](ch_app.html#ch_app.Load_Balancing_Servi)
 
@@ -344,7 +343,7 @@ Return a human-readable description of the connection as a character '\\0'-termi
 
 <a name="ch_conn.T.nc_conn_setcallbackconn_conn_e"></a>
 
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|---------------------------------------------------------------------------------------------------------------------------------|
 | `CONN_SetCallback(CONN conn, ECONN_Callback type,`<br/>`                 const SCONN_Callback* new_cb, SCONN_Callback* old_cb)` |
 
 <div class="table-scroll"></div>
@@ -567,7 +566,7 @@ A more elaborate form of the HTTP connector's constructor has the following prot
         eHTTP_HeaderSuccess  = 1,  /**< Parse succeeded, retain server status */
         eHTTP_HeaderContinue = 2,  /**< Parse succeeded, continue with body   */
         eHTTP_HeaderComplete = 3   /**< Parse succeeded, no more processing   */
-    } EHTTP_HeaderParse; 
+    } EHTTP_HeaderParse;
     typedef EHTTP_HeaderParse (*FHTTP_ParseHeader)
     (const char*         http_header,   /* HTTP header to parse                  */
      void*               user_data,     /* supplemental user data                */
@@ -631,7 +630,7 @@ To the client, the entire process of dispatching is completely transparent (for 
 
 ***Note:*** Services can be [redirected](#ch_conn.Service_Redirection).
 
-The [Dispatching Protocol](ch_app.html#ch_app.DISPD_Network_Dispat) per se is implemented on top of HTTP protocol and is parsed by a CGI program [dispd.cgi](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c) (or another dispatching CGI), which is available on the NCBI Web. On every server running the named services, another program, called the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) ([lbsmd](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsmd.c)), is executing. This daemon supports having the same service running on different machines and provides a choice of the one machine that is less loaded. When **dispd.cgi** receives a request for a named service, it first consults the load-balancing table, which is broadcasted by each load-balancing daemon and populated in a network-wide form on each server. When the corresponding server is found, the client request can be passed, or a dedicated connection to the server can be established. The dispatching is made in such a way that it can be also used directly from most Internet browsers.
+The [Dispatching Protocol](ch_app.html#ch_app.DISPD_Network_Dispat) per se is implemented on top of HTTP protocol and is parsed by a CGI program [dispd.cgi](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c) (or another dispatching CGI), which is available on the NCBI Web. On every server running the named services, another program, called the [load-balancing daemon](ch_app.html#ch_app.Load_Balancing_Servi) ([lbsmd](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsmd.c)), is executing. This daemon supports having the same service running on different machines and provides a choice of the one machine that is less loaded. When **dispd.cgi** receives a request for a named service, it first consults the load-balancing table, which is broadcasted by each load-balancing daemon and populated in a network-wide form on each server. When the corresponding server is found, the client request can be passed, or a dedicated connection to the server can be established. The dispatching is made in such a way that it can be also used directly from most Internet browsers.
 
 The named service facility uses the following distinction of server types:
 
@@ -643,13 +642,13 @@ The named service facility uses the following distinction of server types:
 
     -   ***HTTP*** servers are those accepting both of either ***GET*** or ***POST*** methods.
 
--   ***NCBID*** servers are those run by a special CGI engine, called [ncbid.cgi](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c), a configurable program (now integrated within [ncbid.cgi](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c) itself) that can convert byte-stream output from another program (server) started by the request from a dispatcher, to an HTTP-compliant reply (that is, a packet having both HTTP header and body, and suitable, for example, for Web browsers).
+-   ***NCBID*** servers are those run by a special CGI engine, called [ncbid.cgi](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c), a configurable program (now integrated within [ncbid.cgi](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/dispd_cgi.c) itself) that can convert byte-stream output from another program (server) started by the request from a dispatcher, to an HTTP-compliant reply (that is, a packet having both HTTP header and body, and suitable, for example, for Web browsers).
 
 -   ***STANDALONE*** servers, similar to mailing daemons, are those listening to the network, on their own, for incoming connections.
 
 -   ***FIREWALL*** servers are the special pseudo-servers, not existing in reality, but that are created and used internally by the dispatcher software to indicate that only a firewall connection mode can be used to access the requested service.
 
--   ***DNS*** servers are beyond the scope of this document because they are used to declare domain names, which are used internally at the NCBI site to help load-balancing based on DNS lookup (see [here](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/mghbn.c)).
+-   ***DNS*** servers are beyond the scope of this document because they are used to declare domain names, which are used internally at the NCBI site to help load-balancing based on DNS lookup (see [here](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/mghbn.c)).
 
 A formal description of these types is given in [connect/ncbi\_server\_info.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_server_info.h):
 
@@ -702,7 +701,7 @@ The next-to-last parameter of the extended constructor is the network info, desc
 
 -   **`firewall`** set to true (non-zero) disables the direct connection to the service; instead,
 
-    -   a connection to a proxy [firewall daemon](ch_app.html#ch_app.Firewall_Daemon_FWDa) ([fwdaemon](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/fwdaemon.c)), running at the NCBI site, is initiated to pass the data in stream mode;
+    -   a connection to a proxy [firewall daemon](ch_app.html#ch_app.Firewall_Daemon_FWDa) ([fwdaemon](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/fwdaemon.c)), running at the NCBI site, is initiated to pass the data in stream mode;
 
     -   or data get relayed via the dispatcher, if the stateless server is used
 
@@ -811,7 +810,7 @@ The next example is a complete program that fetches the response from a URL and 
      int                 server_error   /**< != 0 if HTTP error (NOT 2xx code)   */
      )
     {
-        return (server_error >= 200 && server_error <= 299) 
+        return (server_error >= 200 && server_error <= 299)
                ? eHTTP_HeaderSuccess
                : eHTTP_HeaderContinue;
     }
@@ -823,7 +822,7 @@ The next example is a complete program that fetches the response from a URL and 
         if (argc > 1) {
             url = argv[1];
         } else {
-            url = "http://www.ncbi.nlm.nih.gov/";
+            url = "https://www.ncbi.nlm.nih.gov/";
         }
 
         // Send an HTTP request to the URL.
@@ -1009,7 +1008,9 @@ Service lookup process now involves looking up through the following sources, in
 
 -   LBSM table (only in-house; this source does not exist in the outside builds);
 
--   NAMERD (only in-house; this source does not exist in the outside builds); 
+-   LINKERD (only in-house; this source does not exist in the outside builds);
+
+-   NAMERD (only in-house; this source does not exist in the outside builds);
 
 -   LBOS (only in-house; this source does not exist in the outside builds) - **DEPRECATED**;
 
@@ -1017,12 +1018,17 @@ Service lookup process now involves looking up through the following sources, in
 
 Only one source containing the information about the service is used; the next source is only tried if the previous one was disabled or did not yield any servers (for the service).
 
-Sources 1, 3, and 4 are disabled by default. 
-To enable the 1st source - set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file. 
-To enable the 3rd source - set **`CONN_NAMERD_ENABLE`** environment variable to "1" or add **`NAMERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
-To enable the 4th source - set **`CONN_LBOS_ENABLE`** environment variable to "1" or add **`LBOS_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+The "local environment/registry settings", LINKERD, NAMERD, and LBOS sources are disabled by default.
 
-Sources 2 and 5 are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
+To enable the the "local environment/registry settings" source - set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+To enable the LINKERD source - set **`CONN_LINKERD_ENABLE`** environment variable to "1" or add **`LINKERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+To enable the NAMERD source - set **`CONN_NAMERD_ENABLE`** environment variable to "1" or add **`NAMERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+To enable the LBOS source - set **`CONN_LBOS_ENABLE`** environment variable to "1" or add **`LBOS_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+
+The LBSM and "Network dispatcher" Sources are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
 
 ***Note:*** Alternatively, and for the sake of backward compatibility with older application, the use of local LBSM table can be controlled by **`CONN_LB_DISABLE`**={0,1} in the environment or **`LB_DISABLE`**={0,1} in the "[`CONN`]" section of the registry, or individually on a per service basis:
 
@@ -1072,6 +1078,37 @@ Example 2. In environment set the following variables (equivalent to the `.ini` 
 
 You can also look at the [detailed description of LBSMD](ch_app.html#ch_app.Load_Balancing_Servi) and a sample configuration file.
 
+<a name="ch_conn.Linkerd_Namerd_Dispatching"></a>
+
+### LINKERD and NAMERD Dispatching
+
+You can read about dispatching with LINKERD and NAMERD in [Confluence](https://confluence.ncbi.nlm.nih.gov/display/CT/Dispatching+with+NAMERD+and+LINKERD) (in-house only).
+
+<a name="ch_conn.Finding_servers_for_a_service"></a>
+
+#### Finding servers for a service with NAMERD
+
+You can use NAMERD to find all the currently running servers that support a given service.  Configure your application to use NAMERD - e.g.
+
+    [CONN]
+    DISABLE_LBSMD=1
+    ENABLE_NAMERD=1
+
+Then call `SERV_GetServers()`, for example:
+
+    #include <connect/ncbi_service_cxx.hpp>
+
+    vector<CSERV_Info>  hosts;
+    hosts = SERV_GetServers(sm_Service);
+    if (hosts.size() > 0) {
+        cout << "Hosts for service '" << sm_Service << "':" << endl;
+        for (const auto& h : hosts) {
+            cout << "    " << h.GetHost() << ":" << h.GetPort() << endl;
+        }
+    } else {
+        cout << "No up servers for service '" << sm_Service << "'." << endl;
+    }
+
 <a name="ch_conn.Lbos_Self_Announce_Deannounce"></a>
 
 ### Announcement/deannouncement of servers in LBOS - **DEPRECATED**
@@ -1085,5 +1122,3 @@ Threaded Server Support
 -----------------------
 
 This library also provides [CServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CServer&d=), an abstract base class for multithreaded network servers. [Here](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/connect/test/test_server.cpp) is a demonstration of its use. For more information, see the [Implementing a Server with CServer](ch_grid.html#ch_grid.CServer_Multithreade) section.
-
-

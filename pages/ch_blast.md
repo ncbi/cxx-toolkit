@@ -8,17 +8,7 @@ nav: pages/ch_blast
 {{ page.title }}
 ============================
 
-
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   [Introduction](#ch_blast.intro)
-
--   [Chapter Outline](#ch_blast.outline)
-
-### Introduction
+## Introduction
 
 BLAST (Basic Local Alignment Search Tool) is used to perform sequence similarity searches. Most often this means that BLAST is used to search a sequence (either DNA or protein) against a database of other sequences (either all nucleotide or all protein) in order to identify similar sequences. BLAST has many different flavors and can not only search DNA against DNA or protein against protein but also can translate a nucleotide query and search it against a protein database as well as the other way around. It can also compute a “profile” for the query sequence and use that for further searches as well as search the query against a database of profiles. BLAST is available as a web service at the NCBI, as a stand-alone binary, and is built into other tools. It is an extremely versatile program and probably the most heavily used similarity search program in the world. BLAST runs on a multitude of different platforms that include Windows, MacOS, LINUX, and many flavors of UNIX. It is also under continuing development with new algorithmic innovations. Multiple references to BLAST can be found at <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=References>.
 
@@ -26,7 +16,7 @@ The version of BLAST in the NCBI C++ Toolkit was rewritten from scratch based up
 
 An attempt was made to isolate the user of the BLAST API (as exposed in `algo/blast/api`) from the core of BLAST, so that algorithmic enhancements or refactoring of that code would be transparent to the API programmer as far as that is possible. Since BLAST is continually under development and many of the developments involve new features it is not always possible or desirable to isolate the API programmer from these changes. This chapter will focus on the API for the C++ Toolkit. A few different search classes will be discussed. These include the ***CLocalBlast*** class, typically used for searching a query (or queries) against a BLAST database; ***CRemoteBlast***, used for sending searches to the NCBI servers; as well as ***CBl2Seq***, useful for searching target sequences that have not been formatted as a BLAST database.
 
-### Chapter Outline
+## Chapter Outline
 
 [CLocalBlast](#ch_blast.CLocalBlast)
 
@@ -98,18 +88,18 @@ The BLAST options classes were designed to allow a programmer to easily set the 
 Table 1: List of tasks supported by the CBlastOptionsHandle. “Translated nucleotide” means that the input was nucleotide, but the comparison is based upon the protein. PSSM is a “position-specific scoring matrix”. The “EProgram” can be used as an argument to CBlastOptionsFactory::Create
 
 |----------------------|-----------------------|-----------------------|-----------------------|-------------------------------------------------------|
-| **EProgram (enum)**  | **Default Word-size** | **Query type**        | **Target type**       | **Notes**                                             |
-| ***eBlastN***        | 11                    | Nucleotide            | Nucleotide            |                                   |
-| ***eMegablast***     | 28                    | Nucleotide            | Nucleotide            | Optimized for speed and closely related sequences     |
-| ***eDiscMegablast*** | 11                    | Nucleotide            | Nucleotide            | Optimized for cross-species matches                   |
-| ***eBlastp***        | 3                     | Protein               | Protein               |                                   |
-| ***eBlastx***        | 3                     | Translated nucleotide | Protein               |                                   |
-| ***eTblastn***       | 3                     | Protein               | Translated nucleotide |                                   |
-| ***eTblastx***       | 3                     | Translated nucleotide | Translated nucleotide |                                   |
-| ***eRPSBlast***      | 3                     | Protein               | PSSM                  | Can very quickly identify domains                     |
-| ***eRPSTblastn***    | 3                     | Translated nucleotide | PSSM                  |                                   |
-| ***ePSIBlast***      | 3                     | PSSM                  | Protein               | Extremely sensitive method to find distant homologies |
-| ***ePHIBlastp***     | 3                     | Protein               | Protein               | Uses pattern in query to start alignments             |
+| **EProgram (enum)**  | **Default Word-size** | **Query type**  | **Target type** | **Notes**   |
+| ***eBlastN***  | 11  | Nucleotide      | Nucleotide      |     |
+| ***eMegablast***     | 28  | Nucleotide      | Nucleotide      | Optimized for speed and closely related sequences     |
+| ***eDiscMegablast*** | 11  | Nucleotide      | Nucleotide      | Optimized for cross-species matches |
+| ***eBlastp***  | 3   | Protein   | Protein   |     |
+| ***eBlastx***  | 3   | Translated nucleotide | Protein   |     |
+| ***eTblastn*** | 3   | Protein   | Translated nucleotide |     |
+| ***eTblastx*** | 3   | Translated nucleotide | Translated nucleotide |     |
+| ***eRPSBlast***      | 3   | Protein   | PSSM      | Can very quickly identify domains   |
+| ***eRPSTblastn***    | 3   | Translated nucleotide | PSSM      |     |
+| ***ePSIBlast***      | 3   | PSSM      | Protein   | Extremely sensitive method to find distant homologies |
+| ***ePHIBlastp***     | 3   | Protein   | Protein   | Uses pattern in query to start alignments |
 
 <div class="table-scroll"></div>
 

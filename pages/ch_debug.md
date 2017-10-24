@@ -8,16 +8,7 @@ nav: pages/ch_debug
 {{ page.title }}
 ============================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter discusse the debugging mechanisms available in the NCBI C++ toolkit. There are two approaches to getting more information about an application, which does not behave correctly:
 
@@ -27,7 +18,7 @@ This chapter discusse the debugging mechanisms available in the NCBI C++ toolkit
 
 Of course, there is always the third method which is to run the program under an external debugger. While using an external debugger is a viable option, this method relies on an external program and not on a log or diagnostics produced by the program itself which in many cases is customized to reflect the program behavior, and can, therefore, more quickly reveal the source of errors.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -152,10 +143,10 @@ There are several command line parameters (see [Table 1](#ch_debug.T1)), which a
 
 Table 1. Command line parameters available for use to any program that uses CNcbiApplication
 
-| Flag        | Description                                                     | Example                       |
+| Flag  | Description           | Example     |
 |-------------|-----------------------------------------------------------------|-------------------------------|
-| `-h`        | Print description of the application's command line parameters. | `theapp -h`                   |
-| `-logfile`  | Redirect program's log into the specified file                  | `theapp -logfile theapp_log`  |
+| `-h`  | Print description of the application's command line parameters. | `theapp -h` |
+| `-logfile`  | Redirect program's log into the specified file      | `theapp -logfile theapp_log`  |
 | `-conffile` | Read the program's configuration data from the specified file   | `theapp -conffile theapp_cfg` |
 
 <div class="table-scroll"></div>
@@ -194,7 +185,7 @@ There are two ways to post trace messages: using either the [\_TRACE](ch_core.ht
 
 Table 2. Enabling Tracing
 
-| C++ toolkit API                                                 | Configuration file                                                                                                                             | Environment                                                                                    |
+| C++ toolkit API       | Configuration file       | Environment    |
 |-----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | call:<br/>`SetDiagTrace(eDT_Enable);` | define **`DIAG_TRACE`** entry in the **`DEBUG`** section:<br/>`[DEBUG]`<br/>`DIAG_TRACE=1` | define **`DIAG_TRACE`** environment variable:<br/>`set DIAG_TRACE=1` |
 
@@ -212,7 +203,7 @@ Diagnostic messages produced by [ERR\_POST](ch_core.html#ch_core.ERR_POST) macro
 
 Table 3. Changing severity level for diagnostic messages
 
-| C++ toolkit API                                                                                                                                                                                                                | Configuration file                                                                                                                                                                                                                                          | Environment                                                                                                                                                                                                 |
+| C++ toolkit API              | Configuration file  | Environment                  |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | call:<br/>`SetDiagPostLevel(EDiagSev postSev);`<br/>Valid arguments are **`eDiag_Info`**, **`eDiag_Warning`**, **`eDiag_Error`**, **`eDiag_Critical`**, **`eDiag_Fatal`**. | define **`DIAG_POST_LEVEL`** entry in the **`DEBUG`** section:<br/>`[DEBUG]`<br/>`DIAG_POST_LEVEL=Info`<br/>Valid values are `Info`, `Warning`, `Error`, `Critical`, `Fatal`. | define **`DIAG_POST_LEVEL`** environment variable:<br/>`set DIAG_POST_LEVEL=Info`<br/>Valid values are `Info`, `Warning`, `Error`, `Critical`, `Fatal`. |
 
@@ -230,10 +221,10 @@ The [connection library](ch_conn.html) has its own [tracing options](ch_conn.htm
 
 Table 4. Setting up trace options for connection library
 
-|        | Configuration file                                                                                                                                                                                                                  | Environment                                                                                                                                                                                     |
+|  | Configuration file                | Environment      |
 |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Connection parameters:** | define **`DEBUG_PRINTOUT`** entry in the **`CONN`** section:<br/>`[CONN]`<br/>`DEBUG_PRINTOUT=TRUE`<br/>Valid values are `TRUE`, or `YES`, or `SOME`. | define **`CONN_DEBUG_PRINTOUT`** environment variable:<br/>`set CONN_DEBUG_PRINTOUT=TRUE`<br/>Valid values are `TRUE`, or `YES`, or `SOME`. |
-| **All data:**              | define **`DEBUG_PRINTOUT`** entry in the **`CONN`** section:<br/>`[CONN]`<br/>`DEBUG_PRINTOUT=ALL`<br/>Valid values are `ALL`, or `DATA`.             | define **`CONN_DEBUG_PRINTOUT`** environment variable:<br/>`set CONN_DEBUG_PRINTOUT=ALL`<br/>Valid values are `ALL`, or `DATA`.             |
+| **All data:**  | define **`DEBUG_PRINTOUT`** entry in the **`CONN`** section:<br/>`[CONN]`<br/>`DEBUG_PRINTOUT=ALL`<br/>Valid values are `ALL`, or `DATA`. | define **`CONN_DEBUG_PRINTOUT`** environment variable:<br/>`set CONN_DEBUG_PRINTOUT=ALL`<br/>Valid values are `ALL`, or `DATA`. |
 
 <div class="table-scroll"></div>
 
@@ -1280,14 +1271,14 @@ The C++ ***throw()*** statement provides a mechanism for specifying the types of
 
 Table 5. Platform Independent Exception Macros
 
-| Macro                                          | C++ Equivalent          | Synopsis                                                                                                                                                                                                  |
+| Macro      | C++ Equivalent    | Synopsis                   |
 |------------------------------------------------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`THROWS((types))`**                          | `throw(types)`          | Defines the type of exceptions thrown by the given function. **`types`** may be a single object type or a comma delimited list.                                                                           |
-| **`THROWS_NONE`**                              | `throw()`               | Specifies that the given function throws no exceptions.                                                                                                                                                   |
-| **`STD_CATCH_X(subcode, message)`**            | `catch(std::exception)` | Calls **`STD_CATCH_XX()`** using the currently selected error code name.                                                                                                                                  |
+| **`THROWS((types))`**  | `throw(types)`    | Defines the type of exceptions thrown by the given function. **`types`** may be a single object type or a comma delimited list.              |
+| **`THROWS_NONE`**      | `throw()`   | Specifies that the given function throws no exceptions.          |
+| **`STD_CATCH_X(subcode, message)`**      | `catch(std::exception)` | Calls **`STD_CATCH_XX()`** using the currently selected error code name.            |
 | **`STD_CATCH_XX(name, subcode, message)`**     | `catch(std::exception)` | Provides uniform handling of all exceptions derived from ***std::exception*** using the given error code name, subcode, and message. Does not catch exceptions *not* derived from ***std::exception***.   |
-| **`STD_CATCH_ALL_X(subcode, message)`**        | `catch(...)`            | Calls **`STD_CATCH_ALL_XX()`** using the currently selected error code name.                                                                                                                              |
-| **`STD_CATCH_ALL_XX(name, subcode, message)`** | `catch(...)`            | Applies **`STD_CATCH_XX()`** to ***std::exception*** derived objects. Catches non-standard exceptions and generates an "Unknown exception" message using the given error code name, subcode, and message. |
+| **`STD_CATCH_ALL_X(subcode, message)`**  | `catch(...)`      | Calls **`STD_CATCH_ALL_XX()`** using the currently selected error code name.        |
+| **`STD_CATCH_ALL_XX(name, subcode, message)`** | `catch(...)`      | Applies **`STD_CATCH_XX()`** to ***std::exception*** derived objects. Catches non-standard exceptions and generates an "Unknown exception" message using the given error code name, subcode, and message. |
 
 <div class="table-scroll"></div>
 

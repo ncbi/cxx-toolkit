@@ -8,16 +8,8 @@ nav: pages/ch_cgi
 {{ page.title }}
 ===================================
 
-Overview
---------
 
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 **CGI and Fast-CGI** [Libraries `xcgi` and `xfcgi`: [include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/cgi) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/cgi)]
 
@@ -57,7 +49,7 @@ CGI Interface
 
 .
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -782,12 +774,12 @@ See [Table 1](#ch_cgi.T5).
 
 Table 1. Restrictions on arguments to the CCgiCookie constructor
 
-| Field             | Restrictions                                                |
+| Field | Restrictions      |
 |-------------------|-------------------------------------------------------------|
 | name (required)   | No spaces; must be printable ASCII; cannot contain = , or ; |
 | value (required)  | No spaces; must be printable ASCII; cannot contain , or ;   |
 | domain (optional) | No spaces; must be printable ASCII; cannot contain , or ;   |
-| path (optional)   | Case sensitive                                              |
+| path (optional)   | Case sensitive    |
 
 <div class="table-scroll"></div>
 
@@ -808,10 +800,10 @@ The parameter **`diag-destination`** controls where diagnostics appear. By defau
 
 Table 2. Effect of setting the diag-destination parameter
 
-| value  | effects                                                          |
+| value  | effects                |
 |--------|------------------------------------------------------------------|
 | stderr | Send diagnostics to the standard error stream (default behavior) |
-| asbody | Send diagnostics to the client in place of normal output         |
+| asbody | Send diagnostics to the client in place of normal output   |
 
 <div class="table-scroll"></div>
 
@@ -1285,48 +1277,48 @@ The official list of HTTP status codes along with hyperlinks to their definitive
 
 Table 7. HTTP Status Codes
 
-| Status Code | Description                                                         |
+| Status Code | Description               |
 |-------------|---------------------------------------------------------------------|
-| 200         | OK                                                                  |
-| 201         | Created                                                             |
-| 202         | Accepted                                                            |
-| 203         | Non-Authoritative Information                                       |
-| 204         | No Content                                                          |
-| 205         | Reset Content                                                       |
-| 206         | Partial Content                                                     |
-| 299         | Partial Content Broken Connection (non-standard - C++ Toolkit only) |
-| 300         | Multiple Choices                                                    |
-| 301         | Moved Permanently                                                   |
-| 302         | Found                                                               |
-| 303         | See Other                                                           |
-| 304         | Not Modified                                                        |
-| 305         | Use Proxy                                                           |
-| 307         | Temporary Redirect                                                  |
-| 400         | Bad Request                                                         |
-| 401         | Unauthorized                                                        |
-| 402         | Payment Required                                                    |
-| 403         | Forbidden                                                           |
-| 404         | Not Found                                                           |
-| 405         | Method Not Allowed                                                  |
-| 406         | Not Acceptable                                                      |
-| 407         | Proxy Authentication Required                                       |
-| 408         | Request Timeout                                                     |
-| 409         | Conflict                                                            |
-| 410         | Gone                                                                |
-| 411         | Length Required                                                     |
-| 412         | Precondition Failed                                                 |
-| 413         | Payload Too Large                                                   |
-| 414         | URI Too Long                                                        |
-| 415         | Unsupported Media Type                                              |
-| 416         | Requested Range Not Satisfiable                                     |
-| 417         | Expectation Failed                                                  |
-| 499         | Broken Connection (non-standard - C++ Toolkit only)                 |
-| 500         | Internal Server Error                                               |
-| 501         | Not Implemented                                                     |
-| 502         | Bad Gateway                                                         |
-| 503         | Service Unavailable                                                 |
-| 504         | Gateway Timeout                                                     |
-| 505         | HTTP Version Not Supported                                          |
+| 200   | OK     |
+| 201   | Created                   |
+| 202   | Accepted                  |
+| 203   | Non-Authoritative Information   |
+| 204   | No Content                |
+| 205   | Reset Content             |
+| 206   | Partial Content           |
+| 299   | Partial Content Broken Connection (non-standard - C++ Toolkit only) |
+| 300   | Multiple Choices          |
+| 301   | Moved Permanently         |
+| 302   | Found  |
+| 303   | See Other                 |
+| 304   | Not Modified              |
+| 305   | Use Proxy                 |
+| 307   | Temporary Redirect        |
+| 400   | Bad Request               |
+| 401   | Unauthorized              |
+| 402   | Payment Required          |
+| 403   | Forbidden                 |
+| 404   | Not Found                 |
+| 405   | Method Not Allowed        |
+| 406   | Not Acceptable            |
+| 407   | Proxy Authentication Required   |
+| 408   | Request Timeout           |
+| 409   | Conflict                  |
+| 410   | Gone   |
+| 411   | Length Required           |
+| 412   | Precondition Failed       |
+| 413   | Payload Too Large         |
+| 414   | URI Too Long              |
+| 415   | Unsupported Media Type    |
+| 416   | Requested Range Not Satisfiable |
+| 417   | Expectation Failed        |
+| 499   | Broken Connection (non-standard - C++ Toolkit only)     |
+| 500   | Internal Server Error     |
+| 501   | Not Implemented           |
+| 502   | Bad Gateway               |
+| 503   | Service Unavailable       |
+| 504   | Gateway Timeout           |
+| 505   | HTTP Version Not Supported      |
 
 <div class="table-scroll"></div>
 
@@ -1378,12 +1370,12 @@ This results in the following files:
 
 <a name="ch_cgi.T.nc_filepurposefmyappcgithis_is_"></a>
 
-| File         | Purpose                                                                                                                                       |
+| File   | Purpose                 |
 |--------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | `fmyapp.cgi` | This is the proxy script - it's a regular CGI that the client will call via HTTP. It is the only file that needs to reside on the web server. |
-| `fmyapp.ini` | This is the INI file for the FCGI application, not for the proxy (the proxy does not use an INI file).                                        |
-| `myapp.cpp`  | This is the sample application source code and should be adapted or replaced by your application.                                             |
-| `myapp.html` | This is an HTML template that goes with the sample code - it can be deleted or adapted to your application.                                   |
+| `fmyapp.ini` | This is the INI file for the FCGI application, not for the proxy (the proxy does not use an INI file).    |
+| `myapp.cpp`  | This is the sample application source code and should be adapted or replaced by your application.   |
+| `myapp.html` | This is an HTML template that goes with the sample code - it can be deleted or adapted to your application.     |
 
 <div class="table-scroll"></div>
 
@@ -1391,10 +1383,10 @@ Building creates both a FastCGI-enabled application and a regular CGI applicatio
 
 <a name="ch_cgi.T.nc_filepurposefmyappfcgithis_is"></a>
 
-| File          | Purpose                                                                        |
+| File    | Purpose           |
 |---------------|--------------------------------------------------------------------------------|
 | `fmyapp.fcgi` | This is the FastCGI version of your application (hence the `.fcgi` extension). |
-| `myapp.cgi`   | This is the regular CGI version of your application.                           |
+| `myapp.cgi`   | This is the regular CGI version of your application.   |
 
 <div class="table-scroll"></div>
 

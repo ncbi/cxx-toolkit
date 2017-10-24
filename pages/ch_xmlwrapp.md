@@ -8,14 +8,11 @@ nav: pages/ch_xmlwrapp
 {{ page.title }}
 ===================================================================
 
-Overview
---------
-
-### Introduction
+## Introduction
 
 The NCBI C++ Toolkit has forked and enhanced the open-source [xmlwrapp](http://vslavik.github.io/xmlwrapp/) project, which provides a simplified way for developers to work with XML. This chapter discusses the NCBI fork (also available as [ncbi-xmlwrapp on GitHub](https://github.com/ncbi/ncbi-xmlwrapp)) and how to use it. This chapter refers to NCBI's project as "XmlWrapp" and the open-source project as "xmlwrapp". Both projects produce a library named `libxmlwrapp`.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -811,10 +808,10 @@ Then the table below lists the callbacks that are called, depending on the value
 
 | Having this call before the parser is created:<br/>`xml::init::substitute_entities(true)`<br/>results in the following callbacks: | Having this call before the parser is created:<br/>`xml::init::substitute_entities(false)`<br/>results in the following callbacks: |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `xml::event_parser::text("Super ")`                                                                                                                                                   | `xml::event_parser::text("Super ")`                                                                                                                                                    |
-| `xml::event_parser::text("VALUE")`                                                                                                                                                    | `xml::event_parser::text("VALUE")`                                                                                                                                                     |
-|                                                                                                                                                                   | `xml::event_parser::entity_reference("my")`                                                                                                                                            |
-| `xml::event_parser::text(" oh!")`                                                                                                                                                     | `xml::event_parser::text(" oh!")`                                                                                                                                                      |
+| `xml::event_parser::text("Super ")`          | `xml::event_parser::text("Super ")`           |
+| `xml::event_parser::text("VALUE")`           | `xml::event_parser::text("VALUE")`            |
+|       | `xml::event_parser::entity_reference("my")`   |
+| `xml::event_parser::text(" oh!")`            | `xml::event_parser::text(" oh!")`             |
 
 <div class="table-scroll"></div>
 

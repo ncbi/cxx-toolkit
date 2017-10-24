@@ -8,20 +8,11 @@ nav: pages/ch_style
 {{ page.title }}
 =====================================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter discusses policies and guidelines for the development of NCBI software.
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -209,42 +200,42 @@ If you have questions, please email to <span class="oem_span">jww4jvylGujip5ust5
 
 Table 1. Naming Conventions
 
-|                      SYNOPSIS                                        |                      EXAMPLE                               |
+|                      SYNOPSIS    |                      EXAMPLE |
 |----------------------------------------------------------------------|------------------------------------------------------------|
-|                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Type Names**      |
-|***C****ClassTypeName*                                                |`class CMyClass { ..... };`                                 |
-|***I****InterfaceName*                                                |`class IMyInterface { ..... };`                             |
-|***S****StructTypeName*                                               |`struct SMyStruct { ..... };`                               |
-|***U****UnionTypeName*                                                |`union UMyUnion { ..... };`                                 |
-|***E****EnumTypeName*                                                 |`enum EMyEnum { ..... };`                                   |
-|***F****FunctionTypeName*                                             |`typedef int (*FMyFunc)(void);`                             |
-|***P****PredicateName*                                                |`struct PMyPred { bool operator() (.... , ....); };`        |
-|***T****AuxiliaryTypedef* [(\*)](#ch_style.1.3.1)                     |`typedef map<int,string> TMyMapIntStr;`                     |
-|***T****Iterator****\_I***                                            |`typedef list<int>::iterator TMyList_I;`                    |
-|***T****ConstIterator****\_CI***                                      |`typedef set<string>::const_iterator TMySet_CI;`            |
-|***N****Namespace* [(see also)](#ch_style.naming_prefix)              |`namespace NMyNamespace { ..... }`                          |
-|                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Preprocessor Define/Macro**                     |
-|*MACRO\_NAME*                                                         |`#define MY_DEFINE 12345`                                   |
-|*macro\_arg\_name*                                                    |`#define MY_MACRO(x, y) (((x) + 1) < (y))`                  |
-|                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Function Arguments and Local Variables**        |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Type Names**      |
+|***C****ClassTypeName*      |`class CMyClass { ..... };`   |
+|***I****InterfaceName*      |`class IMyInterface { ..... };`     |
+|***S****StructTypeName*     |`struct SMyStruct { ..... };` |
+|***U****UnionTypeName*      |`union UMyUnion { ..... };`   |
+|***E****EnumTypeName*       |`enum EMyEnum { ..... };`     |
+|***F****FunctionTypeName*   |`typedef int (*FMyFunc)(void);`     |
+|***P****PredicateName*      |`struct PMyPred { bool operator() (.... , ....); };`  |
+|***T****AuxiliaryTypedef* [(\*)](#ch_style.1.3.1)   |`typedef map<int,string> TMyMapIntStr;`   |
+|***T****Iterator****\_I***  |`typedef list<int>::iterator TMyList_I;`  |
+|***T****ConstIterator****\_CI***  |`typedef set<string>::const_iterator TMySet_CI;`      |
+|***N****Namespace* [(see also)](#ch_style.naming_prefix)  |`namespace NMyNamespace { ..... }`  |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Preprocessor Define/Macro**   |
+|*MACRO\_NAME*               |`#define MY_DEFINE 12345`     |
+|*macro\_arg\_name*          |`#define MY_MACRO(x, y) (((x) + 1) < (y))`      |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Function Arguments and Local Variables**  |
 |*func\_local\_var\_name* |`void MyFunc(int foo, const CMyClass& a_class)`<br/>`{ `<br/>`    size_t  foo_size;`<br/>`    int   bar;`|
-|                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Constants**                                     |
-|***k****ConstantName*                                                 |`const int kMyConst = 123;`                                 |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Constants** |
+|***k****ConstantName*       |`const int kMyConst = 123;`   |
 |***e****EnumValueName*  |`enum EMyEnum { `<br/>`    eMyEnum_1 = 11, `<br/>`    eMyEnum_2 = 22, `<br/>`    eMyEnum_3 = 33 `<br/>`};`|
-|***f****FlagValueName*|`enum EMyFlags {`<br/>`    fMyFlag_1 = (1<<0),  ///< = 0x1 (describe)`<br/>`    fMyFlag_2 = (1<<1),  ///< = 0x2 (describe)`<br/>`    fMyFlag_3 = (1<<2)   ///< = 0x4 (describe)`<br/>`};` <br/>`typedef int TMyFlags; ///< holds bitwise OR of "EMyFlags"`                                                                                                                         |
-|                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Class and Structure Data Members (Fields)**     |
-|***m\_****ClassMemberName*                                            |`class C { short int m_MyClassData; };`                     |
-|*struct\_field\_name*                                                 |`struct S { int my_struct_field; };`                        |
-|***sm\_****ClassStaticMemberName*                                     |`class C { static double sm_MyClassStaticData; };`          |
-|                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Class Member Functions (Methods)**              |
-|*ClassMethod*                                                         |`bool MyClassMethod(void);`                                 |
-|***x\_****ClassPrivateMethod*                                         |`int x_MyClassPrivateMethod(char c);`                       |
-|                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Module Static Functions and Data**              |
-|***s\_****StaticFunc*                                                 |`static char s_MyStaticFunc(void);`                         |
-|***s\_****StaticVar*                                                  |`static int s_MyStaticVar;`                                 |
-|                                                                      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Global (*"extern"*) Functions and Data**        |
-|***g\_****GlobalFunc*                                                 |`double g_MyGlobalFunc(void);`                              |
-|***g\_****GlobalVar*                                                  |`short g_MyGlobalVar;`                                      |
+|***f****FlagValueName*|`enum EMyFlags {`<br/>`    fMyFlag_1 = (1<<0),  ///< = 0x1 (describe)`<br/>`    fMyFlag_2 = (1<<1),  ///< = 0x2 (describe)`<br/>`    fMyFlag_3 = (1<<2)   ///< = 0x4 (describe)`<br/>`};` <br/>`typedef int TMyFlags; ///< holds bitwise OR of "EMyFlags"`   |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Class and Structure Data Members (Fields)**     |
+|***m\_****ClassMemberName*  |`class C { short int m_MyClassData; };`   |
+|*struct\_field\_name*       |`struct S { int my_struct_field; };`      |
+|***sm\_****ClassStaticMemberName* |`class C { static double sm_MyClassStaticData; };`    |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Class Member Functions (Methods)**  |
+|*ClassMethod*               |`bool MyClassMethod(void);`   |
+|***x\_****ClassPrivateMethod*     |`int x_MyClassPrivateMethod(char c);`     |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Module Static Functions and Data**  |
+|***s\_****StaticFunc*       |`static char s_MyStaticFunc(void);` |
+|***s\_****StaticVar*        |`static int s_MyStaticVar;`   |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Global (*"extern"*) Functions and Data**  |
+|***g\_****GlobalFunc*       |`double g_MyGlobalFunc(void);`      |
+|***g\_****GlobalVar*        |`short g_MyGlobalVar;`  |
 
 <div class="table-scroll"></div>
 
@@ -886,10 +877,10 @@ The following Subversion repositories have been set up for general use within NC
 <a name="ch_style.T.nc_repositorypurposetoolkitc_"></a>
 
 |----------------------------------------------------------------------|------------------------------------------------------------|
-| **Repository**                                                       | **Purpose**                                                |
-| [toolkit](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/)              | C++ Toolkit (core and internal) development                |
-| [gbench](https://svn.ncbi.nlm.nih.gov/viewvc/gbench/)                | GUI / GBENCH                                               |
-| [staff](https://svn.ncbi.nlm.nih.gov/viewvc/staff/)                  | individuals' projects (not parts of any official projects) |
+| **Repository**             | **Purpose**      |
+| [toolkit](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/)  | C++ Toolkit (core and internal) development    |
+| [gbench](https://svn.ncbi.nlm.nih.gov/viewvc/gbench/)    | GUI / GBENCH     |
+| [staff](https://svn.ncbi.nlm.nih.gov/viewvc/staff/)      | individuals' projects (not parts of any official projects) |
 | [misc\_projects](https://svn.ncbi.nlm.nih.gov/viewvc/misc_projects/) | projects not falling into any of the other categories      |
 
 <div class="table-scroll"></div>

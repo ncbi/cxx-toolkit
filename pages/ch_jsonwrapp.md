@@ -31,13 +31,13 @@ nav: pages/ch_jsonwrapp
 
 ### Introduction
 
-JavaScript Object Notation - [JSON](http://www.ietf.org/rfc/rfc4627.txt) is a popular lightweight, text-based data interchange format. JSON derives a small set of formatting rules for portable representation of structured data. While handling of JSON data can be done using [SERIAL](http://ncbi.github.io/cxx-toolkit/pages/ch_ser) library that could be too difficult. It would require data specification (ASN.1 or XML schema) and generation of special C++ data storage classes. In practice, specification is not always available, and code generation is not always desirable. There is a need for something simpler – simple tool to read, write and analyze any JSON data. 
+JavaScript Object Notation - [JSON](http://www.ietf.org/rfc/rfc4627.txt) is a popular lightweight, text-based data interchange format. JSON derives a small set of formatting rules for portable representation of structured data. While handling of JSON data can be done using [SERIAL](/cxx-toolkit/pages/ch_ser) library that could be too difficult. It would require data specification (ASN.1 or XML schema) and generation of special C++ data storage classes. In practice, specification is not always available, and code generation is not always desirable. There is a need for something simpler – simple tool to read, write and analyze any JSON data. 
 
 There are several libraries which do this, NCBI does not endorse any of them in particular. At present, we have chosen [RAPIDJSON](https://github.com/miloyip/rapidjson), but we have made every effort to hide its implementation details and created our own wrapper classes and API. In case we choose to change the underlying implementation in the future, what would be required from developers is recompilation only, the API will not change.
 
 <a name="ch_jsonwrapp.Overview"></a>
 
-### Overview.
+### Overview
 
 JSON value can represent four primitive types (*string*, *number*, *boolean*, and *null*) and two structured types - *object* and *array*). An *object* is an unordered collection of zero or more name/value pairs, where a name is a string and a value is a string, number, boolean, null, object, or array. An *array* is an ordered sequence of zero or more values.
 
@@ -197,7 +197,7 @@ It is also possible to initialize Document with the contents of Node of another 
 
 <a name="ch_jsonwrapp.Parsing"></a>
 
-### JSON data parsing (DOM and SAX).
+### JSON data parsing (DOM and SAX)
 
 There are two types of data parsing – DOM and SAX. `JsonWrapp` library supports both.
 The DOM stands for Document Object Model. This type of parser loads the whole object into memory.  The document has methods to access, insert, and delete data nodes. For example, to read data from file, do the following:

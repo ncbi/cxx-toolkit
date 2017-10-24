@@ -563,28 +563,28 @@ function SymbolSearch(bookID)
 
 
   if(sel=='book_search') { 
-    url = "http://www.ncbi.nlm.nih.gov/toolkitbookgh/?term=" + f.__symbol.value; 
+    url = "https://www.ncbi.nlm.nih.gov/toolkitbookgh/?term=" + f.__symbol.value; 
   } else
 
   if(sel=='toolkit') { 
     if(in_house) 
-      url = "http://test.ncbi.nlm.nih.gov/toolkitinternal/?term=" + f.__symbol.value; 
+      url = "https://test.ncbi.nlm.nih.gov/toolkitinternal/?term=" + f.__symbol.value; 
     else
-      url = "http://www.ncbi.nlm.nih.gov/toolkit/?term=" + f.__symbol.value; 
+      url = "https://www.ncbi.nlm.nih.gov/toolkit/?term=" + f.__symbol.value; 
   } else
 
   if(sel=='pLXR') { 
     if(in_house)
-      url = "http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=" + f.__symbol.value + "&d=";
+      url = "https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=" + f.__symbol.value + "&d=";
     else
-      url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=" + f.__symbol.value + "&d="; 
+      url = "https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=" + f.__symbol.value + "&d="; 
   } else
 
   if(sel=='pLib') { 
     if(in_house)
-      url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=no&symbol=" + f.__symbol.value; 
+      url = "https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=no&symbol=" + f.__symbol.value; 
     else
-      url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=yes&symbol=" + f.__symbol.value; 
+      url = "https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lib_search/libsearch.cgi?public=yes&symbol=" + f.__symbol.value; 
   }
 
  //  if(sel=='google_search') { url = "http://www.google.com/#q=" + f.__symbol.value + " site:ncbi.github.io/cxx-toolkit"; }  

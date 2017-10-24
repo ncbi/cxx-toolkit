@@ -8,18 +8,11 @@ nav: pages/ch_app
 {{ page.title }}
 ===============================
 
-Overview
---------
-
--   [Introduction](#ch_app.Intro)
-
--   [Chapter Outline](#ch_app.Outline)
-
-### Introduction
+## Introduction
 
 Most of the applications discussed in this chapter are built on a regular basis, at least once a day from the latest sources, and if you are in NCBI, then you can find the latest version in the directory: `$NCBI/c++/Release/bin/` (or `$NCBI/c++/Debug/bin/`).
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -118,22 +111,6 @@ The following is an outline of the topics presented in this chapter:
         -   [Configuration Examples](#ch_app._Configuration_Exampl)
 
     -   [Database Load Balancing](#ch_app.Database_Load_Balancing)
-
-    -   [Cookie / Argument Affinity Module (MOD\_CAF)](#ch_app.Cookie___Argument_Af)
-
-        -   [Overview](#ch_app._Overview_2)
-
-        -   [Configuration](#ch_app._Configuration_1)
-
-        -   [Configuration Examples](#ch_app._Configuration_Exampl)
-
-        -   [Arguments Matching](#ch_app.Arguments_Matching)
-
-            -   [Argument Matching Examples](#ch_app.Argument_Matching_Ex)
-
-        -   [Log File](#ch_app.Log_File)
-
-        -   [Monitoring](#ch_app._Monitoring)
 
     -   [DISPD Network Dispatcher](#ch_app.DISPD_Network_Dispat)
 
@@ -252,33 +229,33 @@ See [Table 1](#ch_app.tools_table1).
 
 Table 1. Main arguments
 
-| Argument               | Effect                                                    | Comments                                                                   |
+| Argument | Effect | Comments |
 |------------------------|-----------------------------------------------------------|----------------------------------------------------------------------------|
-| -h                     | Display the **DATATOOL** arguments                        | Ignores other arguments                                                    |
-| -m \<file\>            | module specification file(s) - ASN.1, DTD, or XSD         | Required argument                                                          |
-| -M \<file\>            | External module file(s)                                   | Is used for IMPORT type resolution                                         |
-| -i                     | Ignore unresolved types                                   | Is used for IMPORT type resolution                                         |
-| -f \<file\>            | Write ASN.1 module file                                   |                                                        |
-| -fx \<file\>           | Write DTD module file                                     | "-fx m" writes modular DTD file                                            |
-| -fxs \<file\>          | Write XML Schema file                                     |                                                        |
-| -fd \<file\>           | Write specification dump file in datatool internal format |                                                        |
-| -ms \<string\>         | Suffix of modular DTD or XML Schema file name             |                                                        |
-| -dn \<string\>         | DTD module name in XML header                             | No extension. If empty, omit DOCTYPE declaration.                          |
-| -v \<file\>            | Read value in ASN.1 text format                           |                                                        |
-| -vx \<file\>           | Read value in XML format                                  |                                                        |
-| -F                     | Read value completely into memory                         |                                                        |
-| -p \<file\>            | Write value in ASN.1 text format                          |                                                        |
-| -px \<file\>           | Write value in XML format                                 |                                                        |
-| -pj \<file\>           | Write value in JSON format                                |                                                        |
-| -d \<file\>            | Read value in ASN.1 binary format                         | -t argument required                                                       |
-| -t \<type\>            | Binary value type name                                    | See -d argument                                                            |
-| -e \<file\>            | Write value in ASN.1 binary format                        |                                                        |
-| -xmlns                 | XML namespace name                                        | When specified, also makes XML output file reference Schema instead of DTD |
-| -sxo                   | No scope prefixes in XML output                           |                                                        |
-| -sxi                   | No scope prefixes in XML input                            |                                                        |
-| -logfile \<File\_Out\> | File to which the program log should be redirected        |                                                        |
-| conffile \<File\_In\>  | Program's configuration (registry) data file              |                                                        |
-| -version               | Print version number                                      | Ignores other arguments                                                    |
+| -h | Display the **DATATOOL** arguments | Ignores other arguments |
+| -m \<file\> | module specification file(s) - ASN.1, DTD, or XSD | Required argument |
+| -M \<file\> | External module file(s) | Is used for IMPORT type resolution |
+| -i | Ignore unresolved types | Is used for IMPORT type resolution |
+| -f \<file\> | Write ASN.1 module file | |
+| -fx \<file\> | Write DTD module file | "-fx m" writes modular DTD file |
+| -fxs \<file\> | Write XML Schema file | |
+| -fd \<file\> | Write specification dump file in datatool internal format | |
+| -ms \<string\> | Suffix of modular DTD or XML Schema file name | |
+| -dn \<string\> | DTD module name in XML header | No extension. If empty, omit DOCTYPE declaration. |
+| -v \<file\> | Read value in ASN.1 text format | |
+| -vx \<file\> | Read value in XML format | |
+| -F | Read value completely into memory | |
+| -p \<file\> | Write value in ASN.1 text format | |
+| -px \<file\> | Write value in XML format | |
+| -pj \<file\> | Write value in JSON format | |
+| -d \<file\> | Read value in ASN.1 binary format | -t argument required |
+| -t \<type\> | Binary value type name | See -d argument |
+| -e \<file\> | Write value in ASN.1 binary format | |
+| -xmlns | XML namespace name | When specified, also makes XML output file reference Schema instead of DTD |
+| -sxo | No scope prefixes in XML output | |
+| -sxi | No scope prefixes in XML input | |
+| -logfile \<File\_Out\> | File to which the program log should be redirected | |
+| conffile \<File\_In\> | Program's configuration (registry) data file | |
+| -version | Print version number | Ignores other arguments |
 
 <div class="table-scroll"></div>
 
@@ -292,34 +269,34 @@ See [Table 2](#ch_app.tools_table2).
 
 Table 2. Code generation arguments
 
-| Argument        | Effect                                                                | Comments                                                                                                                                                                  |
+| Argument | Effect | Comments |
 |-----------------|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| -od \<file\>    | C++ code [definition file](#ch_app.datatool.html_refDefFile)          | See [Definition file](#ch_app.datatool.html_refDefFile)                                                                                                                   |
-| -ods            | Generate an example definition file (e.g. `MyModuleName._sample_def`) | Must be used with another option that generates code such as -oA.                                                                                                         |
-| -odi            | Ignore absent code definition file                                    |                                                                                                                                                       |
-| -odw            | Issue a warning about absent code definition file                     |                                                                                                                                                       |
-| -oA             | Generate C++ files for all types                                      | Only types from the main module are used (see [-m](#ch_app.tools_table1) and -mx arguments).                                                                              |
-| -ot \<types\>   | Generate C++ files for listed types                                   | Only types from the main module are used (see [-m](#ch_app.tools_table1) and -mx arguments).                                                                              |
-| -ox \<types\>   | Exclude types from generation                                         |                                                                                                                                                       |
-| -oX             | Turn off recursive type generation                                    |                                                                                                                                                       |
-| -of \<file\>    | Write the list of generated C++ files                                 |                                                                                                                                                       |
-| -oc \<file\>    | Write combining C++ files                                             |                                                                                                                                                       |
-| -on \<string\>  | Default namespace                                                     | The value "-" in the [Definition file](#ch_app.datatool.html_refDefFile) means don't use a namespace at all and overrides the -on option specified elsewhere.             |
-| -opm \<dir\>    | Directory for searching source modules                                |                                                                                                                                                       |
-| -oph \<dir\>    | Directory for generated \*.hpp files                                  |                                                                                                                                                       |
-| -opc \<dir\>    | Directory for generated \*.cpp files                                  |                                                                                                                                                       |
-| -or \<prefix\>  | Add prefix to generated file names                                    |                                                                                                                                                       |
-| -orq            | Use quoted syntax form for generated include files                    |                                                                                                                                                       |
-| -ors            | Add source file dir to generated file names                           |                                                                                                                                                       |
-| -orm            | Add module name to generated file names                               |                                                                                                                                                       |
-| -orA            | Combine all -or\* prefixes                                            |                                                                                                                                                       |
-| -ocvs           | create ".cvsignore" files                                             |                                                                                                                                                       |
-| -oR \<dir\>     | Set -op\* and -or\* arguments for NCBI directory tree                 |                                                                                                                                                       |
-| -oDc            | Turn ON generation of Doxygen-style comments                          | The value "-" in the [Definition file](#ch_app.datatool.html_refDefFile) means don't generate Doxygen comments and overrides the -oDc option specified elsewhere.         |
-| -odx \<string\> | URL of documentation root folder                                      | For Doxygen                                                                                                                                                               |
-| -lax\_syntax    | Allow non-standard ASN.1 syntax accepted by asntool                   | The value "-" in the [Definition file](#ch_app.datatool.html_refDefFile) means don't allow non-standard syntax and overrides the -lax\_syntax option specified elsewhere. |
-| -pch \<string\> | Name of the precompiled header file to include in all \*.cpp files    |                                                                                                                                                       |
-| -oex \<export\> | Add storage-class modifier to generated classes                       | Can be overriden by [[-].\_export](#ch_app.datatool.html_refDefCommon) in the definition file.                                                                            |
+| -od \<file\> | C++ code [definition file](#ch_app.datatool.html_refDefFile) | See [Definition file](#ch_app.datatool.html_refDefFile) |
+| -ods | Generate an example definition file (e.g. `MyModuleName._sample_def`) | Must be used with another option that generates code such as -oA. |
+| -odi | Ignore absent code definition file | |
+| -odw | Issue a warning about absent code definition file | |
+| -oA | Generate C++ files for all types | Only types from the main module are used (see [-m](#ch_app.tools_table1) and -mx arguments). |
+| -ot \<types\> | Generate C++ files for listed types | Only types from the main module are used (see [-m](#ch_app.tools_table1) and -mx arguments). |
+| -ox \<types\> | Exclude types from generation | |
+| -oX | Turn off recursive type generation | |
+| -of \<file\> | Write the list of generated C++ files | |
+| -oc \<file\> | Write combining C++ files | |
+| -on \<string\> | Default namespace | The value "-" in the [Definition file](#ch_app.datatool.html_refDefFile) means don't use a namespace at all and overrides the -on option specified elsewhere. |
+| -opm \<dir\> | Directory for searching source modules | |
+| -oph \<dir\> | Directory for generated \*.hpp files | |
+| -opc \<dir\> | Directory for generated \*.cpp files | |
+| -or \<prefix\> | Add prefix to generated file names | |
+| -orq | Use quoted syntax form for generated include files | |
+| -ors | Add source file dir to generated file names | |
+| -orm | Add module name to generated file names | |
+| -orA | Combine all -or\* prefixes | |
+| -ocvs | create ".cvsignore" files | |
+| -oR \<dir\> | Set -op\* and -or\* arguments for NCBI directory tree | |
+| -oDc | Turn ON generation of Doxygen-style comments | The value "-" in the [Definition file](#ch_app.datatool.html_refDefFile) means don't generate Doxygen comments and overrides the -oDc option specified elsewhere. |
+| -odx \<string\> | URL of documentation root folder | For Doxygen |
+| -lax\_syntax | Allow non-standard ASN.1 syntax accepted by asntool | The value "-" in the [Definition file](#ch_app.datatool.html_refDefFile) means don't allow non-standard syntax and overrides the -lax\_syntax option specified elsewhere. |
+| -pch \<string\> | Name of the precompiled header file to include in all \*.cpp files | |
+| -oex \<export\> | Add storage-class modifier to generated classes | Can be overriden by [[-].\_export](#ch_app.datatool.html_refDefCommon) in the definition file. |
 
 <div class="table-scroll"></div>
 
@@ -697,12 +674,12 @@ Then the following definitions will effect the generation of objects:
 
 <a name="ch_app.T.nc_definitioneffected_objectsda"></a>
 
-| Definition                                                          | Effected Objects                                                   |
+| Definition | Effected Objects |
 |---------------------------------------------------------------------|--------------------------------------------------------------------|
-| `[Date]`<br/>`str._type = string`         | the `str` member of the `Date` structure                           |
-| `[Dates]`<br/>`E._pointer = true`         | elements of the `Dates` container                                  |
+| `[Date]`<br/>`str._type = string` | the `str` member of the `Date` structure |
+| `[Dates]`<br/>`E._pointer = true` | elements of the `Dates` container |
 | `[Int-fuzz]`<br/>`range.min._type = long` | the `min` member of the `range` member of the `Int-fuzz` structure |
-| `[Int-fuzz]`<br/>`alt.E._type = long`     | elements of the `alt` member of the `Int-fuzz` structure           |
+| `[Int-fuzz]`<br/>`alt.E._type = long` | elements of the `alt` member of the `Int-fuzz` structure |
 
 <div class="table-scroll"></div>
 
@@ -712,8 +689,8 @@ As another example, suppose you have a ***CatalogEntry*** type comprised of a **
 
     <schema
         xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:tns="http://ncbi.nlm.nih.gov/some/unique/path"
-        targetNamespace="http://ncbi.nlm.nih.gov/some/unique/path"
+        xmlns:tns="https://ncbi.nlm.nih.gov/some/unique/path"
+        targetNamespace="https://ncbi.nlm.nih.gov/some/unique/path"
         elementFormDefault="qualified"
     >
 
@@ -886,8 +863,6 @@ Load Balancing
 
 -   [Database Load Balancing](#ch_app.Database_Load_Balancing)
 
--   [Cookie / Argument Affinity Module (MOD\_CAF)](#ch_app.Cookie___Argument_Af)
-
 -   [DISPD Network Dispatcher](#ch_app.DISPD_Network_Dispat)
 
 -   [NCBID Server Launcher](#ch_app.NCBID_Server_Launche)
@@ -994,7 +969,7 @@ The main loop of the LBSMD daemon:
 
 The LBSMD daemon can also periodically check whether the configured servers are alive: either by trying to establish a connection to them (and then disconnecting immediately, without sending/receiving any data) and / or by using a special plugin script that can do more intelligent, thorough, and server-specific diagnostics, and report the result back to LBSMD via an exit code.
 
-Lastly, LBSMD can pull port load information as posted by the running servers. This is done via a simple API <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/connect/daemons/lbsmdapi.h>. The information is then used to calculate the final server rates in run-time.
+Lastly, LBSMD can pull port load information as posted by the running servers. This is done via a simple API <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/include/connect/daemons/lbsmdapi.h>. The information is then used to calculate the final server rates in run-time.
 
 Although cients can [redirect services](ch_conn.html#ch_conn.Service_Redirection), LBSMD does not distinguish between direct and redirected services.
 
@@ -1008,7 +983,7 @@ The LBSMD daemon is configured via command line options and via a configuration 
 
 The local NCBI users can also visit the following link:
 
-<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi>
+<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi>
 
 The default name of the LBSMD daemon configuration file is `/etc/lbsmd/servrc.cfg`. Each line can be one of the following:
 
@@ -1124,21 +1099,21 @@ The check script is expected to produce one of the following exit codes:
 
 <a name="ch_app.T.nc_codesmeaning0the_server_is_f"></a>
 
-| Code(s)                     | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0                           | The server is fully available, i.e. "running at full throttle".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| 1 - 99                      | Indicates the approximate percent of base capacity used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 100 - 110                   | Server state is set as RESERVED. RESERVED servers are unavailable to most clients but not considered as officially DOWN.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 111 - 120                   | The server is not available and must not be used, i.e. DOWN.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| 123                         | Retain the previous exit code (as supplied in **`argv[3]`**) and increment the repetition count. Retain the current server state, otherwise, and log a warning.                                                                                                                                                                                                                                                                                                                                                                                                        |
-| 124 (*not* followed by 125) | Retain the current server state.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| 124 followed by 125         | Turn the server off, with no more checks. ***Note:*** This only applies when 124 is followed by 125, both without repetitions.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| 125 (*not* preceded by 124) | Retain the current server state.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| 126                         | Script was found but not executable (POSIX, script error).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| 127                         | Script was not found (POSIX, script error).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| 200 - 210                   | STANDBY server (set the rate to 0.005). The rate will be rolled back to the previously set "regular" rate the next time the RERATE command comes; or when the check script returns anything other than 123, 124, 125, or the state-retaining ALERTs (211-220).<br/><br/>STANDBY servers are those having base rate in the range [0.001..0.009], with higher rates having better chance to get drafted for service. STANDBY servers are only used by clients if there are no usable non-STANDBY counterparts found. |
-| 211 - 220                   | ALERT (email contacts and retain the current server state).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| 221 - 230                   | ALERT (email contacts and base the server rate on the dependency check only).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Code(s) | Meaning |
+|---------|---------|
+| 0 | The server is fully available, i.e. "running at full throttle". |
+| 1 - 99 | Indicates the approximate percent of base capacity used. |
+| 100 - 110 | Server state is set as RESERVED. RESERVED servers are unavailable to most clients but not considered as officially DOWN. |
+| 111 - 120 | The server is not available and must not be used, i.e. DOWN. |
+| 123 | Retain the previous exit code (as supplied in **`argv[3]`**) and increment the repetition count. Retain the current server state, otherwise, and log a warning. |
+| 124 (*not* followed by 125) | Retain the current server state. |
+| 124 followed by 125 | Turn the server off, with no more checks. ***Note:*** This only applies when 124 is followed by 125, both without repetitions. |
+| 125 (*not* preceded by 124) | Retain the current server state. |
+| 126 | Script was found but not executable (POSIX, script error). |
+| 127 | Script was not found (POSIX, script error). |
+| 200 - 210 | STANDBY server (set the rate to 0.005). The rate will be rolled back to the previously set "regular" rate the next time the RERATE command comes; or when the check script returns anything other than 123, 124, 125, or the state-retaining ALERTs (211-220).<br/><br/>STANDBY servers are those having base rate in the range [0.001..0.009], with higher rates having better chance to get drafted for service. STANDBY servers are only used by clients if there are no usable non-STANDBY counterparts found. |
+| 211 - 220 | ALERT (email contacts and retain the current server state). |
+| 221 - 230 | ALERT (email contacts and base the server rate on the dependency check only). |
 
 <div class="table-scroll"></div>
 
@@ -1252,10 +1227,10 @@ The table below describes the LBSMD daemon signal processing.
 <a name="ch_app.T.nc_SignalReactionSIGHUPreload_t"></a>
 
 |---------|---------------------------------------------------------------------------------------------------------------------------|
-| Signal  | Reaction                                                                                                                  |
-| SIGHUP  | reload the configuration                                                                                                  |
-| SIGINT  | quit                                                                                                                      |
-| SIGTERM | quit                                                                                                                      |
+| Signal | Reaction |
+| SIGHUP | reload the configuration |
+| SIGINT | quit |
+| SIGTERM | quit |
 | SIGUSR1 | toggle the verbosity level between less verbose (default) and more verbose (when every warning generated is stored) modes |
 
 <div class="table-scroll"></div>
@@ -1300,7 +1275,7 @@ Figure 10. Automatic Configuration Distribution
 
 The following web page can be used to search for a service:
 
-<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi>
+<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi>
 
 The following screen will appear
 
@@ -1308,17 +1283,17 @@ The following screen will appear
 
 Figure 11. NCBI Service Search Page
 
-As an example of usage a user might enter the partial name of the service like "TaxService" and click on the “Go” button. The search results will display "TaxService", "TaxService3" and "TaxService3Test" if those services are available (see <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=TaxService&host=&button=Go&db=>).
+As an example of usage a user might enter the partial name of the service like "TaxService" and click on the “Go” button. The search results will display "TaxService", "TaxService3" and "TaxService3Test" if those services are available (see <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=TaxService&host=&button=Go&db=>).
 
 <a name="ch_app.lbsmc_Utility"></a>
 
 ##### lbsmc Utility
 
-Another way of monitoring the LBSMD daemon is using the lbsmc (<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsmc.c>) utility. The utility periodically dumps onto the screen a table which represents the current content of the LBSMD daemon table. The utility output can be controlled by a number of command line options. The full list of available options and their description can be obtained by issuing the following command:
+Another way of monitoring the LBSMD daemon is using the lbsmc (<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsmc.c>) utility. The utility periodically dumps onto the screen a table which represents the current content of the LBSMD daemon table. The utility output can be controlled by a number of command line options. The full list of available options and their description can be obtained by issuing the following command:
 
 `lbsmc -h`
 
-The NCBI intranet users can also get the list of options by clicking on this link: <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h>.
+The NCBI intranet users can also get the list of options by clicking on this link: <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h>.
 
 For example, to print a list of hosts which names match the pattern “sutil\*” the user can issue the following command:
 
@@ -1365,7 +1340,7 @@ For example, to print a list of hosts which names match the pattern “sutil\*�
     testsutils_lb      25     DNS    sutils2:2441              1000.00        155.95
     testsutils_lb      27     DNS    sutils3:2441              1000.00        129.03
     --------------------------------------------------------------------------------
-    * Hosts:4\747, Srvrs:44/1223/23  |   Heap:249856, used:237291/249616, free:240 *
+    * Hosts:4\747, Srvrs:44/1223/23 |   Heap:249856, used:237291/249616, free:240 *
     LBSMD PID: 17530, config: /etc/lbsmd/servrc.cfg
 
 <a name="ch_app.NCBI_Intranet_Web_Ut"></a>
@@ -1374,9 +1349,9 @@ For example, to print a list of hosts which names match the pattern “sutil\*�
 
 The NCBI intranet users can also visit the following quick reference links:
 
--   Dead servers list: <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h+none+-w+-d>
+-   Dead servers list: <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h+none+-w+-d>
 
--   Search engine for all available hosts, all services and database affiliation: <http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=&host=&button=Go&db=>
+-   Search engine for all available hosts, all services and database affiliation: <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=&host=&button=Go&db=>
 
 If the lbsmc utility is run with the -f option then the output contains two parts:
 
@@ -1404,7 +1379,7 @@ Technically, the penalty is maintained by a daemon, which has the server configu
 
 [Service mapping API](ch_conn.html#ch_conn.service_mapping_api) has a call `SERV_Penalize()` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_Penalize>) declared in `connect/ncbi_service.h` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service.h>), which can be used to set the penalty for the last server obtained from the mapping iterator.
 
-For script files (similar to the ones used to start/stop servers), there is a dedicated utility program called `lbsm_feedback` (<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsm_feedback.c>), which sets the penalty from the command line. This command should be used with extreme care because it affects the load-balancing mechanism substantially,.
+For script files (similar to the ones used to start/stop servers), there is a dedicated utility program called `lbsm_feedback` (<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/connect/daemons/lbsm_feedback.c>), which sets the penalty from the command line. This command should be used with extreme care because it affects the load-balancing mechanism substantially,.
 
 **lbsm\_feedback** is a part of the LBSM set of tools installed on all hosts which run **LBSMD**. As it was explained above, penalizing means to make a server less favorable as a choice of the load balancing mechanism. Because of the fact that the full penalty of 100% makes a server unavailable for clients completely, at the time when the server is about to shut down (restart), it is wise to increase the server penalty to the maximal value, i.e. to exclude the server from the service mapping. (Otherwise, the LBSMD daemon might not immediately notice that the server is down and may continue dispatching to that server.) Usually, the penalty takes at most 5 seconds to propagate to all participating network hosts. Before an actual server shutdown, the following sequence of commands can be used:
 
@@ -1458,7 +1433,7 @@ The log file size can be controlled by the -s command line option. By default, -
 
 NCBI intranet users can get few (no more than 100) recent lines of the log file on an NCBI internal host. It is also possible to visit the following link:
 
-<http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi?log>
+<https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmd.cgi?log>
 
 <a name="ch_app._Configuration_Exampl"></a>
 
@@ -1497,260 +1472,6 @@ Here is an example of a LBSMD configuration file:
 
 Database load balancing is an important part of the overall load balancing function. Please see the [Database Load Balancer](ch_dbapi.html#ch_dbapi.Database_loadbalanci) section in the [Database Access](ch_dbapi.html) chapter for more details.
 
-<a name="ch_app.Cookie___Argument_Af"></a>
-
-### Cookie / Argument Affinity Module (MOD\_CAF)
-
-<a name="ch_app._Overview_2"></a>
-
-#### Overview
-
-The cookie / argument affinity module (CAF module in the further discussion) helps to virtualize and to dispatch a web site by modifying the way how Apache resolves host names. It is done by superseding conventional `gethostbyname*()` API. The CAF module is implemented as an Apache web server module and uses the LBSMD daemon collected data to make a decision how to dispatch a request. The data exchange between the CAF module and the LBSMD daemon is done via a shared memory segment as shown on the figure below.
-
-[![Image CAF-LBSMD.gif](/cxx-toolkit/static/img/CAF-LBSMD.gif)](/cxx-toolkit/static/img/CAF-LBSMD.gif "Click to see the full-resolution image")
-
-Figure 14. CAF Module and LBSMD daemon data exchange
-
-The LBSMD daemon stores all the collected data in a shared memory segment and the CAF module is able to read data from that segment.
-
-The CAF module looks for special cookies and query line arguments, and analyses the LBSMD daemon data to resolve special names which can be configured in ProxyPass directives of mod\_proxy.
-
-The CAF module maintains a list of proxy names, cookies, and arguments (either 4 predefined, see below, or set forth via Apache configuration file by CAF directives) associated with cookies. Once a URL is translated to the use of one of the proxies (generally, by ProxyPass of mod\_proxy) then the information from related cookie (if any) and argument (if any) is used to find the best matching real host that corresponds to the proxy. Damaged cookies and arguments, if found in the incoming HTTP request, are ignored.
-
-A special host name is meant under proxy and the name contains a label followed by string ".lb" followed by an optional domain part. Such names trigger gethostbyname() substitute, supplied by the module, to consult load-balancing daemon's table, and to use both the constraints on the arguments and the preferred host information, found in the query string and the cookie, respectively.
-
-For example, the name "pubmed.lb.nlm.nih.gov" is an LB proxy name, which would be resolved by looking for special DNS services ("pubmed\_lb" in this example) provided by the LBSMD daemon. Argument matching (see also a separate section below) is done by searching the host environment of target hosts (corresponding to the LB proxy name) as supplied by the LBSMD daemon. That is, "db=PubMed" (to achieve PubMed database affinity) in the query that transforms into a call to an LB proxy, which in turn is configured to use the argument "DB", instructs to search only those target hosts that declare the proxy and have "db=... PubMed ..." configured in their LBSMD environments (and yet to remember to accommodate, if it is possible, a host preference from the cookie, if any found in the request).
-
-The CAF module also detects internal requests and allows them to use the entire set of hosts that the LB names are resolved to. For external requests, only hosts whose DNS services are not marked local (L=yes, or implicitly, by lacking "-i" flag in the LBSMD daemon launch command) will be allowed to serve requests. "HTTP\_CAF\_PROXIED\_HOST" environment is supplied (by means of an HTTP header tag named "`CAF-Proxied-Host`") to contain an address of the actual host posted the request. Impostor's header tags (if any) of this name are always stripped, so that backends always have correct information about the requesters. Note that all internal requests are trusted, so that an internal resource can make a request to execute on behalf of an outside client by providing its IP in the "`Client-Host`" HTTP header. The "`Client-Host`" tag gets through for internal requests only; to maintain security the tag is dropped for all external requests.
-
-The CAF module has its own status page that can be made available in the look somewhat resembling Apache status page. The status can be in either raw or HTML formatted, and the latter can also be sorted using columns in interest. Stats are designed to be fast, but sometimes inaccurate (to avoid interlocking, and thus latencies in request processing, there are no mutexes being used except for the table expansion). Stats are accumulated between server restarts (and for Apache 2.0 can survive graceful restarts, too). When the stat table is full (since it has a fixed size), it is cleaned in a way to get room for 1% of its capacity, yet trying to preserve the most of recent activity as well as the most of heavily used stats from the past. There are two cleaning algorithms currently implemented, and can be somehow tuned by means of `CAFexDecile`, `CAFexPoints`, and `CAFexSlope` directives which are described below.
-
-The CAF module can also report the number of slots that the Apache server has configured and used up each time a new request comes in and is being processed. The information resides in a shared memory segment that several Apache servers can use cooperatively on the same machine. Formerly, this functionality has been implemented in a separate SPY module, which is now fully integrated into this module. Using a special compile-time macro it is possible to obtain the former SPY-only functionality (now called LBSMD reporter feature) without any other CAF features. Note that no CAF\* directives will be recognized in Apache configuration, should the reduced functionality build be chosen.
-
-<a name="ch_app._Configuration_1"></a>
-
-#### Configuration
-
-The table below describes Apache configuration directives which are taken into account by the CAF module.
-
-<a name="ch_app.T.nc_DirectiveDescriptionLBSMD__O"></a>
-
-|-------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Directive                                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| LBSMD { On \\| Off }                                  | It can appear outside any paired section of the configuration file, and enables ["On", default in mod\_spy mode] or disables ["Off", default in full-fledged mod\_caf mode] the LBSMD reporter feature. When the module is built exclusively with the LBSMD reporter feature, this is the only directive, which is available for the use by the module. Please note that the directive is extremely global, and works across configuration files. Once "Off" is found throughout the configuration, it takes the effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| CAF { On \\| Off }                                    | It can appear outside any paired section of the configuration file, and enables ["On", default] or disables ["Off"] the entire module. Please note that this directive is extremely global, and works across Apache configuration files, that is the setting "Off" anywhere in the configuration causes the module to go out of business completely.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| CAFQAMap name path                                    | It can appear outside any paired section of the configuration file but only once in the entire set of the configuration files per "name", and if used, defines a path to the map file, which is to be loaded at the module initialization phase (if the path is relative, it specifies the location with respect to the daemon root prefix as defined at the time of the build, much like other native configuration locations do). The file is a text, line-oriented list (w/o line continuations). The pound symbol (\#) at any position introduces a comment (which is ignored by the parser). Any empty line (whether resulted from cutting off a comment, or just blank by itself) is skipped. Non-empty lines must contain a pair of words, delimited by white space(s) (that is, tab or space character(s)). The first word defines an LB group that is to be replaced with the second word, in the cases when the first word matches the LB group used in proxy passing of an internally-originating request. The matching is done by previewing a cookie named "name" that should contain a space-separated list of tokens, which must comprise a subset of names loaded from the left-hand side column of the QA file. Any unmatched token in the cookie will result the request to fail, so will do any duplicate name. That is, if the QA map file contains a paired rule "tpubmed tpubmedqa", and an internal (i.e. originating from within NCBI) request has the NCBIQA cookie listing "tpubmed", then the request that calls for use of the proxy-pass "tpubmed.lb" will actually use the name "tpubmedqa.lb" as if it appeared in the ProxyPass rule of mod\_proxy. Default is not to load any QA maps, and not to proceed with any substitutions. Note that if the module is disabled (CAF Off), then the map file, even if specified, need not to exist, and won't be loaded. |
-| CAFFailoverIP address                                 | It defines hostname / IP to return on LB proxy names that cannot be resolved. Any external requests and local ones, in which argument affinity has to be taken into account, will fall straight back to use this address whenever the LB name is not known or LBSMD is not operational. All other requests will be given a chance to use regular DNS first, and if that fails, then fall back to use this IP. When the failover IP address is unset, a failed LB proxy name generally causes the Apache server to throw either "Bad gateway" (502) or "Generic server error" (500) to the client. This directive is global across the entire configuration, and the last setting takes the actual effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| CAFForbiddenIP address                                | It is similar to CAFFailoverIP described above yet applies only to the cases when the requested LB DNS name exists but cannot be returned as it would cause the name access violation (for example, an external access requires an internal name to be used to proxy the request). Default is to use the failover IP (as set by CAFFailoverIP), if available.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| CAFThrottleIP address                                 | It is similar to CAFFailoverIP described above but applies only to abusive requests that should be throttled out. Despite this directive exists, the actual throttling mechanism is not yet in production. Default is to use the failover IP (as set by CAFFailoverIP), if available.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| CAFBusyIP address                                     | It is similar to CAFFailoverIP described above but gets returned to clients when it is known that the proxy otherwise serving the request is overloaded. Default is to use the failover IP, if available.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| CAFDebug { Off \\| On \\| 2 \\| 3 }                   | It controls whether to print none ("Off"), some ("On"), more ("2"), or all ("3") debugging information into Apache log file. Per-request logging is automatically on when debugging is enabled by the native LogLevel directive of Apache (LogLevel debug), or with a command line option -e (Apache 2). This directive controls whether mod\_caf produces additional logging when doing maintenance cleaning of its status information (see CAFMaxNStats below).<br/>Debug level 1 (On) produces cleanup synopsis and histogram, level 2 produces per-stat eviction messages and the synopsis, and debug level 3 is a combination of the above. Default is "Off". The setting is global, and the last encounter has the actual effect. NOTE: per-stat eviction messages may cause latencies in request processing; so debug levels "2" and "3" should be used carefully, and only when actually needed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| CAFTiming { Off \\| On \\| TOD }                      | It controls whether the module timing profile is done while processing requests. For this to work, though, CAFMaxNStats must first enable collection of statistics. Module's status page then will show how much time is being spent at certain stages of a request processing. Since proxy requests and non-proxy requests are processed differently they are accounted separately. "On" enables to make the time marks using the gettimeofday(2) syscall (accurate up to 1us) without reset upon each stat cleanup (note that tick count will wrap around rather frequently). Setting "TOD" is same as "On" but extends it so that counts do get reset upon every cleanup. Default is "Off". The setting is global, and the last encounter in the configuration file has the actual effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| CAFMaxNStats number                                   | The number defines how many statistics slots are allocated for CAF status (aka CAF odometer). Value "0" disables the status page at all. Value "-1" sets default number of slots (which currently corresponds to the value of 319). Note that the number only sets a lower bound, and the actual number of allocated slots may be automatically extended to occupy whole number of pages (so that no "memory waste" occurs). The actual number of stats (and memory pages) is printed to the log file. To access the status page, a special handler must be installed for a designated location, as in the following example:<br/>`<Location /caf-status>`<br/>`    SetHandler CAF-status`<br/>`    Order deny,allow`<br/>`    Deny from all`<br/>`    Allow from 130.14/16`<br/>`</Location>`<br/>404 (Document not found) gets returned from the configured location if the status page has been disabled (number=0), or if it malfunctions. This directive is global across the entire configuration, and the last found setting takes the actual effect.<br/>CAF stats can survive server restarts [graceful and plain "restart"], but not stop / start triggering sequence.<br/>Note: "CAF Off" does not disable the status page if it has been configured before -- it just becomes frozen. So [graceful] restart with "CAF Off" won't prevent from gaining access to the status page, although the rest of the module will be rendered inactive.                                                                                                                                                                                               |
-| CAFUrlList url1 url2 ...                              | By default, CAF status does not distinguish individual CGIs as they are being accessed by clients. This option allows separating statistics on a per-URL basis. Care must be taken to remember of "combinatorial explosion", and thus the appropriate quantity of stats is to be pre-allocated with CAFMaxNStats if this directive is used, or else the statistics may renew too often to be useful. Special value "\*" allows to track every (F)CGI request by creating individual stat entries for unique (F)CGI names (with or without the path part, depending on a setting of CAFStatPath directive, below). Otherwise, only those listed are to be accounted for, leaving all others to accumulate into a nameless stat slot. URL names can have .cgi or .fcgi file name extensions. Alternatively, a URL name can have no extension to denote a CGI, or a trailing period (.) to denote an FCGI. A single dot alone (.) creates a specially named stat for all non-matching CGIs (both .cgi or .fcgi), and collects all other non-CGI requests in a nameless stat entry. (F)CGI names are case sensitive. When path stats are enabled (see CAFStatPath below), a relative path entry in the list matches any (F)CGI that has the trailing part matching the request (that is, "query.fcgi" matches any URL that ends in "query.fcgi", but "/query.fcgi" matches only the top-level ones). There is an internal limit of 1024 URLs that can be explicitly listed. Successive directives add to the list. A URL specified as a minus sign alone ("-") clears the list, so that no urls will be registered in stats. This is the default. This directive is only allowed at the top level, and applies to all virtual hosts.                                                                                                                                                                |
-| CAFUrlKeep url1 url2 ...                              | CAF status uses a fixed-size array of records to store access statistics, so whenever the table gets full, it has to be cleaned up by dropping some entries, which have not been updated too long, have fewer count values, etc. The eviction algorithm can be controlled by CAFexDecile, CAFexPoints, and CAFexSlope directives, described below, but even when finely tuned, can result in some important entries being pre-emptied, especially when per-URL stats are enabled. This directive helps avoid losing the important information, regardless of other empirical characteristics of a candidate-for-removal. The directive, like CAFUrlList above, lists individual URLs which, once recorded, have to be persistently kept in the table. Note that as a side effect, each value (except for "-") specified in this directive implicitly adds an entry as if it were specified with CAFUrlList. Special value "-" clears the keep list, but does not affect the URL list, so specifying "CAFUrlKeep a b -" is same as specifying "CAFUrlList a b" alone, that is, without obligation for CAF status to keep either "a" or "b" permanently. There is an internal limit of 1024 URLs that can be supplied by this directive. Successive uses add to the list. The directive is only allowed at the top level, and applies to all virtual hosts.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| CAFexDecile digit                                     | It specifies the top decile(s) of the total number of stat slots, sorted by the hit count and subject for expulsion, which may not be made available for stat's cleanup algorithms should it be necessary to arrange a new slot by removing old/stale entries. Decile is a single digit 0 through 9, or a special value "default" (which currently translates to 1). Note that each decile equals 10%.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| CAFexPoints { value \\| percentage% }                 | The directive specifies how many records, as an absolute value, or as a percentage of total stat slots, are to be freed each time the stat table gets full. Keyword "default" also can be used, which results in eviction of 1% of all records (or just 1 record, whatever is greater). Note that if CAFUrlKeep is in use, the cleanup may not be always possible. The setting is global and the value found last takes the actual effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| CAFexSlope { value \\| "quad" }                       | The directive can be used to modify cleanup strategy used to vacate stat records when the stat table gets full. The number of evicted slots can be controlled by CAFexPoints directive. The value, which is given by this directive, is used to plot either circular ("quad") or linear (value \>= 0) plan of removal. The linear plan can be further fine-tuned by specifying a co-tangent value of the cut-off line over a time-count histogram of statistics, as a binary logarithm value, so that 0 corresponds to the co-tangent of 1 (=2^0), 1 (default) corresponds to the co-tangent of 2 (=2^1), 2 - to the co-tangent of 4 (=2^2), 3 - to 8 (=2^3), and so forth, up to a maximal feasible value 31 (since 2^32 overflows an integer, this results in the infinite co-tangent, causing a horizontal cut-off line, which does not take into account times of last updates, but counts only). The default co-tangent (2) prices the count of a stats twice higher than its longevity. The cleanup histogram can be viewed in the log if CAFDebug is set as 2 (or 3). The setting is global and the value found last takes the actual effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| CAFStatVHost { Off \\| On }                           | It controls whether VHosts of the requests are to be tracked on the CAF status page. By default, VHost separation is not done. Note that preserving graceful restart of the server may leave some stats VHost-less, when switching from VHost-disabled to VHost-enabled mode, with this directive. The setting is global and the setting found last has the actual effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| CAFStatPath { On \\| Off }                            | It controls whether the path part of URLs is to be stored and shown on the CAF status page. By default, the path portion is stripped. Keep in mind the relative path specifications as given in CAFUrlList directive, as well as the number of possible combinations of Url/VHost/Path, that can cause frequent overflows of the status table. When CAFStatPath is "Off", the path elements are stripped from all URLs provided in the CAFUrlList directive (and merging the identical names, if any result). This directive is global, and the setting found last having the actual effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| CAFOkDnsFallback { On \\| Off }                       | It controls whether it is okay to fallback for consulting regular DNS on the unresolved names, which are not constrained with locality and/or affinities. Since shutdown of SERVNSD (which provided the fake .lb DNS from the load balancer), fallback to system DNS looks painfully slow (at it has now, in the absence of the DNS server, to reach the timeout), so the default for this option is "Off". The setting is global, and the value found last takes the actual effect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| CAFNoArgOnGet { On \\| Off }                          | It can appear outside any paired section of the configuration, "On" sets to ignore argument assignment in GET requests that don't have explicit indication of the argument. POST requests are not affected. Default is "Off", VHost-specific.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| CAFArgOnCgiOnly { On \\| Off }                        | It controls whether argument is taken into account when an FCGI or CGI is being accessed. Default is "Off". The setting is per-VHost specific.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| CAFCookies { Cookie \\| Cookie2 \\| Any }             | It instructs what cookies to search for: "Cookie" stands for RFC2109 cookies (aka Netscape cookies), this is the default. "Cookie2" stands for new RFC2965 cookies (new format cookies). "Any" allows searching for both types of cookies. This is a per-server option that is not shared across virtual host definitions, and allowed only outside any \<Directory\> or \<Location\>. Note that, according to the standard, cookie names are not case-sensitive.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| CAFArgument argument                                  | It defines argument name to look for in the URLs. There is no default. If set, the argument becomes default for any URL and also for proxies whose arguments are not explicitly set with CAFProxyArgument directives. The argument is special case sensitive: first, it is looked up "as-is" and, if that fails, in all uppercase then. This directive can appear outside any \<Directory\> or \<Location\> and applies to virtual hosts (if any) independently.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| CAFHtmlAmp { On \\| Off }                             | It can appear outside any paired section of configuration, set to On enables to recognize "&amp;" for the ampersand character in request URLs (caution: "&amp;" in URLs is not standard-conforming). Default is "Off", VHost-specific.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| CAFProxyCookie proxy cookie                           | It establishes a correspondence between LB DNS named proxy and a cookie. For example, "CAFProxyCookie pubmed.lb MyPubMedCookie" defines that "MyPubMedCookie" should be searched for preferred host information when "pubmed.lb" is being considered as a target name for proxying the incoming request. This directive can appear anywhere in configuration, but is hierarchy complying.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| CAFProxyNoArgOnGet proxy { On \\| Off \\| Default }   | The related description can be seen at the CAFNoArgOnGet directive description above. The setting applies only to the specified proxy. "Default" (default) is to use the global setting.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| CAFProxyArgOnCgiOnly proxy { On \\| Off \\| Default } | The related description can be seen at the CAFArgOnCgiOnly directive description above. The setting applies only to the specified proxy. "Default" (default) is to use the global setting.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| CAFProxyArgument proxy argument                       | It establishes a correspondence between LB DNS named proxy and a query line argument. This directive overrides any default that might have been set with global "CAFArgument" directive. Please see the list of predefined proxies below. The argument is special case sensitive: first, it is looked up "as-is" and, if that fails, in all uppercase then. The first argument occurrence is taken into consideration. It can appear anywhere in configuration, but is hierarchy complying.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| CAFProxyAltArgument proxy altargument                 | It establishes a correspondence between LB DNS named proxy and an alternate query line argument. The alternate argument (if defined) is used to search (case-insensitively) query string for the argument value, but treating the value as if it has appeared to argument set forth by CAFProxyArgument or CAFArgument directives for the location in question. If no alternate argument value is found, the regular argument search is performed. Please see the list of predefined proxies below. Can appear anywhere in configuration, but is hierarchy complying, and should apply for existing proxies only. Altargument "-" deletes the alternate argument (if any). Note again that unlike regular proxy argument (set forth by either CAFArgument (globally) or CAFProxyArgument (per-proxy) directives) the alternate argument is entirely case-insensitive.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| CAFProxyDelimiter proxy delimiter                     | It sets a one character delimiter that separates host[:port] field in the cookie, corresponding to the proxy, from some other following information, which is not pertinent to cookie affinity business. Default is '\\|'. No separation is performed on a cookie that does not have the delimiter -- it is then thought as been found past the end-of-line. It can appear anywhere in configuration, but is hierarchy complying.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| CAFProxyPreference proxy preference                   | It sets a preference (floating point number from the range [0..100]) that the proxy would have if a host matching the cookie is found. The preference value 0 selects the default value which is currently 95. It can appear anywhere in configuration, but is hierarchy complying.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| CAFProxyCryptKey proxy key                            | It sets a crypt key that should be used to decode the cookie. Default is the key preset when a cookie correspondence is created [via either "CAFProxyCookie" or "CAFProxyArgument"]. To disable cookie decrypting (e.g. if the cookie comes in as a plain text) use "". Can appear anywhere in configuration, but is hierarchy complying.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-
-<div class="table-scroll"></div>
-
-All hierarchy complying settings are inherited in directories that are deeper in the directory tree, unless overridden there. The new setting then takes effect for that and all descendant directories/locations.
-
-There are 4 predefined proxies that may be used [or operated on] without prior declaration by either "CAFProxyCookie" or "CAFProxyArgument" directives:
-
-<a name="ch_app.T.nc_LB_nameCookieNamePreferenceD"></a>
-
-|------------|-----------------|------------|-----------|----------|----------|----------|
-| LB name    | CookieName      | Preference | Delimiter | Crypted? | Argument | AltArg   |
-| tpubmed.lb | LB-Hint-Pubmed  | 95         | \\|       | yes      | db       | \<none\> |
-| eutils.lb  | LB-Hint-Pubmed  | 95         | \\|       | yes      | db       | DBAF     |
-| mapview.lb | LB-Hint-MapView | 95         | \\|       | yes      | \<none\> | \<none\> |
-| blastq.lb  | LB-Hint-Blast   | 95         | \\|       | yes      | \<none\> | \<none\> |
-
-<div class="table-scroll"></div>
-
-***NOTE***: The same cookie can be used to tie up an affinity for multiple LB proxies. On the other hand, LB proxy names are all unique throughout the configuration file.
-
-***NOTE***: It is very important to keep in mind that arguments and alt-arguments are treated differently, case-wise. Alt-args are case insensitive, and are screened before the main argument (but appear as if the main argument has been found). On the other hand, main arguments are special case-sensitive, and are checked twice: "as is" first, then in all CAPs. So having both "DB" for alt-argument and "db" for the main, hides the main argument, and actually makes it case-insensitive. CAF will warn on some occurrences when it detects whether the argument overloading is about to happen (take a look at the logs).
-
-The CAF module is also able to detect if a request comes from a local client. The `/etc/ncbi/local_ips` file describes the rules for making the decision.
-
-The file is line-oriented, i.e. supposes to have one IP spec per one line. Comments are introduced by either "\#" or "!", no continuation lines allowed, the empty lines are ignored.
-
-An IP spec is a word (no embedded whitespace characters) and is either:
-
--   a host name or a legitimate IP address
-
--   a network specification in the form "networkIP / networkMask"
-
--   an IP range (explained below).
-
-A networkIP / networkMask specification can contain an IP prefix for the network (with or without all trailing zeroes present), and the networkMask can be either in CIDR notation or in the form of a full IP address (all 4 octets) expressing contiguous high-bit ranges (all the records below are equivalent):
-
-`130.14.29.0/24`<br/>`130.14.29/24`<br/>`130.14.29/255.255.255.0`<br/>`130.14.29.0/255.255.255.0`
-
-An IP range is an incomplete IP address (that is, having less than 4 full octets) followed by exactly one dot and one integer range, e.g.:
-
-`130.14.26.0-63`
-
-denotes a host range from `130.14.26.0` thru `130.14.26.63` (including the ends),
-
-`130.14.8-9`
-
-denotes a host range from `130.14.8.0` thru `130.14.9.255` (including the ends).
-
-***Note*** that `127/8` gets automatically added, whether or not it is explicitly included into the configuration file. The file loader also warns if it encounters any specifications that overlap each other. Inexistent (or unreadable) file causes internal hardcoded defaults to be used - a warning is issued in this case.
-
-***Note*** that the IP table file is read once per Apache daemon's life cycle (and it is \*not\* reloaded upon graceful restarts). The complete stop / start sequence should be performed to force the IP table be reloaded.
-
-<a name="ch_app._Configuration_Exampl_1"></a>
-
-#### Configuration Examples
-
--   To define that "WebEnv" cookie has an information about "pubmed.lb" preference in "/Entrez" and all the descendant directories one can use the following:
-
-<!-- -->
-
-    <Location /Entrez>
-        CAFProxyCookie  pubmed.lb  WebEnv
-        CAFPreference   pubmed.lb  100
-    </Location>
-
-The second directive in the above example sets the preference to 100% -- this is a preference, not a requirement, so meaning that using the host from the cookie is the most desirable, but not blindly instructing to go to in every case possible.
-
--   To define new cookie for some new LB name the following fragment can be used:
-
-<!-- -->
-
-    <Directory /SomeDir>
-        CAFProxyCookie  myname.lb  My-Cookie
-        CAFProxyCookie  other.lb   My-Cookie
-    </Directory>
-    <Directory /SomeDir/SubDir>
-        CAFProxyCookie  myname.lb  My-Secondary-Cookie
-    </Directory>
-
-The effect of the above is that "My-Cookie" will be used in LB name searches of "myname.lb" in directory "/SomeDir", but in "/SomeDir/SubDir" and all directories of that branch, "My-Secondary-Cookie" will be used instead. If an URL referred to "/SomeDir/AnotherDir", then "My-Cookie" would still be used.
-
-***Note*** that at the same time "My-Cookie" is used under "/SomeDir" everywhere else if "other.lb" is being resolved there.
-
--   The following fragment disables cookie for "tpubmed.lb" [note that no "CAFProxyCookie" is to precede this directive because "tpubmed.lb" is predefined]:
-
-<!-- -->
-
-    CAFProxyPreference  tpubmed.lb  0
-
--   The following directive associates proxy "systems.lb" with argument "ticket":
-
-<!-- -->
-
-    CAFProxyArgument  systems.lb  ticket
-
-The effect of the above is that if an incoming URL resolves to use "systems.lb", then "ticket", if found in the query string, would be considered for lookup of "systems.lb" with the load-balancing daemon.
-
-<a name="ch_app.Arguments_Matching"></a>
-
-#### Arguments Matching
-
-Suppose that the DB=A is a query argument (explicit DB selection, including just "DB" (as a standalone argument, treated as missing value), "DB=" (missing value)). That will cause the following order of precedence in selecting the target host:
-
-<a name="ch_app.T.nc_MatchDescriptionDBABest__A__"></a>
-
-|----------------|-------------------------------------------------------------------------------|
-| Match          | Description                                                                   |
-| DB=A           | Best. <br/>"A" may be "" to match the missing value |
-| DB=\*          | Good. <br/>"\*" stands for "any other"              |
-| DB not defined | Fair                                                                          |
-| DB=-           | Poor. <br/>"-" stands for "missing in the request"  |
-| DB=B           | Mismatch. It is used for fallbacks only as the last resort                    |
-
-<div class="table-scroll"></div>
-
-No host with an explicit DB assignment (DB=B or DB=-) is being selected above if there is an exclamation point "!" [stands for "only"] in the assignment. DB=~A for the host causes the host to be skipped from selection as well. DBs are screened in the order of appearance, the first one is taken, so "DB=~A A" skips all requests having DB=A in their query strings.
-
-Suppose that there is no DB selection in the request. Then the hosts are selected in the following order:
-
-<a name="ch_app.T.nc_MatchDescriptionDBBest___sta"></a>
-
-|----------------|------------------------------------------------------------------------------|
-| Match          | Description                                                                  |
-| DB=-           | Best<br/>"-" stands for "missing from the request" |
-| DB not defined | Good                                                                         |
-| DB=\*          | Fair.<br/>"\*" stands for "any other"              |
-| DB=B           | Poor                                                                         |
-
-<div class="table-scroll"></div>
-
-No host with a non-empty DB assignment (DB=B or DB=\*) is being selected in the above scenario if there is an exclamation point "!" [stands for "only"] in the assignment. DB=~- defined for the host causes the host not to be considered.
-
-Only if there are no hosts in the best available category of hosts, the next category is used. That is, no "good" matches will ever be used if there are "best" matches available. Moreover, if all "best" matches have been used up but are known to exist, the search fails.
-
-"~" may not be used along with "\*": "~\*" combination will be silently ignored entirety, and will not modify the other specified affinities. Note that "~" alone has a meaning of 'anything but empty argument value, ""'. Also note that formally, "~A" is an equivalent to "~A \*" as well as "~-" is an equivalent to "\*".
-
-<a name="ch_app.Argument_Matching_Ex"></a>
-
-##### Argument Matching Examples
-
-Host affinity
-
-DB=A ~B
-
-makes the host to serve requests having either DB=A or DB=\<other than B\> in their query strings. The host may be used as a failover for requests that have DB=C in them (or no DB) if there is no better candidate available. Adding "!" to the affinity line would cause the host not to be used for any requests, in which the DB argument is missing.
-
-Host affinity
-
-DB=A -
-
-makes the host to serve requests with either explicit DB=A in their query strings, or not having DB argument at all. Failovers from searches not matching the above may occur. Adding "!" to the line disables the failovers.
-
-Host affinity
-
-DB=- \*
-
-makes the host to serve requests that don't have any DB argument in their query strings, or when their DB argument failed to literally match affinity lines of all other hosts. Adding "!" to the line doesn't change the behavior.
-
-<a name="ch_app.Log_File"></a>
-
-#### Log File
-
-The CAF module uses the Apache web server log files to put CAF module’s messages into.
-
-<a name="ch_app._Monitoring"></a>
-
-#### Monitoring
-
-The status of the CAF modules can be seen via a web interface using the following links:
-
-<http://web11.be-md.ncbi.nlm.nih.gov/caf-status>
-
-<http://web12.be-md.ncbi.nlm.nih.gov/caf-status>
-
-<http://web21.be-md.ncbi.nlm.nih.gov/caf-status>
-
-<http://web22.be-md.ncbi.nlm.nih.gov/caf-status>
-
-<http://webdev1.be-md.ncbi.nlm.nih.gov/caf-status>
-
-<http://webdev2.be-md.ncbi.nlm.nih.gov/caf-status>
-
-<http://web91.be-md.qa.ncbi.nlm.nih.gov/caf-status>
 
 <a name="ch_app.DISPD_Network_Dispat"></a>
 
@@ -1856,14 +1577,14 @@ The DISPD dispatcher can produce the following HTTP tags in response to the clie
 
 <a name="ch_app.T.nc_TagDescriptionRelayPath_path"></a>
 
-|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Tag                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `Relay-Path: <path>`                      | The tag shows how the information was passed along by the DISPD dispatcher and the NCBID utility. This is essential for debugging purposes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `Server-Info-<n>: <server-info>`          | The tag(s) (enumerated increasingly by suffix `<n>`, starting from 1) give a list of servers, where the requested service is available. The list can have up to five entries. However, there is only one entry generated when the service was requested either in firewall mode or by a Web browser. For a non-local client, the returned server descriptors can include ***FIREWALL*** server specifications. Despite preserving information about host, port, type, and other (but not all) parameters of the original servers, ***FIREWALL*** descriptors are not specifications of real servers, but they are created on-the-fly by the DISPD dispatcher to indicate that the connection point of the server cannot be otherwise reached without the use of either firewalling or relaying. |
-| `Connection-Info: <host> <port> <ticket>` | The tag is generated in a response to a stateful-capable client and includes a host (in a dotted notation) and a port number (decimal value) of the connection point where the server is listening (if either the server has specifically started or the FWDaemon created that connection point because of the client's request). The ticket value (hexadecimal) represents the 4-byte ticket that must be passed to the server as binary data at the very beginning of the stream. If instead of a host, a port, and ticket information there is a keyword ***TRY\_STATELESS***, then for some reasons (see `Dispatcher-Failures` tag below) the request failed but may succeed if the client would switch into a stateless mode.                                                              |
-| `Dispatcher-Failures: <failures>`         | The tag value lists all transient failures that the dispatcher might have experienced while processing the request. A fatal error (if any) always appears as the last failure in the list. In this case, the reply body would contain a copy of the message as well.<br/>***Note:*** Fatal dispatching failure is also indicated by an unsuccessful HTTP completion code.                                                                                                                                                                                                                                                                                                                                                                                             |
-| `Used-Server-Info-n: <server_info>`       | The tag informs the client end of server infos that having been unsuccessfully used during current connection request (so that the client will be able to skip over them if needs to).<br/>`n` is an integral suffix, enumerating from 1.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `Dispatcher-Messages:`                    | The tag is used to issue a message into standard error log of a client. The message is intercepted and delivered from within Toolkit HTTP API.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|-----|-------------|
+| Tag | Description |
+| `Relay-Path: <path>` | The tag shows how the information was passed along by the DISPD dispatcher and the NCBID utility. This is essential for debugging purposes |
+| `Server-Info-<n>: <server-info>` | The tag(s) (enumerated increasingly by suffix `<n>`, starting from 1) give a list of servers, where the requested service is available. The list can have up to five entries. However, there is only one entry generated when the service was requested either in firewall mode or by a Web browser. For a non-local client, the returned server descriptors can include ***FIREWALL*** server specifications. Despite preserving information about host, port, type, and other (but not all) parameters of the original servers, ***FIREWALL*** descriptors are not specifications of real servers, but they are created on-the-fly by the DISPD dispatcher to indicate that the connection point of the server cannot be otherwise reached without the use of either firewalling or relaying. |
+| `Connection-Info: <host> <port> <ticket>` | The tag is generated in a response to a stateful-capable client and includes a host (in a dotted notation) and a port number (decimal value) of the connection point where the server is listening (if either the server has specifically started or the FWDaemon created that connection point because of the client's request). The ticket value (hexadecimal) represents the 4-byte ticket that must be passed to the server as binary data at the very beginning of the stream. If instead of a host, a port, and ticket information there is a keyword ***TRY\_STATELESS***, then for some reasons (see `Dispatcher-Failures` tag below) the request failed but may succeed if the client would switch into a stateless mode. |
+| `Dispatcher-Failures: <failures>` | The tag value lists all transient failures that the dispatcher might have experienced while processing the request. A fatal error (if any) always appears as the last failure in the list. In this case, the reply body would contain a copy of the message as well.<br/>***Note:*** Fatal dispatching failure is also indicated by an unsuccessful HTTP completion code. |
+| `Used-Server-Info-n: <server_info>` | The tag informs the client end of server infos that having been unsuccessfully used during current connection request (so that the client will be able to skip over them if needs to).<br/>`n` is an integral suffix, enumerating from 1. |
+| `Dispatcher-Messages:` | The tag is used to issue a message into standard error log of a client. The message is intercepted and delivered from within Toolkit HTTP API. |
 
 <div class="table-scroll"></div>
 
@@ -1948,9 +1669,9 @@ For the sake of the backward compatibility the NCBID utility creates the followi
 <a name="ch_app.T.nc_NameDescriptionNI_CLIENT_IPA"></a>
 
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name                 | Description                                                                                                                                                                                              |
-| NI\_CLIENT\_IPADDR   | The variable contains an IP address of the remote host.<br/>It could also be an IP address of the firewall daemon if the NCBID utility was started as a result of firewalling. |
-| NI\_CLIENT\_PLATFORM | The variable contains the client platform extracted from the HTTP tag `Client-Platform` provided by the client if any.                                                                                   |
+| Name | Description |
+| NI\_CLIENT\_IPADDR | The variable contains an IP address of the remote host.<br/>It could also be an IP address of the firewall daemon if the NCBID utility was started as a result of firewalling. |
+| NI\_CLIENT\_PLATFORM | The variable contains the client platform extracted from the HTTP tag `Client-Platform` provided by the client if any. |
 
 <div class="table-scroll"></div>
 
@@ -2025,7 +1746,7 @@ The outside NCBI network users can check the connection to the NAT service follo
     Connected to 130.14.29.112.
     Escape character is '^]'.
     NCBI Firewall Daemon:  Invalid ticket.  Connection closed.
-    See http://www.ncbi.nlm.nih.gov/cpp/network/firewall.html.
+    See https://www.ncbi.nlm.nih.gov/cpp/network/firewall.html.
     Connection closed by foreign host.
 
 <a name="ch_app._Log_Files_1"></a>
@@ -2098,7 +1819,7 @@ The directive above defines the NCBIQA cookie which triggers names substitutions
 
 To set the cookie the user can visit the following link:
 
-<http://qa.ncbi.nlm.nih.gov/portal/sysutils/qa_status.cgi>
+<https://qa.ncbi.nlm.nih.gov/portal/sysutils/qa_status.cgi>
 
 A screen similar to the following will appear:
 

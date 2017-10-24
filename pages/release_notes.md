@@ -68,20 +68,20 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 |Package   |Versions expected to work (obtained by build-environment inspection in some cases)  |Versions known to work (used in-house on any platform)  |
 |-------|----------------------------------|--------------|
 |[BerkeleyDB](https://www.oracle.com/database/berkeley-db/db.html)  |4.3.0 or newer   |4.5.20, 4.6.21.NC, 4.6.21.1, 4.7.25  |
-|[Boost Test](https://www.boost.org)                   |1.35.0 or newer |1.45.0, 1.53.0, 1.54.0, 1.56.0, 1.57.0 |
-|FastCGI                                              |All versions    |2.1, 2.4.0                 |
-|[libbzip2](http://www.bzip.org)                      |All versions    |1.0.5, 1.0.6               | 
-|[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8c, 8d                 |
+|[Boost Test](https://www.boost.org) |1.35.0 or newer |1.45.0, 1.53.0, 1.54.0, 1.56.0, 1.57.0 |
+|FastCGI    |All versions    |2.1, 2.4.0     |
+|[libbzip2](http://www.bzip.org)    |All versions    |1.0.5, 1.0.6   | 
+|[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8c, 8d     |
 |[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.2.7, 1.2.49, 1.2.50, 1.5.13, 1.6.20 |
-|[libtiff](http://www.libtiff.org)                    |All versions    |3.6.1, 3.9.4, 4.0.3, 4.0.6 |
+|[libtiff](http://www.libtiff.org)  |All versions    |3.6.1, 3.9.4, 4.0.3, 4.0.6 |
 |[libungif](https://sourceforge.net/projects/giflib)   |All versions    |4.1.3 (libungif),<br/> 4.1.6, 5.1.2 (giflib) |
-|[libxml2](http://xmlsoft.org/)                       |All versions    |2.7.6, 2.7.8, 2.9.0, 2.9.1, 2.9.4 |
-|[libxslt](http://xmlsoft.org/)                       |1.1.14 or newer |1.1.26, 1.1.28             |
+|[libxml2](http://xmlsoft.org/)     |All versions    |2.7.6, 2.7.8, 2.9.0, 2.9.1, 2.9.4 |
+|[libxslt](http://xmlsoft.org/)     |1.1.14 or newer |1.1.26, 1.1.28 |
 |[<span class="small-caps">LZO</span>](https://www.oberhumer.com/opensource/lzo) |2.x |2.05, 2.09   |
-|[PCRE](http://www.pcre.org)                          |All versions    |7.8, 7.9, 8.31, 8.32, 8.38 |
-|[SQLite3](https://www.sqlite.org)                     |3.6.6 or newer  |3.6.14.2, 3.6.20, 3.7.13, 3.7.17, 3.8.2 |
-|Sybase                                               |All versions    |15.5, 15.7                 |
-|[zlib](http://www.zlib.org)                          |All versions    |1.2.3, 1.2.5, 1.2.7, 1.2.8 |
+|[PCRE](http://www.pcre.org)  |All versions    |7.8, 7.9, 8.31, 8.32, 8.38 |
+|[SQLite3](https://www.sqlite.org)   |3.6.6 or newer  |3.6.14.2, 3.6.20, 3.7.13, 3.7.17, 3.8.2 |
+|Sybase     |All versions    |15.5, 15.7     |
+|[zlib](http://www.zlib.org)  |All versions    |1.2.3, 1.2.5, 1.2.7, 1.2.8 |
 
 The user is expected to download and build the 3<sup>rd</sup> party packages themselves. The release's package list includes links to download sites. However, the user still needs a list of the 3<sup>rd</sup> party packages and which versions of them are compatible with the release.
 
@@ -165,32 +165,32 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 ### [Unix](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.UNIX)
 
 
-|Operating System                   |Architecture    |Compilers                    |
+|Operating System |Architecture    |Compilers  |
 |-----------------------------------|----------------|-----------------------------|
-|CentOS 6.x (LIBC 2.12)             |x86-64          |**GCC 4.9.3**, 4.8.1; ICC 15 |
-|CentOS 7.x (LIBC 2.17)             |x86-64          |**GCC 4.9.3**; ICC 15        |
-|Ubuntu 14.04 ("trusty") (LIBC 2.19)|x86-32<br/>x86-64|GCC 4.8.4                   |
-|FreeBSD 10.2, 10.3                 |x86-64          |Clang 3.4.1                  |
+|CentOS 6.x (LIBC 2.12) |x86-64    |**GCC 4.9.3**, 4.8.1; ICC 15 |
+|CentOS 7.x (LIBC 2.17) |x86-64    |**GCC 4.9.3**; ICC 15  |
+|Ubuntu 14.04 ("trusty") (LIBC 2.19)|x86-32<br/>x86-64|GCC 4.8.4 |
+|FreeBSD 10.2, 10.3     |x86-64    |Clang 3.4.1      |
 
 <a name="release_notes.MS_Windows"></a>
 
 ### [MS Windows](ch_config#ch_config.MS_Windows)
 
 
-|Operating System          |Architecture                    |Compilers                      |
+|Operating System    |Architecture  |Compilers    |
 |--------------------------|--------------------------------|-------------------------------|
-|MS Windows                |x86-32                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2013 (MSVC 12)<br/>  |
-|MS Windows                |x86-64                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2013 (MSVC 12)<br/>  |
-|MS Windows                |x86-32                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/>  |
-|MS Windows                |x86-64                          |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/>  |
-|Cygwin 1.7.34             |x86-64                          |[GCC 4.9.2](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
+|MS Windows    |x86-32  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2013 (MSVC 12)<br/>  |
+|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2013 (MSVC 12)<br/>  |
+|MS Windows    |x86-32  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/>  |
+|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/>  |
+|Cygwin 1.7.34 |x86-64  |[GCC 4.9.2](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
 
 <a name="release_notes.Mac_OS_X"></a>
 
 ### [Mac OS X](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Mac_OS_X)
 
 
-|Operating System              |Architecture|Compilers                             |
+|Operating System  |Architecture|Compilers     |
 |------------------------------|------------|--------------------------------------|
 |Mac OS X 10.9.x (Darwin 13.x) |x86-64      |**Apple Clang 6.0** (based on LLVM 3.5), [Xcode](ch_config#ch_config.Xcode_30__31) 6.2|
 |Mac OS X 10.10.x (Darwin 14.x)|x86-64      |**Apple Clang 7.0.2**, Xcode 7.2.1    |
@@ -208,17 +208,17 @@ Official support for **all** of the above platforms is new in this release (thou
 ### Discontinued Platforms
 
 
-|Operating System            |Architecture                          |Compilers                           |
+|Operating System      |Architecture  |Compilers   |
 |----------------------------|--------------------------------------|------------------------------------|
-|MS Windows                  |x86-32, 64                            |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (MSVC 10)|
-|CentOS 5.x                  |x86-32, 64                            |All                                 |
-|Ubuntu 9.04 ("jaunty")      |x86-32, 64                            |All                                 |
-|Solaris                     |All                                   |All                                 |
-|FreeBSD 8.3                 |x86-32                                |All                                 |
-|Mac OS X 10.8.x (Darwin 12.x) and below|All                        |All                                 |
-|All                         |All                                   |GCC 4.7.x and below                 |
-|All                         |All                                   |Clang 3.3.x and below               |
-|CentOS 6.x                  |x86-32, 64                            |ICC 13.x and below                  |
+|MS Windows      |x86-32, 64    |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2010 (MSVC 10)|
+|CentOS 5.x      |x86-32, 64    |All   |
+|Ubuntu 9.04 ("jaunty")      |x86-32, 64    |All   |
+|Solaris   |All     |All   |
+|FreeBSD 8.3     |x86-32  |All   |
+|Mac OS X 10.8.x (Darwin 12.x) and below|All      |All   |
+|All |All     |GCC 4.7.x and below     |
+|All |All     |Clang 3.3.x and below   |
+|CentOS 6.x      |x86-32, 64    |ICC 13.x and below      |
 
 <a name=""></a>
 

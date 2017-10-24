@@ -8,22 +8,13 @@ nav: pages/ch_grid
 {{ page.title }}
 ========================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
-### Introduction
+## Introduction
 
 This chapter describes the NCBI GRID framework. This framework allows creating, running and maintaining a scalable, load-balanced and fault-tolerant pool of network servers ([Worker Nodes](#ch_grid.Worker_Nodes)).
 
 Note: Users within NCBI may find additional information on the [internal Wiki page](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/GRID).
 
-### Chapter Outline
+## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
 
@@ -726,9 +717,9 @@ The following configuration parameters can be used to fine-tune ***CServer***-de
 
 <a name="ch_grid.T.nc_parameterbrief_descriptiond"></a>
 
-| Parameter                                                 | Brief Description                                                        | Default |
+| Parameter       | Brief Description              | Default |
 |-----------------------------------------------------------|--------------------------------------------------------------------------|---------|
-| **`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`**                  | Controls whether ***CServer*** should catch exceptions.                  | true    |
+| **`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`**      | Controls whether ***CServer*** should catch exceptions.      | true    |
 | **`NCBI_CONFIG__THREADPOOL__CATCH_UNHANDLED_EXCEPTIONS`** | Controls whether ***CThreadInPool\_ForServer*** should catch exceptions. | true    |
 
 <div class="table-scroll"></div>
