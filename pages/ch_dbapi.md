@@ -344,6 +344,21 @@ After making the connection, it is recommended to set the connection session par
 
 It may also be appropriate to set, `TEXTSIZE`, depending on your project.
 
+***Note:*** when pooling is used it is the user responsibility to keep the connections
+in a proper state. The server may have certain objects created which are
+automatically cleaned at the time when a connection is closed. The examples are
+transactions and locks. Thus the following scenario is possible:
+- the user creates an application lock with a session lifespan
+- due to an error in a stored procedure the lock is not released properly
+Now, if pooling is not used then the program continues to work because the lock
+is released when the connection is closed. If the pooling is switched on then the
+lock is not released and the other interested parties will wait for the lock till
+the connection is closed which may take too long. A similar scenario is
+possible for transactions as well.
+One more area where a caution should be exercised is the connection settings.
+They are ***not*** reset when a connection is returned to the pool.
+
+
 <a name="ch_dbapi.Executing_Basic_Queries"></a>
 
 ### Executing Basic Queries
@@ -1148,6 +1163,22 @@ The **`pool_name`** argument is just an arbitrary string. An application could u
     }
 
 An application could combine in one pool the connections to the different servers. This mechanism could also be used to group together the connections with some particular settings (default database, transaction isolation level, etc.).
+
+
+***Note:*** when pooling is used it is the user responsibility to keep the connections
+in a proper state. The server may have certain objects created which are
+automatically cleaned at the time when a connection is closed. The examples are
+transactions and locks. Thus the following scenario is possible:
+- the user creates an application lock with a session lifespan
+- due to an error in a stored procedure the lock is not released properly
+Now, if pooling is not used then the program continues to work because the lock
+is released when the connection is closed. If the pooling is switched on then the
+lock is not released and the other interested parties will wait for the lock till
+the connection is closed which may take too long. A similar scenario is
+possible for transactions as well.
+One more area where a caution should be exercised is the connection settings.
+They are ***not*** reset when a connection is returned to the pool.
+
 
 <a name="ch_dbapi.dbapi_drvr_mgr"></a>
 
