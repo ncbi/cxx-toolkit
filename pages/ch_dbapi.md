@@ -350,11 +350,13 @@ automatically cleaned at the time when a connection is closed. The examples are
 transactions and locks. Thus the following scenario is possible:
 - the user creates an application lock with a session lifespan
 - due to an error in a stored procedure the lock is not released properly
+
 Now, if pooling is not used then the program continues to work because the lock
 is released when the connection is closed. If the pooling is switched on then the
 lock is not released and the other interested parties will wait for the lock till
 the connection is closed which may take too long. A similar scenario is
 possible for transactions as well.
+
 One more area where a caution should be exercised is the connection settings.
 They are ***not*** reset when a connection is returned to the pool.
 
@@ -1171,11 +1173,13 @@ automatically cleaned at the time when a connection is closed. The examples are
 transactions and locks. Thus the following scenario is possible:
 - the user creates an application lock with a session lifespan
 - due to an error in a stored procedure the lock is not released properly
+
 Now, if pooling is not used then the program continues to work because the lock
 is released when the connection is closed. If the pooling is switched on then the
 lock is not released and the other interested parties will wait for the lock till
 the connection is closed which may take too long. A similar scenario is
 possible for transactions as well.
+
 One more area where a caution should be exercised is the connection settings.
 They are ***not*** reset when a connection is returned to the pool.
 
