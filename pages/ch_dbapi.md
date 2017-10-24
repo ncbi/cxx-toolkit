@@ -344,6 +344,22 @@ After making the connection, it is recommended to set the connection session par
 
 It may also be appropriate to set, `TEXTSIZE`, depending on your project.
 
+***Note:*** when pooling is used it is the user responsibility to keep the connections
+in a proper state. The server may have certain objects created which are
+automatically cleaned at the time when a connection is closed. The examples are
+transactions and locks. Thus the following scenario is possible:
+- the user creates an application lock with a session lifespan
+- due to an error in a stored procedure the lock is not released properly
+
+Now, if pooling is not used then the program continues to work because the lock
+is released when the connection is closed. If the pooling is switched on then the
+lock is not released and the other interested parties will wait for the lock till
+the connection is closed which may take too long. A similar scenario is
+possible for transactions as well.
+
+One more area where a caution should be exercised is the connection settings.
+They are ***not*** reset when a connection is returned to the pool.
+
 Note: when a new connection to an MS SQL Server is created the **`SET XACT_ABORT ON`** option is sent to the server automatically (for more information about the option see the Microsoft [documentation](https://msdn.microsoft.com/en-us/library/ms188792(v=sql.100).aspx)). Whether or not this option is sent is controlled using an environment variable or a configuration file parameter (see [DBAPI configuration parameters reference](ch_libconfig.html#ch_libconfig.DBAPI)). The Sybase servers do not support this option so it will not be sent to them.
 
 <a name="ch_dbapi.Executing_Basic_Queries"></a>
@@ -1120,7 +1136,7 @@ The **`pool_name`** argument is just an arbitrary string. An application could u
     ...
     // Create a pool of four connections (two to one server and two to another)
     // with the default database "DatabaseA"
-    CDB_Connection* con[4];
+    CDB_Connection* con_array[4];
     int i;
     for (i = 4;  i--; ) {
         con[i]= my_context.Connect((i%2 == 0) ? "MyServer1" : "MyServer2",
@@ -1152,6 +1168,24 @@ The **`pool_name`** argument is just an arbitrary string. An application could u
     }
 
 An application could combine in one pool the connections to the different servers. This mechanism could also be used to group together the connections with some particular settings (default database, transaction isolation level, etc.).
+
+
+***Note:*** when pooling is used it is the user responsibility to keep the connections
+in a proper state. The server may have certain objects created which are
+automatically cleaned at the time when a connection is closed. The examples are
+transactions and locks. Thus the following scenario is possible:
+- the user creates an application lock with a session lifespan
+- due to an error in a stored procedure the lock is not released properly
+
+Now, if pooling is not used then the program continues to work because the lock
+is released when the connection is closed. If the pooling is switched on then the
+lock is not released and the other interested parties will wait for the lock till
+the connection is closed which may take too long. A similar scenario is
+possible for transactions as well.
+
+One more area where a caution should be exercised is the connection settings.
+They are ***not*** reset when a connection is returned to the pool.
+
 
 <a name="ch_dbapi.dbapi_drvr_mgr"></a>
 
