@@ -1363,9 +1363,37 @@ The solution is to hook the seq-set container and iterate through the elements u
 
 ### Stream Iterators
 
-When working with a stream, it is sometimes convenient to be able to read or write data elements directly, bypassing the standard data storage mechanism. For example, when reading a large container object, the purpose could be to process its elements. It is possible to read everything at once, but this could require a lot of memory to store the data in. An alternative approach, which greatly reduces the amount of required memory, could be to read elements one by one, process them as they arrive, and then discard. Or, when writing a container, one could construct it in memory only partially, and then add missing elements 'on the fly' - where appropriate. To make it possible, the SERIAL library introduces `stream iterators`. Needless to say, the most convenient way of using this mechanism is in read/write hooks.
+There are several types of stream iterators in the `SERIAL` library: ones that read (synchronously or asynchronously) multiple objects of the same class, ones that read child objects of a certain class contained within another object and ones that read or write elements of an object - members of a sequence, or elements of a container.
 
-SERIAL library defines the following stream iterator classes: ***CIStreamClassMemberIterator*** and ***CIStreamContainerIterator*** for input streams, and ***COStreamClassMember*** and ***COStreamContainer*** for output ones.
+A common scenario is when there is a need to process a large file which contains multiple same type data objects stored sequentially. Once we have input object stream - ***CObjectIStream istr***, an obvious solution is to write
+
+    while (!istr.EndOfData()) {
+        CDataObject obj;
+        istr >> obj;
+        do_something(obj);
+    }
+
+Practically identical solution which uses [input stream iterators](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamIterator.html) will look like this:
+
+    CObjectIStreamIterator<CDataObject> it(istr);
+    for_each (it, it.end(), do_something);
+
+Potentially much faster approach would be to decode input data [in multiple threads](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamAsyncIterator.html):
+
+    CObjectIStreamAsyncIterator<CDataObject> it(istr);
+    for_each (it, it.end(), do_something);
+
+Another scenario is when you do not really interested in ***CDataObject***. Instead, you need to find objects of class ***CChildObject*** - one or more - contained somewhere within ***CDataObject***. The solution is to add another template parameter into iterator (this will find all objects of ***CDataObject*** class in the input stream and read all ***CChildObject*** in them, one by one):
+
+    for (CChildObject& obj : CObjectIStreamIterator<CDataObject, CChildObject>(istr)) {
+        do_something(obj);
+    }
+
+Synchronous input stream iterator with one template parameter is trivial. Second parameter makes it more interesting. Here, ***CDataObject*** is not stored in memory, only single ***CChildObject*** is.
+
+Asynchronous iterators are much more complex. In many cases they speed up the reading significantly, but they also use much more memory to store intermediate buffers and end results. Usually they are beneficial when input contains a large number of relatively small data objects.
+
+Finally, we might want to read or write members of an object one by one - from inside of read/write hooks. It is sometimes convenient to be able to read or write data elements directly, bypassing the standard data storage mechanism. For example, when reading a large container object, the purpose could be to process its elements. It is possible to read everything at once, but this could require a lot of memory to store the data in. An alternative approach, which greatly reduces the amount of required memory, could be to read elements one by one, process them as they arrive, and then discard. Or, when writing a container, one could construct it in memory only partially, and then add missing elements 'on the fly' - where appropriate. `SERIAL` library defines the following stream iterator classes: [CIStreamClassMemberIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCIStreamClassMemberIterator.html) and [CIStreamContainerIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCIStreamContainerIterator.html) for input streams, and [COStreamClassMember](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCOStreamClassMember.html) and [COStreamContainer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCOStreamContainer.html) for output ones.
 
 Reading a container could look like this:
 
