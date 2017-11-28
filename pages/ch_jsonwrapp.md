@@ -140,7 +140,7 @@ To enumerate contents of the Array:
 
 #### Object
 
-JSON object is an unordered collection of zero or more name/value pairs, where a name is a string and a value is a string, number, boolean, null, object, or array. `JsonWrapp` object classes -  [CJson_ConstObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstObject.html),
+JSON object is an unordered collection of zero or more name/value pairs, where name is a string and value is a string, number, boolean, null, object, or array. `JsonWrapp` object classes -  [CJson_ConstObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__ConstObject.html),
 [CJson_Object](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Object.html) - resemble STL map. Unlike STL map though, pair elements are called *name* and *value* here. Object classes implement bidirectional iterators to access object elements.
 
 To insert primitive type nodes into an object:
