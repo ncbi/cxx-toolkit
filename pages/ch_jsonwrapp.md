@@ -27,6 +27,8 @@ nav: pages/ch_jsonwrapp
 
 -  [JSON data parsing (DOM and SAX)](#ch_jsonwrapp.Parsing)
 
+-  [JSON Schema](#ch_jsonwrapp.Schema)
+
 <a name="ch_jsonwrapp.Introduction"></a>
 
 ### Introduction
@@ -228,3 +230,19 @@ Or to parse a file:
     CJson_Document::Walk(ifs, parser);
 
 
+<a name="ch_jsonwrapp.Schema"></a>
+
+### JSON Schema
+
+JSON Schema is a formal description of JSON data structure, used for validation and documentation. It is also a JSON Document and can be treated as such. In `JsonWrapp` library, [CJson_Schema](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Schema.html) class provides support for Schema validation.
+
+Schema can only be created from a Document (Schema specification). After that it can be used to validate JSON data:
+
+    CJson_Document schema_doc;
+    doc.Read(“schema_filename”);
+    CJson_Schema sc(schema_doc);
+    CJson_Document data_doc;
+    doc.Read(“data_filename”);
+    sc.Validate(data_doc);
+    
+Several methods return name or URI of nonconforming value, if any. It also possible to validate data on reading or writing - [CJson_Document](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Document.html) has `Read` and `Write` methods with Schema as a parameter.
