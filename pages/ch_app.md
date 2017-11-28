@@ -185,9 +185,9 @@ DATATOOL: Code Generation and Data Serialization Utility
 
 **DATATOOL** source code is located at `c++/src/serial/datatool;` this application can perform the following:
 
--   Generate C++ data storage classes based on [ASN.1](http://www.itu.int/ITU-T/studygroups/com17/languages), [DTD](http://www.w3.org/TR/REC-xml) or [XML Schema](http://www.w3.org/XML/Schema) specification to be used with [NCBI data serialization streams](ch_ser.html).
+-   Generate C++ data storage classes based on [ASN.1](http://www.itu.int/ITU-T/studygroups/com17/languages), [DTD](http://www.w3.org/TR/REC-xml), [XML Schema](http://www.w3.org/XML/Schema) or [JSON Schema](http://json-schema.org/) specification to be used with [NCBI data serialization streams](ch_ser.html).
 
--   Convert ASN.1 specification into a DTD or XML Schema specification and vice versa.
+-   Convert ASN.1 specification into a DTD, XML Schema or JSON Schema specification and vice versa.
 
 -   Convert data between ASN.1, XML and JSON formats.
 
@@ -232,17 +232,19 @@ Table 1. Main arguments
 | Argument | Effect | Comments |
 |------------------------|-----------------------------------------------------------|----------------------------------------------------------------------------|
 | -h | Display the **DATATOOL** arguments | Ignores other arguments |
-| -m \<file\> | module specification file(s) - ASN.1, DTD, or XSD | Required argument |
+| -m \<file\> | module specification file(s) - ASN.1, DTD, XSD or JSON | Required argument |
 | -M \<file\> | External module file(s) | Is used for IMPORT type resolution |
 | -i | Ignore unresolved types | Is used for IMPORT type resolution |
 | -f \<file\> | Write ASN.1 module file | |
 | -fx \<file\> | Write DTD module file | "-fx m" writes modular DTD file |
 | -fxs \<file\> | Write XML Schema file | |
+| -fjs \<file\> | Write JSON Schema file | |
 | -fd \<file\> | Write specification dump file in datatool internal format | |
 | -ms \<string\> | Suffix of modular DTD or XML Schema file name | |
 | -dn \<string\> | DTD module name in XML header | No extension. If empty, omit DOCTYPE declaration. |
 | -v \<file\> | Read value in ASN.1 text format | |
 | -vx \<file\> | Read value in XML format | |
+| -vj \<file\> | Read value in JSON format | |
 | -F | Read value completely into memory | |
 | -p \<file\> | Write value in ASN.1 text format | |
 | -px \<file\> | Write value in XML format | |
@@ -304,7 +306,7 @@ Table 2. Code generation arguments
 
 ### Data Specification Conversion
 
-When parsing a data specification, **DATATOOL** identifies the specification format based on the source file extension - ASN, DTD, or XSD.
+When parsing a data specification, **DATATOOL** identifies the specification format based on the source file extension - ASN, DTD,  XSD, JSD or WSDL.
 
 <a name="ch_app.Scope_Prefixes"></a>
 
