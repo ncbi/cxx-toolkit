@@ -380,7 +380,7 @@ The ***Write\*()*** methods correspond to the ***Read\*()*** methods defined for
 
 ### The ***CObjectStreamCopier*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectStreamCopier.html)) classes
 
-The ***CObjectStreamCopier*** class is neither an input nor an output stream class. Rather, it is a helper class, which allows to "pass data through" without storing the intermediate objects in memory. Its sole constructor is:
+The [CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectStreamCopier.html) class is neither an input nor an output stream class. Rather, it is a helper class, which allows to "pass data through" without storing the intermediate objects in memory. Its sole constructor is:
 
     CObjectStreamCopier(CObjectIStream& in, CObjectOStream& out);
 
@@ -610,11 +610,11 @@ All of the different structural contexts in which an object might be encountered
 
 Hooks can be installed for each of the above contexts, depending on the desired level of specificity. Corresponding to these contexts, three abstract base classes provide the foundations for deriving new `Read` hooks:
 
--   ***CReadObjectHook***
+-   [CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCReadObjectHook.html)
 
--   ***CReadClassMemberHook***
+-   [CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCReadClassMemberHook.html)
 
--   ***CReadChoiceVariantHook***
+-   [CReadChoiceVariantHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCReadChoiceVariantHook.html)
 
 Each of these base hook classes exists only to define a pure virtual ***Read*** method, which can then be implemented (in a derived subclass) to install the desired type of read hook. If the goal is to apply the new ***Read*** method in all contexts, then the new hook should be derived from the ***CReadObjectHook*** class, and registered with the object's static type information object. For example, to install a new ***CReadObjectHook*** for a ***CBioseq***, one might use:
 
@@ -770,11 +770,11 @@ See the [class documentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/d
 
 The `Write` hook classes parallel the `Read` hook classes, and again, we have three base classes:
 
--   ***CWriteObjectHook***
+-   [CWriteObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCWriteObjectHook.html)
 
--   ***CWriteClassMemberHook***
+-   [CWriteClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCWriteClassMemberHook.html)
 
--   ***CWriteChoiceVariantHook***
+-   [CWriteChoiceVariantHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCWriteChoiceVariantHook.html)
 
 These classes define the pure virtual methods:
 
@@ -1233,9 +1233,9 @@ See the [class documentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/d
 
 #### The ***CObjectHookGuard*** class
 
-To simplify hooks usage ***CObjectHookGuard*** class may be used. It's a template class: the template parameter is the class to be hooked (in case of member or choice variant hooks it's the parent class of the member).
+To simplify hooks usage [CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectHookGuard.html) class may be used. It's a template class: the template parameter is the class to be hooked (in case of member or choice variant hooks it's the parent class of the member).
 
-The CObjectHookGuard class has several constructors for installing different hook types. The last argument to all constructors is a stream pointer. By default the pointer is NULL and the hook is intalled as a global one. To make the hook stream-local pass the stream to the guard constructor.
+The ***CObjectHookGuard*** class has several constructors for installing different hook types. The last argument to all constructors is a stream pointer. By default the pointer is NULL and the hook is intalled as a global one. To make the hook stream-local pass the stream to the guard constructor.
 
 -   Object read/write hooks:<br/>`CObjectHookGuard(CReadObjectHook& hook,`<br/>`                 CObjectIStream* in = 0);`<br/>`CObjectHookGuard(CWriteObjectHook& hook,`<br/>`                 CObjectOStream* out = 0);`
 
@@ -1785,7 +1785,7 @@ But while these standard iterators are powerful tools for generic programming, t
 
 ### ***CTypeIterator*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeIterator.html)) and ***CTypeConstIterator*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeConstIterator.html))
 
-The ***CTypeIterator*** and ***CTypeConstIterator*** can be used to traverse a structured object, stopping at all data members of a specified type. For example, it is very common to represent a linked list of objects by encoding a next field that embeds an object of the same type. One way to traverse the linked list then, would be to "iterate" over all objects of that type, beginning at the head of the list. For example, suppose you have a ***CPerson*** class defined as:
+The [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeIterator.html) and [CTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeConstIterator.html) can be used to traverse a structured object, stopping at all data members of a specified type. For example, it is very common to represent a linked list of objects by encoding a next field that embeds an object of the same type. One way to traverse the linked list then, would be to "iterate" over all objects of that type, beginning at the head of the list. For example, suppose you have a ***CPerson*** class defined as:
 
     class CPerson
     {
@@ -2246,7 +2246,7 @@ The following topics are discussed in this section:
 
 #### ***CObjectTypeInfo*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectTypeInfo.html))
 
-This is the base class for all `object` information classes. It is intended for usage where there is no concrete object being referenced, and all that is required is access to the type information. A ***CObjectTypeInfo*** contains a pointer to a low-level ***CTypeInfo*** object, and functions as a user-friendly wrapper class.
+This is the base class for all `object` information classes. It is intended for usage where there is no concrete object being referenced, and all that is required is access to the type information. A [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectTypeInfo.html) contains a pointer to a low-level [CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeInfo.html) object, and functions as a user-friendly wrapper class.
 
 The constructor for ***CObjectTypeInfo*** takes a pointer to a `const CTypeInfo` object as its single argument. This is precisely what is returned by all of the static ***GetTypeInfo()*** functions. Thus, to create a ***CObjectTypeInfo*** for the ***CBioseq*** class - without reference to any particular instance of ***CBioseq*** - one might use:
 
@@ -2307,7 +2307,7 @@ Similarly, the ***BeginVariants()*** and ***FindVariant()*** methods allow itera
 
 #### CConstObjectInfo ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstObjectInfo.html))
 
-The ***CConstObjectInfo*** (derived from [CObjectTypeInfo](#ch_ser.typeinfo.html_objtype)) adds an interface to access the particular instance of an object (in addition to the interface inherited from [CObjectTypeInfo](#ch_ser.typeinfo.html_objtype), which provides access to type information only). It is intended for usage with `const` instances of the object of interest, and therefore the interface does not permit any modifications to the object. The constructor for ***CConstObjectInfo*** takes two arguments:
+The [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstObjectInfo.html) (derived from [CObjectTypeInfo](#ch_ser.typeinfo.html_objtype)) adds an interface to access the particular instance of an object (in addition to the interface inherited from [CObjectTypeInfo](#ch_ser.typeinfo.html_objtype), which provides access to type information only). It is intended for usage with `const` instances of the object of interest, and therefore the interface does not permit any modifications to the object. The constructor for ***CConstObjectInfo*** takes two arguments:
 
     CConstObjectInfo(const void* instancePtr, const CTypeInfo* typeinfoPtr);
 
@@ -2356,7 +2356,7 @@ Finally, for pointer type objects, the type returned by the method ***GetPointed
 
 #### CObjectInfo ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectInfo.html))
 
-The ***CObjectInfo*** class is in turn derived from ***CConstObjectInfo***, and is intended for usage with `mutable` instances of the object of interest. In addition to all of the methods inherited from the parent class, the interface to this class also provides methods that allow modification of the object itself or its data members.
+The [CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectInfo.html) class is in turn derived from ***CConstObjectInfo***, and is intended for usage with `mutable` instances of the object of interest. In addition to all of the methods inherited from the parent class, the interface to this class also provides methods that allow modification of the object itself or its data members.
 
 For primitive type objects, a set of ***SetPrimitiveValueXxx()*** methods are available, complimentary to the ***GetPrimitiveValueXxx()*** methods described above. Methods that return member iterator objects are again reimplemented, and the de-referencing operators now return a ***CObjectInfo*** object for that data member. As the ***CObjectInfo*** now points to a `mutable` object, these iterators can be used to set values for the data member. Similarly, ***GetCurrentChoiceVariant()*** now returns a ***CObjectInfo***, as does `CObjectInfo::CElementIterator::GetElement()`.
 
