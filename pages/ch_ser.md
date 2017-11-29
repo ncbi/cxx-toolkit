@@ -153,6 +153,8 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Determining Which Libraries to Link To](#ch_ser.asn.html_linklibs)
 
+    -   [Speedup reading](#ch_ser.speedup)
+
 -   [Managing ASN.1 Specification Versions](#ch_ser.Managing_ASN1_Specification_Versi)
 
 -   [Test Cases [src/serial/test]](#ch_ser.ch_ser_test_cases)
@@ -2923,6 +2925,9 @@ The following topics are discussed in this section
 
 -   [Determining Which Libraries to Link To](#ch_ser.asn.html_linklibs)
 
+-   [Speedup reading](#ch_ser.speedup)
+
+
 <a name="ch_ser.asn.html_headersandlibs"></a>
 
 ### Accessing the object header files and serialization libraries
@@ -2999,6 +3004,20 @@ It should be clear that we will need to link to the core library, `xncbi`, as we
 See also the example program, [asn2asn.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/asn2asn/asn2asn.cpp) which demonstrates more generalized translation of ***Seq-entry*** and ***Bioseq-set*** (defined in [seqset.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn)).
 
 ***Note:*** Two online tools are available to help determine which libraries to link with. See the [FAQ](ch_faq.html#ch_faq.faq.CannotFindObjectSymbol) for details.
+
+<a name="ch_ser.speedup"></a>
+
+### Speedup reading
+
+Unfortunately, there is no universal recipe. The speed depends on operating system, hardware and data being read.
+
+In many cases, using  [asynchronous input stream iterators](#ch_ser.stream_iterators) helps. The price of using them is increased memory consumption though. They take advantage of the fact that skipping data is much faster than parsing it. When skipping, reader only finds beginning and end of an object in file and puts the unparsed data into temporary buffer. Then, separate threads parse the data and construct data objects in memory. It works great when objects are not too big and each buffer can hold at least several of them. Otherwise, the buffers overflow and you end up with only one or two parsing threads. That is, reader should be fast enough and buffers should be large enough and computer should have enough CPU cores to keep as many parsers busy as possible. The prize is sweet though. A data file can be read up to 5 times faster.
+
+Another option is to use file mapping when reading. Mapping creates an association of a file's contents with a portion of the virtual address space of a process. The application then "reads from memory" instead of "reading from file", offloading actual file reading to the OS. [CMMapByteSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCMMapByteSource.html) does the trick. Create reading object stream as follows:
+
+    unique_ptr<CObjectIStream> is(CObjectIStream::Create(format, *(new CMMapByteSource(data_file))));
+
+One should not expect a big gain here, because file reading is already optimized in operating systems, but speedups up to 15% are possible.
 
 <a name="ch_ser.Managing_ASN1_Specification_Versi"></a>
 
