@@ -1662,7 +1662,7 @@ Finally, it is possible to reset all formatting flags using ***MSerial\_None*** 
 
 When processing serialized data, it is pretty often that one has to find all objects of a specific type, with this type not being a root one. To make it easier, serial library defines a helper template function ***Serial\_FilterObjects***. The idea is to be able to define a special hook class with a single virtual function ***Process*** with a single parameter: object of the requested type. Input stream is being scanned then, and, when an object of the requested type is encountered, the user-supplied function is being called.
 
-For example, suppose an input stream contains Bioseq objects, and you need to find and process all Seq-inst objects in it. First, you need to define a class that will process them:
+For example, suppose an input stream contains [Bioseq](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/asn_spec/Bioseq.html) objects, and you need to find and process all [Seq-inst](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/asn_spec/Seq-inst.html) objects in it. First, you need to define a class that will process them:
 
     Class CProcessSeqinstHook : public
     CSerial_FilterObjectsHook<CSeq_inst>
@@ -1688,21 +1688,28 @@ Then, call the filtering function:
 
     Serial_FilterStdObjects<CBioseq>(input_stream, new CProcessStringHook());
 
-An even more sophisticated, yet easier to use mechanism relies on multi-threading. It puts data reading into a separate thread and hides synchronization issues from client application. There are two template classes, which make it possible: ***CIStreamObjectIterator*** and ***CIStreamStdIterator***. The former finds objects of ***CSerialObject*** type:
+An even more sophisticated, yet easier to use mechanism relies on multi-threading. It puts data reading into a separate thread and hides synchronization issues from client application. [CObjectIStreamIterator](#ch_ser.stream_iterators) makes it possible::
 
-    CIStreamObjectIterator<CBioseq,CSeq_inst> i(input_stream);
+    CObjectIStreamIterator<CBioseq,CSeq_inst> i(input_stream);
     for ( ; i.IsValid(); ++i) {
         const CSeq_inst& obj = *i;
         ...
     }
 
-The latter – objects of standard type:
+Stream iterators also allow filtering by object properties. In the example above, let us suppose you do not need all [Seq-inst](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/asn_spec/Seq-inst.html) objects, but only those which ***repr*** member equals to ***seg***. When constructing the iterator, you have to provide your own filtering function:
 
-    CIStreamStdIterator<CBioseq,string> i(input_stream);
+    bool ValidateSeqinst(const CObjectIStream& istr, CSeq_inst& obj,
+                         TMemberIndex mem_index, CObjectInfo* ptr, void* extra) {
+        return obj.CanGetRepr() && obj.GetRepr() == CSeq_inst::eRepr_seg;
+    }
+    CObjectIStreamIterator<CBioseq,CSeq_inst> i(input_stream, eNoOwnership,
+        CObjectIStreamIterator<CBioseq,CSeq_inst>::CParams().FilterByMember("repr",ValidateSeqinst));
     for ( ; i.IsValid(); ++i) {
-        const string& obj = *i;
+        const CSeq_inst& obj = *i;
         ...
     }
+
+In this case all "wrong" Seq-inst objects are not constructed in memory and simply skipped in input stream, which speeds up serialization. When writing filtering function, keep in mind that the filter potentially may be called in the context of different threads and synchronization of access to shared data, if required, is your responsibility.
 
 <a name="ch_ser.Reading_and_writing_binary_JSON_d"></a>
 
