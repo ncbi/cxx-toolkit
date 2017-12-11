@@ -54,6 +54,8 @@ The following is an outline of the topics presented in this chapter:
 
         -   [ncbi\_xloader\_csra library](#ch_libconfig.ncbi_xloader_csra_library)
 
+    -   [BAM](#ch_libconfig.BAM)
+    
     -   [DBAPI](#ch_libconfig.DBAPI)
 
     -   [Eutils](#ch_libconfig.Eutils)
@@ -782,6 +784,29 @@ The following parameters tune the behavior of the `ncbi_xloader_csra` library:
 | If true, fetch quality graphs along with short reads.     | **`[csra_loader]`**<br/>**`quality_graphs`**<br/><br/>**`CSRA_LOADER_QUALITY_GRAPHS`**   | Boolean      | false   |
 
 <div class="table-scroll"></div>
+
+<a name="ch_libconfig.BAM"></a>
+
+### BAM
+
+Library bamread for the [bam]
+
+| Purpose             | [Registry section]<br/>Registry name<br/><br/>Environment variable     | Valid values |
+|---------------------|------------------------------------------------------------------------|--------------|
+|dir_path             |Specifies directory where BAM and BAM index files are looked for.       |directory      |
+|bam_name             |Specifies BAM file name. If dir_path is also specified, then the file name is relative to the dir_path. | filename |
+
+Library ncbi_xloader_bam for the [bamloader]
+
+| Purpose      | [Registry section]<br/>Registry name<br/><br/>Environment variable       | Valid values          | Default       |
+|--------------|--------------------------------------------------------------------------|-----------------------|---------------|
+|debug         |Enables debugging log messages, the higher the number, the more messages are logged. |number      | 0             |
+|mapper_file   |Specified file name for CIdMapperConfig used to map BAM sequence ids into CSeq_id.   |filename    |               |
+|pileup_graphs |Generate pileup graphs for alignments                                                |Boolean     | true          |
+|skip_empty_pileup_graphs | Do not create pileup graphs from the set (ACGT,match,insert) if the graph is completely zero. |Boolean     | true          |
+|estimated_coverage_graph | Use fast estimation for coverage graph if possible.                      |Boolean     | true          |
+|preopen       |Do not open BAM files at time of loader registration, open them only when alignments or graphs are requested. |Boolean     | false         |
+
 
 <a name="ch_libconfig.DBAPI"></a>
 
