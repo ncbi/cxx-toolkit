@@ -789,19 +789,20 @@ The following parameters tune the behavior of the `ncbi_xloader_csra` library:
 
 ### BAM
 
-Library bamread for the [bam]
+#### bamread library
 
 | Purpose             | [Registry section]<br/>Registry name<br/><br/>Environment variable     | Valid values |
 |---------------------|------------------------------------------------------------------------|--------------|
-|dir_path             |Specifies directory where BAM and BAM index files are looked for.       |directory      |
-|bam_name             |Specifies BAM file name. If dir_path is also specified, then the file name is relative to the dir_path. | filename |
+|dir_path             |Specifies directory where BAM and BAM index files are looked for.       |Directory name     |
+|bam_name             |Specifies BAM file name. If dir_path is also specified, then the file name is relative to the dir_path. | File Name |
+| index_name          |Specifies BAM index file name. If dir_path is also specified, then the file name is relative to the dir_path. If index_name is not set then index file name is derived form BAM file name by adding ".bai" extension. |File Name |
 
-Library ncbi_xloader_bam for the [bamloader]
+#### ncbi\_xloader\_bam library
 
 | Purpose      | [Registry section]<br/>Registry name<br/><br/>Environment variable       | Valid values          | Default       |
 |--------------|--------------------------------------------------------------------------|-----------------------|---------------|
-|debug         |Enables debugging log messages, the higher the number, the more messages are logged. |number      | 0             |
-|mapper_file   |Specified file name for CIdMapperConfig used to map BAM sequence ids into CSeq_id.   |filename    |               |
+|debug         |Enables debugging log messages (if not zero), the higher the number, the more messages are logged. |Number (0-3)   | 0             |
+|mapper_file   |Specified file name for CIdMapperConfig used to map BAM sequence ids into CSeq_id.   |File Name    |               |
 |pileup_graphs |Generate pileup graphs for alignments                                                |Boolean     | true          |
 |skip_empty_pileup_graphs | Do not create pileup graphs from the set (ACGT,match,insert) if the graph is completely zero. |Boolean     | true          |
 |estimated_coverage_graph | Use fast estimation for coverage graph if possible.                      |Boolean     | true          |
