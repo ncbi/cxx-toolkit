@@ -2213,6 +2213,10 @@ The ***CObject*** class serves as a base class for all objects requiring a refer
 
 The ***CObject*** class contains a single private data member, the reference counter, and a set of member functions which provide an interface to the reference counter. As such, it is truly a base class which has no stand-alone utility, as it does not even provide allocation for data values. It is the `descendant` classes, which inherit all the functionality of the ***CObject*** class, that provide the necessary richness in representation and allocation required for the widely diverse set of objects implemented in the NCBI C++ Toolkit. Nevertheless, it is often necessary to use smart pointers on simple data types, such as ***int***, ***string*** etc. The ***CObjectFor*** class, described below, was designed for this purpose.
 
+#### ATTENTION:  Special care when inheriting from CObject
+
+***CObject*** must be the first in the inheritance chain -- otherwise its "in-heap" detection mechanism will fail and the object will fail to automatically self-destruct when the last reference to it goes away.
+
 <a name="ch_core.CObjectFor"></a>
 
 ### The CObjectFor ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectFor.html)) class: using smart pointers for standard types
