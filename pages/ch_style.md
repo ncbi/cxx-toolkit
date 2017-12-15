@@ -736,11 +736,11 @@ As an added benefit, using an enumerated type for parameters instead of **`bool`
 
 #### Read the "C++ Core Guidelines"
 
-The [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#c-core-guidelines) set a good example. There is a couple of practical caveats to following it though:
+The [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) set a good example. There is a couple of practical caveats to following it though:
 
 - They are written for C++14, and we are still at C++11
 
-- Because there is already an established NCBI C++ coding style (this page) on which millions of lines of NCBI code have already been written... please follow the NCBI style if it conflicts with the [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#c-core-guidelines). FWIW, [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#c-core-guidelines) itself advise that for well-established projects with pre-existing coding guidelines.
+- Because there is already an established NCBI C++ coding style (this page) on which millions of lines of NCBI code have already been written... please follow the NCBI style if it conflicts with the [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines). FWIW, [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) itself advise that for well-established projects with pre-existing coding guidelines.
 
 <a name="ch_style.style_templ_library"></a>
 
