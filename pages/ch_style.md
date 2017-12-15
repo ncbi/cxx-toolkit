@@ -63,6 +63,8 @@ The following is an outline of the topics presented in this chapter:
             -   [Make Your Code Readable](#ch_style.Make_Your_Code_Reada)
 
         -   [C++ Tips and Tricks](#ch_style.cpp_tips_tricks)
+        
+            -   [Read the "C++ Core Guidelines"](#ch_style.style_core_guidelines)
 
         -   [Standard Template Library (STL)](#ch_style.style_templ_library)
 
@@ -588,6 +590,8 @@ This section discusses the following topics:
         -   [Make Your Code Readable](#ch_style.Make_Your_Code_Reada)
 
     -   [C++ Tips and Tricks](#ch_style.cpp_tips_tricks)
+    
+        -   [Read the "C++ Core Guidelines"](#ch_style.style_core_guidelines)
 
     -   [Standard Template Library (STL)](#ch_style.style_templ_library)
 
@@ -728,7 +732,15 @@ As an added benefit, using an enumerated type for parameters instead of **`bool`
 
 -   Header files should contain what they contain in C along with classes, const's, and in-line functions.
 
-See the [C++ FAQ](http://www.parashift.com/c++-faq-lite)
+<a name="ch_style.style_core_guidelines"></a>
+
+#### Read the "C++ Core Guidelines"
+
+The [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#c-core-guidelines) set a good example. There is a couple of practical caveats to following it though:
+
+- They are written for C++14, and we are still at C++11
+
+- Because there is already an established NCBI C++ coding style (this page) on which millions of lines of NCBI code have already been written... please follow the NCBI style if it conflicts with the [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#c-core-guidelines). FWIW, [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#c-core-guidelines) itself advise that for well-established projects with pre-existing coding guidelines.
 
 <a name="ch_style.style_templ_library"></a>
 
