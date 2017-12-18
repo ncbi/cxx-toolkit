@@ -72,6 +72,8 @@ The following is an outline of the topics presented in this chapter:
     -   [Using Transactions](#ch_dbapi.Using_Transactions)
 
     -   [Using Cursors](#ch_dbapi.Using_Cursors)
+    
+    -   [Database_Mirroring_Support](#ch_dbapi.Database_Mirroring_Support)
 
 -   [The DBAPI Library](#ch_dbapi.The_DBAPI_Library)
 
@@ -298,6 +300,8 @@ The following sections cover specific aspects of SDBAPI:
 
 -   [Using Cursors](#ch_dbapi.Using_Cursors)
 
+-   [Database_Mirroring_Support](#ch_dbapi.Database_Mirroring_Support)
+
 <a name="ch_dbapi.Includes_and_Linkage"></a>
 
 ### Includes and Linkage
@@ -519,6 +523,220 @@ SDBAPI does not provide any special API support for transactions, so simply run,
 ### Using Cursors
 
 SDBAPI does not support cursors. If you need cursors, you must use [DBAPI](#ch_dbapi.dbapi_user_layer).
+
+<a name="ch_dbapi.Database_Mirroring_Support"></a>
+
+### Database Mirroring Support
+
+SDBAPI supports database mirroring. Only high-safety mirroring mode is supported. In most of the cases NCBI uses a mirroring configuration with a witness. Basically this means that the setups support an automatic failover. For more information about database mirroring see [Microsoft documentation](https://msdn.microsoft.com/en-us/library/ms189852(v=sql.105).aspx)
+
+<a name="ch_dbapi.Overall_Application_Structure"></a>
+
+#### Overall Application Structure
+
+An application which needs DB mirroring should meet the following requirements:
+
+- A DB mirror configuration needs to be provided in a configuration file (described below).
+- The `CSDBAPI::UpdateMirror()` static function needs to be called periodically, e.g. every 60 seconds. The function will update the mirror’s current state and report what was done.
+- The data access is provided via the usual `CDatabase` object which is created using a database service name.
+
+Typically the `UpdateMirror()` function would be called in a separate thread while the other working threads would be not bothered by the details related to the DB mirror. Also it is recommended to call `UpdateMirror()` before the first access to data. In this case the most up to date mirror state will be at hand when the data are accessed.
+
+<a name="ch_dbapi.Configuration_File"></a>
+
+#### Configuration File
+
+The service name `MyMirroredService` is used here and further to make the examples more specific. Certainly, your application would need a load balancer setup (this setup is not covered here). As a result of the setup process you will, in particular, have a service name.
+The application code should use the following way of instantiating the `CDatabase` object:
+
+```
+CDatabase    my_db(“MyMirroredService”);
+```
+
+When the `my_db` instance is created the SDBAPI searches in the configuration file a section named as follows:
+
+```
+[MyMirroredService.dbservice]
+```
+
+The fixed suffix ".dbservice" is added to the service name to form the section name.
+The table below describes the values recognized in this section. The section parameters override the values provided in the URL-like string if so.
+
+| Name                           | Description |
+|--------------------------------|-------------|
+| username                       | clear text user name |
+| password                       | clear text password |
+| service                        | LBSM service name if not matches the service name provided in the code |
+| port                           | DB server's port (when not using an alias or named service) |
+| database                       | database name |
+| args                           | catch-all for any other parameters |
+| login_timeout                  | individual server login timeout |
+| io_timeout                     | communication timeout |
+| exclusive_server               | it must be true for the mirrored configurations |
+| use_conn_pool                  | true if connection pool is required |
+| conn_pool_name                 | explicit connection pool name if the default one is not good enough or already used elsewhere |
+| conn_pool_minsize              | connection pool minimum size |
+| conn_pool_maxsize              | connection pool maximum size |
+| conn_pool_idle_time            | connection pool idle time |
+| conn_pool_wait_time            | connection pool wait time |
+| conn_pool_allow_temp_overflow  | true if the connection pool allows temporary overflow |
+| continue_after_raiserror       | true if should continue after raiserror |
+| password_file                  | path to the password file |
+| password_key                   | key to decrypt the password |
+
+**Note**: an application configuration file may also have the `db_connection_factory` section, e.g.
+```
+[db_connection_factory]
+connection_timeout=...
+login_timeout=...
+```
+
+An important detail here is that (if specified) `db_connection_factory` values will override the corresponding values from the `MyMirroredService.dbservice` section. `[db_connection_factory]/connection_timout` will override `[MyMirroredService.dbservice]/io_timeout`. `[db_connection_factory]/login_timeout` will override `[MyMirroredService.dbservice]/login_timeout`.
+
+<a name="ch_dbapi.UpdateMirror"></a>
+
+#### UpdateMirror()
+
+As it was mentioned above this static member function checks the mirror state and memorizes it. The function accepts up to three arguments: a mandatory service name, an optional pointer to the container which will be populated with the DB servers (master is always first) and an optional pointer to the string where an error message is provided if so. The return value is an enumeration `SDBAPI::EMirrorStatus` which tells what was done:
+
+| Return value        | Description |
+|---------------------|-------------|
+| eMirror_Steady      | Mirror is working on the same server as before |
+| eMirror_NewMaster   | Switched to a new master |
+| eMirror_Unavailable | All databases in the mirror are unavailable |
+
+Here is an example:
+```
+string                  errMsg;
+list<string>            servers;
+CSDBAPI::EMirrorStatus  status = CSDBAPI::UpdateMirror("MyMirroredService", &servers, &errMsg);
+```
+
+The `UpdateMirror()` will use the provided service name to read the configuration from the same section as the `CDatabase` instance.
+
+If the master is switched then all connections to the previous master will be invalidated and the user code will need to reconnect to the new master.
+
+<a name="ch_dbapi.Basic_Example"></a>
+#### Basic Example
+
+The example omits many details like include files, how to stop the threads, error handling to keep it short. Also the example supposes a properly formed configuration file.
+
+```
+class CMyThread : public CThread
+{
+    public:
+        CMyThread(const string &  service) : m_Service(service)
+        {}
+
+        virtual void* Main(void) {
+            SleepMilliSec(1000);
+            for (;;) {
+                try {
+                    CDatabase       db(m_Service);
+                    db.Connect();
+
+                    CQuery          q = db.NewQuery("select serverproperty('servername')");
+                    q.Execute();
+                    cerr << "connected to " << q.begin()[1].AsString() << endl;
+
+                    // Drop the table if it exists
+                    try {
+                        q.SetSql("drop table #t");
+                        q.Execute();
+                    } catch (...) {}
+
+                    q.SetSql("create table #t (tt varchar(100))");
+                    q.Execute();
+                    q.SetSql("insert into #t values (@tt)");
+                    for (int i = 0; i < 500; ++i) {
+                        q.SetParameter("@tt", i, eSDB_String);
+                        q.Execute();
+                    }
+
+                } catch (const exception &  ex) {
+                    cerr << "Error from SDBAPI: " << ex.what() << endl;
+                }
+                SleepMilliSec(10000);
+            }
+            return NULL;
+        }
+
+    private:
+        string      m_Service;
+};
+
+class CMirrorApp : public CNcbiApplication
+{
+private:
+    virtual void Init(void);
+    virtual int  Run(void);
+    void ParseArgs(void);
+
+    string  m_Service;  // Command-line options
+};
+
+
+void CMirrorApp::Init(void)
+{
+    CArgDescriptions* argdesc = new CArgDescriptions();
+    argdesc->SetUsageContext(GetArguments().GetProgramBasename(),
+                             "SDBAPI mirrored DB access demo");
+
+    argdesc->AddPositional("service", "Service name",
+                           CArgDescriptions::eString);
+    SetupArgDescriptions(argdesc);
+}
+
+int CMirrorApp::Run(void)
+{
+    ParseArgs();
+
+    const size_t        thread_count = 3;
+    CMyThread*          thr[thread_count];
+    for (size_t i = 0; i < thread_count; ++i) {
+        thr[i] = new CMyThread(m_Service);
+        thr[i]->Run();
+    }
+
+    for (;;) {
+        string                  errMsg;
+        list<string>            servers;
+
+        CSDBAPI::EMirrorStatus  status = CSDBAPI::UpdateMirror(m_Service, &servers, &errMsg);
+
+        if(status == CSDBAPI::eMirror_Unavailable)
+            cerr << "SQL mirror check failed, error: " << errMsg << endl;
+        else if(status == CSDBAPI::eMirror_NewMaster)
+            cerr << "Master server has been switched. New master: "
+                 << (servers.empty() ? kEmptyStr : servers.front()) << endl;
+        else if(status != CSDBAPI::eMirror_Steady)
+            cerr << "Unknown mirror status." << endl;
+
+        SleepMilliSec(60000);
+    }
+
+    for (size_t i = 0; i < thread_count; ++i) {
+        thr[i]->Join();
+    }
+    return 0;
+}
+
+void CMirrorApp::ParseArgs(void)
+{
+    const CArgs& args = GetArgs();
+    m_Service = args["service"].AsString();
+}
+
+int NcbiSys_main(int argc, ncbi::TXChar* argv[])
+{
+    return CMirrorApp().AppMain(argc, argv);
+}
+```
+
+In the example above the main thread creates 3 working threads and each of them starts in 1 second populating data every 10 seconds. The delay is required to give a chance to complete the very first call of the `UpdateMirror()` which is done in the main thread. An exception will be generated in the data populating thread if a master server is switched. The next call of the `UpdateMirror()` will set up the new master and the working threads will be able to populate data in the next iteration.
+
+In the example the service name comes from the command line arguments.
+
 
 <a name="ch_dbapi.The_DBAPI_Library"></a>
 
