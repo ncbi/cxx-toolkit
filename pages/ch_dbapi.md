@@ -73,7 +73,7 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Using Cursors](#ch_dbapi.Using_Cursors)
     
-    -   [Database_Mirroring_Support](#ch_dbapi.Database_Mirroring_Support)
+    -   [Database Mirroring Support](#ch_dbapi.Database_Mirroring_Support)
 
 -   [The DBAPI Library](#ch_dbapi.The_DBAPI_Library)
 
@@ -300,7 +300,7 @@ The following sections cover specific aspects of SDBAPI:
 
 -   [Using Cursors](#ch_dbapi.Using_Cursors)
 
--   [Database_Mirroring_Support](#ch_dbapi.Database_Mirroring_Support)
+-   [Database Mirroring Support](#ch_dbapi.Database_Mirroring_Support)
 
 <a name="ch_dbapi.Includes_and_Linkage"></a>
 
@@ -528,7 +528,7 @@ SDBAPI does not support cursors. If you need cursors, you must use [DBAPI](#ch_d
 
 ### Database Mirroring Support
 
-SDBAPI supports database mirroring. Only high-safety mirroring mode is supported. In most of the cases NCBI uses a mirroring configuration with a witness. Basically this means that the setups support an automatic failover. For more information about database mirroring see [Microsoft documentation](https://msdn.microsoft.com/en-us/library/ms189852(v=sql.105).aspx)
+SDBAPI supports database mirroring. Only high-safety mirroring mode is supported. In most of the cases NCBI uses a mirroring configuration with a witness. Basically this means that the setups support an automatic failover. For more information about database mirroring see [Microsoft documentation](https://msdn.microsoft.com/en-us/library/ms189852(v=sql.105).aspx).
 
 <a name="ch_dbapi.Overall_Application_Structure"></a>
 
@@ -564,25 +564,25 @@ The table below describes the values recognized in this section. The section par
 
 | Name                           | Description |
 |--------------------------------|-------------|
-| username                       | clear text user name |
-| password                       | clear text password |
-| service                        | LBSM service name if not matches the service name provided in the code |
-| port                           | DB server's port (when not using an alias or named service) |
-| database                       | database name |
-| args                           | catch-all for any other parameters |
-| login_timeout                  | individual server login timeout |
-| io_timeout                     | communication timeout |
-| exclusive_server               | it must be true for the mirrored configurations |
-| use_conn_pool                  | true if connection pool is required |
-| conn_pool_name                 | explicit connection pool name if the default one is not good enough or already used elsewhere |
-| conn_pool_minsize              | connection pool minimum size |
-| conn_pool_maxsize              | connection pool maximum size |
-| conn_pool_idle_time            | connection pool idle time |
-| conn_pool_wait_time            | connection pool wait time |
-| conn_pool_allow_temp_overflow  | true if the connection pool allows temporary overflow |
-| continue_after_raiserror       | true if should continue after raiserror |
-| password_file                  | path to the password file |
-| password_key                   | key to decrypt the password |
+| `username`                       | clear text user name |
+| `password`                       | clear text password |
+| `service`                        | LBSM service name if not matches the service name provided in the code |
+| `port`                           | DB server's port (when not using an alias or named service) |
+| `database`                       | database name |
+| `args`                           | catch-all for any other parameters |
+| `login_timeout`                  | individual server login timeout |
+| `io_timeout`                     | communication timeout |
+| `exclusive_server`               | it must be true for the mirrored configurations |
+| `use_conn_pool`                  | true if connection pool is required |
+| `conn_pool_name`                 | explicit connection pool name if the default one is not good enough or already used elsewhere |
+| `conn_pool_minsize`              | connection pool minimum size |
+| `conn_pool_maxsize`              | connection pool maximum size |
+| `conn_pool_idle_time`            | connection pool idle time |
+| `conn_pool_wait_time`            | connection pool wait time |
+| `conn_pool_allow_temp_overflow`  | true if the connection pool allows temporary overflow |
+| `continue_after_raiserror`       | true if should continue after raiserror |
+| `password_file`                  | path to the password file |
+| `password_key`                   | key to decrypt the password |
 
 **Note**: an application configuration file may also have the `db_connection_factory` section, e.g.
 ```
