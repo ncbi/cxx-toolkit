@@ -210,12 +210,12 @@ Table 1. Naming Conventions
 |***S****StructTypeName*     |`struct SMyStruct { ..... };` |
 |***U****UnionTypeName*      |`union UMyUnion { ..... };`   |
 |***E****EnumTypeName*       |`enum EMyEnum { ..... };`     |
-|***F****FunctionTypeName*   |`typedef int (*FMyFunc)(void);`     |
+|***F****FunctionTypeName*   |`typedef int (*FMyFunc)();`     |
 |***P****PredicateName*      |`struct PMyPred { bool operator() (.... , ....); };`  |
 |***T****AuxiliaryTypedef* [(\*)](#ch_style.1.3.1)   |`typedef map<int,string> TMyMapIntStr;`   |
 |***T****Iterator****\_I***  |`typedef list<int>::iterator TMyList_I;`  |
 |***T****ConstIterator****\_CI***  |`typedef set<string>::const_iterator TMySet_CI;`      |
-|***N****Namespace* [(see also)](#ch_style.naming_prefix)  |`namespace NMyNamespace { ..... }`  |
+|***N****Namespace* [(see also)](#ch_style.naming_prefix)  |`namespace NMyNamespace {...}` or `namespace my_namespace {...}`  |
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Preprocessor Define/Macro**   |
 |*MACRO\_NAME*               |`#define MY_DEFINE 12345`     |
 |*macro\_arg\_name*          |`#define MY_MACRO(x, y) (((x) + 1) < (y))`      |
@@ -230,13 +230,13 @@ Table 1. Naming Conventions
 |*struct\_field\_name*       |`struct S { int my_struct_field; };`      |
 |***sm\_****ClassStaticMemberName* |`class C { static double sm_MyClassStaticData; };`    |
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Class Member Functions (Methods)**  |
-|*ClassMethod*               |`bool MyClassMethod(void);`   |
+|*ClassMethod*               |`bool MyClassMethod();`   |
 |***x\_****ClassPrivateMethod*     |`int x_MyClassPrivateMethod(char c);`     |
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Module Static Functions and Data**  |
-|***s\_****StaticFunc*       |`static char s_MyStaticFunc(void);` |
+|***s\_****StaticFunc*       |`static char s_MyStaticFunc();` |
 |***s\_****StaticVar*        |`static int s_MyStaticVar;`   |
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Global (*"extern"*) Functions and Data**  |
-|***g\_****GlobalFunc*       |`double g_MyGlobalFunc(void);`      |
+|***g\_****GlobalFunc*       |`double g_MyGlobalFunc();`      |
 |***g\_****GlobalVar*        |`short g_MyGlobalVar;`  |
 
 <div class="table-scroll"></div>
@@ -266,8 +266,6 @@ For example, if you are creating a new class called "`Bar`" in package "`Foo`" t
 All NCBI-made “core” API code must be put into the `"ncbi::"` namespace. For this purpose, there are two preprocessor macros, **`BEGIN_NCBI_SCOPE`** and **`END_NCBI_SCOPE`**, that must enclose **all** NCBI C++ API code -- both declarations and definitions (see [examples](ch_proj.html#ch_proj.new_modules)). Inside these "brackets", all `"std::"` and `"ncbi::"` scope prefixes can (and must!) be omitted.
 
 For code that does not define a new API but merely **uses** the NCBI C++ API, there is a macro **`USING_NCBI_SCOPE;`** (semicolon-terminated) that brings all types and prototypes from the `"std::"` and `"ncbi::"` namespaces into the current scope, eliminating the need for the `"std::"` and `"ncbi::"` prefixes.
-
-Use macro **`NCBI_USING_NAMESPACE_STD;`** (semicolon-terminated) if you want to bring all types and prototypes from the `"std::"` namespace into the current scope, without bringing in anything from the `"ncbi::"` namespace.
 
 <a name="ch_style.using_includes"></a>
 
@@ -357,6 +355,24 @@ In `if, for, while, do, switch, case`, etc. and type definition statements:
         .....;
     }
 
+ 
+
+    #include <foo/bar.hpp>
+    
+    #if defined(NCBI_FOOBAR)
+    #  define NCBI_XYZ 1
+    #else if NCBI_BARFOO > 1001
+    #  include <bar/foo.hpp>
+    #  if NCBI_BARFOO_VER > 12345
+    #    define NCBI_XYZ "qwerty"
+    #  else
+    #    define NCBI_XYZ "ytrewq"
+    #  endif
+    #else
+    #  define NCBI_XWZ ""
+    #endif
+    }
+
 <a name="ch_style.class_decl"></a>
 
 ### Class Declaration
@@ -386,12 +402,12 @@ Class declarations should be rich in [Doxygen-style comments](#ch_style.Doxygen_
         /// A brief description of the constructor.
         ///
         /// A detailed description of the constructor.
-        CFooClass(const char* init_str = NULL); ///< describe parameter here
+        CFooClass(const char* init_str = nullptr); ///< describe parameter here
 
         /// A brief description for another constructor.
         CFooClass(int init_int); ///< describe parameter here
 
-        ~CFooClass(void); // Usually needs no Doxygen-style comment.
+        ~CFooClass(); // Usually needs no Doxygen-style comment.
 
         // Members and Methods:
 
@@ -459,7 +475,7 @@ Class declarations should be rich in [Doxygen-style comments](#ch_style.Doxygen_
         double x_PrivateFunc(int some_int = 1); ///< describe parameter here
 
         // Friends
-        friend bool  SomeFriendFunc(void);
+        friend bool  SomeFriendFunc();
         friend class CSomeFriendClass;
 
         // Prohibit default initialization and assignment
@@ -515,7 +531,7 @@ For static functions, put all Doxygen-style comments immediately before the func
     ///
     /// Explain here what s_MyFunc3() does.
     /// @return explain here what s_MyFunc3() returns.
-    static long s_MyFunc3(void)
+    static long s_MyFunc3()
     {
         .......
         .......
@@ -655,8 +671,8 @@ Use the [Standard Template Library (STL)](#ch_style.style_templ_library), which 
 
 <!-- -->
 
-    void foo(void) throw ();
-    void bar(void) throw (std::exception);
+    void foo() throw ();
+    void bar() throw (std::exception);
 
 <a name="ch_style.style_design"></a>
 
@@ -674,15 +690,15 @@ Use the [Standard Template Library (STL)](#ch_style.style_templ_library), which 
 
 ##### Make Your Code Readable
 
-Use **`NULL`** instead of **`0`** when passing a null pointer. For example:
+Use **`nullptr`** instead of **`0`** (or **`NULL`**) when passing a null pointer. For example:
 
-    MyFunc(0,0);    // Just looking at this call, you can’t tell which
+    MyFunc(0, 0);   // Just looking at this call, you can’t tell which
                     // parameter might be an int and which might be
                     // a pointer.
 
-    MyFunc(0,NULL); // When looking at this call, it’s pretty clear
-                    // that the first parameter is an int and
-                    // the second is a pointer.
+    MyFunc(0, nullptr); // When looking at this call, it’s pretty clear
+                        // that the first parameter is an int and
+                        // the second is a pointer.
 
 Avoid using **`bool`** as a type for function arguments. For example, this might be hard to understand:
 
@@ -752,23 +768,13 @@ The STL is a library included in ANSI/ISO C++ for stream, string, and container 
 
 ##### STL Tips and Tricks
 
-***end()*** does not return an iterator to the last element of a container, rather it returns a iterator just beyond the last element of the container. This is so you can do constructs like
-
-    for (iter = container.begin();  iter != container.end();  iter++)
-
-If you want to access the last element, use "`--container.end()`". ***Note:*** If you use this construct to find the last element, you must first ensure that the container is not empty, otherwise you could get corrupt data or a crash.
-
-The C++ Toolkit includes macros that simplify iterating. For example, the above code simplifies to:
-
-    ITERATE(Type, iter, container)
-
-For more info on **`ITERATE`** (and related macros), see the [ITERATE macros](ch_core.html#ch_core.ITERATE_macros) section.
+***end()*** does not return an iterator to the last element of a container, rather it returns a iterator just beyond the last element of the container.
 
 Iterator misuse causes the same problems as pointer misuse. There are versions of the STL that flag incorrect use of iterators.
 
 Iterators are guaranteed to remain valid after insertion and deletion from ***list*** containers, but not ***vector*** containers. Check to see if the container you are using preserves iterators.
 
-If you create a container of pointers to objects, the objects are not destroyed when the container is destroyed, only the pointers are. Other than maintaining the objects yourself, there are several strategies for handling this situation detailed in the [literature](app1.appendix1.html#app1.books.html).
+If you create a container of pointers to objects, the objects are not destroyed when the container is destroyed, only the pointers are. 
 
 If you pass a container to a function, don't add a local object to the container. The local variable will be destroyed when you leave the function.
 
@@ -816,9 +822,10 @@ Do not use operator overloading for the objects where they have unnatural or amb
 
 ##### Assignment and Copy Constructor Overload
 
-Be advised that the default initialization `{CFoo foo = bar;}` and assignment `{CFoo foo; ...; foo = bar;}` do a member-by-member copying. This is not suitable and can be dangerous sometimes. And if you decide to overwrite this default behavior by your own code like:
+Be advised that the default initialization `{CFoo foo = bar;}` and assignment `{CFoo foo; ...; foo = bar;}` do a member-by-member copying. This is not always suitable and can be dangerous sometimes. And if you decide to overwrite this default behavior by your own code like:
 
-    class CFoo {
+    class CFoo
+    {
         // a copy constructor for initialization
         CFoo(const CFoo& bar) { ... }
         // an overloaded assignment(=) operator
@@ -835,7 +842,8 @@ it is **extremely important** that:
 
 In many cases when you don't want to have the assignment and copy constructor at all, just add to your class something like:
 
-    class CFoo {
+    class CFoo
+    {
         .............................
     private:
         // Prohibit default initialization and assignment
@@ -893,6 +901,7 @@ The following Subversion repositories have been set up for general use within NC
 | [toolkit](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/)  | C++ Toolkit (core and internal) development    |
 | [gbench](https://svn.ncbi.nlm.nih.gov/viewvc/gbench/)    | GUI / GBENCH     |
 | [staff](https://svn.ncbi.nlm.nih.gov/viewvc/staff/)      | individuals' projects (not parts of any official projects) |
+| [archive](https://svn.ncbi.nlm.nih.gov/viewvc/archive/) | releases and deployment packages |
 | [misc\_projects](https://svn.ncbi.nlm.nih.gov/viewvc/misc_projects/) | projects not falling into any of the other categories      |
 
 <div class="table-scroll"></div>
