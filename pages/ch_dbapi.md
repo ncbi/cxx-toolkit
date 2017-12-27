@@ -332,7 +332,78 @@ To establish a database connection, first specify the connection parameters, the
     m_Db = CDatabase(db_params);
     m_Db.Connect();
 
-Additional parameters are available for connection pooling, timeouts, etc. Please see the ***CSDB\_ConnectionParam*** [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSDB__ConnectionParam.html) for the up-to-date list.
+Connecting to a database requires a minimum set of parameters, including:
+- either a load-balanced service name or a server name and port;
+- a database name;
+- a database user name; and
+- a database user password.
+
+Additional parameters are available for login and I/O timeouts, connection pooling, etc. Please see the ***CSDB\_ConnectionParam*** [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSDB__ConnectionParam.html)
+
+In general, connection parameter values may be given in one or more of the following places:
+- in a token passed to the `CSDB_ConnectionParam` constructor;
+- in a `CSDB_ConnectionParam::Set()` call;
+- in the application configuration file; or
+- in the environment.
+
+Exceptions are:
+- The service parameter can only be set in the ***CSDB_ConnectionParam*** constructor or the `Set()` call.
+- The password parameter may be omitted if Kerberos is used (see [Using Kerberos with DBAPI](#ch_dbapi.Using_Kerberos_with_DBAPI)).
+
+When a connection parameter is given in multiple places, the order of precedence is:
+- the `Set()` call takes precedence over the constructor;
+- the configuration file takes precedence over the `Set()` call;
+- the environment takes precedence over the configuration file.
+
+If a password and a password file are both given at the same precedence level (e.g. both in a URL or both in the config file) then an exception will be thrown.
+
+#### As Tokens Passed to the CSDB_ConnectionParam Constructor
+Connection parameters may be tokens in a string passed to the ***CSDB_ConnectionParam*** constructor. Such strings may have one of the following forms:
+
+```
+dbapi://[username[:password]@][server[:port]][/database][?key=val;...]
+or
+dbapi://[username[:password]@][service][/database][?key=val;...]
+or
+service
+```
+
+The URL-like forms are intended for cases when the database connection URL is supplied externally - it is not intended that client applications will manually construct URLs from components. If your application gets a pre-constructed URL, each token must be URL-encoded. If your application does not get a pre-constructed URL, please use one of the other methods of setting connection parameters rather than constructing a URL.
+The service form can be a convenient way to specify just the service name when other parameters are supplied elsewhere (e.g. the config file).
+
+#### As Values Passed to the Set Method
+One straightforward way to set connection parameters is by using the `Set()` method (which supports chaining), for example:
+```
+CSDB_ConnectionParam     db_params;
+db_params
+    .Set(CSDB_ConnectionParam::eUsername,     m_User)
+    .Set(CSDB_ConnectionParam::ePasswordFile, m_PwFile)
+    .Set(CSDB_ConnectionParam::eService,      m_Service)
+    .Set(CSDB_ConnectionParam::eDatabase,     m_DbName);
+```
+
+#### As Entries in Configuration Files
+The service name must be set directly in the application, but the other connection parameters may be set in the appplication configuration file in the section corresponding to the service name (with `.dbservice` appended). For example, for the service name "MyService":
+
+```
+[MyService.dbservice]
+username=myname 
+password_file=myapp.pw
+database=mydb
+```
+***Note:*** It is possible to include a service entry in the `[*.dbservice]` section. However, SDBAPI will not look in the section corresponding to the new name for database connection parameters. Rather, this is just a mechanism to replace a hard-coded service name.
+
+#### As Environment Variables
+Environment variables may be used instead of configuration files, for example, the environment variable assignment:
+```
+export NCBI_CONFIG__MYSERVICE_DOT_DBSERVICE__DATABASE=mydb
+```
+(note the double underscores and the `_DOT_` instead of a literal full stop character) has the same effect as the following configuration file entry:
+```
+[myservice.dbservice]
+database=mydb
+```
+
 
 After making the connection, it is recommended to set the connection session parameters, for example:
 
