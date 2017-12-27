@@ -1927,9 +1927,26 @@ Example:
 
 <a name="ch_dbapi.Database_Access_via_Python_and"></a>
 
-### Load-Balanced Database Access via Python and Perl
+### Load-Balanced Database Access via Command Line and Python and Perl
 
 There is a Unix command-line tool, **ncbi\_dblb\_cli**, that you can call from your script to perform service resolution and connection validation - i.e. to find a load-balanced server that is online and that supports a given service and database.
+
+From command line:
+
+To determine the best server name (i.e. online, load-balanced, and supporting the given database) to access a certain database using a certain service, use the **ncbi\_dblb\_cli** tool (located in `/opt/machine/lbsm/bin/ncbi_dblb_cli`).  For example:
+```
+ncbi_dblb_cli lookup --service MyService --database MyDatabase
+```
+
+To determine the load-balanced server for a given service, use the **ncbi\_dblb** tool (located in `/opt/machine/lbsm/bin`).  For example:
+```
+ncbi_dblb -q MyService
+```
+
+To use sqsh with a load-balanced service, use the **sqsh-ms-lb** tool (located in `/export/home/sybase/utils/bin/sqsh-ms-lb`).  For example:
+```
+sqsh-ms-lb -S MyService [-D MyDatabase] SQSH_ARGS...
+```
 
 From Python:
 
