@@ -2916,13 +2916,13 @@ An application may need to work with files and directories. The CORELIB provides
 
 The following sections discuss the file and directory classes in more detail:
 
--   [Executing a System Command using the System() Method](#ch_core.system_call)
+-   [CDirEntry class](#ch_core.CDirEntry)
 
--   [Defining Spawned Process Modes (EMode type)](#ch_core.process_modes)
+-   [CFile class](#ch_core.CFile)
 
--   [Spawning a Process using SpawnX() Methods](#ch_core.spawn_process)
+-   [CDir class](#ch_core.CDir)
 
--   [Waiting for a Process to Terminate using the Wait() method](#ch_core.wait_method)
+-   [CMemoryFile class](#ch_core.CMemoryFile)
 
 <a name="ch_core.CDirEntry"></a>
 
