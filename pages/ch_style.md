@@ -360,18 +360,17 @@ In `if, for, while, do, switch, case`, etc. and type definition statements:
     #include <foo/bar.hpp>
     
     #if defined(NCBI_FOOBAR)
-    #  define NCBI_XYZ 1
+    #  define NCBI_FOO 1
     #else if NCBI_BARFOO > 1001
     #  include <bar/foo.hpp>
     #  if NCBI_BARFOO_VER > 12345
-    #    define NCBI_XYZ "qwerty"
+    #    define NCBI_FOO "bar"
     #  else
-    #    define NCBI_XYZ "ytrewq"
+    #    define NCBI_FOO "foo"
     #  endif
     #else
-    #  define NCBI_XWZ ""
+    #  define NCBI_FOO ""
     #endif
-    }
 
 <a name="ch_style.class_decl"></a>
 
