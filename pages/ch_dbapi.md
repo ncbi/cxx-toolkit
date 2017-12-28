@@ -1882,15 +1882,28 @@ The following sections cover specific aspects of Database Load-Balancing:
 
 ### Setting up Load-Balancing of Database Servers
 
-For the following to be clear, it is important to distinguish between a database name, an underlying (actual) server name (e.g. MSSQL17), which hosts a variety of databases, a database server alias, and a service name. A server alias may be moved to a different underlying server. The server alias is often used with sqsh, and the GUI tools, such as SQL Management studio. The service name is used by the load-balancer to look up the underlying server to use, and is the name that should be used by an application. The server aliases and service names often share a common prefix and would look similar, and in fact for reasons presented below, there should be at least one server alias that is identical to the service name.
+For the following to be clear, it is important to distinguish between an underlying server name, a server alias, a service name, and a database name.
+- An **underlying server name** (e.g. `MSSQL1`) is the actual name of the host computer. Servers typically host many databases.
+- A **server alias** (e.g. `BIOPROJECT_PRD1`) is simply a name that is meant to be very stable and which may be used in place of an underlying server name when creating a connection to a database server. The interfaces file associates a server alias with the underlying server name. If and when the underlying server name is changed, the alias is also changed to point to the new name, but no changes to the applications using the server alias will be necessary. Thus, server aliases make software more stable and should be preferred over underlying server names. Server aliases are often used with tools such as `sqsh-ms` and SQL Server Management studio.
+- A **service name** (e.g. `BIOPROJECT`) is used to identify a set of load-balanced servers that provide a desired service (e.g. hosting a given database). When a service is requested, the load-balancer / service mapper decides which underlying server to use, bypassing servers that are unavailable. Applications should therefore prefer service names over server aliases. Server aliases and service names often share a common prefix and would look similar, and in fact for reasons presented below, there should be at least one server alias that is identical to the service name. Service names are often application source files and can be used with tools such as `ncbi_dblb`, `lbsmc`, and `sqsh-ms-lb`.
+- A **database name** (e.g. `bioProject`) is self-explanatory, but note that it can be the same as a service name and/or a server alias and must be kept separate conceptually.
 
-The following steps must be done prior to database load-balancing:
+Suppose you have a database called `BioStuff` hosted on two servers, `MSSQL1` (the primary server) and `MSSQL2` (a standby server). A good setup for server aliases and a service name would be:
+* Three server aliases:
+  * `BioStuff1`, pointing to `MSSQL1`
+  * `BioStuff2`, pointing to `MSSQL2`
+  * `BioStuff`, pointing to `MSSQL1`
+* The service `BioStuff`, mapped to `BioStuff1` and `BioStuff2`.
 
-1.  Ask the DBAs to add your service name (e.g. YOURSERVICE) to the load-balancer configuration database. Typically, the names are clear, for example, there are server aliases YOURSERVICE1, and YOURSERVICE2 that already exist, and databases that have “YOURSERVICE” as an embedded string, but if not, the databases providing the service and the server aliases involved should be given. Note that if databases are moved to different underlying servers, both the server aliases, and the load-balancer configuration which points to those servers are both moved, synchronously.
+The server aliases protect applications against underlying server changes. Having a server alias that matches the service name also protects against LBSM failure - i.e., if the load-balancer / service mapper fails, then the name resolution process will find the server alias.
+If you need to set up server aliases or a new service name, email the Database Help Desk. You can find existing server names, server aliases, and service names using the LBSM search tool.
 
-2.  Tell the DBAs which of the server aliases point to the server that should be used, if the load-balancer is unavailable, as the DBAPI will look for a server alias with the same name as the service, in that case.
+The following steps must be done prior to using database load-balancing and service mapping:
+1. The service must exist. Ask the DBAs to add your service name to the load-balancer configuration database if it doesn't already exist (use the LBSM search tool to find existing service names). For example, suppose you have a database named `bioProject`, and there are already server aliases `BIOPROJECT_PRD1` and `BIOPROJECT_PRD2`. Ask the DBAs to create the service `BIOPROJECT` and map it to `BIOPROJECT_PRD1` and `BIOPROJECT_PRD2`. Typically the service, server alias, and database names have a common prefix, although this is not required. Note that if databases are moved to different underlying servers, both the server aliases, and the load-balancer configuration which points to those servers are both moved, synchronously.
+2. Tell the DBAs which of the server aliases point to the server that should be used, if the load-balancer is unavailable, as the DBAPI will look for a server alias with the same name as the service, in that case.
 
-3.  The DBAs will also ask for a DNS name to match the service name as a backup connection method, should everything else fail.
+The DBAs will also ask for a DNS name to match the service name as a backup connection method, should everything else fail.
+
 
 <a name="ch_dbapi.Using_Database_LoadBalancing_fr"></a>
 
