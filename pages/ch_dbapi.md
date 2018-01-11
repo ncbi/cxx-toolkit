@@ -72,6 +72,8 @@ The following is an outline of the topics presented in this chapter:
     -   [Using Transactions](#ch_dbapi.Using_Transactions)
 
     -   [Using Cursors](#ch_dbapi.Using_Cursors)
+
+    -   [Connection Pooling](#ch_dbapi.Connection_Pooling)
     
     -   [Database Mirroring Support](#ch_dbapi.Database_Mirroring_Support)
 
@@ -420,22 +422,9 @@ After making the connection, it is recommended to set the connection session par
 It may also be appropriate to set, `TEXTSIZE`, depending on your project.
 
 ***Note:*** when pooling is used it is the user responsibility to keep the connections
-in a proper state. The server may have certain objects created which are
-automatically cleaned at the time when a connection is closed. The examples are
-transactions and locks. Thus the following scenario is possible:
-- the user creates an application lock with a session lifespan
-- due to an error in a stored procedure the lock is not released properly
+in a proper state (see [Connection Pooling](#ch_dbapi.Connection_Pooling) for more details). In particular the connection settings are ***not*** reset when a connection is returned to the pool.
 
-Now, if pooling is not used then the program continues to work because the lock
-is released when the connection is closed. If the pooling is switched on then the
-lock is not released and the other interested parties will wait for the lock till
-the connection is closed which may take too long. A similar scenario is
-possible for transactions as well.
-
-One more area where a caution should be exercised is the connection settings.
-They are ***not*** reset when a connection is returned to the pool.
-
-Note: when a new connection to an MS SQL Server is created the **`SET XACT_ABORT ON`** option is sent to the server automatically (for more information about the option see the Microsoft [documentation](https://msdn.microsoft.com/en-us/library/ms188792(v=sql.100).aspx)). Whether or not this option is sent is controlled using an environment variable or a configuration file parameter (see [DBAPI configuration parameters reference](ch_libconfig.html#ch_libconfig.DBAPI)). The Sybase servers do not support this option so it will not be sent to them.
+***Note:*** when a new connection to an MS SQL Server is created the **`SET XACT_ABORT ON`** option is sent to the server automatically (for more information about the option see the Microsoft [documentation](https://msdn.microsoft.com/en-us/library/ms188792(v=sql.100).aspx)). Whether or not this option is sent is controlled using an environment variable or a configuration file parameter (see [DBAPI configuration parameters reference](ch_libconfig.html#ch_libconfig.DBAPI)). The Sybase servers do not support this option so it will not be sent to them.
 
 <a name="ch_dbapi.Executing_Basic_Queries"></a>
 
@@ -590,13 +579,214 @@ SDBAPI does not provide any special API support for transactions, so simply run,
     m_Db.NewQuery("BEGIN TRAN").Execute();
 
 <a name="ch_dbapi.Using_Cursors"></a>
-
 ### Using Cursors
 
 SDBAPI does not support cursors. If you need cursors, you must use [DBAPI](#ch_dbapi.dbapi_user_layer).
 
-<a name="ch_dbapi.Database_Mirroring_Support"></a>
+<a name="ch_dbapi.Connection_Pooling"></a>
+### Connection Pooling
 
+Connection pooling is supported by both SDBAPI and DBAPI.
+
+Basically, connection pooling may help to reduce an overhead associated with opening a new connection. If pooling is switched on and a connection is closed then it will be returned to the pool instead of the real close. When a new connection is requested later, SDBAPI/DBAPI will be able to reuse an already opened connection.
+
+#### Connection Pooling Configurable Parameters
+
+Parameters specific to connection pooling can be provided in a configuration file or via environment variables. The parameters are expected to be in a service specific sections and the section names are formed as `[<service name>.dbservice]`. In place of a service name a server name could also be used.
+
+***Note:*** the `[<service name>.dbservice]` sections may have additional parameters not directly related to connection pooling and those parameters are not described here.
+
+| Name                          | Description |
+|-------------------------------|-------------|
+| use_conn_pool                 | true if connection pool is required |
+| service                       | Service name to be used | 
+| conn_pool_name                | Explicit connection pool name if the default one is not good enough or already used elsewhere (pool names are discussed below)<br/>Default for SDBAPI: `<effective service name>.pool`<br/>The effective service name is the value of the service parameter from this section if provided or the service name used to find this section otherwise.<br/>Default for DBAPI: `<this section name>.pool` |
+| conn_pool_minsize             | Connection pool minimum size<br/>The minimum number of connections maintained in the pool (also that many new connections get created when SDBAPI is initialized). If a connection could not be created -- the event gets logged but no exception gets raised.<br/>Default: 0 |
+| conn_pool_maxsize             | Connection pool maximum size<br/>The maximum number of connections in the pool.<br/>If the number of used connections reached maximum when a new connection is requested then SDBAPI waits the time specified in the `conn_pool_wait_time parameter` if a vacant connection appears. If it does not appear within this timeout then the `conn_pool_allow_temp_overflow` parameter is analyzed. If allowed then a new connection is created.<br/>If no connection were created then an exception is generated for both DBAPI and SDBAPI.<br/>***Note:*** in case of DBAPI an exception is generated regardless of the error handler. The error handler is not called at all in case of this exception.<br/>Default: unlimited. |
+| conn_pool_idle_time           | Connection pool idle time<br/>If a connection stays open and is not used within the specified timeout then it will be closed (respecting the minimum pool size setting). By default, a connection may stay open forever.<br/>Default: -1.0 (double, seconds). Negative means ‘never’. |
+| conn_pool_wait_time           | Connection pool wait time<br/>Timeout in seconds which is used to wait for a vacant connection when the number of used connections reached maximum and a new connection is requested.<br/>Default: 0.0 (double, seconds) |
+| conn_pool_allow_temp_overflow | true if the connection pool allows temporary overflow.<br/>Used when the number of used connections in the pool reached maximum and there were no available connections within the configured timeout.<br/>Default: false |
+| conn_pool_max_conn_use        | Maximum number of times a pooled connection is used before it is automatically closed.<br/>Default: 0 (unsigned integer, 0 means unlimited) |
+| database                      | Database name.<br/>If provided then it overrides corresponding argument values in the C++ code. |
+| username                      | User name.<br/>If provided then it overrides corresponding argument values in the C++ code. |
+| password                      | Password.<br/>If provided then it overrides corresponding argument values in the C++ code. |
+
+#### Configuring Connection Pooling in SDBAPI
+
+To configure connection pooling in SDBAPI a configuration file must be supplied. Configuring connection pooling using a URL-like string is not supported.
+
+Connection pooling configuration is service name based. A service name can be supplied via a URL-like string or using the `CSDB_ConfigurationParam::Set()` method. Here is an example of how it could be done:
+```
+...
+string    username = "me";
+string    password = "...";
+string    database = "db";
+string    service = "srv";
+
+// Option 1: using a URL-like string
+string    url = "dbapi://" + username + ":" + password + "@" + service + "/" + database;
+CSDB_ConnectionParam  params(url);
+CDatabase  db(params);
+db.Connect();
+
+// Option 2:  using Set() method
+CSDB_ConnectionParam    params1;
+params1.Set(CSDB_ConnectionParam::eUsername, username)
+       .Set(CSDB_ConnectionParam::ePassword, password)
+       .Set(CSDB_ConnectionParam::eService,  service)
+       .Set(CSDB_ConnectionParam::eDatabase, database);
+CDatabase    db1(params1);
+db1.Connect();
+
+// Option 3: shortcut: using a service name; 
+//           all the other parameters should come from a configuration file
+CDatabase    db2(service);
+db2.Connect();
+```
+
+To configure connection pooling the configuration file must have a section called `[<service name>.dbservice]` so for the example above it will be `[srv.dbservice]`. See the available parameters in the “Connection Pooling Configurable Parameters” section.
+
+Obviously, an application may create as many pools as required providing different service names in the C++ code and supplying appropriate sections in the configuration file.
+
+#### Configuring Connection Pooling in DBAPI
+
+To configure connection pooling in DBAPI a configuration file must be supplied.
+
+Connection pooling configuration is service name based. The service name can be supplied as one of the parameters when a connection is created. Here is an example of how it could be done:
+```
+...
+string    username = "me";
+string    password = "...";
+string    database = "db";
+string    service = "srv";
+
+DBLB_INSTALL_DEFAULT();
+DBAPI_RegisterDriver_FTDS();
+
+CDriverManager &   dm(CDriverManager::GetInstance());
+IDataSource *      m_Ds = dm.CreateDs("ftds");
+I_DriverContext *  drv_context = m_Ds->GetDriverContext();
+
+CDB_Connection *   conn = drv_context->Connect(service, username, password, 0, true);
+
+// This returns the connection to the pool.
+// Later, this connection will be provided in response to the Connect() call.
+delete conn;
+```
+
+#### Connection Pool Names
+
+Some applications may need more than one connection pool. For example, one pool of connections may hold connections to one group of SQL servers while the other pool holds connections to a distinct set of SQL servers.
+
+To support this feature pool names are introduced and they are supported by both SDBAPI and DBAPI.
+
+In case of SDBAPI a connection pool name can be provided only using a configuration file. So, to benefit from having multiple connection pools the following needs to be done:
+* the C++ code should use different service names when instances of `CDatabase` class are created
+* the application configuration file should have corresponding `[<service>.dbservice]` sections
+* each of the `[<service>.dbservice]` sections should supply a distinct explicit pool name in the `conn_pool_name` parameter
+
+In case of DBAPI two options are available. The first is to use the same approach as described for SDBAPI, i.e. to use distinctive service names and to provide an appropriate configuration for them. The second option is not to provide an explicit connection pool name in the configuration but supply it as one of the arguments of the Connect() call, e.g.
+```
+...
+// Creates a connection in the pool called ConnPoolA
+CDB_Connection *   conn = drv_context->Connect(service, username, password, 0, true, "ConnPoolA");
+
+// Creates a connection in the pool called ConnPoolB
+CDB_Connection *   conn = drv_context->Connect(service, username, password, 0, true, "ConnPoolB");
+...
+```
+
+#### Caveats
+
+Using connection pooling may lead to an undesirable behavior in some circumstances. This is mostly related to data which an SQL server associates with a session.
+
+There are resources which are discarded (or reset) by the server when a session is over. Here is list of session associated resources related to pooled connections (which is possibly incomplete):
+* session lifespan application locks
+* temporary tables
+* connection settings
+
+To illustrate potential problems let’s compare two scenarios with and without connection pooling used.
+
+Suppose that a connection is created and then a stored procedure is invoked. The stored procedure creates an application lock with a session lifespan. Then an error happens in the stored procedure and due to an incorrect handling of the error the lock is not released. Now the further application behavior depends on whether connection pooling is used:
+* If pooling is not used then the application most probably will continue working as expected. The connection will be closed and the server will release the lock allowing to acquire it later successfully.
+* If pooling is used then the application most probably will get stuck. The connection will stay opened and will be returned to the pool. Consequently, the application lock will be kept locked. The further tries to acquire the lock will fail.
+
+In case of temporary tables, the obvious problem is memory consumption if tables are not explicitly dropped. Those tables are deleted automatically only when a connection is closed. Also, if the same names for temporary tables are repeatedly used then there could be name clash error. A certain piece of code may expect to have a virgin connection with no leftovers and try to create the same name table unconditionally.
+
+The connection settings are not reset either when a connection is returned to the pool. This may cause unexpected behavior too.
+Developers are encouraged to exercise caution especially in the cases when an application was developed and debugged without connection pooling and then pooling is switched on.
+
+***Note:*** there is no problem with not closed transactions. They will be automatically rolled back when a connection is returned to the pool.
+
+#### Unread Data in a Pooled Connection
+
+In case of pooled connections, the following scenario may happen.
+
+A connection may have been used to retrieve some data from an SQL server. Then, e.g. due to an error in the C++ code, some result sets may be neither read nor discarded but the connection stays open and returned to the pool. Later this connection can be used by the other part of the code to retrieve more data.
+
+In both SDBAPI and DBAPI cases the connection stays usable however there a slight difference.
+
+In case of SDBAPI, a `CQuery` instance is typically destroyed automatically (because it is usually created on a stack). When `CQuery` is destructed and there are some unread data an error will be logged and the unread data are discarded.
+
+In case of DBAPI the unread data are silently discarded.
+
+#### Multithreaded Usage of Pooled Connections in SDBAPI
+
+One of the options is to build a multithreaded application around a `CDatabase::Clone()` call. Such an application creates an application level `CDatabase` instance with appropriate parameters as described above. When the other threads need to have access to the database they would call the `Clone()` method to have an independent instance of the `CDatabase` class. The cloned `CDatabase` can be used further to execute stored procedures etc.
+
+Here is a brief example.
+```
+...
+string    service = "srv";
+
+...
+// Memorize a ‘master’ instance of the CDatabase class somewhere
+...
+CDatabase *    m_Db;
+
+...
+m_Db = new CDatabase(service);
+m_Db->Connect();
+
+...
+
+// Other threads may do the Clone() calls as needed. There is no need to call CDatabase::Connect()
+// It is thread safe to call CDatabase::Clone()
+CDatabase    db = m_Db->Clone();
+CQuery       query = db.NewQuery("select serverproperty('servername')");
+
+query.Execute();
+cout << "connected to " << query.begin()[1].AsString() << endl;
+...
+```
+
+This approach supposes that the `conn_pool_maxsize` parameter is set to 2 or more. One connection is kept by the commonly used instance of the `CDatabase` class. The ‘master’ instance could be conveniently used to monitor and restore a connection in server applications when an SQL server lifetime may be shorter than the application one and restoring a connection is required. An example of the server which uses a separate thread for restoring a connection is in the C++ Toolkit trunk: c++/src/app/netstorage.
+
+Another approach is to build an application around independently created instances of the `CDatabase` class. In this case there is no need to memorize a master instance of the `CDatabase` class. Instead appropriate parameters must be supplied by each thread which accesses a database. To benefit from connection pooling the parameters must be supplied so that the connection pool name matches between the threads.
+
+Here is an example.
+```
+...
+string    service = "srv";
+
+...
+
+// Each thread needs to create a separate instance of CDatabase and call Connect()
+CDatabase    db(service);
+db.Connect();
+
+CQuery       query = db.NewQuery("select serverproperty('servername')");
+
+query.Execute();
+cout << "connected to " << query.begin()[1].AsString() << endl;
+...
+```
+
+This option has no overhead of one not really used connection but it needs to be careful with parameters supplied in the `CDatabase` constructor.
+
+
+
+<a name="ch_dbapi.Database_Mirroring_Support"></a>
 ### Database Mirroring Support
 
 SDBAPI supports database mirroring. Only high-safety mirroring mode is supported. In most of the cases NCBI uses a mirroring configuration with a witness. Basically this means that the setups support an automatic failover. For more information about database mirroring see [Microsoft documentation](https://msdn.microsoft.com/en-us/library/ms189852(v=sql.105).aspx).
@@ -1460,21 +1650,7 @@ An application could combine in one pool the connections to the different server
 
 
 ***Note:*** when pooling is used it is the user responsibility to keep the connections
-in a proper state. The server may have certain objects created which are
-automatically cleaned at the time when a connection is closed. The examples are
-transactions and locks. Thus the following scenario is possible:
-- the user creates an application lock with a session lifespan
-- due to an error in a stored procedure the lock is not released properly
-
-Now, if pooling is not used then the program continues to work because the lock
-is released when the connection is closed. If the pooling is switched on then the
-lock is not released and the other interested parties will wait for the lock till
-the connection is closed which may take too long. A similar scenario is
-possible for transactions as well.
-
-One more area where a caution should be exercised is the connection settings.
-They are ***not*** reset when a connection is returned to the pool.
-
+in a proper state (see the [Connection Pooling](#ch_dbapi.Connection_Pooling) section for more details).
 
 <a name="ch_dbapi.dbapi_drvr_mgr"></a>
 
