@@ -215,7 +215,7 @@ Table 1. Naming Conventions
 |***T****AuxiliaryTypedef* [(\*)](#ch_style.1.3.1)   |`typedef map<int,string> TMyMapIntStr;`   |
 |***T****Iterator****\_I***  |`typedef list<int>::iterator TMyList_I;`  |
 |***T****ConstIterator****\_CI***  |`typedef set<string>::const_iterator TMySet_CI;`      |
-|***N****Namespace* [(see also)](#ch_style.naming_prefix)  |`namespace NMyNamespace {...}` or `namespace my_namespace {...}`  |
+|***N****Namespace* or *my_namespace* [(see also)](#ch_style.naming_prefix)  |`namespace NMyNamespace {...}` or `namespace my_namespace {...}`  |
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Preprocessor Define/Macro**   |
 |*MACRO\_NAME*               |`#define MY_DEFINE 12345`     |
 |*macro\_arg\_name*          |`#define MY_MACRO(x, y) (((x) + 1) < (y))`      |
@@ -232,6 +232,9 @@ Table 1. Naming Conventions
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Class Member Functions (Methods)**  |
 |*ClassMethod*               |`bool MyClassMethod();`   |
 |***x\_****ClassPrivateMethod*     |`int x_MyClassPrivateMethod(char c);`     |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Lambda Functions**  |
+|*my\_lambda*       |`auto my_lambda = [&]...;` |
+|***L****MyLambdaType*        |`using LMyLambdaType = decltype(my_lambda);`   |
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Module Static Functions and Data**  |
 |***s\_****StaticFunc*       |`static char s_MyStaticFunc();` |
 |***s\_****StaticVar*        |`static int s_MyStaticVar;`   |
