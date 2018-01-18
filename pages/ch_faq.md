@@ -539,7 +539,7 @@ Useful Documentation Links
 
 -   [[Doc] MSDN Online Search](http://search.microsoft.com/?mkt=en-US)
 
--   [[Literature] Books and links to C++ and STL manuals](app1.appendix1.html#app1.books.html)
+-   [[Literature] Books and links to C++ and STL manuals](appendix.html)
 
 -   [[Example] NCBI C++ makefile hierarchy for project "corelib/"](ch_proj.html#ch_proj.makefile_hierarchy)
 
