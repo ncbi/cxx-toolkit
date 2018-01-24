@@ -254,9 +254,9 @@ The NCBI C++ Toolkit `source tree` (see [Figure 1](#ch_start.F1)) is organized a
 
     -   `compilers/` -- directory containing [compiler-specific configure wrappers](ch_config.html#ch_config.Special_Consideratio) (`unix/*.sh`) and miscellaneous resources and build scripts for [MS Windows](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/common/config/ncbiconf_msvc.h)/[MacOS](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/common/config/ncbiconf_xcode.h) platforms
 
-    -   **configure** -- a multi-platform configuration shell script (generated from template `configure.ac` using [autoconf](http://www.gnu.org/software/autoconf))
+    -   **configure** -- a multi-platform configuration shell script (generated from template `configure.ac` using [autoconf](https://www.gnu.org/software/autoconf/autoconf.html))
 
-    -   various scripts and template files used by **configure**, [autoconf](http://www.gnu.org/software/autoconf)
+    -   various scripts and template files used by **configure**, [autoconf](https://www.gnu.org/software/autoconf/autoconf.html)
 
 -   **doc/** -- NCBI C++ documentation, including a library reference, configuration and installation instructions, example code and guidelines for **everybody** writing code for the NCBI C++ Toolkit.
 
