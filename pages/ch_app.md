@@ -185,7 +185,7 @@ DATATOOL: Code Generation and Data Serialization Utility
 
 **DATATOOL** source code is located at `c++/src/serial/datatool;` this application can perform the following:
 
--   Generate C++ data storage classes based on [ASN.1](http://www.itu.int/ITU-T/studygroups/com17/languages), [DTD](http://www.w3.org/TR/REC-xml), [XML Schema](http://www.w3.org/XML/Schema) or [JSON Schema](http://json-schema.org/) specification to be used with [NCBI data serialization streams](ch_ser.html).
+-   Generate C++ data storage classes based on [ASN.1](http://www.itu.int/ITU-T/studygroups/com17/languages), [DTD](http://www.w3.org/TR/REC-xml), [XML Schema](https://www.w3.org/XML/Schema) or [JSON Schema](http://json-schema.org/) specification to be used with [NCBI data serialization streams](ch_ser.html).
 
 -   Convert ASN.1 specification into a DTD, XML Schema or JSON Schema specification and vice versa.
 
