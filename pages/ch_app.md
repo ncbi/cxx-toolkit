@@ -1807,7 +1807,7 @@ The system availability and performance could be visualized by using Zabbix soft
 
 One more web based tool to monitor servers / services statuses is Nagios. It can be reached at:
 
-[http://nagios.ncbi.nlm.nih.gov](http://nagios.ncbi.nlm.nih.gov/)
+[https://nagios11.ncbi.nlm.nih.gov/](https://nagios11.ncbi.nlm.nih.gov/)
 
 <a name="ch_app.Quality_Assurance_Do"></a>
 
