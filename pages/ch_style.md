@@ -103,9 +103,9 @@ Choice of Language
 
 -   **sh** or **bash** -- for primitive scripting.
 
--   **Python** -- for advanced scripting. See its usage policy [here](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Recommended_Python_Database_Interface_modules#Recommended_Python_Database_Interface_modules1).
+-   **Python** -- for advanced scripting and Web and other programmng.
 
--   **Perl** -- for advanced scripting. The [Python usage policy](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Recommended_Python_Database_Interface_modules#Recommended_Python_Database_Interface_modules1) can be applied to Perl as well.
+-   **Perl** -- for advanced scripting.
 
 -   **Java** -- for Eclipse programming and in-house QA and testing tools.
 
