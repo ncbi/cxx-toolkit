@@ -921,7 +921,9 @@ Note for NCBI developers: Using these repositories has the additional advantages
 Testing
 -------
 
-Unit testing using the [Boost Unit Test Framework](ch_boost.html) is strongly encouraged for libraries. Within NCBI, unit tests can be incorporated into the nightly automated testsuite by using the **`CHECK_CMD`** macro in the makefile. All testsuite results are available on the [testsuite web page](http://intranet/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi). Users can also be automatically emailed with build and/or test results by using the **`WATCHERS`** macro. Please see the chapter on [Using the Boost Unit Test Framework](ch_boost.html) for more information.
+Within NCBI, tests (including unit tests) can be incorporated into the nightly automated testsuite by using the **`CHECK_CMD`** macro in the makefile. All testsuite results are available on the [testsuite web page](http://intranet/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi). Users can also be automatically emailed with build and/or test results if they are listed in the **`WATCHERS`** makefile macro. 
+
+Unit testing using the [Boost Unit Test Framework](ch_boost.html) is strongly encouraged for libraries. Please see the chapter on [Using the Boost Unit Test Framework](ch_boost.html) for more information.
 
 Applications should also be tested, and shell scripts are often convenient for this purpose.
 
