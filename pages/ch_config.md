@@ -1241,7 +1241,7 @@ This section discusses the following examples of how to use the Toolkit with Uni
 
 -   [Modify or Debug an Existing Toolkit Application](#ch_config._Modify_an_Existing_T)
 
--   [Modify or Debug an Existing Toolkit Library](#ch_config._General_Information_)
+-   [Modify or Debug an Existing Toolkit Library](#ch_config._Modify_an_Existing_T_1)
 
 <a name="ch_config._Modify_an_Existing_T"></a>
 
