@@ -258,7 +258,7 @@ In addition to the above naming conventions that highlight the nature and/or the
 
 -   indicate the package that the entity belongs to
 
-For example, if you are creating a new class called "`Bar`" in package "`Foo`" then it is good practice to name it "***CFooBar***" rather than just "***CBar***". Similarly, you should name new constants like "**`kFooSomeconst`**", new types like "***TFooSometype***", etc.
+For example, if you are creating a new class called "`Bar`" in package "`Foo`" then it is good practice to name it "***CFooBar***" (or  "***CFOO_Bar***" or "***CFoo_Bar***") rather than just "***CBar***". Similarly, you should name new constants like "**`kFooSomeconst`**", new types like "***TFooSometype***", etc.
 
 <a name="ch_style.using_NCBI_namespace"></a>
 
