@@ -663,6 +663,8 @@ Do not use such C++11 features in code that is:
 
 Use the [Standard Template Library (STL)](#ch_style.style_templ_library), which is part of ANSI/ISO C++. It'll make programming easier, as well as make it easier for others to understand and maintain your code.
 
+Note that C++ Toolkit has quite a few APIs that were created in the earlier days of C++ to meet developers' programming needs which are nowadays covered by the newer standard C++ language features and libraries. At least in the new code, developers are strongly encouraged to use the standard C++ features rather than their C++ Toolkit's counterparts -- *unless* they are expected to ever get into a direct conflict with the existing uses of the corresponding C++ Toolkit features.
+
 <a name="ch_style.use_cpp_excep"></a>
 
 ##### Use of C++ Exceptions
