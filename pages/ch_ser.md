@@ -1628,7 +1628,7 @@ The reading and writing of serial object requires creation of special object str
 
 The only information that is always needed is the output format. It is defined by the following stream manipulators:
 
--   ***MSerial\_AsnText***
+-   ***MSerial\_AsnText*** and ***MSerial\_FlatAsnText*** (for single-line output)
 
 -   ***MSerial\_AsnBinary***
 
@@ -1657,6 +1657,41 @@ Few additional manipulators define the handling of un-initialized object data me
 -   ***MSerialXml\_DefaultStringEncoding(EEncoding fmt)***
 
 Finally, it is possible to reset all formatting flags using ***MSerial\_None*** manipulator.
+
+Several I/O operators and helpers are available to simplify initialization
+of serial objects and string input/output. Below are a few examples of using
+these operators.
+
+    // Initialize CRef with a literal
+    CRef<CSeq_id> id1 = "Seq-id ::= gi 123"_asn;
+
+    // Multi-line literals
+    CRef<CSeq_id> id2 = ASN(
+      Seq-id ::= other {
+        accession "NM_12345",
+        version 1
+      });
+
+    CRef<CSeq_id> id3 = R"~~(
+      Seq-id ::= other {
+        accession "NM_12345",
+        version 2
+    })~~"_asn;
+
+    // Read from an ASN.1 string
+    "Seq-id ::= local id 123" >> *id1;
+    ASN(Seq-id ::= local str "foobar") >> *id2;
+
+    // Read multiple objects from a string
+    const char* asn_text = R"~~(
+        Seq-id ::= gi 12345
+        Seq-id ::= local id 678"
+    )~~";
+    asn_text >> *id1 >> id2; // Both reference and CRef are allowed
+
+    // Output an object or a CRef to a string
+    string s;
+    s << *id1 << id2;
 
 <a name="ch_ser.serial_filter"></a>
 
