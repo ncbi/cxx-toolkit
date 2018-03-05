@@ -792,11 +792,15 @@ The following parameters tune the behavior of the `ncbi_xloader_csra` library:
 #### bamread library
 
 
-| Purpose             | [Registry section]<br/>Registry name     | Valid values |
-|---------------------|------------------------------------------------------------------------|--------------|
-|Specifies directory where BAM and BAM index files are looked for.   |**`[bam]`**<br/>**`dir_path`**               |Directory name     |
-|Specifies BAM file name. If dir_path is also specified, then the file name is relative to the dir_path. | **`[bam]`**<br/>**`bam_name`**           | File Name |
-|Specifies BAM index file name. If dir_path is also specified, then the file name is relative to the dir_path. If index_name is not set then index file name is derived form BAM file name by adding ".bai" extension. | **`[bam]`**<br/>**`index_name`**        |File Name |
+| Purpose             | [Registry section]<br/>Registry name     | Valid values | Default       |
+|---------------------|------------------------------------------------------------------------|--------------|---------------|
+|Specifies directory where BAM and BAM index files are looked for.   |**`[bam]`**<br/>**`dir_path`**               |Directory name     |               |
+|Specifies BAM file name. If dir_path is also specified, then the file name is relative to the dir_path. | **`[bam]`**<br/>**`bam_name`**           | File Name |               |
+|Specifies BAM index file name. If dir_path is also specified, then the file name is relative to the dir_path. If index_name is not set then index file name is derived form BAM file name by adding ".bai" extension. | **`[bam]`**<br/>**`index_name`**        |File Name |               |
+|Enables CIGAR string in Seq-align Traceback ext object | **`[bam]`**<br/>**`cigar_in_align_ext`** |Boolean | true          |
+|Enables skipping of CIGAR string with ambiguous match | **`[bam]`**<br/>**`omit_ambiguous_match_cigar`** |Boolean | false         |
+|Enables 2nd generation of BAM parsing code | **`[bam]`**<br/>**`use_raw_index`** |Boolean | false         |
+
 
 #### ncbi\_xloader\_bam library
 
