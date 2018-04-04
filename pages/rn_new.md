@@ -183,7 +183,8 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 |MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2013 (MSVC 12)<br/>  |
 |MS Windows    |x86-32  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/>  |
 |MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/>  |
-|Cygwin 1.7.34 |x86-64  |[GCC 4.9.2](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
+|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2017 (MSVC 14.1)<br/>  |
+|Cygwin 2.9.0  |x86-64  |[GCC 6.4.0](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
 
 <a name="release_notes.Mac_OS_X"></a>
 
