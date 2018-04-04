@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Release Notes (Version ?, April 2018)
-nav: pages/RN_new
+nav: pages/rn_new
 ---
 
 
