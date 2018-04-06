@@ -363,7 +363,7 @@ The CGI module provides an integrated framework for writing CGI applications. It
 
 The CGI module consists of a number of classes. The interaction between these classes is fairly complex, and therefore, not covered in this introductory chapter. We will attempt to only identify the major classes in this overview, and cover the details of their interaction in later chapters. Among the more important of the CGI classes are the ***CCgiApplication***, ***CCgiContext***, ***CCgiRequest***, ***CCgiResponse***, and ***CCgiCookie***.
 
-The ***CCgiApplication*** is used to define the CGI application and is derived from the ***CNcbiApplication***[discussed eariler](#ch_intro.intro_appframe). You write a CGI application by deriving application class from ***CCgiApplication*** and providing an adoption of the ***Init()***, ***Run()***, and ***Exit()*** methods inherited from the ***CNcbiApplication*** class. Details on [how to implement the Init(), Run() and Exit() methods for a CGI application](ch_cgi.html#ch_cgi.cgi_app_class) are provided in a later chapter.
+The ***CCgiApplication*** is used to define the CGI application and is derived from the ***CNcbiApplication*** [discussed earlier](#ch_intro.intro_appframe). You write a CGI application by deriving application class from ***CCgiApplication*** and providing an adoption of the ***Init()***, ***Run()***, and ***Exit()*** methods inherited from the ***CNcbiApplication*** class. Details on [how to implement the Init(), Run() and Exit() methods for a CGI application](ch_cgi.html#ch_cgi.cgi_app_class) are provided in a later chapter.
 
 The ***CCgiRequest*** class is designed to receive and parse the request, and the ***CCgiResponse*** class outputs the response to an output stream.
 
