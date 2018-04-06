@@ -531,7 +531,7 @@ More [details on the database driver architecture](ch_dbapi.html#ch_dbapi.dbapi_
 The GUI Module
 --------------
 
-The C++ Toolkit does not include its own GUI Module. Instead, Toolkit-based GUI applications make use of third party GUI packages. Depending on the requirements, we recommend either [wxWidgets](https://www.wxwidgets.org/) or [FOX](http://www.fox-toolkit.org/).
+The C++ Toolkit does not include its own GUI Module. Instead, Toolkit-based GUI applications make use of third party GUI packages - we recommend [wxWidgets](https://www.wxwidgets.org/).
 
 More details on developing GUI application in conjunction with the C++ Toolkit are presented in a [later chapter](ch_gui.html).
 
