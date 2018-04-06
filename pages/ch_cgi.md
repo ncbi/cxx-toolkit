@@ -600,7 +600,8 @@ The [sample CGI program](#ch_cgi.html) demonstrates a simple application that co
         return 0;
     }
     /////////////////////////////////////////////////////////////
-    // Define the resource's default command if none match queryCNcbiCommand* CCgiResource::GetDefaultCommand(void) const
+    // Define the resource's default command if none match query
+    CNcbiCommand* CCgiResource::GetDefaultCommand(void) const
     {
         cerr << "    executing CCgiResource::GetDefaultCommand()" << endl;
         return new CCgiBasicCommand(const_cast<CCgiResource&>(*this));
