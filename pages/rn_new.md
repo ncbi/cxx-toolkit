@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release Notes (Version ?, April 2018)
+title: Release Notes (Version 21, April 2018)
 nav: pages/rn_new
 ---
 
@@ -47,13 +47,13 @@ The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/T
 Download
 -----------------------------------
 
-Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2017/Jan_10_2017/>
+Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2018/Apr_2_2018/>
 
--   [ncbi\_cxx--18\_0\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2017/Jan_10_2017/ncbi_cxx--18_0_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
+-   [ncbi\_cxx--21\_0\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2018/Apr_2_2018/ncbi_cxx--21_0_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
 
--   [ncbi\_cxx--18\_0\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2017/Jan_10_2017/ncbi_cxx--18_0_0.zip) -- for MS-Windows (32- and 64-bit) / MS Visual Studio C++ 13, 15
+-   [ncbi\_cxx--21\_0\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2018/Apr_2_2018//ncbi_cxx--21_0_0.zip) -- for MS-Windows / MS Visual Studio C++ 2013 and 2015
 
-The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from July, 2016 but also include many hundreds of important and safe code updates made since then and through November, 2016 (and then some).
+The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from December 11, 2017 but also include many hundreds of important and safe code updates made since then and through March 13, 2018 (and then some).
 
 <a name="release_notes.Third_Party_Packages"></a>
 
@@ -104,17 +104,14 @@ New Developments
 
 
 
-There have been significant additions and improvements in all parts of the Toolkit in the last few years. Here, only very few are listed, mostly related to major formal changes.
+There have been significant additions and improvements in all parts of the Toolkit since the last public release of the NCBI C++ Toolkit. Here, only very few are listed, mostly related to major formal changes.
 
 We started using C++11 specific features, so you will now need a C++11 compliant compiler to build the Toolkit.
 
-We are in the process of dropping 32-bit support so while the Toolkit will still likely build (and even work) in 32-bit configurations... the 32-bit support is nominal, and will go away for good real soon now.
+We are in the process of dropping 32-bit support so while the Toolkit will still likely build (and even work) in _some_ 32-bit configurations... the 32-bit support is nominal, and will go away for good real soon now.
 
-Because NCBI (as well as most other US Govt sites) require HTTPS nowadays so you need to build the Toolkit with SSL support (GnuTLS and related libraries) to be able to access NCBI services.
+For the SSL support the Toolkit now uses an embedded snapshot of [mbedTLS](https://tls.mbed.org/) library. This removes the need for linking in GnuTLS and its numerous related libraries (which created a lot of configuration and distribution problems).
 
-The embedded version of FreeTDS has been upgraded from 0.64 to 0.95.
-
-The NCBI VDB package is not embedded into the Toolkit source tree anymore. Rather, it gets automatically retrieved from GitHub and built during the configuration stage.
 <a name="release_notes.Documentation"></a>
 
 
@@ -183,7 +180,7 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 |MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2013 (MSVC 12)<br/>  |
 |MS Windows    |x86-32  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/>  |
 |MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2015 (MSVC 14)<br/>  |
-|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2017 (MSVC 14.1)<br/>  |
+|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C_2008) 2017 (MSVC 14.1) experimental<br/>  |
 |Cygwin 2.9.0  |x86-64  |[GCC 6.4.0](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
 
 <a name="release_notes.Mac_OS_X"></a>
@@ -225,6 +222,6 @@ Official support for macOS 10.12.x, and for GCC 5.3 and ICC 17 on CentOS, is new
 Last Updated
 ---------------------------------------
 
-This document was last updated on January 18, 2017.
+This document was last updated on April 11, 2018.
 
 {{ page.last_modified_at }}
