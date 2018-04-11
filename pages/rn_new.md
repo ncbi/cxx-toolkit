@@ -112,6 +112,8 @@ We are in the process of dropping 32-bit support so while the Toolkit will still
 
 For the SSL support the Toolkit now uses an embedded snapshot of [mbedTLS](https://tls.mbed.org/) library. This removes the need for linking in GnuTLS and its numerous related libraries (which created a lot of configuration and distribution problems).
 
+Added SSE support (not by default in the public release), used it to significantly improve some BAM reading operations. 
+
 <a name="release_notes.Documentation"></a>
 
 
