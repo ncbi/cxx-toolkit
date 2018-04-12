@@ -8,6 +8,8 @@ nav: pages/old_rn
 {{ page.title }}
 =============
 
+<!-- Content start -->
+
 The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/RN_index.html).
 
 
@@ -228,3 +230,6 @@ Last Updated
 This document was last updated on January 18, 2017.
 
 {{ page.last_modified_at }}
+
+
+<!-- Content end -->
