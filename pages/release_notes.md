@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release Notes (Version 18, January 2017)
+title: Release Notes (Version 21, April 2018)
 nav: pages/release_notes
 ---
 
