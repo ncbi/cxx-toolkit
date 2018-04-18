@@ -234,6 +234,7 @@ Table 3. Diagnostic trace configuration parameters
 | Specify the AppLog period in seconds.                 | **`[Diag]`**<br/>**`AppLog_Rate_Period`**<br/><br/>**`DIAG_APPLOG_RATE_PERIOD`**    | unsigned integer                 | 10 |
 | Specify whether context properties should be automatically printed when set or changed.     | **`[Diag]`**<br/>**`AutoWrite_Context`**<br/><br/>**`DIAG_AUTOWRITE_CONTEXT`**      | Boolean  <sup>a</sup>             | false    |
 | Specify the maximum number of diagnostic messages to collect. Messages beyond the limit will result in erasing the oldest message.                   | **`[Diag]`**<br/>**`Collect_Limit`**<br/><br/>**`DIAG_COLLECT_LIMIT`**  | size\_t       | 1000     |
+| Disable all Applog messages (start/stop, request start/stop, extra). | **`[Diag]`**<br/>**`Disable_AppLog_Messages`**<br/><br/>**`DIAG_DISABLE_APPLOG_MESSAGES`** | Boolean  <sup>a</sup> | false |
 | Specify the maximum number of messages that can be posted to the ErrLog within the ErrLog period.              | **`[Diag]`**<br/>**`ErrLog_Rate_Limit`**<br/><br/>**`DIAG_ERRLOG_RATE_LIMIT`**      | unsigned integer or `OFF`        | 5000     |
 | Specify the ErrLog period in seconds.                 | **`[Diag]`**<br/>**`ErrLog_Rate_Period`**<br/><br/>**`DIAG_ERRLOG_RATE_PERIOD`**    | unsigned integer                 | 1  |
 | Limit the log file size, and rotate the log when it reaches the limit.   | **`[Diag]`**<br/>**`Log_Size_Limit`**<br/><br/>**`DIAG_LOG_SIZE_LIMIT`**      | non-negative long integer        | 0  |
