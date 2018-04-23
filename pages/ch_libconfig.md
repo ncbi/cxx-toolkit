@@ -742,6 +742,8 @@ Table 13. Objects-related configuration parameters
 | Specify whether the scope can be auto-released.       | **`[OBJMGR]`**<br/>**`SCOPE_AUTORELEASE`**<br/><br/>**`OBJMGR_SCOPE_AUTORELEASE`**         | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
 | Specify the size of the scope auto-release.           | **`[OBJMGR]`**<br/>**`SCOPE_AUTORELEASE_SIZE`**<br/><br/>**`OBJMGR_SCOPE_AUTORELEASE_SIZE`**                  | unsigned int       | 10   |
 | Specify whether the new FASTA implementation will be used.               | **`[READ_FASTA]`**<br/>**`USE_NEW_IMPLEMENTATION`**<br/><br/>**`NCBI_CONFIG__READ_FASTA__USE_NEW_IMPLEMENTATION`**  [<sup>c</sup>](#ch_libconfig.TF.39)                 | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| If true, try to avoid GIs where possible, even if there's no accessions to prefer. | **`[SeqId]`**<br/>**`AvoidGi`**<br/><br/>**`SEQ_ID_AVOID_GI`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| If true, give GIs worse (higher) score to prefer accessions in CSeq_id ranking methods. | **`[SeqId]`**<br/>**`PreferAccessionOverGi`**<br/><br/>**`SEQ_ID_PREFER_ACCESSION_OVER_GI`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
 
 <div class="table-scroll"></div>
 
