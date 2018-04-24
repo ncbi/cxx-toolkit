@@ -1022,11 +1022,11 @@ The "local environment/registry settings", LINKERD, NAMERD, and LBOS sources are
 
 To enable the the "local environment/registry settings" source - set **`CONN_LOCAL_ENABLE`** environment variable to "1" (or "ON, or "YES", or "TRUE") or add **`LOCAL_ENABLE`**=1 to [`CONN`] section in `.ini` file.
 
-To enable the LINKERD source - set **`CONN_LINKERD_ENABLE`** environment variable to "1" or add **`LINKERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+To enable the LINKERD source - see the [internal documentation](https://confluence.ncbi.nlm.nih.gov/display/CT/Dispatching+with+NAMERD+and+LINKERD).
 
-To enable the NAMERD source - set **`CONN_NAMERD_ENABLE`** environment variable to "1" or add **`NAMERD_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+To enable the NAMERD source - see the [internal documentation](https://confluence.ncbi.nlm.nih.gov/display/CT/Dispatching+with+NAMERD+and+LINKERD).
 
-To enable the LBOS source - set **`CONN_LBOS_ENABLE`** environment variable to "1" or add **`LBOS_ENABLE`**=1 to [`CONN`] section in `.ini` file.
+Enabling the LBOS source is deprecated.
 
 The LBSM and "Network dispatcher" Sources are enabled by default. To disable them use **`CONN_LBSMD_DISABLE`** and/or **`CONN_DISPD_DISABLE`** set to "1" in the environment or **`LBSMD_DISABLE`**=1 and/or **`DISPD_DISABLE`**=1 under the section "[`CONN`]" in the registry, respectively.
 
@@ -1083,31 +1083,6 @@ You can also look at the [detailed description of LBSMD](ch_app.html#ch_app.Load
 ### LINKERD and NAMERD Dispatching
 
 You can read about dispatching with LINKERD and NAMERD in [Confluence](https://confluence.ncbi.nlm.nih.gov/display/CT/Dispatching+with+NAMERD+and+LINKERD) (in-house only).
-
-<a name="ch_conn.Finding_servers_for_a_service"></a>
-
-#### Finding servers for a service with NAMERD
-
-You can use NAMERD to find all the currently running servers that support a given service.  Configure your application to use NAMERD - e.g.
-
-    [CONN]
-    DISABLE_LBSMD=1
-    ENABLE_NAMERD=1
-
-Then call `SERV_GetServers()`, for example:
-
-    #include <connect/ncbi_service_cxx.hpp>
-
-    vector<CSERV_Info>  hosts;
-    hosts = SERV_GetServers(sm_Service);
-    if (hosts.size() > 0) {
-        cout << "Hosts for service '" << sm_Service << "':" << endl;
-        for (const auto& h : hosts) {
-            cout << "    " << h.GetHost() << ":" << h.GetPort() << endl;
-        }
-    } else {
-        cout << "No up servers for service '" << sm_Service << "'." << endl;
-    }
 
 <a name="ch_conn.Lbos_Self_Announce_Deannounce"></a>
 
