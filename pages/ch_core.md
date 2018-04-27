@@ -464,6 +464,19 @@ The [CNcbiDiag](#ch_core.diag) class implements much of the functionality of the
 
 #### CVersion
 
+An easy, and also recommended way of setting application version is by using `NCBI_APP_SET_VERSION(major, minor, patch)` or `NCBI_APP_SET_VERSION_AUTO(major, minor)` macro. The latter one substitutes TeamCity build number as `patch` level. Both of them take care of recording detailed build information. For example:
+
+    class CFooApplication : public CNcbiApplication
+    {
+    public:
+        CFooApplication() 
+        {
+            NCBI_APP_SET_VERSION(1, 2, 3);
+        }
+        ...
+    }
+
+
 To get or set compile-time application version info, use classes `CVersion` and `CVersionInfo`.  They allow storing and outputting the following data:
 
 _CVersionInfo_:
