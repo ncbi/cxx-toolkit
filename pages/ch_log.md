@@ -610,7 +610,7 @@ Diagnostic message event / severity field - message sub-fields:
 
 | Field or sub-field  | Description             |
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `event` / `severity`      | Diagnostic message severity = { Trace \\| Info \\| Warning \\| Error \\| Critical \\| Fatal \\| Message[T\\|I\\|W\\|E\\|C\\|F] } - left-justified and space-padded to 10 characters |
+| `event` / `severity`      | Diagnostic message severity = { Trace \\| Info \\| Warning \\| Error \\| Critical \\| Fatal \\| Note[T\\|I\\|W\\|E\\|C\\|F] } - left-justified and space-padded to 10 characters |
 | `module`      | Module where the post originates from (in most cases the module corresponds to a single library)    |
 | `err_code`, `err_subcode` | Numeric error code and subcode             |
 | `err_text`    | If the error has no numeric code, sometimes it can be represented as text        |
@@ -1014,7 +1014,7 @@ where [SDiagMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?
 
 A family of **`ERR_POST*`** macros and a corresponding family of **`LOG_POST*`** macros are available for routine message posting.
 
-The log entries produced by the two families are almost identical for the [new post format](#ch_core.The_New_Post_Format) - the **`ERR_POST*`** entries contain a full word for the severity (e.g. "`Error`") while the **`LOG_POST*`** entries contain the word "`Message`" and a one-character severity code (e.g. "`Message[E]`"). For the [old post format](#ch_core.The_Old_Post_Format), **`LOG_POST*`** macros simply contain the message, while **`ERR_POST*`** entries contain the severity, error code, and message. [Message filtering](#ch_core.diagnostic_messages_filtering) works exactly the same way for the two families of macros.
+The log entries produced by the two families are almost identical for the [new post format](#ch_core.The_New_Post_Format) - the **`ERR_POST*`** entries contain a full word for the severity (e.g. "`Error`") while the **`LOG_POST*`** entries contain the word "`Note`" and a one-character severity code (e.g. "`Note[E]`"). For the [old post format](#ch_core.The_Old_Post_Format), **`LOG_POST*`** macros simply contain the message, while **`ERR_POST*`** entries contain the severity, error code, and message. [Message filtering](#ch_core.diagnostic_messages_filtering) works exactly the same way for the two families of macros.
 
 The macros are:
 
