@@ -241,7 +241,7 @@ The following table compares the implementation of various features in DBAPI and
 | includes      | `<dbapi/simple/sdbapi.hpp>`             | `// "new" DBAPI`<br/>`#include <dbapi/dbapi.hpp>`<br/><br/>`// "old" DBAPI`<br/>`#include <dbapi/driver/dbapi_conn_factory.hpp>  // CTrivialConnValidator`<br/>`#include <dbapi/driver/dbapi_svc_mapper.hpp>    // DBLB_INSTALL_DEFAULT`<br/>`#include <dbapi/driver/drivers.hpp>             // DBAPI_RegisterDriver_FTDS`<br/>`#include <dbapi/driver/exception.hpp>           // CDB_UserHandler`              |
 | to set up a connection    | `// Specify connection parameters.`<br/>`CSDB_ConnectionParam    db_params;`<br/>`db_params.Set(CSDB_ConnectionParam::eUsername, m_User);`<br/>`db_params.Set(CSDB_ConnectionParam::ePassword, m_Password);`<br/>`db_params.Set(CSDB_ConnectionParam::eService,  m_Service);`<br/>`db_params.Set(CSDB_ConnectionParam::eDatabase, m_DbName);`<br/><br/>`// Connect to the database.`<br/>`m_Db = CDatabase(db_params);`<br/>`m_Db.Connect();`    | `// Use load balancing if available.`<br/>`DBLB_INSTALL_DEFAULT();`<br/><br/>`// Explicitly register a driver.`<br/>`DBAPI_RegisterDriver_FTDS();`<br/><br/>`CDriverManager& dm(CDriverManager::GetInstance());`<br/><br/>`// Create a data source - the root object for all other`<br/>`// objects in the library.`<br/>`m_Ds = dm.CreateDs("ftds");`<br/><br/>`// Setup diagnostics.`<br/>`m_Logstream.open(m_LogFileName.c_str());`<br/>`m_Ds->SetLogStream(&m_Logstream);`<br/><br/>`// Add a message handler for 'context-wide' error messages (not bound`<br/>`// to any particular connection); let DBAPI own it.`<br/>`I_DriverContext* drv_context = m_Ds->GetDriverContext();`<br/>`drv_context->PushCntxMsgHandler(`<br/>`    new CErrHandler("General", &m_Logstream),`<br/>`    eTakeOwnership);`<br/><br/>`// Add a 'per-connection' message handler to the stack of default`<br/>`// handlers which are inherited by all newly created connections;`<br/>`// let DBAPI own it.`<br/>`drv_context->PushDefConnMsgHandler(`<br/>`    new CErrHandler("Connection", &m_Logstream),`<br/>`    eTakeOwnership);`<br/><br/>`// Configure this context.`<br/>`drv_context->SetLoginTimeout(10);`<br/>`// default query timeout for client/server comm for all connections`<br/>`drv_context->SetTimeout(15);`<br/><br/>`// Create connection.`<br/>`m_Conn = m_Ds->CreateConnection();`<br/>`if (m_Conn == NULL) {`<br/>`    ERR_POST_X(1, Fatal << "Could not create connection.");`<br/>`}`<br/><br/>`// Validate connection.  When using load balancing, this will interpret`<br/>`// the "server" name as a service, then use the load balancer to find`<br/>`// servers, then try in succession until a successful login to the`<br/>`// given database is successful.`<br/>`CTrivialConnValidator val(m_DbName);`<br/>`m_Conn->ConnectValidated(val, m_User, m_Password, m_Service, m_DbName);`  |
 | to execute a stored procedure   | `CQuery query = m_Db.NewQuery();`<br/>`query.SetParameter("@max_id", 5);`<br/>`query.SetParameter("@max_fl", 5.1f);`<br/>`query.SetParameter("@num_rows", 0, eSDB_Int4, eSP_InOut);`<br/>`query.ExecuteSP(proc_name);`       | `ICallableStatement *cstmt = conn->PrepareCall("ProcName");`<br/>`Uint1 byte = 1;`<br/>`cstmt->SetParam(CVariant("test"), "@test_input");`<br/>`cstmt->SetParam(CVariant::TinyInt(&byte), "@byte");`<br/>`cstmt->SetOutputParam(CVariant(eDB_Int), "@result");`<br/>`cstmt->Execute();`    |
-| to retrieve results | `// Print the results.`<br/>`//`<br/>`// NOTE: For database APIs, array-like indexes are 1-based, not 0-based!`<br/>`//`<br/>`NcbiCout << "int_val    fl_val" << NcbiEndl;`<br/>`ITERATE(CQuery, row, query.SingleSet()) {`<br/>`    NcbiCout`<br/>`        << row[1].AsInt4() << "    "`<br/>`        << row[2].AsFloat() << NcbiEndl;`<br/>`}`<br/><br/>`// Confirm having read all results.`<br/>`query.VerifyDone();`<br/><br/>`// Print the number of result rows.`<br/>`NcbiCout`<br/>`    << "Number of rows: "`<br/>`    << query.GetParameter("@num_rows").AsInt4() << NcbiEndl;` | `// Retrieve and display the data.`<br/>`while (stmt->HasMoreResults()) {`<br/>`    // Use an auto_ptr to manage resultset lifetime.`<br/>`    // NOTE: Use it with caution. When the wrapped parent object`<br/>`    // goes out of scope, all child objects are destroyed`<br/>`    // (which isn't an issue for this demo but could be for`<br/>`    // other applications).`<br/>`    auto_ptr<IResultSet> rs(stmt->GetResultSet());`<br/><br/>`    // Sometimes the results have no rows - and that's ok.`<br/>`    if ( ! stmt->HasRows() ) {`<br/>`        LOG_POST_X(1, Info << "No rows.");`<br/>`        continue;`<br/>`    }`<br/><br/>`    switch (rs->GetResultType()) {`<br/><br/>`    case eDB_StatusResult:`<br/>`        NcbiCout << "\nStatus results:" << NcbiEndl;`<br/>`        while (rs->Next()) {`<br/>`            NcbiCout << "    Status: " << rs->GetVariant(1).GetInt4()`<br/>`                << NcbiEndl;`<br/>`        }`<br/>`        break;`<br/><br/>`    case eDB_ParamResult:`<br/>`        NcbiCout << "\nParameter results:" << NcbiEndl;`<br/>`        while (rs->Next()) {`<br/>`            NcbiCout << "    Parameter: "`<br/>`                << rs->GetVariant(1).GetInt4() << NcbiEndl;`<br/>`        }`<br/>`        break;`<br/><br/>`    case eDB_RowResult: {`<br/>`        NcbiCout << "\nRow results:" << NcbiEndl;`<br/><br/>`        const IResultSetMetaData* rsMeta = rs->GetMetaData();`<br/><br/>`        // Print column headers.`<br/>`        for (unsigned i = 1; i <= rsMeta->GetTotalColumns(); ++i) {`<br/>`            NcbiCout << "    " << rsMeta->GetName(i);`<br/>`        }`<br/>`        NcbiCout << NcbiEndl;`<br/>`        for (unsigned i = 1; i <= rsMeta->GetTotalColumns(); ++i) {`<br/>`            NcbiCout << "    " << string(rsMeta->GetName(i).size(), '=');`<br/>`        }`<br/>`        NcbiCout << NcbiEndl;`<br/><br/>`        while (rs->Next()) {`<br/>`            // Print a row of data.`<br/>`            for (unsigned i = 1; i <= rsMeta->GetTotalColumns(); ++i) {`<br/>`                NcbiCout << "    " << rs->GetVariant(i).GetString();`<br/>`            }`<br/>`            NcbiCout << NcbiEndl;`<br/>`        }`<br/>`        NcbiCout << "    ---------------" << NcbiEndl;`<br/>`        NcbiCout << "    Row count: " << stmt->GetRowCount()`<br/>`            << NcbiEndl;`<br/>`        break;`<br/>`    }`<br/><br/>`    // These types aren't used in this demo, but might be in`<br/>`    // your code.`<br/>`    case eDB_ComputeResult:`<br/>`    case eDB_CursorResult:`<br/>`        LOG_POST_X(1, Warning << "Unhandled results type:"`<br/>`            << rs->GetResultType());`<br/>`        break;`<br/><br/>`    // Any other type means this code is out-of-date.`<br/>`    default:`<br/>`        ERR_POST_X(1, Critical << "Unexpected results type:"`<br/>`            << rs->GetResultType());`<br/>`    }`<br/>`}`<br/>`// The stored procedure will return a status.`<br/>`NcbiCout << "\nStored procedure returned status: "`<br/>`    << cstmt->GetReturnStatus() << NcbiEndl;`<br/>`string msgs = m_Ds->GetErrorInfo();`<br/>`if ( ! msgs.empty() ) {`<br/>`    NcbiCout << "    Errors:" << NcbiEndl;`<br/>`    NcbiCout << "        " << msgs << NcbiEndl;` |
+| to retrieve results | `// Print the results.`<br/>`//`<br/>`// NOTE: For database APIs, array-like indexes are 1-based, not 0-based!`<br/>`//`<br/>`NcbiCout << "int_val    fl_val" << NcbiEndl;`<br/>`for (const auto& row: query.SingleSet()) {`<br/>`    NcbiCout`<br/>`        << row[1].AsInt4() << "    "`<br/>`        << row[2].AsFloat() << NcbiEndl;`<br/>`}`<br/><br/>`// Confirm having read all results.`<br/>`query.VerifyDone();`<br/><br/>`// Print the number of result rows.`<br/>`NcbiCout`<br/>`    << "Number of rows: "`<br/>`    << query.GetParameter("@num_rows").AsInt4() << NcbiEndl;` | `// Retrieve and display the data.`<br/>`while (stmt->HasMoreResults()) {`<br/>`    // Use an auto_ptr to manage resultset lifetime.`<br/>`    // NOTE: Use it with caution. When the wrapped parent object`<br/>`    // goes out of scope, all child objects are destroyed`<br/>`    // (which isn't an issue for this demo but could be for`<br/>`    // other applications).`<br/>`    auto_ptr<IResultSet> rs(stmt->GetResultSet());`<br/><br/>`    // Sometimes the results have no rows - and that's ok.`<br/>`    if ( ! stmt->HasRows() ) {`<br/>`        LOG_POST_X(1, Info << "No rows.");`<br/>`        continue;`<br/>`    }`<br/><br/>`    switch (rs->GetResultType()) {`<br/><br/>`    case eDB_StatusResult:`<br/>`        NcbiCout << "\nStatus results:" << NcbiEndl;`<br/>`        while (rs->Next()) {`<br/>`            NcbiCout << "    Status: " << rs->GetVariant(1).GetInt4()`<br/>`                << NcbiEndl;`<br/>`        }`<br/>`        break;`<br/><br/>`    case eDB_ParamResult:`<br/>`        NcbiCout << "\nParameter results:" << NcbiEndl;`<br/>`        while (rs->Next()) {`<br/>`            NcbiCout << "    Parameter: "`<br/>`                << rs->GetVariant(1).GetInt4() << NcbiEndl;`<br/>`        }`<br/>`        break;`<br/><br/>`    case eDB_RowResult: {`<br/>`        NcbiCout << "\nRow results:" << NcbiEndl;`<br/><br/>`        const IResultSetMetaData* rsMeta = rs->GetMetaData();`<br/><br/>`        // Print column headers.`<br/>`        for (unsigned i = 1; i <= rsMeta->GetTotalColumns(); ++i) {`<br/>`            NcbiCout << "    " << rsMeta->GetName(i);`<br/>`        }`<br/>`        NcbiCout << NcbiEndl;`<br/>`        for (unsigned i = 1; i <= rsMeta->GetTotalColumns(); ++i) {`<br/>`            NcbiCout << "    " << string(rsMeta->GetName(i).size(), '=');`<br/>`        }`<br/>`        NcbiCout << NcbiEndl;`<br/><br/>`        while (rs->Next()) {`<br/>`            // Print a row of data.`<br/>`            for (unsigned i = 1; i <= rsMeta->GetTotalColumns(); ++i) {`<br/>`                NcbiCout << "    " << rs->GetVariant(i).GetString();`<br/>`            }`<br/>`            NcbiCout << NcbiEndl;`<br/>`        }`<br/>`        NcbiCout << "    ---------------" << NcbiEndl;`<br/>`        NcbiCout << "    Row count: " << stmt->GetRowCount()`<br/>`            << NcbiEndl;`<br/>`        break;`<br/>`    }`<br/><br/>`    // These types aren't used in this demo, but might be in`<br/>`    // your code.`<br/>`    case eDB_ComputeResult:`<br/>`    case eDB_CursorResult:`<br/>`        LOG_POST_X(1, Warning << "Unhandled results type:"`<br/>`            << rs->GetResultType());`<br/>`        break;`<br/><br/>`    // Any other type means this code is out-of-date.`<br/>`    default:`<br/>`        ERR_POST_X(1, Critical << "Unexpected results type:"`<br/>`            << rs->GetResultType());`<br/>`    }`<br/>`}`<br/>`// The stored procedure will return a status.`<br/>`NcbiCout << "\nStored procedure returned status: "`<br/>`    << cstmt->GetReturnStatus() << NcbiEndl;`<br/>`string msgs = m_Ds->GetErrorInfo();`<br/>`if ( ! msgs.empty() ) {`<br/>`    NcbiCout << "    Errors:" << NcbiEndl;`<br/>`    NcbiCout << "        " << msgs << NcbiEndl;` |
 
 <div class="table-scroll"></div>
 
@@ -270,8 +270,8 @@ The following snippet is a simple example of executing static SQL using the NCBI
     // Execute a query.
     CQuery query = db.NewQuery("select title from Journal");
     query.Execute();
-    ITERATE(CQuery, qit, query) {
-        NcbiCout << qit["title"].AsString() << NcbiEndl; 
+    for (const auto& row: query) {
+        NcbiCout << row["title"].AsString() << NcbiEndl; 
     }
 
 ***Note:*** Load balancing is performed automatically and transparently with SDBAPI - there's no need to call ***DBLB\_INSTALL\_DEFAULT()***.
@@ -493,10 +493,10 @@ It's best to reference columns by name, unless there's some compelling reason no
 For simple queries or stored procedures that return a single result set:
 
     query.ExecuteSP(sproc_name);
-    ITERATE(CQuery, qit, query.SingleSet()) {
-        NcbiCout << qit["release_id"].AsInt4() << NcbiEndl;
+    for (const auto& row: query.SingleSet()) {
+        NcbiCout << row["release_id"].AsInt4() << NcbiEndl;
         // or, if there's a reason not to use column names
-        NcbiCout << qit[1].AsInt4() << NcbiEndl;
+        NcbiCout << row[1].AsInt4() << NcbiEndl;
     }
 
 For stored procedures that return multiple result sets, SDBAPI supports two behavioral modes: either merging all result sets into one - chosen by calling `query.SingleSet()` - or returning them separately - chosen by calling `query.MultiSet()`. If neither ***SingleSet()*** nor ***MultiSet()*** is called, then SDBAPI chooses a default mode. The default was formerly MultiSet mode, but it has been switched to SingleSet mode with the release stable components 15.
@@ -504,14 +504,14 @@ For stored procedures that return multiple result sets, SDBAPI supports two beha
 Retrieving multiple result sets in SingleSet mode is accomplished exactly as if there was only one result set, as shown above. To retrieve multiple result sets in MultiSet mode, use `query.HasMoreResultSets()`:
 
     while (query.HasMoreResultSets()) {
-        ITERATE(CQuery, qit, query) {
+        for (const auto& row: query) {
             // do something with the current result set row
         }
     }
 
 It is possible to verify that all data rows have been read, by using ***VerifyDone()***:
 
-    ITERATE(CQuery, qit, query) {
+    for (const auto& row: query) {
         // do something with the current result set row
     }
     query.VerifyDone(); // throws if any rows remain unread
@@ -520,7 +520,7 @@ Similarly, if a certain number or range of rows is expected, you can verify that
 
     query.RequireRowCount(5);                // e.g. "expect exactly five rows";
     query.RequireRowCount(100, kMax_Auto);   // or, "expect at least one hundred rows"
-    ITERATE(CQuery, qit, query) {
+    for (const auto& row: query) {
         // do something with the current result set row
     }
     query.VerifyDone(); // throws if the expected number of rows wasn't retrieved
@@ -561,11 +561,11 @@ SDBAPI, as a "simple" database API, does not provide a separate `NULL` value. To
 
 To determine if a output parameter result is `NULL`:, call ***IsNull()***:
 
-    ITERATE(CQuery, qit, query) {
-        if (qit["id"].IsNull()) {
+    for (const auto& row: query) {
+        if (row["id"].IsNull()) {
             // handle NULL
         } else {
-            x = qit["id"].AsInt4(); // OK to use the converted value
+            x = row["id"].AsInt4(); // OK to use the converted value
         }
 
 ***Note:*** The ***As\*()*** methods will return default values (e.g. zero or an empty string) when the actual result value is `NULL`. The only way to know if a `NULL` result was converted is to call ***IsNull()***. Therefore, if you need to distinguish between `NULL` and default values, you **must** call ***IsNull()***.
