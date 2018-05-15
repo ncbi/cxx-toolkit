@@ -68,6 +68,8 @@ The following is an outline of the topics presented in this chapter:
     -   [Meta-Data Accessors](#ch_dbapi.MetaData_Accessors)
 
     -   [Working with NULL](#ch_dbapi.Working_with_NULL)
+    
+    -   [Parameterized SQL](#ch_dbapi.Parameterized_SQL)
 
     -   [Using Transactions](#ch_dbapi.Using_Transactions)
 
@@ -297,6 +299,8 @@ The following sections cover specific aspects of SDBAPI:
 -   [Meta-Data Accessors](#ch_dbapi.MetaData_Accessors)
 
 -   [Working with NULL](#ch_dbapi.Working_with_NULL)
+
+-   [Parameterized SQL](#ch_dbapi.Parameterized_SQL)
 
 -   [Using Transactions](#ch_dbapi.Using_Transactions)
 
@@ -569,6 +573,30 @@ To determine if a output parameter result is `NULL`:, call ***IsNull()***:
         }
 
 ***Note:*** The ***As\*()*** methods will return default values (e.g. zero or an empty string) when the actual result value is `NULL`. The only way to know if a `NULL` result was converted is to call ***IsNull()***. Therefore, if you need to distinguish between `NULL` and default values, you **must** call ***IsNull()***.
+
+<a name="ch_dbapi.Parameterized_SQL"></a>
+
+### Parameterized SQL
+
+Similarly to stored procedures parameters could be used for regular SQL statements. In case of parameterized SQL methods ***SetParameter()*** and ***SetNullParameter()*** are to be used. For example:
+
+    string    sql = "INSERT INTO MyTable (int_field, str_field) VALUES(@int_val, @str_val)";
+    query.SetSql(sql);
+    for (long  i = 0; i < 100; ++i) {
+        if (i % 2 == 0) {
+            query.SetParameter("@int_val", Int4(i));
+            query.SetNullParameter("@str_val", eSDB_String);
+        } else {
+            query.SetNullParameter("@int_val", eSDB_Int4);
+            query.SetParameter("@str_val", string());
+        }
+
+        query.Execute();
+        query.RequireRowCount(0);
+        query.VerifyDone(CQuery::eAllResultSets);
+    }
+
+In this example a parameterized SQL statement is prepared once and then it is executed in a loop with assigning different values to the parameters.
 
 <a name="ch_dbapi.Using_Transactions"></a>
 
