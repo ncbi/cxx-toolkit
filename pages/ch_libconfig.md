@@ -275,19 +275,22 @@ Table 4. Run-time configuration parameters
 
 | Purpose    | [Registry section]<br/>Registry name<br/><br/>Environment variable                | Valid values       | Default |
 |------------|-----------------------------------------------------------------------------------|--------------------|---------|
-| Set a CPU time limit for the application in seconds. | **`[NCBI]`**<br/>**`CpuTimeLimit`**<br/><br/>**`NCBI_CONFIG__NCBI__CPUTIMELIMIT`**  [<sup>b</sup>](#ch_libconfig.TF.8) | non-negative integer                  | 0 (unlimited) |
-| Set a memory size limit for the application.   | **`[NCBI]`**<br/>**`MemorySizeLimit`**<br/><br/>**`NCBI_CONFIG__NCBI__MEMORYSIZELIMIT`**  [<sup>b</sup>](#ch_libconfig.TF.8) | A positive integer percent (e.g. "70%") or an optionally suffixed non-negative real number (e.g. "123456789", "100MiB", or "1.25 G").<br/><br/>A percent limit is relative to the total system memory.<br/><br/>No suffix means the given value is in MiB; a "B" suffix means the value is in bytes.<br/><br/>If there is a suffix, there can be spaces between the number and the suffix. The default units are decimal (i.e. powers of 1000) - e.g. "MB". The final "B" is optional for decimal units (e.g. "M"). You can use "i" to indicate binary units (i.e. powers of 1024) – e.g. "MiB".<br/><br/>Supported suffix characters are: "K", "M", "G", "T", "P", and "E".<br/><br/>Suffixes are not case-sensitive. | 0 (unlimited) |
-| Specify the method for filling allocated memory.     | **`[NCBI]`**<br/>**`MEMORY_FILL`**<br/><br/>**`NCBI_MEMORY_FILL`**                | CI  [<sup>a</sup>](#ch_libconfig.TF.7): none, zero, pattern                  | pattern |
+| Controls whether to enable `libbackward`'s support for printing stack traces on segmentation faults and the like; the default is based on the build-time flag `--with-backward-cpp-sig`.<br/><br/>**NB:** Code bypassing `CNcbiApplication` but interested in this feature should explicitly call `CStackTrace::s_HonorSignalHandlingConfiguration()`. | **`[Debug]`**<br/>**`Trace_Fatal_Signals`**<br/><br/>**`DEBUG_TRACE_FATAL_SIGNALS`** | Boolean  <sup>a</sup> | varies by build-time configuration, but false for standard builds |
+| Set a CPU time limit for the application in seconds. | **`[NCBI]`**<br/>**`CpuTimeLimit`**<br/><br/>**`NCBI_CONFIG__NCBI__CPUTIMELIMIT`**  [<sup>b</sup>](#ch_libconfig.TF.7) | non-negative integer                  | 0 (unlimited) |
+| Set a memory size limit for the application.   | **`[NCBI]`**<br/>**`MemorySizeLimit`**<br/><br/>**`NCBI_CONFIG__NCBI__MEMORYSIZELIMIT`**  [<sup>b</sup>](#ch_libconfig.TF.7) | A positive integer percent (e.g. "70%") or an optionally suffixed non-negative real number (e.g. "123456789", "100MiB", or "1.25 G").<br/><br/>A percent limit is relative to the total system memory.<br/><br/>No suffix means the given value is in MiB; a "B" suffix means the value is in bytes.<br/><br/>If there is a suffix, there can be spaces between the number and the suffix. The default units are decimal (i.e. powers of 1000) - e.g. "MB". The final "B" is optional for decimal units (e.g. "M"). You can use "i" to indicate binary units (i.e. powers of 1024) – e.g. "MiB".<br/><br/>Supported suffix characters are: "K", "M", "G", "T", "P", and "E".<br/><br/>Suffixes are not case-sensitive. | 0 (unlimited) |
+| Specify the method for filling allocated memory.     | **`[NCBI]`**<br/>**`MEMORY_FILL`**<br/><br/>**`NCBI_MEMORY_FILL`**                | CI  [<sup>c</sup>](#ch_libconfig.TF.8): none, zero, pattern                  | pattern |
 
 <div class="table-scroll"></div>
 
+<sup>a</sup> case-insensitive: true, t, yes, y, 1, false, f, no, n, 0
+
 <a name="ch_libconfig.TF.7"></a>
 
-<sup>a</sup> CI = case-insensitive
+<sup>b</sup> [environment variable name](#ch_libconfig.Environment) formed from registry section and entry name
 
 <a name="ch_libconfig.TF.8"></a>
 
-<sup>b</sup> [environment variable name](#ch_libconfig.Environment) formed from registry section and entry name
+<sup>c</sup> CI = case-insensitive
 
 <a name="ch_libconfig.libconfig_term"></a>
 
@@ -405,11 +408,11 @@ Table 7. Connection library configuration parameters
 | Set a custom user header. This is rarely used, and then typically for debugging purposes.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_HTTP_USER_HEADER`**<br/><br/>**`<service>_CONN_HTTP_USER_HEADER`** | a valid HTTP header | "" |
 | Prohibit the use of a local load balancer. ***Note:*** This parameter is discouraged for performance reasons - please use **`<service>_CONN_LBSMD_DISABLE`** instead.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_LB_DISABLE`**<br/><br/>**`<service>_CONN_LB_DISABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Prohibit the use of a local load balancer. This should be used instead of **`<service>_CONN_LB_DISABLE`**.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_LBSMD_DISABLE`**<br/><br/>**`<service>_CONN_LBSMD_DISABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
-| Enable linkerd-based service name resolution.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_LINKERD_ENABLE`**<br/><br/>**`<service>_CONN_LINKERD_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
+| Enable linkerd-based service name resolution.<br/>(See [Note 1](#ch_libconfig.TF.21))<br/>**Note:** You must also set `<service>_CONN_LBSMD_DISABLE=1` for this to take effect. | **`[<service>]`**<br/>**`CONN_LINKERD_ENABLE`**<br/><br/>**`<service>_CONN_LINKERD_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Enable the use of locally configured services.<br />See **`<service>_CONN_LOCAL_SERVER_<n>`**.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_LOCAL_ENABLE`**<br/><br/>**`<service>_CONN_LOCAL_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Create a service entry for **`service`**, where **`n`** is a number from 0 to 100 (not necessarily sequential). The value must be a valid server descriptor, as it would be configured for the load balancing daemon ([LBSMD](ch_app.html#ch_app.Load_Balancing_Servi)). This is a quick way of configuring locally used services (usually, for the sole purposes of debugging / development) without the need to edit the actual LBSMD tables (which become visible for the whole NCBI). See **`<service>_CONN_LOCAL_ENABLE`**. ***Note:*** This parameter has no corresponding global parameter.<br/>(See [Note 1](#ch_libconfig.TF.21)) |  **`[<service>]`**<br/>**`CONN_LOCAL_SERVER_<n>`**<br/><br/>**`<service>_CONN_LOCAL_SERVER_<n>`** | any non-empty string | not set |
 | Maximum number of attempts to establish connection. Zero means use the default.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_MAX_TRY`**<br/><br/>**`<service>_CONN_MAX_TRY`** | unsigned short | 3 |
-| Enable namerd-based service name resolution.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_NAMERD_ENABLE`**<br/><br/>**`<service>_CONN_NAMERD_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
+| Enable namerd-based service name resolution.<br/>(See [Note 1](#ch_libconfig.TF.21))<br/>**Note:** You must also set `<service>_CONN_LBSMD_DISABLE=1` for this to take effect. | **`[<service>]`**<br/>**`CONN_NAMERD_ENABLE`**<br/><br/>**`<service>_CONN_NAMERD_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Enable namerd-based service name resolution specifically for the case when linkerd-based service name resolution has failed (use **`<service>_CONN_NAMERD_ENABLE`** to enable namerd-based resolution generally).<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_NAMERD_FOR_LINKERD_ENABLE`**<br/><br/>**`<service>_CONN_NAMERD_FOR_LINKERD_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Specify a password for the connection (only used with **`<service>_CONN_USER`**).<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_PASS`**<br/><br/>**`<service>_CONN_PASS`** | the user's password | "" |
 | Set the path to the service.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_PATH`**<br/><br/>**`<service>_CONN_PATH`** | a valid service path | /Service/dispd.cgi |
