@@ -1082,7 +1082,7 @@ sets the period in seconds between script checks as "`5`" (the default period is
 
 The following command-line parameters are always passed to the script upon execution:
 
--   **`argv[0]`** = name of the executable with preceding '\|' character if **`stdin`** / **`stdout`** are open to the server connection (/dev/null otherwise), ***NB***: '\|' is not always readily accessible from within shell scripts, so it's duplicated in **`argv[2]`** for convenience;
+-   **`argv[0]`** = name of the executable with preceding '\|' character if **`stdin`** / **`stdout`** are open to the server connection (/dev/null otherwise), [NB](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NB): '\|' is not always readily accessible from within shell scripts, so it's duplicated in **`argv[2]`** for convenience;
 
 -   **`argv[1]`** = name of the service being checked;
 
@@ -1092,7 +1092,7 @@ The following additional command-line parameters will be passed to the script if
 
 -   **`argv[3]`** = exit code obtained in the last check script run;
 
--   **`argv[4]`** = repetition count for **`argv[3]`** (***NB***: 0 means this is the first occurrence of the exit code given in **`argv[3]`**);
+-   **`argv[4]`** = repetition count for **`argv[3]`** ([NB](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NB): 0 means this is the first occurrence of the exit code given in **`argv[3]`**);
 
 -   **`argv[5]`** = seconds elapsed since the last check script run.
 
@@ -1871,9 +1871,9 @@ The primary goal of Genome Workbench is to provide a flexible platform for devel
 
 The basic design of Genome Workbench follows a modified Model-View-Controller (MVC) architecture. The MVC paradigm provides a clean separation between the data being dealt with (the model), the user's perception of this data (provided in views), and the user's interaction with this data (implemented in controllers). For Genome Workbench, as with many other implementations of the MVC architecture, the View and Controller are generally combined.
 
-Central to the framework is the notion of the data being modeled. The model here encompasses the NCBI data model, with particular emphasis on sequences and annotations. The Genome Workbench framework provides a central repository for all managed data through the static class interface in ***CDocManager***. ***CDocManager*** owns the single instance of the C++ Object Manager that is maintained by the application. ***CDocManager*** marshals individual ***CDocument*** classes to deal with data as the user requests. ***CDocument***, at its core, wraps a ***CScope*** class and thus provides a hook to the object manager.
+Central to the framework is the notion of the data being modeled. The model here encompasses the NCBI data model, with particular emphasis on sequences and annotations. The Genome Workbench framework provides a central repository for all managed data through the static class interface in ***CDocManager***. ***CDocManager*** owns the single instance of the C++ Object Manager that is maintained by the application. ***CDocManager*** marshals individual ***CDocument*** classes to deal with data as the user requests. ***CDocument***, at its core, wraps a [CScope](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CScope) class and thus provides a hook to the object manager.
 
-The View/Controller aspect of the architecture is implemented through the abstract class ***CView***. Each ***CView*** class is bound to a single document. Each ***CView*** class, in turn, represents a view of some portion of the data model or a derived object related to the document. This definition is intentionally vague; for example, when viewing a document that represents a sequence alignment, a sequence in that alignment may not be contained in the document itself but is distinctly related to the alignment and can be presented in the context of the document. In general, the views that use the framework will define a top-level GUI window; however, a view could be defined to be a CGI context such that its graphical component is a Web browser.
+The View/Controller aspect of the architecture is implemented through the abstract class [CView](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CView). Each [CView](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CView) class is bound to a single document. Each [CView](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CView) class, in turn, represents a view of some portion of the data model or a derived object related to the document. This definition is intentionally vague; for example, when viewing a document that represents a sequence alignment, a sequence in that alignment may not be contained in the document itself but is distinctly related to the alignment and can be presented in the context of the document. In general, the views that use the framework will define a top-level GUI window; however, a view could be defined to be a CGI context such that its graphical component is a Web browser.
 
 To permit maximal extensibility, the framework delegates much of the function of creating and presenting views and analyses to a series of plugins. In fact, most of the basic components of the application itself are implemented as plugins. The Genome Workbench framework defines three classes of plugins: data loaders, views, and algorithms. Technically, a plugin is simply a shared library defining a standard entry point. These libraries are loaded on demand; the entry point returns a list of plugin factories, which are responsible for creating the actual plugin instances.
 
@@ -2002,7 +2002,7 @@ Two classes provide access to **NetCache** -
 These classes share most of the basic ideas of using **NetCache**, but might be best suited for slightly different purposes. [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html)
 might be a bit better for temporary storage in scenarios where the data is not kept elsewhere, whereas
 [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) implements the
-[ICache](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICache.html) interface and might be a bit better for scenarios where the data still exists elsewhere but is also cached for performance reasons. ***CNetCacheAPI*** will probably be more commonly used because it automatically generates unique keys for you and it has a slightly simpler interface. ***CNetCacheAPI*** also supports stream insertion and extraction operators.
+[ICache](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICache.html) interface and might be a bit better for scenarios where the data still exists elsewhere but is also cached for performance reasons. [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI) will probably be more commonly used because it automatically generates unique keys for you and it has a slightly simpler interface. [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI) also supports stream insertion and extraction operators.
 
 There are multiple ways to write data to **NetCache** and read it back, but the basic ideas are:
 
@@ -2010,11 +2010,11 @@ There are multiple ways to write data to **NetCache** and read it back, but the 
 
 -   Blob identification is usually associated with a unique purpose.
 
-    -   With ***CNetCacheAPI***, a blob is uniquely identified by a key that is generated by the **NetCache** and returned to the calling code. Thus, the calling code can limit use of the blob to a given purpose. For example, data can be passed from one instance of a CGI to the next by storing the data in a **NetCache** blob and passing the key via cookie.
+    -   With [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI), a blob is uniquely identified by a key that is generated by the **NetCache** and returned to the calling code. Thus, the calling code can limit use of the blob to a given purpose. For example, data can be passed from one instance of a CGI to the next by storing the data in a **NetCache** blob and passing the key via cookie.
 
-    -   With ***CNetICacheClient***, blobs are identified by the combination { key, subkey, version, cache name }, which isn't guaranteed to be unique. It is possible that two programs could choose the same combination and one program could change or delete the data stored by the other.
+    -   With [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient), blobs are identified by the combination { key, subkey, version, cache name }, which isn't guaranteed to be unique. It is possible that two programs could choose the same combination and one program could change or delete the data stored by the other.
 
--   With ***CNetICacheClient***, the cache name can be specified in the registry and is essentially a convenient way of simulating namespaces.
+-   With [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient), the cache name can be specified in the registry and is essentially a convenient way of simulating namespaces.
 
 -   When new data is written using a key that corresponds to existing data:
 
@@ -2030,7 +2030,7 @@ There are multiple ways to write data to **NetCache** and read it back, but the 
 
     -   Reading a blob won't delete it - it will be removed automatically when its TTL has expired, or it can be removed explicitly.
 
-    -   **NetCache** server daemons can specify a default TTL for their blobs using the `blob_ttl` entry in the `[netcache]` section of [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log). There is no direct way to find the server's default TTL, but you can find it indirectly by creating a blob and calling ***GetBlobInfo()*** on the new blob. For an example of this, see [CSampleNetCacheClient::DemoPutRead()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_client_sample.cpp).
+    -   **NetCache** server daemons can specify a default TTL for their blobs using the `blob_ttl` entry in the `[netcache]` section of [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log). There is no direct way to find the server's default TTL, but you can find it indirectly by creating a blob and calling [GetBlobInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobInfo) on the new blob. For an example of this, see [CSampleNetCacheClient::DemoPutRead()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_client_sample.cpp).
 
     -   Blob lifetime can be prolonged.
 
@@ -2038,13 +2038,13 @@ There are multiple ways to write data to **NetCache** and read it back, but the 
 
         -   Lifetime prolongation can be disabled by setting the `prolong_on_read` entry to `false` in [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log).
 
-        -   ***Note:*** Calling ***GetBlobSize()*** will prolong a blob's lifetime (unless `prolong_on_read` is `false`), but calling ***GetBlobInfo()*** will not.
+        -   ***Note:*** Calling [GetBlobSize()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobSize) will prolong a blob's lifetime (unless `prolong_on_read` is `false`), but calling [GetBlobInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobInfo) will not.
 
 <a name="ch_app.Set_up_your_program_to_use_NetCac"></a>
 
 #### Set up your program to use NetCache
 
-To use **NetCache** from your application, you must use the [NCBI application framework](ch_core.html#ch_core.CNcbiApplication) by deriving you application class from ***CNcbiApplication***. If your application is a CGI, you can derive from ***CCgiApplication***.
+To use **NetCache** from your application, you must use the [NCBI application framework](ch_core.html#ch_core.CNcbiApplication) by deriving you application class from [CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication). If your application is a CGI, you can derive from [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication).
 
 You will need at least the following libraries in your `Makefile.<appname>.app`:
 
@@ -2088,7 +2088,7 @@ Service names are typically specified on the command line or stored in the appli
 
 #### Initialize the client API
 
-Initializing the **NetCache** API is extremely easy - simply create a ***CNetCacheAPI*** or ***CNetICacheClient*** object, selecting the constructor that automatically configures the API based on the application registry. Then, define the client name in the application registry using the `client` entry in the `[netcache_api]` section. The client name should be unique if the data is application-specific, or it can be shared by two or more applications that need to access the same data. The client name is added to AppLog entries, so it is helpful to indicate the application in this string.
+Initializing the **NetCache** API is extremely easy - simply create a [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI) or [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient) object, selecting the constructor that automatically configures the API based on the application registry. Then, define the client name in the application registry using the `client` entry in the `[netcache_api]` section. The client name should be unique if the data is application-specific, or it can be shared by two or more applications that need to access the same data. The client name is added to AppLog entries, so it is helpful to indicate the application in this string.
 
 For example, put this in your source code:
 
@@ -2103,7 +2103,7 @@ and put this in your configuration file:
     [netcache_api]
     client=your_app_name_here
 
-If you are using ***CNetICacheClient***, you either need to use API methods that take a cache name or, to take advantage of automatic configuration based on the registry, specify a cache name in the `[netcache_api]` section, for example:
+If you are using [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient), you either need to use API methods that take a cache name or, to take advantage of automatic configuration based on the registry, specify a cache name in the `[netcache_api]` section, for example:
 
     [netcache_api]
     cache_name=your_cache_name_here
@@ -2114,7 +2114,7 @@ For a complete reference of **NetCache** configuration parameters, please see th
 
 #### Store data
 
-There are ancillary multiple ways to save data, whether you're using ***CNetCacheAPI*** or ***CNetICacheClient***.
+There are ancillary multiple ways to save data, whether you're using [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI) or [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient).
 
 With all the storage methods, you can supply a "time-to-live" parameter, which specifies how long (in seconds) a blob will be accessible. See the [basic ideas](#ch_app.The_basic_ideas) section for more information on time-to-live.
 
@@ -2122,7 +2122,7 @@ With all the storage methods, you can supply a "time-to-live" parameter, which s
 
 ##### Storing data using CNetCacheAPI
 
-If you are saving a new blob using ***CNetCacheAPI***, it will create a unique blob key and pass it back to you. Here are several ways to store data using ***CNetCacheAPI*** (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) for additional methods):
+If you are saving a new blob using [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI), it will create a unique blob key and pass it back to you. Here are several ways to store data using [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI) (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) for additional methods):
 
     CNetCacheAPI nc_api(GetConfig());
 
@@ -2148,7 +2148,7 @@ If you are saving a new blob using ***CNetCacheAPI***, it will create a unique b
 
 ##### Storing data using CNetICacheClient
 
-If you are saving a new blob using ***CNetICacheClient***, you must supply a unique { blob key / version / subkey / cache name } combination. Here are two ways (with the cache name coming from the registry) to store data using ***CNetICacheClient*** (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) for additional methods):
+If you are saving a new blob using [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient), you must supply a unique { blob key / version / subkey / cache name } combination. Here are two ways (with the cache name coming from the registry) to store data using [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient) (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) for additional methods):
 
     CNetICacheClient ic_client(CNetICacheClient::eAppRegistry);
 
@@ -2174,7 +2174,7 @@ If an attempt is made to retrieve a blob after its time-to-live has expired, an 
 
 ##### Retrieving data using CNetCacheAPI
 
-The following code snippet demonstrates three ways of retrieving data using ***CNetCacheAPI*** (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) for additional methods):
+The following code snippet demonstrates three ways of retrieving data using [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI) (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) for additional methods):
 
     // Read a simple object.
     nc_api.ReadData(key, message);
@@ -2201,7 +2201,7 @@ The following code snippet demonstrates three ways of retrieving data using ***C
 
 ##### Retrieving data using CNetICacheClient
 
-The following code snippet demonstrates two ways to retrieve data using ***CNetICacheClient***, with the cache name coming from the registry (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) for additional methods):
+The following code snippet demonstrates two ways to retrieve data using [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient), with the cache name coming from the registry (see the [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetICacheClient.html) for additional methods):
 
     // Read a simple object.
     ic_client.Read(key, version, subkey, chunk_buf, kMyBufSize);
@@ -2232,7 +2232,7 @@ Here is a sample application that uses **NetCache** from a CGI application:
 
 [src/sample/app/netcache/netcache\_cgi\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_cgi_sample.cpp)
 
-Here are test applications for ***CNetCacheAPI*** and ***CNetICacheClient***:
+Here are test applications for [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetCacheAPI) and [CNetICacheClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNetICacheClient):
 
 [src/connect/services/test/test\_netcache\_api.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/services/test/test_netcache_api.cpp)
 
@@ -2277,6 +2277,6 @@ A:Theoretical limit is high enough to say that there is no limit; in practice, l
 
 **Q: How is the expiration of BLOBs handled by NetCache? My thinking is coming from two directions. First, I wouldn’t want BLOBs deleted out from under me, but also, if the expiration is too long, I don’t want to be littering the NetCache. That is: do I need to work hard to remove all of my BLOBs or can I just trust the automatic clean-up?**
 
-A:You can specify a "time-to-live" when you create a blob. If you don't specify a value, you can find the service's default value by calling ***GetBlobInfo()***. See the [basic ideas](#ch_app.The_basic_ideas) section for more details.
+A:You can specify a "time-to-live" when you create a blob. If you don't specify a value, you can find the service's default value by calling [GetBlobInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobInfo). See the [basic ideas](#ch_app.The_basic_ideas) section for more details.
 
 
