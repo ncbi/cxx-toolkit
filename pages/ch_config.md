@@ -988,8 +988,8 @@ The makefile macro **`ncbi_runpath`** will be set to the resulting runpath, if a
 
 ***Note:*** When running an executable you also can use environment variable **`$LD_LIBRARY_PATH`** to specify the runpath, like this:
 
-    env LD_LIBRARY_PATH="/home/USERNAME/c++/WorkShop6-ReleaseDLL/lib" \
-    /home/USERNAME/c++/WorkShop6-ReleaseDLL/bin/coretest
+    env LD_LIBRARY_PATH="/home/USERNAME/c++/GCC-ReleaseDLL/lib" \
+    /home/USERNAME/c++/GCC-ReleaseDLL/bin/coretest
 
 **HINT:** The *--with-runpath=....* option can be useful to build production DLLs and executables, which are meant to use production DLLs. The latter are usually installed not in the `lib/` dir of your development tree (*build tree*) but at some well-known dir of your production site. Thus, you can do the development in a "regular" manner (i.e., in a *build tree* configured using only *--with-runpath*); then, when you want to build a production version (which is to use, let's say, DLLs installed in `"/some_path/foo/ `*"*), you must reconfigure your C++ build tree with just the same options as before, plus *"--with-runpath=/some\_path/foo"*. Then rebuild the DLLs and executables and install them into production. Then re-reconfigure your *build tree* back with its original flags (without the "*--with-runpath* `=/some_path/foo `*"*) and continue with your development cycle, again using local in-tree DLLs.
 
@@ -1286,13 +1286,13 @@ You can now edit, build, and/or debug (via some application) the library:
 
 Most of the non-GCC compilers require special tools and additional mandatory flags to compile and link C++ code properly. That's why there are special scripts that perform the required non-standard, compiler-specific pre-initialization for the [tools and flags](#ch_config.ch_configconfig_flag) used before running ***configure***.
 
-These wrapper scripts are located in the *compilers/* directory, and now we have such wrappers for the `SUN WorkShop` (`5.5` through `5.9)`, `GCC` and `ICC` compilers:
+These wrapper scripts are located in the *compilers/unix/ directory, and now we have such wrappers for the `Clang`, `LLVM-GCC`, `GCC` and `ICC` compilers:
 
--   `WorkShop.sh` {32\|64} [build\_dir] [--configure-flags]
-
--   `WorkShop55.sh` {32\|64} [build\_dir] [--configure-flags]
+-   `GCC.sh` [4.9.3] [build\_dir] [--configure-flags]
 
 -   `ICC.sh` [build\_dir] [--configure-flags]
+
+-   `Clang.sh` [build\_dir] [--configure-flags]
 
 Note that these scripts accept all regular ***configure*** flags and then pass them to the ***configure*** script.
 
