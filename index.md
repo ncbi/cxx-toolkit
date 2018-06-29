@@ -41,7 +41,7 @@ Contents
     -   [Using the Boost Unit Test Framework](pages/ch_boost)
 -   [Part 4. Wrappers for 3rd-Party Packages](pages/part4)
     -   [XmlWrapp (XML parsing and handling, XSLT, XPath)](pages/ch_xmlwrapp)
-    -   [JSONWRAPP (JSON parsing and handling)](pages/ch_jsonwrapp)
+    -   [JsonWrapp (JSON parsing and handling)](pages/ch_jsonwrapp)
 -   [Part 5. Software](pages/part5)
     -   [Debugging, Exceptions, and Error Handling](pages/ch_debug)
     -   [Distributed Computing](pages/ch_grid)
