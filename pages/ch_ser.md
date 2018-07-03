@@ -3052,6 +3052,8 @@ Another option is to use file mapping when reading. Mapping creates an associati
 
     unique_ptr<CObjectIStream> is(CObjectIStream::Create(format, *(new CMMapByteSource(data_file))));
 
+or or define the following environment variable: ***SERIAL_READ_MMAPBYTESOURCE=1***
+
 One should not expect a big gain here, because file reading is already optimized in operating systems, but speedups up to 15% are possible.
 
 <a name="ch_ser.Managing_ASN1_Specification_Versi"></a>
