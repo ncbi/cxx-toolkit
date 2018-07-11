@@ -772,7 +772,7 @@ The STL is a library included in ANSI/ISO C++ for stream, string, and container 
 
 ##### STL Tips and Tricks
 
-***end()*** does not return an iterator to the last element of a container, rather it returns a iterator just beyond the last element of the container.
+***[end()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=end)*** does not return an iterator to the last element of a container, rather it returns a iterator just beyond the last element of the container.
 
 Iterator misuse causes the same problems as pointer misuse. There are versions of the STL that flag incorrect use of iterators.
 
@@ -810,7 +810,7 @@ If you pass a container to a function, don't add a local object to the container
 
 ##### Non-Standard STL Classes
 
--   Avoid using ***hash\_map***, ***hash\_multimap***, ***hash\_set***, and ***hash\_multiset*** classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)). -- Nowadays there are standard C++11's ***unordered_map***, ***unordered_multimap***, ***unordered_set*** and ***unordered_multiset*** classes that provide a similar functionality.
+-   Avoid using ***[hash\_map](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_map)***, ***[hash\_multimap](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_multimap)***, ***[hash\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_set)***, and ***[hash\_multiset](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_multiset)*** classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)). -- Nowadays there are standard C++11's ***unordered_map***, ***unordered_multimap***, ***unordered_set*** and ***unordered_multiset*** classes that provide a similar functionality.
 
 <a name="ch_style.cpp_bad_guys"></a>
 
@@ -885,7 +885,7 @@ It is beyond the scope of this document to discuss all C++ gotchas, but this sec
 
     -   ***char*** vs. ***w\_char*** and `'\n'` vs. `L'\n'`
 
-    -   flushing vs. physical writing - **`flush`** (manipulator), ***fflush()***, ***sync()***, disk write-cache, I/O performance, etc.
+    -   flushing vs. physical writing - **`flush`** (manipulator), ***fflush()***, ***[sync()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=sync)***, disk write-cache, I/O performance, etc.
 
     -   ***iostream*** buffering (**`cin`**/**`cout`**/**`cerr`**/**`clog`** including ***tie()*** and **`unitbuf`**)<br/>
 

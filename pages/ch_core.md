@@ -353,7 +353,7 @@ Each of these classes is discussed in the following sections:
 
 #### CNcbiApplication
 
-[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html) is an abstract class used to define the basic functionality and behavior of an NCBI application. Because this application class effectively supersedes the C-style ***main()*** function, minimally, it must provide the same functionality, i.e.:
+[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html) is an abstract class used to define the basic functionality and behavior of an NCBI application. Because this application class effectively supersedes the C-style ***[main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=main)*** function, minimally, it must provide the same functionality, i.e.:
 
 -   a mechanism to execute the actual application
 
@@ -369,19 +369,19 @@ In addition, the application class provides the same features previously impleme
 
 -   methods to describe, and then automatically parse, validate, and access program command-line arguments and to generate the `USAGE` message
 
-The mechanism to execute the application is provided by ***CNcbiApplication***'s member function ***Run()***, for which you must write your own implementation. The ***Run()*** function will be automatically invoked by ***CNcbiApplication::AppMain()***, after it has initialized its ***CNcbiArguments, CNcbiEnvironment, CNcbiRegistry***, and ***CNcbiDiag*** data members.
+The mechanism to execute the application is provided by ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***'s member function ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)***, for which you must write your own implementation. The ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)*** function will be automatically invoked by ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***::***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)***, after it has initialized its ***CNcbiArguments, CNcbiEnvironment, CNcbiRegistry***, and ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** data members.
 
 <a name="ch_core.CNcbiArguments"></a>
 
 #### CNcbiArguments
 
-The [CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiArguments.html) class provides a data structure for holding the application's command-line arguments, along with methods for accessing and modifying these. Access to the argument values is implemented using the built-in `[ ]` operator. For example, the first argument in **`argv`** (following the program name) can be retrieved using the ***CNcbiApplication::GetArguments()*** method:
+The [CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiArguments.html) class provides a data structure for holding the application's command-line arguments, along with methods for accessing and modifying these. Access to the argument values is implemented using the built-in `[ ]` operator. For example, the first argument in **`argv`** (following the program name) can be retrieved using the ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***::***[GetArguments()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetArguments)*** method:
 
     string arg1_value = GetArguments()[1];
 
-Here, ***GetArguments()*** returns the ***CNcbiArguments*** object, whose argument values can then be retrieved using the `[ ]` operator. Four additional ***CNcbiArguments*** member functions support retrieval and modification of the program name (initially **`argv[0]`**). A helper class, described in [Processing Command-Line Arguments](#ch_core.cmd_line_args), supports the generation of `USAGE` messages and the imposition of constraints on the values of the input arguments.
+Here, ***[GetArguments()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetArguments)*** returns the ***[CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiArguments)*** object, whose argument values can then be retrieved using the `[ ]` operator. Four additional ***[CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiArguments)*** member functions support retrieval and modification of the program name (initially **`argv[0]`**). A helper class, described in [Processing Command-Line Arguments](#ch_core.cmd_line_args), supports the generation of `USAGE` messages and the imposition of constraints on the values of the input arguments.
 
-In addition to the ***CNcbiArguments*** class, there are other related classes used for argument processing. The ***CArgDescriptions*** and ***CArgDesc*** classes are used for describing unparsed arguments; ***CArgs*** and ***CArgValue*** for parsed argument values; ***CArgException*** and ***CArgHelpException*** for argument exceptions; and ***CArgAllow***, ***CArgAllow\_{Strings, ..., Integers, Doubles}*** for argument constraints. These classes are discussed in the section on [Processing Command-Line Arguments](#ch_core.cmd_line_args).
+In addition to the ***[CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiArguments)*** class, there are other related classes used for argument processing. The ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** and ***[CArgDesc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDesc)*** classes are used for describing unparsed arguments; ***[CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgs)*** and ***[CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgValue)*** for parsed argument values; ***[CArgException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgException)*** and ***[CArgHelpException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgHelpException)*** for argument exceptions; and ***[CArgAllow](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgAllow)***, ***CArgAllow\_{Strings, ..., Integers, Doubles}*** for argument constraints. These classes are discussed in the section on [Processing Command-Line Arguments](#ch_core.cmd_line_args).
 
 When using the C++ Toolkit on the Mac OS, you can specify command-line arguments in a separate file with the name of your executable and ".args" extension. Each argument should be on a separate line (see [Table 1](#ch_core.T1)).
 
@@ -417,7 +417,7 @@ Arguments must be followed by an empty terminating line.
 
 The [CNcbiEnvironment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiEnvironment.html) class provides a data structure for storing, accessing, and modifying the environment variables accessed by the C library routine ***getenv()***.
 
-The following describes the public interface to the ***CNcbiEnvironment***:
+The following describes the public interface to the ***[CNcbiEnvironment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiEnvironment)***:
 
     class  CNcbiEnvironment
     {
@@ -444,15 +444,15 @@ For example, to retrieve the value of environment variable **`PATH`**:
 
     string arg1_value = GetEnvironment().Get("PATH");
 
-In this example, the ***GetEnvironment()*** is defined in the ***CNcbiApplication*** class and returns the ***CNcbiEnvironment*** object for which the ***Get()*** method is called with the environment variable **`PATH`**.
+In this example, the ***[GetEnvironment()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetEnvironment)*** is defined in the ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)*** class and returns the ***[CNcbiEnvironment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiEnvironment)*** object for which the ***[Get()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Get)*** method is called with the environment variable **`PATH`**.
 
-To delete all of the cached entries and reload new ones from the environment pointer (envp), use the ***CNcbiEnvironment::Reset()*** method.
+To delete all of the cached entries and reload new ones from the environment pointer (envp), use the ***[CNcbiEnvironment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiEnvironment)***::***[Reset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset)*** method.
 
 <a name="ch_core.CNcbiRegistry"></a>
 
 #### CNcbiRegistry
 
-Complete details for the ***CNcbiRegistry*** can be found in the section on [The CNcbiRegistry Class](#ch_core.registry).
+Complete details for the ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)*** can be found in the section on [The CNcbiRegistry Class](#ch_core.registry).
 
 <a name="ch_core.CNcbiDiag"></a>
 
@@ -642,7 +642,7 @@ Then open the solution file `example\compilers\vs2015\static\build\example.sln` 
 
 In the [sample application](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/basic/basic_sample.cpp) above:
 
-1. There is an application class derived from ***CNcbiApplication***, which overrides the purely virtual function ***Run()*** as well as the initialization (***Init()***) and cleanup (***Exit()***) functions:
+1. There is an application class derived from ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***, which overrides the purely virtual function ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)*** as well as the initialization (***[Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Init)***) and cleanup (***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)***) functions:
 
     ```cpp
     class CSampleBasicApplication : public CNcbiApplication
@@ -654,7 +654,7 @@ In the [sample application](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr
     };
     ```
 
-2. The program's main function creates an object of the application class and calls its ***AppMain()*** function:
+2. The program's main function creates an object of the application class and calls its ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** function:
 
     ```cpp
     int main(int argc, const char* argv[])
@@ -681,7 +681,7 @@ In the [sample application](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr
     }
     ```
 
-4. The application's ***Run()*** function prints those arguments into the standard output stream or in a file.
+4. The application's ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)*** function prints those arguments into the standard output stream or in a file.
 
 More [realistic examples of applications](ch_demo.html) that use the NCBI C++ Toolkit are available.
 
@@ -841,7 +841,7 @@ Here is a somewhat simplified view of the application's class definition:
        .............
     };
 
-The ***AppMain()*** function is also inherited from the parent class. Although this function accepts up to six arguments, this example passes only the first two, with missing values supplied by defaults. The remaining four arguments specify:
+The ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** function is also inherited from the parent class. Although this function accepts up to six arguments, this example passes only the first two, with missing values supplied by defaults. The remaining four arguments specify:
 
 -   (\#3) a NULL-terminated array of '\\0'-terminated character strings from which the environment variables can be read
 
@@ -851,19 +851,19 @@ The ***AppMain()*** function is also inherited from the parent class. Although t
 
 -   (\#6) a program name (to be used in lieu of **`argv[0]`**)
 
-***AppMain()*** begins by resetting the internal data members with the actual values provided by the arguments of ***main()***. Once these internal data structures have been loaded, ***AppMain()*** calls the virtual functions ***Init(), Run(),*** and ***Exit()*** in succession to execute the application.
+***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** begins by resetting the internal data members with the actual values provided by the arguments of ***[main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=main)***. Once these internal data structures have been loaded, ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** calls the virtual functions ***Init(), Run(),*** and ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** in succession to execute the application.
 
-The ***Init()*** and ***Exit()*** virtual functions are provided as places for developers to add their own methods for specific applications. If your application does not require additional initialization/termination, these two functions can be left empty or simply not implemented. The ***Run()*** method carries out the main work of the application.
+The ***[Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Init)*** and ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** virtual functions are provided as places for developers to add their own methods for specific applications. If your application does not require additional initialization/termination, these two functions can be left empty or simply not implemented. The ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)*** method carries out the main work of the application.
 
-The ***FlushDiag()*** method is useful if the diagnostic stream has been set to `eDS_toMemory`, which means that diagnostic messages are stored in an internal application memory buffer. You can then call ***FlushDiag()*** to output the stored messages on the specified output stream. The method will also return the number of bytes written to the output stream. If you specify **`NULL`** for the output stream, the memory buffers containing the diagnostic messages will be purged but not deallocated, and nothing will be written to the output. If the **`close_diag`** parameter to ***FlushDiag()*** is set to true, then the memory buffers will be deallocated (and purged, of course).
+The ***[FlushDiag()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FlushDiag)*** method is useful if the diagnostic stream has been set to `eDS_toMemory`, which means that diagnostic messages are stored in an internal application memory buffer. You can then call ***[FlushDiag()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FlushDiag)*** to output the stored messages on the specified output stream. The method will also return the number of bytes written to the output stream. If you specify **`NULL`** for the output stream, the memory buffers containing the diagnostic messages will be purged but not deallocated, and nothing will be written to the output. If the **`close_diag`** parameter to ***[FlushDiag()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FlushDiag)*** is set to true, then the memory buffers will be deallocated (and purged, of course).
 
-The ***GetProgramDisplayName()*** method simply returns the name of the running application, suitable for displaying in reports or for using as the base name for building other related file names.
+The ***[GetProgramDisplayName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetProgramDisplayName)*** method simply returns the name of the running application, suitable for displaying in reports or for using as the base name for building other related file names.
 
-The protected virtual function ***SetupDiag\_AppSpecific()*** can be redefined to set up error posting specific for your application. ***SetupDiag\_AppSpecific()*** will be called inside ***AppMain()*** by default if the error posting has not been set up already. Also, if you pass `diag = eDS_AppSpecific` to ***AppMain()***, then ***SetupDiag\_AppSpecific()*** will be called for sure, regardless of the error posting setup that was active before the ***AppMain()*** call.
+The protected virtual function ***[SetupDiag\_AppSpecific()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetupDiag_AppSpecific)*** can be redefined to set up error posting specific for your application. ***[SetupDiag\_AppSpecific()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetupDiag_AppSpecific)*** will be called inside ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** by default if the error posting has not been set up already. Also, if you pass `diag = eDS_AppSpecific` to ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)***, then ***[SetupDiag\_AppSpecific()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetupDiag_AppSpecific)*** will be called for sure, regardless of the error posting setup that was active before the ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** call.
 
-The protected virtual function ***LoadConfig()*** reads the program's `.ini `configuration file to load the application's parameters into the registry. The default implementation of ***LoadConfig()*** expects to find a configuration file named `<program_name>.ini` and, if the **`DIAG_POST_LEVEL`** environment variable is set to "Info", it will generate a diagnostics message if no such file is found.
+The protected virtual function ***[LoadConfig()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LoadConfig)*** reads the program's `.ini `configuration file to load the application's parameters into the registry. The default implementation of ***[LoadConfig()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LoadConfig)*** expects to find a configuration file named `<program_name>.ini` and, if the **`DIAG_POST_LEVEL`** environment variable is set to "Info", it will generate a diagnostics message if no such file is found.
 
-The NCBI application (built by deriving from ***CNcbiApplication***) throws the exception ***CAppException*** when any of the following conditions are true:
+The NCBI application (built by deriving from ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***) throws the exception ***[CAppException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAppException)*** when any of the following conditions are true:
 
 -   Command-line argument description cannot be found and argument descriptions have not been disabled (via call to protected method ***DisableArgDescription()***.
 
@@ -871,11 +871,11 @@ The NCBI application (built by deriving from ***CNcbiApplication***) throws the 
 
 -   Registry data failed to load from a specified configuration file.
 
--   An attempt is made to create a second instance of the ***CNcbiApplication*** (at any time, only one instance can be running).
+-   An attempt is made to create a second instance of the ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)*** (at any time, only one instance can be running).
 
 -   The specified configuration file cannot be opened.
 
-As shown above, source files that utilize the ***CNcbiApplication*** class must `#include` the header file where that class is defined, `corelib/ncbiapp.hpp`, in the `include/` directory. This header file in turn includes `corelib/ncbistd.hpp`, which should **always** be `#include`'d.
+As shown above, source files that utilize the ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)*** class must `#include` the header file where that class is defined, `corelib/ncbiapp.hpp`, in the `include/` directory. This header file in turn includes `corelib/ncbistd.hpp`, which should **always** be `#include`'d.
 
 <a name="ch_core.cmd_line_args"></a>
 
@@ -924,7 +924,7 @@ The set of classes for argument processing implement automated command line pars
 
 -   define dependencies between arguments
 
-Normally, a [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) object that contains the argument description is required and [should be created](#ch_core.CArgDescriptions_App) in the application's ***Init()*** function before any other initialization. Otherwise, ***CNcbiApplication*** creates a default one, which allows any program that uses the NCBI C++ Toolkit to provide some `standard` command -line options, namely:
+Normally, a [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) object that contains the argument description is required and [should be created](#ch_core.CArgDescriptions_App) in the application's ***[Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Init)*** function before any other initialization. Otherwise, ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)*** creates a default one, which allows any program that uses the NCBI C++ Toolkit to provide some `standard` command -line options, namely:
 
 -   to obtain a general description of the program as well as description of all available command-line parameters (`-h` flag)
 
@@ -932,7 +932,7 @@ Normally, a [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/
 
 -   to read the program's [configuration data](#ch_core.registry) from a specified file (`-conffile` key)
 
-See [Table 3](#ch_core.T3) for the standard command-line options for the default instance of ***CArgDescriptions***.
+See [Table 3](#ch_core.T3) for the standard command-line options for the default instance of ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)***.
 
 <a name="ch_core.T3"></a>
 
@@ -946,15 +946,15 @@ Table 3. Standard command-line options for the default instance of CArgDescripti
 
 <div class="table-scroll"></div>
 
-To avoid creation of a default ***CArgDescriptions*** object that may not be needed, for instance if the standard flags described in [Table 3](#ch_core.T3) are not used, one should call the ***CNcbiApplication::DisableArgDescriptions()*** function from an application object constructor.
+To avoid creation of a default ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** object that may not be needed, for instance if the standard flags described in [Table 3](#ch_core.T3) are not used, one should call the ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***::***[DisableArgDescriptions()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DisableArgDescriptions)*** function from an application object constructor.
 
 It is also possible to use the ***CNcbiApplication::HideStdArgs(THideStdArgs hide\_mask)*** method to hide description of the standard arguments (`-h, -logfile, -conffile`) in the [USAGE](#ch_core.CArgDescriptions_Usage) message. Please note: This only hides the description of these flags; it is still possible to use them.
 
 <a name="ch_core.arg_classes"></a>
 
-### The Relationships between the ***CArgDescriptions***, ***CArgs***, and ***CArgValue*** Classes
+### The Relationships between the ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)***, ***[CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgs)***, and ***[CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgValue)*** Classes
 
-The [CArgDescriptions](#ch_core.CArgDescriptions) class provides an interface to describe the data type and attributes of command-line arguments via a set of ***AddXxx()*** methods. Additional constraints on the argument values can be imposed using the ***SetConstraint()*** method. The ***CreateArgs()*** method is passed the values of all command-line arguments at runtime. This method verifies their overall syntactic structure and matches their values against the stored descriptions. If the arguments are parsed successfully, a new [CArgs](#ch_core.CArgs) object is returned by ***CreateArgs()***.
+The [CArgDescriptions](#ch_core.CArgDescriptions) class provides an interface to describe the data type and attributes of command-line arguments via a set of ***AddXxx()*** methods. Additional constraints on the argument values can be imposed using the ***[SetConstraint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetConstraint)*** method. The ***[CreateArgs()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateArgs)*** method is passed the values of all command-line arguments at runtime. This method verifies their overall syntactic structure and matches their values against the stored descriptions. If the arguments are parsed successfully, a new [CArgs](#ch_core.CArgs) object is returned by ***[CreateArgs()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateArgs)***.
 
 The resulting [CArgs](#ch_core.CArgs) object will contain parsed, verified, and ready-to-use argument values, which are stored as [CArgValue](#ch_core.CArgValue). The value of a particular argument can be accessed using the argument's name (as specified in the [CArgDescriptions](#ch_core.CArgDescriptions) object), and the returned [CArgValue](#ch_core.CArgValue) object can then be safely type-cast to a correct C++ type (***int***, ***string***, ***stream***, etc.) because the argument types have been verified. These class relations and methods can be summarized schematically as shown in [Figure 1](#ch_core.F1).
 
@@ -964,7 +964,7 @@ The resulting [CArgs](#ch_core.CArgs) object will contain parsed, verified, and 
 
 Figure 1. Argument processing class relations.
 
-The last statement in this example implicitly references a [CArgValue](#ch_core.CArgValue) object, in the value returned when the `[ ] `operator is applied to **`myArgs`**. The method ***CArgValue::AsDouble()*** is then applied to this object to retrieve a ***double***.
+The last statement in this example implicitly references a [CArgValue](#ch_core.CArgValue) object, in the value returned when the `[ ] `operator is applied to **`myArgs`**. The method ***[CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgValue)***::***[AsDouble()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AsDouble)*** is then applied to this object to retrieve a ***double***.
 
 <a name="ch_core.cmd_line_syntax"></a>
 
@@ -1000,7 +1000,7 @@ where:
 
 and: `<key>` must be followed by `<value>`. In all cases '`-<key> <value>`' is equivalent to '`-<key>=<value>`'. If '=' is used as separator, the value can be empty ('`-<key>=`'). For arguments with a single-char name `fOptionalSeparator` flag can be set. In this case the value can be specified without any separator: `-<k><value>`
 
-***NOTE:*** No other argument's name can start with the same character to avoid conflicts. `<flag>` and `<key>` are case-sensitive, and they can contain only alphanumeric characters and dash ('-'). Only one leading dash is allowed. The leading dash can be used to create arguments which look like `--<key>` in the command line. `<value>` is an arbitrary string (additional constraints can be applied in the argument description, see "EType"). {arg\_pos\*\*\*} and {arg\_extra\*\*\*} are position-dependent arguments, with no tag preceding them. {arg\_pos\*\*\*} arguments have individual names and descriptions (see methods ***AddPositional***\*\*\*). {arg\_extra\*\*\*} arguments have one description for all (see method ***AddExtra***). User can apply constraints on the number of mandatory and optional {arg\_extra\*\*\*} arguments.
+***NOTE:*** No other argument's name can start with the same character to avoid conflicts. `<flag>` and `<key>` are case-sensitive, and they can contain only alphanumeric characters and dash ('-'). Only one leading dash is allowed. The leading dash can be used to create arguments which look like `--<key>` in the command line. `<value>` is an arbitrary string (additional constraints can be applied in the argument description, see "EType"). {arg\_pos\*\*\*} and {arg\_extra\*\*\*} are position-dependent arguments, with no tag preceding them. {arg\_pos\*\*\*} arguments have individual names and descriptions (see methods ***[AddPositional](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddPositional)***\*\*\*). {arg\_extra\*\*\*} arguments have one description for all (see method ***[AddExtra](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddExtra)***). User can apply constraints on the number of mandatory and optional {arg\_extra\*\*\*} arguments.
 
 Examples of command-less command lines:
 
@@ -1016,9 +1016,9 @@ The [Supporting Command-Based Command Lines](#ch_core.Supporting_CommandBased_Co
 
 <a name="ch_core.CArgDescriptions"></a>
 
-### The ***CArgDescriptions*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)) class
+### The ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html)) class
 
-[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) contains a description of unparsed arguments, that is, user-specified descriptions that are then used to parse the arguments. ***CArgDescriptions*** is used as a container to store the command-line argument descriptions. The argument descriptions are used for parsing and verifying actual command-line arguments.
+[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html) contains a description of unparsed arguments, that is, user-specified descriptions that are then used to parse the arguments. ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** is used as a container to store the command-line argument descriptions. The argument descriptions are used for parsing and verifying actual command-line arguments.
 
 The following is a list of topics discussed in this section:
 
@@ -1040,7 +1040,7 @@ The following is a list of topics discussed in this section:
 
 #### The CArgDescriptions Constructor
 
-The constructor for ***CArgDescriptions*** accepts a Boolean argument, auto\_help, set to TRUE by default.
+The constructor for ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** accepts a Boolean argument, auto\_help, set to TRUE by default.
 
 `CArgDescriptions(bool auto_help = true);`
 
@@ -1050,7 +1050,7 @@ If "auto\_help" is passed TRUE, then a special flag "-h" will be added to the li
 
 #### Describing Argument Attributes
 
-***CArgDescriptions*** class contains many methods, called ***AddXxx()***. The "Xxx" refers to the types of arguments, such as mandatory key (named) arguments, optional key arguments, positional arguments, flag arguments, etc. For example, the ***AddKey()*** method refers to adding a description for a mandatory key argument.
+***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** class contains many methods, called ***AddXxx()***. The "Xxx" refers to the types of arguments, such as mandatory key (named) arguments, optional key arguments, positional arguments, flag arguments, etc. For example, the ***[AddKey()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddKey)*** method refers to adding a description for a mandatory key argument.
 
 The methods for ***AddXxx()*** are passed the following argument attributes:
 
@@ -1078,15 +1078,15 @@ The [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml
 
 **Optional named flags:** `[-<flag>]` (example: ***-reverse***) Position-independent boolean (without value) arguments. These arguments are **always** optional. [AddFlag(flag, comment, set\_value)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a8060749685bf9d8ea01c155e32979d87)
 
-**Mandatory named positional arguments:** `<value>` (example: `12 Feb`) These are position-`dependent` arguments (of any type), which are read using a `value` only. They do, however, have names stored with their descriptions, which they are associated with in an order-dependent fashion. Specifically, the order in which untagged argument descriptions are added to the ***CArgDescriptions*** object using ***AddPositional()*** defines the order in which these arguments should appear in the command line. [AddPositional(key, comment, value\_type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a54a1fdcc705da4554f6a012a26d352e8)
+**Mandatory named positional arguments:** `<value>` (example: `12 Feb`) These are position-`dependent` arguments (of any type), which are read using a `value` only. They do, however, have names stored with their descriptions, which they are associated with in an order-dependent fashion. Specifically, the order in which untagged argument descriptions are added to the ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** object using ***[AddPositional()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddPositional)*** defines the order in which these arguments should appear in the command line. [AddPositional(key, comment, value\_type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a54a1fdcc705da4554f6a012a26d352e8)
 
-**Optional named positional arguments:** `[value]` (example: `foo.txt bar`) Position-`dependent` arguments that are `optional`. They always go after the `mandatory` positional arguments. The order in which untagged argument descriptions are added to the ***CArgDescriptions*** object using ***Add[Optional\|Default]Positional()*** defines the order in which these arguments should appear in the command line. [AddOptionalPositional(key, comment, value\_type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a6eb17781a5b7c9ac29deb0ae3d5c8e94) [AddDefaultPositional(key, comment, value\_type, default\_value, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a379f0f2e0723fe5c1ac6a175fac41a63)
+**Optional named positional arguments:** `[value]` (example: `foo.txt bar`) Position-`dependent` arguments that are `optional`. They always go after the `mandatory` positional arguments. The order in which untagged argument descriptions are added to the ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** object using ***Add[Optional\|Default]Positional()*** defines the order in which these arguments should appear in the command line. [AddOptionalPositional(key, comment, value\_type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a6eb17781a5b7c9ac29deb0ae3d5c8e94) [AddDefaultPositional(key, comment, value\_type, default\_value, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a379f0f2e0723fe5c1ac6a175fac41a63)
 
 **Unnamed positional arguments** (all of the same type: `<value1> | [valueN]` (example: `foo.c bar.c xxx.c`). These are also position-`dependent` arguments that are read using a `value` only. They are expected to appear at the very end of the command line, after all named arguments. Unlike the previous argument type, however, these arguments do not have individual, named descriptions but share a single "unnamed" description. You can specify how many mandatory and how many optional arguments to expect using **`n_mandatory`** and **`n_optional`** parameters: [AddExtra(n\_mandatory, n\_optional, comment, type, flags)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a17e78a529e76801af4ce501f04d31463)
 
 **Aliases** can be created for any arguments. They allow using an alternative argument name in the command line. However, only the original argument name can be used to access its value in the C++ code. [AddAlias(alias, arg\_name)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html#a46359b719ecb44791463a9a4f5a46f91)
 
-Any of the registered descriptions can be tested for existence and/or deleted using the following ***CArgDescriptions*** methods:
+Any of the registered descriptions can be tested for existence and/or deleted using the following ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** methods:
 
     bool Exist(const string& name) const;
     void Delete(const string& name);
@@ -1112,9 +1112,9 @@ Although each argument's input value is initially loaded as a simple character s
 
 <a name="ch_core.CArgDescriptions_UserValueTypes"></a>
 
-#### Implementing User-defined Restrictions Using the ***CArgAllow*** Class
+#### Implementing User-defined Restrictions Using the ***[CArgAllow](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgAllow)*** Class
 
-It may be necessary to specify a restricted range for argument values. For example, an integer argument that has a range between 5 and 10. Further restrictions on the allowed values can be specified using the ***CArgDescriptions::SetConstraint()*** method with the [CArgAllow](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow.html) class. For example:
+It may be necessary to specify a restricted range for argument values. For example, an integer argument that has a range between 5 and 10. Further restrictions on the allowed values can be specified using the ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)***::***[SetConstraint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetConstraint)*** method with the [CArgAllow](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow.html) class. For example:
 
     auto_ptr<CArgDescriptions> args(new CArgDescriptions);
     // add descriptions for "firstint" and "nextint" using AddXxx( ...)
@@ -1125,15 +1125,15 @@ It may be necessary to specify a restricted range for argument values. For examp
 
 This specifies that the arguments named `"firstInt"` and `"nextInt"` must both be in the range [5, 10].
 
-The [CArgAllow\_Integers](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Integers.html) class is derived from the **abstract*****CArgAllow*** class. The constructor takes the two integer arguments as lower and upper bounds for allowed values. Similarly, the [CArgAllow\_Doubles](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Doubles.html) class can be used to specify a range of allowed floating point values. For both classes, the order of the numeric arguments does not matter, because the constructors will use min/max comparisons to generate a valid range.
+The [CArgAllow\_Integers](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Integers.html) class is derived from the **abstract*****[CArgAllow](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgAllow)*** class. The constructor takes the two integer arguments as lower and upper bounds for allowed values. Similarly, the [CArgAllow\_Doubles](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Doubles.html) class can be used to specify a range of allowed floating point values. For both classes, the order of the numeric arguments does not matter, because the constructors will use min/max comparisons to generate a valid range.
 
-A third class derived from the ***CArgAllow*** class is the [CArgAllow\_Strings](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Strings.html) class. In this case, the set of allowed values cannot be specified by a ***range***, but the following construct can be used to enumerate all eligible string values:
+A third class derived from the ***[CArgAllow](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgAllow)*** class is the [CArgAllow\_Strings](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow__Strings.html) class. In this case, the set of allowed values cannot be specified by a ***range***, but the following construct can be used to enumerate all eligible string values:
 
     CArgAllow* constraint = (new CArgAllow_Strings())->
                                  Allow("this)->Allow("that")->Allow("etc");
     args.SetConstraint("someString", constraint);
 
-Here, the constructor takes no arguments, and the ***Allow()*** method returns **`this`**. Thus, a list of allowed strings can be specified by daisy-chaining a set of calls to ***Allow()***. A bit unusual yet terser notation can also be used by engaging the comma operator, as in:
+Here, the constructor takes no arguments, and the ***[Allow()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Allow)*** method returns **`this`**. Thus, a list of allowed strings can be specified by daisy-chaining a set of calls to ***[Allow()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Allow)***. A bit unusual yet terser notation can also be used by engaging the comma operator, as in:
 
     args.SetConstraint("someString",
                        &(*new CArgAllow_Strings, "this", "that", "etc"));
@@ -1142,9 +1142,9 @@ There are two other pre-defined constraint classes: [CArgAllow\_Symbols](https:/
 
 <a name="ch_core.CArgDescriptions_App"></a>
 
-#### Using ***CArgDescriptions*** in Applications
+#### Using ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** in Applications
 
-The description of program arguments should be provided in the application's ***Init()*** function before any other initialization. A good idea is also to specify the description of the program here:
+The description of program arguments should be provided in the application's ***[Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Init)*** function before any other initialization. A good idea is also to specify the description of the program here:
 
     auto_ptr<CArgDescriptions> arg_desc(new CArgDescriptions);
     arg_desc->SetUsageContext(GetArguments().GetProgramBasename(),
@@ -1153,13 +1153,13 @@ The description of program arguments should be provided in the application's ***
     ...
     SetupArgDescriptions(arg_desc.release());
 
-The ***SetUsageContext()*** method is used to define the name of the program and its description, which is to be displayed in the `USAGE` message. As long as the initialization of the application is completed and there is still no argument description, ***CNcbiApplication*** class provides a "default" one. This behavior can be overridden by calling the ***DisableArgDescriptions()*** method of `CNcbiAppliation`.
+The ***[SetUsageContext()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetUsageContext)*** method is used to define the name of the program and its description, which is to be displayed in the `USAGE` message. As long as the initialization of the application is completed and there is still no argument description, ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)*** class provides a "default" one. This behavior can be overridden by calling the ***[DisableArgDescriptions()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DisableArgDescriptions)*** method of `CNcbiAppliation`.
 
 <a name="ch_core.CArgDescriptions_Usage"></a>
 
 #### Generating a `USAGE `Message
 
-One of the functions of the ***CArgDescriptions*** object is to generate a `USAGE` message automatically (this gives yet another reason to define one). Once such object is [defined](#ch_core.CArgDescriptions_App), there is nothing else to worry about; ***CNcbiApplication*** will do the job for you. The ***SetupArgDescriptions()*** method includes parsing the command line and matching arguments against their descriptions. Should an error occur, e.g., a mandatory argument is missing, the program prints a message explaining what was wrong and terminates. The output in this case might look like this:
+One of the functions of the ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** object is to generate a `USAGE` message automatically (this gives yet another reason to define one). Once such object is [defined](#ch_core.CArgDescriptions_App), there is nothing else to worry about; ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)*** will do the job for you. The ***[SetupArgDescriptions()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetupArgDescriptions)*** method includes parsing the command line and matching arguments against their descriptions. Should an error occur, e.g., a mandatory argument is missing, the program prints a message explaining what was wrong and terminates. The output in this case might look like this:
 
     USAGE
       myApp -h -k MandatoryKey [optarg]
@@ -1187,13 +1187,13 @@ The information generated for each argument is displayed in the format:
 
 > *me [synopsis] \<type [, constraint] \> comment [default = .....]*
 
-The arguments in the USAGE message can be arranged into groups by using ***SetCurrentGroup()*** method of the ***CArgDescriptions*** object.
+The arguments in the USAGE message can be arranged into groups by using ***[SetCurrentGroup()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetCurrentGroup)*** method of the ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** object.
 
 <a name="ch_core.CArgs"></a>
 
 ### The CArgs ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs.html)) Class: A Container Class for CArgValue ([\*](#ch_core.CArgValue)) Objects
 
-The [CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs.html) class provides a data structure where the values of the parsed arguments can be stored and includes access routines in its public interface. Argument values are obtained from the unprocessed command-line arguments via the ***CNcbiArguments*** class and then verified and processed according to the argument descriptions defined by the user in ***CArgDescriptions***. The following describes the public interface methods in ***CArgs***:
+The [CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs.html) class provides a data structure where the values of the parsed arguments can be stored and includes access routines in its public interface. Argument values are obtained from the unprocessed command-line arguments via the ***[CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiArguments)*** class and then verified and processed according to the argument descriptions defined by the user in ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)***. The following describes the public interface methods in ***[CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgs)***:
 
     class  CArgs
     {
@@ -1230,15 +1230,15 @@ The [CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgs
         bool IsEmpty(void) const;
     };
 
-The CArgs object is created by executing the ***CArgDescriptions::CreateArgs()*** method. What happens when the ***CArgDescriptions::CreateArgs()*** method is executed is that the arguments of the command line are validated against the registered descriptions, and a ***CArgs*** object is created. Each argument value is internally represented as a [CArgValue](#ch_core.CArgValue) object and is added to a container managed by the ***CArgs*** object.
+The CArgs object is created by executing the ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)***::***[CreateArgs()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateArgs)*** method. What happens when the ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)***::***[CreateArgs()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateArgs)*** method is executed is that the arguments of the command line are validated against the registered descriptions, and a ***[CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgs)*** object is created. Each argument value is internally represented as a [CArgValue](#ch_core.CArgValue) object and is added to a container managed by the ***[CArgs](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgs)*** object.
 
 All `named` arguments can be accessed using the `[ ]` operator, as in: `myCArgs["f"]`, where `"f"` is the name registered for that argument. There are two ways to access the **N**-th `unnamed` positional argument: `myCArgs["#N"]` and `myCArgs[N]`, where 1 \<= **N** \<= GetNExtra().
 
 <a name="ch_core.CArgValue"></a>
 
-### ***CArgValue*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html)) Class: The Internal Representation of Argument Values
+### ***[CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgValue)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html)) Class: The Internal Representation of Argument Values
 
-The internal representation of an argument value, as it is stored and retrieved from its [CArgs](#ch_core.CArgs) container, is an instance of a [CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html). The primary purpose of this class is to provide type-validated loading through a set of ***AsXxx()*** methods where "***Xxx***" is the argument type such as "Integer", "Boolean", "Double", etc. The following describes the public interface methods in ***CArgValue***:
+The internal representation of an argument value, as it is stored and retrieved from its [CArgs](#ch_core.CArgs) container, is an instance of a [CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgValue.html). The primary purpose of this class is to provide type-validated loading through a set of ***AsXxx()*** methods where "***Xxx***" is the argument type such as "Integer", "Boolean", "Double", etc. The following describes the public interface methods in ***[CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgValue)***:
 
     class  CArgValue : public CObject
     {
@@ -1298,7 +1298,7 @@ An exception will be generated with an appropriate error message, if:
 
 -   the conversion fails, or
 
--   "f" was described as an optional key or positional argument without default value (i.e., using the ***AddOptional\*\*\*()*** method), and it was not defined in the command line. Note that you can check for this case using the ***CArgValue::HasValue()*** method.
+-   "f" was described as an optional key or positional argument without default value (i.e., using the ***AddOptional\*\*\*()*** method), and it was not defined in the command line. Note that you can check for this case using the ***[CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgValue)***::***[HasValue()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HasValue)*** method.
 
 <a name="ch_core.Supporting_CommandBased_Command"></a>
 
@@ -1315,17 +1315,17 @@ Commands are case-sensitive keywords and are typically followed by other argumen
 
 Command-based command lines have a requirement that command-less command lines don't - the ability to have optional arguments between mandatory arguments. Opening arguments address this requirement. Opening arguments are essentially identical to mandatory positional arguments except that opening arguments must precede optional arguments whereas mandatory positional arguments must follow them. Thus, opening arguments allow usage forms such as the "post" command in the above example, which has an optional argument between mandatory arguments.
 
-At a high level, setting up a program to support a command-less command-line requires creating a ***CArgDescriptions*** object, adding argument descriptions to it, and passing it to ***SetupArgDescriptions()***.
+At a high level, setting up a program to support a command-less command-line requires creating a ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** object, adding argument descriptions to it, and passing it to ***[SetupArgDescriptions()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetupArgDescriptions)***.
 
-Setting up a program to support command-based command lines is similar, but requires a ***CCommandArgDescriptions*** object instead. The [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCommandArgDescriptions.html) class is derived from [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html), so all the same functionality is available; however, the ***AddCommand()*** method of ***CCommandArgDescriptions*** allows you to create multiple ***CArgDescriptions*** objects (one for each command) in addition to the overall program description. Other command-specific features are also provided, such as command grouping. ***Note:*** The ***ECommandPresence*** parameter of the ***CCommandArgDescriptions*** constructor controls whether or not the user must enter a command-based command line. Use **`eCommandOptional`** only when you are setting up both command-less and command-based command lines.
+Setting up a program to support command-based command lines is similar, but requires a ***[CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions)*** object instead. The [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCommandArgDescriptions.html) class is derived from [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html), so all the same functionality is available; however, the ***[AddCommand()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddCommand)*** method of ***[CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions)*** allows you to create multiple ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)*** objects (one for each command) in addition to the overall program description. Other command-specific features are also provided, such as command grouping. ***Note:*** The ***ECommandPresence*** parameter of the ***[CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions)*** constructor controls whether or not the user must enter a command-based command line. Use **`eCommandOptional`** only when you are setting up both command-less and command-based command lines.
 
 Programs that support command-based command lines must execute these steps:
 
-1.  Create a command descriptions object (class ***CCommandArgDescriptions***) for the overall program description.
+1.  Create a command descriptions object (class ***[CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions)***) for the overall program description.
 
-2.  Create argument descriptions objects (class ***CArgDescriptions***) for each command.
+2.  Create argument descriptions objects (class ***[CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)***) for each command.
 
-3.  Add the actual argument descriptions to the argument descriptions objects using methods such as ***AddOpening()***, ***AddPositional()***, etc.
+3.  Add the actual argument descriptions to the argument descriptions objects using methods such as ***[AddOpening()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddOpening)***, ***[AddPositional()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddPositional)***, etc.
 
 4.  Add each argument descriptions object to the overall command descriptions object.
 
@@ -1341,7 +1341,7 @@ For more information on standard command lines and general information applicabl
 
 ### Argument dependency groups
 
-Sometimes, a piece of information can be specified using several different options. For example, URL can be specified by one string, or by several - server, database, user name, and password; or, an employee can be specified by ID number or by name.  Argument dependency group class - [CArgDependencyGroup](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDependencyGroup.html) - makes it possible to describe such complex scenarios. First thing to note is that all arguments must be described in [CArgDescriptions](#ch_core.CArgDescriptions). Only after that additional restrictions can be imposed in ***CArgDependencyGroup***. Arguments are added into group by name. Then, developer specifies how many of these arguments must be defined for the group to be valid. Argument dependency group may contain other groups, which potentially allows pretty complex scenarios.
+Sometimes, a piece of information can be specified using several different options. For example, URL can be specified by one string, or by several - server, database, user name, and password; or, an employee can be specified by ID number or by name.  Argument dependency group class - [CArgDependencyGroup](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDependencyGroup.html) - makes it possible to describe such complex scenarios. First thing to note is that all arguments must be described in [CArgDescriptions](#ch_core.CArgDescriptions). Only after that additional restrictions can be imposed in ***[CArgDependencyGroup](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDependencyGroup)***. Arguments are added into group by name. Then, developer specifies how many of these arguments must be defined for the group to be valid. Argument dependency group may contain other groups, which potentially allows pretty complex scenarios.
 
 For example, in a group of three arguments, we want to require that only one is present:
 
@@ -1366,7 +1366,7 @@ Or, in a group of four arguments  - "a", "b", "x", "y" - we require that either 
 
 ### Code Examples
 
-A simple application program, [test\_ncbiargs\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs_sample.cpp) demonstrates the usage of these classes for argument processing. See also [test\_ncbiargs.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs.cpp) (especially ***main()***, ***s\_InitTest0()*** and ***s\_RunTest0()*** there), and [asn2asn.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/asn2asn/asn2asn.cpp) for more examples.
+A simple application program, [test\_ncbiargs\_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs_sample.cpp) demonstrates the usage of these classes for argument processing. See also [test\_ncbiargs.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiargs.cpp) (especially ***[main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=main)***, ***[s\_InitTest0()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=s_InitTest0)*** and ***[s\_RunTest0()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=s_RunTest0)*** there), and [asn2asn.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/asn2asn/asn2asn.cpp) for more examples.
 
 <a name="ch_core.namespace_concat"></a>
 
@@ -1433,9 +1433,9 @@ Another macro called **`NCBI_EAT_SEMICOLON`** is used in creating new names that
 Configuration Parameters
 ------------------------
 
-The ***CParam*** class is the preferred method for defining configuration parameters. This class enables storing parameters with per-object values, thread-wide defaults, and application-wide defaults. Global default values may be set through the application registry or the environment.
+The ***[CParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParam)*** class is the preferred method for defining configuration parameters. This class enables storing parameters with per-object values, thread-wide defaults, and application-wide defaults. Global default values may be set through the application registry or the environment.
 
-The following topics discuss using the ***CParam*** class.
+The following topics discuss using the ***[CParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParam)*** class.
 
 -   [General Usage Information](#ch_core.General_Usage_Inform)
 
@@ -1449,9 +1449,9 @@ The following topics discuss using the ***CParam*** class.
 
 ### General Usage Information
 
-A ***CParam*** instance gets its initial value from one of three sources. If the application registry specifies a value, then that value will be used. Otherwise if the environment specifies a value, then that value will be used. Otherwise the default value supplied in the definition will be used. Later, the value can be changed [using various methods](#ch_core.Methods_for_Using_Pa).
+A ***[CParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParam)*** instance gets its initial value from one of three sources. If the application registry specifies a value, then that value will be used. Otherwise if the environment specifies a value, then that value will be used. Otherwise the default value supplied in the definition will be used. Later, the value can be changed [using various methods](#ch_core.Methods_for_Using_Pa).
 
-***N.B.*** statically defined instances of configuration parameters will be assigned their default values even if the environment and / or application registry specify (possibly different) values for them. This is because they are constructed (using their default value) at program startup and at that time the application framework for reading from the environment and application registry hasn't been set up yet. Therefore it is important to call the ***Reset()*** method for these parameters prior to reading their value. Alternatively, the ***GetState()*** method will indicate whether or not all possible sources were checked when a value was assigned to a configuration parameter - if they were, it will have either the value **`eState_Config`** or **`eState_User`**.
+***N.B.*** statically defined instances of configuration parameters will be assigned their default values even if the environment and / or application registry specify (possibly different) values for them. This is because they are constructed (using their default value) at program startup and at that time the application framework for reading from the environment and application registry hasn't been set up yet. Therefore it is important to call the ***[Reset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset)*** method for these parameters prior to reading their value. Alternatively, the ***[GetState()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetState)*** method will indicate whether or not all possible sources were checked when a value was assigned to a configuration parameter - if they were, it will have either the value **`eState_Config`** or **`eState_User`**.
 
 For more information on the application framework, the environment, and the application registry, see the sections on [CNcbiApplication](#ch_core.CNcbiApplication), [CNcbiEnvironment](#ch_core.CNcbiEnvironment), and [CNcbiRegistry](#ch_core.registry).
 
@@ -1467,7 +1467,7 @@ and include the NCBI core library in your makefile:
 
 ### Macros for Creating Parameters
 
-The ***CParam*** class is not designed to be used directly for creating configuration parameter variables. Instead, it supplies macros which your code should use. These macros have parameters for types, sections, names, default values, flags, and environment.
+The ***[CParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParam)*** class is not designed to be used directly for creating configuration parameter variables. Instead, it supplies macros which your code should use. These macros have parameters for types, sections, names, default values, flags, and environment.
 
 The **`type`** macro parameter must:
 
@@ -1483,7 +1483,7 @@ The **`section`** macro parameter indicates which section of a configuration fil
 
 The **`name`** macro parameter uniquely identifies the parameter within the section.
 
-The **`default_value`** macro parameter provides the default value for the parameter - i.e. the value the parameter has from the time it is created until it is overwritten by a value from the environment, configuration file, or user code - and the value it is assigned by the ***Reset()*** method.
+The **`default_value`** macro parameter provides the default value for the parameter - i.e. the value the parameter has from the time it is created until it is overwritten by a value from the environment, configuration file, or user code - and the value it is assigned by the ***[Reset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset)*** method.
 
 The **`flags`** macro parameter (a bitwise OR of enum values) can be used to control certain behavior options for the parameter. Currently, these enum values are:
 
@@ -1501,7 +1501,7 @@ See the [enum definition](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/i
 
 The **`env`** macro parameter can be used to specify the environment variable to be searched. If the **`env`** macro parameter is not used, the environment will be searched for a variable having the form **`NCBI_CONFIG__<section>__<name>`** (***note:*** the first underscore is single; the others are double).
 
-***CParam*** instances must be declared and defined before use. A typedef may also be created.
+***[CParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParam)*** instances must be declared and defined before use. A typedef may also be created.
 
 To *declare* simple parameters, use the **`NCBI_PARAM_DECL`** macro:
 
@@ -1568,22 +1568,22 @@ Another way to conveniently use a configuration parameter is to use the **`NCBI_
 
 ### Methods for Using Parameters
 
-Important methods of the ***CParam*** class are:
+Important methods of the ***[CParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParam)*** class are:
 
 <a name="ch_core.T.nc_MethodStaticPurposeGetState"></a>
 
 | Method   | Static | Purpose                |
 |----------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ***GetState()***     | Yes    | Get the current state of the parameter. The state indicates the last source checked when assigning its value. ***N.B.*** it specifically does *not* indicate the origin of the current value. See the [EParamState](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCParamBase.html#0f2898884063b661395c511bcdb1c6ea) enum for specific values. |
-| ***Get()***    | No     | Get the current parameter value.          |
-| ***Set()***    | No     | Set a new parameter value (this instance only).              |
-| ***Reset()***  | No     | Reset the value as if it has not been initialized yet.       |
-| ***GetDefault()***   | Yes    | Get the global default value.             |
-| ***SetDefault()***   | Yes    | Set a new global default value.           |
-| ***ResetDefault()*** | Yes    | Reload the global default value from the environment/registry or reset it to the initial value specified in NCBI\_PARAM\_DEF.            |
-| ***GetThreadDefault()***   | Yes    | Get the thread-local default value if set, otherwise the global default value.  |
-| ***SetThreadDefault()***   | Yes    | Set a new thread-local default value.     |
-| ***ResetThreadDefault()*** | Yes    | Reset the thread default value as if it has not been set.    |
+| ***[GetState()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetState)***     | Yes    | Get the current state of the parameter. The state indicates the last source checked when assigning its value. ***N.B.*** it specifically does *not* indicate the origin of the current value. See the [EParamState](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCParamBase.html#0f2898884063b661395c511bcdb1c6ea) enum for specific values. |
+| ***[Get()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Get)***    | No     | Get the current parameter value.          |
+| ***[Set()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Set)***    | No     | Set a new parameter value (this instance only).              |
+| ***[Reset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset)***  | No     | Reset the value as if it has not been initialized yet.       |
+| ***[GetDefault()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDefault)***   | Yes    | Get the global default value.             |
+| ***[SetDefault()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDefault)***   | Yes    | Set a new global default value.           |
+| ***[ResetDefault()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ResetDefault)*** | Yes    | Reload the global default value from the environment/registry or reset it to the initial value specified in NCBI\_PARAM\_DEF.            |
+| ***[GetThreadDefault()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetThreadDefault)***   | Yes    | Get the thread-local default value if set, otherwise the global default value.  |
+| ***[SetThreadDefault()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetThreadDefault)***   | Yes    | Set a new thread-local default value.     |
+| ***[ResetThreadDefault()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ResetThreadDefault)*** | Yes    | Reset the thread default value as if it has not been set.    |
 
 <div class="table-scroll"></div>
 
@@ -1603,13 +1603,13 @@ Typical uses involve getting the current or default values:
 
 ### Supporting Classes
 
-The CParam class is packaged with two supporting classes: ***CParamException*** and ***CParamParser***.
+The CParam class is packaged with two supporting classes: ***[CParamException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamException)*** and ***[CParamParser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamParser)***.
 
-***CParamException*** will be thrown by the parameter parser if invalid parameter values are specified in the environment, configuration file, or code.
+***[CParamException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamException)*** will be thrown by the parameter parser if invalid parameter values are specified in the environment, configuration file, or code.
 
-***CParamParser*** is a templatized helper class that parses parameter literals into parameter values, using its ***StringToValue()*** method. [***Note:*** the "String" in this method name refers to the string of characters in the literal being parsed (regardless of the type it represents), not to the ***std::string*** type.] A ***ValueToString()*** method is also provided for completeness.
+***[CParamParser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamParser)*** is a templatized helper class that parses parameter literals into parameter values, using its ***[StringToValue()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=StringToValue)*** method. [***Note:*** the "String" in this method name refers to the string of characters in the literal being parsed (regardless of the type it represents), not to the ***std***::***string*** type.] A ***[ValueToString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ValueToString)*** method is also provided for completeness.
 
-***CParamParser*** templates have been pre-defined for string, bool, int, and enum types. If you need to create a configuration parameter that is more complex than these types, then you will need to either instantiate ***CParamParser*** for your type or define appropriate ***operator\<\<()*** and ***operator\>\>()*** methods. This will:
+***[CParamParser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamParser)*** templates have been pre-defined for string, bool, int, and enum types. If you need to create a configuration parameter that is more complex than these types, then you will need to either instantiate ***[CParamParser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamParser)*** for your type or define appropriate ***operator\<\<()*** and ***operator\>\>()*** methods. This will:
 
 -   enable parsing of the default value specified in the definition of your complex configuration parameter;
 
@@ -1617,9 +1617,9 @@ The CParam class is packaged with two supporting classes: ***CParamException*** 
 
 -   enable that type to be assigned values via the ***Set\*()*** methods.
 
-***Note:*** Defining the appropriate ***operator\<\<()*** and ***operator\>\>()*** methods is preferrable to instantiating ***CParamParser*** for your type because:
+***Note:*** Defining the appropriate ***operator\<\<()*** and ***operator\>\>()*** methods is preferrable to instantiating ***[CParamParser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamParser)*** for your type because:
 
--   instantiating ***CParamParser*** for your type would make it more difficult to change the ***CParamParser*** template, if that should become necessary; and
+-   instantiating ***[CParamParser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamParser)*** for your type would make it more difficult to change the ***[CParamParser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParamParser)*** template, if that should become necessary; and
 
 -   ***operator\<\<()*** and ***operator\>\>()*** can be useful in other contexts.
 
@@ -1628,9 +1628,9 @@ The CParam class is packaged with two supporting classes: ***CParamException*** 
 Using the CNcbiRegistry Class
 -----------------------------
 
-If for some reason the ***CParam*** class cannot be used to [define configuration parameters](#ch_core.Configuration_Parame), the ***CNcbiRegistry*** class may be used instead.
+If for some reason the ***[CParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParam)*** class cannot be used to [define configuration parameters](#ch_core.Configuration_Parame), the ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)*** class may be used instead.
 
-This section provides reference information on the use of the ***CNcbiRegistry*** class. For an overview of this class, refer to the [introductory chapter](ch_intro.html#ch_intro.intro_reg). This class is also discussed in the [library configuration chapter](ch_libconfig.html#ch_libconfig.libconfig_registry).
+This section provides reference information on the use of the ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)*** class. For an overview of this class, refer to the [introductory chapter](ch_intro.html#ch_intro.intro_reg). This class is also discussed in the [library configuration chapter](ch_libconfig.html#ch_libconfig.libconfig_registry).
 
 The following topics are discussed in this section:
 
@@ -1670,7 +1670,7 @@ An environment registry is created from configuration parameters specified in th
 
 If the special environment variable **`NCBI_CONFIG_OVERRIDES`** is defined, the configuration file it names will be loaded as the overrides registry. This registry will have the next highest precedence after the environment.
 
-For the application registry, the name of the configuration file can be explicitly set with the `-conffile` command-line argument, set (or disabled) with the **`conf`** argument of [CNcbiApplication::AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html), or implicitly set (or disabled) according to [search order rules](#ch_core.ini_search_order). If the `-conffile` command-line argument is supplied, that path will be used. If the **`conf`** argument to ***AppMain()*** is supplied, the file will be determined according to [Table 2](#ch_core.T2). Otherwise, the file will be determined according to [search order rules](#ch_core.ini_search_order). The application registry follows the overrides registry in precedence.
+For the application registry, the name of the configuration file can be explicitly set with the `-conffile` command-line argument, set (or disabled) with the **`conf`** argument of [CNcbiApplication::AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiApplication.html), or implicitly set (or disabled) according to [search order rules](#ch_core.ini_search_order). If the `-conffile` command-line argument is supplied, that path will be used. If the **`conf`** argument to ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** is supplied, the file will be determined according to [Table 2](#ch_core.T2). Otherwise, the file will be determined according to [search order rules](#ch_core.ini_search_order). The application registry follows the overrides registry in precedence.
 
 <a name="ch_core.T2"></a>
 
@@ -1690,9 +1690,9 @@ System-wide configuration parameters can be defined in the system registry. The 
 
 Configuration files may "inherit" entries from other configuration files using the `.Inherits` entry in the `[NCBI]` section. The `.Inherits` entry is a space- and/or comma- delimited list of file names. Files having a `.ini` extension may be listed in the `.Inherits` entry without the `.ini` extension. Note that extensionless file names are not supported in the `.Inherits` entry. Inherited registries have the same precedence as the registry that inherited them.
 
-Registries can be programmatically loaded from files by calling ***CNcbiRegistry::Read()***. ***CNcbiApplication::LoadConfig()*** can also be called to "manually" load the application registry - for example, if special flags are required. The precedence for programmatically loaded registries depends on the flags they are loaded with. By default (or if loaded with the **`IRegistry::fOverride`** flag) they will have greater precedence that previously loaded registries, but if loaded with the **`IRegistry::fNoOverride`** flag, they will not override existing parameters.
+Registries can be programmatically loaded from files by calling ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)***::***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)***. ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***::***[LoadConfig()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LoadConfig)*** can also be called to "manually" load the application registry - for example, if special flags are required. The precedence for programmatically loaded registries depends on the flags they are loaded with. By default (or if loaded with the **`IRegistry::fOverride`** flag) they will have greater precedence that previously loaded registries, but if loaded with the **`IRegistry::fNoOverride`** flag, they will not override existing parameters.
 
-Although registry objects can be instantiated and manipulated independently, they are typically used by the ***CNcbiApplication*** class. Specifically, ***CNcbiApplication::AppMain()*** attempts to load a registry with entries from all of the above sources (except programmatically loaded registries). ***AppMain()*** will look for the system and application registries in multiple locations, and possibly with a modified name, as described in the [search order](#ch_core.ini_search_order) section below.
+Although registry objects can be instantiated and manipulated independently, they are typically used by the ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)*** class. Specifically, ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***::***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** attempts to load a registry with entries from all of the above sources (except programmatically loaded registries). ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** will look for the system and application registries in multiple locations, and possibly with a modified name, as described in the [search order](#ch_core.ini_search_order) section below.
 
 See the [Registry](ch_libconfig.html#ch_libconfig.libconfig_registry) and [Environment](ch_libconfig.html#ch_libconfig.Environment) sections of the library configuration chapter for more information on controlling the registry via the environment.
 
@@ -1806,7 +1806,7 @@ Finally, the environment variable `NCBI_CONFIG_OVERRIDES` can be used to name a 
 
 ***Note:*** This section discusses the search order for initialization files, which is only applicable to the application and system initialization files. Please see the [Working with the Registry Class](#ch_core.registry_intro) section for a discussion about the other sources of configuration information and the relative precedence of all registry sources.
 
-***Note:*** See [Table 2](#ch_core.T2) for rules about how the **`conf`** argument to ***AppMain()*** affects the search rules for the application initialization file. Also, if the **`-conffile`** command-line argument is used, then only that application initialization file is tried.
+***Note:*** See [Table 2](#ch_core.T2) for rules about how the **`conf`** argument to ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** affects the search rules for the application initialization file. Also, if the **`-conffile`** command-line argument is used, then only that application initialization file is tried.
 
 ***Note:*** Several means are available to control loading of the system initialization file. It can be enabled by the **`IRegistry::fWithNcbirc`** flag. It can be disabled if (1) it contains the `DONT_USE_NCBIRC` entry in the `NCBI` section, (2) it contains syntax errors or no entries, or (3) if the environment variable **`NCBI_DONT_USE_NCBIRC`** is defined.
 
@@ -1826,7 +1826,7 @@ With the exceptions noted above, the following rules determine the search order 
 
     -   The standard system directory ("`/etc`" on Unix-like systems, and given by the environment variable **`SYSTEMROOT`** on Windows).
 
-    -   The directory containing the application, if known (this requires use of ***CNcbiApplication***).
+    -   The directory containing the application, if known (this requires use of ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***).
 
 ***Note:*** The search ends with the first file found.
 
@@ -1862,9 +1862,9 @@ For the system registry: The name `.ncbirc` is tried on Unix-like systems and `n
 
 ### ***Fine-Tuning Registry Parameters Using IRegistry::EFlags***
 
-***Note:*** This section deals with concepts not typically needed by most C++ Toolkit users. The functionality of ***CNcbiRegistry*** is automatically and transparently provided when you use ***CNcbiApplication***. You probably won't need to read this section unless you're working with an application that edits registry files or explicitly sets registry entry values.
+***Note:*** This section deals with concepts not typically needed by most C++ Toolkit users. The functionality of ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)*** is automatically and transparently provided when you use ***[CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)***. You probably won't need to read this section unless you're working with an application that edits registry files or explicitly sets registry entry values.
 
-Each ***CNcbiRegistry*** entry has a set of flags that control how it is handled, defined by this enum:
+Each ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)*** entry has a set of flags that control how it is handled, defined by this enum:
 
     enum EFlags {
         fTransient      = 0x1,   ///< Transient -- not saved by default
@@ -1901,7 +1901,7 @@ Some pairs of these flags are mutually exclusive and have a default if neither f
 
 It is not necessary to use the **`fNoTruncate`** flag because it represents the default behavior - no values are truncated unless **`fTruncate`** is used.
 
-The flag **`fWithNcbirc`** can be passed to the ***CNcbiRegistry*** constructor, the ***CNcbiRegistry::IncludeNcbircIfAllowed()*** method, or the ***IRWRegistry::IncludeNcbircIfAllowed()*** method. If it is set then the system-wide registry is used - see the [search order section](#ch_core.ini_search_order) for details on the system-wide registry.
+The flag **`fWithNcbirc`** can be passed to the ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)*** constructor, the ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)***::***[IncludeNcbircIfAllowed()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IncludeNcbircIfAllowed)*** method, or the ***[IRWRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IRWRegistry)***::***[IncludeNcbircIfAllowed()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IncludeNcbircIfAllowed)*** method. If it is set then the system-wide registry is used - see the [search order section](#ch_core.ini_search_order) for details on the system-wide registry.
 
 For example, the following code demonstrates that the bit-wise OR of **`fTruncate `**and **`fNoOverride`** strips all leading and trailing blanks and does not override an existing value:
 
@@ -1916,19 +1916,19 @@ For example, the following code demonstrates that the bit-wise OR of **`fTruncat
 
 <a name="ch_core.registry_mainmethods"></a>
 
-### Main Methods of ***CNcbiRegistry***
+### Main Methods of ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)***
 
-The ***CNcbiRegistry*** class constructor takes two arguments - an input stream to read the registry from (usually a file), and an optional ***TFlags*** argument, where the latter can be used to specify that all of the values should be stored as `transient` rather than in the default mode, which is `persistent`:
+The ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)*** class constructor takes two arguments - an input stream to read the registry from (usually a file), and an optional ***TFlags*** argument, where the latter can be used to specify that all of the values should be stored as `transient` rather than in the default mode, which is `persistent`:
 
     CNcbiRegistry(CNcbiIstream& is, TFlags flags = 0);
 
-Once the registry has been initialized by its constructor, it is also possible to load additional parameters from other file(s) using the ***Read()*** method:
+Once the registry has been initialized by its constructor, it is also possible to load additional parameters from other file(s) using the ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method:
 
     void Read(CNcbiIstream& is, TFlags flags = 0);
 
-Valid flags for the ***Read()*** method include **`eTransient `**and **`eNoOverride`**. The default is for all values to be read in as `persistent`, with the capability of overriding any previously loaded value associated with the same name. Either or both of these defaults can be modified by specifying **`eTransient, eNoOverride`**, or (**`eTransient | eNoOverride`**) as the **`flags`** argument in the above expression.
+Valid flags for the ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method include **`eTransient `**and **`eNoOverride`**. The default is for all values to be read in as `persistent`, with the capability of overriding any previously loaded value associated with the same name. Either or both of these defaults can be modified by specifying **`eTransient, eNoOverride`**, or (**`eTransient | eNoOverride`**) as the **`flags`** argument in the above expression.
 
-The ***Write()*** method takes as its sole argument, a destination stream to which only the `persistent` configuration parameters will be written.
+The ***[Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)*** method takes as its sole argument, a destination stream to which only the `persistent` configuration parameters will be written.
 
     bool Write(CNcbiOstream& os) const;
 
@@ -1939,7 +1939,7 @@ The configuration parameter values can also be set directly inside your applicat
 
 Here, valid flag values include **`ePersistent, eNoOverride`**, **`eTruncate, `**or any logical combination of these. If **`eNoOverride`** is set and there is a previously defined value for this parameter, then the value is not reset, and the method returns `false`.
 
-The ***Get()*** method first searches the set of `transient` parameters for a parameter named **`name`**, in section **`section`**, and if this fails, continues by searching the set of `persistent` parameters. However, if the **`ePersistent`** flag is used, then only the set of `persistent` parameters will be searched. On success, ***Get()*** returns the stored value. On failure, the empty string is returned.
+The ***[Get()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Get)*** method first searches the set of `transient` parameters for a parameter named **`name`**, in section **`section`**, and if this fails, continues by searching the set of `persistent` parameters. However, if the **`ePersistent`** flag is used, then only the set of `persistent` parameters will be searched. On success, ***[Get()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Get)*** returns the stored value. On failure, the empty string is returned.
 
     const string& Get(const string& section, const string& name,
                       TFlags flags = 0) const;
@@ -1948,14 +1948,14 @@ The ***Get()*** method first searches the set of `transient` parameters for a pa
 
 ### Additional Registry Methods
 
-Four additional note-worthy methods defined in the ***CNcbiRegistry*** interface are:
+Four additional note-worthy methods defined in the ***[CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)*** interface are:
 
     bool Empty(void) const;
     void Clear(void);
     void EnumerateSections(list<string>*sections) const;
     void EnumerateEntries(const string& section,  list<string>* entries) const;
 
-***Empty()*** returns `true` if the registry is empty. ***Clear()*** empties out the registry, discarding all stored parameters. ***EnumerateSections()*** writes all registry section names to the list of strings parameter named "sections". ***EnumerateEntries()*** writes the list of parameter names in section to the list of strings parameter named "entries".
+***[Empty()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Empty)*** returns `true` if the registry is empty. ***[Clear()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Clear)*** empties out the registry, discarding all stored parameters. ***[EnumerateSections()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EnumerateSections)*** writes all registry section names to the list of strings parameter named "sections". ***[EnumerateEntries()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EnumerateEntries)*** writes the list of parameter names in section to the list of strings parameter named "entries".
 
 <a name="ch_core.stream_wrappers"></a>
 
@@ -1966,9 +1966,9 @@ Because of differences in the C++ standard stream implementations between differ
 
 The ***ncbistre.hpp*** defines wrappers for many of the standard stream classes and contains conditional compilation statements triggered by macros to include portable definitions. For example, not all compilers support the newer '\#include \<iostream\>' form. In this case, the older '\#include \<iostream.h\>' is used based on whether the macro **`NCBI_USE_OLD_IOSTREAM`** is defined.
 
-Instead of using the iostream, istream or ostream, you should use the portable ***CNcbiIostream***, ***CNcbiIstream*** and ***CNcbiOstream***. Similarly, instead of using the standard **`cin`**, **`cout`**, **`cerr`** you can use the more portable **`NcbiCin`**, **`NcbiCout`**, and **`NcbiCerr`**.
+Instead of using the iostream, istream or ostream, you should use the portable ***[CNcbiIostream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIostream)***, ***[CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream)*** and ***[CNcbiOstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiOstream)***. Similarly, instead of using the standard **`cin`**, **`cout`**, **`cerr`** you can use the more portable **`NcbiCin`**, **`NcbiCout`**, and **`NcbiCerr`**.
 
-The ***ncbistre.hpp*** also defines functions that handle platform-specific end of line reads. For example, ***Endl()*** represents platform specific end of line, and ***NcbiGetline()*** reads from a specified input stream to a string, and ***NcbiGetlineEOL()*** reads from a specified input stream to a string taking into account platform specific end of line.
+The ***ncbistre.hpp*** also defines functions that handle platform-specific end of line reads. For example, ***[Endl()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endl)*** represents platform specific end of line, and ***[NcbiGetline()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiGetline)*** reads from a specified input stream to a string, and ***[NcbiGetlineEOL()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiGetlineEOL)*** reads from a specified input stream to a string taking into account platform specific end of line.
 
 
 <a name="ch_core.debug_module_ref"></a>
@@ -2087,12 +2087,12 @@ Table 6. Fixed-integer Types
 |--------------------|-------------|---------------|----------------|
 | ***Char, Int1***   | 1     | **`kMin_I1`** | **`kMax_I1`**  |
 | ***Uchar, Uint1*** | 1     | 0 | **`kMax_UI1`** |
-| ***Int2***   | 2     | **`kMin_I2`** | **`kMax_I2`**  |
-| ***Uint2***  | 2     | 0 | **`kMax_UI2`** |
-| ***Int4***   | 4     | **`kMin_I4`** | **`kMax_I4`**  |
-| ***Uint4***  | 4     | 0 | **`kMax_UI4`** |
-| ***Int8***   | 8     | **`kMin_I8`** | **`kMax_I8`**  |
-| ***Uint8***  | 8     | 0 | **`kMax_UI8`** |
+| ***[Int2](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Int2)***   | 2     | **`kMin_I2`** | **`kMax_I2`**  |
+| ***[Uint2](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Uint2)***  | 2     | 0 | **`kMax_UI2`** |
+| ***[Int4](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Int4)***   | 4     | **`kMin_I4`** | **`kMax_I4`**  |
+| ***[Uint4](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Uint4)***  | 4     | 0 | **`kMax_UI4`** |
+| ***[Int8](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Int8)***   | 8     | **`kMin_I8`** | **`kMax_I8`**  |
+| ***[Uint8](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Uint8)***  | 8     | 0 | **`kMax_UI8`** |
 
 <div class="table-scroll"></div>
 
@@ -2141,10 +2141,10 @@ For the sake of code portability and for better compatibility with the third-par
 
 <a name="ch_core.smart_ptrs"></a>
 
-Understanding Smart Pointers: the ***CObject*** and ***CRef*** Classes
+Understanding Smart Pointers: the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** and ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** Classes
 ----------------------------------------------------------------------
 
-This section provides reference information on the use of ***CRef*** and ***CObject*** classes. For an overview of these classes refer to the [introductory chapter](ch_intro.html#ch_intro.intro_cref).
+This section provides reference information on the use of ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** and ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** classes. For an overview of these classes refer to the [introductory chapter](ch_intro.html#ch_intro.intro_cref).
 
 The following is a list of topics discussed in this section:
 
@@ -2183,11 +2183,11 @@ For example, the following code has two very serious problems:
     }
     *ip = 10/(*ip);
 
-The first problem occurs inside the block where the two ***auto\_ptr***s are defined. Both are referencing the same variable pointed to by yet another C pointer, and each considers itself to be the owner of that reference. Thus, when the block is exited, the `delete[]` operation is executed twice for the same pointer.
+The first problem occurs inside the block where the two ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)***s are defined. Both are referencing the same variable pointed to by yet another C pointer, and each considers itself to be the owner of that reference. Thus, when the block is exited, the `delete[]` operation is executed twice for the same pointer.
 
-Even if this first problem did not occur - for example if only one ***auto\_ptr*** had been defined - the second problem occurs when we try to dereference **`ip`**. The `delete` operation occurring as the block exits has now freed the dynamic memory to which ip points, so \*ip now references unallocated memory.
+Even if this first problem did not occur - for example if only one ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** had been defined - the second problem occurs when we try to dereference **`ip`**. The `delete` operation occurring as the block exits has now freed the dynamic memory to which ip points, so \*ip now references unallocated memory.
 
-The problem with using ***auto\_ptr*** is that it provides semantics of strict ownership. When an ***auto\_ptr*** is destructed, it deletes the object it points to, and therefore the object should not be pointed to simultaneously by others. Two or more ***auto\_ptr***s should not own the same object; that is, point to the same object. This can occur if two ***auto\_ptr***s are initialized to the same object, as seen in the above example where auto pointers **`a1`** and **`a2`** are both initialized with **`ip`**. In using ***auto\_ptr***, the programmer must ensure that situations similar to the above do not occur.
+The problem with using ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** is that it provides semantics of strict ownership. When an ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** is destructed, it deletes the object it points to, and therefore the object should not be pointed to simultaneously by others. Two or more ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)***s should not own the same object; that is, point to the same object. This can occur if two ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)***s are initialized to the same object, as seen in the above example where auto pointers **`a1`** and **`a2`** are both initialized with **`ip`**. In using ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)***, the programmer must ensure that situations similar to the above do not occur.
 
 <a name="ch_core.CRef"></a>
 
@@ -2195,7 +2195,7 @@ The problem with using ***auto\_ptr*** is that it provides semantics of strict o
 
 These issues are addressed in the NCBI C++ Toolkit by using `reference-counted` smart pointers: a resource cannot be deallocated until **all** references to it have ceased to exist. The implementation of a smart pointer in the NCBI C++ Toolkit is actually divided between two classes: [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html) and [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject.html).
 
-The ***CRef*** class essentially provides a pointer interface to a ***CObject***, while the ***CObject*** actually stores the data and maintains the reference count to it. The constructor used to create a new ***CRef*** pointing to a particular ***CObject*** automatically increments the object's reference count. Similarly, the ***CRef*** destructor automatically decrements the reference count. In both cases however, the modification of the reference count is implemented by a member function of the ***CObject***. The ***CRef*** class itself does not have direct access to the reference count and contains only a single data member - its pointer to a ***CObject***. In addition to the ***CRef*** class's constructors and destructors, its interface to the ***CObject*** pointer includes access/mutate functions such as:
+The ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** class essentially provides a pointer interface to a ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***, while the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** actually stores the data and maintains the reference count to it. The constructor used to create a new ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** pointing to a particular ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** automatically increments the object's reference count. Similarly, the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** destructor automatically decrements the reference count. In both cases however, the modification of the reference count is implemented by a member function of the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***. The ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** class itself does not have direct access to the reference count and contains only a single data member - its pointer to a ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***. In addition to the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** class's constructors and destructors, its interface to the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** pointer includes access/mutate functions such as:
 
     bool Empty()
     bool NotEmpty()
@@ -2208,43 +2208,43 @@ The ***CRef*** class essentially provides a pointer interface to a ***CObject***
     bool operator!()
     CRefBase& operator=(const CRefBase& ref)
 
-Both the ***Release()*** and ***Reset()*** functions set the ***CRef*** object's **`m_ptr`** to 0, thus effectively removing the reference to its ***CObject***. There are important distinctions between these two functions however. The ***Release()*** method removes the reference without destroying the object, while the ***Reset()*** method may lead to the destruction of the object if there are no other references to it.
+Both the ***[Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release)*** and ***[Reset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset)*** functions set the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** object's **`m_ptr`** to 0, thus effectively removing the reference to its ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***. There are important distinctions between these two functions however. The ***[Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release)*** method removes the reference without destroying the object, while the ***[Reset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset)*** method may lead to the destruction of the object if there are no other references to it.
 
-If the ***CObject***'s internal reference count is 1 at the time ***Release()*** is invoked, that reference count will be decremented to 0, and a pointer to the ***CObject*** is returned. The ***Release()*** method can throw two types of exceptions: (1) a `null pointer` exception if **`m_ptr`** is already `0`, and (2) an `Illegal CObject::ReleaseReference()` exception if there are currently other references to that object. An object must be free of all references (but this one) before it can be "released". In contrast, the ***Reset(void)*** function simply resets the ***CRef***'s **`m_ptr`** to 0, decrements the ***CObject***'s reference count, and, if the ***CObject*** has no other references and was dynamically allocated, deletes the ***CObject***.
+If the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***'s internal reference count is 1 at the time ***[Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release)*** is invoked, that reference count will be decremented to 0, and a pointer to the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** is returned. The ***[Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release)*** method can throw two types of exceptions: (1) a `null pointer` exception if **`m_ptr`** is already `0`, and (2) an `Illegal CObject::ReleaseReference()` exception if there are currently other references to that object. An object must be free of all references (but this one) before it can be "released". In contrast, the ***Reset(void)*** function simply resets the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)***'s **`m_ptr`** to 0, decrements the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***'s reference count, and, if the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** has no other references and was dynamically allocated, deletes the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***.
 
-Each member function of the ***CRef*** class also has a `const` implementation that is invoked when the pointer is to a `const` object. In addition, there is also a [CConstRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstRef.html) class that parallels the ***CRef*** class. Both ***CRef*** and ***CConstRef*** are implemented as template classes, where the template argument specifies the type of object which will be pointed to. For example, in the section on [Traversing an ASN.1 Data Structure](ch_ser.html#ch_ser.traverse.html_accessMember) we examined the structure of the ***CBiostruc*** class and found the following type definition
+Each member function of the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** class also has a `const` implementation that is invoked when the pointer is to a `const` object. In addition, there is also a [CConstRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstRef.html) class that parallels the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** class. Both ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** and ***[CConstRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstRef)*** are implemented as template classes, where the template argument specifies the type of object which will be pointed to. For example, in the section on [Traversing an ASN.1 Data Structure](ch_ser.html#ch_ser.traverse.html_accessMember) we examined the structure of the ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)*** class and found the following type definition
 
     typedef list< CRef< ::CBiostruc_id > > TId;
 
-As described there, this `typedef` defines ***TId*** to be a list of pointers to [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__id.html) objects. And as you might expect, ***CBiostruc\_id*** is a specialized subclass of ***CObject***.
+As described there, this `typedef` defines ***TId*** to be a list of pointers to [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__id.html) objects. And as you might expect, ***[CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_id)*** is a specialized subclass of ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***.
 
 <a name="ch_core.CObject"></a>
 
 ### The CObject ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject.html)) Class
 
-The ***CObject*** class serves as a base class for all objects requiring a reference count. There is little overhead entailed by deriving a new class from this base class, and most objects in the NCBI C++ Toolkit are derived from the ***CObject*** class. For example, [CNCBINode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNCBINode.html) is a direct descendant of ***CObject***, and all of the other ***HTML*** classes descend either directly or indirectly from ***CNCBINode***. Similarly, all of the ASN.1 classes defined in the [include/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directory, as well as many of the classes defined in the [include/serial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial) directory are derived either directly or indirectly from the ***CObject*** class.
+The ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** class serves as a base class for all objects requiring a reference count. There is little overhead entailed by deriving a new class from this base class, and most objects in the NCBI C++ Toolkit are derived from the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** class. For example, [CNCBINode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNCBINode.html) is a direct descendant of ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***, and all of the other ***HTML*** classes descend either directly or indirectly from ***[CNCBINode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNCBINode)***. Similarly, all of the ASN.1 classes defined in the [include/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directory, as well as many of the classes defined in the [include/serial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial) directory are derived either directly or indirectly from the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** class.
 
-The ***CObject*** class contains a single private data member, the reference counter, and a set of member functions which provide an interface to the reference counter. As such, it is truly a base class which has no stand-alone utility, as it does not even provide allocation for data values. It is the `descendant` classes, which inherit all the functionality of the ***CObject*** class, that provide the necessary richness in representation and allocation required for the widely diverse set of objects implemented in the NCBI C++ Toolkit. Nevertheless, it is often necessary to use smart pointers on simple data types, such as ***int***, ***string*** etc. The ***CObjectFor*** class, described below, was designed for this purpose.
+The ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** class contains a single private data member, the reference counter, and a set of member functions which provide an interface to the reference counter. As such, it is truly a base class which has no stand-alone utility, as it does not even provide allocation for data values. It is the `descendant` classes, which inherit all the functionality of the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** class, that provide the necessary richness in representation and allocation required for the widely diverse set of objects implemented in the NCBI C++ Toolkit. Nevertheless, it is often necessary to use smart pointers on simple data types, such as ***int***, ***string*** etc. The ***[CObjectFor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectFor)*** class, described below, was designed for this purpose.
 
 #### ATTENTION:  Special care when inheriting from CObject
 
-***CObject*** must be the first in the inheritance chain -- otherwise its "in-heap" detection mechanism will fail and the object will fail to automatically self-destruct when the last reference to it goes away.
+***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** must be the first in the inheritance chain -- otherwise its "in-heap" detection mechanism will fail and the object will fail to automatically self-destruct when the last reference to it goes away.
 
 <a name="ch_core.CObjectFor"></a>
 
 ### The CObjectFor ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectFor.html)) class: using smart pointers for standard types
 
-The ***CObjectFor*** class is derived directly from ***CObject***, and is implemented as a template class whose argument specifies the standard type that will be pointed to. In addition to the reference counter inherited from its parent class, ***CObjectFor*** has a private data member of the parameterized type, and a member function ***GetData()*** to access it.
+The ***[CObjectFor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectFor)*** class is derived directly from ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***, and is implemented as a template class whose argument specifies the standard type that will be pointed to. In addition to the reference counter inherited from its parent class, ***[CObjectFor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectFor)*** has a private data member of the parameterized type, and a member function ***[GetData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetData)*** to access it.
 
-An example program, [smart.cpp](ch_demo.html#ch_demo.examples_1_4), uses the [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html) and [CObjectFor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectFor.html) classes, and demonstrates the differences in memory management that arise using ***auto\_ptr*** and ***CRef***. Using an ***auto\_ptr*** to reference an ***int***, the program tests whether or not the reference is still accessible after an auxilliary ***auto\_ptr*** which goes out of scope has also been used to reference it. The same sequence is then tested using ***CRef*** objects instead.
+An example program, [smart.cpp](ch_demo.html#ch_demo.examples_1_4), uses the [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html) and [CObjectFor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectFor.html) classes, and demonstrates the differences in memory management that arise using ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** and ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)***. Using an ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** to reference an ***int***, the program tests whether or not the reference is still accessible after an auxilliary ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** which goes out of scope has also been used to reference it. The same sequence is then tested using ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** objects instead.
 
-In the first case, the original auto\_ptr, **`orig_ap`**, becomes `NULL` at the moment when ownership is transferred to **`copy_ap`** by the copy constructor. Using ***CRef*** objects however, the reference contained in the original ***CRef*** remains accessible (via **`orig`**) in all blocks where **`orig`** is defined. Moreover, the reference itself, i.e. the object pointed to, continues to exist until **all** references to it have been removed.
+In the first case, the original auto\_ptr, **`orig_ap`**, becomes `NULL` at the moment when ownership is transferred to **`copy_ap`** by the copy constructor. Using ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** objects however, the reference contained in the original ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** remains accessible (via **`orig`**) in all blocks where **`orig`** is defined. Moreover, the reference itself, i.e. the object pointed to, continues to exist until **all** references to it have been removed.
 
 <a name="ch_core.CRef_usage"></a>
 
 ### When to use CRefs and auto\_ptrs
 
-There is some overhead in using ***CRef*** and ***auto\_ptr***, and these objects should only be used where needed. Memory leaks are generally caused as a result of unexpected execution paths. For example:
+There is some overhead in using ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** and ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)***, and these objects should only be used where needed. Memory leaks are generally caused as a result of unexpected execution paths. For example:
 
     {
         int *num = new int(5);
@@ -2253,9 +2253,9 @@ There is some overhead in using ***CRef*** and ***auto\_ptr***, and these object
         ...
     }
 
-If ***ComplexFunction()*** executes normally, control returns to the block where it was invoked, and memory is freed by the `delete` statement. Unforeseen events however, may trigger exceptions, causing control to pass elsewhere. In these cases, the `delete` statement may never be reached. The use of a ***CRef*** or an ***auto\_ptr*** is appropriate for these situations, as they both guarantee that the object will be destroyed when the reference goes out of scope.
+If ***ComplexFunction()*** executes normally, control returns to the block where it was invoked, and memory is freed by the `delete` statement. Unforeseen events however, may trigger exceptions, causing control to pass elsewhere. In these cases, the `delete` statement may never be reached. The use of a ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** or an ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** is appropriate for these situations, as they both guarantee that the object will be destroyed when the reference goes out of scope.
 
-One situation where they may not be required is when a pointer is embedded inside another object. If that object's destructor also handles the deallocation of its embedded objects, then it is sufficient to use a ***CRef*** on the containing object only.
+One situation where they may not be required is when a pointer is embedded inside another object. If that object's destructor also handles the deallocation of its embedded objects, then it is sufficient to use a ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** on the containing object only.
 
 <a name="ch_core.CRef_pitfalls"></a>
 
@@ -2265,7 +2265,7 @@ One situation where they may not be required is when a pointer is embedded insid
 
 #### Inadvertent Object Destruction
 
-When the last reference to a ***CRef*** object goes out of scope or the ***CRef*** is otherwise marked for garbage collection, the object to which the ***CRef*** points is also destroyed. This feature helps to prevent memory leaks, but it also requires care in the use of ***CRef***s within methods and functions.
+When the last reference to a ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** object goes out of scope or the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** is otherwise marked for garbage collection, the object to which the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** points is also destroyed. This feature helps to prevent memory leaks, but it also requires care in the use of ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)***s within methods and functions.
 
     class CMy : public CObject
     {
@@ -2281,7 +2281,7 @@ When the last reference to a ***CRef*** object goes out of scope or the ***CRef*
         f(a);
         // the object "a" is now destroyed!
 
-In this example the function ***f()*** establishes a local ***CRef*** to the ***CMy*** object **`a`**. On exiting ***f()*** the ***CRef*****`b`** is destroyed, including the implied destruction of the ***CMy*** objects **`a`**. To avoid this behavior, pass a ***CRef*** to the function ***f()*** instead of a normal pointer variable:
+In this example the function ***f()*** establishes a local ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** to the ***CMy*** object **`a`**. On exiting ***f()*** the ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*****`b`** is destroyed, including the implied destruction of the ***CMy*** objects **`a`**. To avoid this behavior, pass a ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** to the function ***f()*** instead of a normal pointer variable:
 
     CRef a = new CMy();
     f(a);
@@ -2292,9 +2292,9 @@ In this example the function ***f()*** establishes a local ***CRef*** to the ***
 Atomic Counters
 ---------------
 
-The CORELIB implements efficient atomic counters that are used for ***CObject*** reference counts. The classes ***CAtomicCounter*** and ***CMutableAtomicCounter*** provide respectively a base atomic counter class, and a mutable atomic counter for multithreaded applications. These classes are used to in reference counted [smart pointers](#ch_core.smart_ptrs).
+The CORELIB implements efficient atomic counters that are used for ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** reference counts. The classes ***[CAtomicCounter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAtomicCounter)*** and ***[CMutableAtomicCounter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutableAtomicCounter)*** provide respectively a base atomic counter class, and a mutable atomic counter for multithreaded applications. These classes are used to in reference counted [smart pointers](#ch_core.smart_ptrs).
 
-The ***CAtomicCounter*** base class provides the base methods ***Get()***, ***Set()***, ***Add()*** for atomic counters:
+The ***[CAtomicCounter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAtomicCounter)*** base class provides the base methods ***[Get()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Get)***, ***[Set()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Set)***, ***[Add()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Add)*** for atomic counters:
 
     class CAtomicCounter
     {
@@ -2312,7 +2312,7 @@ The ***CAtomicCounter*** base class provides the base methods ***Get()***, ***Se
 
 **`TNCBIAtomicValue`** is defined as a macro and its definition is platform dependent. If threads are not used (Macro **`NCBI_NO_THREADS`** defined), **`TNCBIAtomicValue`** is an ***unsigned int*** value. If threads are used, then a number of defines in file "`ncbictr.hpp`" ensure that a platform specific definition is selected for **`TNCBIAtomicValue`**.
 
-The ***CMutableAtomicCounter*** uses the ***CAtomicCounter*** as its internal structure of the atomic counter but declares this counter value as mutable. The ***Get()***, ***Set()***, ***Add()*** methods for ***CMutableAtomicCounter*** are implemented by calls to the corresponding ***Get()***, ***Set()***, ***Add()*** methods for the ***CAtomicCounter***:
+The ***[CMutableAtomicCounter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutableAtomicCounter)*** uses the ***[CAtomicCounter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAtomicCounter)*** as its internal structure of the atomic counter but declares this counter value as mutable. The ***[Get()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Get)***, ***[Set()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Set)***, ***[Add()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Add)*** methods for ***[CMutableAtomicCounter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutableAtomicCounter)*** are implemented by calls to the corresponding ***[Get()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Get)***, ***[Set()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Set)***, ***[Add()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Add)*** methods for the ***[CAtomicCounter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAtomicCounter)***:
 
     class  CMutableAtomicCounter
     {
@@ -2336,11 +2336,11 @@ The ***CMutableAtomicCounter*** uses the ***CAtomicCounter*** as its internal st
 Portable mechanisms for loading DLLs
 ------------------------------------
 
-The ***CDll*** class defines a portable way of dynamically loading shared libraries and finding entry points for functions in the library. Currently this portable behavior is defined for Unix-like systems and Windows only. On Unix-like systems, loading of the shared library is implemented using the Unix system call ***dlopen()*** and the entry point address obtained using the Unix system call ***dlsym()***. On Windows systems the system call ***LoadLibraray()*** is used to load the library, and the system call ***GetProcAddress()*** is used to get a function's entry point address.
+The ***[CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll)*** class defines a portable way of dynamically loading shared libraries and finding entry points for functions in the library. Currently this portable behavior is defined for Unix-like systems and Windows only. On Unix-like systems, loading of the shared library is implemented using the Unix system call ***dlopen()*** and the entry point address obtained using the Unix system call ***dlsym()***. On Windows systems the system call ***LoadLibraray()*** is used to load the library, and the system call ***[GetProcAddress()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetProcAddress)*** is used to get a function's entry point address.
 
-All methods of ***CDll*** class, except the destructor, throw the exception `CCoreException::eDll` on error.
+All methods of ***[CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll)*** class, except the destructor, throw the exception `CCoreException::eDll` on error.
 
-You can specify when to load the DLL - when the ***CDll*** object is created (loading in the constructor), or by an explicit call to ***CDll::Load()***. You can also specify whether the DLL is unloaded automatically when ***CDll's*** destructor is called or if the DLL should remain loaded in memory. This behavior is controlled by arguments to ***CDll's*** constructor.
+You can specify when to load the DLL - when the ***[CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll)*** object is created (loading in the constructor), or by an explicit call to ***[CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll)***::***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)***. You can also specify whether the DLL is unloaded automatically when ***CDll's*** destructor is called or if the DLL should remain loaded in memory. This behavior is controlled by arguments to ***CDll's*** constructor.
 
 The following additional topics are described in this section:
 
@@ -2374,7 +2374,7 @@ The first and second constructor forms are the same with the exception that the 
 
 The first pair of constructors differ from the second pair in that the first two take a single parameter that is a set of flags, whereas the second pair take three separate parameters for flags. The first two are newer, and the last two are provided for backward compatibility.
 
-The parameter **`when_to_load`** is defined as an enum type of ***ELoad*** and has the values `eLoadNow` or `eLoadLater`. When `eLoadNow` is passed to the constructor (default value), the DLL is loaded in the constructor; otherwise it has to be loaded via an explicit call to the ***Load()*** method.
+The parameter **`when_to_load`** is defined as an enum type of ***ELoad*** and has the values `eLoadNow` or `eLoadLater`. When `eLoadNow` is passed to the constructor (default value), the DLL is loaded in the constructor; otherwise it has to be loaded via an explicit call to the ***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)*** method.
 
 The parameter **`auto_load`** is defined as an enum type of ***EAutoLoad*** and has the values `eAutoUnload` or `eNoAutoUnload`. When `eAutoUnload` is passed to the constructor (default value), the DLL is unloaded in the destructor; otherwise it will remain loaded in memory.
 
@@ -2425,20 +2425,20 @@ If the DLL is specified by its basename, then it will be searched after the tran
 
 ### Other CDll Methods
 
-Two methods mentioned earlier for the ***CDll*** class are the ***Load()*** and ***Unload()*** methods. The ***Load()*** method loads the DLL using the name specified in the constructor's DLL **`name`** parameter. The ***Load()*** method is expected to be used when the DLL is not explictly loaded in the constructor. That is, when the ***CDll*** constructor is passed the `eLoadLater` parameter. If the ***Load()*** is called more than once without calling ***Unload()*** in between, then it will do nothing. The syntax of the ***Load()*** methods is
+Two methods mentioned earlier for the ***[CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll)*** class are the ***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)*** and ***[Unload()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unload)*** methods. The ***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)*** method loads the DLL using the name specified in the constructor's DLL **`name`** parameter. The ***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)*** method is expected to be used when the DLL is not explictly loaded in the constructor. That is, when the ***[CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll)*** constructor is passed the `eLoadLater` parameter. If the ***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)*** is called more than once without calling ***[Unload()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unload)*** in between, then it will do nothing. The syntax of the ***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)*** methods is
 
     void Load(void);
 
-The ***Unload()*** method unloads that DLL whose name was specified in the constructor's DLL **`name`** parameter. The ***Unload()*** method is expected to be used when the DLL is not explicitly unloaded in the destructor. This occurs, when the ***CDll*** constructor is passed the `eNoAutoUnload` parameter. If the ***Unload()*** is called when the DLL is not loaded, then it will do nothing. The syntax of the ***Unload()*** methods is
+The ***[Unload()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unload)*** method unloads that DLL whose name was specified in the constructor's DLL **`name`** parameter. The ***[Unload()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unload)*** method is expected to be used when the DLL is not explicitly unloaded in the destructor. This occurs, when the ***[CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll)*** constructor is passed the `eNoAutoUnload` parameter. If the ***[Unload()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unload)*** is called when the DLL is not loaded, then it will do nothing. The syntax of the ***[Unload()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unload)*** methods is
 
     void Unload(void);
 
-Once the DLL is loaded, you can call the DLL's functions by first getting the function's entry point (address), and using this to call the function. The function template ***GetEntryPoint()*** method is used to get the entry point address and is defined as:
+Once the DLL is loaded, you can call the DLL's functions by first getting the function's entry point (address), and using this to call the function. The function template ***[GetEntryPoint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetEntryPoint)*** method is used to get the entry point address and is defined as:
 
     template <class TPointer>
     TPointer GetEntryPoint(const string& name, TPointer* entry_ptr);
 
-This method returns the entry point's address on success, or NULL on error. If the DLL is not loaded when this method is called, then this method will call ***Load()*** to load the DLL which can result in throwing an exception if ***Load()*** fails.
+This method returns the entry point's address on success, or NULL on error. If the DLL is not loaded when this method is called, then this method will call ***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)*** to load the DLL which can result in throwing an exception if ***[Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load)*** fails.
 
 Some sample code illustrating the use of these methods is shown in [src/corelib/test/test\_ncbidll.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbidll.cpp)
 
@@ -2447,9 +2447,9 @@ Some sample code illustrating the use of these methods is shown in [src/corelib/
 Executing Commands and Spawning Processes using the CExec class
 ---------------------------------------------------------------
 
-The ***CExec*** defines a portable execute class that can be used to execute system commands and spawn new processes.
+The ***[CExec](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExec)*** defines a portable execute class that can be used to execute system commands and spawn new processes.
 
-The following topics relating to the ***CExec*** class are discussed, next:
+The following topics relating to the ***[CExec](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExec)*** class are discussed, next:
 
 -   [Executing a System Command using the System() Method](#ch_core.system_call)
 
@@ -2463,11 +2463,11 @@ The following topics relating to the ***CExec*** class are discussed, next:
 
 ### Executing a System Command using the System() Method
 
-You can use the class-wide ***CExec::System()*** method to execute a system command:
+You can use the class-wide ***[CExec](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExec)***::***[System()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=System)*** method to execute a system command:
 
     static int System(const char* cmdline);
 
-***CExec::System()*** returns the executed command's exit code and throws an exception if the command failed to execute. If cmdline is a null pointer, ***CExec::System()*** checks if the shell (command interpreter) exists and is executable. If the shell is available, ***System()*** returns a non-zero value; otherwise, it returns 0.
+***[CExec](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExec)***::***[System()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=System)*** returns the executed command's exit code and throws an exception if the command failed to execute. If cmdline is a null pointer, ***[CExec](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExec)***::***[System()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=System)*** checks if the shell (command interpreter) exists and is executable. If the shell is available, ***[System()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=System)*** returns a non-zero value; otherwise, it returns 0.
 
 <a name="ch_core.process_modes"></a>
 
@@ -2481,7 +2481,7 @@ The spawned process can be created in several modes defined by the enum type ***
 
 -   `eNoWait`: This is the opposite of `eWait`. This mode continues to execute the calling process concurrently with the new called process in an asynchronous fashion.
 
--   `eDetach`: This mode continues to execute the calling process and new process is "detached" and run in background with no access to console or keyboard. Calls to ***Wait()*** against new process will fail. This is an asynchronous spawn.
+-   `eDetach`: This mode continues to execute the calling process and new process is "detached" and run in background with no access to console or keyboard. Calls to ***[Wait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Wait)*** against new process will fail. This is an asynchronous spawn.
 
 <a name="ch_core.spawn_process"></a>
 
@@ -2509,21 +2509,21 @@ The ***X*** in the function name is a one to three letter suffix indicating the 
 
 Using the above letter combinations as suffixes, the following spawn functions are defined:
 
--   ***SpawnL()***: In the ***SpawnL()*** version, the command-line arguments are passed individually. ***SpawnL()*** is typically used when number of parameters to the new process is known in advance.
+-   ***[SpawnL()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnL)***: In the ***[SpawnL()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnL)*** version, the command-line arguments are passed individually. ***[SpawnL()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnL)*** is typically used when number of parameters to the new process is known in advance.
 
--   ***SpawnLE()***: In the ***SpawnLE()*** version, the command-line arguments and environment pointer are passed individually. ***SpawnLE()*** is typically used when number of parameters to the new process and individual environment parameter settings are known in advance.
+-   ***[SpawnLE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLE)***: In the ***[SpawnLE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLE)*** version, the command-line arguments and environment pointer are passed individually. ***[SpawnLE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLE)*** is typically used when number of parameters to the new process and individual environment parameter settings are known in advance.
 
--   ***SpawnLP()***: In the ***SpawnLP()*** version, the command-line arguments are passed individually and the **`PATH`** environment variable is used to find the file to execute. ***SpawnLP()*** is typically used when number of parameters to the new process is known in advance but the exact path to the executable is not known.
+-   ***[SpawnLP()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLP)***: In the ***[SpawnLP()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLP)*** version, the command-line arguments are passed individually and the **`PATH`** environment variable is used to find the file to execute. ***[SpawnLP()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLP)*** is typically used when number of parameters to the new process is known in advance but the exact path to the executable is not known.
 
--   ***SpawnLPE()***: In the ***SpawnLPE()*** the command-line arguments and environment pointer are passed individually, and the **`PATH`** environment variable is used to find the file to execute. ***SpawnLPE()*** is typically used when the number of parameters to the new process and individual environment parameter settings are known in advance, but the exact path to the executable is not known.
+-   ***[SpawnLPE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLPE)***: In the ***[SpawnLPE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLPE)*** the command-line arguments and environment pointer are passed individually, and the **`PATH`** environment variable is used to find the file to execute. ***[SpawnLPE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnLPE)*** is typically used when the number of parameters to the new process and individual environment parameter settings are known in advance, but the exact path to the executable is not known.
 
--   ***SpawnV()***: In the ***SpawnV()*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1.
+-   ***[SpawnV()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnV)***: In the ***[SpawnV()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnV)*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1.
 
--   ***SpawnVE()***: In the ***SpawnVE()*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1. The individual environment parameter settings are known in advance and passed explicitly.
+-   ***[SpawnVE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnVE)***: In the ***[SpawnVE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnVE)*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1. The individual environment parameter settings are known in advance and passed explicitly.
 
--   ***SpawnVP()***: In the ***SpawnVP()*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1. The **`PATH`** environment variable is used to find the file to execute.
+-   ***[SpawnVP()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnVP)***: In the ***[SpawnVP()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnVP)*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1. The **`PATH`** environment variable is used to find the file to execute.
 
--   ***SpawnVPE()***: In the ***SpawnVPE()*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1. The **`PATH`** environment variable is used to find the file to execute, and the environment is passed via an environment vector pointer.
+-   ***[SpawnVPE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnVPE)***: In the ***[SpawnVPE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnVPE)*** version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1. The **`PATH`** environment variable is used to find the file to execute, and the environment is passed via an environment vector pointer.
 
 Refer to the [include/corelib/ncbiexec.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbiexec.hpp) file to view the exact form of the ***SpawnX()*** function calls.
 
@@ -2533,11 +2533,11 @@ Some sample code illustrating the use of these methods is shown in [src/corelib/
 
 ### Waiting for a Process to Terminate using the Wait() method
 
-The ***CExec*** class defines a ***Wait()*** method that causes a process to wait until the child process terminates:
+The ***[CExec](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExec)*** class defines a ***[Wait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Wait)*** method that causes a process to wait until the child process terminates:
 
     static int Wait(const int pid);
 
-The argument to the ***Wait()*** method is the pid (process ID) of the child process on which the caller is waiting to terminate. ***Wait()*** returns immediately if the specified child process has already terminated and returns an exit code of the child process, if there are no errors; or a -1, if an error has occurred.
+The argument to the ***[Wait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Wait)*** method is the pid (process ID) of the child process on which the caller is waiting to terminate. ***[Wait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Wait)*** returns immediately if the specified child process has already terminated and returns an exit code of the child process, if there are no errors; or a -1, if an error has occurred.
 
 <a name="ch_core.threads"></a>
 
@@ -2568,15 +2568,15 @@ The following topics are discussed in this section:
 
 ### Using Threads
 
-***CThread*** class is defined in `include/corelib/ncbithr.hpp`. The ***CThread*** class provides all basic thread functionality: thread creation, launching, termination, and cleanup. To create user-defined thread one needs only to provide the thread's ***Main()*** function and, in some cases, create a new constructor to transfer data to the thread object, and override ***OnExit()*** method for thread-specific data cleanup. To create a custom thread:
+***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)*** class is defined in `include/corelib/ncbithr.hpp`. The ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)*** class provides all basic thread functionality: thread creation, launching, termination, and cleanup. To create user-defined thread one needs only to provide the thread's ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)*** function and, in some cases, create a new constructor to transfer data to the thread object, and override ***[OnExit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnExit)*** method for thread-specific data cleanup. To create a custom thread:
 
-1.  Derive your class from ***CThread***, override ***Main()*** and, if necessary, ***OnExit()*** methods.
+1.  Derive your class from ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)***, override ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)*** and, if necessary, ***[OnExit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnExit)*** methods.
 
 2.  Create thread object in your application. You can do this only with `new` operator, since static or in-stack thread objects are prohibited (see below). The best way to reference thread objects is to use ***CRef\<CThread\>*** class.
 
-3.  Call ***Run()*** to start the thread execution.
+3.  Call ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)*** to start the thread execution.
 
-4.  Call ***Detach()*** to let the thread run independently (it will destroy itself on termination then), or use ***Join()*** to wait for the thread termination.
+4.  Call ***[Detach()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Detach)*** to let the thread run independently (it will destroy itself on termination then), or use ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** to wait for the thread termination.
 
 The code should look like:
 
@@ -2617,9 +2617,9 @@ The code should look like:
         return 0;
     }
 
-The above simple application will start one child thread, passing `33` as the **`index`** value. The thread prints `"Thread 33"` message, allocates and initializes two integer variables, and terminates. The thread's ***Main()*** function returns a pointer to one of the allocated values. This pointer is then passed to ***Join()*** method and can be used by another thread. The other integer allocated by ***Main()*** is destroyed by ***OnExit()*** method.
+The above simple application will start one child thread, passing `33` as the **`index`** value. The thread prints `"Thread 33"` message, allocates and initializes two integer variables, and terminates. The thread's ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)*** function returns a pointer to one of the allocated values. This pointer is then passed to ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** method and can be used by another thread. The other integer allocated by ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)*** is destroyed by ***[OnExit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnExit)*** method.
 
-It is important not to terminate the program until there are running threads. Program termination will cause all the running threads to terminate also. In the above example ***Join()*** function is used to wait for the child thread termination.
+It is important not to terminate the program until there are running threads. Program termination will cause all the running threads to terminate also. In the above example ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** function is used to wait for the child thread termination.
 
 The following subsections discuss the individual classes in more detail.
 
@@ -2627,19 +2627,19 @@ The following subsections discuss the individual classes in more detail.
 
 ### CThread ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)) class public methods
 
-***CThread(void)*** Create the thread object (without running it). ***bool Run(void)*** Spawn the new thread, initialize internal ***CThread*** data and launch user-provided ***Main()***. The method guarantees that the new thread will start before it returns to the calling function. ***void Detach(void)*** Inform the thread that user does not need to wait for its termination. Detached thread will destroy itself after termination. If ***Detach()*** is called for a thread, which has already terminated, it will be scheduled for destruction immediately. Only one call to ***Detach()*** is allowed for each thread object. ***void Join(void\*\* exit\_data)*** Wait for the thread termination. ***Join()*** will store the ***void*** pointer as returned by the user's ***Main()*** method, or passed to the ***Exit()*** function to the **`exit_data`**. Then the thread will be scheduled for destruction. Only one call to ***Join()*** is allowed for each thread object. If called more than once, ***Join()*** will cause a runtime error. ***static void Exit(void\* exit\_data)*** This function may be called by a thread object itself to terminate the thread. The thread will be terminated and, if already detached, scheduled for destruction. **`exit_data`** value is transferred to the ***Join()*** function as if it was returned by the ***Main()***. ***Exit()*** will also call virtual method ***OnExit()*** to execute user-provided cleanup code (if any). ***bool Discard(void)*** Schedules the thread object for destruction if it has not been run yet. This function is provided since there is no other way to delete a thread object without running it. On success, return `true`. If the thread has already been run, ***Discard()*** do nothing and return `false`. ***static CThread::TID GetSelf(void)*** This method returns a unique thread ID. This ID may be then used to identify threads, for example, to track the owner of a shared resource. Since the main thread has no associated ***CThread*** object, a special value of 0 (zero) is reserved for the main thread ID.
+***CThread(void)*** Create the thread object (without running it). ***bool Run(void)*** Spawn the new thread, initialize internal ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)*** data and launch user-provided ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)***. The method guarantees that the new thread will start before it returns to the calling function. ***void Detach(void)*** Inform the thread that user does not need to wait for its termination. Detached thread will destroy itself after termination. If ***[Detach()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Detach)*** is called for a thread, which has already terminated, it will be scheduled for destruction immediately. Only one call to ***[Detach()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Detach)*** is allowed for each thread object. ***void Join(void\*\* exit\_data)*** Wait for the thread termination. ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** will store the ***void*** pointer as returned by the user's ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)*** method, or passed to the ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** function to the **`exit_data`**. Then the thread will be scheduled for destruction. Only one call to ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** is allowed for each thread object. If called more than once, ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** will cause a runtime error. ***static void Exit(void\* exit\_data)*** This function may be called by a thread object itself to terminate the thread. The thread will be terminated and, if already detached, scheduled for destruction. **`exit_data`** value is transferred to the ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** function as if it was returned by the ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)***. ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** will also call virtual method ***[OnExit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnExit)*** to execute user-provided cleanup code (if any). ***bool Discard(void)*** Schedules the thread object for destruction if it has not been run yet. This function is provided since there is no other way to delete a thread object without running it. On success, return `true`. If the thread has already been run, ***[Discard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Discard)*** do nothing and return `false`. ***static CThread::TID GetSelf(void)*** This method returns a unique thread ID. This ID may be then used to identify threads, for example, to track the owner of a shared resource. Since the main thread has no associated ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)*** object, a special value of 0 (zero) is reserved for the main thread ID.
 
 <a name="ch_core.thread_protected_methods"></a>
 
 ### CThread ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)) class protected methods
 
-***virtual void\* Main(void)Main()*** is the thread's main function (just like an application ***main()*** function). This method is not defined in the ***CThread*** class. It must be provided by derived user-defined class. The return value is passed to the ***Join()*** function (and thus may be used by another thread for some sort of inter-thread communication). ***virtual void OnExit(void)*** This method is called (in the context of the thread) just before the thread termination to cleanup thread-specific resources. ***OnExit()*** is NOT called by ***Discard()***, since the thread has not been run in this case and there are no thread-specific data to destroy. ***virtual ~CThread(void)*** The destructor is protected to avoid thread object premature destruction. For this reason, no thread object can be static or stack-allocated. It is important to declare any ***CThread*** derived class destructor as `protected`.
+***virtual void\* Main(void)Main()*** is the thread's main function (just like an application ***[main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=main)*** function). This method is not defined in the ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)*** class. It must be provided by derived user-defined class. The return value is passed to the ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** function (and thus may be used by another thread for some sort of inter-thread communication). ***virtual void OnExit(void)*** This method is called (in the context of the thread) just before the thread termination to cleanup thread-specific resources. ***[OnExit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnExit)*** is NOT called by ***[Discard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Discard)***, since the thread has not been run in this case and there are no thread-specific data to destroy. ***virtual ~CThread(void)*** The destructor is protected to avoid thread object premature destruction. For this reason, no thread object can be static or stack-allocated. It is important to declare any ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)*** derived class destructor as `protected`.
 
 <a name="ch_core.thread_life_cycle"></a>
 
 ### Thread Life Cycle
 
-[Figure 2](#ch_core.F2) shows a typical thread life cycle. The figure demonstrates that thread constructors are called from the parent thread. The child thread is spawned by the ***Run()*** function only. Then, the user-provided ***Main()*** method (containing code created by user) gets executed. The thread's destructor may be called in the context of either parent or child thread depending on the state of the thread at the moment when ***Join()*** or ***Detach()*** is called.
+[Figure 2](#ch_core.F2) shows a typical thread life cycle. The figure demonstrates that thread constructors are called from the parent thread. The child thread is spawned by the ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)*** function only. Then, the user-provided ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)*** method (containing code created by user) gets executed. The thread's destructor may be called in the context of either parent or child thread depending on the state of the thread at the moment when ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** or ***[Detach()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Detach)*** is called.
 
 <a name="ch_core.F2"></a>
 
@@ -2647,31 +2647,31 @@ The following subsections discuss the individual classes in more detail.
 
 Figure 2. Thread Life Cycle
 
-There are two possible ways to terminate a thread. By default, after user-provided ***Main()*** function return, the ***Exit()*** is called implicitly to terminate the thread. User functions can call ***CThread::Exit()*** directly. Since ***Exit()*** is a static method, the calling function does not need to be a thread class member or have a reference to the thread object. ***Exit()*** will terminate the thread in which context it is called.
+There are two possible ways to terminate a thread. By default, after user-provided ***[Main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Main)*** function return, the ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** is called implicitly to terminate the thread. User functions can call ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)***::***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** directly. Since ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** is a static method, the calling function does not need to be a thread class member or have a reference to the thread object. ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** will terminate the thread in which context it is called.
 
-The ***CThread*** destructor is `protected`. The same must be true for any user-defined thread class in order to prohibit creation of static or automatic thread objects. For the same reason, a thread object can not be destroyed by explicit `delete`. All threads destroy themselves on termination, detaching, or joining.
+The ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)*** destructor is `protected`. The same must be true for any user-defined thread class in order to prohibit creation of static or automatic thread objects. For the same reason, a thread object can not be destroyed by explicit `delete`. All threads destroy themselves on termination, detaching, or joining.
 
-On thread termination, ***Exit()*** checks if the thread has been detached and, if this is true, destroys the thread object. If the thread has not been detached, the thread object will remain "zombie" unless detached or joined. Either ***Detach()*** or ***Join()*** will destroy the object if the thread has been terminated. One should keep in mind, that it is not safe to use the thread object after a call to ***Join()*** or ***Detach()*** since the object may happen to be destroyed. To avoid this situation, the ***CRef\<CThread\>*** can be used. The thread object will not be destroyed until there is at least one ***CRef*** to the object (although it may be terminated and scheduled for destruction).
+On thread termination, ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** checks if the thread has been detached and, if this is true, destroys the thread object. If the thread has not been detached, the thread object will remain "zombie" unless detached or joined. Either ***[Detach()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Detach)*** or ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** will destroy the object if the thread has been terminated. One should keep in mind, that it is not safe to use the thread object after a call to ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** or ***[Detach()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Detach)*** since the object may happen to be destroyed. To avoid this situation, the ***CRef\<CThread\>*** can be used. The thread object will not be destroyed until there is at least one ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** to the object (although it may be terminated and scheduled for destruction).
 
 In other words, a thread object will be destroyed when all of the following conditions are satisfied:
 
--   the thread has been run and terminated by an implicit or explicit call to ***Exit()***
+-   the thread has been run and terminated by an implicit or explicit call to ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)***
 
 -   the thread has been detached or joined
 
--   no ***CRef*** references the thread object
+-   no ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** references the thread object
 
-Which thread will actually destroy a thread object depends on several conditions. If the thread has been detached before termination, the ***Exit()*** method will destroy it, provided there are no ***CRef*** references to the object. When joined, the thread will be destroyed in the context of a joining thread. If ***Detach()*** is called after thread termination, it will destroy the thread in the context of detaching thread. And, finally, if there are several ***CRef*** objects referencing the same thread, it will be destroyed after the last ***CRef*** release.
+Which thread will actually destroy a thread object depends on several conditions. If the thread has been detached before termination, the ***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** method will destroy it, provided there are no ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** references to the object. When joined, the thread will be destroyed in the context of a joining thread. If ***[Detach()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Detach)*** is called after thread termination, it will destroy the thread in the context of detaching thread. And, finally, if there are several ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** objects referencing the same thread, it will be destroyed after the last ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** release.
 
-This means that cleaning up thread-specific data can not be done from the thread destructor. One should override ***OnExit()*** method instead. ***OnExit()*** is guaranteed to be called in the context of the thread before the thread termination. The destructor can be used to cleanup non-thread-local data only.
+This means that cleaning up thread-specific data can not be done from the thread destructor. One should override ***[OnExit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnExit)*** method instead. ***[OnExit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnExit)*** is guaranteed to be called in the context of the thread before the thread termination. The destructor can be used to cleanup non-thread-local data only.
 
-There is one more possibility to destroy a thread. If a thread has been created, but does not need to be run, one can use ***Discard()*** method to destroy the thread object without running it. Again, the object will not be destroyed until there are ***CRef***s referencing it.
+There is one more possibility to destroy a thread. If a thread has been created, but does not need to be run, one can use ***[Discard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Discard)*** method to destroy the thread object without running it. Again, the object will not be destroyed until there are ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)***s referencing it.
 
 <a name="ch_core.referencing_threads"></a>
 
 ### Referencing Thread Objects
 
-It should be emphasized that regular (C) pointer to a thread object is not reliable. The thread may terminate at unpredictable moment, destroying itself. There is no possibility to safely access thread object after ***Join()*** using C pointers. The only solution to this problem is to use ***CRef*** class. ***CThread*** class provides a mechanism to prevent premature destruction if there are ***CRef*** references to the thread object.
+It should be emphasized that regular (C) pointer to a thread object is not reliable. The thread may terminate at unpredictable moment, destroying itself. There is no possibility to safely access thread object after ***[Join()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Join)*** using C pointers. The only solution to this problem is to use ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** class. ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)*** class provides a mechanism to prevent premature destruction if there are ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** references to the thread object.
 
 <a name="ch_core.thread_local_storage"></a>
 
@@ -2701,21 +2701,21 @@ The library provides a template class to store thread specific data: ***CTls\<\>
         ...
     }
 
-In the above example the second call to ***SetValue()*** will cause the ***TlsCleanup()*** to deallocate the first integer variable. To cleanup the last value stored in each TLS, the ***CThread::Exit()*** function will automatically call ***CTls\<\>::Reset()*** for each TLS used by the thread.
+In the above example the second call to ***[SetValue()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetValue)*** will cause the ***[TlsCleanup()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TlsCleanup)*** to deallocate the first integer variable. To cleanup the last value stored in each TLS, the ***[CThread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThread)***::***[Exit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exit)*** function will automatically call ***CTls\<\>::Reset()*** for each TLS used by the thread.
 
-By default, all TLS objects are destroyed on program termination, since in most cases it is not guaranteed that a TLS object is not (or will not be) used by a thread. For the same reason the ***CTls\<\>*** destructor is protected, so that no TLS can be created in the stack memory. The best way of keeping TLS objects is to use ***CRef***.
+By default, all TLS objects are destroyed on program termination, since in most cases it is not guaranteed that a TLS object is not (or will not be) used by a thread. For the same reason the ***CTls\<\>*** destructor is protected, so that no TLS can be created in the stack memory. The best way of keeping TLS objects is to use ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)***.
 
-Calling ***Discard()*** will schedule the TLS to be destroyed as soon as there are no ***CRef*** references to the object left. The method should be used with care.
+Calling ***[Discard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Discard)*** will schedule the TLS to be destroyed as soon as there are no ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** references to the object left. The method should be used with care.
 
 <a name="ch_core.mutexes"></a>
 
 ### Mutexes
 
-The `ncbimtx.hpp` defines platform-independent mutex classes, ***CMutex***, ***CFastMutex***, ***CMutexGuard***, and ***CFastMutexGuard***. These mutex classes are in turn built on the platform-dependent mutex classes ***SSystemMutex*** and ***SSystemFastMutex***.
+The `ncbimtx.hpp` defines platform-independent mutex classes, ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)***, ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)***, ***[CMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutexGuard)***, and ***[CFastMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutexGuard)***. These mutex classes are in turn built on the platform-dependent mutex classes ***[SSystemMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemMutex)*** and ***[SSystemFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemFastMutex)***.
 
-In addition to the mutex classes, there are a number of classes that can be used for explicit locks such as the ***CRWLock***, ***CAutoRW***, ***CReadLockGuard***, ***CWriteLockGuard*** and the platform-dependent read/write lock, ***CInternalRWLock***.
+In addition to the mutex classes, there are a number of classes that can be used for explicit locks such as the ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)***, ***CAutoRW***, ***[CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard)***, ***[CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard)*** and the platform-dependent read/write lock, ***[CInternalRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CInternalRWLock)***.
 
-Finally, there is the ***CSemaphore*** class which is an application-wide semaphore.
+Finally, there is the ***[CSemaphore](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSemaphore)*** class which is an application-wide semaphore.
 
 These classes are discussed in the subsections that follow:
 
@@ -2733,21 +2733,21 @@ These classes are discussed in the subsections that follow:
 
 #### CMutex
 
-The ***CMutex*** class provides the API for acquiring a mutex. This mutex allows nesting with runtime checks so recursive locks by the same thread is possible. This mutex checks the mutex owner before unlocking. ***CMutex*** is slower than ***CFastMutex*** and should be used when performance is less important than data protection. If performance is more important than data protection, use ***CFastMutex***, instead.
+The ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** class provides the API for acquiring a mutex. This mutex allows nesting with runtime checks so recursive locks by the same thread is possible. This mutex checks the mutex owner before unlocking. ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** is slower than ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)*** and should be used when performance is less important than data protection. If performance is more important than data protection, use ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)***, instead.
 
-The main methods for ***CMutex*** operation are ***Lock()***, ***TryLock()*** and ***Unlock()***:
+The main methods for ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** operation are ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)***, ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** and ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)***:
 
     void Lock(void);
     bool TryLock(void);
     void Unlock(void);
 
-The ***Lock()*** mutex method is used by a thread to acquire a lock. The lock can be acquired only if the mutex is unlocked; that is, not in use. If a thread has acquired a lock before, the lock counter is incremented. This is called nesting. The lock counter is only decremented when the same thread issues an ***Unlock()***. In other words, each call to ***Lock()*** must have a corresponding ***Unlock()*** by the same thread. If the mutex has been locked by another thread, then the thread must wait until it is unlocked. When the mutex is unlocked, the waiting thread can acquire the lock. This, then, is like a lock on an unlocked mutex.
+The ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)*** mutex method is used by a thread to acquire a lock. The lock can be acquired only if the mutex is unlocked; that is, not in use. If a thread has acquired a lock before, the lock counter is incremented. This is called nesting. The lock counter is only decremented when the same thread issues an ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)***. In other words, each call to ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)*** must have a corresponding ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)*** by the same thread. If the mutex has been locked by another thread, then the thread must wait until it is unlocked. When the mutex is unlocked, the waiting thread can acquire the lock. This, then, is like a lock on an unlocked mutex.
 
-The ***TryLock()*** mutex can be used to probe the mutex to see if a lock is possible, and if it is, acquire a lock on the mutex. If the mutex has already been locked, ***TryLock()*** returns `FALSE`. If the mutex is unlocked, than ***TryLock()*** acquires a lock on the mutex just as ***Lock()*** does, and returns `TRUE`.
+The ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** mutex can be used to probe the mutex to see if a lock is possible, and if it is, acquire a lock on the mutex. If the mutex has already been locked, ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** returns `FALSE`. If the mutex is unlocked, than ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** acquires a lock on the mutex just as ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)*** does, and returns `TRUE`.
 
-The ***Unlock()*** method is used to decrease the lock counter if the mutex has been acquired by this thread. When the lock counter becomes zero, then the mutex is completely released (unlocked). If the mutex is not locked or locked by another thread, then the exception CMutexException (eOwner) is thrown.
+The ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)*** method is used to decrease the lock counter if the mutex has been acquired by this thread. When the lock counter becomes zero, then the mutex is completely released (unlocked). If the mutex is not locked or locked by another thread, then the exception CMutexException (eOwner) is thrown.
 
-The ***CMutex*** uses the functionality of ***CFastMutex***. Because ***CMutex*** allows nested locks and performs checks of mutex owner it is somewhat slower than ***CFastMutex***, but capable of protecting complicated code, and safer to use. To guarantee for a mutex release, ***CMutexGuard*** can be used. The mutex is locked by the ***CMutexGuard*** constructor and unlocked by its destructor. Macro **`DEFINE_STATIC_MUTEX(id)`** will define static mutex variable with name **`id`**. Macro **`DECLARE_CLASS_STATIC_MUTEX(id)`** will declare static class member of mutex type name **`id`**. Macro **`DEFINE_CLASS_STATIC_MUTEX(class, id)`** will define class static mutex variable **`class::id`**. The following example demonstrates usage of **`CMutex`**, including lock nesting:
+The ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** uses the functionality of ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)***. Because ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** allows nested locks and performs checks of mutex owner it is somewhat slower than ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)***, but capable of protecting complicated code, and safer to use. To guarantee for a mutex release, ***[CMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutexGuard)*** can be used. The mutex is locked by the ***[CMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutexGuard)*** constructor and unlocked by its destructor. Macro **`DEFINE_STATIC_MUTEX(id)`** will define static mutex variable with name **`id`**. Macro **`DECLARE_CLASS_STATIC_MUTEX(id)`** will declare static class member of mutex type name **`id`**. Macro **`DEFINE_CLASS_STATIC_MUTEX(class, id)`** will define class static mutex variable **`class::id`**. The following example demonstrates usage of **`CMutex`**, including lock nesting:
 
     static int Count = 0;
     DEFINE_STATIC_MUTEX(CountMutex);
@@ -2772,29 +2772,29 @@ The ***CMutex*** uses the functionality of ***CFastMutex***. Because ***CMutex**
 
 This example will result in several nested locks of the same mutex with the guaranteed release of each lock.
 
-It is important not to unlock the mutex protected by a mutex guard. ***CFastMutexGuard*** and ***CMutexGuard*** both unlock the associated mutex on destruction. It the mutex is already unlocked this will cause a runtime error. Instead of unlocking the mutex directly one can use ***CFastMutexGuard::Release()*** or ***CMutexGuard::Release()*** method. These methods unlock the mutex and unlink it from the guard.
+It is important not to unlock the mutex protected by a mutex guard. ***[CFastMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutexGuard)*** and ***[CMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutexGuard)*** both unlock the associated mutex on destruction. It the mutex is already unlocked this will cause a runtime error. Instead of unlocking the mutex directly one can use ***[CFastMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutexGuard)***::***[Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release)*** or ***[CMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutexGuard)***::***[Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release)*** method. These methods unlock the mutex and unlink it from the guard.
 
-In addition to usual ***Lock()*** and ***Unlock()*** methods, the ***CMutex*** class implements a method to test the mutex state before locking it. ***TryLock()*** method attempts to acquire the mutex for the calling thread and returns `true` on success (this includes nested locks by the same thread) or `false` if the mutex has been acquired by another thread. After a successful ***TryLock()*** the mutex should be unlocked like after regular ***Lock()***.
+In addition to usual ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)*** and ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)*** methods, the ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** class implements a method to test the mutex state before locking it. ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** method attempts to acquire the mutex for the calling thread and returns `true` on success (this includes nested locks by the same thread) or `false` if the mutex has been acquired by another thread. After a successful ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** the mutex should be unlocked like after regular ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)***.
 
 <a name="ch_core.CFastMutex"></a>
 
 #### CFastMutex
 
-The ***CFastMutex*** class provides the API for acquiring a mutex. Unlike ***CMutex***, this mutex does not permit nesting and does not check the mutex owner before unlocking. ***CFastMutex*** is, however, faster than ***CMutex*** and should be used when performance is more important than data protection. If performance is less important than data protection, use ***CMutex***, instead.
+The ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)*** class provides the API for acquiring a mutex. Unlike ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)***, this mutex does not permit nesting and does not check the mutex owner before unlocking. ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)*** is, however, faster than ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** and should be used when performance is more important than data protection. If performance is less important than data protection, use ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)***, instead.
 
-The main methods for ***CFastMutex*** operation are ***Lock()***, ***TryLock()*** and ***Unlock()***:
+The main methods for ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)*** operation are ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)***, ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** and ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)***:
 
     void Lock(void);
     bool TryLock(void);
     void Unlock(void);
 
-The ***Lock()*** mutex method is used by a thread to acquire a lock without any nesting or ownership checks.
+The ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)*** mutex method is used by a thread to acquire a lock without any nesting or ownership checks.
 
-The ***TryLock()*** mutex can be used to probe the mutex to see if a lock is possible, and if it is, acquire a lock on the mutex. If the mutex has already been locked, ***TryLock()*** returns `FALSE`. If the mutex is unlocked, than ***TryLock()*** acquires a lock on the mutex just as ***Lock()*** does, and returns `TRUE`. The locking is done without any nesting or ownership checks.
+The ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** mutex can be used to probe the mutex to see if a lock is possible, and if it is, acquire a lock on the mutex. If the mutex has already been locked, ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** returns `FALSE`. If the mutex is unlocked, than ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** acquires a lock on the mutex just as ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)*** does, and returns `TRUE`. The locking is done without any nesting or ownership checks.
 
-The ***Unlock()*** method is used to unlock the mutex without any nesting or ownership checks.
+The ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)*** method is used to unlock the mutex without any nesting or ownership checks.
 
-The ***CFastMutex*** should be used only to protect small and simple parts of code. To guarantee for the mutex release the ***CFastMutexGuard*** class may be used. The mutex is locked by the ***CFastMutexGuard*** constructor and unlocked by its destructor. To avoid problems with initialization of static objects on different platforms, special macro definitions are intended to be used to declare static mutexes. Macro **`DEFINE_STATIC_FAST_MUTEX(id)`** will define static mutex variable with name **`id`**. Macro **`DECLARE_CLASS_STATIC_FAST_MUTEX(id)`** will declare static class member of mutex type with name **`id`**. Macro **`DEFINE_CLASS_STATIC_FAST_MUTEX(class, id)`** will define static class mutex variable **`class::id`**. The example below demonstrates how to protect an integer variable with the fast mutex:
+The ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)*** should be used only to protect small and simple parts of code. To guarantee for the mutex release the ***[CFastMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutexGuard)*** class may be used. The mutex is locked by the ***[CFastMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutexGuard)*** constructor and unlocked by its destructor. To avoid problems with initialization of static objects on different platforms, special macro definitions are intended to be used to declare static mutexes. Macro **`DEFINE_STATIC_FAST_MUTEX(id)`** will define static mutex variable with name **`id`**. Macro **`DECLARE_CLASS_STATIC_FAST_MUTEX(id)`** will declare static class member of mutex type with name **`id`**. Macro **`DEFINE_CLASS_STATIC_FAST_MUTEX(class, id)`** will define static class mutex variable **`class::id`**. The example below demonstrates how to protect an integer variable with the fast mutex:
 
     void ThreadSafe(void)
     {
@@ -2812,15 +2812,15 @@ The ***CFastMutex*** should be used only to protect small and simple parts of co
 
 #### SSystemMutex and SSystemFastMutex
 
-The ***CMutex*** class is built on the platform-dependent mutex class, ***SSystemMutex***. The ***SSystemMutex*** is in turn built using the ***SSystemFastMutex*** class with additional provisions for keeping track of the thread ownership using the ***CThreadSystemID***, and a counter for the number of in the same thread locks (nested or recursive locks).
+The ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** class is built on the platform-dependent mutex class, ***[SSystemMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemMutex)***. The ***[SSystemMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemMutex)*** is in turn built using the ***[SSystemFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemFastMutex)*** class with additional provisions for keeping track of the thread ownership using the ***[CThreadSystemID](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadSystemID)***, and a counter for the number of in the same thread locks (nested or recursive locks).
 
-Each of the ***SSystemMutex*** and ***SSystemFastMutex*** classes have the ***Lock()***, ***TryLock()*** and ***Unlock()*** methods that are platform specific. These methods are used by the platform independent classes, ***CMutex*** and ***CFastMutex*** to provide locking and unlocking services.
+Each of the ***[SSystemMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemMutex)*** and ***[SSystemFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemFastMutex)*** classes have the ***[Lock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Lock)***, ***[TryLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryLock)*** and ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)*** methods that are platform specific. These methods are used by the platform independent classes, ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)*** and ***[CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex)*** to provide locking and unlocking services.
 
 <a name="ch_core.CMutexGuard"></a>
 
 #### CMutexGuard and CFastMutexGuard
 
-The ***CMutexGuard*** and the ***CFastMutexGuard*** classes provide platform independent read and write lock guards to the mutexes. These classes are aliased as typedefs TReadLockGuard and TWriteLockGuard in the ***CMutexGuard*** and the ***CFastMutexGuard*** classes.
+The ***[CMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutexGuard)*** and the ***[CFastMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutexGuard)*** classes provide platform independent read and write lock guards to the mutexes. These classes are aliased as typedefs TReadLockGuard and TWriteLockGuard in the ***[CMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutexGuard)*** and the ***[CFastMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutexGuard)*** classes.
 
 <a name="ch_core.lock_classes"></a>
 
@@ -2832,13 +2832,13 @@ This class implements sharing a resource between multiple reading and writing th
 
 -   if R-locked, the RWLock can be R-locked by the same thread or other threads
 
--   if W-locked, the RWLock can not be acquired by other threads (a call to ***ReadLock()*** or ***WriteLock()*** by another thread will suspend that thread until the RW-lock release).
+-   if W-locked, the RWLock can not be acquired by other threads (a call to ***[ReadLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadLock)*** or ***[WriteLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteLock)*** by another thread will suspend that thread until the RW-lock release).
 
 -   R-lock after W-lock by the same thread is allowed but treated as a nested W-lock
 
 -   W-lock after R-lock by the same thread results in a runtime error
 
-Like ***CMutex***, CRWLock also provides methods for checking its current state: ***TryReadLock()*** and ***TryWriteLock()***. Both methods try to acquire the RW-lock, returning `true` on success (the RW-lock becomes R-locked or W-locked) or `false` if the RW-lock can not be acquired for the calling thread.
+Like ***[CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex)***, CRWLock also provides methods for checking its current state: ***[TryReadLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryReadLock)*** and ***[TryWriteLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryWriteLock)***. Both methods try to acquire the RW-lock, returning `true` on success (the RW-lock becomes R-locked or W-locked) or `false` if the RW-lock can not be acquired for the calling thread.
 
 The following subsections describe these locks in more detail:
 
@@ -2858,9 +2858,9 @@ The following subsections describe these locks in more detail:
 
 ##### CRWLock
 
-The ***CRWLock*** class allows read-after-write (R-after-W) locks for multiple readers or a single writer with recursive locks. The R-after-W lock is considered to be a recursive Write-lock. The write-after-read (W-after-R) is not permitted and can be caught when **`_DEBUG`** is defined. When **`_DEBUG`** is not defined, it does not always detect the W-after-R correctly, so a deadlock can occur in these circumstances. Therefore, it is important to test your application in the **`_DEBUG`** mode first.
+The ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** class allows read-after-write (R-after-W) locks for multiple readers or a single writer with recursive locks. The R-after-W lock is considered to be a recursive Write-lock. The write-after-read (W-after-R) is not permitted and can be caught when **`_DEBUG`** is defined. When **`_DEBUG`** is not defined, it does not always detect the W-after-R correctly, so a deadlock can occur in these circumstances. Therefore, it is important to test your application in the **`_DEBUG`** mode first.
 
-The main methods in the class API are ***ReadLock()***, ***WriteLock()***, ***TryReadLock()***, ***TryWriteLock()*** and ***Unlock()***.
+The main methods in the class API are ***[ReadLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadLock)***, ***[WriteLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteLock)***, ***[TryReadLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryReadLock)***, ***[TryWriteLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryWriteLock)*** and ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)***.
 
     void ReadLock(void);
     void WriteLock(void);
@@ -2868,64 +2868,64 @@ The main methods in the class API are ***ReadLock()***, ***WriteLock()***, ***Tr
     bool TryWriteLock(void);
     void Unlock(void);
 
-The ***ReadLock()*** is used to acquire a read lock. If a write lock has already been acquired by another thread, then this thread waits until it is released.
+The ***[ReadLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadLock)*** is used to acquire a read lock. If a write lock has already been acquired by another thread, then this thread waits until it is released.
 
-The ***WriteLock()*** is used to acquire a write lock. If a read or write lock has already been acquired by another thread, then this thread waits until it is released.
+The ***[WriteLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteLock)*** is used to acquire a write lock. If a read or write lock has already been acquired by another thread, then this thread waits until it is released.
 
-The ***TryReadLock()*** and ***TryWriteLock()*** methods are used to try and acquire a read or write lock, respectively, if at all possible. If a lock cannot be acquired, they immediately return with a `FALSE` value and do not wait to acquire a lock like the ***ReadLock()*** and ***WriteLock()*** methods. If a lock is successfully acquired, a `TRUE` value is returned.
+The ***[TryReadLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryReadLock)*** and ***[TryWriteLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryWriteLock)*** methods are used to try and acquire a read or write lock, respectively, if at all possible. If a lock cannot be acquired, they immediately return with a `FALSE` value and do not wait to acquire a lock like the ***[ReadLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadLock)*** and ***[WriteLock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteLock)*** methods. If a lock is successfully acquired, a `TRUE` value is returned.
 
-As expected from the name, the ***Unlock()*** method releases the RW-lock.
+As expected from the name, the ***[Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unlock)*** method releases the RW-lock.
 
 <a name="ch_core.CAutoRW"></a>
 
 ##### CAutoRW
 
-The ***CAutoRW*** class is used to provide a Read Write lock that is automatically released by the ***CAutoRW*** class' destructor. The locking mechanism is provided by a ***CRWLock*** object that is initialized when the ***CAutoRW*** class constructor is called.
+The ***CAutoRW*** class is used to provide a Read Write lock that is automatically released by the ***CAutoRW*** class' destructor. The locking mechanism is provided by a ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object that is initialized when the ***CAutoRW*** class constructor is called.
 
-An acquired lock can be released by an explicit call to the class ***Release()*** method. The lock can also be released by the class destructor. When the destructor is called the lock if successfully acquired and not already released by ***Release()*** is released.
+An acquired lock can be released by an explicit call to the class ***[Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release)*** method. The lock can also be released by the class destructor. When the destructor is called the lock if successfully acquired and not already released by ***[Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release)*** is released.
 
 <a name="ch_core.CReadLockGuard"></a>
 
 ##### CReadLockGuard
 
-The ***CReadLockGuard*** class is used to provide a basic read lock guard that can be used by other classes. This class is derived from the ***CAutoRW*** class.
+The ***[CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard)*** class is used to provide a basic read lock guard that can be used by other classes. This class is derived from the ***CAutoRW*** class.
 
-The class constructor can be passed a ***CRWLock*** object on which a read lock is acquired, and which is registered to be released by the class destructor. The class's ***Guard()*** method can also be called with a ***CRWLock*** object and if this is not the same as the already registered ***CRWLock*** object, the old registered object is released, and the new ***CRWLock*** object is registered and a read lock acquired on it.
+The class constructor can be passed a ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object on which a read lock is acquired, and which is registered to be released by the class destructor. The class's ***[Guard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Guard)*** method can also be called with a ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object and if this is not the same as the already registered ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object, the old registered object is released, and the new ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object is registered and a read lock acquired on it.
 
 <a name="ch_core.CWriteLockGuard"></a>
 
 ##### CWriteLockGuard
 
-The ***CWriteLockGuard*** class is used to provide a basic write lock guard that can be used by other classes. The ***CWriteLockGuard*** class is similar to the ***CReadLockGuard*** class except that it provides a write lock instead of a read lock. This class is derived from the ***CAutoRW*** class.
+The ***[CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard)*** class is used to provide a basic write lock guard that can be used by other classes. The ***[CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard)*** class is similar to the ***[CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard)*** class except that it provides a write lock instead of a read lock. This class is derived from the ***CAutoRW*** class.
 
-The class constructor can be passed a ***CRWLock*** object on which a write lock is acquired, and which is registered to be released by the class destructor. The class's ***Guard()*** method can also be called with a ***CRWLock*** object and if this is not the same as the already registered ***CRWLock*** object, the old registered object is released, and the new ***CRWLock*** object is registered and a write lock acquired on it.
+The class constructor can be passed a ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object on which a write lock is acquired, and which is registered to be released by the class destructor. The class's ***[Guard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Guard)*** method can also be called with a ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object and if this is not the same as the already registered ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object, the old registered object is released, and the new ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** object is registered and a write lock acquired on it.
 
 <a name="ch_core.CInternalRWLock"></a>
 
 ##### CInternalRWLock
 
-The ***CInternalRWLock*** class holds platform dependent RW-lock data such as data on semaphores and mutexes. This class is not meant to be used directly by user applications. This class is used by other classes such as the ***CRWLock*** class.
+The ***[CInternalRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CInternalRWLock)*** class holds platform dependent RW-lock data such as data on semaphores and mutexes. This class is not meant to be used directly by user applications. This class is used by other classes such as the ***[CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock)*** class.
 
 <a name="ch_core.CSemaphore"></a>
 
 ##### CSemaphore
 
-The ***CSemaphore*** class implements a general purpose counting semaphore. The constructor is passed an initial count for the semaphore and a maximum semaphore count.
+The ***[CSemaphore](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSemaphore)*** class implements a general purpose counting semaphore. The constructor is passed an initial count for the semaphore and a maximum semaphore count.
 
-When the ***Wait()*** method is executed for the semaphore, the counter is decremented by one. If the semaphore's count is zero then the thread waits until it is not zero. A variation on the ***Wait()*** method is the ***TryWait()*** method which is used to prevent long waits. The ***TryWait()*** can be passed a timeout value in seconds and nanoseconds:
+When the ***[Wait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Wait)*** method is executed for the semaphore, the counter is decremented by one. If the semaphore's count is zero then the thread waits until it is not zero. A variation on the ***[Wait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Wait)*** method is the ***[TryWait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryWait)*** method which is used to prevent long waits. The ***[TryWait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryWait)*** can be passed a timeout value in seconds and nanoseconds:
 
     bool TryWait(unsigned int timeout_sec = 0, unsigned int timeout_nsec = 0);
 
-The ***TryWait()*** method can wait for the specified time for the semaphore's count to exceed zero. If that happens, the counter is decremented by one and ***TryWait()*** returns `TRUE`; otherwise, it returns `FALSE`.
+The ***[TryWait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryWait)*** method can wait for the specified time for the semaphore's count to exceed zero. If that happens, the counter is decremented by one and ***[TryWait()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TryWait)*** returns `TRUE`; otherwise, it returns `FALSE`.
 
-The semaphore count is incremented by the ***Post()*** method and an exception is thrown if the maximum count is exceeded.
+The semaphore count is incremented by the ***[Post()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Post)*** method and an exception is thrown if the maximum count is exceeded.
 
 <a name="ch_core.files_dirs"></a>
 
 Working with File and Directories Using CFile and CDir
 ------------------------------------------------------
 
-An application may need to work with files and directories. The CORELIB provides a number of portable classes to model a system file and directory. The base class for the files and directories is ***CDirEntry***. Other classes such as ***CDir*** and ***CFile*** that deal with directories and files are derived form this base class.
+An application may need to work with files and directories. The CORELIB provides a number of portable classes to model a system file and directory. The base class for the files and directories is ***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)***. Other classes such as ***[CDir](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDir)*** and ***[CFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFile)*** that deal with directories and files are derived form this base class.
 
 The following sections discuss the file and directory classes in more detail:
 
@@ -2957,41 +2957,41 @@ The supported filename formats are for the Windows, Unix, and Mac file systems.
 
 The [CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDirEntry.html) class provides the base methods such as the following for dealing with the components of a path name :
 
--   ***GetPath()***: Get pathname.
+-   ***[GetPath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPath)***: Get pathname.
 
--   ***GetDir()***: Get the Directory component for this directory entry.
+-   ***[GetDir()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDir)***: Get the Directory component for this directory entry.
 
--   ***GetBase()***: Get the base entry name without extension.
+-   ***[GetBase()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBase)***: Get the base entry name without extension.
 
--   ***GetName()***: Get the base entry name with extension.
+-   ***[GetName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetName)***: Get the base entry name with extension.
 
--   ***GetExt()***: Get the extension name.
+-   ***[GetExt()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetExt)***: Get the extension name.
 
--   ***MakePath()***: Given the components of a path, combine them to create a path string.
+-   ***[MakePath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MakePath)***: Given the components of a path, combine them to create a path string.
 
--   ***SplitPath()***: Given a path string, split them into its constituent components.
+-   ***[SplitPath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SplitPath)***: Given a path string, split them into its constituent components.
 
--   ***GetPathSeparator()***: Get path separator symbol specific for the platform such as a '\\' or '/'.
+-   ***[GetPathSeparator()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPathSeparator)***: Get path separator symbol specific for the platform such as a '\\' or '/'.
 
--   ***IsPathSeparator()***: Check character "c" as path separator symbol specific for the platform.
+-   ***[IsPathSeparator()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsPathSeparator)***: Check character "c" as path separator symbol specific for the platform.
 
--   ***AddTrailingPathSeparator()***: Add a trailing path separator, if needed.
+-   ***[AddTrailingPathSeparator()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddTrailingPathSeparator)***: Add a trailing path separator, if needed.
 
--   ***ConvertToOSPath()***: Convert relative "path" on any OS to current OS dependent relative path.
+-   ***[ConvertToOSPath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConvertToOSPath)***: Convert relative "path" on any OS to current OS dependent relative path.
 
--   ***IsAbsolutePath()***: Note that the "path" must be for current OS.
+-   ***[IsAbsolutePath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsAbsolutePath)***: Note that the "path" must be for current OS.
 
--   ***ConcatPath()***: Concatenate the two parts of the path for the current OS.
+-   ***[ConcatPath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConcatPath)***: Concatenate the two parts of the path for the current OS.
 
--   ***ConcatPathEx()***: Concatenate the two parts of the path for any OS.
+-   ***[ConcatPathEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConcatPathEx)***: Concatenate the two parts of the path for any OS.
 
--   ***MatchesMask()***: Match "name" against the filename "mask".
+-   ***[MatchesMask()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MatchesMask)***: Match "name" against the filename "mask".
 
--   ***Rename()***: Rename entry to specified "new\_path".
+-   ***[Rename()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Rename)***: Rename entry to specified "new\_path".
 
--   ***Remove()***: Remove the directory entry.
+-   ***[Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove)***: Remove the directory entry.
 
-The last method on the list, the ***Remove()*** method accepts an enumeration type parameter, ***EDirRemoveMode***, which specifies the extent of the directory removal operation - you can delete only an empty directory, only files in a directory but not any subdirectories, or remove the entire directory tree:
+The last method on the list, the ***[Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove)*** method accepts an enumeration type parameter, ***EDirRemoveMode***, which specifies the extent of the directory removal operation - you can delete only an empty directory, only files in a directory but not any subdirectories, or remove the entire directory tree:
 
     /// Directory remove mode.
     enum EDirRemoveMode {
@@ -3001,7 +3001,7 @@ The last method on the list, the ***Remove()*** method accepts an enumeration ty
         eRecursive      ///< Remove all files and subdirectories
     };
 
-***CDirEntry*** knows about different types of files or directory entries. Most of these file types are modeled after the Unix file system but can also handle the file system types for the Windows platform. The different file system types are represented by the enumeration type ***EType*** which is defined as follows :
+***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)*** knows about different types of files or directory entries. Most of these file types are modeled after the Unix file system but can also handle the file system types for the Windows platform. The different file system types are represented by the enumeration type ***EType*** which is defined as follows :
 
     /// Which directory entry type.
     enum EType {
@@ -3017,7 +3017,7 @@ The last method on the list, the ***Remove()*** method accepts an enumeration ty
         eUnknown       ///< Unknown type
     };
 
-***CDirEntry*** knows about permission settings for a directory entry. Again, these are modeled after the Unix file system. The different permissions are represented by the enumeration type ***EMode*** which is defined as follows :
+***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)*** knows about permission settings for a directory entry. Again, these are modeled after the Unix file system. The different permissions are represented by the enumeration type ***EMode*** which is defined as follows :
 
     /// Directory entry's access permissions.
     enum EMode {
@@ -3045,47 +3045,47 @@ The last method on the list, the ***Remove()*** method accepts an enumeration ty
 
 The directory entry permissions of read(r), write(w), execute(x), are defined for the "user", "group" and "others" The initial default permission for directories is "rwx" for "user", "rx" for "group" and "rx" for "others". These defaults allow a user to create directory entries while the "group" and "others" can only change to the directory and read a listing of the directory contents. The initial default permission for files is "rw" for "user", "r" for "group" and "r" for "others". These defaults allow a user to read and write to a file while the "group" and "others" can only read the file.
 
-These directory permissions handle most situations but don't handle all permission types. For example, there is currently no provision for handling the Unix "sticky bit" or the "suid" or "sgid" bits. Moreover, operating systems such as Windows NT/2000/2003 and Solaris use Access Control Lists (ACL) settings for files. There is no provision in ***CDirEntry*** to handle ACLs
+These directory permissions handle most situations but don't handle all permission types. For example, there is currently no provision for handling the Unix "sticky bit" or the "suid" or "sgid" bits. Moreover, operating systems such as Windows NT/2000/2003 and Solaris use Access Control Lists (ACL) settings for files. There is no provision in ***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)*** to handle ACLs
 
-Other methods in ***CDirEntry*** deal specifically with checking the attributes of a directory entry such as the following methods:
+Other methods in ***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)*** deal specifically with checking the attributes of a directory entry such as the following methods:
 
--   ***IsFile()***: Check if directory entry is a file.
+-   ***[IsFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsFile)***: Check if directory entry is a file.
 
--   ***IsDir()***: Check if directory entry is a directory.
+-   ***[IsDir()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsDir)***: Check if directory entry is a directory.
 
--   ***GetType()***: Get type of directory entry. This returns an ***EType*** value.
+-   ***[GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType)***: Get type of directory entry. This returns an ***EType*** value.
 
--   ***GetTime()***: Get time stamp of directory entry.
+-   ***[GetTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTime)***: Get time stamp of directory entry.
 
--   ***GetMode()***: Get permission mode for the directory entry.
+-   ***[GetMode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMode)***: Get permission mode for the directory entry.
 
--   ***SetMode()***: Set permission mode for the directory entry.
+-   ***[SetMode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetMode)***: Set permission mode for the directory entry.
 
--   ***static void SetDefaultModeGlobal()***: Set default mode globally for all ***CDirEntry*** objects. This is a class-wide static method and applies to all objects of this class.
+-   ***static void SetDefaultModeGlobal()***: Set default mode globally for all ***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)*** objects. This is a class-wide static method and applies to all objects of this class.
 
--   ***SetDefaultMode()***: Set mode for this one object only.
+-   ***[SetDefaultMode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDefaultMode)***: Set mode for this one object only.
 
-These methods are inherited by the derived classes ***CDir*** and ***CFile*** that are used to access directories and files, respectively.
+These methods are inherited by the derived classes ***[CDir](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDir)*** and ***[CFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFile)*** that are used to access directories and files, respectively.
 
 <a name="ch_core.CFile"></a>
 
 ### CFile class
 
-The [CFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCFile.html) is derived from the base class, ***CDirEntry***. Besides inheriting the methods discussed in the [previous section](#ch_core.CDirEntry), the following new methods specific to files are defined in the ***CFile*** class:
+The [CFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCFile.html) is derived from the base class, ***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)***. Besides inheriting the methods discussed in the [previous section](#ch_core.CDirEntry), the following new methods specific to files are defined in the ***[CFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFile)*** class:
 
--   ***Exists()***: Check existence for a file.
+-   ***[Exists()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exists)***: Check existence for a file.
 
--   ***GetLength()***: Get size of file.
+-   ***[GetLength()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetLength)***: Get size of file.
 
--   ***GetTmpName()***: Get temporary file name.
+-   ***[GetTmpName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTmpName)***: Get temporary file name.
 
--   ***GetTmpNameEx()***: Get temporary file name in a specific directory and having a specified prefix value.
+-   ***[GetTmpNameEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTmpNameEx)***: Get temporary file name in a specific directory and having a specified prefix value.
 
--   ***CreateTmpFile()***: Create temporary file and return pointer to corresponding stream.
+-   ***[CreateTmpFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFile)***: Create temporary file and return pointer to corresponding stream.
 
--   ***CreateTmpFileEx()***: Create temporary file and return pointer to corresponding stream. You can additionally specify the directory in which to create the temporary file and the prefix to use for the temporary file name.
+-   ***[CreateTmpFileEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFileEx)***: Create temporary file and return pointer to corresponding stream. You can additionally specify the directory in which to create the temporary file and the prefix to use for the temporary file name.
 
-The methods ***CreateTmpFile()*** and ***CreateTmpFileEx()*** allow the creation of either a text or binary file. These two types of files are defined by the enumeration type, ***ETextBinary***, and the methods accept a parameter of this type to indicate the type of file to be created:
+The methods ***[CreateTmpFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFile)*** and ***[CreateTmpFileEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFileEx)*** allow the creation of either a text or binary file. These two types of files are defined by the enumeration type, ***ETextBinary***, and the methods accept a parameter of this type to indicate the type of file to be created:
 
     /// What type of temporary file to create.
     enum ETextBinary {
@@ -3093,7 +3093,7 @@ The methods ***CreateTmpFile()*** and ***CreateTmpFileEx()*** allow the creation
         eBinary         ///< Create binary file
     };
 
-Additionally, you can specify the type of operations (read, write) that should be permitted on the temporary files. These are defined by the enumeration type, ***EAllowRead***, and the ***CreateTmpFile()*** and ***CreateTmpFileEx()*** methods accept a parameter of this type to indicate the type operations that are permitted:
+Additionally, you can specify the type of operations (read, write) that should be permitted on the temporary files. These are defined by the enumeration type, ***EAllowRead***, and the ***[CreateTmpFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFile)*** and ***[CreateTmpFileEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFileEx)*** methods accept a parameter of this type to indicate the type operations that are permitted:
 
     /// Which operations to allow on temporary file.
     enum EAllowRead {
@@ -3105,47 +3105,47 @@ Additionally, you can specify the type of operations (read, write) that should b
 
 ### CDir class
 
-The [CDir](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDir.html) is derived from the base class, ***CDirEntry***. Besides inheriting the methods discussed in the [CDirEntry section](#ch_core.CDirEntry), the following new methods specific to directories are defined in the ***CDir*** class:
+The [CDir](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDir.html) is derived from the base class, ***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)***. Besides inheriting the methods discussed in the [CDirEntry section](#ch_core.CDirEntry), the following new methods specific to directories are defined in the ***[CDir](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDir)*** class:
 
--   ***Exists()***: Check existence for a directory.
+-   ***[Exists()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Exists)***: Check existence for a directory.
 
--   ***GetHome()***: Get the user's home directory.
+-   ***[GetHome()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetHome)***: Get the user's home directory.
 
--   ***GetCwd()***: Get the current working directory.
+-   ***[GetCwd()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCwd)***: Get the current working directory.
 
--   ***GetEntries()***: Get directory entries based on a specified mask parameter. Retuns a vector of pointers to ***CDirEntry*** objects defined by ***TEntries***
+-   ***[GetEntries()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetEntries)***: Get directory entries based on a specified mask parameter. Retuns a vector of pointers to ***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)*** objects defined by ***TEntries***
 
--   ***Create()***: Create the directory using the directory name passed in the constructor.
+-   ***[Create()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Create)***: Create the directory using the directory name passed in the constructor.
 
--   ***CreatePath()***: Create the directory path recursively possibly more than one at a time.
+-   ***[CreatePath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreatePath)***: Create the directory path recursively possibly more than one at a time.
 
--   ***Remove()***: Delete existing directory.
+-   ***[Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove)***: Delete existing directory.
 
-The last method on the list, the ***Remove()*** method accepts an enumeration type parameter, ***EDirRemoveMode***, defined in the [CDirEntry](#ch_core.CDirEntry) class which specifies the extent of the directory removal operation - you can delete only an empty directory, only files in a directory but not any subdirectories, or remove the entire directory tree.
+The last method on the list, the ***[Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove)*** method accepts an enumeration type parameter, ***EDirRemoveMode***, defined in the [CDirEntry](#ch_core.CDirEntry) class which specifies the extent of the directory removal operation - you can delete only an empty directory, only files in a directory but not any subdirectories, or remove the entire directory tree.
 
 <a name="ch_core.CMemoryFile"></a>
 
 ### CMemoryFile class
 
-The [CMemoryFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCMemoryFile.html) is derived from the base class, ***CDirEntry***. This class creates a virtual image of a disk file in memory that allow normal file operations to be permitted, but the file operations are actually performed on the image of the file in memory. This can result in considerable improvements in speed when there are many "disk intensive" file operations being performed on a file which is mapped to memory.
+The [CMemoryFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCMemoryFile.html) is derived from the base class, ***[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry)***. This class creates a virtual image of a disk file in memory that allow normal file operations to be permitted, but the file operations are actually performed on the image of the file in memory. This can result in considerable improvements in speed when there are many "disk intensive" file operations being performed on a file which is mapped to memory.
 
-Besides inheriting the methods discussed in the [CDirEntry section](#ch_core.CDirEntry), the following new methods specific to memory mapped are defined in the ***CMemoryFile*** class:
+Besides inheriting the methods discussed in the [CDirEntry section](#ch_core.CDirEntry), the following new methods specific to memory mapped are defined in the ***[CMemoryFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMemoryFile)*** class:
 
--   ***IsSupported()***: Check if memory-mapping is supported by the C++ Toolkit on this platform.
+-   ***[IsSupported()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsSupported)***: Check if memory-mapping is supported by the C++ Toolkit on this platform.
 
--   ***GetPtr()***: Get pointer to beginning of data in the memory mapped file.
+-   ***[GetPtr()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPtr)***: Get pointer to beginning of data in the memory mapped file.
 
--   ***GetSize()***: Get size of the mapped area.
+-   ***[GetSize()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSize)***: Get size of the mapped area.
 
--   ***Flush()***: Flush by writing all modified copies of memory pages to the underlying file.
+-   ***[Flush()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Flush)***: Flush by writing all modified copies of memory pages to the underlying file.
 
--   ***Unmap()***: Unmap file if it has already been mapped.
+-   ***[Unmap()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Unmap)***: Unmap file if it has already been mapped.
 
--   ***MemMapAdvise()***: Advise on memory map usage.
+-   ***[MemMapAdvise()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MemMapAdvise)***: Advise on memory map usage.
 
--   ***MemMapAdviseAddr()***: Advise on memory map usage for specified region.
+-   ***[MemMapAdviseAddr()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MemMapAdviseAddr)***: Advise on memory map usage for specified region.
 
-The methods ***MemMapAdvise()*** and ***MemMapAdviseAddr()*** allow one to advise on the expected usage pattern for the memory mapped file. The expected usage pattern is defined by the enumeration type, ***EMemMapAdvise***, and these methods accept a parameter of this type to indicate the usage pattern:
+The methods ***[MemMapAdvise()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MemMapAdvise)*** and ***[MemMapAdviseAddr()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MemMapAdviseAddr)*** allow one to advise on the expected usage pattern for the memory mapped file. The expected usage pattern is defined by the enumeration type, ***[EMemMapAdvise](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EMemMapAdvise)***, and these methods accept a parameter of this type to indicate the usage pattern:
 
     /// What type of data access pattern will be used for mapped region.
     ///
@@ -3169,7 +3169,7 @@ The memory usage advice is implemented on Unix platforms only, and is not suppor
 String APIs
 -----------
 
-The `ncbistr.hpp` file defines a number of useful constants, types and functions for handling string types. Most of the string functions are defined as class-wides static members of the class ***NStr***.
+The `ncbistr.hpp` file defines a number of useful constants, types and functions for handling string types. Most of the string functions are defined as class-wides static members of the class ***[NStr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NStr)***.
 
 The following sections provide additional details on string APIs
 
@@ -3197,30 +3197,30 @@ The **`SIZE_TYPE`** is an alias for the string::size\_type, and the **`NPOS`** d
 
 ### NStr Class
 
-The ***NStr*** class encapsulates a number of class-wide static methods. These include string concatenation, string conversion, string comparison, string search functions. Most of these string operations should be familiar to developers by name. For details, see the ***NStr*** [static methods documentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classNStr.html#pub-static-methods).
+The ***[NStr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NStr)*** class encapsulates a number of class-wide static methods. These include string concatenation, string conversion, string comparison, string search functions. Most of these string operations should be familiar to developers by name. For details, see the ***[NStr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NStr)*** [static methods documentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classNStr.html#pub-static-methods).
 
 <a name="ch_core.UTF_strings"></a>
 
 ### UNICODE support
 
-In the Toolkit, all strings are assumed to be in UTF-8 format. Still, in order to communicate with the operating system or with external data sources, we need the ability to convert strings to and from other formats. This is done with the help of ***CUtf8*** helper class. In the Toolkit we also use ***CStringUTF8*** class, but this is only a synonym to ***std::string*** and serves as sort of a reminder.
+In the Toolkit, all strings are assumed to be in UTF-8 format. Still, in order to communicate with the operating system or with external data sources, we need the ability to convert strings to and from other formats. This is done with the help of ***[CUtf8](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CUtf8)*** helper class. In the Toolkit we also use ***[CStringUTF8](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStringUTF8)*** class, but this is only a synonym to ***std***::***string*** and serves as sort of a reminder.
 
-The ***CUtf8*** class converts source string into UTF-8 format using its multiple overloaded *AsUTF8* methods. The input argument can be a string reference, char\* pointer with encoding information, and wide string, and wide character pointers. Wide string support exists if the macro **`HAVE_WSTRING`** is defined. Backward conversion is done with *AsSingleByteString* or *AsBasicString* methods. The class also provides several useful methods such as counting the number of code points in UTF-8 string, validating string encoding, converting single character to and from UNICODE, checking for white space characters in its extended, UNICODE meaning as defined by <a href="https://en.wikipedia.org/wiki/Whitespace_character#Unicode">The Unicode Consortium</a>, and truncating white spaces from string.
+The ***[CUtf8](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CUtf8)*** class converts source string into UTF-8 format using its multiple overloaded *AsUTF8* methods. The input argument can be a string reference, char\* pointer with encoding information, and wide string, and wide character pointers. Wide string support exists if the macro **`HAVE_WSTRING`** is defined. Backward conversion is done with *AsSingleByteString* or *AsBasicString* methods. The class also provides several useful methods such as counting the number of code points in UTF-8 string, validating string encoding, converting single character to and from UNICODE, checking for white space characters in its extended, UNICODE meaning as defined by <a href="https://en.wikipedia.org/wiki/Whitespace_character#Unicode">The Unicode Consortium</a>, and truncating white spaces from string.
 
 <a name="ch_core.pcase"></a>
 
 ### PCase and PNocase
 
-The ***PCase*** and ***PNocase*** structures define case-sensitive and case-insensitive comparison functions, respectively. These comparison functions are the ***Compare()***, ***Less()***, ***Equals()***, ***operator()***. The ***Compare()*** returns an integer (-1 for less than, 0 for equal to, 1 for greater than). The ***Less()*** and ***Equals()*** return a TRUE if the first string is less than or equal to the second string. The ***operator()*** returns TRUE if the first string is less than the second.
+The ***[PCase](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PCase)*** and ***[PNocase](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PNocase)*** structures define case-sensitive and case-insensitive comparison functions, respectively. These comparison functions are the ***[Compare()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Compare)***, ***[Less()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Less)***, ***[Equals()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Equals)***, ***operator()***. The ***[Compare()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Compare)*** returns an integer (-1 for less than, 0 for equal to, 1 for greater than). The ***[Less()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Less)*** and ***[Equals()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Equals)*** return a TRUE if the first string is less than or equal to the second string. The ***operator()*** returns TRUE if the first string is less than the second.
 
-A convenience template function ***AStrEquiv*** is defined that accepts the two classes to be compared as template parameters and a third template parameter that can be the comparison class such as the ***PCase*** and ***PNocase*** defined above.
+A convenience template function ***[AStrEquiv](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AStrEquiv)*** is defined that accepts the two classes to be compared as template parameters and a third template parameter that can be the comparison class such as the ***[PCase](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PCase)*** and ***[PNocase](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PNocase)*** defined above.
 
 <a name="ch_core.portable_time_class"></a>
 
 Portable Time Class
 -------------------
 
-The `ncbitime.hpp` defines ***CTime***, the standard Date/Time class that also can be used to represent elapsed time. Please note that the ***CTime*** class works for dates after 1/1/1900 and should not be used for elapsed time prior to this date. Also, since `Mac OS 9` does not support the daylight savings flag, ***CTime*** does not support daylight savings on this platform.
+The `ncbitime.hpp` defines ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)***, the standard Date/Time class that also can be used to represent elapsed time. Please note that the ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** class works for dates after 1/1/1900 and should not be used for elapsed time prior to this date. Also, since `Mac OS 9` does not support the daylight savings flag, ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** does not support daylight savings on this platform.
 
 The subsections that follow discuss the following topics:
 
@@ -3230,9 +3230,9 @@ The subsections that follow discuss the following topics:
 
 <a name="ch_core.CTime"></a>
 
-### ***CTime*** Class Constructors
+### ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** Class Constructors
 
-The ***CTime*** class defines three basic constructors that accept commonly used time description arguments and some explicit conversion and copy constructors. The basic constructors are the following:
+The ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** class defines three basic constructors that accept commonly used time description arguments and some explicit conversion and copy constructors. The basic constructors are the following:
 
 -   Constructor 1:<br/>`    CTime(EInitMode            mode = eEmpty,`<br/>`          ETimeZone            tz   = eLocal,`<br/>`          ETimeZonePrecision   tzp  = eTZPrecisionDefault);`
 
@@ -3240,7 +3240,7 @@ The ***CTime*** class defines three basic constructors that accept commonly used
 
 -   Constructor 3:<br/>`    CTime(int year,`<br/>`          int yearDayNumber,`<br/>`          ETimeZone tz = eLocal,`<br/>`          ETimeZonePrecision tzp = eTZPrecisionDefault);`
 
-In Constructor 1, the ***EInitMode*** is an enumeration type defined in the ***CTime*** class that can be used to specify whether to build the time object with empty time value (`eEmpty`) or current time (`eCurrent`). The ***ETimeZone*** is an enumeration type also defined in the ***CTime*** class that is used to specify the local time zone (`eLocal`) or GMT (`eGmt`. The ***ETimeZonePrecision*** is an enumeration type also defined in the ***CTime*** class that can be used to specify the time zone precision to be used for adjusting the daylight savings time. The default value is `eNone`, which means that daylight savings do not affect time calculations.
+In Constructor 1, the ***EInitMode*** is an enumeration type defined in the ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** class that can be used to specify whether to build the time object with empty time value (`eEmpty`) or current time (`eCurrent`). The ***ETimeZone*** is an enumeration type also defined in the ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** class that is used to specify the local time zone (`eLocal`) or GMT (`eGmt`. The ***ETimeZonePrecision*** is an enumeration type also defined in the ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** class that can be used to specify the time zone precision to be used for adjusting the daylight savings time. The default value is `eNone`, which means that daylight savings do not affect time calculations.
 
 Constructor 2 differs from Constructor 1 with respect to how the timestamp is specified. Here the time stamp is explictly specified as the year, month, day, hour, minute, second, and nanosecond values. The other parameters of type ***ETimeZone*** and ***ETimeZonePrecision*** have the meanings discussed in the previous paragraph.
 
@@ -3253,35 +3253,35 @@ The explicit conversion constructor allows the conversion to be made from a stri
                    ETimeZone            tz  = eLocal,
                    ETimeZonePrecision   tzp = eTZPrecisionDefault);
 
-There is also a copy constructor defined that permits copy operations for ***CTime*** objects.
+There is also a copy constructor defined that permits copy operations for ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** objects.
 
 <a name="ch_core.CTimeMethods"></a>
 
-### Other ***CTime*** Methods
+### Other ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** Methods
 
-Once the ***CTime*** object is constructed, it can be accessed using the ***SetTimeT()*** and ***GetTimeT()*** methods. The ***SetTimeT()*** method is used to set the ***CTime*** with the timestamp passed by the ***time\_t*** parameter. The ***GetTimeT()*** method returns the time stored in the ***CTime*** object as a ***time\_t*** value. The ***time\_t*** value measures seconds since January 1, 1970; therefore, do not use these methods if the timestamp is less than 1970. Also, note that time_t represent a time in GMT time format.
+Once the ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** object is constructed, it can be accessed using the ***[SetTimeT()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeT)*** and ***[GetTimeT()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeT)*** methods. The ***[SetTimeT()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeT)*** method is used to set the ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** with the timestamp passed by the ***time\_t*** parameter. The ***[GetTimeT()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeT)*** method returns the time stored in the ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** object as a ***time\_t*** value. The ***time\_t*** value measures seconds since January 1, 1970; therefore, do not use these methods if the timestamp is less than 1970. Also, note that time_t represent a time in GMT time format.
 
-A series of methods that set the time using the database formats ***TDBTimeI*** and ***TDBTimeU*** are also defined. These database time formats contain local time only and are defined as typedefs in `ncbitime.hpp`. The mutator methods are ***SetTimeDBI()*** and ***SetTimeDBU()***, and the accessor methods are ***GetTimeDBI()*** and ***GetTimeDBU()***.
+A series of methods that set the time using the database formats ***[TDBTimeI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TDBTimeI)*** and ***[TDBTimeU](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TDBTimeU)*** are also defined. These database time formats contain local time only and are defined as typedefs in `ncbitime.hpp`. The mutator methods are ***[SetTimeDBI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeDBI)*** and ***[SetTimeDBU()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeDBU)***, and the accessor methods are ***[GetTimeDBI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeDBI)*** and ***[GetTimeDBU()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeDBU)***.
 
-You can set the time to the current time using the ***SetCurrent()*** method, or set it to "empty" using the ***Clear()*** method. If you want to measure time as days only and strip the hour, minute, and second information, you can use ***Truncate()*** method.
+You can set the time to the current time using the ***[SetCurrent()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetCurrent)*** method, or set it to "empty" using the ***[Clear()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Clear)*** method. If you want to measure time as days only and strip the hour, minute, and second information, you can use ***[Truncate()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Truncate)*** method.
 
-You can get or set the current time format using the ***GetFormat()*** and ***SetFormat()*** methods.
+You can get or set the current time format using the ***[GetFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetFormat)*** and ***[SetFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetFormat)*** methods.
 
-You can get and set the individual components of time, such as year, day, month, hour, minute, second, and nanosecond. The accessor methods for these components are named after the component itself, and their meanings are obvious, e.g., ***Year()*** for getting the year component, ***Month()*** for getting the month component, ***Day()*** for getting the day component, ***Hour()*** for getting the hour component, ***Minute()*** for getting the minute component, ***Second()*** for getting the second component, and ***NanoSecond()*** for getting the nanosecond component. The corresponding mutator methods for setting the individual components are the same as the accessor, except that they have the prefix "Set" before them. For example, the mutator method for setting the day is ***SetDay()***. A word of caution on setting the individual components: You can easily set the timestamp to invalid values, such as changing the number of days in the month of February to 29 when it is not a leap year, or 30 or 31.
+You can get and set the individual components of time, such as year, day, month, hour, minute, second, and nanosecond. The accessor methods for these components are named after the component itself, and their meanings are obvious, e.g., ***[Year()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Year)*** for getting the year component, ***[Month()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Month)*** for getting the month component, ***[Day()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Day)*** for getting the day component, ***[Hour()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Hour)*** for getting the hour component, ***[Minute()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Minute)*** for getting the minute component, ***[Second()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Second)*** for getting the second component, and ***[NanoSecond()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NanoSecond)*** for getting the nanosecond component. The corresponding mutator methods for setting the individual components are the same as the accessor, except that they have the prefix "Set" before them. For example, the mutator method for setting the day is ***[SetDay()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDay)***. A word of caution on setting the individual components: You can easily set the timestamp to invalid values, such as changing the number of days in the month of February to 29 when it is not a leap year, or 30 or 31.
 
-A number of methods are available to get useful information from a ***CTime*** object. To get a day's year number (1 to 366) use ***YearDayNumber()***. To get the week number in a year, use ***YearWeekNumber()***. To get the week number in a month, use ***MonthWeekNumber()***. You can get the day of week (Sunday=0) by using ***DayOfWeek()***, or the number of days in the current month by using ***DaysInMonth()***.
+A number of methods are available to get useful information from a ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** object. To get a day's year number (1 to 366) use ***[YearDayNumber()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=YearDayNumber)***. To get the week number in a year, use ***[YearWeekNumber()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=YearWeekNumber)***. To get the week number in a month, use ***[MonthWeekNumber()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MonthWeekNumber)***. You can get the day of week (Sunday=0) by using ***[DayOfWeek()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DayOfWeek)***, or the number of days in the current month by using ***[DaysInMonth()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DaysInMonth)***.
 
-There are times when you need to add months, days, hours, minutes, or seconds to an existing ***CTime*** object. You can do this by using the ***AddXXX()*** methods, where the "XXX" is the time component such as "Year", "Month", "Day", "Hour", "Minute", "Second", "NanoSecond" that is to be added to. Be aware that because the number of days in a month can vary, adding months may change the day number in the timestamp. Operator methods for adding to (+=), subtracting from (-=), incrementing (++), and decrementing (--) days are also available.
+There are times when you need to add months, days, hours, minutes, or seconds to an existing ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** object. You can do this by using the ***AddXXX()*** methods, where the "XXX" is the time component such as "Year", "Month", "Day", "Hour", "Minute", "Second", "NanoSecond" that is to be added to. Be aware that because the number of days in a month can vary, adding months may change the day number in the timestamp. Operator methods for adding to (+=), subtracting from (-=), incrementing (++), and decrementing (--) days are also available.
 
 If you need to compare two timestamps, you can use the operator methods for equality (==), in-equality (!=), earlier than (\<), later than (\>), or a combination test, such as earlier than or equal to (\<=) or later than or equal to (\>=).
 
-You can measure the difference between two timestamps in days, hours, minutes, seconds, or nanoseconds. The timestamp difference methods have the form ***DiffXXX()***, where "XXX" is the time unit in which you want the difference calculated such as "Day", "Hour", "Minute", "Second", or "NanoSecond". Thus, ***DiffHour()*** can be used to calculate the difference in hours.
+You can measure the difference between two timestamps in days, hours, minutes, seconds, or nanoseconds. The timestamp difference methods have the form ***DiffXXX()***, where "XXX" is the time unit in which you want the difference calculated such as "Day", "Hour", "Minute", "Second", or "NanoSecond". Thus, ***[DiffHour()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DiffHour)*** can be used to calculate the difference in hours.
 
-There are times when you may need to do a check on the timestamp. You can use ***IsLeap()*** to check if the time is in a leap year, or if it is empty by using ***IsEmpty()***, or if it is valid by using ***IsValid()***, or if it is local time by using ***IsLocalTime()***, or if it is GMT time by using ***IsGmtTime()***.
+There are times when you may need to do a check on the timestamp. You can use ***[IsLeap()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsLeap)*** to check if the time is in a leap year, or if it is empty by using ***[IsEmpty()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsEmpty)***, or if it is valid by using ***[IsValid()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsValid)***, or if it is local time by using ***[IsLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsLocalTime)***, or if it is GMT time by using ***IsGmtTime()***.
 
-If you need to work with time zones explicitly, you can use ***GetTimeZoneFormat()*** to get the current time zone format, and ***SetTimeZoneFormat()*** to change it. You can use ***GetTimeZonePrecision()*** to get the current time zone precision and ***SetTimeZonePrecision()*** to change it. To get the time zone difference between local time and GMT, use ***TimeZoneOffset()***. To get current time as local time use ***GetLocalTime()***, and as GMT time use ***GetGmtTime()***. To convert current time to a specified time zone, use ***ToTime()***, or to convert to local time use ***ToLocalTime()***.
+If you need to work with time zones explicitly, you can use ***[GetTimeZoneFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeZoneFormat)*** to get the current time zone format, and ***[SetTimeZoneFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeZoneFormat)*** to change it. You can use ***[GetTimeZonePrecision()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeZonePrecision)*** to get the current time zone precision and ***[SetTimeZonePrecision()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeZonePrecision)*** to change it. To get the time zone difference between local time and GMT, use ***[TimeZoneOffset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TimeZoneOffset)***. To get current time as local time use ***[GetLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetLocalTime)***, and as GMT time use ***GetGmtTime()***. To convert current time to a specified time zone, use ***[ToTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ToTime)***, or to convert to local time use ***[ToLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ToLocalTime)***.
 
-Also defined for ***CTime*** are assignment operators to assign a ***CTime*** object to another ***CTime*** and an assignment operator where the right hand side is a time value string.
+Also defined for ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** are assignment operators to assign a ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** object to another ***[CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime)*** and an assignment operator where the right hand side is a time value string.
 
 <a name="ch_core.template_utils"></a>
 
@@ -3300,9 +3300,9 @@ The following topics are discussed in this section:
 
 ### Function Objects
 
-The ***p\_equal\_to*** and ***pair\_equal\_to*** are template function classes that are derived from the standard ***binary\_function*** base class. The ***p\_equal\_to*** checks for equality of objects pointed to by a pointer and ***pair\_equal\_to*** checks whether a pair's second element matches a given value. Another ***PPtrLess*** function class allows comparison of objects pointed to by a smart pointer.
+The ***p\_equal\_to*** and ***pair\_equal\_to*** are template function classes that are derived from the standard ***[binary\_function](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=binary_function)*** base class. The ***p\_equal\_to*** checks for equality of objects pointed to by a pointer and ***pair\_equal\_to*** checks whether a pair's second element matches a given value. Another ***PPtrLess*** function class allows comparison of objects pointed to by a smart pointer.
 
-The ***CNameGetter*** template defines the function ***GetKey()***, which returns the name attribute for the template parameter.
+The ***[CNameGetter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNameGetter)*** template defines the function ***[GetKey()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetKey)***, which returns the name attribute for the template parameter.
 
 <a name="ch_core.template_functions"></a>
 
@@ -3310,21 +3310,21 @@ The ***CNameGetter*** template defines the function ***GetKey()***, which return
 
 Defined here are a number of inline template functions that make it easier to perform common operations on map objects.
 
-***NotNull()*** checks for a null pointer value and throws a ***CCoreException***, if a null value is detected. If the pointer value is not null, it is simply returned.
+***[NotNull()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NotNull)*** checks for a null pointer value and throws a ***[CCoreException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCoreException)***, if a null value is detected. If the pointer value is not null, it is simply returned.
 
-***GetMapElement()*** searches a map object for an element and returns the element, if found. If the element is not found, it returns a default value, which is usually set to 0 (null).
+***[GetMapElement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMapElement)*** searches a map object for an element and returns the element, if found. If the element is not found, it returns a default value, which is usually set to 0 (null).
 
-***SetMapElement()*** sets the map element. If the element to be set is null, its existing key is erased.
+***[SetMapElement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetMapElement)*** sets the map element. If the element to be set is null, its existing key is erased.
 
-***InsertMapElement()*** inserts a new map element.
+***[InsertMapElement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=InsertMapElement)*** inserts a new map element.
 
-***GetMapString()*** and ***SetMapString()*** are similar to the more general ***GetMapElement()*** and ***SetMapElement()***, except that they search a map object for a string. In the case of ***GetMapString()***, it returns a string, if found, and an empty string ("") if not found.
+***[GetMapString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMapString)*** and ***[SetMapString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetMapString)*** are similar to the more general ***[GetMapElement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMapElement)*** and ***[SetMapElement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetMapElement)***, except that they search a map object for a string. In the case of ***[GetMapString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMapString)***, it returns a string, if found, and an empty string ("") if not found.
 
-There are three overloads for the ***DeleteElements()*** template function. One overload accepts a container (list, vector, set, multiset) of pointers and deletes all elements in the container and clears the container afterwards. The other overloads work with map and multimap objects. In each case, they delete the pointers in the map object and clear the map container afterwards.
+There are three overloads for the ***[DeleteElements()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DeleteElements)*** template function. One overload accepts a container (list, vector, set, multiset) of pointers and deletes all elements in the container and clears the container afterwards. The other overloads work with map and multimap objects. In each case, they delete the pointers in the map object and clear the map container afterwards.
 
-The ***AutoMap()*** template function works with a cache pointed to ***auto\_ptr***. It retrieves the result from the cache, and if the cache is empty, it inserts a value into the cache from a specified source.
+The ***[AutoMap()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AutoMap)*** template function works with a cache pointed to ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)***. It retrieves the result from the cache, and if the cache is empty, it inserts a value into the cache from a specified source.
 
-A ***FindBestChoice()*** template function is defined that returns the best choice (lowest score) value in the container. The container and scoring functions are specified as template parameters. The ***FindBestChoice()*** in turn uses the ***CBestChoiceTracker*** template class, which uses the standard unary\_function as its base class. The ***CBestChoiceTracker*** contains the logic to record the scoring function and keep track of the current value and the best score.
+A ***[FindBestChoice()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindBestChoice)*** template function is defined that returns the best choice (lowest score) value in the container. The container and scoring functions are specified as template parameters. The ***[FindBestChoice()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindBestChoice)*** in turn uses the ***[CBestChoiceTracker](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBestChoiceTracker)*** template class, which uses the standard unary\_function as its base class. The ***[CBestChoiceTracker](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBestChoiceTracker)*** contains the logic to record the scoring function and keep track of the current value and the best score.
 
 <a name="ch_core.misc_types_macros"></a>
 
@@ -3347,19 +3347,19 @@ The following topics are discussed in this section:
 
 ### Miscellaneous Enumeration Types
 
-The enum type ***EOwnership*** defines the constants `eNoOwnership` and `eTakeOwnership`. These are used to specify relationships between objects.
+The enum type ***[EOwnership](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EOwnership)*** defines the constants `eNoOwnership` and `eTakeOwnership`. These are used to specify relationships between objects.
 
-The enum type ***ENullable*** defines the constants `eNullable` and `eNotNullable`. These are used to specify if a data element can hold a null or not-null value.
+The enum type ***[ENullable](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ENullable)*** defines the constants `eNullable` and `eNotNullable`. These are used to specify if a data element can hold a null or not-null value.
 
 <a name="ch_core.AutoPtr"></a>
 
 ### AutoPtr Class
 
-The `ncbimisc.hpp` file defines an ***auto\_ptr*** class if the **`HAVE_NO_AUTO_PTR`** macro is undefined. This is useful in replacing the ***std::auto\_ptr*** of STL for compilers with poor "auto\_ptr" implementation. Section [STL auto\_ptrs](#ch_core.auto_ptr) discusses details on the use of ***auto\_ptr***.
+The `ncbimisc.hpp` file defines an ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** class if the **`HAVE_NO_AUTO_PTR`** macro is undefined. This is useful in replacing the ***std***::***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** of STL for compilers with poor "auto\_ptr" implementation. Section [STL auto\_ptrs](#ch_core.auto_ptr) discusses details on the use of ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)***.
 
-Another class related to the ***auto\_ptr*** class is the ***AutoPtr*** class. The Standard ***auto\_ptr*** class from STL does not allow the auto\_ptr to be put in STL containers such as list, vector, map etc. Because of the nature of how ownership works in an auto\_ptr class, the copy constructor and assignment operator of AutoPtr modify the state of the source ***AutoPtr*** object as it transfers ownership to the target ***AutoPtr*** object.
+Another class related to the ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** class is the ***[AutoPtr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AutoPtr)*** class. The Standard ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** class from STL does not allow the auto\_ptr to be put in STL containers such as list, vector, map etc. Because of the nature of how ownership works in an auto\_ptr class, the copy constructor and assignment operator of AutoPtr modify the state of the source ***[AutoPtr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AutoPtr)*** object as it transfers ownership to the target ***[AutoPtr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AutoPtr)*** object.
 
-A certain amount of flexibility has been provided in terms of how the pointer is to be deleted. This is done by passing a second argument to the ***AutoPtr*** template. This second argument allows the passing of a functor object that defines the deletion of the object. You can define "malloc" pointers in ***AutoPtr***, or you can use an ***ArrayDeleter*** template class to properly delete an array of objects using "delete[]". By default, the internal pointer will be deleted using the "delete" operator.
+A certain amount of flexibility has been provided in terms of how the pointer is to be deleted. This is done by passing a second argument to the ***[AutoPtr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AutoPtr)*** template. This second argument allows the passing of a functor object that defines the deletion of the object. You can define "malloc" pointers in ***[AutoPtr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AutoPtr)***, or you can use an ***[ArrayDeleter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ArrayDeleter)*** template class to properly delete an array of objects using "delete[]". By default, the internal pointer will be deleted using the "delete" operator.
 
 <a name="ch_core.ITERATE_macros"></a>
 
@@ -3369,13 +3369,13 @@ When working with STL (or STL-like) container classes, it is common to use a for
 
     for (Type::const_iterator it = cont.begin();  it != cont.end();  ++it)
 
-However, there are a number of ways that iterating in this way can fail. For example, suppose the function ***GetNames()*** returns a vector of strings by value and is used like this:
+However, there are a number of ways that iterating in this way can fail. For example, suppose the function ***[GetNames()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetNames)*** returns a vector of strings by value and is used like this:
 
     for (vector<string>::iterator it = GetNames().begin();  it != GetNames().end();  ++it)
 
-This code has the serious problem that the termination condition will never be met because every time ***GetNames()*** is called a new object is created, and therefore neither the initial iterator returned by ***begin()*** nor the iterator returned by ***operator++()*** will ever match the iterator returned by ***end()***. Code like this is not common but does occasionally get written, resulting in a bug and wasted time.
+This code has the serious problem that the termination condition will never be met because every time ***[GetNames()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetNames)*** is called a new object is created, and therefore neither the initial iterator returned by ***[begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=begin)*** nor the iterator returned by ***operator++()*** will ever match the iterator returned by ***[end()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=end)***. Code like this is not common but does occasionally get written, resulting in a bug and wasted time.
 
-A simpler criticism of the for-statement approach is that the call to ***end()*** is repeated unnecessarily.
+A simpler criticism of the for-statement approach is that the call to ***[end()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=end)*** is repeated unnecessarily.
 
 Therefore, to make it easier to write code that will correctly and efficiently iterate through the elements in STL and STL-like containers, the **`ITERATE`** and **`NON_CONST_ITERATE`** macros were defined. Using **`ITERATE`** , the for-statement at the start of this section becomes simply:
 
@@ -3391,7 +3391,7 @@ The **`ITERATE`** and **`NON_CONST_ITERATE`** macros are defined in [include/cor
 
 ### Sequence Position Types
 
-The ***TSeqPos*** and and ***TSignedSeqPos*** are defined to specify sequence locations and length. ***TSeqPos*** is defined as an unsigned int, and ***TSignedSqPos*** is a signed int that should be used only when negative values are a possibility for reporting differences between positions, or for error reporting, although exceptions are generally better for error reporting.
+The ***[TSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSeqPos)*** and and ***[TSignedSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSignedSeqPos)*** are defined to specify sequence locations and length. ***[TSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSeqPos)*** is defined as an unsigned int, and ***TSignedSqPos*** is a signed int that should be used only when negative values are a possibility for reporting differences between positions, or for error reporting, although exceptions are generally better for error reporting.
 
 <a name="ch_core.Containers"></a>
 
@@ -3504,14 +3504,14 @@ Almost the same as [CRangeMap](#ch_core._template_typename_Ob_2) but allows seve
 
 ### class CIntervalTree
 
-Class with the same functionality as [CRangeMap](#ch_core._template_typename_Ob_2) although with different algorithm. It is faster and its speed is not affected by type of data but it uses more memory (triple as [CRangeMap](#ch_core._template_typename_Ob_2)) and, as a result, less efficient when amount of interval in set is quite big. It uses about 140 bytes per interval for 64 bit program so you can calculate if ***CIntervalTree*** is acceptable. For example, it becomes less efficient than [CRangeMap](#ch_core._template_typename_Ob_2) when total memory becomes greater than processor cache.
+Class with the same functionality as [CRangeMap](#ch_core._template_typename_Ob_2) although with different algorithm. It is faster and its speed is not affected by type of data but it uses more memory (triple as [CRangeMap](#ch_core._template_typename_Ob_2)) and, as a result, less efficient when amount of interval in set is quite big. It uses about 140 bytes per interval for 64 bit program so you can calculate if ***[CIntervalTree](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CIntervalTree)*** is acceptable. For example, it becomes less efficient than [CRangeMap](#ch_core._template_typename_Ob_2) when total memory becomes greater than processor cache.
 
 <a name="ch_core.Thread_Pools"></a>
 
 Thread Pools
 ------------
 
-***CThreadPool*** is the main class that implements a pool of threads. It executes any tasks derived from the ***CThreadPool\_Task*** class. The number of threads in pool is controlled by special holder of this policy: object derived from ***CThreadPool\_Controller*** (default implementation is ***CThreadPool\_Controller\_PID*** based on Proportional-Integral-Derivative algorithm). All threads executing by ***CThreadPool*** are the instances of ***CThreadPool\_Thread*** class or its derivatives.
+***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)*** is the main class that implements a pool of threads. It executes any tasks derived from the ***[CThreadPool\_Task](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool_Task)*** class. The number of threads in pool is controlled by special holder of this policy: object derived from ***[CThreadPool\_Controller](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool_Controller)*** (default implementation is ***[CThreadPool\_Controller\_PID](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool_Controller_PID)*** based on Proportional-Integral-Derivative algorithm). All threads executing by ***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)*** are the instances of ***[CThreadPool\_Thread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool_Thread)*** class or its derivatives.
 
 The following classes are discussed in this section:
 
@@ -3529,29 +3529,29 @@ The following classes are discussed in this section:
 
 ### Class CThreadPool
 
-Main class implementing functionality of pool of threads. ***CThreadPool*** can be created in 2 ways:
+Main class implementing functionality of pool of threads. ***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)*** can be created in 2 ways:
 
--   with minimum and maximum limits on count of simultaneously working threads and default object controlling the number of threads in pool during ***CThreadPool*** lifecycle (instance of ***CThreadPool\_Controller\_PID***);
+-   with minimum and maximum limits on count of simultaneously working threads and default object controlling the number of threads in pool during ***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)*** lifecycle (instance of ***[CThreadPool\_Controller\_PID](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool_Controller_PID)***);
 
--   with custom object controlling the number of threads (instance of class derived from ***CThreadPool\_Controller***). This object will control among all other the minimum and maximum limits on count of simultaneously working threads.
+-   with custom object controlling the number of threads (instance of class derived from ***[CThreadPool\_Controller](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool_Controller)***). This object will control among all other the minimum and maximum limits on count of simultaneously working threads.
 
-Both constructors take additional parameter - maximum number of tasks waiting in the inner ***CThreadPool***’s queue for their execution. When this limit will be reached next call to ***AddTask()*** will block until some task from queue is executed and there is free room for new task.
+Both constructors take additional parameter - maximum number of tasks waiting in the inner ***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)***’s queue for their execution. When this limit will be reached next call to ***[AddTask()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddTask)*** will block until some task from queue is executed and there is free room for new task.
 
-***CThreadPool*** has the ability to execute among ordinary tasks some exclusive ones. After call to ***RequestExclusiveExecution()*** all threads in pool will suspend their work (finishing currently executing tasks) and exclusive task will be executed in the special exclusive thread.
+***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)*** has the ability to execute among ordinary tasks some exclusive ones. After call to ***[RequestExclusiveExecution()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RequestExclusiveExecution)*** all threads in pool will suspend their work (finishing currently executing tasks) and exclusive task will be executed in the special exclusive thread.
 
-If there’s necessity to implement some special per-thread logic in ***CThreadPool*** then class can be derived to override virtual method ***CreateThread()*** in which some custom object derived from ***CThreadPool\_Thread*** can be created.
+If there’s necessity to implement some special per-thread logic in ***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)*** then class can be derived to override virtual method ***[CreateThread()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateThread)*** in which some custom object derived from ***[CThreadPool\_Thread](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool_Thread)*** can be created.
 
 <a name="ch_core.Class_CThreadPool_Ta"></a>
 
 ### Class CThreadPool\_Task
 
-Abstract class derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject&d=C), encapsulating task for execution in a ***CThreadPool***. The pure virtual method ***EStatus Execute(void)*** is called when some thread in pool becomes free and ready to execute this task. The lifetime of the task is controlled inside pool by ***CRef***\<\> classes.
+Abstract class derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject&d=C), encapsulating task for execution in a ***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)***. The pure virtual method ***EStatus Execute(void)*** is called when some thread in pool becomes free and ready to execute this task. The lifetime of the task is controlled inside pool by ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)***\<\> classes.
 
 <a name="ch_core._template__typename_T_1"></a>
 
 ### Class CThreadPool\_Thread
 
-Base class for a thread running inside ***CThreadPool*** and executing its tasks. Class can be derived to implement some per-thread functionality in ***CThreadPool***. For this purpose there are protected virtual methods ***Initialize()*** and ***Finalize()*** which are called at the start and finish of the thread correspondingly. And there are methods ***GetPool()*** and ***GetCurrentTask()*** for application needs.
+Base class for a thread running inside ***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)*** and executing its tasks. Class can be derived to implement some per-thread functionality in ***[CThreadPool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CThreadPool)***. For this purpose there are protected virtual methods ***[Initialize()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Initialize)*** and ***[Finalize()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Finalize)*** which are called at the start and finish of the thread correspondingly. And there are methods ***[GetPool()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPool)*** and ***[GetCurrentTask()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCurrentTask)*** for application needs.
 
 <a name="ch_core._Class_CThreadPool_Co"></a>
 
@@ -3580,17 +3580,17 @@ The following classes are discussed in this section. For an overview of these cl
 
 ### class CTempString
 
-Class ***CTempString*** implements a light-weight string on top of a storage buffer whose lifetime management is known and controlled.
+Class ***[CTempString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTempString)*** implements a light-weight string on top of a storage buffer whose lifetime management is known and controlled.
 
-***CTempString*** is designed to avoid memory allocation but provide a string interaction interface congruent with std::basic\_string\<char\>.
+***[CTempString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTempString)*** is designed to avoid memory allocation but provide a string interaction interface congruent with std::basic\_string\<char\>.
 
-As such, ***CTempString*** provides a const-only access interface to its underlying storage. Care has been taken to avoid allocations and other expensive operations wherever possible.
+As such, ***[CTempString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTempString)*** provides a const-only access interface to its underlying storage. Care has been taken to avoid allocations and other expensive operations wherever possible.
 
-***CTempString*** has constructors from std::string and C-style string, which do not copy the string data but keep char pointer and string length.This way the construction and destruction are very efficient.
+***[CTempString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTempString)*** has constructors from std::string and C-style string, which do not copy the string data but keep char pointer and string length.This way the construction and destruction are very efficient.
 
-Take into account, that the character string array kept by ***CTempString*** object must remain valid and unchanged during whole lifetime of the ***CTempString*** object.
+Take into account, that the character string array kept by ***[CTempString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTempString)*** object must remain valid and unchanged during whole lifetime of the ***[CTempString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTempString)*** object.
 
-It's convenient to use the class ***CTempString*** as an argument of API functions so that no allocation or deallocation will take place on of the function call.
+It's convenient to use the class ***[CTempString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTempString)*** as an argument of API functions so that no allocation or deallocation will take place on of the function call.
 
 <a name="ch_core.class_CChecksum"></a>
 
@@ -3705,7 +3705,7 @@ where the parameter meanings are:
 
 <div class="table-scroll"></div>
 
-***Note:*** The ***TNcbiToolkit\_XChar*** parameter type is used for compatibility with applications that use Unicode under Windows.
+***Note:*** The ***[TNcbiToolkit\_XChar](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TNcbiToolkit_XChar)*** parameter type is used for compatibility with applications that use Unicode under Windows.
 
 When your application is finished using the NCBI C++ Toolkit, be sure to release the Toolkit resources by calling:
 

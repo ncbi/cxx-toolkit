@@ -111,7 +111,7 @@ All archive file formats are supported independently, see [archivers](#ch_compre
 Memory compression and decompression
 -----------------------------------
 
-The easiest method to compress/decompress data in memory is to use [***CompressBuffer***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer) and [***DecompressBuffer***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer) methods. Each of the compression classes mentioned above has such methods and allows to use corresponding compression libraries to perform data compression/decompression. Note that the advantages in simplified usage have their cost -- an increased memory consumption. You need to know sizes of input and output data in advance, and to allocate memory buffers accordingly. If the output buffer is too small, the operation will fail. Some compression methods like `ZIP` or `LZO` have [***EstimateCompressionBufferSize***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EstimateCompressionBufferSize) method that can help with this. But because it is unknown in advance what kind of data will be compressed, this method behaves a bit pessimistic, and as a result the estimated buffer size can be larger than a size of the original non-compressed data.
+The easiest method to compress/decompress data in memory is to use [***[CompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer)***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer) and [***[DecompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer)***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer) methods. Each of the compression classes mentioned above has such methods and allows to use corresponding compression libraries to perform data compression/decompression. Note that the advantages in simplified usage have their cost -- an increased memory consumption. You need to know sizes of input and output data in advance, and to allocate memory buffers accordingly. If the output buffer is too small, the operation will fail. Some compression methods like `ZIP` or `LZO` have [***[EstimateCompressionBufferSize](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EstimateCompressionBufferSize)***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EstimateCompressionBufferSize) method that can help with this. But because it is unknown in advance what kind of data will be compressed, this method behaves a bit pessimistic, and as a result the estimated buffer size can be larger than a size of the original non-compressed data.
 
 Below are some examples for in-memory compression and decompression. They use `ZIP` method but you can use any other base class to change it.
 
@@ -138,16 +138,16 @@ In spite of all, these compression/decompression methods are very useful in cont
 Files
 -------------------------
 
-Similar to memory-based ***CompressBuffer*** and ***DecompressBuffer*** methods, each [mentioned compression class](#ch_compress.basic) have corresponding file-based methods [***CompressFile***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressFile) and [***DecompressFile***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressFile). Both require to specify input and output file names. These classes can be used for some utility operations -- when you don`t need additionally process data. Both methods take data from files, compress or decompress it, and create output file on disk as well. 
+Similar to memory-based ***[CompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer)*** and ***[DecompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer)*** methods, each [mentioned compression class](#ch_compress.basic) have corresponding file-based methods [***[CompressFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressFile)***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressFile) and [***[DecompressFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressFile)***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressFile). Both require to specify input and output file names. These classes can be used for some utility operations -- when you don`t need additionally process data. Both methods take data from files, compress or decompress it, and create output file on disk as well. 
 
 But sometimes this is not enough. If you need to read some data from a compression file into memory or to write some data from a memory into a file and compress/decompress it on-the-fly, then the following classes could be useful:
 -	[CBZip2CompressionFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBZip2CompressionFile.html)
 -	[CLZOCompressionFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCLZOCompressionFile.html)
 -	[CZipCompressionFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZipCompressionFile.html)
 
-Each class have ***Open***, ***Read***, ***Write*** and ***Close*** methods. This allows to read/write compressed files; the data will be decompressed or compressed on-the-fly.
+Each class have ***[Open](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open)***, ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)***, ***[Write](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)*** and ***[Close](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close)*** methods. This allows to read/write compressed files; the data will be decompressed or compressed on-the-fly.
 
-Reading data from compressed file (using ***CZipCompression***):
+Reading data from compressed file (using ***[CZipCompression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CZipCompression)***):
 
 	CZipCompressionFile cf;
 	if (!cf.Open(file_path, CCompressionFile::eMode_Read)) {
@@ -213,7 +213,7 @@ You can use standard C++ stream methods to access compression streams and use re
 
 1. Because compressed data is a binary data so the original input/output stream, passed as parameter to compression stream, should be always opened in binary mode. Please do not forget to add `ios_base::binary` flag when opening your "raw" stream!
 
-1. All compression (***CCompres\*[IO]Stream***) class objects must be finalized after use.  Only after finalization all data that you have written into stream will be correctly compressed for sure. By default finalization is done in the class destructor, however it is better to call it directly by using ***Finalize()*** method. This allows to check result and be sure that you read/write all necessary data. You cannot do any checks if it is called in the destructor, at best you'll get an error message if something goes wrong. In the case of ***CCompress\*IStream*** you can only read from the stream after finalization. Compression can produce some data that cannot be fit into the internal stream buffers, so if you don't read it, then some data may be lost. For ***CCompress\*OStream*** all compressed data will be automatically written to the underlying stream after finalization. You don`t need to do a finalization for any decompression streams, it is done automatically when the stream detects logical end of the compressed data.
+1. All compression (***CCompres\*[IO]Stream***) class objects must be finalized after use.  Only after finalization all data that you have written into stream will be correctly compressed for sure. By default finalization is done in the class destructor, however it is better to call it directly by using ***[Finalize()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Finalize)*** method. This allows to check result and be sure that you read/write all necessary data. You cannot do any checks if it is called in the destructor, at best you'll get an error message if something goes wrong. In the case of ***CCompress\*IStream*** you can only read from the stream after finalization. Compression can produce some data that cannot be fit into the internal stream buffers, so if you don't read it, then some data may be lost. For ***CCompress\*OStream*** all compressed data will be automatically written to the underlying stream after finalization. You don`t need to do a finalization for any decompression streams, it is done automatically when the stream detects logical end of the compressed data.
 
 1. The compression streams write nothing into the output if no input data has provided. This can be especially important for cases where the output data should have any header/footer (like .gz files, for example). So, for empty input, you will have an empty output, that may not be acceptable to external tools like gunzip and etc. If you want to produce correct compression format even for empty input data, please use `fAllowEmptyData` flag. This flag is `OFF` by default.
 
@@ -227,7 +227,7 @@ If you need to tune up a compression/decompression algorithm for yours needs, or
 -	[CCompressionOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCompressionOStream.html)
 -	[CCompressionIOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCompressionIOStream.html)
 
-The main difference, besides names, is that each class accepts a "stream processor" as parameter, an object of some class derived from ***CCompressionStreamProcessor*** that perform a real compression or decompression. Each compression library has its own implementation of stream processor. Currently, the Compression API has the following stream processors implemented:
+The main difference, besides names, is that each class accepts a "stream processor" as parameter, an object of some class derived from ***[CCompressionStreamProcessor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCompressionStreamProcessor)*** that perform a real compression or decompression. Each compression library has its own implementation of stream processor. Currently, the Compression API has the following stream processors implemented:
 
 -	[CBZip2StreamCompressor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBZip2StreamCompressor.html)
 -	[CBZip2StreamDecompressor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBZip2StreamDecompressor.html)
@@ -239,7 +239,7 @@ The main difference, besides names, is that each class accepts a "stream process
 
 All library based "stream processors" accept parameters specific for the underlying compression library. See compression libraries for details and parameters description.
 
-***CTransparentStreamProcessor*** is a special kind of stream processor that does not perform any compression or decompression, it just copies data between input and output buffers. It can be used as adapter to allow compression streams work as regular streams -- which can be useful in some special cases, to avoid changing already existing source code. Its usage may be less effective than accessing source underlying stream directly because you have an extra memory copy. But it can be usable if you need to access data `as is`. Also, all decompression streams support `fAllowTransparentRead` flag, to automatically detects if the data is not compressed and to stream the data `as is` in that case... but ***CTransparentStreamProcessor*** allow to skip any checks if you already know that data is not compressed.
+***[CTransparentStreamProcessor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTransparentStreamProcessor)*** is a special kind of stream processor that does not perform any compression or decompression, it just copies data between input and output buffers. It can be used as adapter to allow compression streams work as regular streams -- which can be useful in some special cases, to avoid changing already existing source code. Its usage may be less effective than accessing source underlying stream directly because you have an extra memory copy. But it can be usable if you need to access data `as is`. Also, all decompression streams support `fAllowTransparentRead` flag, to automatically detects if the data is not compressed and to stream the data `as is` in that case... but ***[CTransparentStreamProcessor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTransparentStreamProcessor)*** allow to skip any checks if you already know that data is not compressed.
 
 Here is an example of how to read some data from a stream and to decompress it on-the-fly using `ZIP` method:
 
@@ -300,7 +300,7 @@ But this simplicity comes at a price. All manipulators use default parameters an
 
 1. Compression/decompression manipulators accept streams, `char*` and `string` parameters only. No any other type.
 
-2. The diagnostic is very limited. On error, it can throw an exception of type ***CCompressionException*** only.
+2. The diagnostic is very limited. On error, it can throw an exception of type ***[CCompressionException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCompressionException)*** only.
 
 
 <a name="ch_compress.archivers"></a>
@@ -315,7 +315,7 @@ The C++ Toolkit Compression API includes two subsets to work with compression ar
 Compression archive API
 -----------------------
 
-Compression archive API is implemented in [***CArchive***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchive.html) class and two derived classes [***CArchiveFile***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveFile.html) and [***CArchiveMemory***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveMemory.html) that support file- and memory-based archives accordingly. These classes have methods to create archives, add or extract files, list existing files, etc. -- whatever users usually do with an archive files.
+Compression archive API is implemented in [***[CArchive](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchive)***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchive.html) class and two derived classes [***[CArchiveFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchiveFile)***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveFile.html) and [***[CArchiveMemory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchiveMemory)***](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveMemory.html) that support file- and memory-based archives accordingly. These classes have methods to create archives, add or extract files, list existing files, etc. -- whatever users usually do with an archive files.
 
 Currently, archive API have support for [ZIP file format](#ch_compress.methods.zip.file) only. This is possible due to [miniz](https://github.com/richgel999/miniz) compression library. Toolkit has an embedded copy for `miniz`, see [miniz.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util/compress/api/miniz/miniz.c) that is a part of the compression API.
 	
@@ -333,7 +333,7 @@ The original [tar format](#ch_compress.methods.tar.file) was created in the earl
 
 See [CTar](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTar.html) for all method and flag descriptions.
 
-Tar format supports combining multiple files into one `.tar` file which is not compressed. To add support for `.tar.gz` or `.tar.bz2` archives, ***CTar*** can be combined with [compression streams](#ch_compress.streams); it has a stream-based constructor that can help here. For example, for accessing `.tar.gz` archive something like this can be used:
+Tar format supports combining multiple files into one `.tar` file which is not compressed. To add support for `.tar.gz` or `.tar.bz2` archives, ***[CTar](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTar)*** can be combined with [compression streams](#ch_compress.streams); it has a stream-based constructor that can help here. For example, for accessing `.tar.gz` archive something like this can be used:
 
 	ifstream ifs("some.tar.gz", ios_base::in | ios_base::binary);
 	if (ifs.fail()) {
@@ -348,7 +348,7 @@ Tar format supports combining multiple files into one `.tar` file which is not c
 
 **Note**
 
-Note that if stream constructor is used, then ***CTar*** can only perform one pass over the archive. This means that only one full action will succeed, and if the action was to update (e.g. append to) the archive, then it must be explicitly followed by Close() if no more appends are expected. Before the next read/update action the stream position must be explicitly reset to the beginning of the archive, or it also may remain at the end of the archive for a series of successive append operations.
+Note that if stream constructor is used, then ***[CTar](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTar)*** can only perform one pass over the archive. This means that only one full action will succeed, and if the action was to update (e.g. append to) the archive, then it must be explicitly followed by Close() if no more appends are expected. Before the next read/update action the stream position must be explicitly reset to the beginning of the archive, or it also may remain at the end of the archive for a series of successive append operations.
 
 
 <a name="ch_compress.FAQ"></a>
@@ -387,9 +387,9 @@ For specific library, you can use more detailed `LIB` and `LIBS`, and omit all n
 
 Yes, all compression methods have full support for data > 4GB. The size of compressed or uncompressed data is limited to size of `size_t` type only. 
 
-Note 1. [Compression files](#ch_compress.files) have ***Read()*** and ***Write()*** methods, both are limited to return values of `long` type, to allow to return a negative values on errors. Both methods return the number of bytes actually read/written, so you need to repeat calling it until all the data has been read/written.
+Note 1. [Compression files](#ch_compress.files) have ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** and ***[Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)*** methods, both are limited to return values of `long` type, to allow to return a negative values on errors. Both methods return the number of bytes actually read/written, so you need to repeat calling it until all the data has been read/written.
 
-Note 2. [Streams](#ch_compress.streams) also have ***read()*** and ***write()*** methods derived from the standard I/O stream API; both accept parameter of `std::streamsize` type which is usually different from the `size_t` that is used in the Compression API. So, all compression streams have two additional non-standard methods, that can be helpful:
+Note 2. [Streams](#ch_compress.streams) also have ***[read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=read)*** and ***[write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=write)*** methods derived from the standard I/O stream API; both accept parameter of `std::streamsize` type which is usually different from the `size_t` that is used in the Compression API. So, all compression streams have two additional non-standard methods, that can be helpful:
 
 Input streams:
 
