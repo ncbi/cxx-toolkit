@@ -21,13 +21,13 @@ The overview for this chapter consists of the following topics:
 
 The library contains C++ classes encapsulating global pairwise alignment algorithms frequently used in computational biology.
 
--   ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)*** is the base class for the global alignment algorithm classes. The class provides an implementation of the generic Needleman-Wunsch for computing global alignments of nucleotide and amino acid sequences. The implementation uses an affine scoring scheme. An optional end-space free variant is supported, which is useful in applications where one sequence is expected to align in the interior of the other sequence, or the suffix of one string to align with a prefix of the other.<br/><br/>The classical Needleman-Wunsch algorithm is known to have memory and CPU requirements of the order of the sequence lengths' product. If consistent partial alignments are available, the problem is split into smaller subproblems taking fewer operations and less space to complete. ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)*** provides a way to specify such partial alignments (ungapped).
+-   [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) is the base class for the global alignment algorithm classes. The class provides an implementation of the generic Needleman-Wunsch for computing global alignments of nucleotide and amino acid sequences. The implementation uses an affine scoring scheme. An optional end-space free variant is supported, which is useful in applications where one sequence is expected to align in the interior of the other sequence, or the suffix of one string to align with a prefix of the other.<br/><br/>The classical Needleman-Wunsch algorithm is known to have memory and CPU requirements of the order of the sequence lengths' product. If consistent partial alignments are available, the problem is split into smaller subproblems taking fewer operations and less space to complete. [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) provides a way to specify such partial alignments (ungapped).
 
--   ***[CBandAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBandAligner)*** encapsulates the banded variant of the global alignment algorithm which is applicable when the number of differences in the target alignment is limited ('the band width'). The computational cost of the algorithm is of the order of the band width multiplied by the length of the query sequence.
+-   [CBandAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBandAligner) encapsulates the banded variant of the global alignment algorithm which is applicable when the number of differences in the target alignment is limited ('the band width'). The computational cost of the algorithm is of the order of the band width multiplied by the length of the query sequence.
 
--   ***[CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner)*** follows Hirschberg's divide-and-conquer approach under which the amount of space required to align two sequences globally becomes a linear function of the sequences' lengths. Although the latter is achieved at a cost of up to twice longer running time, a multithreaded version of the algorithm can run even faster than the classical Needleman-Wunsch algorithm in a multiple-CPU environment.
+-   [CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner) follows Hirschberg's divide-and-conquer approach under which the amount of space required to align two sequences globally becomes a linear function of the sequences' lengths. Although the latter is achieved at a cost of up to twice longer running time, a multithreaded version of the algorithm can run even faster than the classical Needleman-Wunsch algorithm in a multiple-CPU environment.
 
--   ***[CSplicedAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner)*** is an abstract base for algorithms computing cDNA-to-genome, or spliced alignments. Spliced alignment algorithms specifically account for splice signals in their dynamic programming recurrences resulting in better alignments for these particular but very important types of sequences.
+-   [CSplicedAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner) is an abstract base for algorithms computing cDNA-to-genome, or spliced alignments. Spliced alignment algorithms specifically account for splice signals in their dynamic programming recurrences resulting in better alignments for these particular but very important types of sequences.
 
 ### Chapter Outline
 
@@ -68,9 +68,9 @@ The following is an outline of the chapter topics:
 Computing pairwise global sequence alignments
 ---------------------------------------------
 
-Generic **pairwise** global alignment functionality is provided by ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)***.
+Generic **pairwise** global alignment functionality is provided by [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner).
 
-***NOTE:*** ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)*** is not a multiple sequence aligner. An example of using ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)*** can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/nw_aligner).
+***NOTE:*** [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) is not a multiple sequence aligner. An example of using [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/nw_aligner).
 
 This functionality is discussed in the following topics:
 
@@ -93,7 +93,7 @@ Two constructors are provided to initialize the aligner:
                const SNCBIPackedScoreMatrix* scoremat = 0);
     CNWAligner(void);
 
-The first constructor allows specification of the sequences and the score matrix at the time of the object's construction. Note that the sequences must be in the proper strands, because the aligners do not build reverse complementaries. The last parameter must be a pointer to a properly initialized ***[SNCBIPackedScoreMatrix](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SNCBIPackedScoreMatrix)*** object or zero. If it is a valid pointer, then the sequences are verified against the alphabet contained in the ***[SNCBIPackedScoreMatrix](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SNCBIPackedScoreMatrix)*** object, and its score matrix is further used in dynamic programming recurrences. Otherwise, sequences are verified against the IUPACna alphabet, and match/mismatch scores are used to fill in the score matrix.
+The first constructor allows specification of the sequences and the score matrix at the time of the object's construction. Note that the sequences must be in the proper strands, because the aligners do not build reverse complementaries. The last parameter must be a pointer to a properly initialized [SNCBIPackedScoreMatrix](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SNCBIPackedScoreMatrix) object or zero. If it is a valid pointer, then the sequences are verified against the alphabet contained in the [SNCBIPackedScoreMatrix](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SNCBIPackedScoreMatrix) object, and its score matrix is further used in dynamic programming recurrences. Otherwise, sequences are verified against the IUPACna alphabet, and match/mismatch scores are used to fill in the score matrix.
 
 The default constructor is provided to support reuse of an aligner object when many sequence pairs share the same type and alignment parameters. In this case, the following two functions must be called before computing the first alignment to load the score matrix and the sequences:
 
@@ -108,14 +108,14 @@ where the meaning of **`scoremat`** is the same as above.
 
 ### Parameters of alignment
 
-***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)*** realizes the affine gap penalty model, which means that every gap of length L (with the possible exception of end gaps) contributes Wg+L\*Ws to the total alignment score, where Wg is a cost to open the gap and Ws is a cost to extend the gap by one basepair. These two parameters are always in effect when computing sequence alignments and can be set with:
+[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) realizes the affine gap penalty model, which means that every gap of length L (with the possible exception of end gaps) contributes Wg+L\*Ws to the total alignment score, where Wg is a cost to open the gap and Ws is a cost to extend the gap by one basepair. These two parameters are always in effect when computing sequence alignments and can be set with:
 
     void SetWg(TScore value); // set gap opening score
     void SetWs(TScore value); // set gap extension score
 
 To indicate penalties, both gap opening and gap extension scores are assigned with negative values.
 
-Many applications (such as the shotgun sequence assembly) benefit from a possibility to avoid penalizing end gaps of alignment, because the relevant sequence's ends may not be expected to align. ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)*** supports this through a built-in end-space free variant controlled with a single function:
+Many applications (such as the shotgun sequence assembly) benefit from a possibility to avoid penalizing end gaps of alignment, because the relevant sequence's ends may not be expected to align. [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) supports this through a built-in end-space free variant controlled with a single function:
 
     void SetEndSpaceFree(bool Left1, bool Right1, bool Left2, bool Right2);
 
@@ -126,9 +126,9 @@ The following two functions are only meaningful when aligning nucleotide sequenc
     void SetWm(TScore value); // set match score
     void SetWms(TScore value); // set mismatch score
 
-The first function sets a bonus associated with every matching pair of nucleotides. The second function assigns a penalty for every mismatching aligned pair of nucleotides. It is important that values set with these two functions will only take effect after ***[SetScoreMatrix()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetScoreMatrix)*** is called (with a zero pointer, which is the default).
+The first function sets a bonus associated with every matching pair of nucleotides. The second function assigns a penalty for every mismatching aligned pair of nucleotides. It is important that values set with these two functions will only take effect after [SetScoreMatrix()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetScoreMatrix) is called (with a zero pointer, which is the default).
 
-One thing that could limit the scope of global alignment applications is that the classical algorithm takes quadratic space and time to evaluate the alignment. One wayto deal with it is to use the linear-space algorithm encapuslated in ***[CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner)***. However, when some pattern of alignment is known or desired, it is worthwhile to explicitly specify "mile posts" through which the alignment should pass. Long high-scoring pairs with 100% identity (no gaps or mismatches) are typically good candidates for them. From the algorithmic point of view, the pattern splits the dynamic programming table into smaller parts, thus alleviating space and CPU requirements. The following function is provided to let the aligner know about such guiding constraints:
+One thing that could limit the scope of global alignment applications is that the classical algorithm takes quadratic space and time to evaluate the alignment. One wayto deal with it is to use the linear-space algorithm encapuslated in [CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner). However, when some pattern of alignment is known or desired, it is worthwhile to explicitly specify "mile posts" through which the alignment should pass. Long high-scoring pairs with 100% identity (no gaps or mismatches) are typically good candidates for them. From the algorithmic point of view, the pattern splits the dynamic programming table into smaller parts, thus alleviating space and CPU requirements. The following function is provided to let the aligner know about such guiding constraints:
 
     void SetPattern(const vector<size_t>& pattern);
 
@@ -146,7 +146,7 @@ Pattern is a vector of hits specified by their zero-based coordinates, as in the
 
 ### Computing
 
-To start computations, call ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)***, which returns the overall alignment score having aligned the sequences. Score is a scalar value associated with the alignment and depends on the parameters of the alignment. The global alignment algorithms align two sequences so that the score is the maximum over all possible alignments.
+To start computations, call [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run), which returns the overall alignment score having aligned the sequences. Score is a scalar value associated with the alignment and depends on the parameters of the alignment. The global alignment algorithms align two sequences so that the score is the maximum over all possible alignments.
 
 <a name="ch_algoalign.transcript"></a>
 
@@ -211,7 +211,7 @@ The paper reference for this algorithm is:
 Aligning sequences in linear space
 ----------------------------------
 
-***[CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner)*** is an interface to a linear space variant of the global alignment algorithm. This functionality is discussed in the following topics:
+[CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner) is an interface to a linear space variant of the global alignment algorithm. This functionality is discussed in the following topics:
 
 -   [The idea of the algorithm](#ch_algoalign.idea)
 
@@ -227,11 +227,11 @@ That the classical global alignment algorithm requires quadratic space could be 
 
 ### Implementation
 
-***[CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner)*** inherits its public interface from ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)***. The only additional method allows us to toggle multiple-threaded versions of the algorithm.
+[CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner) inherits its public interface from [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner). The only additional method allows us to toggle multiple-threaded versions of the algorithm.
 
-The divide-and-conquer strategy suggests natural parallelization, where blocks of the dynamic programming matrix are evaluated simultaneously. A theoretical acceleration limit imposed by the current implementation is 0.5. To use multiple-threaded versions, call ***[EnableMultipleThreads()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EnableMultipleThreads)***. The number of simultaneously running threads will not exceed the number of CPUs installed on your system.
+The divide-and-conquer strategy suggests natural parallelization, where blocks of the dynamic programming matrix are evaluated simultaneously. A theoretical acceleration limit imposed by the current implementation is 0.5. To use multiple-threaded versions, call [EnableMultipleThreads()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EnableMultipleThreads). The number of simultaneously running threads will not exceed the number of CPUs installed on your system.
 
-When comparing alignments produced with the linear-space version with those produced by ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)***, be ready to find many of them similar, although not exactly the same. This is normal, because several optimal alignments may exist for each pair of sequences.
+When comparing alignments produced with the linear-space version with those produced by [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner), be ready to find many of them similar, although not exactly the same. This is normal, because several optimal alignments may exist for each pair of sequences.
 
 <a name="ch_algoalign.spliced_alignment"></a>
 
@@ -272,13 +272,13 @@ In other words, the library classes provide basic splice alignment algorithms to
 
 There is a small hierarchy of three classes involved in spliced alignment facilitating a quality/performance trade-off in the case of distorted sequences:
 
--   ***[CSplicedAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner)*** - abstract base for spliced aligners.
+-   [CSplicedAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner) - abstract base for spliced aligners.
 
--   ***[CSplicedAligner16](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner16)*** - accounts for the three conventional splices (GT/AG, GC/AG, AT/AC) and a generic splice; uses 2 bytes per back-trace matrix cell. Use this class with high-quality genomic sequences.
+-   [CSplicedAligner16](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner16) - accounts for the three conventional splices (GT/AG, GC/AG, AT/AC) and a generic splice; uses 2 bytes per back-trace matrix cell. Use this class with high-quality genomic sequences.
 
--   ***[CSplicedAligner32](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner32)*** - accounts for the three conventionals and splices that could be produced by damaging bases of any conventional; uses 4 bytes per back-trace matrix cell. Use this class with distorted genomic sequences.
+-   [CSplicedAligner32](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner32) - accounts for the three conventionals and splices that could be produced by damaging bases of any conventional; uses 4 bytes per back-trace matrix cell. Use this class with distorted genomic sequences.
 
-The abstract base class for spliced aligners, ***CNWSplicedAligner***, inherites an interface from its parent, ***[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner)***, adding support for two new parameters: intron penalty and minimal intron size (the default is 50).
+The abstract base class for spliced aligners, ***CNWSplicedAligner***, inherites an interface from its parent, [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner), adding support for two new parameters: intron penalty and minimal intron size (the default is 50).
 
 All classes assume that the spliced sequence is the first of the two input sequences passed. By default, the classes do not penalize gaps at the ends of the spliced sequence. The default intron penalties are chosen so that the 16-bit version is able able to pick out short exons, whereas the 32-bit version is generally more conservative.
 
@@ -297,11 +297,11 @@ This functionality is discussed in the following topics:
 
 ### Formatter object
 
-***[CNWFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWFormatter)*** is a single place where all different alignment representations are created. The only argument to its constructor is the aligner object that actually was or will be used to align the sequences.
+[CNWFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWFormatter) is a single place where all different alignment representations are created. The only argument to its constructor is the aligner object that actually was or will be used to align the sequences.
 
 The alignment must be computed before formatting. If the formatter is unable to find the computed alignment in the aligner that was referenced to the constructor, an exception will be thrown.
 
-To format the alignment as a ***[CSeq\_align](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_align)*** structure, call
+To format the alignment as a [CSeq\_align](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_align) structure, call
 
     void AsSeqAlign(CSeq_align* output) const;
 

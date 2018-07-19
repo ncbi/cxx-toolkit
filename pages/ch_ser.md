@@ -260,50 +260,50 @@ The base classes for the object stream classes are [CObjectIStream](https://www.
         return theTestApp.AppMain(argc, argv);
     }
 
-Each object stream specializes in a serial data format and a direction (in/out). It is not until the input and output operators are applied to these streams, in conjunction with a specified serializable object, that the object-specific type information comes into play. For example, if **`instr`** is a ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)***, the statement: `instr >> myObject` invokes a ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method associated with the input stream, whose sole argument is a [CObjectInfo](#ch_ser.typeinfo.html_cobjinfo) for **`myObject`**.
+Each object stream specializes in a serial data format and a direction (in/out). It is not until the input and output operators are applied to these streams, in conjunction with a specified serializable object, that the object-specific type information comes into play. For example, if **`instr`** is a [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream), the statement: `instr >> myObject` invokes a [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method associated with the input stream, whose sole argument is a [CObjectInfo](#ch_ser.typeinfo.html_cobjinfo) for **`myObject`**.
 
-Similarly, the output operators, when applied to a ***CObjectOstream*** in conjunction with a serializable object, will invoke a ***[Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)*** method on the output stream which accesses the object's type information. The object's type information defines what tag names and value types should be encountered on the stream, while the ***CObject[IO]Stream*** subclasses specialize the data serialization format.
+Similarly, the output operators, when applied to a ***CObjectOstream*** in conjunction with a serializable object, will invoke a [Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) method on the output stream which accesses the object's type information. The object's type information defines what tag names and value types should be encountered on the stream, while the ***CObject[IO]Stream*** subclasses specialize the data serialization format.
 
 The input and output operators (`<<` and `>>`) are declared in [serial/serial.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial/serial.hpp) header.
 
 <a name="ch_ser.objstream.html_objistr"></a>
 
-### The ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html)) classes
+### The [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStream.html)) classes
 
-***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)*** is the base class for the [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html), [CObjectIStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamAsn.html),
+[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) is the base class for the [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html), [CObjectIStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamAsn.html),
 [CObjectIStreamAsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamAsnBinary.html), and
 [CObjectIStreamJson](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamJson.html)
 classes. As such, it has no public constructors, and its user interface includes the following methods:
 
--   ***[Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open)***
+-   [Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open)
 
--   ***[Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close)***
+-   [Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close)
 
--   ***[GetDataFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDataFormat)***
+-   [GetDataFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDataFormat)
 
--   ***[ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader)***
+-   [ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader)
 
--   ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)***
+-   [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)
 
--   ***[ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject)***
+-   [ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject)
 
--   ***[ReadSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadSeparateObject)***
+-   [ReadSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadSeparateObject)
 
--   ***[Skip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Skip)***
+-   [Skip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Skip)
 
--   ***[SkipObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SkipObject)***
+-   [SkipObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SkipObject)
 
-There are several ***[Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open)*** methods; most of these are static class methods that return a pointer to a newly created ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)***. Typically, these methods are used with an ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)***, as in:
+There are several [Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open) methods; most of these are static class methods that return a pointer to a newly created [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream). Typically, these methods are used with an [auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr), as in:
 
     auto_ptr<CObjectIStream> xml_in(CObjectIStream::Open(filename, eSerial_Xml));
 
-Here, an XML format is specified by the enumerated value **`eSerial_Xml`**, defined in [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat). Because these methods are static, they can be used to create a new instance of a ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)*** subclass, and open it with one statement. In this example, a [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html) is created and opened on the file **`filename`**.
+Here, an XML format is specified by the enumerated value **`eSerial_Xml`**, defined in [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat). Because these methods are static, they can be used to create a new instance of a [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) subclass, and open it with one statement. In this example, a [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html) is created and opened on the file **`filename`**.
 
-An additional non-static ***[Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open)*** method is provided, which can only be invoked as a member function of a previously instantiated object stream (whose format type is of course, implicit to its class). This method takes a ***[CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream)*** and a flag indicating whether or not ownership of the ***[CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream)*** should be transferred (so that it can be deleted automatically when the object stream is closed):
+An additional non-static [Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open) method is provided, which can only be invoked as a member function of a previously instantiated object stream (whose format type is of course, implicit to its class). This method takes a [CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream) and a flag indicating whether or not ownership of the [CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream) should be transferred (so that it can be deleted automatically when the object stream is closed):
 
     void Open(CNcbiIstream& inStream, EOwnership deleteInStream = eNoOwnership);
 
-The next three methods have the following definitions. ***[Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close)*** closes the stream. ***[GetDataFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDataFormat)*** returns the enumerated ***[ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat)*** for the stream. ***[ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader)*** reads the first line from the file, and returns it in a string. This might be used for example, in the following context:
+The next three methods have the following definitions. [Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close) closes the stream. [GetDataFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDataFormat) returns the enumerated [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat) for the stream. [ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader) reads the first line from the file, and returns it in a string. This might be used for example, in the following context:
 
     auto_ptr<CObjectIStream> in(CObjectIStream::Open(fname, eSerial_AsnText));
     string type = in.ReadFileHeader();
@@ -320,45 +320,45 @@ The next three methods have the following definitions. ***[Close()](https://www.
 
 <a name="idp37787824"></a>
 
-> The ***[ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader)*** method for the base ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)*** class returns an empty string. Only those stream classes which specialize in ASN.1 text or XML formats have actual implementations for this method.
+> The [ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader) method for the base [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) class returns an empty string. Only those stream classes which specialize in ASN.1 text or XML formats have actual implementations for this method.
 
-Several ***Read\*()*** methods are provided for usage in different contexts. ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)***::***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** should be used for reading a top-level "root" object from a data file. For convenience, the input operator `>>`, as described above, indirectly invokes this method on the input stream, using a [CObjectTypeInfo](#ch_ser.typeinfo.html_cobjinfo) object derived from **`myObject`**. By default, the ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method first calls ***[ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader)***, and then calls ***[ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject)***. Accordingly, calls to ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** which follow the usage of ***[ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader)*****must** include the optional **`eNoFileHeader`** argument.
+Several ***Read\*()*** methods are provided for usage in different contexts. [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)::[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) should be used for reading a top-level "root" object from a data file. For convenience, the input operator `>>`, as described above, indirectly invokes this method on the input stream, using a [CObjectTypeInfo](#ch_ser.typeinfo.html_cobjinfo) object derived from **`myObject`**. By default, the [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method first calls [ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader), and then calls [ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject). Accordingly, calls to [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) which follow the usage of [ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader)**must** include the optional **`eNoFileHeader`** argument.
 
-Most data objects also contain embedded objects, and the default behavior of ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** is to load the top-level object, along with all of its contained subobjects into memory. In some cases this may require significant memory allocation, and it may be only the top-level object which is needed by the application. The next two methods, [ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject) and [ReadSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadSeparateObject), can be used to load subobjects as either persistent data members of the root object or as temporary local objects. In contrast to ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)***, these methods assume that there is no file header on the stream.
+Most data objects also contain embedded objects, and the default behavior of [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) is to load the top-level object, along with all of its contained subobjects into memory. In some cases this may require significant memory allocation, and it may be only the top-level object which is needed by the application. The next two methods, [ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject) and [ReadSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadSeparateObject), can be used to load subobjects as either persistent data members of the root object or as temporary local objects. In contrast to [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read), these methods assume that there is no file header on the stream.
 
 As a result of executing `ReadObject(member)`, the newly created subobject will be instantiated as a member of its parent object. In contrast, `ReadSeparateObject(local)`, instantiates the subobject in the local temporary variable only, and the corresponding data member in the parent object is set to an appropriate `null` representation for that data type. In this case, an attempt to reference that subobject after exiting the scope where it was created generates an error.
 
-The ***[Skip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Skip)*** and ***[SkipObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SkipObject)*** methods allow entire top-level objects and subobjects to be "skipped". In this case the input is still read from the stream and validated, but no object representation for that data is generated. ***[Skip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Skip)*** should only be applied to top-level objects. As with the ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method, the optional ***ENoFileHeader*** argument can be included if the file header has already been extracted from the data stream. `SkipObject(member)` may be applied to subobjects of the root object.
+The [Skip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Skip) and [SkipObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SkipObject) methods allow entire top-level objects and subobjects to be "skipped". In this case the input is still read from the stream and validated, but no object representation for that data is generated. [Skip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Skip) should only be applied to top-level objects. As with the [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method, the optional ***ENoFileHeader*** argument can be included if the file header has already been extracted from the data stream. `SkipObject(member)` may be applied to subobjects of the root object.
 
-All of the ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** and ***[Skip](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Skip)*** methods are like wrapper functions, which define what activities take place immediately before and after the data is actually read. How and when the data is then loaded into memory is determined by the object itself. Each of the above methods ultimately calls `objTypeInfo->ReadData()` or `objTypeInfo->SkipData()`, where **`objTypeInfo`** is the static type information object associated with the data object. This scheme allows the user to install type-specific read, write, and copy hooks, which are described below. For example, the default behavior of loading all subobjects of the top-level object can be modified by installing appropriate read hooks which use the ***[ReadSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadSeparateObject)*** and ***[SkipObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SkipObject)*** methods where needed.
+All of the [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) and [Skip](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Skip) methods are like wrapper functions, which define what activities take place immediately before and after the data is actually read. How and when the data is then loaded into memory is determined by the object itself. Each of the above methods ultimately calls `objTypeInfo->ReadData()` or `objTypeInfo->SkipData()`, where **`objTypeInfo`** is the static type information object associated with the data object. This scheme allows the user to install type-specific read, write, and copy hooks, which are described below. For example, the default behavior of loading all subobjects of the top-level object can be modified by installing appropriate read hooks which use the [ReadSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadSeparateObject) and [SkipObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SkipObject) methods where needed.
 
 <a name="ch_ser.objstream.html_objostr"></a>
 
-### The ***[CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStream.html)) classes
+### The [CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStream.html)) classes
 
-The output object stream classes mirror the ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)*** classes. The ***[CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream)*** base class is used to derive the [CObjectOStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamXml.html), [CObjectOStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsn.html), [CObjectOStreamAsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsnBinary.html), and
+The output object stream classes mirror the [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) classes. The [CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream) base class is used to derive the [CObjectOStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamXml.html), [CObjectOStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsn.html), [CObjectOStreamAsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsnBinary.html), and
 [CObjectOStreamJson](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamJson.html), and
 classes. There are no public constructors, and the user interface includes the following methods:
 
--   ***[Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open)***
+-   [Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open)
 
--   ***[Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close)***
+-   [Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close)
 
--   ***[GetDataFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDataFormat)***
+-   [GetDataFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDataFormat)
 
--   ***[WriteFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteFileHeader)***
+-   [WriteFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteFileHeader)
 
--   ***[Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)***
+-   [Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)
 
--   ***[WriteObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteObject)***
+-   [WriteObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteObject)
 
--   ***[WriteSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteSeparateObject)***
+-   [WriteSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteSeparateObject)
 
--   ***[Flush()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Flush)***
+-   [Flush()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Flush)
 
--   ***[FlushBuffer()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FlushBuffer)***
+-   [FlushBuffer()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FlushBuffer)
 
-Again, there are several ***[Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open)*** methods, which are static class methods that return a pointer to a newly created ***CObjectOstream***:
+Again, there are several [Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open) methods, which are static class methods that return a pointer to a newly created ***CObjectOstream***:
 
     static CObjectOStream* Open(ESerialDataFormat format,
                                 CNcbiOstream &outStream,
@@ -374,11 +374,11 @@ Again, there are several ***[Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CP
                                 ESerialDataFormat format,
                                 TSerial_Format_Flags formatFlags=0)
 
-The ***Write\*()*** methods correspond to the ***Read\*()*** methods defined for the input streams. ***[Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)*** first calls ***[WriteFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteFileHeader)***, and then calls ***[WriteObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteObject)***. ***[WriteSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteSeparateObject)*** can be used to write a temporary object (and all of its children) to the output stream. It is also possible to install type-specific `write` hooks. Like the ***[Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** methods, these ***[Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)*** methods serve as wrapper functions that define what occurs immediately before and after the data is actually written.
+The ***Write\*()*** methods correspond to the ***Read\*()*** methods defined for the input streams. [Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) first calls [WriteFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteFileHeader), and then calls [WriteObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteObject). [WriteSeparateObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteSeparateObject) can be used to write a temporary object (and all of its children) to the output stream. It is also possible to install type-specific `write` hooks. Like the [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) methods, these [Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) methods serve as wrapper functions that define what occurs immediately before and after the data is actually written.
 
 <a name="ch_ser.objstream.html_objcopy"></a>
 
-### The ***[CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectStreamCopier)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectStreamCopier.html)) classes
+### The [CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectStreamCopier) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectStreamCopier.html)) classes
 
 The [CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectStreamCopier.html) class is neither an input nor an output stream class. Rather, it is a helper class, which allows to "pass data through" without storing the intermediate objects in memory. Its sole constructor is:
 
@@ -386,9 +386,9 @@ The [CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyh
 
 and its most important method is the ***Copy(CObjectTypeInfo&)*** method, which, given an object's description, reads that object from the input stream and writes it to the output stream. The serial formats of both the input and output object streams are implicit, and thus the translation between two different formats is performed automatically.
 
-In keeping with the ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** and ***[Write](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)*** methods of the ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)*** and ***[CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream)*** classes, the ***[Copy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Copy)*** method takes an optional ***ENoFileHeader*** argument, to indicate that the file header is not present in the input and should not be generated on the output. The ***[CopyObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CopyObject)*** method corresponds to the ***[ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject)*** and ***[WriteObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteObject)*** methods.
+In keeping with the [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) and [Write](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) methods of the [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) and [CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream) classes, the [Copy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Copy) method takes an optional ***ENoFileHeader*** argument, to indicate that the file header is not present in the input and should not be generated on the output. The [CopyObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CopyObject) method corresponds to the [ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject) and [WriteObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteObject) methods.
 
-As an example, consider how the ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)*** method in [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) might be implemented differently using the ***[CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectStreamCopier)*** class:
+As an example, consider how the [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run) method in [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) might be implemented differently using the [CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectStreamCopier) class:
 
     int CTestAsn::Run() {
         auto_ptr<CObjectIStream>
@@ -404,7 +404,7 @@ As an example, consider how the ***[Run()](https://www.ncbi.nlm.nih.gov/IEB/Tool
         return 0;
     }
 
-It is also possible to install type-specific ***[Copy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Copy)*** hooks. Like the ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** and ***[Write](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)*** methods, the ***[Copy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Copy)*** methods serve as wrapper functions that define what occurs immediately before and after the data is actually copied.
+It is also possible to install type-specific [Copy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Copy) hooks. Like the [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) and [Write](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) methods, the [Copy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Copy) methods serve as wrapper functions that define what occurs immediately before and after the data is actually copied.
 
 <a name="ch_ser.objstream.html_cback"></a>
 
@@ -434,7 +434,7 @@ There are three main **structural contexts** in which an object might be encount
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Object   | When the stream object matches a specified type – for example, the ***Bioseq*** type.               |
 | Class Member   | When the stream object matches a specified member of a specified `SEQUENCE` type – for example, the **`id`** member of the ***Bioseq*** type. |
-| Choice Variant | When the stream object matches a specified variant of a specified `CHOICE` type – for example, the **`std`** variant of the ***[Date](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Date)*** type.  |
+| Choice Variant | When the stream object matches a specified variant of a specified `CHOICE` type – for example, the **`std`** variant of the [Date](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Date) type.  |
 
 <div class="table-scroll"></div>
 
@@ -455,7 +455,7 @@ There are four **processing modes** that can be applied to input/output streams:
 
 The **operation** is not restricted to a limited set of choices. It can be any application-specific task, as long as that task is compatible with the processing mode. For example, a skip operation can be performed inside a read hook, provided that the skipped content is optional for the object being read. Similarly, a read operation can be performed inside a skip hook. The operation performed inside a hook must preserve the integrity of the hooked object, and must advance the stream all the way through the hooked object and no farther.
 
-Hooks can be installed for all combinations of structural context and processing mode. Each combination has a base class that defines a pure virtual method that must be defined in a derived class to implement the hook – e.g. the ***[CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook)*** class defines a pure virtual ***[ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject)*** method. The definition of the overriding method in the derived class is often referred to as "the hook".
+Hooks can be installed for all combinations of structural context and processing mode. Each combination has a base class that defines a pure virtual method that must be defined in a derived class to implement the hook – e.g. the [CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook) class defines a pure virtual [ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject) method. The definition of the overriding method in the derived class is often referred to as "the hook".
 
 <a name="ch_ser.T.nc_ObjectClass_MemberChoice_Var"></a>
 
@@ -616,14 +616,14 @@ Hooks can be installed for each of the above contexts, depending on the desired 
 
 -   [CReadChoiceVariantHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCReadChoiceVariantHook.html)
 
-Each of these base hook classes exists only to define a pure virtual ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method, which can then be implemented (in a derived subclass) to install the desired type of read hook. If the goal is to apply the new ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method in all contexts, then the new hook should be derived from the ***[CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook)*** class, and registered with the object's static type information object. For example, to install a new ***[CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook)*** for a ***[CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq)***, one might use:
+Each of these base hook classes exists only to define a pure virtual [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method, which can then be implemented (in a derived subclass) to install the desired type of read hook. If the goal is to apply the new [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method in all contexts, then the new hook should be derived from the [CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook) class, and registered with the object's static type information object. For example, to install a new [CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook) for a [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq), one might use:
 
     CObjectTypeInfo(CBioseq::GetTypeInfo()).
         SetLocalReadHook(*in, myReadBioseqHook);
 
-Another way of installing hooks of any type (read/write/copy, object/member/variant) is provided by ***[CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard)*** class described below.
+Another way of installing hooks of any type (read/write/copy, object/member/variant) is provided by [CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard) class described below.
 
-Alternatively, if the desired behavior is to trigger the specialized ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method only when the object occurs as a data member of a particular containing class, then the new hook should be derived from the ***[CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadClassMemberHook)***, and registered with that member's type information object:
+Alternatively, if the desired behavior is to trigger the specialized [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method only when the object occurs as a data member of a particular containing class, then the new hook should be derived from the [CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadClassMemberHook), and registered with that member's type information object:
 
     CObjectTypeInfo(CBioseq::GetTypeInfo()).
         FindMember("Seq-inst").SetLocalReadHook(*in, myHook);
@@ -633,38 +633,38 @@ Similarly, one can install a read hook that will only be triggered when the obje
     CObjectTypeInfo(CSeq_entry::GetTypeInfo()).
         FindVariant("Bioseq").SetLocalReadHook(*in, myReadBioseqHook);
 
-The new hook classes for these examples should be derived from ***[CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook)***, ***[CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadClassMemberHook)***, and ***[CReadChoiceVariantHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadChoiceVariantHook)***, respectively. In the first case, all occurrences of ***[CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq)*** on any input stream will trigger the new ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method. In contrast, the third case installs this new ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method to be triggered only when the ***[CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq)*** occurs as a choice variant in a ***[CSeq\_entry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_entry)*** object.
+The new hook classes for these examples should be derived from [CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook), [CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadClassMemberHook), and [CReadChoiceVariantHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadChoiceVariantHook), respectively. In the first case, all occurrences of [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq) on any input stream will trigger the new [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method. In contrast, the third case installs this new [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method to be triggered only when the [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq) occurs as a choice variant in a [CSeq\_entry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_entry) object.
 
-All of the virtual ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** methods take two arguments: a ***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)*** and a reference to a [CObjectInfo](#ch_ser.typeinfo.html_objinfo). For example, the ***[CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook)*** class declares the ***[ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject)*** method as:
+All of the virtual [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) methods take two arguments: a [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) and a reference to a [CObjectInfo](#ch_ser.typeinfo.html_objinfo). For example, the [CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook) class declares the [ReadObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject) method as:
 
     virtual void ReadObject(CObjectIStream& in,
                             const CObjectInfo& object) = 0;
 
-The ***[ReadClassMember](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadClassMember)*** and ***[ReadChoiceVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadChoiceVariant)*** hooks differ from the ***[ReadObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject)*** hook class, in that the second argument to the virtual ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method is an iterator, pointing to the object type information for a sequence member or choice variant respectively.
+The [ReadClassMember](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadClassMember) and [ReadChoiceVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadChoiceVariant) hooks differ from the [ReadObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadObject) hook class, in that the second argument to the virtual [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method is an iterator, pointing to the object type information for a sequence member or choice variant respectively.
 
 In summary, to install a read hook for an object type:
 
 derive a new class from the appropriate hook class:
 
--   if the hook should be called regardless of the structural context in which the target object occurs, use the ***[CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook)*** class.
+-   if the hook should be called regardless of the structural context in which the target object occurs, use the [CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook) class.
 
--   if the target object occurs as a sequence member, use the ***[CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadClassMemberHook)*** class.
+-   if the target object occurs as a sequence member, use the [CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadClassMemberHook) class.
 
 -   if the target object occurs as a choice variant, use the ***CReadChoiceVariant Hook*** class.
 
-implement the virtual ***[Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read)*** method for the new class.
+implement the virtual [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) method for the new class.
 
-install the hook, using the ***[SetLocalReadHook()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLocalReadHook)*** method defined in
+install the hook, using the [SetLocalReadHook()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLocalReadHook) method defined in
 
--   ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** for a ***[CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook)***
+-   [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) for a [CReadObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadObjectHook)
 
--   ***[CMemberInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMemberInfo)*** for a ***[CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadClassMemberHook)***
+-   [CMemberInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMemberInfo) for a [CReadClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadClassMemberHook)
 
--   ***[CVariantInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CVariantInfo)*** for a ***[CReadChoiceVariantHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadChoiceVariantHook)***
+-   [CVariantInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CVariantInfo) for a [CReadChoiceVariantHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadChoiceVariantHook)
 
-or use ***[CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard)*** class to install any of these hooks.
+or use [CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard) class to install any of these hooks.
 
-In many cases you will need to read the hooked object and do some special processing, or to skip the entire object. To simplify object reading or skipping all base hook classes have ***[DefaultRead()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultRead)*** and ***[DefaultSkip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultSkip)*** methods taking the same arguments as the user provided ReadXXXX() methods. Thus, to read a bioseq object from a hook:
+In many cases you will need to read the hooked object and do some special processing, or to skip the entire object. To simplify object reading or skipping all base hook classes have [DefaultRead()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultRead) and [DefaultSkip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultSkip) methods taking the same arguments as the user provided ReadXXXX() methods. Thus, to read a bioseq object from a hook:
 
     void CMyReadObjectHook::ReadObject(CObjectIStream& in,
                                        const CObjectInfo& object)
@@ -798,7 +798,7 @@ Like the read hooks, your derived write hooks can be installed by invoking the *
     CObjectTypeInfo(CSeq_entry::GetTypeInfo()).
         FindVariant("Bioseq").SetLocalWriteHook(*in, myWriteBioseqHook);
 
-***[CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard)*** class provides is a simple way to install write hooks.
+[CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard) class provides is a simple way to install write hooks.
 
 <a name="ch_ser.Write_Object_Hook_Sample"></a>
 
@@ -948,9 +948,9 @@ As with the `Read` and `Write` hook classes, there are three base classes which 
     CCopyChoiceVariantHook::CopyChoiceVariant(CObjectStreamCopier& copier,
         const CObjectTypeInfoCV& variant) = 0;
 
-Newly derived copy hooks can be installed by invoking the ***SetLocalCopyObjectHook()*** method for the appropriate type information object. The other way of installing hooks is described below in the ***[CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard)*** section.
+Newly derived copy hooks can be installed by invoking the ***SetLocalCopyObjectHook()*** method for the appropriate type information object. The other way of installing hooks is described below in the [CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard) section.
 
-To do default copying of an object in the overloaded hook method each of the base copy hook classes has a ***[DefaultCopy()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultCopy)*** method.
+To do default copying of an object in the overloaded hook method each of the base copy hook classes has a [DefaultCopy()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultCopy) method.
 
 <a name="ch_ser.Copy_Object_Hook_Sample"></a>
 
@@ -1101,9 +1101,9 @@ As with the `Read` and `Write` hook classes, there are three base classes which 
     CSkipChoiceVariantHook::SkipChoiceVariant(CObjectIStream& in,
         const CObjectTypeInfoCV& variant) = 0;
 
-Newly derived skip hooks can be installed by invoking the ***SetLocalSkipObjectHook()*** method for the appropriate type information object. The other way of installing hooks is described below in the ***[CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard)*** section.
+Newly derived skip hooks can be installed by invoking the ***SetLocalSkipObjectHook()*** method for the appropriate type information object. The other way of installing hooks is described below in the [CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard) section.
 
-The ***[CSkipObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSkipObjectHook)*** class has a ***[DefaultSkip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultSkip)*** method, like the base classes for the other processing modes, but for historical reasons ***[DefaultSkip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultSkip)*** methods were not defined for the ***[CSkipClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSkipClassMemberHook)*** and ***CSkipChoiceVaraintHook*** classes. Nevertheless, achieving the same result is easily accomplished – for example:
+The [CSkipObjectHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSkipObjectHook) class has a [DefaultSkip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultSkip) method, like the base classes for the other processing modes, but for historical reasons [DefaultSkip()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DefaultSkip) methods were not defined for the [CSkipClassMemberHook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSkipClassMemberHook) and ***CSkipChoiceVaraintHook*** classes. Nevertheless, achieving the same result is easily accomplished – for example:
 
     class CMySkipClassMemberHook : public CSkipClassMemberHook
     {
@@ -1231,11 +1231,11 @@ See the [class documentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/d
 
 <a name="ch_ser.objstream.html_hookguard"></a>
 
-#### The ***[CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard)*** class
+#### The [CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard) class
 
 To simplify hooks usage [CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectHookGuard.html) class may be used. It's a template class: the template parameter is the class to be hooked (in case of member or choice variant hooks it's the parent class of the member).
 
-The ***[CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard)*** class has several constructors for installing different hook types. The last argument to all constructors is a stream pointer. By default the pointer is NULL and the hook is intalled as a global one. To make the hook stream-local pass the stream to the guard constructor.
+The [CObjectHookGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectHookGuard) class has several constructors for installing different hook types. The last argument to all constructors is a stream pointer. By default the pointer is NULL and the hook is intalled as a global one. To make the hook stream-local pass the stream to the guard constructor.
 
 -   Object read/write hooks:<br/>`CObjectHookGuard(CReadObjectHook& hook,`<br/>`                 CObjectIStream* in = 0);`<br/>`CObjectHookGuard(CWriteObjectHook& hook,`<br/>`                 CObjectOStream* out = 0);`
 
@@ -1333,7 +1333,7 @@ Certain ASN.1 constructs result in anonymous objects. For example, in this ASN.1
 
 the seq-set class member contains anonymous Seq-entry objects. You can hook the complete sequence using the name "seq-set", but there is no name to use to hook the individual Seq-entry elements of the sequence.
 
-The solution is to hook the seq-set container and iterate through the elements using the ***[CIStreamContainerIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CIStreamContainerIterator)*** class. For example:
+The solution is to hook the seq-set container and iterate through the elements using the [CIStreamContainerIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CIStreamContainerIterator) class. For example:
 
     class CSkipMemberHook__Bioseq_set : public CSkipClassMemberHook
     {
@@ -1418,7 +1418,7 @@ For more examples of using stream iterators please refer to [asn2asn](https://ww
 
 <a name="ch_ser.objstream.html_blocks"></a>
 
-### The ***[ByteBlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ByteBlock)*** and ***[CharBlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CharBlock)*** classes
+### The [ByteBlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ByteBlock) and [CharBlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CharBlock) classes
 
 ***CObject[IO]Stream::ByteBlock*** class may be used for non-standard processing of an OCTET STRING data, e.g. from a read/write hooks. The ***CObject[IO]Stream::CharBlock*** class has almost the same functionality, but may be used for VisibleString data processing.
 
@@ -1430,7 +1430,7 @@ Use Read()/Write() functions to process block data
 
 Close the block with the End() function
 
-Below is an example of using ***[CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream)***::***[ByteBlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ByteBlock)*** in an object write hook for non-standard data processing. Note, that ByteBlock and CharBlock classes read/write data only. You should also provide some code for writing class' and members' tags.
+Below is an example of using [CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream)::[ByteBlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ByteBlock) in an object write hook for non-standard data processing. Note, that ByteBlock and CharBlock classes read/write data only. You should also provide some code for writing class' and members' tags.
 
 Since OCTET STRING and VisibleString in the NCBI C++ Toolkit are implemented as ***vector\<char\>*** and ***string*** classes, which have no serailization type info, you can not install a read or write hook for these classes. The example also demonstrates how to process members of these types using the containing class hook. Another example of using CharBlock with write hooks can be found in [test\_serial.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/serial/test/test_serial.cpp) application.
 
@@ -1500,9 +1500,9 @@ The C++ Toolkit now contains [datatool](ch_app.html#ch_app.datatool)-generated c
 
 -   They are designed to be thread-safe (but, at least for now, maintain only a single connection per instance, so forming pools may be appropriate).
 
-The usual interface to these classes is through a family of methods named ***AskXxx***, each of which takes a request of an appropriate type and an optional pointer to an object that will receive the full reply and returns the corresponding reply choice. For example, ***[CEntrez2Client](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEntrez2Client)***::***[AskEval\_boolean](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AskEval_boolean)*** takes a request of type ***const CEntrez2\_eval\_boolean&*** and an optional pointer of type ***[CEntrez2\_reply\](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEntrez2_reply)****, and returns a reply of type ***CRef\<CEntrez2\_boolean\_reply\>***. All of these methods automatically detect server-reported errors or unexpected reply choices, and throw appropriate exceptions when they occur. There are also lower-level methods simply named ***[Ask](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Ask)***, which may come in handy if you do not know what kind of query you will need to make.
+The usual interface to these classes is through a family of methods named ***AskXxx***, each of which takes a request of an appropriate type and an optional pointer to an object that will receive the full reply and returns the corresponding reply choice. For example, [CEntrez2Client](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEntrez2Client)::[AskEval\_boolean](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AskEval_boolean) takes a request of type ***const CEntrez2\_eval\_boolean&*** and an optional pointer of type [CEntrez2\_reply\](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEntrez2_reply)*, and returns a reply of type ***CRef\<CEntrez2\_boolean\_reply\>***. All of these methods automatically detect server-reported errors or unexpected reply choices, and throw appropriate exceptions when they occur. There are also lower-level methods simply named [Ask](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Ask), which may come in handy if you do not know what kind of query you will need to make.
 
-In addition to these standard methods, there are certain class-specific methods: ***[CEntrez2Client](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEntrez2Client)*** adds ***[GetDefaultRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDefaultRequest)*** and ***[SetDefaultRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDefaultRequest)*** for dealing with those fields of ***Entrez2-request*** besides **`request`** itself, and ***[CID1Client](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CID1Client)*** adds ***{Get,Set}AllowDeadEntries*** (off by default) to control how to handle the result choice **`gotdeadseqentry`**.
+In addition to these standard methods, there are certain class-specific methods: [CEntrez2Client](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CEntrez2Client) adds [GetDefaultRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDefaultRequest) and [SetDefaultRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDefaultRequest) for dealing with those fields of ***Entrez2-request*** besides **`request`** itself, and [CID1Client](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CID1Client) adds ***{Get,Set}AllowDeadEntries*** (off by default) to control how to handle the result choice **`gotdeadseqentry`**.
 
 <a name="ch_ser.data_ser_2_2"></a>
 
@@ -1517,7 +1517,7 @@ Table 1. Network Service Client Generation Parameters
 | Name   | Value                |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`class`** (REQUIRED)   | C++ class name to use.                  |
-| **`service`**      | Named service to connect to; if you do not define this, you will need to override ***[x\_Connect](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_Connect)*** in the user class.                  |
+| **`service`**      | Named service to connect to; if you do not define this, you will need to override [x\_Connect](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_Connect) in the user class.                  |
 | **`serialformat`** | Serialization format: normally `AsnBinary`, but `AsnText` and `Xml` are also legal.              |
 | **`request`** (REQUIRED) | ASN.1 type for requests; may include a module name, a field name (as with `Entrez2`), or both. Must be a CHOICE.    |
 | **`reply`** (REQUIRED)   | ASN.1 type for replies, as above.       |
@@ -1531,7 +1531,7 @@ Table 1. Network Service Client Generation Parameters
 
 When serializing an object, it is important to verify that all mandatory primitive data members (e.g. strings, integers) are given a value. The NCBI C++ Toolkit implements this through a data initialization verification mechanism. In this mechanism, the value itself is not validated; that is, it still could be semantically incorrect. The purpose of the verification is only to make sure that the member has been assigned some value. The verification also provides for a possibility to check whether the object data member has been initialized or not. This could be useful when constructing such objects in memory.
 
-From this perspective, each data member (XXX) of a serial object generated by **DATATOOL** from an ASN or XML specification has the ***IsSetXXX()*** and ***CanGetXXX()*** methods. Also, input and output streams have ***[SetVerifyData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyData)*** and ***[GetVerifyData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetVerifyData)*** methods. The purpose of ***CanGetXXX()*** method is to answer the question whether it is safe or not to call the corresponding ***GetXXX()***. The meaning of ***IsSetXXX()*** is whether the data member has been assigned a value explicitly (using assignment function call, or as a result of reading from a stream) or not. The stream's ***[SetVerifyData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyData)*** method defines a stream behavior in case it comes across an uninitialized data member.
+From this perspective, each data member (XXX) of a serial object generated by **DATATOOL** from an ASN or XML specification has the ***IsSetXXX()*** and ***CanGetXXX()*** methods. Also, input and output streams have [SetVerifyData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyData) and [GetVerifyData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetVerifyData) methods. The purpose of ***CanGetXXX()*** method is to answer the question whether it is safe or not to call the corresponding ***GetXXX()***. The meaning of ***IsSetXXX()*** is whether the data member has been assigned a value explicitly (using assignment function call, or as a result of reading from a stream) or not. The stream's [SetVerifyData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyData) method defines a stream behavior in case it comes across an uninitialized data member.
 
 There are several kinds of object data members: *optional* with and without a default value, *mandatory* with and without a default value, and *nillable*. Optional and mandatory members with no default have "no value" initially. As such, they are "ungetatable"; that is, ***GetXXX()*** throws an exception (this is also configurable though). Members with a default are always getable, but not always set. It is possible to assign a default value to a member with a default using ***SetDefaultXXX()*** method. The characteristic of *nillable* members is that they are allowed to be "unset" during serialization. That is, they are allowed to have "no value" (or, have *NULL* value). One can assign *NULL* value to a member using ***ResetXXX()*** method.
 
@@ -1552,16 +1552,16 @@ The following additional topics are discussed in this section:
 
 <a name="ch_ser.serial_object_api"></a>
 
-#### Initialization Verification in ***[CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject)*** Classes
+#### Initialization Verification in [CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject) Classes
 
-***[CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject)*** defines two functions to manage how uninitialized data members would be treated:
+[CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject) defines two functions to manage how uninitialized data members would be treated:
 
         static void SetVerifyDataThread(ESerialVerifyData verify);
         static void SetVerifyDataGlobal(ESerialVerifyData verify);
 
-The ***[SetVerifyDataThread()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyDataThread)*** defines the behavior of ***GetXXX()*** for the current thread, while the ***[SetVerifyDataGlobal()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyDataGlobal)*** for the current process. Please note, that disabling ***[CUnassignedMember](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CUnassignedMember)*** exceptions in ***GetXXX()*** function is potentially dangerous because it could silently return garbage.
+The [SetVerifyDataThread()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyDataThread) defines the behavior of ***GetXXX()*** for the current thread, while the [SetVerifyDataGlobal()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyDataGlobal) for the current process. Please note, that disabling [CUnassignedMember](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CUnassignedMember) exceptions in ***GetXXX()*** function is potentially dangerous because it could silently return garbage.
 
-The behavior of initialization verification has been designed to allow for maximum flexibility. It is possible to define it using environment variables, and then override it in a program, and vice versa. It is also possible to force a specific behavior, no matter what the program sets, or could set later on. The ***[ESerialVerifyData](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialVerifyData)*** enumerator could have the following values:
+The behavior of initialization verification has been designed to allow for maximum flexibility. It is possible to define it using environment variables, and then override it in a program, and vice versa. It is also possible to force a specific behavior, no matter what the program sets, or could set later on. The [ESerialVerifyData](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialVerifyData) enumerator could have the following values:
 
 -   `eSerialVerifyData_Default`
 
@@ -1577,7 +1577,7 @@ Setting ***eSerialVerifyData\_Never*** or ***eSerialVerifyData\_Always*** result
 
         SET_VERIFY_DATA_GET ::= ( 'NO' | 'NEVER' | 'YES' | 'ALWAYS' )
 
-Alternatively, the default behavior can also be set from a program code using ***[CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject)***::***SetVerifyDataXXX()*** functions.
+Alternatively, the default behavior can also be set from a program code using [CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject)::***SetVerifyDataXXX()*** functions.
 
 Setting the environment variable to "Never/Always" overrides any attempt to change the verification behavior in the program. Setting "Never/Always" for the process overrides attempts to change it for a thread. "Yes/No" setting is less restrictive: the environment variable, if present, provides the default, which could then be overridden in a program, or thread. Here thread settings supersede the process ones.
 
@@ -1589,11 +1589,11 @@ Data member verification in object streams is a bit more complex.
 
 First, it is possible to set the verification behavior on three different levels:
 
--   for a specific stream (***[SetVerifyData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyData)***),
+-   for a specific stream ([SetVerifyData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyData)),
 
--   for all streams created by the current thread (***[SetVerifyDataThread()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyDataThread)***),
+-   for all streams created by the current thread ([SetVerifyDataThread()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyDataThread)),
 
--   for all stream created by the current process (***[SetVerifyDataGlobal()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyDataGlobal)***).
+-   for all stream created by the current process ([SetVerifyDataGlobal()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetVerifyDataGlobal)).
 
 Second, there are more options in defining what to do in case of an uninitialized data member:
 
@@ -1603,7 +1603,7 @@ Second, there are more options in defining what to do in case of an uninitialize
 
 -   write some default value on writing, and assign it on reading (even though there is no default).
 
-To accommodate these situations, the ***[ESerialVerifyData](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialVerifyData)*** enumerator has two additional values:
+To accommodate these situations, the [ESerialVerifyData](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialVerifyData) enumerator has two additional values:
 
 -   `eSerialVerifyData_DefValue`
 
@@ -1628,25 +1628,25 @@ The reading and writing of serial object requires creation of special object str
 
 The only information that is always needed is the output format. It is defined by the following stream manipulators:
 
--   ***[MSerial\_AsnText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_AsnText)*** and ***[MSerial\_FlatAsnText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_FlatAsnText)*** (for single-line output)
+-   [MSerial\_AsnText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_AsnText) and [MSerial\_FlatAsnText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_FlatAsnText) (for single-line output)
 
--   ***[MSerial\_AsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_AsnBinary)***
+-   [MSerial\_AsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_AsnBinary)
 
--   ***[MSerial\_Json](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_Json)***
+-   [MSerial\_Json](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_Json)
 
--   ***[MSerial\_Xml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_Xml)***
+-   [MSerial\_Xml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_Xml)
 
 -   ***MSerial\_Format(ESerialDataFormat fmt)***
 
 Few additional manipulators define the handling of un-initialized object data members, skipping unknown members or valiants policy, and default string encoding:
 
--   ***[MSerial\_VerifyDefault](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_VerifyDefault)***
+-   [MSerial\_VerifyDefault](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_VerifyDefault)
 
--   ***[MSerial\_VerifyNo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_VerifyNo)***
+-   [MSerial\_VerifyNo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_VerifyNo)
 
--   ***[MSerial\_VerifyYes](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_VerifyYes)***
+-   [MSerial\_VerifyYes](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_VerifyYes)
 
--   ***[MSerial\_VerifyDefValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_VerifyDefValue)***
+-   [MSerial\_VerifyDefValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_VerifyDefValue)
 
 -   ***MSerial\_VerifyData(ESerialVerifyData fmt)***
 
@@ -1656,7 +1656,7 @@ Few additional manipulators define the handling of un-initialized object data me
 
 -   ***MSerialXml\_DefaultStringEncoding(EEncoding fmt)***
 
-Finally, it is possible to reset all formatting flags using ***[MSerial\_None](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_None)*** manipulator.
+Finally, it is possible to reset all formatting flags using [MSerial\_None](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MSerial_None) manipulator.
 
 Several I/O operators and helpers are available to simplify initialization
 of serial objects and string input/output. Below are a few examples of using
@@ -1697,7 +1697,7 @@ these operators.
 
 ### Finding in input stream objects of a specific type
 
-When processing serialized data, it is pretty often that one has to find all objects of a specific type, with this type not being a root one. To make it easier, serial library defines a helper template function ***[Serial\_FilterObjects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Serial_FilterObjects)***. The idea is to be able to define a special hook class with a single virtual function ***[Process](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Process)*** with a single parameter: object of the requested type. Input stream is being scanned then, and, when an object of the requested type is encountered, the user-supplied function is being called.
+When processing serialized data, it is pretty often that one has to find all objects of a specific type, with this type not being a root one. To make it easier, serial library defines a helper template function [Serial\_FilterObjects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Serial_FilterObjects). The idea is to be able to define a special hook class with a single virtual function [Process](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Process) with a single parameter: object of the requested type. Input stream is being scanned then, and, when an object of the requested type is encountered, the user-supplied function is being called.
 
 For example, suppose an input stream contains [Bioseq](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/asn_spec/Bioseq.html) objects, and you need to find and process all [Seq-inst](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/asn_spec/Seq-inst.html) objects in it. First, you need to define a class that will process them:
 
@@ -1713,7 +1713,7 @@ Second, you just call filtering function specifying the root object type:
     Serial_FilterObjects<CBioseq>(input_stream, new
     CProcessSeqinstHook());
 
-Another variant of this function – ***[Serial\_FilterStdObjects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Serial_FilterStdObjects)*** – finds objects of standard type, not derived from ***[CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject)*** – strings, for example. The usage is similar. First, define a hook class that will process data:
+Another variant of this function – [Serial\_FilterStdObjects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Serial_FilterStdObjects) – finds objects of standard type, not derived from [CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject) – strings, for example. The usage is similar. First, define a hook class that will process data:
 
     class CProcessStringHook : public CSerial_FilterObjectsHook<string>
     {
@@ -1812,13 +1812,13 @@ Iterators are an important cornerstone in the generic programming paradigm - the
 
 The ***vector*** class allows `input, output, bidirectional,` and `random access` iterators. In contrast, the ***list*** container class does **not** allow random access to its elements. This is depicted graphically by one less strand in the ribbon connector. In addition to the iterators, the generic algorithms may require function objects such as `less<T>` to support the template implementations.
 
-The STL standard iterators are designed to iterate through any STL container of homogeneous elements, e.g., `vectors, lists, deques, stacks, maps, multimaps, sets, multisets, `etc. A prerequisite however, is that the container must have ***[begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=begin)*** and ***[end()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=end)*** functions defined on it as start and end points for the iteration.
+The STL standard iterators are designed to iterate through any STL container of homogeneous elements, e.g., `vectors, lists, deques, stacks, maps, multimaps, sets, multisets, `etc. A prerequisite however, is that the container must have ***begin()*** and ***end()*** functions defined on it as start and end points for the iteration.
 
 But while these standard iterators are powerful tools for generic programming, they are of no help in iterating over the elements of `aggregate` objects - e.g., over the heterogeneous data members of a class object. As this is an essential operation in processing serialized data structures, the NCBI C++ Toolkit provides additional types of iterators for just this purpose. In the section on [Runtime object type information](#ch_ser.typeinfo.html), we described the [CMemberIterator](#ch_ser.typeinfo.html_objtype) and [CVariantIterator](#ch_ser.typeinfo.html_objtype) classes, which provide access to the instance and type information for **all** of the sequence members and choice variants of a sequence or choice object. In some cases however, we may wish to visit only those data members which are of a certain type, and do not require any type information. The iterators described in this section are of this type.
 
 <a name="ch_ser.iterators.html_typeIt"></a>
 
-### ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeIterator.html)) and ***[CTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeConstIterator)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeConstIterator.html))
+### [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeIterator.html)) and [CTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeConstIterator) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeConstIterator.html))
 
 The [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeIterator.html) and [CTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeConstIterator.html) can be used to traverse a structured object, stopping at all data members of a specified type. For example, it is very common to represent a linked list of objects by encoding a next field that embeds an object of the same type. One way to traverse the linked list then, would be to "iterate" over all objects of that type, beginning at the head of the list. For example, suppose you have a ***CPerson*** class defined as:
 
@@ -1833,7 +1833,7 @@ The [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/cl
         CPerson *m_NextDoor;
     };
 
-Given this definition, one might then define a **`neighborhood`** using a single ***CPerson***. Assuming a function ***FullerBrushMan(CPerson&)*** must now be applied to each person in the neighborhood, this could be implemented using a ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator)*** as follows:
+Given this definition, one might then define a **`neighborhood`** using a single ***CPerson***. Assuming a function ***FullerBrushMan(CPerson&)*** must now be applied to each person in the neighborhood, this could be implemented using a [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) as follows:
 
     CPerson neighborhood("Moe", "123 Main St",
                          new CPerson("Larry", "127 Main St",
@@ -1846,7 +1846,7 @@ In this example, the data members visited by the iterator are of the same type a
 
 All of the NCBI C++ Toolkit type iterators are `recursive`. Thus, since **`neighborhood`** has ***CPerson*** data members, which in turn contain objects of type ***CPerson***, all of the nested data members will also be visited by the above iterator. More generally, given a hierarchically structured object containing data elements of a given type nested several levels deep, the NCBI C++ Toolkit type iterators effectively generate a "flat" list of all these elements.
 
-It is not difficult to imagine situations where recursive iterators such as the ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator)*** could lead to infinite loops. An obvious example of this would be a doubly-linked list. For example, suppose ***CPerson*** had both **`previous`** and **`next`** data members, where `x->next->previous == x`. In this case, visiting **`x`** followed by **`x->next`** would lead back to **`x`** with no terminating condition. To address this issue, the ***[Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin)*** function accepts an optional second argument, [eDetectLoops](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDetectLoops). **`eDetectLoops`** is an `enum` value which, if included, specifies that the iterator should detect and avoid infinite loops. The resulting iterator will be somewhat slower but can be safely used on objects whose references might create loops.
+It is not difficult to imagine situations where recursive iterators such as the [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) could lead to infinite loops. An obvious example of this would be a doubly-linked list. For example, suppose ***CPerson*** had both **`previous`** and **`next`** data members, where `x->next->previous == x`. In this case, visiting **`x`** followed by **`x->next`** would lead back to **`x`** with no terminating condition. To address this issue, the [Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin) function accepts an optional second argument, [eDetectLoops](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDetectLoops). **`eDetectLoops`** is an `enum` value which, if included, specifies that the iterator should detect and avoid infinite loops. The resulting iterator will be somewhat slower but can be safely used on objects whose references might create loops.
 
 Let's compare the syntax of this new iterator class to the traditional iterators:
 
@@ -1865,21 +1865,21 @@ The traditional for loop iteration begins by pointing to the first item in the c
 
 The **`ITERATE`** macro does essentially the same thing, but it saves ***x.end()*** instead of re-evaluating it every iteration.
 
-Similarly, the ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator)*** begins by pointing to the first data member of **`ObjectName`** that is of type ***T***, and with each iteration, visits subsequent data members of type ***T*** until the end of the top-level object is reached.
+Similarly, the [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) begins by pointing to the first data member of **`ObjectName`** that is of type ***T***, and with each iteration, visits subsequent data members of type ***T*** until the end of the top-level object is reached.
 
 A lot of code actually uses `= Begin(...)` instead of `(Begin(...))` to initialize iterators; although the alternate syntax is somewhat more readable and often works, some compilers can mis-handle it and give you link errors. As such, direct initialization as shown above generally works better. Also, note that this issue only applies to construction; you should (and must) continue to use `=` to reset existing iterators.
 
 How are generic iterators such as these implemented? The [Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin) expression returns an object containing a pointer to the input object **`ObjectName`**, as well as a pointer to a [CTypeInfo](#ch_ser.typeinfo.html_ctypeinfo_ref) object containing `type information` about that object. On each iteration, the `++` operator examines the **current** type information to find the next data member which is of type ***T***. The current object, its type information, and the state of iteration is pushed onto a local stack, and the iterator is then reset with a pointer to the next object found, and in turn, a pointer to its type information. Each data member of type ***T*** (or derived from type ***T***) must be capable of providing its own type information as needed. This allows the iterator to recursively visit all data members of the specified type at all levels of nesting.
 
-More specifically, each object included in the iteration, as well as the initial argument to ***[Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin)***, must have a statically implemented [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) class member function to provide the needed type information. For example, all of the serializable objects generated by [datatool](ch_app.html#ch_app.datatool) in the `src/objects` subtrees have ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** member functions. In order to apply type iterators to user-defined classes (as in the above example), these classes must also make their type information explicit. A set of macros is provided to simplify the implementation of the ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** methods for user-defined classes. The example included at the end of this section (see [Additional Information](#ch_ser.iterators.html_appendix)) uses several of the C++ Toolkit type iterators and demonstrates how to apply some of these macros.
+More specifically, each object included in the iteration, as well as the initial argument to [Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin), must have a statically implemented [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) class member function to provide the needed type information. For example, all of the serializable objects generated by [datatool](ch_app.html#ch_app.datatool) in the `src/objects` subtrees have [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) member functions. In order to apply type iterators to user-defined classes (as in the above example), these classes must also make their type information explicit. A set of macros is provided to simplify the implementation of the [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) methods for user-defined classes. The example included at the end of this section (see [Additional Information](#ch_ser.iterators.html_appendix)) uses several of the C++ Toolkit type iterators and demonstrates how to apply some of these macros.
 
-The ***[CTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeConstIterator)*** parallels the ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator)***, and is intended for use with `const` objects (i.e. when you want to prohibit modifications to the objects you are iterating over). For `const` iterators, the ***[ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin)*** function should be used in place of ***[Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin)***.
+The [CTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeConstIterator) parallels the [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator), and is intended for use with `const` objects (i.e. when you want to prohibit modifications to the objects you are iterating over). For `const` iterators, the [ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin) function should be used in place of [Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin).
 
 <a name="ch_ser.iterators.html_hier"></a>
 
 ### Class hierarchies, embedded objects, and the NCBI C++ type iterators
 
-As emphasized above, all of the objects visited by an iterator must have the ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** member function defined in order for the iterators to work properly. For an iterator that visits objects of type ***T***, the type information provided by ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** is used to identify:
+As emphasized above, all of the objects visited by an iterator must have the [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) member function defined in order for the iterators to work properly. For an iterator that visits objects of type ***T***, the type information provided by [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) is used to identify:
 
 -   data members of type ***T***
 
@@ -1889,19 +1889,19 @@ As emphasized above, all of the objects visited by an iterator must have the ***
 
 -   data members containing objects derived from type ***T***
 
-Explicit encoding of the class hierarchy via the ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** methods allows the user to deploy a type iterator over a single specified type which may in practice include a set of types via inheritance. The section [Additional Information](#ch_ser.iterators.html_appendix) includes a simple example of this feature. A further generalization of this idea is implemented by the [CTypesIterator](#ch_ser.iterators.html_typesIt) described later.
+Explicit encoding of the class hierarchy via the [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) methods allows the user to deploy a type iterator over a single specified type which may in practice include a set of types via inheritance. The section [Additional Information](#ch_ser.iterators.html_appendix) includes a simple example of this feature. A further generalization of this idea is implemented by the [CTypesIterator](#ch_ser.iterators.html_typesIt) described later.
 
 <a name="ch_ser.iterators.html_cobjType"></a>
 
-### ***[CObjectIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIterator)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial/iterator.hpp)) and ***[CObjectConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectConstIterator)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial/iterator.hpp))
+### [CObjectIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIterator) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial/iterator.hpp)) and [CObjectConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectConstIterator) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial/iterator.hpp))
 
-Because the ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** class is so central to the Toolkit, a special iterator is also defined, which can automatically distinguish ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***s from other class types. The syntax of a ***[CObjectIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIterator)*** is:
+Because the [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject) class is so central to the Toolkit, a special iterator is also defined, which can automatically distinguish [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)s from other class types. The syntax of a [CObjectIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIterator) is:
 
     for (CObjectIterator i(Begin(ObjectName)); i; ++i)
 
-Note that there is no need to specify the object type to iterate over, as the type ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** is built into the iterator itself. This iterator will recursively visit all ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***s contained or referenced in **`ObjectName`**. The ***[CObjectConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectConstIterator)*** is identical to the ***[CObjectIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIterator)*** but is designed to operate on `const` elements and uses the ***[ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin)*** function.
+Note that there is no need to specify the object type to iterate over, as the type [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject) is built into the iterator itself. This iterator will recursively visit all [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)s contained or referenced in **`ObjectName`**. The [CObjectConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectConstIterator) is identical to the [CObjectIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIterator) but is designed to operate on `const` elements and uses the [ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin) function.
 
-User-defined classes that are derived from ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** can also be iterated over (assuming their ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** methods have been implemented). In general however, care should be used in applying this type of iterator, as not all of the NCBI C++ Toolkit classes derived from ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** have implementations of the ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** method. **All** of the generated serializable objects in `include/objects` **do** have a defined ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** member function however, and thus can be iterated over using either a ***[CObjectIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIterator)*** or a ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator)*** with an appropriate template argument.
+User-defined classes that are derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject) can also be iterated over (assuming their [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) methods have been implemented). In general however, care should be used in applying this type of iterator, as not all of the NCBI C++ Toolkit classes derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject) have implementations of the [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) method. **All** of the generated serializable objects in `include/objects` **do** have a defined [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) member function however, and thus can be iterated over using either a [CObjectIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIterator) or a [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) with an appropriate template argument.
 
 <a name="ch_ser.iterators.html_stdType"></a>
 
@@ -1913,9 +1913,9 @@ All of the type iterators described thus far require that each object visited mu
         cout << *i << ' ';
     }
 
-The ***CStdTypeConstIterator*** is identical to the ***CStdTypeIterator*** but is designed to operate on `const` elements and requires the ***[ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin)*** function.
+The ***CStdTypeConstIterator*** is identical to the ***CStdTypeIterator*** but is designed to operate on `const` elements and requires the [ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin) function.
 
-For examples using ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator)*** and ***CStdTypeIterator***, see [Code Sample 2 (ctypeiter.cpp)](#ch_ser.ctypeiter_cpp.html) and [Code Sample 3 (ctypeiter.hpp)](#ch_ser.ctypeiter_hpp.html).
+For examples using [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) and ***CStdTypeIterator***, see [Code Sample 2 (ctypeiter.cpp)](#ch_ser.ctypeiter_cpp.html) and [Code Sample 3 (ctypeiter.hpp)](#ch_ser.ctypeiter_hpp.html).
 
 <a name="ch_ser.ctypeiter_cpp.html"></a>
 
@@ -2031,9 +2031,9 @@ For examples using ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C
 
 <a name="ch_ser.iterators.html_typesIt"></a>
 
-### ***[CTypesIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypesIterator)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypesIterator))
+### [CTypesIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypesIterator) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypesIterator))
 
-Sometimes it is necessary to iterate over a set of types contained inside an object. The ***[CTypesIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypesIterator)***, as its name suggests, is designed for this purpose. For example, suppose you have loaded a gene sequence into memory as a ***[CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq)*** (named **`seq`**), and want to iterate over all of its references to genes and organisms. The following sequence of statements defines an iterator that will step through all of **`seq`**'s data members (recursively), stopping only at references to gene and organism citations:
+Sometimes it is necessary to iterate over a set of types contained inside an object. The [CTypesIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypesIterator), as its name suggests, is designed for this purpose. For example, suppose you have loaded a gene sequence into memory as a [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq) (named **`seq`**), and want to iterate over all of its references to genes and organisms. The following sequence of statements defines an iterator that will step through all of **`seq`**'s data members (recursively), stopping only at references to gene and organism citations:
 
     CTypesIterator i;
     CType<CGene_ref>::AddTo(i);    // define the types to stop at
@@ -2059,7 +2059,7 @@ Here, [CType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTy
 
 -   `CType<TypeName>::Get(i)` retrieves the object currently pointed to by iterator **`i`if** there is a type match to ***TypeName***, and otherwise returns 0. In the event there is a type match, the retrieved object is type cast to ***TypeName*** before it is returned.
 
-The ***[Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin)*** expression is as described for the above ***[CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator)*** and ***[CTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeConstIterator)*** classes. The [CTypesConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypesConstIterator) is the `const` implementation of this type of iterator, and requires the ***[ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin)*** function.
+The [Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin) expression is as described for the above [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) and [CTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeConstIterator) classes. The [CTypesConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypesConstIterator) is the `const` implementation of this type of iterator, and requires the [ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin) function.
 
 <a name="ch_ser.iterators.context_filter"></a>
 
@@ -2077,15 +2077,15 @@ The following example demonstrates how the class hierarchy determines which data
 
 -   Class ***CA*** contains a single ***int*** data member and is used as a target object type for the type iterators demonstrated.
 
--   class ***CB*** contains an ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** to a ***CA*** object.
+-   class ***CB*** contains an [auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr) to a ***CA*** object.
 
 -   Class ***CC*** is derived from ***CA*** and is used to demonstrate the usage of class hierarchy information.
 
--   Class ***CD*** contains an ***[auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr)*** to a ***CC*** object, and, since it is derived from ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***, can be used as the object pointed to by a [CRef](ch_core.html#ch_core.smart_ptrs).
+-   Class ***CD*** contains an [auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr) to a ***CC*** object, and, since it is derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject), can be used as the object pointed to by a [CRef](ch_core.html#ch_core.smart_ptrs).
 
--   Class ***CX*** contains both pointers-to and instances-of ***CA, CB, CC***, and ***CD*** objects, and is used as the argument to ***[Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin)*** for the demonstrated type iterators.
+-   Class ***CX*** contains both pointers-to and instances-of ***CA, CB, CC***, and ***CD*** objects, and is used as the argument to [Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin) for the demonstrated type iterators.
 
-The preprocessor macros used in this example implement the ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** methods for the classes.
+The preprocessor macros used in this example implement the [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) methods for the classes.
 
     // Define a simple class to use as iterator's target objects
     class CA
@@ -2259,11 +2259,11 @@ The NCBI C++ Toolkit uses two classes to support these requirements:
 
 -   [Object information classes](#ch_ser.typeinfo.html_cobjinfo) (base class [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectTypeInfo.html)) include a pointer to the type information as well as a pointer to the object ***instance***, and provide a safe interface to that object. In situations where type information is used independent of any concrete object, the object information class simply serves as a wrapper to a type information object. Where access to an object instance is required, the object pointer provides direct access to the correctly type-cast instance, and the interface provides methods to access and/or modify the object itself or members of that object.
 
-The C++ Toolkit stores the type information outside any instances of that type, in a statically created ***[CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeInfo)*** object. For class objects, this ***[CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeInfo)*** object can be accessed by all instances of the class via a static [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) class method. 
+The C++ Toolkit stores the type information outside any instances of that type, in a statically created [CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeInfo) object. For class objects, this [CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeInfo) object can be accessed by all instances of the class via a static [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) class method. 
 
-All of the automatically generated classes and constructs defined in the C++ Toolkit's [objects/](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directory already have static ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** functions implemented for them. In order to make type information about `user-defined` classes and elements also accessible, you will need to implement static ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** functions for these constructs.
+All of the automatically generated classes and constructs defined in the C++ Toolkit's [objects/](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects) directory already have static [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) functions implemented for them. In order to make type information about `user-defined` classes and elements also accessible, you will need to implement static [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) functions for these constructs.
 
-Type information is often needed when the object itself has been passed anonymously, or as a pointer to its parent class. In this case, it is not possible to invoke the ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** method directly, as the object's exact type is unknown. Using a `<static_cast>` operator to enable the member function is also unsafe, as it may open the door to incorrectly associating an object's pointer with the wrong type information. For these reasons, the ***[CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeInfo)*** class is intended for internal usage only, and it is the [CObjectTypeInfo](#ch_ser.typeinfo.html_cobjinfo) classes that provide a more safe and friendly user interface to type information.
+Type information is often needed when the object itself has been passed anonymously, or as a pointer to its parent class. In this case, it is not possible to invoke the [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) method directly, as the object's exact type is unknown. Using a `<static_cast>` operator to enable the member function is also unsafe, as it may open the door to incorrectly associating an object's pointer with the wrong type information. For these reasons, the [CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeInfo) class is intended for internal usage only, and it is the [CObjectTypeInfo](#ch_ser.typeinfo.html_cobjinfo) classes that provide a more safe and friendly user interface to type information.
 
 <a name="ch_ser.typeinfo.html_cobjinfo"></a>
 
@@ -2279,15 +2279,15 @@ The following topics are discussed in this section:
 
 <a name="ch_ser.typeinfo.html_objtype"></a>
 
-#### ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectTypeInfo.html))
+#### [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectTypeInfo.html))
 
 This is the base class for all `object` information classes. It is intended for usage where there is no concrete object being referenced, and all that is required is access to the type information. A [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectTypeInfo.html) contains a pointer to a low-level [CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTypeInfo.html) object, and functions as a user-friendly wrapper class.
 
-The constructor for ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** takes a pointer to a `const CTypeInfo` object as its single argument. This is precisely what is returned by all of the static ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** functions. Thus, to create a ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** for the ***[CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq)*** class - without reference to any particular instance of ***[CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq)*** - one might use:
+The constructor for [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) takes a pointer to a `const CTypeInfo` object as its single argument. This is precisely what is returned by all of the static [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) functions. Thus, to create a [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) for the [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq) class - without reference to any particular instance of [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq) - one might use:
 
 `CObjectTypeInfo objInfo( CBioseq::GetTypeInfo() );`
 
-One of the most important methods provided by the ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** class interface is ***[GetTypeFamily()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeFamily)***, which returns an enumerated value indicating the `type family` for the object of interest. Five type families are defined by the [ETypeFamily](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETypeFamily) enumeration:
+One of the most important methods provided by the [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) class interface is [GetTypeFamily()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeFamily), which returns an enumerated value indicating the `type family` for the object of interest. Five type families are defined by the [ETypeFamily](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETypeFamily) enumeration:
 
     ETypeFamily GetTypeFamily(void) const;
         enum ETypeFamily {
@@ -2298,7 +2298,7 @@ One of the most important methods provided by the ***[CObjectTypeInfo](https://w
         eTypeFamilyPointer
     };
 
-Different queries become appropriate depending on the ***[ETypeFamily](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETypeFamily)*** of the object. For example, if the object is a container, one might need to determine the type of container (e.g. whether it is a ***list***, ***map*** etc.), and the type of element. Similarly, if an object is a primitive type (e.g. ***int, float, string,*** etc.), an appropriate query becomes what the value type is, and in the case of integer-valued types, whether or not it is signed. Finally, in the case of more complex objects such as class and choice objects, access to the type information for the individual data members and choice variants is needed. The following methods are included in the ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** interface for these purposes:
+Different queries become appropriate depending on the [ETypeFamily](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETypeFamily) of the object. For example, if the object is a container, one might need to determine the type of container (e.g. whether it is a ***list***, ***map*** etc.), and the type of element. Similarly, if an object is a primitive type (e.g. ***int, float, string,*** etc.), an appropriate query becomes what the value type is, and in the case of integer-valued types, whether or not it is signed. Finally, in the case of more complex objects such as class and choice objects, access to the type information for the individual data members and choice variants is needed. The following methods are included in the [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) interface for these purposes:
 
 For objects with family type `eTypeFamilyPrimitive`:
 
@@ -2326,29 +2326,29 @@ For objects with family type `eTypeFamilyPointer`:
 
     CObjectTypeInfo GetPointedType(void) const;
 
-The two additional enumerations referred to here, [EContainerType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EContainerType) and [EPrimitiveValueType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EPrimitiveValueType), are defined, along with ***[ETypeFamily](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETypeFamily)***, in [include/serial/serialdef.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial/serialdef.hpp).
+The two additional enumerations referred to here, [EContainerType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EContainerType) and [EPrimitiveValueType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EPrimitiveValueType), are defined, along with [ETypeFamily](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETypeFamily), in [include/serial/serialdef.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/serial/serialdef.hpp).
 
-Different iterator classes are used for iterating over class data members versus choice variant types. Thus, if the object of interest is a C++ class object, then access to the type information for its members can be gained using a ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)***::***CMemberIterator***. The ***[BeginMembers()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=BeginMembers)*** method returns a ***CMemberIterator*** pointing to the first data member in the class; the ***FindMember\*()*** methods return a ***CMemberIterator*** pointing to a data member whose name or tag matches the input argument. The ***CMemberIterator*** class is a forward iterator whose operators are defined as follows:
+Different iterator classes are used for iterating over class data members versus choice variant types. Thus, if the object of interest is a C++ class object, then access to the type information for its members can be gained using a [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)::***CMemberIterator***. The [BeginMembers()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=BeginMembers) method returns a ***CMemberIterator*** pointing to the first data member in the class; the ***FindMember\*()*** methods return a ***CMemberIterator*** pointing to a data member whose name or tag matches the input argument. The ***CMemberIterator*** class is a forward iterator whose operators are defined as follows:
 
 -   the `++` operator increments the iterator (makes it point to the next class member)
 
 -   the `()` operator tests that the iterator has not exceeded the legitimate range
 
--   the `*` dereferencing operator returns a ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** for the data member the iterator currently points to
+-   the `*` dereferencing operator returns a [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) for the data member the iterator currently points to
 
-Similarly, the ***[BeginVariants()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=BeginVariants)*** and ***[FindVariant()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindVariant)*** methods allow iteration over the choice variant data types for a choice class, and the dereferencing operation yields a ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** object for the choice variant currently pointed to by the iterator.
+Similarly, the [BeginVariants()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=BeginVariants) and [FindVariant()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindVariant) methods allow iteration over the choice variant data types for a choice class, and the dereferencing operation yields a [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) object for the choice variant currently pointed to by the iterator.
 
 <a name="ch_ser.typeinfo.html_constobj"></a>
 
 #### CConstObjectInfo ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstObjectInfo.html))
 
-The [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstObjectInfo.html) (derived from [CObjectTypeInfo](#ch_ser.typeinfo.html_objtype)) adds an interface to access the particular instance of an object (in addition to the interface inherited from [CObjectTypeInfo](#ch_ser.typeinfo.html_objtype), which provides access to type information only). It is intended for usage with `const` instances of the object of interest, and therefore the interface does not permit any modifications to the object. The constructor for ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** takes two arguments:
+The [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConstObjectInfo.html) (derived from [CObjectTypeInfo](#ch_ser.typeinfo.html_objtype)) adds an interface to access the particular instance of an object (in addition to the interface inherited from [CObjectTypeInfo](#ch_ser.typeinfo.html_objtype), which provides access to type information only). It is intended for usage with `const` instances of the object of interest, and therefore the interface does not permit any modifications to the object. The constructor for [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) takes two arguments:
 
     CConstObjectInfo(const void* instancePtr, const CTypeInfo* typeinfoPtr);
 
 (Alternatively, the constructor can be invoked with a single STL pair containing these two objects.)
 
-Each ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** contains a pointer to the object's type information as well as a pointer to an instance of the object. The existence or validity of this instance can be checked using any of the following ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** methods and operators:
+Each [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) contains a pointer to the object's type information as well as a pointer to an instance of the object. The existence or validity of this instance can be checked using any of the following [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) methods and operators:
 
 -   `bool Valid(void) const;`
 
@@ -2356,7 +2356,7 @@ Each ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/
 
 -   `bool operator!(void) const;`
 
-For `primitive` type objects, the ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** interface provides access to the currently assigned value using ***GetPrimitiveValueXxx()***. Here, **`Xxx`** may be `Bool, Char, Long, ULong, Double, String, ValueString`, or `OctetString`. In general, to get a primitive value, one first applies a `switch` statement to the value returned by ***[GetPrimitiveValueType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPrimitiveValueType)***, and then calls the appropriate ***GetPrimitiveValueXxx()*** method depending on the branch followed, e.g.:
+For `primitive` type objects, the [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) interface provides access to the currently assigned value using ***GetPrimitiveValueXxx()***. Here, **`Xxx`** may be `Bool, Char, Long, ULong, Double, String, ValueString`, or `OctetString`. In general, to get a primitive value, one first applies a `switch` statement to the value returned by [GetPrimitiveValueType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPrimitiveValueType), and then calls the appropriate ***GetPrimitiveValueXxx()*** method depending on the branch followed, e.g.:
 
     switch ( obj.GetPrimitiveValueType() ) {
     case ePrimitiveValueBool:
@@ -2373,7 +2373,7 @@ For `primitive` type objects, the ***[CConstObjectInfo](https://www.ncbi.nlm.nih
         //... etc.
     }
 
-Member iterator methods are also defined in the ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** class, with a similar interface to that found in the ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** class. In this case however, the dereferencing operators return a ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** object - not a ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** object - for the current member. For C++`class` objects, these member functions are:
+Member iterator methods are also defined in the [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) class, with a similar interface to that found in the [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) class. In this case however, the dereferencing operators return a [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) object - not a [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) object - for the current member. For C++`class` objects, these member functions are:
 
 -   `CMemberIterator BeginMembers(void) const;`
 
@@ -2381,19 +2381,19 @@ Member iterator methods are also defined in the ***[CConstObjectInfo](https://ww
 
 -   `CMemberIterator FindClassMemberByTag(int memberTag) const;`
 
-For C++ choice objects, only one variant is ever selected, and only that choice variant is instantiated. As it does not make sense to define a `CConstObjectInfo iterator` for uninstantiated variants, the method ***[GetCurrentChoiceVariant()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCurrentChoiceVariant)*** is provided instead. The dereferencing operator (\*) can be applied to the object returned by this method to obtain a ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** for the variant. Of course, type information for unselected variants can still be accessed using the ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)*** methods.
+For C++ choice objects, only one variant is ever selected, and only that choice variant is instantiated. As it does not make sense to define a `CConstObjectInfo iterator` for uninstantiated variants, the method [GetCurrentChoiceVariant()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCurrentChoiceVariant) is provided instead. The dereferencing operator (\*) can be applied to the object returned by this method to obtain a [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) for the variant. Of course, type information for unselected variants can still be accessed using the [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo) methods.
 
-The ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** class also defines an element iterator for container type objects. ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)***::***CElementIterator*** is a forward iterator whose interface includes increment and testing operators. Dereferencing is implemented by the iterator's ***[GetElement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetElement)*** method, which returns a ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** for the element currently pointed to by the iterator.
+The [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) class also defines an element iterator for container type objects. [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)::***CElementIterator*** is a forward iterator whose interface includes increment and testing operators. Dereferencing is implemented by the iterator's [GetElement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetElement) method, which returns a [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) for the element currently pointed to by the iterator.
 
-Finally, for pointer type objects, the type returned by the method ***[GetPointedObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPointedObject)*** is also a ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)*** for the object - not just a ***[CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo)***.
+Finally, for pointer type objects, the type returned by the method [GetPointedObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPointedObject) is also a [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo) for the object - not just a [CObjectTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectTypeInfo).
 
 <a name="ch_ser.typeinfo.html_objinfo"></a>
 
 #### CObjectInfo ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectInfo.html))
 
-The [CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectInfo.html) class is in turn derived from ***[CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo)***, and is intended for usage with `mutable` instances of the object of interest. In addition to all of the methods inherited from the parent class, the interface to this class also provides methods that allow modification of the object itself or its data members.
+The [CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectInfo.html) class is in turn derived from [CConstObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConstObjectInfo), and is intended for usage with `mutable` instances of the object of interest. In addition to all of the methods inherited from the parent class, the interface to this class also provides methods that allow modification of the object itself or its data members.
 
-For primitive type objects, a set of ***SetPrimitiveValueXxx()*** methods are available, complimentary to the ***GetPrimitiveValueXxx()*** methods described above. Methods that return member iterator objects are again reimplemented, and the de-referencing operators now return a ***[CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectInfo)*** object for that data member. As the ***[CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectInfo)*** now points to a `mutable` object, these iterators can be used to set values for the data member. Similarly, ***[GetCurrentChoiceVariant()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCurrentChoiceVariant)*** now returns a ***[CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectInfo)***, as does `CObjectInfo::CElementIterator::GetElement()`.
+For primitive type objects, a set of ***SetPrimitiveValueXxx()*** methods are available, complimentary to the ***GetPrimitiveValueXxx()*** methods described above. Methods that return member iterator objects are again reimplemented, and the de-referencing operators now return a [CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectInfo) object for that data member. As the [CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectInfo) now points to a `mutable` object, these iterators can be used to set values for the data member. Similarly, [GetCurrentChoiceVariant()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCurrentChoiceVariant) now returns a [CObjectInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectInfo), as does `CObjectInfo::CElementIterator::GetElement()`.
 
 <a name="ch_ser.typeinfo.html_enumval"></a>
 
@@ -2449,15 +2449,15 @@ In general, traversing through a class object requires that you first become fam
 
 The first question is: how do I locate the class definitions implementing the object to be traversed? There are now two source browsers which you can use. To obtain a synopsis of the class, you can search the [index](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classes.html) or the [class hierarchy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html) of the *Doc++* browser and follow a link to the class. For example, a synopsis of the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) class is readily available. From this page, you can also access the relevant source files archived by the*LXR* browser, by following the [Locate CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) link. Alternatively, you may want to access the *LXR* engine directly by using the [Identifier search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) tool.
 
-Because we wish to determine which headers to include, the synopsis displayed by the [Identifier search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) tool is most useful. There we find a single header file, [Biostruc.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/mmdb1/Biostruc.hpp), listed as defining the class. Accordingly, this is the header file we must include. The ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)*** class inherits from the ***[CBiostruc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_Base)*** class however, and we will need to consult that file as well to understand the internal structure of the ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)*** class. Following a link to the parent class from the class hierarchy browser, we find the definition of the [CBiostruc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__Base.html) class.
+Because we wish to determine which headers to include, the synopsis displayed by the [Identifier search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) tool is most useful. There we find a single header file, [Biostruc.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/mmdb1/Biostruc.hpp), listed as defining the class. Accordingly, this is the header file we must include. The [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) class inherits from the [CBiostruc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_Base) class however, and we will need to consult that file as well to understand the internal structure of the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) class. Following a link to the parent class from the class hierarchy browser, we find the definition of the [CBiostruc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__Base.html) class.
 
-This is where we must look for the definitions and access functions we will be using. However, it is the `derived user class` (***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)***) whose header should be included in your source files, and which should be instantiated by your local program variable. For a more general discussion of the relationship between the base parent objects and their derived user classes, see [Working with the serializable object classes.](ch_proj.html#ch_proj.base_classes)
+This is where we must look for the definitions and access functions we will be using. However, it is the `derived user class` ([CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)) whose header should be included in your source files, and which should be instantiated by your local program variable. For a more general discussion of the relationship between the base parent objects and their derived user classes, see [Working with the serializable object classes.](ch_proj.html#ch_proj.base_classes)
 
 <a name="ch_ser.traverse.html_accessMember"></a>
 
 ### Accessing and Referencing Data Members
 
-Omitting some of the low-level details of the base class, we find the ***[CBiostruc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_Base)*** class has essentially the following structure:
+Omitting some of the low-level details of the base class, we find the [CBiostruc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_Base) class has essentially the following structure:
 
     class CBiostruc_Base : public CObject
     {
@@ -2488,17 +2488,17 @@ Omitting some of the low-level details of the base class, we find the ***[CBiost
         TModel m_Model;
     };
 
-With the exception of the structure's chemical graph, each of the class's private data members is actually a ***list*** of references (pointers), as specified by the type definitions. For example, ***TId*** is a list of [CRef](ch_core.html#ch_core.CRef) objects, where each ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** object points to a [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__id.html). The ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)*** class is a type of smart pointer used to hold a pointer to a reference-counted object. The dereferencing operator, when applied to a (dereferenced) iterator pointing to an element of ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)***::***TId***, e.g. `**CRef_i`, will return a ***[CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_id)***. Thus, the call to ***[GetId()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetId)*** returns a list which must then be iterated over and dereferenced to get the individual ***[CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_id)*** objects. In contrast, the function ***GetChemicalGraph()*** returns the object directly, as it does not involve a ***list*** or a ***[CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef)***.
+With the exception of the structure's chemical graph, each of the class's private data members is actually a ***list*** of references (pointers), as specified by the type definitions. For example, ***TId*** is a list of [CRef](ch_core.html#ch_core.CRef) objects, where each [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef) object points to a [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__id.html). The [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef) class is a type of smart pointer used to hold a pointer to a reference-counted object. The dereferencing operator, when applied to a (dereferenced) iterator pointing to an element of [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)::***TId***, e.g. `**CRef_i`, will return a [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_id). Thus, the call to [GetId()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetId) returns a list which must then be iterated over and dereferenced to get the individual [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_id) objects. In contrast, the function ***GetChemicalGraph()*** returns the object directly, as it does not involve a ***list*** or a [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef).
 
 NOTE: It is strongly recommended that you use type names defined in the generated classes (e.g. ***TId***, ***TDescr***) rather than generic container names (***list\< CRef\<CBiostruc\_id\> \>*** etc.). The real container class may change occasionally and you will have to modify the code using generic container types every time it happens. When iterating over a container it's recommended to use **`ITERATE`** and **`NON_CONST_ITERATE`** macros.
 
-The ***GetXxx()*** and ***SetXxx()*** member functions define the user interface to the class, providing methods to access and modify ("mutate") private data. In addition, most classes, including ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)***, have ***IsSetXxx()*** and ***ResetXxx()*** methods to validate and clear the data members, respectively.
+The ***GetXxx()*** and ***SetXxx()*** member functions define the user interface to the class, providing methods to access and modify ("mutate") private data. In addition, most classes, including [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc), have ***IsSetXxx()*** and ***ResetXxx()*** methods to validate and clear the data members, respectively.
 
 <a name="ch_ser.traverse.html_example"></a>
 
 ### Traversing a Biostruc
 
-The program `traverseBS.cpp` (see [Code Sample 4](#ch_ser.traverse_cpp.html)) demonstrates how one might load a serial data file and iterate over the components of the resulting object. This example reads from a text ASN.1 Biostruc file and stores the information into a ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)*** object in memory. The overloaded ***[Visit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Visit)*** function is then used to recursively examine the object `CBiostruc bs` and its components.
+The program `traverseBS.cpp` (see [Code Sample 4](#ch_ser.traverse_cpp.html)) demonstrates how one might load a serial data file and iterate over the components of the resulting object. This example reads from a text ASN.1 Biostruc file and stores the information into a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) object in memory. The overloaded [Visit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Visit) function is then used to recursively examine the object `CBiostruc bs` and its components.
 
 <a name="ch_ser.traverse_cpp.html"></a>
 
@@ -2740,7 +2740,7 @@ The program `traverseBS.cpp` (see [Code Sample 4](#ch_ser.traverse_cpp.html)) de
         return theTestApp.AppMain(argc, argv);
     }
 
-`Visit(bs)` simply calls ***[Visit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Visit)*** on each of the ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)*** data members, which are accessed using `bs.GetXxx()`. The information needed to write each of these functions - the data member types and member function signatures - is contained in the respective header files. For example, looking at [Biostruc\_.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/mmdb1/Biostruc_.hpp), we learn that the structure's descriptor list can be accessed using ***[GetDescr()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDescr)***, and that the type returned is a list of pointers to descriptors:
+`Visit(bs)` simply calls [Visit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Visit) on each of the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) data members, which are accessed using `bs.GetXxx()`. The information needed to write each of these functions - the data member types and member function signatures - is contained in the respective header files. For example, looking at [Biostruc\_.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/mmdb1/Biostruc_.hpp), we learn that the structure's descriptor list can be accessed using [GetDescr()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDescr), and that the type returned is a list of pointers to descriptors:
 
     typedef list< CRef<CBiostruc_descr> > TDescr;
     const TDescr& GetDescr(void) const;
@@ -2751,7 +2751,7 @@ Consulting the base class for [CBiostruc\_desc](https://www.ncbi.nlm.nih.gov/IEB
 
 ### Iterating Over Containers
 
-Most of the ***[Visit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Visit)*** functions implemented here rely on standard STL iterators to walk through a list of objects. The general syntax for using an iterator is:
+Most of the [Visit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Visit) functions implemented here rely on standard STL iterators to walk through a list of objects. The general syntax for using an iterator is:
 
     ContainerType ContainerName;
     ITERATE(ContainerType, it, ContainerName) {
@@ -2759,7 +2759,7 @@ Most of the ***[Visit()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/id
         // ...
     }
 
-Dereferencing the iterator is required, as the iterator behaves like a pointer that traverses consecutive elements of the container. For example, to iterate over the list of descriptors in the *Biostruc*, we use a container of type ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)***::***TDescr***, and the constant version of the **`ITERATE`** macro to ensure that the data is not mutated in the body of the loop. Because the descriptor list contains pointers ([CRefs](ch_core.html#ch_core.CRef)) to objects, we will actually need to dereference **twice** to get to the objects themselves.
+Dereferencing the iterator is required, as the iterator behaves like a pointer that traverses consecutive elements of the container. For example, to iterate over the list of descriptors in the *Biostruc*, we use a container of type [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)::***TDescr***, and the constant version of the **`ITERATE`** macro to ensure that the data is not mutated in the body of the loop. Because the descriptor list contains pointers ([CRefs](ch_core.html#ch_core.CRef)) to objects, we will actually need to dereference **twice** to get to the objects themselves.
 
     ITERATE(CBiostruc::TDescr, it, descList) {
         const CBiostruc_descr& thisDescr = **it;
@@ -2805,7 +2805,7 @@ In traversing the descriptor list in this example, we handled each type of descr
 
     #endif /* NCBI_TRAVERSEBS__HPP */
 
-The NCBI C++ Toolkit provides a rich and powerful [set of iterators](#ch_ser.iterators.html) for various application needs. An alternative to using the above `switch` statement to visit elements of the descriptor list would have been to use an NCBI [CStdTypeIterator](#ch_ser.iterators.html_stdType) that only visits strings. For example, we could implement the Visit function on a ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)***::***TDescr*** as follows:
+The NCBI C++ Toolkit provides a rich and powerful [set of iterators](#ch_ser.iterators.html) for various application needs. An alternative to using the above `switch` statement to visit elements of the descriptor list would have been to use an NCBI [CStdTypeIterator](#ch_ser.iterators.html_stdType) that only visits strings. For example, we could implement the Visit function on a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)::***TDescr*** as follows:
 
     void Visit(const CBiostruc::TDescr& descList)
     {
@@ -2833,13 +2833,13 @@ The NCBI C++ Toolkit SOAP server and client provide a limited level of support o
 
 The core section of the SOAP specification is the messaging framework. The client sends a request and receives a response in the form of a SOAP message. A SOAP message is a one-way transmission between SOAP nodes: from a SOAP sender to a SOAP receiver. The root element of a SOAP message is the `Envelope`. The `Envelope` contains an optional `Header` element followed by a mandatory `Body` element. The `Body` element represents the message payload - it is a generic container that can contain any number of elements from any namespace.
 
-In the Toolkit, the [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=CSoapMessage) class defines `Header` and `Body` containers. Serializable objects (derived from the [CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject) class) can be added into these containers using ***[AddObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddObject)*** method. Such a message object can then be sent to a message receiver. The response will also come in the form of an object derived from [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=CSoapMessage). At this time, it is possible to investigate its contents using ***[GetContent()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetContent)*** method; or ask directly for an object of a specific type using the [SOAP\_GetKnownObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=SOAP_GetKnownObject) template function.
+In the Toolkit, the [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=CSoapMessage) class defines `Header` and `Body` containers. Serializable objects (derived from the [CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject) class) can be added into these containers using [AddObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddObject) method. Such a message object can then be sent to a message receiver. The response will also come in the form of an object derived from [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=CSoapMessage). At this time, it is possible to investigate its contents using [GetContent()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetContent) method; or ask directly for an object of a specific type using the [SOAP\_GetKnownObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=SOAP_GetKnownObject) template function.
 
 <a name="ch_ser.SOAP_client_CSoapHtt"></a>
 
 ### SOAP client ([CSoapHttpClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSoapHttpClient))
 
-The SOAP client is the initial SOAP sender - a node that originates a SOAP message. Knowing the SOAP receiver's URL, it sends a SOAP request and receives a response using the ***[Invoke()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Invoke)*** method.
+The SOAP client is the initial SOAP sender - a node that originates a SOAP message. Knowing the SOAP receiver's URL, it sends a SOAP request and receives a response using the [Invoke()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Invoke) method.
 
 Internally, data objects in the Toolkit SOAP library are serialized and de-serialized using serializable objects streams. Since each serial data object also provides access to its type information, writing such objects is a straightforward operation. Reading the response is not that transparent. Before actually parsing incoming data, the SOAP processor should decide which object type information to use. Hence, a client application should tell the SOAP processor what types of data objects it might encounter in the incoming data. If the processor recognizes the object's type, it will parse the incoming data and store it as an instance of the recognized type. Otherwise, the processor will parse the data into an instance of the [CAnyContentObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAnyContentObject) class.
 
@@ -2847,7 +2847,7 @@ So, a SOAP client must:
 
 -   Define the server's URL.
 
--   Register the object types that might be present in the incoming data (using the ***[RegisterObjectType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RegisterObjectType)*** method).
+-   Register the object types that might be present in the incoming data (using the [RegisterObjectType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RegisterObjectType) method).
 
 The [CSoapHttpClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSoapHttpClient) class also has methods for getting and setting the server URL and the default namespace.
 
@@ -2883,11 +2883,11 @@ The Toolkit contains a simple example of SOAP client and server in its `src/samp
 
 The sample SOAP server supports the following operations:
 
-***[GetDescription()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDescription)*** - server receives an empty object of type Description, and it sends back a single string;
+[GetDescription()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDescription) - server receives an empty object of type Description, and it sends back a single string;
 
-***[GetVersion()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetVersion)*** - server receives a string, and it sends back two integer numbers and a string;
+[GetVersion()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetVersion) - server receives a string, and it sends back two integer numbers and a string;
 
-***[DoMath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DoMath)*** - server receives a list of Operand objects (two integers and an enumerated value), and it sends back a list of integers
+[DoMath()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DoMath) - server receives a list of Operand objects (two integers and an enumerated value), and it sends back a list of integers
 
 The starting point is the WSDL specification - `src\sample\app\soap\server\soap_server_sample.wsdl`
 
@@ -2941,7 +2941,7 @@ Unlike SOAP server, SOAP client object has nothing to do with [CCgiApplication](
 
 `RegisterObjectType(CMathResponse::GetTypeInfo);`
 
-Other methods encapsulate operations supported by the SOAP server, which the client talks to. Common schema is to create two SOAP message object - request and response, populate request object, call ***[Invoke()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Invoke)*** method of the base class, and extract the meaningful data from the response.
+Other methods encapsulate operations supported by the SOAP server, which the client talks to. Common schema is to create two SOAP message object - request and response, populate request object, call [Invoke()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Invoke) method of the base class, and extract the meaningful data from the response.
 
 <a name="ch_ser.asn.html"></a>
 
@@ -2986,9 +2986,9 @@ All of the objects' header and implementation files are generated by **datatool*
 
 ### Reading and writing serial data
 
-Let's consider a program [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) that translates an XML data file containing an object of type [Biostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/mmdb1/mmdb1.asn), to ASN.1 text and binary formats. In ***[main()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=main)***, we begin by initializing the diagnostic stream to write errors to a local file called `xml2asn.log`. (Exception handling, program tracing, and error logging are described in the [Diagnostic Streams](ch_core.html#ch_core.diag) section).
+Let's consider a program [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) that translates an XML data file containing an object of type [Biostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/mmdb1/mmdb1.asn), to ASN.1 text and binary formats. In ***main()***, we begin by initializing the diagnostic stream to write errors to a local file called `xml2asn.log`. (Exception handling, program tracing, and error logging are described in the [Diagnostic Streams](ch_core.html#ch_core.diag) section).
 
-An instance of the ***CTestAsn*** class is then created, and its member function ***[AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain)*** is invoked. This function in turn calls ***CTestAsn***::***[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run)***. The first three lines of code there define the XML input and ASN.1 output streams, using [auto\_ptr](ch_core.html#ch_core.smart_ptrs), to ensure automatic destruction of these objects.
+An instance of the ***CTestAsn*** class is then created, and its member function [AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain) is invoked. This function in turn calls ***CTestAsn***::[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run). The first three lines of code there define the XML input and ASN.1 output streams, using [auto\_ptr](ch_core.html#ch_core.smart_ptrs), to ensure automatic destruction of these objects.
 
 Each stream is associated with data serialization mechanisms appropriate to the [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat) provided to the constructor:
 
@@ -3000,9 +3000,9 @@ Each stream is associated with data serialization mechanisms appropriate to the 
         eSerial_Json      = 4    /// JSON
     };
 
-***[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream)*** and ***[CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream)*** are base classes which provide generic interfaces between the specific type information of a serializable object and an I/O stream. The object stream classes that will actually be instantiated by this application, [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html), [CObjectOStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsn.html), and [CObjectOStreamAsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsnBinary.html), are descendants of these base classes.
+[CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) and [CObjectOStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectOStream) are base classes which provide generic interfaces between the specific type information of a serializable object and an I/O stream. The object stream classes that will actually be instantiated by this application, [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html), [CObjectOStreamAsn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsn.html), and [CObjectOStreamAsnBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectOStreamAsnBinary.html), are descendants of these base classes.
 
-Finally, a variable for the object type that will be generated from the input stream (in this case a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html)) is defined, and the ***CObject[I/O]Stream*** operators "\<\<" and "\>\>" are used to read and write the serialized data to and from the object. (Note that it is **not** possible to simply "pass the data through", from the input stream to the output stream, using a construct like: `*inObject >> *outObject`). The ***CObject[I/O]Stream***s know nothing about the structure of the specific object - they have knowledge only of the serialization format (text ASN, binary ASN, XML, etc.). In contrast, the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) knows nothing about I/O and serialization formats, but it contains explicit type information about itself. Thus, the ***CObject[I/O]Stream***s can apply their specialized serialization methods to the data members of ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)*** using the [type information](#ch_ser.typeinfo.html_ctypeinfo_ref) associated with that object's class.
+Finally, a variable for the object type that will be generated from the input stream (in this case a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html)) is defined, and the ***CObject[I/O]Stream*** operators "\<\<" and "\>\>" are used to read and write the serialized data to and from the object. (Note that it is **not** possible to simply "pass the data through", from the input stream to the output stream, using a construct like: `*inObject >> *outObject`). The ***CObject[I/O]Stream***s know nothing about the structure of the specific object - they have knowledge only of the serialization format (text ASN, binary ASN, XML, etc.). In contrast, the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) knows nothing about I/O and serialization formats, but it contains explicit type information about itself. Thus, the ***CObject[I/O]Stream***s can apply their specialized serialization methods to the data members of [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) using the [type information](#ch_ser.typeinfo.html_ctypeinfo_ref) associated with that object's class.
 
 <a name="ch_ser.asn.html_includes"></a>
 
@@ -3010,7 +3010,7 @@ Finally, a variable for the object type that will be generated from the input st
 
 As always, we include the `corelib` header files, `ncbistd.hpp` and `ncbiapp.hpp`. In addition, the `serial` header files that define the generic ***CObject[IO]Stream*** objects are included, along with `serial.hpp`, which defines generalized serialization mechanisms including the insertion (`<<`) and extraction (`>>`) operators. Finally, we need to include the header file for the object type we will be using.
 
-There are two source browsers that can be used to locate the appropriate header file for a particular object type. Object class names in the NCBI C++ Toolkit begin with the letter "C". Using the [class hierarchy browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html), we find ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)***, derived from ***[CBiostruc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_Base)***, which is in turn derived from ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***. Following the `CBiostruc` link, we can then use the `locate` button to move to the LXR source code navigator, and there, find the name of the header file. In this case, we find [CBiostruc.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/mmdb1/Biostruc.hpp) is located in `include/objects/mmdb1`. Alternatively, if we know the name of the C++ class, the source code navigator's [identifier search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) tool can be used directly. In summary, the following `#include` statements appear at the top of [xml2asn.cpp](#ch_ser.xml2asn_cpp.html):
+There are two source browsers that can be used to locate the appropriate header file for a particular object type. Object class names in the NCBI C++ Toolkit begin with the letter "C". Using the [class hierarchy browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html), we find [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc), derived from [CBiostruc\_Base](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_Base), which is in turn derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject). Following the `CBiostruc` link, we can then use the `locate` button to move to the LXR source code navigator, and there, find the name of the header file. In this case, we find [CBiostruc.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/mmdb1/Biostruc.hpp) is located in `include/objects/mmdb1`. Alternatively, if we know the name of the C++ class, the source code navigator's [identifier search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) tool can be used directly. In summary, the following `#include` statements appear at the top of [xml2asn.cpp](#ch_ser.xml2asn_cpp.html):
 
     #include <corelib/ncbiapp.hpp>
     #include <serial/serial.hpp>
@@ -3026,7 +3026,7 @@ Determining which libraries must be linked to requires a bit more work and may i
 
 **`access biblio cdd featdef general medlars medline mmdb1 mmdb2 mmdb3 ncbimime objprt proj pub pubmed seq seqalign seqblock seqcode seqfeat seqloc seqres seqset submit xcgi xconnect xfcgi xhtml xncbi xser`**
 
-It should be clear that we will need to link to the core library, `xncbi`, as well as to the serial library, `xser`. In addition, we will need to link to whatever object libraries are entailed by using a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) object. Minimally, one would expect to link to the `mmdb` libraries. This in itself is insufficient however, as the ***[CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc)*** class embeds other types of objects, including PubMed citations, features, and sequences, which in turn embed additional objects such as [Date](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html). The makefile for `xml2asn.cpp`, `Makefile.xml2asn.app` lists the libraries required for linking in the make variable **`LIB`**.
+It should be clear that we will need to link to the core library, `xncbi`, as well as to the serial library, `xser`. In addition, we will need to link to whatever object libraries are entailed by using a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) object. Minimally, one would expect to link to the `mmdb` libraries. This in itself is insufficient however, as the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) class embeds other types of objects, including PubMed citations, features, and sequences, which in turn embed additional objects such as [Date](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html). The makefile for `xml2asn.cpp`, `Makefile.xml2asn.app` lists the libraries required for linking in the make variable **`LIB`**.
 
     #########################################################################
     # This file was originally generated from by shell script "new_project.sh"
@@ -3157,9 +3157,9 @@ At some point, an old reader may encounter new data, in which case there will be
 
 There are two different methods because one is relatively safe and the other is not.
 
-If you call ***[SetSkipUnknownMembers()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSkipUnknownMembers)*** then unknown members will be essentially ignored and the application can process new data in the same way it would process old data.
+If you call [SetSkipUnknownMembers()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSkipUnknownMembers) then unknown members will be essentially ignored and the application can process new data in the same way it would process old data.
 
-If you call ***[SetSkipUnknownVariants()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSkipUnknownVariants)*** then a lack of coding rigor may cause a problem. Specifically, a choice object won't be set if new data contains an unknown (and therefore skipped) variant. If your code expects the choice object to be set and doesn't verify that it is, then it could cause data corruption and/or crashing.
+If you call [SetSkipUnknownVariants()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSkipUnknownVariants) then a lack of coding rigor may cause a problem. Specifically, a choice object won't be set if new data contains an unknown (and therefore skipped) variant. If your code expects the choice object to be set and doesn't verify that it is, then it could cause data corruption and/or crashing.
 
 <a name="ch_ser.ch_ser_test_cases"></a>
 

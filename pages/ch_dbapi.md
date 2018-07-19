@@ -276,7 +276,7 @@ The following snippet is a simple example of executing static SQL using the NCBI
         NcbiCout << row["title"].AsString() << NcbiEndl; 
     }
 
-***Note:*** Load balancing is performed automatically and transparently with SDBAPI - there's no need to call ***[DBLB\_INSTALL\_DEFAULT()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DBLB_INSTALL_DEFAULT)***.
+***Note:*** Load balancing is performed automatically and transparently with SDBAPI - there's no need to call [DBLB\_INSTALL\_DEFAULT()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DBLB_INSTALL_DEFAULT).
 
 See the SDBAPI sample programs for more example code:
 
@@ -325,7 +325,7 @@ For proper linkage, merge the following into your LIB and LIBS lines:
 
 ### Connections
 
-To establish a database connection, first specify the connection parameters, then create the database object using those parameters, then call the ***[Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect)*** method, for example:
+To establish a database connection, first specify the connection parameters, then create the database object using those parameters, then call the [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) method, for example:
 
     // Specify connection parameters.
     CSDB_ConnectionParam    db_params;
@@ -344,7 +344,7 @@ Connecting to a database requires a minimum set of parameters, including:
 - a database user name; and
 - a database user password.
 
-Additional parameters are available for login and I/O timeouts, connection pooling, etc. Please see the ***[CSDB\_ConnectionParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSDB_ConnectionParam)*** [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSDB__ConnectionParam.html)
+Additional parameters are available for login and I/O timeouts, connection pooling, etc. Please see the [CSDB\_ConnectionParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSDB_ConnectionParam) [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSDB__ConnectionParam.html)
 
 In general, connection parameter values may be given in one or more of the following places:
 - in a token passed to the `CSDB_ConnectionParam` constructor;
@@ -353,7 +353,7 @@ In general, connection parameter values may be given in one or more of the follo
 - in the environment.
 
 Exceptions are:
-- The service parameter can only be set in the ***[CSDB_ConnectionParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSDB_ConnectionParam)*** constructor or the `Set()` call.
+- The service parameter can only be set in the [CSDB_ConnectionParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSDB_ConnectionParam) constructor or the `Set()` call.
 - The password parameter may be omitted if Kerberos is used (see [Using Kerberos with DBAPI](#ch_dbapi.Using_Kerberos_with_DBAPI)).
 
 When a connection parameter is given in multiple places, the order of precedence is:
@@ -364,7 +364,7 @@ When a connection parameter is given in multiple places, the order of precedence
 If a password and a password file are both given at the same precedence level (e.g. both in a URL or both in the config file) then an exception will be thrown.
 
 #### As Tokens Passed to the CSDB_ConnectionParam Constructor
-Connection parameters may be tokens in a string passed to the ***[CSDB_ConnectionParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSDB_ConnectionParam)*** constructor. Such strings may have one of the following forms:
+Connection parameters may be tokens in a string passed to the [CSDB_ConnectionParam](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSDB_ConnectionParam) constructor. Such strings may have one of the following forms:
 
 ```
 dbapi://[username[:password]@][server[:port]][/database][?key=val;...]
@@ -472,7 +472,7 @@ It may also be appropriate to set, `TEXTSIZE`, depending on your project.
 
 Note that **`ANSI_NULLS`** and **`QUOTED_IDENTIFIER`** must be set when the stored procedure is created because they can't be changed at run-time. The other settings can be changed at run-time but typically they're not, so it's efficient to set them when the [connection](#ch_dbapi.Connections) is created.
 
-For input parameters, simply pass the name and value to ***[SetParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetParameter)***; for input/output parameters, also pass the database field type and the value **`eSP_InOut`**; for `NULL` parameters call ***[SetNullParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetNullParameter)***. For example:
+For input parameters, simply pass the name and value to [SetParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetParameter); for input/output parameters, also pass the database field type and the value **`eSP_InOut`**; for `NULL` parameters call [SetNullParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetNullParameter). For example:
 
     // input only
     query.SetParameter("@id", 123);
@@ -482,7 +482,7 @@ For input parameters, simply pass the name and value to ***[SetParameter()](http
     query.SetParameter("@tolower", "aBcD", eSDB_String, eSP_InOut); 
     query.SetNullParameter("@result", eSDB_Int, eSP_InOut);
 
-The stored procedure is invoked by calling ***[ExecuteSP()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ExecuteSP)***:
+The stored procedure is invoked by calling [ExecuteSP()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ExecuteSP):
 
     CQuery query = m_Db.NewQuery();
     query.SetParameter("@max_id", 5);
@@ -503,7 +503,7 @@ For simple queries or stored procedures that return a single result set:
         NcbiCout << row[1].AsInt4() << NcbiEndl;
     }
 
-For stored procedures that return multiple result sets, SDBAPI supports two behavioral modes: either merging all result sets into one - chosen by calling `query.SingleSet()` - or returning them separately - chosen by calling `query.MultiSet()`. If neither ***[SingleSet()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SingleSet)*** nor ***[MultiSet()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MultiSet)*** is called, then SDBAPI chooses a default mode. The default was formerly MultiSet mode, but it has been switched to SingleSet mode with the release stable components 15.
+For stored procedures that return multiple result sets, SDBAPI supports two behavioral modes: either merging all result sets into one - chosen by calling `query.SingleSet()` - or returning them separately - chosen by calling `query.MultiSet()`. If neither [SingleSet()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SingleSet) nor [MultiSet()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MultiSet) is called, then SDBAPI chooses a default mode. The default was formerly MultiSet mode, but it has been switched to SingleSet mode with the release stable components 15.
 
 Retrieving multiple result sets in SingleSet mode is accomplished exactly as if there was only one result set, as shown above. To retrieve multiple result sets in MultiSet mode, use `query.HasMoreResultSets()`:
 
@@ -513,7 +513,7 @@ Retrieving multiple result sets in SingleSet mode is accomplished exactly as if 
         }
     }
 
-It is possible to verify that all data rows have been read, by using ***[VerifyDone()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=VerifyDone)***:
+It is possible to verify that all data rows have been read, by using [VerifyDone()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=VerifyDone):
 
     for (const auto& row: query) {
         // do something with the current result set row
@@ -529,13 +529,13 @@ Similarly, if a certain number or range of rows is expected, you can verify that
     }
     query.VerifyDone(); // throws if the expected number of rows wasn't retrieved
 
-***Note:*** ***[VerifyDone()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=VerifyDone)*** is not a simple, read-only informational method. In its quest to determine if any result sets or rows remain unread, it will read and purge any unread rows. Furthermore, it doesn't return ***bool*** to indicate whether all expected records have been read. Instead, it throws an exception (after reading and purging) if all records had not been read prior to its call, or if the number of read rows was unexpected per ***[RequireRowCount()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RequireRowCount)***.
+***Note:*** [VerifyDone()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=VerifyDone) is not a simple, read-only informational method. In its quest to determine if any result sets or rows remain unread, it will read and purge any unread rows. Furthermore, it doesn't return ***bool*** to indicate whether all expected records have been read. Instead, it throws an exception (after reading and purging) if all records had not been read prior to its call, or if the number of read rows was unexpected per [RequireRowCount()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RequireRowCount).
 
 <a name="ch_dbapi.Getting_a_Stored_Procedure_Retu"></a>
 
 ### Getting a Stored Procedure Return Value
 
-To get the return value from a stored procedure, simply call ***[GetStatus()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetStatus)***.
+To get the return value from a stored procedure, simply call [GetStatus()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetStatus).
 
 <a name="ch_dbapi.MetaData_Accessors"></a>
 
@@ -543,15 +543,15 @@ To get the return value from a stored procedure, simply call ***[GetStatus()](ht
 
 A handful of accessors are available for query meta-data:
 
--   ***[GetColumnName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetColumnName)*** -- Gets the name of the given column in the current result set.
+-   [GetColumnName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetColumnName) -- Gets the name of the given column in the current result set.
 
--   ***[GetColumnType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetColumnType)*** -- Gets the type of the given column in the current result set.
+-   [GetColumnType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetColumnType) -- Gets the type of the given column in the current result set.
 
--   ***[GetRowCount()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetRowCount)*** -- Gets the number of rows read after a statement is executed.
+-   [GetRowCount()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetRowCount) -- Gets the number of rows read after a statement is executed.
 
--   ***[GetStatus()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetStatus)*** -- Gets the value returned from a stored procedure.
+-   [GetStatus()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetStatus) -- Gets the value returned from a stored procedure.
 
--   ***[GetTotalColumns()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTotalColumns)*** -- Gets the number of columns in the current result set.
+-   [GetTotalColumns()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTotalColumns) -- Gets the number of columns in the current result set.
 
 ***Note:*** These accessors are intended to be used after retrieving the results - they will result in exceptions if called before all data is read. The API doesn't include any accessors for the same information prior to reading the data.
 
@@ -563,7 +563,7 @@ SDBAPI, as a "simple" database API, does not provide a separate `NULL` value. To
 
     query.SetNullParameter("@some_param", eSDB_Int);
 
-To determine if a output parameter result is `NULL`:, call ***[IsNull()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsNull)***:
+To determine if a output parameter result is `NULL`:, call [IsNull()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsNull):
 
     for (const auto& row: query) {
         if (row["id"].IsNull()) {
@@ -572,13 +572,13 @@ To determine if a output parameter result is `NULL`:, call ***[IsNull()](https:/
             x = row["id"].AsInt4(); // OK to use the converted value
         }
 
-***Note:*** The ***As\*()*** methods will return default values (e.g. zero or an empty string) when the actual result value is `NULL`. The only way to know if a `NULL` result was converted is to call ***[IsNull()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsNull)***. Therefore, if you need to distinguish between `NULL` and default values, you **must** call ***[IsNull()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsNull)***.
+***Note:*** The ***As\*()*** methods will return default values (e.g. zero or an empty string) when the actual result value is `NULL`. The only way to know if a `NULL` result was converted is to call [IsNull()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsNull). Therefore, if you need to distinguish between `NULL` and default values, you **must** call [IsNull()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsNull).
 
 <a name="ch_dbapi.Parameterized_SQL"></a>
 
 ### Parameterized SQL
 
-Similarly to stored procedures parameters could be used for regular SQL statements. In case of parameterized SQL methods ***[SetParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetParameter)*** and ***[SetNullParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetNullParameter)*** are to be used. For example:
+Similarly to stored procedures parameters could be used for regular SQL statements. In case of parameterized SQL methods [SetParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetParameter) and [SetNullParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetNullParameter) are to be used. For example:
 
     string    sql = "INSERT INTO MyTable (int_field, str_field) VALUES(@int_val, @str_val)";
     query.SetSql(sql);
@@ -1124,13 +1124,13 @@ All objects are returned as pointers to their respective interfaces. The null (0
 
 #### Object Life Cycle
 
-In general, any child object is valid only in the scope of its parent object. This is because most of the objects share the same internal structures. There is no need to delete every object explicitly, as all created objects will be deleted upon program exit. Specifically, all objects are managed by the static ***[CDriverManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDriverManager)*** object, and will be destroyed when ***[CDriverManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDriverManager)*** is destroyed. It is possible to delete any object from the framework and it is deleted along with all derived objects. For example, when an [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html) object is deleted, all derived [IStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIStatement.html), [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICallableStatement.html) and [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html) objects will be deleted too. If the number of the objects (for instance [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)) is very high, it is recommended to delete them explicitly or enclose in the ***auto\_ptr\<...\>*** template. For each object a ***[Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close)*** method is provided. It disposes of internal resources, required for the proper library cleanup, but leaves the framework intact. After calling ***[Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close)*** the object becomes invalid. This method may be necessary when the database cleanup and framework cleanup are performed in different places of the code.
+In general, any child object is valid only in the scope of its parent object. This is because most of the objects share the same internal structures. There is no need to delete every object explicitly, as all created objects will be deleted upon program exit. Specifically, all objects are managed by the static [CDriverManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDriverManager) object, and will be destroyed when [CDriverManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDriverManager) is destroyed. It is possible to delete any object from the framework and it is deleted along with all derived objects. For example, when an [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html) object is deleted, all derived [IStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIStatement.html), [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICallableStatement.html) and [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html) objects will be deleted too. If the number of the objects (for instance [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)) is very high, it is recommended to delete them explicitly or enclose in the ***auto\_ptr\<...\>*** template. For each object a [Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close) method is provided. It disposes of internal resources, required for the proper library cleanup, but leaves the framework intact. After calling [Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close) the object becomes invalid. This method may be necessary when the database cleanup and framework cleanup are performed in different places of the code.
 
 <a name="ch_dbapi.dbapi_variant"></a>
 
 #### CVariant Type
 
-The [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) type is used to represent any database data type (except BLOBs). It is an object, not a pointer, so it behaves like a primitive C++ type. Basic comparison operators are supported (==, !=, \< ) for identical internal types. If types are not identical, [CVariantException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariantException.html) is thrown. [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) has a set of getters to extract a value of a particular type, e.g. ***[GetInt4()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetInt4)***, ***[GetByte()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetByte)***, ***[GetString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetString)***, etc. If ***[GetString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetString)*** is called for a different type, like ***[DateTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DateTime)*** or ***integer*** it tries to convert it to a string. If it doesn't succeed, [CVariantException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariantException.html) is thrown. There is a set of factory methods (static functions) for creating [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) objects of a particular type, such as ***[CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CVariant)***::***[BigInt()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=BigInt)***, ***[CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CVariant)***::***[SmallDateTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SmallDateTime)***, ***[CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CVariant)***::***[VarBinary()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=VarBinary)*** etc. For more details please see the comments in [variant.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/dbapi/variant.hpp) file.
+The [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) type is used to represent any database data type (except BLOBs). It is an object, not a pointer, so it behaves like a primitive C++ type. Basic comparison operators are supported (==, !=, \< ) for identical internal types. If types are not identical, [CVariantException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariantException.html) is thrown. [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) has a set of getters to extract a value of a particular type, e.g. [GetInt4()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetInt4), [GetByte()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetByte), [GetString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetString), etc. If [GetString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetString) is called for a different type, like [DateTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DateTime) or ***integer*** it tries to convert it to a string. If it doesn't succeed, [CVariantException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariantException.html) is thrown. There is a set of factory methods (static functions) for creating [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) objects of a particular type, such as [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CVariant)::[BigInt()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=BigInt), [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CVariant)::[SmallDateTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SmallDateTime), [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CVariant)::[VarBinary()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=VarBinary) etc. For more details please see the comments in [variant.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/dbapi/variant.hpp) file.
 
 Related sample code:
 
@@ -1163,7 +1163,7 @@ Related sample code:
 
 #### Data Source and Connections
 
-The [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIDataSource.html) interface defines the database platform. To create an object implementing this interface, use the method ***CreateDs(const string& driver)***. An [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIDataSource.html) can create objects represented by an [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html) interface, which is responsible for the connection to the database. It is highly recommended to specify the database name as an argument to the ***[CreateConnection()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateConnection)*** method, or use the ***[SetDatabase()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDatabase)*** method of a [CConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConnection.html) object instead of using a regular SQL statement. In the latter case, the library won't be able to track the current database.
+The [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIDataSource.html) interface defines the database platform. To create an object implementing this interface, use the method ***CreateDs(const string& driver)***. An [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIDataSource.html) can create objects represented by an [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html) interface, which is responsible for the connection to the database. It is highly recommended to specify the database name as an argument to the [CreateConnection()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateConnection) method, or use the [SetDatabase()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDatabase) method of a [CConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCConnection.html) object instead of using a regular SQL statement. In the latter case, the library won't be able to track the current database.
 
 Note: when a new connection to an MS SQL Server is created the **`SET XACT_ABORT ON`** option is sent to the server automatically (for more information about the option see the Microsoft [documentation](https://msdn.microsoft.com/en-us/library/ms188792(v=sql.100).aspx)). Whether or not this option is sent is controlled using an environment variable or a configuration file parameter (see [DBAPI configuration parameters reference](ch_libconfig.html#ch_libconfig.DBAPI)). The Sybase servers do not support this option so it will not be sent to them.
 
@@ -1172,7 +1172,7 @@ Note: when a new connection to an MS SQL Server is created the **`SET XACT_ABORT
     conn->Connect("user", "password", "server", "database");
     IStatement *stmt = conn->CreateStatement();
 
-Every additional call to [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html)***::CreateStatement()*** results in cloning the connection for each statement. These connections inherit the same default database, which was specified in the ***[Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect)*** or ***[SetDatabase()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDatabase)*** method. Thus if the default database was changed by calling ***[SetDatabase()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDatabase)***, all subsequent cloned connections created by ***[CreateStatement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateStatement)*** will inherit this particular default database.
+Every additional call to [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html)***::CreateStatement()*** results in cloning the connection for each statement. These connections inherit the same default database, which was specified in the [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) or [SetDatabase()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDatabase) method. Thus if the default database was changed by calling [SetDatabase()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDatabase), all subsequent cloned connections created by [CreateStatement()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateStatement) will inherit this particular default database.
 
 Related sample code:
 
@@ -1233,7 +1233,7 @@ Related sample code:
 
 #### Stored Procedures
 
-The [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICallableStatement.html) object is used for calling stored procedures. First get the object itself by calling [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html)***::PrepareCall()***. Then set any parameters. If the parameter name is empty, the calls to ***[SetParam()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetParam)*** should be in the exact order of the actual parameters. Retrieve all results in the main loop. Get the status of the stored procedure using the [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICallableStatement.html)***::GetReturnStatus()*** method.
+The [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICallableStatement.html) object is used for calling stored procedures. First get the object itself by calling [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIConnection.html)***::PrepareCall()***. Then set any parameters. If the parameter name is empty, the calls to [SetParam()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetParam) should be in the exact order of the actual parameters. Retrieve all results in the main loop. Get the status of the stored procedure using the [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICallableStatement.html)***::GetReturnStatus()*** method.
 
     ICallableStatement *cstmt = conn->PrepareCall("ProcName");
     Uint1 byte = 1;
@@ -1266,7 +1266,7 @@ The [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyht
     // Get status
     int status = cstmt->GetReturnStatus();
 
-It is also possible to use [IStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIStatement.html) interface to call stored procedures using standard SQL language call. The difference from [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICallableStatement.html) is that there is no ***[SetOutputParam()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetOutputParam)*** call. The output parameter is passed with a regular ***[SetParam()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetParam)*** call having a *non-null* [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) argument. There is no ***[GetReturnStatus()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetReturnStatus)*** call in [IStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIStatement.html), so use the result type filter to get it - although note that result sets with type `eDB_StatusResult` are not always guaranteed to be returned when using the [IStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIStatement.html) interface.
+It is also possible to use [IStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIStatement.html) interface to call stored procedures using standard SQL language call. The difference from [ICallableStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICallableStatement.html) is that there is no [SetOutputParam()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetOutputParam) call. The output parameter is passed with a regular [SetParam()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetParam) call having a *non-null* [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) argument. There is no [GetReturnStatus()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetReturnStatus) call in [IStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIStatement.html), so use the result type filter to get it - although note that result sets with type `eDB_StatusResult` are not always guaranteed to be returned when using the [IStatement](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIStatement.html) interface.
 
     sql = "exec SampleProc @id, @f, @o output";
     stmt->SetParam(CVariant(5), "@id");
@@ -1344,7 +1344,7 @@ Related sample code:
 
 #### Working with BLOBs
 
-Due to the possibly very large size, reading and writing BLOBs requires special treatment. During the fetch the contents of the whole column must be read before advancing to the next one. That's why the columns of type IMAGE and TEXT are not bound to the corresponding variables in the resultset and all subsequent columns are not bound either. So it is recommended to put the BLOB columns at the end of the column list. There are several ways to read BLOBs, using [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::Read()***, [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::GetBlobIStream()***, and [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::GetBlobReader()*** methods. The first is the most efficient; it reads data into a supplied buffer until it returns 0 bytes read. The next call will read from the next column. The second method implements the STL istream interface. After each successful column read you should get another istream for the next column. The third implements the C++ Toolkit ***[IReader](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IReader)*** interface. If the data size is small and double buffering is not a performance issue, the BLOB columns can be bound to [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) variables by calling [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::BindBlobToVariant(true)***. In this case the data should be read using [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html)***::Read()*** and [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html)***::GetBlobSize()***. To write BLOBs there are also several options. To pass a BLOB as a SQL parameter you should store it in a [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) using [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html)***::Append()*** and [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html)***::Truncate()*** methods. To store a BLOB in the database you should initialize this column first by writing a zero value (**`0x0`**) for an IMAGE type or a space value (`' '`) for a TEXT type. After that you can open a regular [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html) or [ICursor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICursor.html) and for each required row update the BLOB using [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::GetBlobOStream()***. NOTE: this call opens an additional connection to the database.
+Due to the possibly very large size, reading and writing BLOBs requires special treatment. During the fetch the contents of the whole column must be read before advancing to the next one. That's why the columns of type IMAGE and TEXT are not bound to the corresponding variables in the resultset and all subsequent columns are not bound either. So it is recommended to put the BLOB columns at the end of the column list. There are several ways to read BLOBs, using [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::Read()***, [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::GetBlobIStream()***, and [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::GetBlobReader()*** methods. The first is the most efficient; it reads data into a supplied buffer until it returns 0 bytes read. The next call will read from the next column. The second method implements the STL istream interface. After each successful column read you should get another istream for the next column. The third implements the C++ Toolkit [IReader](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IReader) interface. If the data size is small and double buffering is not a performance issue, the BLOB columns can be bound to [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) variables by calling [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::BindBlobToVariant(true)***. In this case the data should be read using [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html)***::Read()*** and [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html)***::GetBlobSize()***. To write BLOBs there are also several options. To pass a BLOB as a SQL parameter you should store it in a [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html) using [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html)***::Append()*** and [CVariant](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCVariant.html)***::Truncate()*** methods. To store a BLOB in the database you should initialize this column first by writing a zero value (**`0x0`**) for an IMAGE type or a space value (`' '`) for a TEXT type. After that you can open a regular [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html) or [ICursor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classICursor.html) and for each required row update the BLOB using [IResultSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classIResultSet.html)***::GetBlobOStream()***. NOTE: this call opens an additional connection to the database.
 
 Related sample code:
 
@@ -1365,13 +1365,13 @@ It is recommended to update BLOBs using cursors, because no additional connectio
         out.flush();
     }
 
-Note that ***[GetBlobOStream()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobOStream)*** takes the column number as the first argument and this call is invalid until the cursor is open.
+Note that [GetBlobOStream()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobOStream) takes the column number as the first argument and this call is invalid until the cursor is open.
 
 <a name="ch_dbapi.dbapi_bulk_insert"></a>
 
 #### Using Bulk Insert
 
-Bulk insert is useful when it is necessary to insert big amounts of data. The ***[IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IConnection)***::***[CreateBulkInsert()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateBulkInsert)*** takes one parameter, the table name. The number of columns is determined by the number of ***[Bind()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Bind)*** calls. The ***CVariant::Truncate(size\_t len)*** method truncates the internal buffer of CDB\_Text and CDB\_Image object from the end of the buffer. If no parameter specified, it erases the whole buffer.
+Bulk insert is useful when it is necessary to insert big amounts of data. The [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IConnection)::[CreateBulkInsert()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateBulkInsert) takes one parameter, the table name. The number of columns is determined by the number of [Bind()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Bind) calls. The ***CVariant::Truncate(size\_t len)*** method truncates the internal buffer of CDB\_Text and CDB\_Image object from the end of the buffer. If no parameter specified, it erases the whole buffer.
 
     NcbiCout << "Initializing BlobSample table..." << NcbiEndl;
     IBulkInsert *bi = conn->CreateBulkInsert(tbl_name);
@@ -1396,7 +1396,7 @@ Related sample code:
 
 #### Diagnostic Messages
 
-The DBAPI library is integrated with the C++ Toolkit diagnostic and tracing facility. By default all client and server messages are handled by the Toolkit's standard message handler. However it is possible to redirect the DBAPI-specific messages to a single ***[CDB\_MultiEx](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_MultiEx)*** object and retrieve them later at any time. There are two types of redirection, per data source and per connection. The redirection from a data source is enabled by calling ***[IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)***::***SetLogStream(0)***. After the call all client- and context-specific messages will be stored in the ***[IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)*** object. The ***[IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)***::***[GetErrorInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrorInfo)*** method will return the string representation of all accumulated messages and clean up the storage. The ***[IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)***::***[GetErrorAsEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrorAsEx)*** will return a pointer to the underlying ***[CDB\_MultiEx](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_MultiEx)*** object. Retrieving information and cleaning up is left to the developer. Do NOT delete this object. The connection-specific redirection is controlled by calling ***IConnection::MsgToEx(boolean enable)*** method. This redirection is useful; for instance, to temporarily disable default messages from the database server. The ***[IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IConnection)***::***[GetErrorInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrorInfo)*** and ***[IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IConnection)***::***[GetErrorAsEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrorAsEx)*** methods work in the same manner as for the ***[IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)***
+The DBAPI library is integrated with the C++ Toolkit diagnostic and tracing facility. By default all client and server messages are handled by the Toolkit's standard message handler. However it is possible to redirect the DBAPI-specific messages to a single [CDB\_MultiEx](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_MultiEx) object and retrieve them later at any time. There are two types of redirection, per data source and per connection. The redirection from a data source is enabled by calling [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)::***SetLogStream(0)***. After the call all client- and context-specific messages will be stored in the [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource) object. The [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)::[GetErrorInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrorInfo) method will return the string representation of all accumulated messages and clean up the storage. The [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)::[GetErrorAsEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrorAsEx) will return a pointer to the underlying [CDB\_MultiEx](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_MultiEx) object. Retrieving information and cleaning up is left to the developer. Do NOT delete this object. The connection-specific redirection is controlled by calling ***IConnection::MsgToEx(boolean enable)*** method. This redirection is useful; for instance, to temporarily disable default messages from the database server. The [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IConnection)::[GetErrorInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrorInfo) and [IConnection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IConnection)::[GetErrorAsEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrorAsEx) methods work in the same manner as for the [IDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IDataSource)
 
 Related sample code:
 
@@ -1444,7 +1444,7 @@ The driver can use two different methods to access the particular RDBMS. If the 
 
 #### The driver architecture
 
-There are two major groups of the driver's objects: the RDBMS-independent objects, and the objects which are specific to a particular RDBMS. The only RDBMS-specific object which user should be aware of is a "Driver Context". The "Driver Context" is effectively a "Connection" factory. The only way to make a connection to the server is to call the ***[Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect)*** method of a "Driver Context" object. So, before doing anything with an RDBMS, you need to create at least one driver context object. All driver contexts implement the same interface defined in [I\_DriverContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classI__DriverContext.html) class. If you are working on a library which could be used with more than one RDBMS, the driver context should not be created by the library. Instead, the library API should include a pointer to [I\_DriverContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=I_DriverContext&d=C) so an existing driver context can be passed in.
+There are two major groups of the driver's objects: the RDBMS-independent objects, and the objects which are specific to a particular RDBMS. The only RDBMS-specific object which user should be aware of is a "Driver Context". The "Driver Context" is effectively a "Connection" factory. The only way to make a connection to the server is to call the [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) method of a "Driver Context" object. So, before doing anything with an RDBMS, you need to create at least one driver context object. All driver contexts implement the same interface defined in [I\_DriverContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classI__DriverContext.html) class. If you are working on a library which could be used with more than one RDBMS, the driver context should not be created by the library. Instead, the library API should include a pointer to [I\_DriverContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=I_DriverContext&d=C) so an existing driver context can be passed in.
 
 There is no "real" factory for driver contexts because it's not always possible to statically link the RDBMS libraries from different vendors into the same binary. Most of them are written in C and name collisions do exist. The [Driver Manager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=C_DriverMgr&d=C) helps to overcome this problem. It allows creating a mixture of statically linked and dynamically loaded drivers and using them together in one executable.
 
@@ -1523,45 +1523,45 @@ Error handling is almost always a pain when you are working with an RDBMS becaus
 
 [CDB\_Exception](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__Exception.html) provides the following methods for all exceptions:
 
--   ***[GetDBErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDBErrCode)*** - returns the integer code for this message (assigned by SQL server).
+-   [GetDBErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDBErrCode) - returns the integer code for this message (assigned by SQL server).
 
 -   ***SeverityString(void)*** - returns the severity string of this message (assigned by SQL server).
 
--   ***[GetErrCodeString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrCodeString)*** - returns the name for this error code (e.g. "eSQL").
+-   [GetErrCodeString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrCodeString) - returns the name for this error code (e.g. "eSQL").
 
--   ***[Type()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Type)*** - returns the type value for this exception type (e.g. eSQL).
+-   [Type()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Type) - returns the type value for this exception type (e.g. eSQL).
 
--   ***TypeString()*** - returns the type string for this exception type (e.g. "eSQL"). This is a pass-through to ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)***::***[GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType)***.
+-   ***TypeString()*** - returns the type string for this exception type (e.g. "eSQL"). This is a pass-through to [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType).
 
--   ***[ErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ErrCode)*** - alias for ***[GetDBErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDBErrCode)***.
+-   [ErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ErrCode) - alias for [GetDBErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDBErrCode).
 
--   ***[Message()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Message)*** - returns the error message itself. This is a pass-through to ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)***::***[GetMsg()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMsg)***.
+-   [Message()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Message) - returns the error message itself. This is a pass-through to [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[GetMsg()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMsg).
 
--   ***OriginatedFrom()*** - returns the SQL server name. This is a pass-through to ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)***::***[GetModule()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetModule)***.
+-   ***OriginatedFrom()*** - returns the SQL server name. This is a pass-through to [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[GetModule()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetModule).
 
 -   ***SetServerName()*** - sets the SQL server name.
 
--   ***[GetServerName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetServerName)*** - returns the SQL server name.
+-   [GetServerName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetServerName) - returns the SQL server name.
 
--   ***[SetUserName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetUserName)*** - sets the SQL user name.
+-   [SetUserName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetUserName) - sets the SQL user name.
 
--   ***[GetUserName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetUserName)*** - returns the SQL user name.
+-   [GetUserName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetUserName) - returns the SQL user name.
 
--   ***[SetExtraMsg()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetExtraMsg)*** - sets extra message text to be included in the message output.
+-   [SetExtraMsg()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetExtraMsg) - sets extra message text to be included in the message output.
 
--   ***[GetExtraMsg()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetExtraMsg)*** - gets the extra message text.
+-   [GetExtraMsg()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetExtraMsg) - gets the extra message text.
 
 -   ***SetSybaseSeverity()*** - sets the severity value for a Sybase exception - ***N.B.*** Sybase severity values can be provided for the Sybase/FreeTDS ctlib driver only.
 
 -   ***GetSybaseSeverity()*** - gets the severity value for a Sybase exception - ***N.B.*** Sybase severity values can be provided by the Sybase/FreeTDS ctlib driver only.
 
--   ***[ReportExtra()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportExtra)*** - outputs any extra text to the supplied stream.
+-   [ReportExtra()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportExtra) - outputs any extra text to the supplied stream.
 
--   ***[Clone()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Clone)*** - creates a new exception based on this one.
+-   [Clone()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Clone) - creates a new exception based on this one.
 
 ***N.B.*** The following [CDB\_Exception](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__Exception.html) methods are deprecated:
 
--   ***[Severity()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Severity)*** - returns the severity value of this message (assigned by SQL server).
+-   [Severity()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Severity) - returns the severity value of this message (assigned by SQL server).
 
 -   ***SeverityString(EDB\_Severity sev)*** - returns the severity string of this message (assigned by SQL server).
 
@@ -1595,7 +1595,7 @@ Another tool which users may want to use for error handling is the [CDB\_MultiEx
 
 #### Driver context and connections
 
-Every program which is going to work with an NCBI DBAPI driver should create at least one Driver Context object first. The main purpose of this object is to be a Connection factory, but it's a good idea to customize this object prior to opening a connection. The first step is to setup two message handler stacks. The first one is for error messages which are not bound to some particular connection or could occur inside the ***[Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect)*** method. Use ***[PushCntxMsgHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PushCntxMsgHandler)*** to populate it. The other stack serves as an initial message handler stack for all connections which will be derived from this context. Use ***[PushDefConnMsgHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PushDefConnMsgHandler)*** method to populate this stack. The second step of customization is setting timeouts. The ***[SetLoginTimeout()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLoginTimeout)*** and ***[SetTimeout()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeout)*** methods do the job. If you are going to work with text or image objects in your program, you need to call ***SetMaxTextImageSize()*** to define the maximum size for such objects. Objects which exceed this limit could be truncated.
+Every program which is going to work with an NCBI DBAPI driver should create at least one Driver Context object first. The main purpose of this object is to be a Connection factory, but it's a good idea to customize this object prior to opening a connection. The first step is to setup two message handler stacks. The first one is for error messages which are not bound to some particular connection or could occur inside the [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) method. Use [PushCntxMsgHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PushCntxMsgHandler) to populate it. The other stack serves as an initial message handler stack for all connections which will be derived from this context. Use [PushDefConnMsgHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PushDefConnMsgHandler) method to populate this stack. The second step of customization is setting timeouts. The [SetLoginTimeout()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLoginTimeout) and [SetTimeout()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeout) methods do the job. If you are going to work with text or image objects in your program, you need to call ***SetMaxTextImageSize()*** to define the maximum size for such objects. Objects which exceed this limit could be truncated.
 
     class CMyHandlerForConnectionBoundErrors : public CDB_UserHandler
     {
@@ -1634,9 +1634,9 @@ Every program which is going to work with an NCBI DBAPI driver should create at 
         }
     }
 
-The only way to get a connection to a server in an NCBI DBAPI driver is through a ***[Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect)*** method in [driver context](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classI__DriverContext.html). The first three arguments: server name, user name and password are obvious. Values for **`mode`** are constructed by a bitwise-inclusive-OR of flags defined in EConnectionMode. If **`reusable`** is `false`, then driver creates a new connection which will be destroyed as soon as user delete the correspondent [CDB\_Connection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_Connection&d=C) (the **`pool_name`** is ignored in this case).
+The only way to get a connection to a server in an NCBI DBAPI driver is through a [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) method in [driver context](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classI__DriverContext.html). The first three arguments: server name, user name and password are obvious. Values for **`mode`** are constructed by a bitwise-inclusive-OR of flags defined in EConnectionMode. If **`reusable`** is `false`, then driver creates a new connection which will be destroyed as soon as user delete the correspondent [CDB\_Connection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_Connection&d=C) (the **`pool_name`** is ignored in this case).
 
-Opening a connection to a server is an expensive operation. If program opens and closes connections to the same server multiple times it worth calling the ***[Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect)*** method with **`reusable`** set to `true`. In this case driver does not close the connection when the correspondent CDB\_Connection is deleted, but keeps it around in a "recycle bin". Every time an application calls the ***[Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect)*** method with **`reusable`** set to `true`, driver tries to satisfy the request from a "recycle bin" first and opens a new connection only if necessary.
+Opening a connection to a server is an expensive operation. If program opens and closes connections to the same server multiple times it worth calling the [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) method with **`reusable`** set to `true`. In this case driver does not close the connection when the correspondent CDB\_Connection is deleted, but keeps it around in a "recycle bin". Every time an application calls the [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) method with **`reusable`** set to `true`, driver tries to satisfy the request from a "recycle bin" first and opens a new connection only if necessary.
 
 The **`pool_name`** argument is just an arbitrary string. An application could use this argument to assign a name to one or more connections (to create a connection pool) or to invoke a connection by name from this pool.
 
@@ -1747,7 +1747,7 @@ But it could be expensive. Because two columns are selected, some clients will p
 
 Looks ugly, but could save you a lot of memory.
 
-Updating and inserting the text/image data is also not a straightforward process. For small texts and images it is possible to use just SQL `insert` and `update` statements, but it will be inefficient (if possible at all) for the large ones. The better way to insert and update text and image columns is to use the ***[SendData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SendData)*** method of the [CDB\_Connection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_Connection&d=C) object or to use the [CDB\_SendDataCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_SendDataCmd&d=C) object.
+Updating and inserting the text/image data is also not a straightforward process. For small texts and images it is possible to use just SQL `insert` and `update` statements, but it will be inefficient (if possible at all) for the large ones. The better way to insert and update text and image columns is to use the [SendData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SendData) method of the [CDB\_Connection](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_Connection&d=C) object or to use the [CDB\_SendDataCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_SendDataCmd&d=C) object.
 
 The recommended algorithm for inserting text/image data is:
 
@@ -1759,7 +1759,7 @@ The recommended algorithm for inserting text/image data is:
 
 -   Finish the results loop.
 
--   Use the ***[SendData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SendData)*** method or [CDB\_SendDataCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__SendDataCmd.html) object to populate the columns.
+-   Use the [SendData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SendData) method or [CDB\_SendDataCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__SendDataCmd.html) object to populate the columns.
 
 ***Example***
 
@@ -1807,7 +1807,7 @@ The recommended algorithm for updating the text/image data is:
 
 -   Finish the results loop.
 
--   Use the ***[SendData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SendData)*** method or the [CDB\_SendDataCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__SendDataCmd.html) object to populate the columns.
+-   Use the [SendData()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SendData) method or the [CDB\_SendDataCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__SendDataCmd.html) object to populate the columns.
 
 ***Example***
 
@@ -1985,7 +1985,7 @@ This driver is the most recommended, built-in, and portable.
 
 -   Caveats:
 
-    -   The ***[CDB\_Result](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_Result)***::***[GetImageOrTextDescriptor()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetImageOrTextDescriptor)*** does not work for ODBC driver. You need to use [CDB\_ITDescriptor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_ITDescriptor&d=C) instead. The other way to deal with ***texts/images*** in ODBC is through the [CDB\_CursorCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_CursorCmd&d=C) methods: ***[UpdateTextImage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UpdateTextImage)*** and ***[SendDataCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SendDataCmd)***.
+    -   The [CDB\_Result](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_Result)::[GetImageOrTextDescriptor()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetImageOrTextDescriptor) does not work for ODBC driver. You need to use [CDB\_ITDescriptor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_ITDescriptor&d=C) instead. The other way to deal with ***texts/images*** in ODBC is through the [CDB\_CursorCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDB_CursorCmd&d=C) methods: [UpdateTextImage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UpdateTextImage) and [SendDataCmd](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SendDataCmd).
 
     -   On most NCBI PCs, there is an old header `odbcss.h` (from 4/24/1998) installed. The symptom is that although everything compiles just fine, however in the linking stage there are dozens of unresolved symbol errors for ODBC functions. Ask "pc.systems" to fix this for your PC.
 
@@ -2121,7 +2121,7 @@ If DBAPI is being used (e.g. if a feature that is only available in DBAPI is req
 
 2.  Link `'$(XCONNEXT)'` and `'xconnect'` libraries to your application.
 
-If steps (1) and (2) above are done then the DBAPI connection methods (such as ***[Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect)*** or ***[ConnectValidated()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnectValidated)***) will attempt to resolve the passed server name as a load-balanced service name.
+If steps (1) and (2) above are done then the DBAPI connection methods (such as [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) or [ConnectValidated()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnectValidated)) will attempt to resolve the passed server name as a load-balanced service name.
 
 ***Note:*** If steps (1) and (2) above are not done, or if DBLB library is not available (such as in the publicly distributed code base), or if the passed server name cannot be resolved as a load-balanced service name, then the regular database server name resolution will be used – i.e. the passed name will first be interpreted as a server alias (using the "interfaces" file), and if that fails, it will be interpreted as a DNS name. Note however that by default if the service name resolves (exists), then the regular database server name resolution will not be used as a fallback, even if DBAPI can't connect (for whatever reason) to the servers that the service resolves to.
 
@@ -2283,6 +2283,6 @@ The following steps are performed each time a request is made to establish a loa
 
 7.  For example, you can connect to the "PMC" service which is currently mapped to two servers. The server names are provided dynamically by the NCBI load-balancer, so you never have to change your configuration or recompile your application if either a service configuration or an "interfaces" file get changed.
 
-8.  ***C++ only:*** If ***[ConnectValidated()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnectValidated)*** is used to connect to a database, then requests to establish database connections will first go through the server-level load-balancing mechanism. On successful login to server, the database connection will be validated against the validator. If the validator does not "approve" the connection, then DBAPI will automatically close this connection and repeat this login/validate attempt with the next server, and so on, until a "good" (successful login + successful validation) connection is found. If you want to validate a connection against more than one validator/database, then you can combine validators. Class ***[CConnValidatorCoR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConnValidatorCoR)*** was developed to allow combining of other validators into a chain.
+8.  ***C++ only:*** If [ConnectValidated()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConnectValidated) is used to connect to a database, then requests to establish database connections will first go through the server-level load-balancing mechanism. On successful login to server, the database connection will be validated against the validator. If the validator does not "approve" the connection, then DBAPI will automatically close this connection and repeat this login/validate attempt with the next server, and so on, until a "good" (successful login + successful validation) connection is found. If you want to validate a connection against more than one validator/database, then you can combine validators. Class [CConnValidatorCoR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CConnValidatorCoR) was developed to allow combining of other validators into a chain.
 
 

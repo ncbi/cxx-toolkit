@@ -192,9 +192,9 @@ Once the Toolkit is [configured and built](ch_config.html#ch_config.MS_Windows),
 
 <a name="ch_faq.faq.CannotFindGetTypeInfo"></a>
 
-#### The ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** method is not declared or defined in any of the objects for which it is part of the interface
+#### The [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) method is not declared or defined in any of the objects for which it is part of the interface
 
-The macro DECLARE\_INTERNAL\_TYPE\_INFO() is used in the `*.hpp` files to declare the ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)***. There are several macros that are used to implement ***[GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo)*** methods in `*.cpp` files. These macros are generally named and used as follows:
+The macro DECLARE\_INTERNAL\_TYPE\_INFO() is used in the `*.hpp` files to declare the [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo). There are several macros that are used to implement [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) methods in `*.cpp` files. These macros are generally named and used as follows:
 
     BEGIN_*_INFO(...)
     {
@@ -363,11 +363,11 @@ NCBI C++ Library Dependency Graphs (public libraries only)
 
 In cases where the above methods do not work, you can also search manually using the following steps:
 
-1.  Look for the source file that defines the symbol. This can be done by going to the [LXR source browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate) and doing an identifier search on the symbol (e.g., [CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate&d=) or [XmlEncode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=XmlEncode&d=)). Look for a source file where the identifier is defined (e.g. in the "Defined as a class in" section for ***[CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate)***, or in the "Defined as a function in" section for ***[XmlEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=XmlEncode)***). For serializable object classes (such as ***[CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate)***) look for the base class definition. Follow a link to this source file.
+1.  Look for the source file that defines the symbol. This can be done by going to the [LXR source browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate) and doing an identifier search on the symbol (e.g., [CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate&d=) or [XmlEncode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=XmlEncode&d=)). Look for a source file where the identifier is defined (e.g. in the "Defined as a class in" section for [CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate), or in the "Defined as a function in" section for [XmlEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=XmlEncode)). For serializable object classes (such as [CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate)) look for the base class definition. Follow a link to this source file.
 
 2.  Near the top of the LXR page for the source file is a path, and each component of the path links to another LXR page. Click the link to the last directory.
 
-3.  The resulting LXR page for the directory should list the makefile for the library of interest (e.g. `Makefile.general.lib` for ***[CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate)*** or `Makefile.corelib.lib` for ***[XmlEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=XmlEncode)***). Click on the link to the makefile. You should see the LIB line with the name of the library that contains your symbol.
+3.  The resulting LXR page for the directory should list the makefile for the library of interest (e.g. `Makefile.general.lib` for [CDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDate) or `Makefile.corelib.lib` for [XmlEncode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=XmlEncode)). Click on the link to the makefile. You should see the LIB line with the name of the library that contains your symbol.
 
 4.  Add the library name to the list of libraries you already have and enter them into the [library dependencies tool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/dglistdeps.cgi) to create your final LIB and LIBS lines.
 

@@ -238,7 +238,7 @@ NCBI C++ toolkit provides with a sophisticated [diagnostic mechanism](#ch_debug.
 
 ### Object state dump
 
-Potentially useful technique in case of trouble is to use [object state dump API](#ch_debug.debug_dump). In order to use it, the object's class must be derived from [CDebugDumpable](#ch_debug.CDebugDumpable) class, and implementation of the class should supply meaningful dump data in its ***[DebugDump](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DebugDump)*** function. Debug dump gives an object's state snapshot, which can help in identifying the cause of problem at run time.
+Potentially useful technique in case of trouble is to use [object state dump API](#ch_debug.debug_dump). In order to use it, the object's class must be derived from [CDebugDumpable](#ch_debug.CDebugDumpable) class, and implementation of the class should supply meaningful dump data in its [DebugDump](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DebugDump) function. Debug dump gives an object's state snapshot, which can help in identifying the cause of problem at run time.
 
 <a name="ch_debug.exceptions"></a>
 
@@ -314,11 +314,11 @@ The following additional topics are discussed in this section:
 
 #### Standard C++ Exception Classes, and Two Useful NCBI Exception Classes (CErrnoTemplException, CParseTemplException)
 
-One must use [CException](#ch_debug.CException) as much as possible. When not possible, [standard C++ exceptions](http://www.cplusplus.com/doc/tutorial/tut5-3.html) should be used. There are also a couple of auxiliary exception classes derived from ***std***::***[runtime\_error](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=runtime_error)*** that may be used if necessary.
+One must use [CException](#ch_debug.CException) as much as possible. When not possible, [standard C++ exceptions](http://www.cplusplus.com/doc/tutorial/tut5-3.html) should be used. There are also a couple of auxiliary exception classes derived from ***std***::***runtime\_error*** that may be used if necessary.
 
--   ***[CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException)*** -- to report failure in a standard C library function; it automatically appends to the user message a system-specific description reported by **`errno`**
+-   [CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException) -- to report failure in a standard C library function; it automatically appends to the user message a system-specific description reported by **`errno`**
 
--   ***[CParseTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParseTemplException)*** -- to report an erroneous position (passed in the additional constructor parameter) along with the user message
+-   [CParseTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParseTemplException) -- to report an erroneous position (passed in the additional constructor parameter) along with the user message
 
 Then, it is **strongly recommended** that when [CException](#ch_debug.CException) can't be used, and when the basic functionality provided by standard C++ exceptions is insufficient for some reason, one must derive new ad hoc exception classes from one of the standard exception classes. This provides a more uniform way of exception handling, because most exceptions can be caught and appropriately handled using the **`STD_CATCH_*(...)`** preprocessor macros as described below.
 
@@ -382,9 +382,9 @@ One is discouraged from writing [exception specifications](http://www.gamedev.ne
 
 `#include <corelib/ncbidiag.hpp>` [also included in \<corelib/ncbistd.hpp\>]
 
-Standard diagnostics is provided with the ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** class. A given application can have as many objects of this class as needed. An important point to remember is that each instance of the ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** class actually stores (and allows to append to) only one message at a time. When the message controlled by an instance of ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** is complete, ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** invokes the ***[Post()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Post)*** method of a global handler object (of type ***[CDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagHandler)***) and passes the message (along with its severity level) as the method's argument.
+Standard diagnostics is provided with the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) class. A given application can have as many objects of this class as needed. An important point to remember is that each instance of the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) class actually stores (and allows to append to) only one message at a time. When the message controlled by an instance of [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) is complete, [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) invokes the [Post()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Post) method of a global handler object (of type [CDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagHandler)) and passes the message (along with its severity level) as the method's argument.
 
-Usually, this global object would merely dump the message to a diagnostic stream, and there is an auxiliary function ***[SetDiagStream()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagStream)*** that can be used to specify the output stream for the diagnostics. One can call ***SetDiagStream(&NcbiCerr)*** to dump the diagnostics to the standard error output stream:
+Usually, this global object would merely dump the message to a diagnostic stream, and there is an auxiliary function [SetDiagStream()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagStream) that can be used to specify the output stream for the diagnostics. One can call ***SetDiagStream(&NcbiCerr)*** to dump the diagnostics to the standard error output stream:
 
     /// Set diagnostic stream.
     ///
@@ -398,7 +398,7 @@ Usually, this global object would merely dump the message to a diagnostic stream
      void*         cleanup_data = 0    ///< Stream is changed (see SetDiagHandler)
      );
 
-Using ***[SetDiagHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagHandler)***, one can install a custom handler object of type ***[CDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagHandler)*** to process the messages posted via ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)***. The implementation of the ***[CStreamDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStreamDiagHandler)*** in `"ncbidiag.cpp"` is a good example of how to do this.
+Using [SetDiagHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagHandler), one can install a custom handler object of type [CDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagHandler) to process the messages posted via [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag). The implementation of the [CStreamDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStreamDiagHandler) in `"ncbidiag.cpp"` is a good example of how to do this.
 
     /////////////////////////////////////////////////////////////////////////////
     ///
@@ -485,9 +485,9 @@ where:
 
 Installing a new handler typically destroys the previous handler, which can be a problem if you need to keep the old handler around for some reason. There are two ways to address this issue:
 
--   Declare an object of class ***[CDiagRestorer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagRestorer)*** at the top of the block of code in which you will be using your new handler. This will protect the old handler from destruction, and automatically restore it -- along with any other diagnostic settings -- when the block exits in any fashion. As such, you can safely use the result of calling ***[GetDiagHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDiagHandler)*** at the beginning of the block even if you have changed the handler within the block.
+-   Declare an object of class [CDiagRestorer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagRestorer) at the top of the block of code in which you will be using your new handler. This will protect the old handler from destruction, and automatically restore it -- along with any other diagnostic settings -- when the block exits in any fashion. As such, you can safely use the result of calling [GetDiagHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDiagHandler) at the beginning of the block even if you have changed the handler within the block.
 
--   Call ***GetDiagHandler(true)*** and then destroy the old handler yourself when done with it. This works in some circumstances in which ***[CDiagRestorer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagRestorer)*** is unsuitable, but places much more responsibility on your code.
+-   Call ***GetDiagHandler(true)*** and then destroy the old handler yourself when done with it. This works in some circumstances in which [CDiagRestorer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagRestorer) is unsuitable, but places much more responsibility on your code.
 
 For compatibility with older code, the diagnostic system also supports specifying simple callbacks:
 
@@ -516,27 +516,27 @@ The following additional topics are discussed in this section:
 
 #### Formatting and Manipulators
 
-To compose a diagnostic message with ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** you can use the formatting operator "`<<`". It works practically the same way as operator "`<<`" for standard C++ output streams. ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** class also has some ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)***-specific `manipulators` to control the message severity level:
+To compose a diagnostic message with [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) you can use the formatting operator "`<<`". It works practically the same way as operator "`<<`" for standard C++ output streams. [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) class also has some [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)-specific `manipulators` to control the message severity level:
 
--   ***[Info](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Info)*** -- set severity level to **`eDiag_Info`**
+-   [Info](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Info) -- set severity level to **`eDiag_Info`**
 
--   ***[Warning](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Warning)*** -- set severity level to **`eDiag_Warning`**
+-   [Warning](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Warning) -- set severity level to **`eDiag_Warning`**
 
--   ***[Error](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Error)*** -- set severity level to **`eDiag_Error`** [default]
+-   [Error](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Error) -- set severity level to **`eDiag_Error`** [default]
 
--   ***[Critical](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Critical)*** -- set severity level to **`eDiag_Critical`**
+-   [Critical](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Critical) -- set severity level to **`eDiag_Critical`**
 
--   ***[Fatal](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Fatal)*** -- set severity level to **`eDiag_Fatal`**
+-   [Fatal](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Fatal) -- set severity level to **`eDiag_Fatal`**
 
--   ***[Trace](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Trace)*** -- set severity level to **`eDiag_Trace`**
+-   [Trace](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Trace) -- set severity level to **`eDiag_Trace`**
 
-NOTE: whenever the severity level is changed, ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** also automatically executes the following two `manipulators`:
+NOTE: whenever the severity level is changed, [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) also automatically executes the following two `manipulators`:
 
--   ***[Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm)*** -- means that the message is complete and to be flushed(via the global callback as described above)
+-   [Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm) -- means that the message is complete and to be flushed(via the global callback as described above)
 
--   ***[Reset](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset)*** -- directs to discard the content of presently composed message
+-   [Reset](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset) -- directs to discard the content of presently composed message
 
-The ***[Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm)*** manipulator also gets executed on the ***[CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)*** object destruction.
+The [Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm) manipulator also gets executed on the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object destruction.
 
 For example, this code:
 
@@ -555,7 +555,7 @@ For example, this code:
     diag1 << "This is a warning " << iii;
     diag1 << Endm;
 
-will write to the diagnostic stream(if the latter was set with ***[SetDiagStream()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagStream)***):
+will write to the diagnostic stream(if the latter was set with [SetDiagStream()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagStream)):
 
     Error: Message1_Start 1234
     Info: Message2
@@ -573,7 +573,7 @@ There is an **`ERR_POST(message)`** macro that can be used to shorten the error 
 
 #### Turn on the Tracing
 
-The tracing (messages with severity level **`eDiag_Trace`**) is considered to be a special, debug-oriented feature, and therefore it is not affected by ***[SetDiagPostLevel()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagPostLevel)*** and ***[SetDiagDieLevel()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagDieLevel)***. To turn the tracing on or off in your code you can use function [SetDiagTrace()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/ncbidiag_8cpp.html#a22).
+The tracing (messages with severity level **`eDiag_Trace`**) is considered to be a special, debug-oriented feature, and therefore it is not affected by [SetDiagPostLevel()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagPostLevel) and [SetDiagDieLevel()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagDieLevel). To turn the tracing on or off in your code you can use function [SetDiagTrace()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/ncbidiag_8cpp.html#a22).
 
 By default, the tracing is off -- unless you assign environment variable **`$DIAG_TRACE`** to an arbitrary non-empty string (or, alternatively, you can set **`DIAG_TRACE`** entry in the **`[DEBUG]`** section of your registry to any non-empty value).
 
@@ -600,7 +600,7 @@ When a system being developed crashes consistently, debugging is easy in the sen
 
 One possible idea is to make the object tell about itself. That is, in case of trouble (but not necessarily trouble), an object could call a function that would report as much as possible about itself and other object it contains or to which it refers. During such operation the object should not do anything important, something that could potentially cause other problems. The diagnostic must of course be safe - it should only take a snapshot of an object's state and never alter that data.
 
-Sure, ***[DebugDump](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DebugDump)*** may cause problems by itself, even if everything is "correct". Let us say there are two objects, which "know" each other: **`Object A`** refers to **`Object B`**, while **`Object B`** refers to **`Object A`** (very common scenario in fact). Now dumping contents of **`Object A`** will cause dumping of **`Object B`**, which in turn will cause dumping of **`Object A`**, and so on until the stack overflows.
+Sure, [DebugDump](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DebugDump) may cause problems by itself, even if everything is "correct". Let us say there are two objects, which "know" each other: **`Object A`** refers to **`Object B`**, while **`Object B`** refers to **`Object A`** (very common scenario in fact). Now dumping contents of **`Object A`** will cause dumping of **`Object B`**, which in turn will cause dumping of **`Object A`**, and so on until the stack overflows.
 
 <a name="ch_debug.debug_terminology"></a>
 
@@ -628,21 +628,21 @@ The packet of information produced by such operation we call `bundle`. The class
 
 ### Architecture
 
-Class ***[CDebugDumpable](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpable)*** is a special abstract base class. Its purpose is to define a virtual function ***[DebugDump](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DebugDump)***, which any derived class should implement. Another purpose is to store any global dump options. Any real dump should be initiated through a non-virtual function of this class - so, global option could be applied. Class ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** is derived from this class. So, any classes based on ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)*** may benefit from this functionality right away. Other classes may use this class as a base later on (e.g. using multiple inheritance).
+Class [CDebugDumpable](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpable) is a special abstract base class. Its purpose is to define a virtual function [DebugDump](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DebugDump), which any derived class should implement. Another purpose is to store any global dump options. Any real dump should be initiated through a non-virtual function of this class - so, global option could be applied. Class [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject) is derived from this class. So, any classes based on [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject) may benefit from this functionality right away. Other classes may use this class as a base later on (e.g. using multiple inheritance).
 
-Class ***[CDebugDumpContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpContext)*** provides a generic dump interface for dumpable objects. The class has nothing to do with data representation. Its purpose is the ability to describe the location of where the data comes from, accept it from the object and transfer to the data formatter.
+Class [CDebugDumpContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpContext) provides a generic dump interface for dumpable objects. The class has nothing to do with data representation. Its purpose is the ability to describe the location of where the data comes from, accept it from the object and transfer to the data formatter.
 
-Class ***[CDebugDumpFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatter)*** defines the dump formatting interface. It is an abstract class.
+Class [CDebugDumpFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatter) defines the dump formatting interface. It is an abstract class.
 
-Class ***[CDebugDumpFormatterText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatterText)*** is derived from ***[CDebugDumpFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatter)***. Based on incoming data, it generates a human-readable text and passes it into any output stream (***ostream***).
+Class [CDebugDumpFormatterText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatterText) is derived from [CDebugDumpFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatter). Based on incoming data, it generates a human-readable text and passes it into any output stream (***ostream***).
 
 In general, the system works like this:
 
--   Client creates DebugDump formatter object (it could be an object of class ***[CDebugDumpFormatterText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatterText)*** or any other class derived from ***[CDebugDumpFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatter)***) and passes it to a proper, non-virtual function of the object to be dumped. Bundle name is to be defined here - it can be anything, but a reasonable guess would be to specify the location of the call and the name of the object being dumped.
+-   Client creates DebugDump formatter object (it could be an object of class [CDebugDumpFormatterText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatterText) or any other class derived from [CDebugDumpFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpFormatter)) and passes it to a proper, non-virtual function of the object to be dumped. Bundle name is to be defined here - it can be anything, but a reasonable guess would be to specify the location of the call and the name of the object being dumped.
 
--   ***[CDebugDumpable](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpable)*** analyses global settings, creates ***[CDebugDumpContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpContext)*** object and calls virtual DebugDump() function of the object.
+-   [CDebugDumpable](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpable) analyses global settings, creates [CDebugDumpContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpContext) object and calls virtual DebugDump() function of the object.
 
--   DebugDump function of each subclass defines a frame name (which must be the type of the subclass), calls DebugDump function of a base class and finally logs its own data members. From within the DebugDump(), the object being dumped "sees" only ***[CDebugDumpContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpContext)***. It does not know any specifics about target format in which dump data will be eventually represented.
+-   DebugDump function of each subclass defines a frame name (which must be the type of the subclass), calls DebugDump function of a base class and finally logs its own data members. From within the DebugDump(), the object being dumped "sees" only [CDebugDumpContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDebugDumpContext). It does not know any specifics about target format in which dump data will be eventually represented.
 
 <a name="ch_debug.debug_impl"></a>
 
@@ -737,7 +737,7 @@ The dump interface looks like this:
                  unsigned int depth
                  );
 
-A number of overloaded ***[Log](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Log)*** functions is provided for convenience only.
+A number of overloaded [Log](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Log) functions is provided for convenience only.
 
 <a name="ch_debug.CDebugDumpFormatter"></a>
 
@@ -760,7 +760,7 @@ This abstract class defines dump formatting interface:
 
 ### Examples
 
-Supposed that there is an object **`m_ccObj`** of class ***CSomeObject*** derived from ***[CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)***. In order to dump it into the standard **`cerr`** stream, one should do one of the following:
+Supposed that there is an object **`m_ccObj`** of class ***CSomeObject*** derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject). In order to dump it into the standard **`cerr`** stream, one should do one of the following:
 
     m_ccObj.DebugDumpText(cerr, "m_ccObj", 0);
 
@@ -771,7 +771,7 @@ or
         m_ccObj.DebugDumpFormat(ddf, "m_ccObj", 0);
     }
 
-The ***[DebugDump](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DebugDump)*** function should look like this:
+The [DebugDump](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DebugDump) function should look like this:
 
     void CSomeObject::DebugDump(CDebugDumpContext ddc, unsigned int depth) const
     {
@@ -849,7 +849,7 @@ An exception can have a reference to the "lower level" one, which makes it possi
 
 The exception constructor's mandatory parameters include location information, exception id and a message. This constructor is to be used at the lower level, when the exception is thrown initially. At higher levels we need a constructor, which would accept the exception from the lower level as one of its parameters.
 
-The NCBI exception mechanism has a sophisticated reporting mechanism -- the standard ***exception***::***[what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what)*** function is definitely not enough. There are three groups of reporting mechanisms:
+The NCBI exception mechanism has a sophisticated reporting mechanism -- the standard ***exception***::[what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what) function is definitely not enough. There are three groups of reporting mechanisms:
 
 -   exception formats its data by itself and either returns the result as a string or puts it into an output stream;
 
@@ -879,7 +879,7 @@ The following topics are discussed in this section:
 
 There is a single system-wide exception base class -- [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException&d=C). Each subsystem **must** implement its own type of exceptions, which must be be derived from this class. The class defines basic requirements of an exception construction, backlog and reporting mechanisms.
 
-The ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)*** constructor includes location information, exception id and a message. Each exception class defines its own error codes. So, the error code "by itself" is meaningless -- one should also know the the exception class, which produced it.
+The [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException) constructor includes location information, exception id and a message. Each exception class defines its own error codes. So, the error code "by itself" is meaningless -- one should also know the the exception class, which produced it.
 
     /// Constructor.
     ///
@@ -896,7 +896,7 @@ To make it easier to throw/re-throw an exception, the following macros are defin
 
 The last one (**`NCBI_RETHROW_SAME`**) re-throws the same exception with backlog information added.
 
-The ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)*** class has numerous reporting methods (the contents of reports is defined by [diagnostics post flags](ch_core.html#ch_core.diag_post_flags)):
+The [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException) class has numerous reporting methods (the contents of reports is defined by [diagnostics post flags](ch_core.html#ch_core.diag_post_flags)):
 
         /// Standard report (includes full backlog).
         virtual const char* what(void) const throw();
@@ -940,7 +940,7 @@ The ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i
         ///   The previous state of the flag.
         static bool EnableBackgroundReporting(bool enable);
 
-Also, the following macro is defined that calls the ***[CExceptionReporter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExceptionReporter)***::***[ReportDefault()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportDefault)*** method to produce a report for the exception:
+Also, the following macro is defined that calls the [CExceptionReporter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExceptionReporter)::[ReportDefault()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportDefault) method to produce a report for the exception:
 
     NCBI_REPORT_EXCEPTION(title,e)
 
@@ -996,7 +996,7 @@ The only requirement for a derived exception is to define error codes as well as
         NCBI_EXCEPTION_DEFAULT(CSubsystemException, CException);
     };
 
-In case the derived exception has data members not found in the base class, it should also implement its own ***[ReportExtra](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportExtra)*** method -- to report this non-standard data.
+In case the derived exception has data members not found in the base class, it should also implement its own [ReportExtra](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportExtra) method -- to report this non-standard data.
 
 <a name="ch_debug.reporting_exceptions"></a>
 
@@ -1004,9 +1004,9 @@ In case the derived exception has data members not found in the base class, it s
 
 There are several way to report an NCBI C++ exception:
 
--   An exception is capable of formatting its own data, returning a string (or a pointer to a string buffer). Each exception report occupies one line. Still, since an exception may contain a backlog of previously thrown exceptions, the resulting report could contain several lines of text - one for each exception thrown. The report normally contains information about the location from which the exception has been thrown, the text representation of the exception class and error code, and a description of the error. The content of the report is defined by [diagnostics post flags](ch_core.html#ch_core.diag_post_flags). The following methods generate reports of this type:<br/>`    /// Standard report (includes full backlog).`<br/>`    virtual const char* what(void) const throw();`<br/><br/>`    /// Report the exception.`<br/>`    ///`<br/>`    /// Report the exception using "reporter" exception reporter.`<br/>`    /// If "reporter" is not specified (value 0), then use the default`<br/>`    /// reporter as set with CExceptionReporter::SetDefault.`<br/>`    void Report(const char* file, int line,`<br/>`                const string& title, CExceptionReporter* reporter = 0,`<br/>`                TDiagPostFlags flags = eDPF_Trace) const;`<br/><br/>`    /// Report this exception only.`<br/>`    ///`<br/>`    /// Report as a string this exception only. No backlog is attached.`<br/>`    string ReportThis(TDiagPostFlags flags = eDPF_Trace) const;`<br/><br/>`    /// Report all exceptions.`<br/>`    ///`<br/>`    /// Report as a string all exceptions. Include full backlog.`<br/>`    string ReportAll (TDiagPostFlags flags = eDPF_Trace) const;`<br/><br/>`    /// Report "standard" attributes.`<br/>`    ///`<br/>`    /// Report "standard" attributes (file, line, type, err.code, user message)`<br/>`    /// into the "out" stream (this exception only, no backlog).`<br/>`    void ReportStd(ostream& out, TDiagPostFlags flags = eDPF_Trace) const;`<br/><br/>Functions ***[what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what)*** and ***[ReportAll()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportAll)*** may also generate a `background` report - the one generated by a default exception reporter. This feature can be disabled by calling the static method<br/>`CException::EnableBackgroundReporting(false);`
+-   An exception is capable of formatting its own data, returning a string (or a pointer to a string buffer). Each exception report occupies one line. Still, since an exception may contain a backlog of previously thrown exceptions, the resulting report could contain several lines of text - one for each exception thrown. The report normally contains information about the location from which the exception has been thrown, the text representation of the exception class and error code, and a description of the error. The content of the report is defined by [diagnostics post flags](ch_core.html#ch_core.diag_post_flags). The following methods generate reports of this type:<br/>`    /// Standard report (includes full backlog).`<br/>`    virtual const char* what(void) const throw();`<br/><br/>`    /// Report the exception.`<br/>`    ///`<br/>`    /// Report the exception using "reporter" exception reporter.`<br/>`    /// If "reporter" is not specified (value 0), then use the default`<br/>`    /// reporter as set with CExceptionReporter::SetDefault.`<br/>`    void Report(const char* file, int line,`<br/>`                const string& title, CExceptionReporter* reporter = 0,`<br/>`                TDiagPostFlags flags = eDPF_Trace) const;`<br/><br/>`    /// Report this exception only.`<br/>`    ///`<br/>`    /// Report as a string this exception only. No backlog is attached.`<br/>`    string ReportThis(TDiagPostFlags flags = eDPF_Trace) const;`<br/><br/>`    /// Report all exceptions.`<br/>`    ///`<br/>`    /// Report as a string all exceptions. Include full backlog.`<br/>`    string ReportAll (TDiagPostFlags flags = eDPF_Trace) const;`<br/><br/>`    /// Report "standard" attributes.`<br/>`    ///`<br/>`    /// Report "standard" attributes (file, line, type, err.code, user message)`<br/>`    /// into the "out" stream (this exception only, no backlog).`<br/>`    void ReportStd(ostream& out, TDiagPostFlags flags = eDPF_Trace) const;`<br/><br/>Functions [what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what) and [ReportAll()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportAll) may also generate a `background` report - the one generated by a default exception reporter. This feature can be disabled by calling the static method<br/>`CException::EnableBackgroundReporting(false);`
 
--   A client can provide its own [exception reporter](#ch_debug.CExceptionReporter). An object of this class may either use exception data access functions to create its own reports, or redirect reports into its own output channel(s). While it is possible to specify the reporter in the ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)***::***[Report()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Report)*** function, it is better if the same reporting functions are used for exceptions, to install the reporter as a default one instead, using<br/>`CExceptionReporter::SetDefault(const CExceptionReporter* handler);` static function, and use the standard **`NCBI_REPORT_EXCEPTION`** macro in the program.
+-   A client can provide its own [exception reporter](#ch_debug.CExceptionReporter). An object of this class may either use exception data access functions to create its own reports, or redirect reports into its own output channel(s). While it is possible to specify the reporter in the [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[Report()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Report) function, it is better if the same reporting functions are used for exceptions, to install the reporter as a default one instead, using<br/>`CExceptionReporter::SetDefault(const CExceptionReporter* handler);` static function, and use the standard **`NCBI_REPORT_EXCEPTION`** macro in the program.
 
 -   Still another way to report an exception is to use the standard [diagnostic](ch_core.html#ch_core.diag) mechanism provided by NCBI C++ toolkit. In this case the code to generate the report would look like this:<br/>`try {`<br/>`    ...`<br/>`} catch (CException& e) {`<br/>`    ERR_POST_X(1, Critical << "Your message here." << e);`<br/>`}`
 
@@ -1014,9 +1014,9 @@ There are several way to report an NCBI C++ exception:
 
 ##### CExceptionReporter
 
-One of possible ways to report an exception is to use an external "reporter" modeled by the ***[CExceptionReporter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExceptionReporter)*** abstract class. The reporter is an object that formats exception data and sends it to its own output channel. A client can install its own, custom exception reporter. This is not required, though. In case the default was not set, the standard NCBI diagnostic mechanism is used.
+One of possible ways to report an exception is to use an external "reporter" modeled by the [CExceptionReporter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExceptionReporter) abstract class. The reporter is an object that formats exception data and sends it to its own output channel. A client can install its own, custom exception reporter. This is not required, though. In case the default was not set, the standard NCBI diagnostic mechanism is used.
 
-The ***[CExceptionReporter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExceptionReporter)*** is an abstract class, which defines the reporter interface:
+The [CExceptionReporter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExceptionReporter) is an abstract class, which defines the reporter interface:
 
         /// Set default reporter.
         static void SetDefault(const CExceptionReporter* handler);
@@ -1069,7 +1069,7 @@ Choosing and interpreting error codes can potentially create some problems becau
         NCBI_EXCEPTION_DEFAULT(CBiggersystemException, CSubsystemException);
     };
 
-Now, suppose an exception ***CBiggersystemException*** has been thrown somewhere. On a higher level it has been caught as ***[CSubsystemException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSubsystemException)***. It is easy to see that the error code returned by the ***[CSubsystemException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSubsystemException)*** object would be completely meaningless: the error code of ***CBiggersystemException*** cannot be interpreted in terms of ***[CSubsystemException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSubsystemException)***.
+Now, suppose an exception ***CBiggersystemException*** has been thrown somewhere. On a higher level it has been caught as [CSubsystemException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSubsystemException). It is easy to see that the error code returned by the [CSubsystemException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSubsystemException) object would be completely meaningless: the error code of ***CBiggersystemException*** cannot be interpreted in terms of [CSubsystemException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSubsystemException).
 
 One reasonable solution seems to be isolating error codes of different exception classes -- by assigning different numeric values to them. And this has to be done by the developer. Such isolation should only be done within each branch of derivatives only. Another solution is to make sure that the exception in question does belong to the desired class, not to any intermediate classes in the derivation hierarchy. The template function [UppermostCast()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UppermostCast) can be used to perform this check:
 
@@ -1083,9 +1083,9 @@ One reasonable solution seems to be isolating error codes of different exception
         return typeid(from) == typeid(TTo) ? dynamic_cast<const TTo*>(&from) : 0;
     }
 
-***[UppermostCast()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UppermostCast)*** utilizes the runtime information using the ***typeid()*** function, and dynamic cast conversion to return either a pointer to "uppermost" exception object or NULL.
+[UppermostCast()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UppermostCast) utilizes the runtime information using the ***typeid()*** function, and dynamic cast conversion to return either a pointer to "uppermost" exception object or NULL.
 
-The following shows how ***[UppermostCast()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UppermostCast)*** can be used to catch the correct error types:
+The following shows how [UppermostCast()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=UppermostCast) can be used to catch the correct error types:
 
     try {
         ...
@@ -1112,7 +1112,7 @@ The following shows how ***[UppermostCast()](https://www.ncbi.nlm.nih.gov/IEB/To
         NCBI_RETHROW_SAME(e,"your message here");
     }
 
-It is possible to use the runtime information to do it even better. Since ***[GetErrCode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrCode)*** function is non-virtual, it might check the type of the object, for which it has been called, against the type of the class to which it belongs. If these two do not match, the function returns `invalid` error code. Such code only means that the caller did not know the correct type of the exception, and the function is unable to interpret it.
+It is possible to use the runtime information to do it even better. Since [GetErrCode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrCode) function is non-virtual, it might check the type of the object, for which it has been called, against the type of the class to which it belongs. If these two do not match, the function returns `invalid` error code. Such code only means that the caller did not know the correct type of the exception, and the function is unable to interpret it.
 
 <a name="ch_debug.excep_examples"></a>
 
@@ -1152,7 +1152,7 @@ The code that catches, and possibly re-throws the exception might look like this
 
 ##### Reporting an exception
 
-There are a [number of ways](#ch_debug.reporting_exceptions) to report ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)***, for example:
+There are a [number of ways](#ch_debug.reporting_exceptions) to report [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException), for example:
 
     try {
         ... // your code
@@ -1170,7 +1170,7 @@ We suggest using **`NCBI_REPORT_EXCEPTION(title,e)`** macro (which is equivalent
 
 ### The CErrnoTemplException Class
 
-The ***[CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException)*** class is a template class used for generating error exception classes:
+The [CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException) class is a template class used for generating error exception classes:
 
     /////////////////////////////////////////////////////////////////////////////
     ///
@@ -1194,15 +1194,15 @@ The ***[CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
         NCBI_EXCEPTION_DEFAULT_IMPLEMENTATION_TEMPL(CErrnoTemplException<TBase>, CParent)
     };
 
-The template class is derived form another template class, the ***ErrnoTemplExceptionEx*** which implements a parent class with the template parameter `TBase`. The parent ***ErrnoTemplExceptionEx*** class implements the basic exception methods such as ***[ReportExtra()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportExtra)***, ***[GetErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrCode)***, ***GetErrno()***, ***[GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType)***. The ***ErrnoTemplExceptionEx*** class has an ***int*** data member called **`m_Errno`**. The constructor automatically adds information about the most recent error state as obtained via the global system variable **`errno`** to this data member.
+The template class is derived form another template class, the ***ErrnoTemplExceptionEx*** which implements a parent class with the template parameter `TBase`. The parent ***ErrnoTemplExceptionEx*** class implements the basic exception methods such as [ReportExtra()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportExtra), [GetErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetErrCode), ***GetErrno()***, [GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType). The ***ErrnoTemplExceptionEx*** class has an ***int*** data member called **`m_Errno`**. The constructor automatically adds information about the most recent error state as obtained via the global system variable **`errno`** to this data member.
 
-The constructor for the derived ***[CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException)*** class is defined in terms of the **`NCBI_EXCEPTION_DEFAULT_IMPLEMENTATION_TEMPL`** macro which defines the program code for implementing the constructor.
+The constructor for the derived [CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException) class is defined in terms of the **`NCBI_EXCEPTION_DEFAULT_IMPLEMENTATION_TEMPL`** macro which defines the program code for implementing the constructor.
 
-The `TBase` template parameter is an exception base class such as ***[CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)*** or ***[CCoreException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCoreException)***, or another class similar to these. The ***CStrErrAdapt***::***strerror*** template parameter is a function defined in an adaptor class for getting the error description string. The ***[CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException)*** has only one [error core](#ch_debug.excep_err_codes) - **`eErrno`** defined in the parent class, ***ErrnoTemplExceptionEx***. To analyze the actual reason of the exception one should use ***GetErrno()*** method:
+The `TBase` template parameter is an exception base class such as [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException) or [CCoreException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCoreException), or another class similar to these. The ***CStrErrAdapt***::***strerror*** template parameter is a function defined in an adaptor class for getting the error description string. The [CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException) has only one [error core](#ch_debug.excep_err_codes) - **`eErrno`** defined in the parent class, ***ErrnoTemplExceptionEx***. To analyze the actual reason of the exception one should use ***GetErrno()*** method:
 
     int GetErrno(void) const;
 
-The ***[CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException)*** is used to create exception classes. Here is an example of how the ***[CExecException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExecException)*** class is created from ***[CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException)***. In this example, the `TBase` template parameter is the exception base class ***[CCoreException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCoreException)***:
+The [CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException) is used to create exception classes. Here is an example of how the [CExecException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CExecException) class is created from [CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CErrnoTemplException). In this example, the `TBase` template parameter is the exception base class [CCoreException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCoreException):
 
     /////////////////////////////////////////////////////////////////////////////
     ///
@@ -1243,7 +1243,7 @@ The ***[CErrnoTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### The CParseException Class
 
-The ***[CParseTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParseTemplException)*** is a template class whose parent class is the template parameter `TBase`. The ***[CParseTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParseTemplException)*** class includes an additional ***int*** data member, called **`m_Pos`**. This class was specifically defined to support complex parsing tasks, and its constructor requires that positional information be supplied along with the description message. This makes it impossible to use the standard **`NCBI_THROW`** macro to throw it, so we defined two additional macros:
+The [CParseTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParseTemplException) is a template class whose parent class is the template parameter `TBase`. The [CParseTemplException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CParseTemplException) class includes an additional ***int*** data member, called **`m_Pos`**. This class was specifically defined to support complex parsing tasks, and its constructor requires that positional information be supplied along with the description message. This makes it impossible to use the standard **`NCBI_THROW`** macro to throw it, so we defined two additional macros:
 
     /// Throw exception with extra parameter.
     ///
@@ -1297,9 +1297,9 @@ will generate a message of the form:
 
 In this output, the `(101.1)` indicates the error code (defined in the module's `error_codes.hpp` header) and the subcode passed to **`STD_CATCH_X`**.
 
-In this example, the generated message starts with the Error tag, as that is the [severity level](ch_core.html#ch_core.diag_severity) for the default diagnostic stream. User-defined classes that are derived from ***std***::***exception*** will be treated uniformly in the same manner. The `throw` clause in this case creates a new instance of ***std***::***[runtime\_error](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=runtime_error)*** whose data member **`desc`** is initialized to **`throw-msg`**. When the exception is then caught, the exception's member function ***[what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what)*** can be used to retrieve that message.
+In this example, the generated message starts with the Error tag, as that is the [severity level](ch_core.html#ch_core.diag_severity) for the default diagnostic stream. User-defined classes that are derived from ***std***::***exception*** will be treated uniformly in the same manner. The `throw` clause in this case creates a new instance of ***std***::***runtime\_error*** whose data member **`desc`** is initialized to **`throw-msg`**. When the exception is then caught, the exception's member function [what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what) can be used to retrieve that message.
 
-The **`STD_CATCH_ALL_X`** macro catches all exceptions. If however, the exception caught is **not** derived from ***std***::***exception***, then the `catch` clause cannot assume that ***[what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what)*** has been defined for this object, and a default message is generated of the form:
+The **`STD_CATCH_ALL_X`** macro catches all exceptions. If however, the exception caught is **not** derived from ***std***::***exception***, then the `catch` clause cannot assume that [what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what) has been defined for this object, and a default message is generated of the form:
 
     Error: (101.1) [catch-msg] Exception: Unknown exception
 
@@ -1329,7 +1329,7 @@ The most commonly used of these macros, `THROW1_TRACE(class_name, init_arg)`, in
         throw NCBI_NS_NCBI::DbgPrint(DIAG_COMPILE_INFO, \
             exception_class(exception_arg), #exception_class)
 
-From the ***throw()*** statement here, we see that the object actually being thrown by this macro is the value returned by [DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). ***[DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint)*** in turn calls [DoDbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). The latter is an overloaded function that simply creates a diagnostic stream and writes the file name, line number, and the exception's ***[what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what)*** message to that stream. The exception object (which is of type **`class_name`**) is then the value returned by ***[DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint)***.
+From the ***throw()*** statement here, we see that the object actually being thrown by this macro is the value returned by [DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). [DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint) in turn calls [DoDbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). The latter is an overloaded function that simply creates a diagnostic stream and writes the file name, line number, and the exception's [what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what) message to that stream. The exception object (which is of type **`class_name`**) is then the value returned by [DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint).
 
 More generally, three sets of **`THROW*_TRACE`** macros are defined:
 

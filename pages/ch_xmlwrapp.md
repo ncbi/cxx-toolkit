@@ -174,11 +174,11 @@ A node may have an XML namespace and also may define namespaces. To support this
 
 An XML node may have attributes as well, so XmlWrapp provides the ***xml***::***attributes*** class. This class is a container of attributes so both const and non-const iterators are provided.
 
-The XPath support includes the ***xml***::***[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression)*** and ***xml***::***[node\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=node_set)*** classes. ***[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression)*** objects hold a single expression. ***[node\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=node_set)*** objects are created as the result of executing an XPath query for a given node. The ***[node\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=node_set)*** class is a container so it supports iterators.
+The XPath support includes the ***xml***::[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression) and ***xml***::[node\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=node_set) classes. [xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression) objects hold a single expression. [node\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=node_set) objects are created as the result of executing an XPath query for a given node. The [node\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=node_set) class is a container so it supports iterators.
 
 To support XSD schema validation and DTD validation, XmlWrapp provides the ***xml***::***schema*** and ***xml***::***dtd*** classes. These classes work together with the ***xml***::***document*** class.
 
-Warnings, errors and fatal errors may occur during the parsing and validating. To collect them, XmlWrapp provides the ***xml***::***[error\_messages](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=error_messages)*** class. The ***[error\_messages](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=error_messages)*** class includes the ***[print()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=print)*** method, which returns a string containing a newline-separated list of messages. It also includes the ***[has\_warnings()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_warnings)***, ***[has\_errors()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_errors)***, and ***[has\_fatal\_errors()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_fatal_errors)*** methods in case you are interested in the presence of a specific type of message. Note that errors and fatal errors are considered separately, so ***[has\_fatal\_errors()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_fatal_errors)*** may return `true` while ***[has\_errors()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_errors)*** returns `false`.
+Warnings, errors and fatal errors may occur during the parsing and validating. To collect them, XmlWrapp provides the ***xml***::[error\_messages](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=error_messages) class. The [error\_messages](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=error_messages) class includes the ***print()*** method, which returns a string containing a newline-separated list of messages. It also includes the [has\_warnings()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_warnings), [has\_errors()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_errors), and [has\_fatal\_errors()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_fatal_errors) methods in case you are interested in the presence of a specific type of message. Note that errors and fatal errors are considered separately, so [has\_fatal\_errors()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_fatal_errors) may return `true` while [has\_errors()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=has_errors) returns `false`.
 
 <a name="ch_xmlwrapp.How_To"></a>
 
@@ -205,7 +205,7 @@ This section includes compact code fragments that show the essence of how to ach
     xml::document       doc( "MyFile.xml", NULL );
 
 
-***Note:*** The second parameter above is a pointer to an ***[error\_messages](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=error_messages)*** object, which stores any messages collected while parsing the XML document (a `NULL` value can be passed if you're not interested in collecting error messages). For example:
+***Note:*** The second parameter above is a pointer to an [error\_messages](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=error_messages) object, which stores any messages collected while parsing the XML document (a `NULL` value can be passed if you're not interested in collecting error messages). For example:
 
 
     xml::error_messages msgs;
@@ -615,17 +615,17 @@ The **`my_copy`** variable is a recursive copy of the corresponding node togethe
 
 ### Using Namespaces with XPath Expressions
 
-XmlWrapp provides the ***xml***::***[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression)*** class for building reusable XPath expressions. If namespaces are involved then one of the constructors which accept a namespace or a list of namespaces should be used. Otherwise the XPath query results may not have the nodes you expect to get.
+XmlWrapp provides the ***xml***::[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression) class for building reusable XPath expressions. If namespaces are involved then one of the constructors which accept a namespace or a list of namespaces should be used. Otherwise the XPath query results may not have the nodes you expect to get.
 
-XmlWrapp also provides a convenience method for the nodes: ***xml::node::run\_xpath\_query( const char \* expr)***. This method builds an ***[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression)*** internally and registers all the effective namespaces for the certain node. While it is very convenient as you don’t need to know in advance what the namespace definitions are, this method has some drawbacks:
+XmlWrapp also provides a convenience method for the nodes: ***xml::node::run\_xpath\_query( const char \* expr)***. This method builds an [xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression) internally and registers all the effective namespaces for the certain node. While it is very convenient as you don’t need to know in advance what the namespace definitions are, this method has some drawbacks:
 
--   The internally built ***[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression)*** is not reusable, so it gets rebuilt every time a query is run - even if the same expression was used before.
+-   The internally built [xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression) is not reusable, so it gets rebuilt every time a query is run - even if the same expression was used before.
 
 -   The list of effective namespace definitions for a certain node can be quite long and may exceed your actual needs. It takes time to build such a list and to register them all so it affects the performance.
 
 Recommendations:
 
--   If you need the best performance then use ***xml***::***[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression)*** explicitly and do not forget to provide a list of the required namespaces.
+-   If you need the best performance then use ***xml***::[xpath\_expression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=xpath_expression) explicitly and do not forget to provide a list of the required namespaces.
 
 -   If you aren’t concerned about performance then use one of the ***xml::node::run\_xpath\_query( const char \* expr)*** methods.
 
@@ -655,7 +655,7 @@ XmlWrapp provides an STL-like way of iterating over the attributes, e.g:
 
 You may notice that iterators are used here and the iterators can be incremented.
 
-***Note:*** Although iterating over attributes is STL-like, searching for an attribute is only partially STL-like. Iterators returned by the ***[find()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=find)*** method cannot be incremented, but both operator `->` and operator `*` can be used. The following code will work:
+***Note:*** Although iterating over attributes is STL-like, searching for an attribute is only partially STL-like. Iterators returned by the ***find()*** method cannot be incremented, but both operator `->` and operator `*` can be used. The following code will work:
 
     void f( const xml::node &  theNode, const char *  attrName ) {
         const xml::attributes &          attrs = theNode.get_attributes();
@@ -788,7 +788,7 @@ Figure 1. Phantom Attributes.
 
 ### Event Parser and Named Entities
 
-When using ***xml***::***[event\_parser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=event_parser)***, three functions are involved in parsing an XML document that contains named entities:
+When using ***xml***::[event\_parser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=event_parser), three functions are involved in parsing an XML document that contains named entities:
 
 -   ***xml::init::substitute\_entities()***<br/>This method controls whether the ***xml::event\_parser::entity\_reference()*** callback is called or not, and must be called before the event parser is created.
 
@@ -796,13 +796,13 @@ When using ***xml***::***[event\_parser](https://www.ncbi.nlm.nih.gov/IEB/ToolBo
 
 -   ***xml::event\_parser::entity\_reference()***<br/>This callback may be called for named entity nodes.
 
-Imagine that an event parser which implements both ***[text()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=text)*** and ***[entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference)*** callbacks receives the following document as in input:
+Imagine that an event parser which implements both ***text()*** and [entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference) callbacks receives the following document as in input:
 
     <?xml version="1.0"?>
     <!DOCTYPE EXAMPLE SYSTEM "example.dtd" [ <!ENTITY my "VALUE">]>
     <root><node>Super &my; oh!</node></root>
 
-Then the table below lists the callbacks that are called, depending on the value passed to ***[substitute\_entities()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=substitute_entities)***:
+Then the table below lists the callbacks that are called, depending on the value passed to [substitute\_entities()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=substitute_entities):
 
 <a name="ch_xmlwrapp.T.nc_having_this_call_before"></a>
 
@@ -815,7 +815,7 @@ Then the table below lists the callbacks that are called, depending on the value
 
 <div class="table-scroll"></div>
 
-So the difference is that the ***[entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference)*** callback is never called if ***substitute\_entities(true)*** is called. ***Note:*** The ***[entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference)*** callback is also not called if a standard entity is used (e.g. **`&apos;`**, **`&amp;`**, **`&quot;`**, **`&lt;`**, **`&gt;`**), regardless of any call to ***[substitute\_entities()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=substitute_entities)***.
+So the difference is that the [entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference) callback is never called if ***substitute\_entities(true)*** is called. ***Note:*** The [entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference) callback is also not called if a standard entity is used (e.g. **`&apos;`**, **`&amp;`**, **`&quot;`**, **`&lt;`**, **`&gt;`**), regardless of any call to [substitute\_entities()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=substitute_entities).
 
 Character entities are handled the same way as named entities.
 
@@ -934,7 +934,7 @@ Then you insert the following subtree before the child node:
 
     <new_1><new_2/></new_1>
 
-You might expect ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)*** to produce:
+You might expect [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) to produce:
 
     <?xml version="1.0"?>
     <root>
@@ -962,7 +962,7 @@ However, if you start with:
     <?xml version="1.0"?>
     <root><child/></root>
 
-Then inserting \<new\_1\>\<new\_2/\>\</new\_1\> and calling ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)*** will produce:
+Then inserting \<new\_1\>\<new\_2/\>\</new\_1\> and calling [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) will produce:
 
     <?xml version="1.0"?>
     <root>
@@ -976,7 +976,7 @@ This is because neither the original nor the modified document contains any text
 
 That is how `libxml2` works.
 
-While this may not be desirable in certain circumstances, there is no generic and reliable way to detect which text nodes are used for formatting, and which are meaningful content, so it's not feasible to make XmlWrapp adjust inserted content to make it get automatically formatted. Therefore, if the `libxml2` formatting behavior is undesirable, either you'll have to ensure that your documents do not contain any text-like nodes prior to calling ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)***, or you'll have to create your own code for formatting content prior to inserting it.
+While this may not be desirable in certain circumstances, there is no generic and reliable way to detect which text nodes are used for formatting, and which are meaningful content, so it's not feasible to make XmlWrapp adjust inserted content to make it get automatically formatted. Therefore, if the `libxml2` formatting behavior is undesirable, either you'll have to ensure that your documents do not contain any text-like nodes prior to calling [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string), or you'll have to create your own code for formatting content prior to inserting it.
 
 
 <a name="ch_xmlwrapp.How_ you_can_influence_the_input_formatting"></a>
@@ -1006,7 +1006,7 @@ then the document in memory will have no formatting text nodes i.e. would be exa
     <?xml version="1.0"?>
     <root><child/></root>
 
-Having the document in memory without formatting nodes and inserting new non formatted nodes, it would be possible to use the ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)*** member formatting facilities applied unified to the input and to the changes. Please note that `libxml2` uses two spaces to indent each level of nested nodes when it formats the output.
+Having the document in memory without formatting nodes and inserting new non formatted nodes, it would be possible to use the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) member formatting facilities applied unified to the input and to the changes. Please note that `libxml2` uses two spaces to indent each level of nested nodes when it formats the output.
 
 
 
@@ -1024,7 +1024,7 @@ This chapter will consider the case when the XML parser works with a default set
 
 For the purposes of this chapter, a "text-like node" is a text, CDATA, or entity reference node in the XML tree that is built when the original content is parsed. Newlines and whitespace used for indentation are parsed into text nodes. Note, however, that whitespace characters between the XML declaration and the opening tag of the root node are not treated by libxml2 as part of the node tree - i.e. whitespace characters prior to the root node do not participate in formatting of the output.
 
-The following sections illustrate how various formatting flags affect the output for both content containing text-like nodes and content not containing text-like nodes. Note that although only ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)*** is mentioned, the discussion aplies equally to all the ***save\_to\_\*()*** functions because they all use the same underlying formatting code.
+The following sections illustrate how various formatting flags affect the output for both content containing text-like nodes and content not containing text-like nodes. Note that although only [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) is mentioned, the discussion aplies equally to all the ***save\_to\_\*()*** functions because they all use the same underlying formatting code.
 
 -   [Original containing text-like nodes](#ch_xmlwrapp.Original_containing_textli_1)
 
@@ -1045,7 +1045,7 @@ Given the following original document (which contains text-like nodes for indent
         <child attr="AttrValue">content</child>
     </root>
 
-Then the ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)*** function will produce the following outputs for the given formatting flags:
+Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) function will produce the following outputs for the given formatting flags:
 
 <a name="ch_xmlwrapp.T.nc_flagsoutputxmlsave_op_1"></a>
 
@@ -1110,7 +1110,7 @@ And given that a node has been programmatically inserted like this:
     insert_before = root.find( "child" );
     root.insert( insert_before, xml::node("inserted") );
 
-Then the ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)*** function will produce the following outputs for the given formatting flags:
+Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) function will produce the following outputs for the given formatting flags:
 
 <a name="ch_xmlwrapp.T.nc_flagsoutputxmlsave_op_2"></a>
 
@@ -1179,7 +1179,7 @@ Given the following original document (which does not contain any text-like node
     <?xml version="1.0"?>
     <root><child attr="AttrValue">content</child></root>
 
-Then the ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)*** function will produce the following outputs for the given formatting flags:
+Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) function will produce the following outputs for the given formatting flags:
 
 <a name="ch_xmlwrapp.T.nc_flagsoutputxmlsave_op_3"></a>
 
@@ -1250,7 +1250,7 @@ And given that a node has been programmatically inserted like this:
     insert_before = root.find( "child" );
     root.insert( insert_before, xml::node("inserted") );
 
-Then the ***[save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string)*** function will produce the following outputs for the given formatting flags:
+Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) function will produce the following outputs for the given formatting flags:
 
 <a name="ch_xmlwrapp.T.nc_flagsoutputxmlsave_op_4"></a>
 
