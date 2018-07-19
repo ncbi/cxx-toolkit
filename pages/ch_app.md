@@ -1199,7 +1199,9 @@ where:
 
 -   Validity period:
 
-    -   T=integer [0 = default]<br/>specifies the time in seconds this server entry is valid without update. (If equal to 0 then defaulted by the LBSM Daemon to some reasonable value.)
+    -   T=integer [0 = default]<br/>specifies the time in seconds this server entry is valid without update. (If equal to 0 then defaulted by the LBSM Daemon to some reasonable value.) ATTENTION: There are **two** TTLs attached to each server-info structure, the `T=sec` time as read from the config file, and TTL, which is monitored by LBSMD (configured by the `-t` sec command line switch). Increasing the `T=sec` time will not prolong a TTL of the entry, it will only mean that once received by a user from LBSMD (via the SERV API), such an entry can be considered good for a longer period of time. LBSMD will drop the entry per its `-t` time, *not* the `T=` time.
+
+
 
 Server descriptors of type ***NAMEHOLD*** are special. As **`arguments`**, they have only a server type keyword. The namehold specification informs the daemon that the service of this name and type is not to be defined later in any configuration file except for the current one. Also, if the host (and/or port) is specified, then this protection works only for the service name on the particular host (and/or port).
 
