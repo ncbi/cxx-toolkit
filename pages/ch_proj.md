@@ -165,7 +165,7 @@ Script usage:
 
     new_project <name> <type>[/<subtype>] [builddir]
 
-***NOTE***: in NCBI, you can (and should) invoke common scripts simply by name - i.e. without path or extension. The proper script located in the pre-built NCBI C++ toolkit directory will be invoked.
+[NOTE](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NOTE): in NCBI, you can (and should) invoke common scripts simply by name - i.e. without path or extension. The proper script located in the pre-built NCBI C++ toolkit directory will be invoked.
 
 This script will create a startup makefile for a new project which uses the NCBI C++ Toolkit (and possibly the C Toolkit as well). Replace `<type>` with `lib` for libraries or `app` for applications.
 
@@ -1089,7 +1089,7 @@ You are now ready to edit the user class files and add methods.
 
 ##### Adding methods
 
-As an example, suppose that we would like to add a method to the [CSeq\_inst](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_inst) class to calculate sequence length, e.g.:[CSeq\_inst](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_inst)::***CalculateLength()***. We begin by adding a declaration of this method to the public section of the user class definition in `Seq_inst.hpp`:
+As an example, suppose that we would like to add a method to the [CSeq\_inst](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_inst) class to calculate sequence length, e.g.:[CSeq\_inst](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_inst)::[CalculateLength()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CalculateLength). We begin by adding a declaration of this method to the public section of the user class definition in `Seq_inst.hpp`:
 
     class CSeq_inst : public CSeq_inst_Base
     {

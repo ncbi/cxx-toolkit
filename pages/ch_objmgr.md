@@ -557,7 +557,7 @@ Most methods of CBioseq for checking and getting object members are mirrored in 
 
 -   [GetCompleteBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCompleteBioseq) - returns the complete Bioseq object. Any missing data will be loaded and put in the Bioseq members.
 
--   [GetComplexityLevel](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetComplexityLevel) and ***GetExactComplexityLeve***l - allow finding a parent Seq-entry of a specified class (e.g. nuc-prot). The first method is more flexible since it considers some Seq-entry classes as equivalent.
+-   [GetComplexityLevel](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetComplexityLevel) and [GetExactComplexityLevel](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetExactComplexityLevel) - allow finding a parent Seq-entry of a specified class (e.g. nuc-prot). The first method is more flexible since it considers some Seq-entry classes as equivalent.
 
 -   [GetBioseqMolType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBioseqMolType) - returns molecule type of the Bioseq.
 
@@ -565,9 +565,9 @@ Most methods of CBioseq for checking and getting object members are mirrored in 
 
 -   [GetSeqVector](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSeqVector) - returns Seq-vector with the selected coding and strand.
 
--   ***GetSequenceView*** - creates a Seq-vector for a part of the Bioseq. Depending on the flags the resulting Seq-vector may show all intervals (merged or not) on the Bioseq specified by Seq-loc, or all parts of the Bioseq not included in the Seq-loc.
+-   [GetSequenceView](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSequenceView) - creates a Seq-vector for a part of the Bioseq. Depending on the flags the resulting Seq-vector may show all intervals (merged or not) on the Bioseq specified by Seq-loc, or all parts of the Bioseq not included in the Seq-loc.
 
--   ***GetSeqMapByLocation*** - returns Seq-map constructed from a Seq-loc. The method uses the same flags as ***GetSequenceView***.
+-   [GetSeqMapByLocation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSeqMapByLocation) - returns Seq-map constructed from a Seq-loc. The method uses the same flags as [GetSequenceView](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSequenceView).
 
 -   [MapLocation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MapLocation) - maps a Seq-loc from the Bioseq's segment to the Bioseq.
 
@@ -743,7 +743,7 @@ An external annotation is one residing in a TSE other than the TSE containing th
 
 If a Seq-annot references external annotations, and if a data loader has been added to the scope, then by default the Object Manager will read the external annotations.
 
-This behavior can be modified by passing an appropriate [SAnnotSelector](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/structSAnnotSelector.html) to a [CFeat\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFeat_CI) feature iterator constructor. By default, [SAnnotSelector](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SAnnotSelector) will not exclude externals; however, calling ***SetExcludeExternal()*** on the selector will instruct the Object Manager to omit external annotations for this SAnnotSelector.
+This behavior can be modified by passing an appropriate [SAnnotSelector](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/structSAnnotSelector.html) to a [CFeat\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFeat_CI) feature iterator constructor. By default, [SAnnotSelector](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SAnnotSelector) will not exclude externals; however, calling [SetExcludeExternal()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetExcludeExternal) on the selector will instruct the Object Manager to omit external annotations for this SAnnotSelector.
 
 In addition you can disable/enable annotations by name or type using other methods of [SAnnotSelector](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SAnnotSelector). Selection by name is useful for GenBank external annotations like SNPs because their names are fixed - "SNP", "CDD", etc.
 
@@ -884,19 +884,19 @@ Although returning [CSeq\_annot](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DO
 
 [SAnnotSelector](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SAnnotSelector) is a helper class which may be used to fine-tune annotation iterator's settings. It is used with [CAnnot\_CI](#ch_objmgr.om_attrib.html_Annot_iterator), [CFeat\_CI](#ch_objmgr.om_attrib.Feature_iterator), [CAlign\_CI](#ch_objmgr.om_attrib.Alignment_iterator) and [CGraph\_CI](#ch_objmgr.om_attrib.html_Graph_iterator) iterators. Below is the brief explanation of the class methods. Some methods have several modifications to simplify the selector usage. E.g. one can find `SetOverlapIntervals()` more convenient than `SetOverlapType(SAnnotSelector::eOverlap_Intervals)`.
 
--   ***SetAnnotType*** - selects type of annotations to search for (features, alignments or graphs). Type-specific iterators set this type automatically.
+-   [SetAnnotType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetAnnotType) - selects type of annotations to search for (features, alignments or graphs). Type-specific iterators set this type automatically.
 
--   ***SetFeatType*** - selects type of features to search for. Ignored when used with alignment or graph iterator.
+-   [SetFeatType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetFeatType) - selects type of features to search for. Ignored when used with alignment or graph iterator.
 
 -   [SetFeatSubtype](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetFeatSubtype) - selects feature subtype and corresponding type.
 
--   ***SetByProduct*** - sets flag to search features by product rather than by location.
+-   [SetByProduct](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetByProduct) - sets flag to search features by product rather than by location.
 
--   ***SetOverlapType*** - select type of location matching during the search. If overlap type is set to `intervals`, the annotation should have at least one interval intersecting with the requested ranges to be included in the results. If overlap type is set to `total range`, the annotation will be found even if its location has a gap intersecting with the requested range. The default value is `intervals`. Total ranges are calculated for each referenced Bioseq individually, even if an annotation is located on several bioseqs, which are segments of the same parent sequence.
+-   [SetOverlapType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetOverlapType) - select type of location matching during the search. If overlap type is set to `intervals`, the annotation should have at least one interval intersecting with the requested ranges to be included in the results. If overlap type is set to `total range`, the annotation will be found even if its location has a gap intersecting with the requested range. The default value is `intervals`. Total ranges are calculated for each referenced Bioseq individually, even if an annotation is located on several bioseqs, which are segments of the same parent sequence.
 
--   ***SetSortOrder*** - selects sorting of annotations: `normal`, `reverse` or `none`. The default value is `normal`.
+-   [SetSortOrder](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSortOrder) - selects sorting of annotations: `normal`, `reverse` or `none`. The default value is `normal`.
 
--   ***SetResolveMethod*** - defines method of resolving references in segmented bioseqs. Default value is `TSE`, meaning that annotations should only be searched on segments located in the same top-level Seq-entry. Other available options are `none` (to ignore annotations on segments) and `all` (to search on all segments regardless of their location). Resolving all references may produce a huge number of annotations for big bioseqs, this option should be used with care.
+-   [SetResolveMethod](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetResolveMethod) - defines method of resolving references in segmented bioseqs. Default value is `TSE`, meaning that annotations should only be searched on segments located in the same top-level Seq-entry. Other available options are `none` (to ignore annotations on segments) and `all` (to search on all segments regardless of their location). Resolving all references may produce a huge number of annotations for big bioseqs, this option should be used with care.
 
 -   [SetResolveDepth](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetResolveDepth) - limits the depth of resolving references in segmented bioseqs. By default the search depth is not limited (set to `kMax_Int`).
 
@@ -906,11 +906,11 @@ Although returning [CSeq\_annot](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DO
 
 -   [SetLimitNone](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLimitNone), [SetLimitTSE](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLimitTSE), [SetLimitSeqEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLimitSeqEntry), [SetLimitSeqAnnot](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLimitSeqAnnot) - limits the search to a single TSE, Seq-entry or Seq-annot object.
 
--   ***SetUnresolvedFlag***, ***SetIgnoreUnresolved***, ***SetSearchUnresolved***, ***SetFailUnresolved*** - define how the iterators should behave if a reference in a sequence can not be resolved. `Ignore` (default) will ignore missing parts, `Fail` will throw [CAnnotException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAnnotException). `Search` may be used to search by known ID on missing parts, but will work only if limit object is also set, since the iterator needs to know where to look for the annotations.
+-   [SetUnresolvedFlag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetUnresolvedFlag), [SetIgnoreUnresolved](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetIgnoreUnresolved), [SetSearchUnresolved](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSearchUnresolved), [SetFailUnresolved](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetFailUnresolved) - define how the iterators should behave if a reference in a sequence can not be resolved. `Ignore` (default) will ignore missing parts, `Fail` will throw [CAnnotException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAnnotException). `Search` may be used to search by known ID on missing parts, but will work only if limit object is also set, since the iterator needs to know where to look for the annotations.
 
--   [SetSearchExternal](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSearchExternal) - sets all flags to search for external annotations. Such annotations are packed with special bioseqs, (e.g. gnl\|Annot:CDD\|6 references gi 6 and contains CDD features for the gi). If ***SetSearchSpecial*** is called with the Bioseq handle for this special sequence or its TSE handle, only external CDD features from this TSE will be found. The method calls ***SetResolveTSE***, sets limit object to the same TSE and sets `SearchUnresolved` flag.
+-   [SetSearchExternal](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSearchExternal) - sets all flags to search for external annotations. Such annotations are packed with special bioseqs, (e.g. gnl\|Annot:CDD\|6 references gi 6 and contains CDD features for the gi). If [SetSearchSpecial](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSearchSpecial) is called with the Bioseq handle for this special sequence or its TSE handle, only external CDD features from this TSE will be found. The method calls [SetResolveTSE](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetResolveTSE), sets limit object to the same TSE and sets `SearchUnresolved` flag.
 
--   ***SetNoMapping*** - prevents the iterator from mapping locations to the top-level Bioseq. This option can dramatically increase iterators' performance when searching annotations on a segmented Bioseq.
+-   [SetNoMapping](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetNoMapping) - prevents the iterator from mapping locations to the top-level Bioseq. This option can dramatically increase iterators' performance when searching annotations on a segmented Bioseq.
 
 <a name="ch_objmgr.om_attrib.Feature_iterator"></a>
 
@@ -924,7 +924,7 @@ The Feature iterator ([CFeat\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_D
 
 -   [GetOriginalFeature](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetOriginalFeature) - returns the original feature.
 
--   ***GetSeq\_feat\_Handle*** - returns handle for the original feature object.
+-   [GetSeq\_feat\_Handle](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSeq_feat_Handle) - returns handle for the original feature object.
 
 -   [GetMappedFeature](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMappedFeature) - returns a copy of the original feature with its location/product adjusted according to the search parameters (e.g. id and ranges changed from a segment to the parent Bioseq). The mapped feature is not created unless requested. This allows improving the iterator's performance.
 
@@ -1027,13 +1027,13 @@ See the [CSeqMap\_CI API reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP
 
 -   [SetStrand](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetStrand) - selects segments matching a strand constraint.
 
--   ***SetResolveCount*** - limits the depth of resolved references.
+-   [SetResolveCount](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetResolveCount) - limits the depth of resolved references.
 
--   ***SetLinkUsedTSE*** - limits the TSE to resolve references.
+-   [SetLinkUsedTSE](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLinkUsedTSE) - limits the TSE to resolve references.
 
 -   [SetFlags](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetFlags) - selects segments matching these flags.
 
--   ***SetByFeaturePolicy*** - a convenience method equivalent to `SetFlags(my_selector.GetFlags() | CSeqMap::fByFeaturePolicy)`.
+-   [SetByFeaturePolicy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetByFeaturePolicy) - a convenience method equivalent to `SetFlags(my_selector.GetFlags() | CSeqMap::fByFeaturePolicy)`.
 
 See the [SSeqMapSelector API reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/structSSeqMapSelector.html) for an up-to-date list of all methods.
 

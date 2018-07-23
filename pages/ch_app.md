@@ -482,7 +482,7 @@ Or
     [TypeName]
     _file=AnotherName
 
-would put the class ***CTypeName*** in files with the base name `AnotherName`, whereas these two:
+would put the class [CTypeName](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeName) in files with the base name `AnotherName`, whereas these two:
 
     [ModuleName]
     _file=AnotherName
@@ -774,7 +774,7 @@ The default C++ class name can be overridden by explicitly specifying in the def
 
 #### ENUMERATED Types
 
-By default, for every `ENUMERATED` ASN.1 type, **DATATOOL** will produce a C++ enum type with the name ***ENormalizedName***.
+By default, for every `ENUMERATED` ASN.1 type, **DATATOOL** will produce a C++ enum type with the name [ENormalizedName](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ENormalizedName).
 
 <a name="ch_app.dt_inside.html"></a>
 
@@ -1041,7 +1041,7 @@ A configuration line of the form
 
 goes into the host environment. The host environment can be accessed by clients when they perform the service name resolution. The host environment is designed to help the client to know about limitations/options that the host has, and based on this additional information the client can make a decision whether the server (despite the fact that it implements the service) is suitable for carrying out the client's request. For example, the host environment can give the client an idea about what databases are available on the host. The host environment is not interpreted or used in any way by either the daemon or by the load balancing algorithm, except that the name must be a valid identifier. The value may be practically anything, even empty. It is left solely for the client to parse the environment and to look for the information of interest. The host environment can be obtained from the service iterator by a call to `SERV_GetNextInfoEx()` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_GetNextInfoEx>), which is documented in the [service mapping API](ch_conn.html#ch_conn.service_mapping_api)
 
-***Note***: White space characters which surround the name are not preserved but they are preserved in the value i.e. when they appear after the “=” sign.
+[Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): White space characters which surround the name are not preserved but they are preserved in the value i.e. when they appear after the “=” sign.
 
 A configuration line of the form
 
@@ -1199,9 +1199,7 @@ where:
 
 -   Validity period:
 
-    -   T=integer [0 = default]<br/>specifies the time in seconds this server entry is valid without update. (If equal to 0 then defaulted by the LBSM Daemon to some reasonable value.) ATTENTION: There are **two** TTLs attached to each server-info structure, the `T=sec` time as read from the config file, and TTL, which is monitored by LBSMD (configured by the `-t` sec command line switch). Increasing the `T=sec` time will not prolong a TTL of the entry, it will only mean that once received by a user from LBSMD (via the SERV API), such an entry can be considered good for a longer period of time. LBSMD will drop the entry per its `-t` time, *not* the `T=` time.
-
-
+    -   T=integer [0 = default]<br/>specifies the time in seconds this server entry is valid without update. (If equal to 0 then defaulted by the LBSM Daemon to some reasonable value.)
 
 Server descriptors of type ***NAMEHOLD*** are special. As **`arguments`**, they have only a server type keyword. The namehold specification informs the daemon that the service of this name and type is not to be defined later in any configuration file except for the current one. Also, if the host (and/or port) is specified, then this protection works only for the service name on the particular host (and/or port).
 
@@ -1666,7 +1664,7 @@ The ***STATELESS*** mode is almost identical to a call of a conventional CGI pro
 
 In the ***STATEFUL*** mode, the NCBID utility starts the program in a more tricky way, which is closer to working in a firewall mode for the DISPD dispatcher, i.e. the NCBID utility loads the program with its stdin and stdout bound to a port, which is switched to listening. The program becomes a sort of an Internet daemon (the only exception is that only one incoming connection is allowed). Then the client is sent back an HTTP reply containing the `Connection-Info` tag. The client has to use port, host, and ticket from that tag to connect to the server by creating a dedicated TCP connection.
 
-***Note***: the NCBID utility never generates ***TRY\_STATELESS*** keyword.
+[Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): the NCBID utility never generates ***TRY\_STATELESS*** keyword.
 
 For the sake of the backward compatibility the NCBID utility creates the following environment variables (in addition to CGI/1.0 environment variables created by the HTTP daemon when calling NCBID) before starting the service executables:
 

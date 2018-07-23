@@ -1531,15 +1531,15 @@ Error handling is almost always a pain when you are working with an RDBMS becaus
 
 -   [Type()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Type) - returns the type value for this exception type (e.g. eSQL).
 
--   ***TypeString()*** - returns the type string for this exception type (e.g. "eSQL"). This is a pass-through to [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType).
+-   [TypeString()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TypeString) - returns the type string for this exception type (e.g. "eSQL"). This is a pass-through to [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType).
 
 -   [ErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ErrCode) - alias for [GetDBErrCode()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDBErrCode).
 
 -   [Message()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Message) - returns the error message itself. This is a pass-through to [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[GetMsg()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMsg).
 
--   ***OriginatedFrom()*** - returns the SQL server name. This is a pass-through to [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[GetModule()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetModule).
+-   [OriginatedFrom()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OriginatedFrom) - returns the SQL server name. This is a pass-through to [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException)::[GetModule()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetModule).
 
--   ***SetServerName()*** - sets the SQL server name.
+-   [SetServerName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetServerName) - sets the SQL server name.
 
 -   [GetServerName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetServerName) - returns the SQL server name.
 
@@ -1551,9 +1551,9 @@ Error handling is almost always a pain when you are working with an RDBMS becaus
 
 -   [GetExtraMsg()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetExtraMsg) - gets the extra message text.
 
--   ***SetSybaseSeverity()*** - sets the severity value for a Sybase exception - ***N.B.*** Sybase severity values can be provided for the Sybase/FreeTDS ctlib driver only.
+-   [SetSybaseSeverity()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetSybaseSeverity) - sets the severity value for a Sybase exception - ***N.B.*** Sybase severity values can be provided for the Sybase/FreeTDS ctlib driver only.
 
--   ***GetSybaseSeverity()*** - gets the severity value for a Sybase exception - ***N.B.*** Sybase severity values can be provided by the Sybase/FreeTDS ctlib driver only.
+-   [GetSybaseSeverity()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSybaseSeverity) - gets the severity value for a Sybase exception - ***N.B.*** Sybase severity values can be provided by the Sybase/FreeTDS ctlib driver only.
 
 -   [ReportExtra()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReportExtra) - outputs any extra text to the supplied stream.
 
@@ -1569,15 +1569,15 @@ The DBAPI driver may throw any of the following types derived from [CDB\_Excepti
 
 -   [CDB\_SQLEx](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__SQLEx.html) This type is used if an error message has come from a SQL server and indicates an error in a SQL query. It could be a wrong table or column name or a SQL syntax error. This type provides the additional methods:
 
-    -   ***BatchLine()*** - returns the line number in the SQL batch that generated the error.
+    -   [BatchLine()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=BatchLine) - returns the line number in the SQL batch that generated the error.
 
-    -   ***SqlState()*** - returns a byte string describing an error (it's not useful most of the time).
+    -   [SqlState()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SqlState) - returns a byte string describing an error (it's not useful most of the time).
 
 -   [CDB\_RPCEx](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__RPCEx.html) An error message has come while executing an RPC or stored procedure. This type provides the additional methods:
 
-    -   ***ProcName()*** - returns the procedure name where the exception originated.
+    -   [ProcName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ProcName) - returns the procedure name where the exception originated.
 
-    -   ***ProcLine()*** - returns the line number within the procedure where the exception originated.
+    -   [ProcLine()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ProcLine) - returns the line number within the procedure where the exception originated.
 
 -   [CDB\_DeadlockEx](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDB__DeadlockEx.html) An error message has come as a result of a deadlock.
 
@@ -1595,7 +1595,7 @@ Another tool which users may want to use for error handling is the [CDB\_MultiEx
 
 #### Driver context and connections
 
-Every program which is going to work with an NCBI DBAPI driver should create at least one Driver Context object first. The main purpose of this object is to be a Connection factory, but it's a good idea to customize this object prior to opening a connection. The first step is to setup two message handler stacks. The first one is for error messages which are not bound to some particular connection or could occur inside the [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) method. Use [PushCntxMsgHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PushCntxMsgHandler) to populate it. The other stack serves as an initial message handler stack for all connections which will be derived from this context. Use [PushDefConnMsgHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PushDefConnMsgHandler) method to populate this stack. The second step of customization is setting timeouts. The [SetLoginTimeout()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLoginTimeout) and [SetTimeout()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeout) methods do the job. If you are going to work with text or image objects in your program, you need to call ***SetMaxTextImageSize()*** to define the maximum size for such objects. Objects which exceed this limit could be truncated.
+Every program which is going to work with an NCBI DBAPI driver should create at least one Driver Context object first. The main purpose of this object is to be a Connection factory, but it's a good idea to customize this object prior to opening a connection. The first step is to setup two message handler stacks. The first one is for error messages which are not bound to some particular connection or could occur inside the [Connect()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Connect) method. Use [PushCntxMsgHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PushCntxMsgHandler) to populate it. The other stack serves as an initial message handler stack for all connections which will be derived from this context. Use [PushDefConnMsgHandler()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PushDefConnMsgHandler) method to populate this stack. The second step of customization is setting timeouts. The [SetLoginTimeout()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetLoginTimeout) and [SetTimeout()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeout) methods do the job. If you are going to work with text or image objects in your program, you need to call [SetMaxTextImageSize()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetMaxTextImageSize) to define the maximum size for such objects. Objects which exceed this limit could be truncated.
 
     class CMyHandlerForConnectionBoundErrors : public CDB_UserHandler
     {

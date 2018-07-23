@@ -114,7 +114,7 @@ Table 1. Invocation flags
 
 <div class="table-scroll"></div>
 
-***Note***: You must specify exactly one of the options indicating what to look up: `-gi, -in, -flat, -fasta, -query, -qf`.
+[Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): You must specify exactly one of the options indicating what to look up: `-gi, -in, -flat, -fasta, -query, -qf`.
 
 <a name="ch_demo.id1_fetch.html_ref_fmt"></a>
 

@@ -309,7 +309,7 @@ To format it as text, call
 
     void AsText(string* output, ETextFormatType type, size_t line_width = 100)
 
-Supported text formats and their ***ETextFormatType*** constants follow:
+Supported text formats and their [ETextFormatType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETextFormatType) constants follow:
 
 -   Type 1 (**`eFormatType1`**):<br/>`TTC-ATCTCTAAATCTCTCTCATATATATCG`<br/>`TTCGATCTCT-----TCTC-CAGATAAATCG`<br/>`                      ^   ^    `<br/>
 

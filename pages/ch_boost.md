@@ -394,7 +394,7 @@ There is a special entry `GLOBAL` that can be used to disable all tests. For exa
     [UNITTESTS_DISABLE]
     GLOBAL = OS_Cygwin
 
-***Note***: If the configuration file contains either a test name or a variable name that has not been defined (e.g. due to a typo) then the test program will exit immediately with an error, without executing any tests.
+[Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): If the configuration file contains either a test name or a variable name that has not been defined (e.g. due to a typo) then the test program will exit immediately with an error, without executing any tests.
 
 <a name="ch_boost.LibraryDefined_Variables"></a>
 

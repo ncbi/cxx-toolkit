@@ -60,7 +60,7 @@ The following is an outline of the topics presented in this chapter:
 Using NCBI C and C++ Toolkits together
 --------------------------------------
 
-***Note***: Due to security issues, not all links on this page are accessible by users outside NCBI.
+[Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): Due to security issues, not all links on this page are accessible by users outside NCBI.
 
 -   [Overview](#ch_res.c_cxx.html_ref_Overview)
 
@@ -138,13 +138,13 @@ In a C++ program, it is necessary to convert `native` C++ objects into their C e
 
 <a name="ch_res.c_cxx.html_ref_LOG"></a>
 
-#### ***LOG*** and [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)
+#### [LOG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LOG) and [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)
 
-The `CONNECT` library has its own [logger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LOG), which has to be set by one of the routines declared in [connect/ncbi\_util.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_util.h): [CORE\_SetLOG()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOG), [CORE\_SetLOGFILE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOGFILE) etc. On the other hand, the interface defined in [connect/ncbi\_core\_cxx.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core_cxx.hpp) provides the following C++ function to convert a logging stream of the NCBI C++ Toolkit into a ***LOG*** object:
+The `CONNECT` library has its own [logger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LOG), which has to be set by one of the routines declared in [connect/ncbi\_util.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_util.h): [CORE\_SetLOG()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOG), [CORE\_SetLOGFILE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOGFILE) etc. On the other hand, the interface defined in [connect/ncbi\_core\_cxx.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core_cxx.hpp) provides the following C++ function to convert a logging stream of the NCBI C++ Toolkit into a [LOG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LOG) object:
 
     LOG LOG_cxx2c (void)
 
-This function creates the ***LOG*** object on top of the corresponding C++ [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object, and then both C and C++ objects can be manipulated interchangeably, causing exactly the same effect on the underlying logger. Then, the returned C handle ***LOG*** can be subsequently used as a `CORE C logger` by means of [CORE\_SetLOG()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOG), as in the following nested calls:
+This function creates the [LOG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LOG) object on top of the corresponding C++ [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object, and then both C and C++ objects can be manipulated interchangeably, causing exactly the same effect on the underlying logger. Then, the returned C handle [LOG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LOG) can be subsequently used as a `CORE C logger` by means of [CORE\_SetLOG()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOG), as in the following nested calls:
 
     CORE_SetLOG(LOG_cxx2c());
 
@@ -152,7 +152,7 @@ This function creates the ***LOG*** object on top of the corresponding C++ [CNcb
 
 #### REG and CNcbiRegistry
 
-[connect/ncbi\_core\_cxx.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core_cxx.hpp) declares the following C++ function to bind C ***REG*** object to [CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry) used in C++ programs built with the use of the NCBI C++ Toolkit:
+[connect/ncbi\_core\_cxx.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core_cxx.hpp) declares the following C++ function to bind C [REG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=REG) object to [CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry) used in C++ programs built with the use of the NCBI C++ Toolkit:
 
     REG REG_cxx2c (CNcbiRegistry* reg, bool pass_ownership = false)
 
@@ -166,7 +166,7 @@ There is a function
 
     MT_LOCK MT_LOCK_cxx2c (CRWLock* lock, bool pass_ownership = false)
 
-declared in [connect/ncbi\_core\_cxx.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core_cxx.hpp), which converts an object of class [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) into a C object ***MT\_LOCK***. The latter can be used as an argument to [CORE\_SetLOCK()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOCK) for setting the global `CORE C MT-lock`, used by a low level code, written in C. Note that passing 0 as the lock pointer will effectively create a new internal [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object, which will then be converted into ***MT\_LOCK*** and returned. This object gets automatically destroyed when the corresponding ***MT\_LOCK*** is destroyed. If the pointer to [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) is passed a non **`NULL`** value then the second argument can specify whether the resulting ***MT\_LOCK*** acquires the ownership of the lock, thus is able to delete the lock when destructing itself.
+declared in [connect/ncbi\_core\_cxx.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_core_cxx.hpp), which converts an object of class [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) into a C object [MT\_LOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MT_LOCK). The latter can be used as an argument to [CORE\_SetLOCK()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CORE_SetLOCK) for setting the global `CORE C MT-lock`, used by a low level code, written in C. Note that passing 0 as the lock pointer will effectively create a new internal [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object, which will then be converted into [MT\_LOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MT_LOCK) and returned. This object gets automatically destroyed when the corresponding [MT\_LOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MT_LOCK) is destroyed. If the pointer to [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) is passed a non **`NULL`** value then the second argument can specify whether the resulting [MT\_LOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MT_LOCK) acquires the ownership of the lock, thus is able to delete the lock when destructing itself.
 
 <a name="ch_res.c_cxx.html_ref_ConnectCxx"></a>
 
@@ -236,11 +236,11 @@ The `CONNECT` library in the C Toolkit has a header [connect/ncbi\_core\_c.h](ht
 
 Briefly, the calls are:
 
--   `LOG `[LOG\_c2c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=LOG_c2c)` (void);` Create a logger ***LOG*** with all messages sent to it rerouted via the error logging facility used by the C Toolkit.
+-   `LOG `[LOG\_c2c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=LOG_c2c)` (void);` Create a logger [LOG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LOG) with all messages sent to it rerouted via the error logging facility used by the C Toolkit.
 
--   `REG `[REG\_c2c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=REG_c2c)` (const char* conf_file);` Build a registry object ***REG*** from a named file **`conf_file`**. Passing **`NULL`** as an argument causes the default Toolkit registry file to be searched for and used.
+-   `REG `[REG\_c2c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=REG_c2c)` (const char* conf_file);` Build a registry object [REG](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=REG) from a named file **`conf_file`**. Passing **`NULL`** as an argument causes the default Toolkit registry file to be searched for and used.
 
--   `MT_LOCK `[MT\_LOCK\_c2c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=MT_LOCK_c2c)` (`[TNlmRWlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=TNlmRWlock)` lock, int/*bool*/ pass_ownership);` Build an ***MT\_LOCK*** object on top of ***TNlmRWlock*** handle. Note that passing **`NULL`** effectively creates an internal handle, which is used as an underlying object. Ownership of the original handle can be passed to the resulting ***MT\_LOCK*** by setting the second argument to a non-zero value. The internally created handle always has its ownership passed along.
+-   `MT_LOCK `[MT\_LOCK\_c2c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=MT_LOCK_c2c)` (`[TNlmRWlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=TNlmRWlock)` lock, int/*bool*/ pass_ownership);` Build an [MT\_LOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MT_LOCK) object on top of [TNlmRWlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TNlmRWlock) handle. Note that passing **`NULL`** effectively creates an internal handle, which is used as an underlying object. Ownership of the original handle can be passed to the resulting [MT\_LOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MT_LOCK) by setting the second argument to a non-zero value. The internally created handle always has its ownership passed along.
 
 Exactly the same way as described in the previous section, all objects, resulting from the above functions, can be used to set up `CORE C logger`, `CORE C registry`, and `CORE MT-lock` of the `CONNECT` library using the API defined in [connect/ncbi\_util.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/connect/ncbi_util.h): [CORE\_SetLOG()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=CORE_SetLOG), [CORE\_SetREG()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=CORE_SetREG), and [CORE\_SetLOCK()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/ident?i=CORE_SetLOCK), respectively.
 
@@ -252,7 +252,7 @@ As an alternative to using per-object settings as shown in the previous paragrap
 
     void CONNECT_Init (const char* conf_file);
 
-This sets `CORE C logger` to go via Toolkit default logging facility, causes `CORE C registry` to be loaded from the named file (or from the Toolkit's default file if **`conf_file`** passed **`NULL`**), and creates `CORE C MT-lock` on top of internally created ***TNlmRWlock*** handle, the ownership of which is passed to the ***MT\_LOCK***.
+This sets `CORE C logger` to go via Toolkit default logging facility, causes `CORE C registry` to be loaded from the named file (or from the Toolkit's default file if **`conf_file`** passed **`NULL`**), and creates `CORE C MT-lock` on top of internally created [TNlmRWlock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TNlmRWlock) handle, the ownership of which is passed to the [MT\_LOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=MT_LOCK).
 
 ***Note:*** Again, properties of the logging facility are not affected by this call, i.e. the selection of what gets logged, how, and where, should be controlled by using native C Toolkit's mechanisms defined in [ncbierr.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C_DOC/lxr/source/corelib/ncbierr.h).
 

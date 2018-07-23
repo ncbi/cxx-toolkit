@@ -46,7 +46,7 @@ Some hints for using LXR:
 
 -   LXR indexes files from a root of `$NCBI/c++`; matches will be found not only in `src` and `include` but also in any resident build tree and the `compilers` and `scripts` directories as well.
 
--   ***Note***: The documentation itself is not searched by LXR.
+-   [Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): The documentation itself is not searched by LXR.
 
 <a name="ch_browse.doxygen"></a>
 

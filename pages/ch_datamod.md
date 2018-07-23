@@ -1783,9 +1783,9 @@ Some important nonmember template functions are:
 
 -   [FindGi()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindGi) -- returns gi from id list if exists, returns 0 otherwise.
 
--   ***FindTextseq\_id()*** -- returns text seq-id from id list if exists, returns 0 otherwise.
+-   [FindTextseq\_id()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindTextseq_id) -- returns text seq-id from id list if exists, returns 0 otherwise.
 
--   ***GetSeq\_idByType()*** -- search the container of [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html)\<[CSeq\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html)\> for the id of given type.
+-   [GetSeq\_idByType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSeq_idByType) -- search the container of [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html)\<[CSeq\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html)\> for the id of given type.
 
 <a name="ch_datamod.Seqid_Semantics_of_U"></a>
 

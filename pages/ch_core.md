@@ -16,7 +16,7 @@ The CORELIB provides a portable low-level API and many useful application framew
 
 This chapter provides reference material for many of CORELIB's facilities. For an overview of CORELIB, please refer to the [CORELIB section in the introductory chapter](ch_intro.html#ch_intro.intro_corelib) on the C++ Toolkit.
 
-***Note***: The CORELIB must be linked to every executable that uses the NCBI C++ Toolkit!
+[Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): The CORELIB must be linked to every executable that uses the NCBI C++ Toolkit!
 
 -   **UTIL library** `xutil`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util)
 
@@ -865,7 +865,7 @@ The protected virtual function [LoadConfig()](https://www.ncbi.nlm.nih.gov/IEB/T
 
 The NCBI application (built by deriving from [CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)) throws the exception [CAppException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAppException) when any of the following conditions are true:
 
--   Command-line argument description cannot be found and argument descriptions have not been disabled (via call to protected method ***DisableArgDescription()***.
+-   Command-line argument description cannot be found and argument descriptions have not been disabled (via call to protected method [DisableArgDescriptions()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DisableArgDescriptions).
 
 -   Application diagnostic stream setup has failed.
 
@@ -1317,7 +1317,7 @@ Command-based command lines have a requirement that command-less command lines d
 
 At a high level, setting up a program to support a command-less command-line requires creating a [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions) object, adding argument descriptions to it, and passing it to [SetupArgDescriptions()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetupArgDescriptions).
 
-Setting up a program to support command-based command lines is similar, but requires a [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions) object instead. The [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCommandArgDescriptions.html) class is derived from [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html), so all the same functionality is available; however, the [AddCommand()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddCommand) method of [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions) allows you to create multiple [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions) objects (one for each command) in addition to the overall program description. Other command-specific features are also provided, such as command grouping. ***Note:*** The ***ECommandPresence*** parameter of the [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions) constructor controls whether or not the user must enter a command-based command line. Use **`eCommandOptional`** only when you are setting up both command-less and command-based command lines.
+Setting up a program to support command-based command lines is similar, but requires a [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions) object instead. The [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCommandArgDescriptions.html) class is derived from [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgDescriptions.html), so all the same functionality is available; however, the [AddCommand()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddCommand) method of [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions) allows you to create multiple [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions) objects (one for each command) in addition to the overall program description. Other command-specific features are also provided, such as command grouping. ***Note:*** The [ECommandPresence](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ECommandPresence) parameter of the [CCommandArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCommandArgDescriptions) constructor controls whether or not the user must enter a command-based command line. Use **`eCommandOptional`** only when you are setting up both command-less and command-based command lines.
 
 Programs that support command-based command lines must execute these steps:
 
@@ -1918,7 +1918,7 @@ For example, the following code demonstrates that the bit-wise OR of **`fTruncat
 
 ### Main Methods of [CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry)
 
-The [CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry) class constructor takes two arguments - an input stream to read the registry from (usually a file), and an optional ***TFlags*** argument, where the latter can be used to specify that all of the values should be stored as `transient` rather than in the default mode, which is `persistent`:
+The [CNcbiRegistry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiRegistry) class constructor takes two arguments - an input stream to read the registry from (usually a file), and an optional [TFlags](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TFlags) argument, where the latter can be used to specify that all of the values should be stored as `transient` rather than in the default mode, which is `persistent`:
 
     CNcbiRegistry(CNcbiIstream& is, TFlags flags = 0);
 
@@ -2216,7 +2216,7 @@ Each member function of the [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_
 
     typedef list< CRef< ::CBiostruc_id > > TId;
 
-As described there, this `typedef` defines ***TId*** to be a list of pointers to [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__id.html) objects. And as you might expect, [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_id) is a specialized subclass of [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject).
+As described there, this `typedef` defines [TId](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TId) to be a list of pointers to [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc__id.html) objects. And as you might expect, [CBiostruc\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc_id) is a specialized subclass of [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject).
 
 <a name="ch_core.CObject"></a>
 
@@ -2336,7 +2336,7 @@ The [CMutableAtomicCounter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr
 Portable mechanisms for loading DLLs
 ------------------------------------
 
-The [CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll) class defines a portable way of dynamically loading shared libraries and finding entry points for functions in the library. Currently this portable behavior is defined for Unix-like systems and Windows only. On Unix-like systems, loading of the shared library is implemented using the Unix system call ***dlopen()*** and the entry point address obtained using the Unix system call ***dlsym()***. On Windows systems the system call ***LoadLibraray()*** is used to load the library, and the system call [GetProcAddress()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetProcAddress) is used to get a function's entry point address.
+The [CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll) class defines a portable way of dynamically loading shared libraries and finding entry points for functions in the library. Currently this portable behavior is defined for Unix-like systems and Windows only. On Unix-like systems, loading of the shared library is implemented using the Unix system call ***dlopen()*** and the entry point address obtained using the Unix system call ***dlsym()***. On Windows systems the system call [LoadLibraray()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LoadLibraray) is used to load the library, and the system call [GetProcAddress()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetProcAddress) is used to get a function's entry point address.
 
 All methods of [CDll](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDll) class, except the destructor, throw the exception `CCoreException::eDll` on error.
 
@@ -2374,13 +2374,13 @@ The first and second constructor forms are the same with the exception that the 
 
 The first pair of constructors differ from the second pair in that the first two take a single parameter that is a set of flags, whereas the second pair take three separate parameters for flags. The first two are newer, and the last two are provided for backward compatibility.
 
-The parameter **`when_to_load`** is defined as an enum type of ***ELoad*** and has the values `eLoadNow` or `eLoadLater`. When `eLoadNow` is passed to the constructor (default value), the DLL is loaded in the constructor; otherwise it has to be loaded via an explicit call to the [Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load) method.
+The parameter **`when_to_load`** is defined as an enum type of [ELoad](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ELoad) and has the values `eLoadNow` or `eLoadLater`. When `eLoadNow` is passed to the constructor (default value), the DLL is loaded in the constructor; otherwise it has to be loaded via an explicit call to the [Load()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Load) method.
 
-The parameter **`auto_load`** is defined as an enum type of ***EAutoLoad*** and has the values `eAutoUnload` or `eNoAutoUnload`. When `eAutoUnload` is passed to the constructor (default value), the DLL is unloaded in the destructor; otherwise it will remain loaded in memory.
+The parameter **`auto_load`** is defined as an enum type of [EAutoLoad](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EAutoLoad) and has the values `eAutoUnload` or `eNoAutoUnload`. When `eAutoUnload` is passed to the constructor (default value), the DLL is unloaded in the destructor; otherwise it will remain loaded in memory.
 
-The parameter **`treat_as`** is defined as an enum type of ***EBasename*** and has the values `eBasename` or `eExactName`. When `eBasename` is passed to the constructor (default value), the name parameter is treated as a basename if it looks like one; otherwise the exact name or "as is" value is used with no addition of prefix or suffix.
+The parameter **`treat_as`** is defined as an enum type of [EBasename](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EBasename) and has the values `eBasename` or `eExactName`. When `eBasename` is passed to the constructor (default value), the name parameter is treated as a basename if it looks like one; otherwise the exact name or "as is" value is used with no addition of prefix or suffix.
 
-The parameter **`flags`** is defined as an enum type of ***EFlags*** and has the values `fLoadNow`, `fLoadLater`, `fAutoUnload`, `fNoAutoUnload`, `fBaseName`, `fExactName`, `fGlobal`, `fLocal`, and `fDefault`. The flags `fLoadNow`, `fLoadLater`, `fAutoUnload`, `fNoAutoUnload`, `fBaseName`, and `fExactName` correspond to the similarly named enum values as described in the above paragraphs. The flag `fGlobal` indicates that the DLL should be loaded as `RTLD_GLOBAL`, while the flag `fLocal` indicates that the DLL should be loaded as `RTLD_LOCAL`. The flag `fDefault` is defined as:
+The parameter **`flags`** is defined as an enum type of [EFlags](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EFlags) and has the values `fLoadNow`, `fLoadLater`, `fAutoUnload`, `fNoAutoUnload`, `fBaseName`, `fExactName`, `fGlobal`, `fLocal`, and `fDefault`. The flags `fLoadNow`, `fLoadLater`, `fAutoUnload`, `fNoAutoUnload`, `fBaseName`, and `fExactName` correspond to the similarly named enum values as described in the above paragraphs. The flag `fGlobal` indicates that the DLL should be loaded as `RTLD_GLOBAL`, while the flag `fLocal` indicates that the DLL should be loaded as `RTLD_LOCAL`. The flag `fDefault` is defined as:
 
     fDefault = fLoadNow | fNoAutoUnload | fBaseName | fGlobal
 
@@ -2473,7 +2473,7 @@ You can use the class-wide [CExec](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_
 
 ### Defining Spawned Process Modes (EMode type)
 
-The spawned process can be created in several modes defined by the enum type ***EMode***. The meanings of the enum values for ***EMode*** type are:
+The spawned process can be created in several modes defined by the enum type [EMode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EMode). The meanings of the enum values for [EMode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EMode) type are:
 
 -   `eOverlay`: This mode overlays the calling process with new process, destroying the calling process.
 
@@ -2487,7 +2487,7 @@ The spawned process can be created in several modes defined by the enum type ***
 
 ### Spawning a Process using SpawnX() Methods
 
-A new process can be spawned by calling any of the class-wide methods named ***SpawnX()*** which have the form:
+A new process can be spawned by calling any of the class-wide methods named [SpawnX()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnX) which have the form:
 
     static int SpawnX(const EMode mode,
                       const char *cmdname,
@@ -2497,7 +2497,7 @@ A new process can be spawned by calling any of the class-wide methods named ***S
 
 The parameter **`mode`** has the meanings discussed in the section [Defining Spawned Process Modes (EMode type)](#ch_core.process_modes). The parameter **`cmdname`** is the command-line string to start the process, and parameter **`argv`** is the argument vector containing arguments to the process.
 
-The ***X*** in the function name is a one to three letter suffix indicating the type of the spawn function. Each of the letters in the suffix ***X***, for ***SpawnX()*** have the following meanings:
+The ***X*** in the function name is a one to three letter suffix indicating the type of the spawn function. Each of the letters in the suffix ***X***, for [SpawnX()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnX) have the following meanings:
 
 -   `L`: The letter "L" as suffix refers to the fact that command-line arguments are passed separately as arguments.
 
@@ -2525,7 +2525,7 @@ Using the above letter combinations as suffixes, the following spawn functions a
 
 -   [SpawnVPE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnVPE): In the [SpawnVPE()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnVPE) version, the command-line arguments are a variable number. The array of pointers to arguments must have a length of 1 or more and you must assign parameters for the new process beginning from 1. The **`PATH`** environment variable is used to find the file to execute, and the environment is passed via an environment vector pointer.
 
-Refer to the [include/corelib/ncbiexec.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbiexec.hpp) file to view the exact form of the ***SpawnX()*** function calls.
+Refer to the [include/corelib/ncbiexec.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbiexec.hpp) file to view the exact form of the [SpawnX()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SpawnX) function calls.
 
 Some sample code illustrating the use of these methods is shown in [src/corelib/test/test\_ncbiexec.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/corelib/test/test_ncbiexec.cpp)
 
@@ -2713,7 +2713,7 @@ Calling [Discard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i
 
 The `ncbimtx.hpp` defines platform-independent mutex classes, [CMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutex), [CFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutex), [CMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMutexGuard), and [CFastMutexGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFastMutexGuard). These mutex classes are in turn built on the platform-dependent mutex classes [SSystemMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemMutex) and [SSystemFastMutex](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SSystemFastMutex).
 
-In addition to the mutex classes, there are a number of classes that can be used for explicit locks such as the [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock), ***CAutoRW***, [CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard), [CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard) and the platform-dependent read/write lock, [CInternalRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CInternalRWLock).
+In addition to the mutex classes, there are a number of classes that can be used for explicit locks such as the [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock), [CAutoRW](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAutoRW), [CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard), [CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard) and the platform-dependent read/write lock, [CInternalRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CInternalRWLock).
 
 Finally, there is the [CSemaphore](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSemaphore) class which is an application-wide semaphore.
 
@@ -2880,7 +2880,7 @@ As expected from the name, the [Unlock()](https://www.ncbi.nlm.nih.gov/IEB/ToolB
 
 ##### CAutoRW
 
-The ***CAutoRW*** class is used to provide a Read Write lock that is automatically released by the ***CAutoRW*** class' destructor. The locking mechanism is provided by a [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object that is initialized when the ***CAutoRW*** class constructor is called.
+The [CAutoRW](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAutoRW) class is used to provide a Read Write lock that is automatically released by the [CAutoRW](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAutoRW) class' destructor. The locking mechanism is provided by a [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object that is initialized when the [CAutoRW](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAutoRW) class constructor is called.
 
 An acquired lock can be released by an explicit call to the class [Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release) method. The lock can also be released by the class destructor. When the destructor is called the lock if successfully acquired and not already released by [Release()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Release) is released.
 
@@ -2888,7 +2888,7 @@ An acquired lock can be released by an explicit call to the class [Release()](ht
 
 ##### CReadLockGuard
 
-The [CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard) class is used to provide a basic read lock guard that can be used by other classes. This class is derived from the ***CAutoRW*** class.
+The [CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard) class is used to provide a basic read lock guard that can be used by other classes. This class is derived from the [CAutoRW](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAutoRW) class.
 
 The class constructor can be passed a [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object on which a read lock is acquired, and which is registered to be released by the class destructor. The class's [Guard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Guard) method can also be called with a [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object and if this is not the same as the already registered [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object, the old registered object is released, and the new [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object is registered and a read lock acquired on it.
 
@@ -2896,7 +2896,7 @@ The class constructor can be passed a [CRWLock](https://www.ncbi.nlm.nih.gov/IEB
 
 ##### CWriteLockGuard
 
-The [CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard) class is used to provide a basic write lock guard that can be used by other classes. The [CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard) class is similar to the [CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard) class except that it provides a write lock instead of a read lock. This class is derived from the ***CAutoRW*** class.
+The [CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard) class is used to provide a basic write lock guard that can be used by other classes. The [CWriteLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CWriteLockGuard) class is similar to the [CReadLockGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CReadLockGuard) class except that it provides a write lock instead of a read lock. This class is derived from the [CAutoRW](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CAutoRW) class.
 
 The class constructor can be passed a [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object on which a write lock is acquired, and which is registered to be released by the class destructor. The class's [Guard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Guard) method can also be called with a [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object and if this is not the same as the already registered [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object, the old registered object is released, and the new [CRWLock](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRWLock) object is registered and a write lock acquired on it.
 
@@ -2991,7 +2991,7 @@ The [CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classC
 
 -   [Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove): Remove the directory entry.
 
-The last method on the list, the [Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove) method accepts an enumeration type parameter, ***EDirRemoveMode***, which specifies the extent of the directory removal operation - you can delete only an empty directory, only files in a directory but not any subdirectories, or remove the entire directory tree:
+The last method on the list, the [Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove) method accepts an enumeration type parameter, [EDirRemoveMode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDirRemoveMode), which specifies the extent of the directory removal operation - you can delete only an empty directory, only files in a directory but not any subdirectories, or remove the entire directory tree:
 
     /// Directory remove mode.
     enum EDirRemoveMode {
@@ -3001,7 +3001,7 @@ The last method on the list, the [Remove()](https://www.ncbi.nlm.nih.gov/IEB/Too
         eRecursive      ///< Remove all files and subdirectories
     };
 
-[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry) knows about different types of files or directory entries. Most of these file types are modeled after the Unix file system but can also handle the file system types for the Windows platform. The different file system types are represented by the enumeration type ***EType*** which is defined as follows :
+[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry) knows about different types of files or directory entries. Most of these file types are modeled after the Unix file system but can also handle the file system types for the Windows platform. The different file system types are represented by the enumeration type [EType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EType) which is defined as follows :
 
     /// Which directory entry type.
     enum EType {
@@ -3017,7 +3017,7 @@ The last method on the list, the [Remove()](https://www.ncbi.nlm.nih.gov/IEB/Too
         eUnknown       ///< Unknown type
     };
 
-[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry) knows about permission settings for a directory entry. Again, these are modeled after the Unix file system. The different permissions are represented by the enumeration type ***EMode*** which is defined as follows :
+[CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry) knows about permission settings for a directory entry. Again, these are modeled after the Unix file system. The different permissions are represented by the enumeration type [EMode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EMode) which is defined as follows :
 
     /// Directory entry's access permissions.
     enum EMode {
@@ -3053,7 +3053,7 @@ Other methods in [CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lx
 
 -   [IsDir()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsDir): Check if directory entry is a directory.
 
--   [GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType): Get type of directory entry. This returns an ***EType*** value.
+-   [GetType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetType): Get type of directory entry. This returns an [EType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EType) value.
 
 -   [GetTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTime): Get time stamp of directory entry.
 
@@ -3085,7 +3085,7 @@ The [CFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCFile
 
 -   [CreateTmpFileEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFileEx): Create temporary file and return pointer to corresponding stream. You can additionally specify the directory in which to create the temporary file and the prefix to use for the temporary file name.
 
-The methods [CreateTmpFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFile) and [CreateTmpFileEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFileEx) allow the creation of either a text or binary file. These two types of files are defined by the enumeration type, ***ETextBinary***, and the methods accept a parameter of this type to indicate the type of file to be created:
+The methods [CreateTmpFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFile) and [CreateTmpFileEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFileEx) allow the creation of either a text or binary file. These two types of files are defined by the enumeration type, [ETextBinary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETextBinary), and the methods accept a parameter of this type to indicate the type of file to be created:
 
     /// What type of temporary file to create.
     enum ETextBinary {
@@ -3093,7 +3093,7 @@ The methods [CreateTmpFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
         eBinary         ///< Create binary file
     };
 
-Additionally, you can specify the type of operations (read, write) that should be permitted on the temporary files. These are defined by the enumeration type, ***EAllowRead***, and the [CreateTmpFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFile) and [CreateTmpFileEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFileEx) methods accept a parameter of this type to indicate the type operations that are permitted:
+Additionally, you can specify the type of operations (read, write) that should be permitted on the temporary files. These are defined by the enumeration type, [EAllowRead](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EAllowRead), and the [CreateTmpFile()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFile) and [CreateTmpFileEx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CreateTmpFileEx) methods accept a parameter of this type to indicate the type operations that are permitted:
 
     /// Which operations to allow on temporary file.
     enum EAllowRead {
@@ -3113,7 +3113,7 @@ The [CDir](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDir.h
 
 -   [GetCwd()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCwd): Get the current working directory.
 
--   [GetEntries()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetEntries): Get directory entries based on a specified mask parameter. Retuns a vector of pointers to [CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry) objects defined by ***TEntries***
+-   [GetEntries()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetEntries): Get directory entries based on a specified mask parameter. Retuns a vector of pointers to [CDirEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDirEntry) objects defined by [TEntries](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TEntries)
 
 -   [Create()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Create): Create the directory using the directory name passed in the constructor.
 
@@ -3121,7 +3121,7 @@ The [CDir](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDir.h
 
 -   [Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove): Delete existing directory.
 
-The last method on the list, the [Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove) method accepts an enumeration type parameter, ***EDirRemoveMode***, defined in the [CDirEntry](#ch_core.CDirEntry) class which specifies the extent of the directory removal operation - you can delete only an empty directory, only files in a directory but not any subdirectories, or remove the entire directory tree.
+The last method on the list, the [Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove) method accepts an enumeration type parameter, [EDirRemoveMode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDirRemoveMode), defined in the [CDirEntry](#ch_core.CDirEntry) class which specifies the extent of the directory removal operation - you can delete only an empty directory, only files in a directory but not any subdirectories, or remove the entire directory tree.
 
 <a name="ch_core.CMemoryFile"></a>
 
@@ -3240,11 +3240,11 @@ The [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) 
 
 -   Constructor 3:<br/>`    CTime(int year,`<br/>`          int yearDayNumber,`<br/>`          ETimeZone tz = eLocal,`<br/>`          ETimeZonePrecision tzp = eTZPrecisionDefault);`
 
-In Constructor 1, the ***EInitMode*** is an enumeration type defined in the [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) class that can be used to specify whether to build the time object with empty time value (`eEmpty`) or current time (`eCurrent`). The ***ETimeZone*** is an enumeration type also defined in the [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) class that is used to specify the local time zone (`eLocal`) or GMT (`eGmt`. The ***ETimeZonePrecision*** is an enumeration type also defined in the [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) class that can be used to specify the time zone precision to be used for adjusting the daylight savings time. The default value is `eNone`, which means that daylight savings do not affect time calculations.
+In Constructor 1, the [EInitMode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EInitMode) is an enumeration type defined in the [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) class that can be used to specify whether to build the time object with empty time value (`eEmpty`) or current time (`eCurrent`). The [ETimeZone](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETimeZone) is an enumeration type also defined in the [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) class that is used to specify the local time zone (`eLocal`) or GMT (`eGmt`. The [ETimeZonePrecision](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETimeZonePrecision) is an enumeration type also defined in the [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) class that can be used to specify the time zone precision to be used for adjusting the daylight savings time. The default value is `eNone`, which means that daylight savings do not affect time calculations.
 
-Constructor 2 differs from Constructor 1 with respect to how the timestamp is specified. Here the time stamp is explictly specified as the year, month, day, hour, minute, second, and nanosecond values. The other parameters of type ***ETimeZone*** and ***ETimeZonePrecision*** have the meanings discussed in the previous paragraph.
+Constructor 2 differs from Constructor 1 with respect to how the timestamp is specified. Here the time stamp is explictly specified as the year, month, day, hour, minute, second, and nanosecond values. The other parameters of type [ETimeZone](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETimeZone) and [ETimeZonePrecision](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETimeZonePrecision) have the meanings discussed in the previous paragraph.
 
-Constructor 3 allows the timestamp to be constructed as the Nth day (**`yearDayNumber`**) of a year(**`year`**). The other parameters of type ***EtimeZone*** and ***ETimeZonePrecision*** have the meanings discussed in the previous paragraph.
+Constructor 3 allows the timestamp to be constructed as the Nth day (**`yearDayNumber`**) of a year(**`year`**). The other parameters of type [ETimeZone](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETimeZone) and [ETimeZonePrecision](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETimeZonePrecision) have the meanings discussed in the previous paragraph.
 
 The explicit conversion constructor allows the conversion to be made from a string representation of time. The default value of the format string is **`kEmptyStr`**, which implies that the format string has the format "M/D/Y h:m:s". As one would expect, the format specifiers M, D, Y, h, m, and s have the meanings month, day, year, hour, minute, and second, respectively:
 
@@ -3277,9 +3277,9 @@ If you need to compare two timestamps, you can use the operator methods for equa
 
 You can measure the difference between two timestamps in days, hours, minutes, seconds, or nanoseconds. The timestamp difference methods have the form ***DiffXXX()***, where "XXX" is the time unit in which you want the difference calculated such as "Day", "Hour", "Minute", "Second", or "NanoSecond". Thus, [DiffHour()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DiffHour) can be used to calculate the difference in hours.
 
-There are times when you may need to do a check on the timestamp. You can use [IsLeap()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsLeap) to check if the time is in a leap year, or if it is empty by using [IsEmpty()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsEmpty), or if it is valid by using [IsValid()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsValid), or if it is local time by using [IsLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsLocalTime), or if it is GMT time by using ***IsGmtTime()***.
+There are times when you may need to do a check on the timestamp. You can use [IsLeap()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsLeap) to check if the time is in a leap year, or if it is empty by using [IsEmpty()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsEmpty), or if it is valid by using [IsValid()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsValid), or if it is local time by using [IsLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsLocalTime), or if it is GMT time by using [IsGmtTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsGmtTime).
 
-If you need to work with time zones explicitly, you can use [GetTimeZoneFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeZoneFormat) to get the current time zone format, and [SetTimeZoneFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeZoneFormat) to change it. You can use [GetTimeZonePrecision()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeZonePrecision) to get the current time zone precision and [SetTimeZonePrecision()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeZonePrecision) to change it. To get the time zone difference between local time and GMT, use [TimeZoneOffset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TimeZoneOffset). To get current time as local time use [GetLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetLocalTime), and as GMT time use ***GetGmtTime()***. To convert current time to a specified time zone, use [ToTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ToTime), or to convert to local time use [ToLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ToLocalTime).
+If you need to work with time zones explicitly, you can use [GetTimeZoneFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeZoneFormat) to get the current time zone format, and [SetTimeZoneFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeZoneFormat) to change it. You can use [GetTimeZonePrecision()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTimeZonePrecision) to get the current time zone precision and [SetTimeZonePrecision()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTimeZonePrecision) to change it. To get the time zone difference between local time and GMT, use [TimeZoneOffset()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TimeZoneOffset). To get current time as local time use [GetLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetLocalTime), and as GMT time use [GetGmtTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetGmtTime). To convert current time to a specified time zone, use [ToTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ToTime), or to convert to local time use [ToLocalTime()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ToLocalTime).
 
 Also defined for [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) are assignment operators to assign a [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) object to another [CTime](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTime) and an assignment operator where the right hand side is a time value string.
 
@@ -3300,7 +3300,7 @@ The following topics are discussed in this section:
 
 ### Function Objects
 
-The ***p\_equal\_to*** and ***pair\_equal\_to*** are template function classes that are derived from the standard [binary\_function](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=binary_function) base class. The ***p\_equal\_to*** checks for equality of objects pointed to by a pointer and ***pair\_equal\_to*** checks whether a pair's second element matches a given value. Another ***PPtrLess*** function class allows comparison of objects pointed to by a smart pointer.
+The ***p\_equal\_to*** and ***pair\_equal\_to*** are template function classes that are derived from the standard [binary\_function](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=binary_function) base class. The ***p\_equal\_to*** checks for equality of objects pointed to by a pointer and ***pair\_equal\_to*** checks whether a pair's second element matches a given value. Another [PPtrLess](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PPtrLess) function class allows comparison of objects pointed to by a smart pointer.
 
 The [CNameGetter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNameGetter) template defines the function [GetKey()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetKey), which returns the name attribute for the template parameter.
 
@@ -3391,7 +3391,7 @@ The **`ITERATE`** and **`NON_CONST_ITERATE`** macros are defined in [include/cor
 
 ### Sequence Position Types
 
-The [TSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSeqPos) and and [TSignedSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSignedSeqPos) are defined to specify sequence locations and length. [TSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSeqPos) is defined as an unsigned int, and ***TSignedSqPos*** is a signed int that should be used only when negative values are a possibility for reporting differences between positions, or for error reporting, although exceptions are generally better for error reporting.
+The [TSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSeqPos) and and [TSignedSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSignedSeqPos) are defined to specify sequence locations and length. [TSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSeqPos) is defined as an unsigned int, and [TSignedSeqPos](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSignedSeqPos) is a signed int that should be used only when negative values are a possibility for reporting differences between positions, or for error reporting, although exceptions are generally better for error reporting.
 
 <a name="ch_core.Containers"></a>
 
