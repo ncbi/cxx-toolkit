@@ -562,6 +562,8 @@ Mailing Lists
 
 -   Everybody: <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp>
 
+-   Documentation questions: <a href="mailto:cpp-doc@ncbi.nlm.nih.gov?Subject=Question%20about%20C++Toolkit%20Book" target="_top">cpp-doc@ncbi.nlm.nih.gov</a>
+
 -   Core developers: <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp-core>
 
 -   Object Manager: <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp-objmgr>
