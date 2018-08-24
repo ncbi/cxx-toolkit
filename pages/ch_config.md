@@ -12,7 +12,7 @@ nav: pages/ch_config
 
 This chapter describes in detail how to configure, build, and use the NCBI C++ Toolkit (or selected components of it) on supported platforms. See the [Getting Started](ch_start.html#ch_start.basic_install) chapter for a general overview of the process. A list of all supported platforms can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi).
 
-***Note:*** Users insde NCBI who just want to use the Toolkit don't need to configure and build it - there are [various configurations](ch_proj.html#ch_proj.daily_builds) of the Toolkit prebuilt and ready to use. See the [new\_project](ch_proj.html#ch_proj.new_project_Starting) script for more information.
+***Note:*** Users inside NCBI who just want to use the Toolkit don't need to configure and build it - there are [various configurations](ch_proj.html#ch_proj.daily_builds) of the Toolkit prebuilt and ready to use. See the [new\_project](ch_proj.html#ch_proj.new_project_Starting) script for more information.
 
 Configuring is the process of creating configuration files that define exactly what can be built and what options may be used in the build process. The created configuration files include C headers that define suitable preprocessor macros, as well makefiles (for Unix) or project solutions (for MS Visual C++ or for Xcode) used in the build step.
 
