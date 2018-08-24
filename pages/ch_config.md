@@ -299,7 +299,7 @@ Therefore, if you don't mind error messages like this in your terminal output, y
 
 ##### Comment blocks
 
-As discussed in the previous section, lines that begin with "`#`", but are not valid C preprocessor directives, will result in an error. But it is also possible that lines beginnng with "`#`" and containing general comments could actually be valid preprocessor directives - and they could alter the processing of the project list file.
+As discussed in the previous section, lines that begin with "`#`", but are not valid C preprocessor directives, will result in an error. But it is also possible that lines beginning with "`#`" and containing general comments could actually be valid preprocessor directives - and they could alter the processing of the project list file.
 
 For example, consider this project list file:
 
@@ -1839,7 +1839,7 @@ Note that the project directory, `vs2015`, may be different for your version of 
 
 #### Using the Toolkit with Visual C++
 
-This section dissusses the following examples of how to use the Toolkit with Windows:
+This section discusses the following examples of how to use the Toolkit with Windows:
 
 -   [Start a New Project That Uses the Toolkit](#ch_config.Start_a_New_Project_)
 
