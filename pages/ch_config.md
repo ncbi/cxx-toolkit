@@ -1493,7 +1493,7 @@ Table 4. Project Tree Builder INI file (Local Site)
 |  | compilers   | compilers "compilers" branch    |
 |  | projects    | scripts/projects "projects" branch                 |
 |  |            |             |
-| [msvc\*] | Configurations                 | List of buid configurations that use static runtime libraries         |
+| [msvc\*] | Configurations                 | List of build configurations that use static runtime libraries         |
 |  |            | List of build configurations that use dynamic runtime libraries       |
 |  | msvc\_prj   | Sub-branch of compilers branch for MSVC projects   |
 |  | MakefilesExt                   | Extension of MSVC-specific makefiles               |
