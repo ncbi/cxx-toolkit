@@ -527,7 +527,7 @@ Noteworthy Files
 
 [Table 2](#ch_start.T2). Noteworthy Files
 
-<a name="ch_start.T1"></a>
+<a name="ch_start.T2"></a>
 
 
 | Filename (relative to $NCBI/c++)               | Description             |
