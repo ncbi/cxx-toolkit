@@ -1031,7 +1031,7 @@ will execute (after the configuration is done):
 
 ##### Tools and Flags
 
-There is a predefined set of tools and flags used in the build process. The user can customize these tools and flags by setting the environment variables shown in [Table 1](#ch_config.ref_TableToolsAndFlags) for the ***configure*** script. For example, if you intend to debug the Toolkit with Insure++, you should run ***configure*** with **`CC`** and **`CXX`** set to **`insure`**.
+There is a predefined set of tools and flags used in the build process. The user can customize these tools and flags by setting the environment variables shown in [Table 1](ch_start#ch_start.ref_TableToolsAndFlags) for the ***configure*** script. For example, if you intend to debug the Toolkit with Insure++, you should run ***configure*** with **`CC`** and **`CXX`** set to **`insure`**.
 
 [Later](ch_build.html#ch_build.build_make_macros), these tools and flags will be engaged in the makefile build rules, such as:
 
