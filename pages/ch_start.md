@@ -354,7 +354,7 @@ Summarized below are some basic ways to control the installation and configurati
 
 -   If you are outside NCBI, make sure the paths to your third party libraries are correctly specified. See [Site-Specific Third Party Library Configuration](ch_config.html#ch_config.SiteSpecific_Third_Party_Libra) for details.
 
--   [Influencing configure via Environment Variables](ch_config.html#ch_config.ch_configconfig_flag) Several environment variables control the tools and flags employed by **configure**. The [generic ones](ch_config.html#ch_config.ref_TableToolsAndFlags) are: **`CC, CXX, CPP, AR, RANLIB, STRIP, CFLAGS, CXXFLAGS, CPPFLAGS, LDFLAGS, LIBS`**. In addition, you may manually set various [localization environment variables](ch_config.html#ch_config.ch_configlocalizatio).
+-   [Influencing configure via Environment Variables](ch_config.html#ch_config.ch_configconfig_flag) Several environment variables control the tools and flags employed by **configure**. The [generic ones](#ch_start.ref_TableToolsAndFlags) are: **`CC, CXX, CPP, AR, RANLIB, STRIP, CFLAGS, CXXFLAGS, CPPFLAGS, LDFLAGS, LIBS`**. In addition, you may manually set various [localization environment variables](ch_config.html#ch_config.ch_configlocalizatio).
 
 -   [Multi-Thread Safe Compilation](ch_config.html#ch_config.ch_configmt_safe_com)
 
@@ -364,7 +364,7 @@ Summarized below are some basic ways to control the installation and configurati
 
 -   [Working with Multiple build trees](ch_config.html#ch_config.Configuration_and_In) Managing builds for a variety of platforms and/or compiler environments is straightforward. The configure/install/build cycle has been designed to support the concurrent development of multiple builds from the same source files. This is accomplished by having independent `build trees` that exist as sibling directories. Each build is configured according to its own set of configuration options and thus produces distinct libraries and executables. All builds are nonetheless constructed from the same source code in $NCBI/`c++/{src, include}`.
 
-<a name="ch_config.ref_TableToolsAndFlags"></a>
+<a name="ch_start.ref_TableToolsAndFlags"></a>
 
 Table 1. Environment variables that affect the configure / build process
 
