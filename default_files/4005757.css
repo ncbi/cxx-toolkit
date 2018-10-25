@@ -280,7 +280,7 @@ sub{top:.25em}
 
 .grid{ min-width:800px; max-width:1200px; width:100%; clear:both; margin:0 auto; text-align:left;overflow:hidden }
 
-.col { margin-right: 1%; float: left; background-color: #fff; overflow:hidden; }
+.col { margin-right: 1%; margin-bottom: 2em; float: left; background-color: #fff; overflow:hidden; }
 .last { *zoom:1; *margin-right:0; _margin-right:-6px;  }
 .col.last {float:right;}
 .one_col { width: 7.3333%; }
