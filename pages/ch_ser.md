@@ -3028,9 +3028,6 @@ Determining which libraries must be linked to requires a bit more work and may i
 
 It should be clear that we will need to link to the core library, `xncbi`, as well as to the serial library, `xser`. In addition, we will need to link to whatever object libraries are entailed by using a [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBiostruc.html) object. Minimally, one would expect to link to the `mmdb` libraries. This in itself is insufficient however, as the [CBiostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBiostruc) class embeds other types of objects, including PubMed citations, features, and sequences, which in turn embed additional objects such as [Date](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDate.html). The makefile for `xml2asn.cpp`, `Makefile.xml2asn.app` lists the libraries required for linking in the make variable **`LIB`**.
 
-    #########################################################################
-    # This file was originally generated from by shell script "new_project.sh"
-    #########################################################################
     APP = xml2asn
     OBJ = xml2asn
     LIB = mmdb1 mmdb2 mmdb3 seqloc seqfeat pub medline biblio general xser xncbi
