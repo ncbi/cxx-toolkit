@@ -266,7 +266,7 @@ Table 5. FASTA sequence ID format values
 | third-party [EMBL](http://www.embl-heidelberg.de)     | `tpe|accession|name`               | `tpe|BN000123|`        |
 | third-party [DDBJ](http://www.ddbj.nig.ac.jp)   | `tpd|accession|name`               | `tpd|FAA00017|`        |
 | TrEMBL                 | `tr|accession|name`                | `tr|Q90RT2|Q90RT2_9HIV1`     |
-| genome pipeline [<sup>3</sup>](#ch_demo.TF.3)   | `gpp|accession|name`               | `gpp|GPC_123456789\|`   |
+| genome pipeline [<sup>3</sup>](#ch_demo.TF.3)   | `gpp|accession|name`               | `gpp|GPC_123456789|`   |
 | named annotation track [<sup>3</sup>](#ch_demo.TF.3)  | `nat|accession|name`               | `nat|AT_123456789.1|`  |
 
 <div class="table-scroll"></div>
