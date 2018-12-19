@@ -246,28 +246,28 @@ Table 5. FASTA sequence ID format values
 
 | Type                   | Format(s) [<sup>1</sup>](#ch_demo.TF.1)    | Example(s)               |
 |------------------------|--------------------------------------------|--------------------------|
-| local                  | `lcl|integer`<br/>`lcl|string`           | `lcl\|123`<br/>`lcl\|hmm271` |
-| GenInfo backbone seqid | `bbs\|integer`                             | `bbs\|123`               |
-| GenInfo backbone moltype                  | `bbm\|integer`          | `bbm\|123`               |
-| GenInfo import ID      | `gim\|integer`    | `gim\|123`               |
-| [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)   | `gb\|accession\|locus`               | `gb\|M73307\|AGMA13GT`   |
-| [EMBL](http://www.embl-heidelberg.de)     | `emb\|accession\|locus`              | `emb\|CAM43271.1\|`      |
-| [PIR](http://pir.georgetown.edu)          | `pir\|accession\|name`               | `pir\|\|G36364`          |
-| [SWISS-PROT](http://www.ebi.ac.uk/swissprot)    | `sp\|accession\|name`                | `sp\|P01013\|OVAX_CHICK` |
-| patent                 | `pat\|country\|patent\|sequence`     | `pat\|US\|RE33188\|1`    |
-| pre-grant patent       | `pgp\|country\|application-number\|seq-number`   | `pgp\|EP\|0238993\|7`    |
-| [RefSeq](https://www.ncbi.nlm.nih.gov/projects/RefSeq) [<sup>2</sup>](#ch_demo.TF.2) | `ref\|accession\|name`               | `ref\|NM_010450.1\|`     |
-| general database reference                | `gnl\|database\|integer`<br/>`gnl\|database\|string` | `gnl\|taxon\|9606`<br/>`gnl\|PID\|e1632` |
-| GenInfo integrated database               | `gi\|integer`     | `gi\|21434723`           |
-| [DDBJ](http://www.ddbj.nig.ac.jp)         | `dbj\|accession\|locus`              | `dbj\|BAC85684.1\|`      |
-| [PRF](http://www.prf.or.jp)               | `prf\|accession\|name`               | `prf\|\|0806162C`        |
-| [PDB](http://www.rcsb.org/pdb)            | `pdb\|entry\|chain`                  | `pdb\|1I4L\|D`           |
-| third-party [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)   | `tpg\|accession\|name`               | `tpg\|BK003456\|`        |
-| third-party [EMBL](http://www.embl-heidelberg.de)     | `tpe\|accession\|name`               | `tpe\|BN000123\|`        |
-| third-party [DDBJ](http://www.ddbj.nig.ac.jp)   | `tpd\|accession\|name`               | `tpd\|FAA00017\|`        |
-| TrEMBL                 | `tr\|accession\|name`                | `tr\|Q90RT2\|Q90RT2_9HIV1`     |
-| genome pipeline [<sup>3</sup>](#ch_demo.TF.3)   | `gpp\|accession\|name`               | `gpp\|GPC_123456789\|`   |
-| named annotation track [<sup>3</sup>](#ch_demo.TF.3)  | `nat\|accession\|name`               | `nat\|AT_123456789.1\|`  |
+| local                  | `lcl|integer`<br/>`lcl|string`             | `lcl|123`<br/>`lcl|hmm271`|
+| GenInfo backbone seqid | `bbs|integer`                              | `bbs|123`                |
+| GenInfo backbone moltype                  | `bbm|integer`           | `bbm|123`                |
+| GenInfo import ID                         | `gim|integer`           | `gim|123`                |
+| [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)   | `gb|accession|locus`            | `gb|M73307|AGMA13GT`   |
+| [EMBL](http://www.embl-heidelberg.de)     | `emb|accession|locus`              | `emb|CAM43271.1|`      |
+| [PIR](http://pir.georgetown.edu)          | `pir|accession|name`               | `pir||G36364`          |
+| [SWISS-PROT](http://www.ebi.ac.uk/swissprot)    | `sp|accession|name`                | `sp|P01013|OVAX_CHICK` |
+| patent                 | `pat|country|patent|sequence`     | `pat|US|RE33188|1`    |
+| pre-grant patent       | `pgp|country|application-number|seq-number`   | `pgp|EP|0238993|7`    |
+| [RefSeq](https://www.ncbi.nlm.nih.gov/projects/RefSeq) [<sup>2</sup>](#ch_demo.TF.2) | `ref|accession|name`               | `ref|NM_010450.1|`     |
+| general database reference                | `gnl|database|integer`<br/>`gnl|database|string` | `gnl|taxon|9606`<br/>`gnl|PID|e1632` |
+| GenInfo integrated database               | `gi|integer`     | `gi|21434723`           |
+| [DDBJ](http://www.ddbj.nig.ac.jp)         | `dbj|accession|locus`              | `dbj|BAC85684.1|`      |
+| [PRF](http://www.prf.or.jp)               | `prf|accession|name`               | `prf||0806162C`        |
+| [PDB](http://www.rcsb.org/pdb)            | `pdb|entry|chain`                  | `pdb|1I4L|D`           |
+| third-party [GenBank](https://www.ncbi.nlm.nih.gov/Genbank/index.html)   | `tpg|accession|name`               | `tpg|BK003456|`        |
+| third-party [EMBL](http://www.embl-heidelberg.de)     | `tpe|accession|name`               | `tpe|BN000123|`        |
+| third-party [DDBJ](http://www.ddbj.nig.ac.jp)   | `tpd|accession|name`               | `tpd|FAA00017|`        |
+| TrEMBL                 | `tr|accession|name`                | `tr|Q90RT2|Q90RT2_9HIV1`     |
+| genome pipeline [<sup>3</sup>](#ch_demo.TF.3)   | `gpp|accession|name`               | `gpp|GPC_123456789\|`   |
+| named annotation track [<sup>3</sup>](#ch_demo.TF.3)  | `nat|accession|name`               | `nat|AT_123456789.1|`  |
 
 <div class="table-scroll"></div>
 
