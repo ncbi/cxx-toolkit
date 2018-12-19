@@ -246,7 +246,7 @@ Table 5. FASTA sequence ID format values
 
 | Type                   | Format(s) [<sup>1</sup>](#ch_demo.TF.1)    | Example(s)               |
 |------------------------|--------------------------------------------|--------------------------|
-| local                  | `lcl\|integer`<br/>`lcl\|string`           | `lcl\|123`<br/>`lcl\|hmm271` |
+| local                  | `lcl|integer`<br/>`lcl|string`           | `lcl\|123`<br/>`lcl\|hmm271` |
 | GenInfo backbone seqid | `bbs\|integer`                             | `bbs\|123`               |
 | GenInfo backbone moltype                  | `bbm\|integer`          | `bbm\|123`               |
 | GenInfo import ID      | `gim\|integer`    | `gim\|123`               |
