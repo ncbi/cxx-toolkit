@@ -645,7 +645,7 @@ This section discusses the following topics:
 
 ##### Using C++11 Features
 
-Some new features of the C++11 Standard are not yet implemented (or implemented poorly) by at least some actual compilers (see e.g. [MS VS 2013](https://msdn.microsoft.com/en-us/library/hh567368.aspx) so - please be careful about using some of the "more advanced" C++11 features.
+While most of the C++11 features are well supported by the contemporary compilers... note however that some (a very few nowadays) of new features of the C++11 Standard are not yet implemented (or implemented poorly) by at least some actual compilers (see e.g. [MS VS 2015](https://msdn.microsoft.com/en-us/library/hh567368.aspx) so - please be careful about using some of the "more advanced" C++11 features.
 
 Do not use such C++11 features in code that is:
 
@@ -653,7 +653,7 @@ Do not use such C++11 features in code that is:
 
 -   Part of regular [coremake builds](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/c++/scripts/internal/projects/netopt.lst?view=markup);
 
--   Supposed to be compiled with the relatively old compilers (like MSVC13, etc) that don't support many features; or
+-   Supposed to be compiled with the relatively old compilers (like MSVC15, pre-GCC4.9, etc) that don't support many features; or
 
 -   Known to be a dependency for the projects that still need to be compiled with the older compilers.
 
