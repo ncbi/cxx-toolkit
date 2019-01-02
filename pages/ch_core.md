@@ -391,7 +391,7 @@ Table 1. Example of Command-line Arguments
 
 | Command-Line Parameters    | File Content  |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-| -gi "Integer" (GI id of the Seq-Entry to examine) OPTIONAL ARGUMENTS: -h (Print this USAGE message; ignore other arguments) -reconstruct (Reconstruct title) -accession (Prepend accession) -organism (Append organism name) | -gi 10200 -reconstruct -accession -organism |
+| -gi "Integer" (GI id of the Seq-Entry to examine) <br/>OPTIONAL ARGUMENTS: -h (Print this USAGE message; ignore other arguments) <br/>-reconstruct (Reconstruct title) <br/>-accession (Prepend accession) <br/>-organism (Append organism name) | -gi 10200 <br/>-reconstruct <br/>-accession <br/>-organism |
 
 <div class="table-scroll"></div>
 
