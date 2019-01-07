@@ -563,7 +563,9 @@ There are also `SC-NNN*` symlinks which are mnemonically linked to the versions 
 
 -   `$NCBI/c++.SC-NN` - Points to the full production-grade build based on the Stable Component codebase version `NNN`. For the current version of SC it is equivalent to `$NCBI/c++.production`. For the older SC versions it points to the `$NCBI/c++.by_date/production/*/` builds which use the those SC's codebases. 
 
--   `$NCBI/c++.SC-NN-head` - Points to the latest daily build based on the Stable Component codebase version `NNN` (with a limited subset of build configurations). For the current version of SC it is equivalent to `$NCBI/c++.prod-head`. For the older SC versions it can be rather stale, or even absent.
+-   `$NCBI/c++.SC-NN-head` - Points to the latest daily build based on the Stable Component codebase version `NNN` (with a limited subset of build configurations). For the current production-grade version of SC it is equivalent to (points to the same build as) `$NCBI/c++.prod-head`. For the older SC versions it can be rather stale, or even absent.
+
+-   `$NCBI/c++.SC-NN-trial` - Points to the latest trial daily build based on the Stable Component codebase version `NNN` (with a limited subset of build configurations). For the current production-grade version of SC it is equivalent to (points to the same build as) `$NCBI/c++.trial`.
 
 
 <a name="ch_proj.outside_tree"></a>
