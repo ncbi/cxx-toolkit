@@ -559,6 +559,13 @@ There are defined symlinks into this directory tree. They include:
 
 -   `$NCBI/c++.trial` - This build is for NCBI developers to quickly check their planned stable component commits using [import\_project](ch_getcode_svn.html#ch_getcode_svn.import_project_sh). It is based on the repository path `toolkit/production/candidates/trial` – which is usually a codebase for the upcoming production build. It is available on 64-bit Linux.
 
+There are also `SC-NNN*` symlinks which are mnemonically linked to the versions of the Stable Component used, as follows:
+
+-   `$NCBI/c++.SC-NN` - Points to the full production-grade build based on the Stable Component codebase version `NNN`. For the current version of SC it is equivalent to `$NCBI/c++.production`. For the older SC versions it points to the `$NCBI/c++.by_date/production/*/` builds which use the those SC's codebases. 
+
+-   `$NCBI/c++.SC-NN-head` - Points to the latest daily build based on the Stable Component codebase version `NNN` (with a limited subset of build configurations). For the current version of SC it is equivalent to `$NCBI/c++.prod-head`. For the older SC versions it can be rather stale, or even absent.
+
+
 <a name="ch_proj.outside_tree"></a>
 
 ### Working in a separate directory
