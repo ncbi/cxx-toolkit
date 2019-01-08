@@ -109,7 +109,7 @@ Choice of Language
 
 -   **Java** -- for Eclipse programming and in-house QA and testing tools.
 
-See the "[Recommended programming and scripting languages](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Recommended_programming_and_scripting_languages)" Wiki page for more information and updates to this policy. Send proposals for corrections, additions and extensions of the policy on language choice to the languages mailing list, <span class="oem_span">shun.hnlzGujip5ust5upo5nv/</span>.
+See the "[Recommended programming and scripting languages](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Recommended_programming_and_scripting_languages)" Wiki page (nb. not available outside NCBI) for more information and updates to this policy. Send proposals for corrections, additions and extensions of the policy on language choice to the languages mailing list, <span class="oem_span">shun.hnlzGujip5ust5upo5nv/</span>.
 
 <a name="ch_style.prog_style"></a>
 
