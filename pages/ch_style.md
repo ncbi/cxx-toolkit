@@ -241,6 +241,10 @@ Table 1. Naming Conventions
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Global (*"extern"*) Functions and Data**  |
 |***g\_****GlobalFunc*       |`double g_MyGlobalFunc();`      |
 |***g\_****GlobalVar*        |`short g_MyGlobalVar;`  |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TLS (thread_local) Variables**  |
+|***tg\_****GlobalVar*        |`thread_local short tg_MyGlobalTLSVar;`  |
+|***ts\_****GlobalVar*        |`thread_local static int ts_MyStaticTLSVar;`  |
+|***tsm\_****GlobalVar*        |`class C { thread_local static bool tsm_MyClassTLSVar; }`  |
 
 <div class="table-scroll"></div>
 
