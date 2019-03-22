@@ -4,7 +4,6 @@ title: Release Notes (Version 21, April 2018)
 nav: pages/rn_new
 ---
 
-
 {{ page.title }}
 =============
 
@@ -227,3 +226,4 @@ Last Updated
 This document was last updated on April 11, 2018.
 
 {{ page.last_modified_at }}
+
