@@ -78,8 +78,8 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 |[libxslt](http://xmlsoft.org/)     |1.1.14 or newer |1.1.26, 1.1.28 |
 |[<span class="small-caps">LZO</span>](https://www.oberhumer.com/opensource/lzo) |2.x |2.05, 2.09   |
 |[PCRE](http://www.pcre.org)  |All versions    |7.8, 7.9, 8.31, 8.32, 8.38 |
-|[SQLite3](https://www.sqlite.org)   |3.6.6 or newer  |3.6.14.2, 3.6.20, 3.7.13, 3.7.17, 3.8.2, 3.22.0 |
-|Sybase     |All versions    |15.5, 15.7     |
+|[SQLite3](https://www.sqlite.org)   |3.6.6 or newer  |3.6.14.2, 3.6.20, 3.7.13, 3.7.17, 3.8.2, 3.8.10.1, 3.22.0 |
+|Sybase     |All versions    |15.5, 15.7, 16.0 |
 |[zlib](http://www.zlib.org)  |All versions    |1.2.3, 1.2.5, 1.2.7, 1.2.8, 1.2.11 |
 
 The user is expected to download and build the 3<sup>rd</sup> party packages themselves. The release's package list includes links to download sites. However, the user still needs a list of the 3<sup>rd</sup> party packages and which versions of them are compatible with the release.
