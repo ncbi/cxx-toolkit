@@ -936,7 +936,7 @@ Note, that you can use optional **`/CHECK_NAME`** to add alias for specified com
 
 Regarding command line, it could be an application name from **`APP`** line with added required arguments, or some script name instead. For helper scripts see below for more details.
 
-***Note:*** Executing applications / scripts in the **`CHECK_CMD`** definition should **NOT** use "`.`" or any relative path, because (depending from platform) it could be executed not from a current directory, but from some directory added to **`$PATH`** by test suite. Also, it is not allowed to use any shell commands, system utilities, piping or redirections directly in the **`CHECK_CMD`**.  If you need it, please use a helper script to run yours application.
+***Note:*** Executing applications / scripts in the **`CHECK_CMD`** definition should **NOT** use "`.`" or any relative path, because (depending from platform) it could be executed not from a current directory, but from some directory added to **`$PATH`** by test suite. Also, it is not allowed to use any shell commands, system utilities, piping or redirections directly in the **`CHECK_CMD`**.  If you need it, please use a helper script to run your application.
 
 In addition there are some optional macro than can help with setting up tests:
 
