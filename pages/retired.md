@@ -5,6 +5,7 @@ nav: pages/retired
 ---
 
 
+<!-- Content start -->
 {{ page.title }}
 =============
 
@@ -33,6 +34,7 @@ The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/T
 -   [Supported Platforms (OS's and Compilers)](#release_notes.Platforms_OSs__compi)
 
     -   [Unix](#release_notes.Unix)
+    <!-- Content end -->
 
     -   [MS Windows](#release_notes.MS_Windows)
 
