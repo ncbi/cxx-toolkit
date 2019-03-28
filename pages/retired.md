@@ -6,6 +6,7 @@ nav: pages/retired
 
 
 <!-- Content start -->
+
 {{ page.title }}
 =============
 
@@ -229,3 +230,6 @@ Last Updated
 This document was last updated on April 11, 2018.
 
 {{ page.last_modified_at }}
+
+
+<!-- Content end -->
