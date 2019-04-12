@@ -413,7 +413,7 @@ Table 7. Connection library configuration parameters
 | Enable the use of locally configured services.<br />See **`<service>_CONN_LOCAL_SERVER_<n>`**.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_LOCAL_ENABLE`**<br/><br/>**`<service>_CONN_LOCAL_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Create a service entry for **`service`**, where **`n`** is a number from 0 to 100 (not necessarily sequential). The value must be a valid server descriptor, as it would be configured for the load balancing daemon ([LBSMD](ch_app.html#ch_app.Load_Balancing_Servi)). This is a quick way of configuring locally used services (usually, for the sole purposes of debugging / development) without the need to edit the actual LBSMD tables (which become visible for the whole NCBI). See **`<service>_CONN_LOCAL_ENABLE`**. ***Note:*** This parameter has no corresponding global parameter.<br/>(See [Note 1](#ch_libconfig.TF.21)) |  **`[<service>]`**<br/>**`CONN_LOCAL_SERVER_<n>`**<br/><br/>**`<service>_CONN_LOCAL_SERVER_<n>`** | any non-empty string | not set |
 | Maximum number of attempts to establish connection. Zero means use the default.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_MAX_TRY`**<br/><br/>**`<service>_CONN_MAX_TRY`** | unsigned short | 3 |
-| Enable namerd-based service name resolution.<br/>(See [Note 1](#ch_libconfig.TF.21))<br/>**Note:** You must also set `<service>_CONN_LBSMD_DISABLE=1` for this to take effect. | **`[<service>]`**<br/>**`CONN_NAMERD_ENABLE`**<br/><br/>**`<service>_CONN_NAMERD_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
+| Enable namerd-based service name resolution.<br/>(See [Note 1](#ch_libconfig.TF.21))<br/>(See [Note 3](#ch_libconfig.TF.49))<br/>**Note:** You must also set `<service>_CONN_LBSMD_DISABLE=1` for this to take effect. | **`[<service>]`**<br/>**`CONN_NAMERD_ENABLE`**<br/><br/>**`<service>_CONN_NAMERD_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Enable namerd-based service name resolution specifically for the case when linkerd-based service name resolution has failed (use **`<service>_CONN_NAMERD_ENABLE`** to enable namerd-based resolution generally).<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_NAMERD_FOR_LINKERD_ENABLE`**<br/><br/>**`<service>_CONN_NAMERD_FOR_LINKERD_ENABLE`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Specify a password for the connection (only used with **`<service>_CONN_USER`**).<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_PASS`**<br/><br/>**`<service>_CONN_PASS`** | the user's password | "" |
 | Set the path to the service.<br/>(See [Note 1](#ch_libconfig.TF.21)) | **`[<service>]`**<br/>**`CONN_PATH`**<br/><br/>**`<service>_CONN_PATH`** | a valid service path | /Service/dispd.cgi |
@@ -471,6 +471,10 @@ Table 7. Connection library configuration parameters
 <a name="ch_libconfig.TF.22"></a>
 
 ***Note 2:*** Environment variable names for service-specific parameters are formed by capitalizing the service name.
+
+<a name="ch_libconfig.TF.49"></a>
+
+***Note 3:*** See [Dispatching with namerd and Linkerd](https://confluence.ncbi.nlm.nih.gov/display/CT/Dispatching+with+namerd+and+Linkerd#DispatchingwithnamerdandLinkerd-Libraryconfiguration) for additional namerd-related configuration parameters not typically needed by end users.
 
 <a name="ch_libconfig.libconfig_cgi"></a>
 
