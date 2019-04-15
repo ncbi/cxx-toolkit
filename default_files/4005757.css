@@ -179,8 +179,8 @@ blockquote{margin:1.3846em 1em;}
 p,table,pre,fieldset,dl{margin: 0.6923em 0;}
 ol,ul{margin: 0.6923em 1em 0.6923em inherit}
 dl dd{margin-left:1em;}
-/* table{border-collapse:collapse; margin:1.3846em 0;} */
-table{border-collapse:collapse; margin:0;}
+table{border-collapse:collapse; margin:1.3846em 0;} 
+/* table{border-collapse:collapse; margin:0;} */
 thead{border-bottom:1px solid #eee;}
 tfoot{border-top:1px solid #eee;}
 th{text-align:center;background-color:#f0f0f0;}
@@ -1113,7 +1113,7 @@ ul.messages li.hi_warn em.detail{
 .search_extras strong { font-size: 150%; color: #888; margin-right: 0.5em}
 
 /* Temporary fix for wide tables (adding scroll bars (CXX-3856)) */
-/*
+
 div.table-scroll {
     overflow: auto;
     max-width: none;
@@ -1121,7 +1121,7 @@ div.table-scroll {
     line-height: 1.3em;
     font-size: .9em;
 }
-*/
+
 /* Added top space for tables to display consecutive tables better (CXX-4144)) */
 div.table {
     padding-top: 0.5em;
