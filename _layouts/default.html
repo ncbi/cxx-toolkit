@@ -27,6 +27,39 @@
 <link type="text/css" rel="stylesheet" href="/cxx-toolkit/default_files/4005757.css">
 <link type="text/css" rel="stylesheet" href="/cxx-toolkit/default_files/3529739_002.css" media="print">
 
+<!-- new table style begin -->
+
+<script type="text/javascript" language="javascript" src="/book/static/js/jquery-3.js"></script>
+<script type="text/javascript" language="javascript" src="/book/static/js/jquery.js"></script>
+
+<style type="text/css">
+
+div.dataTables_wrapper {
+ width: 100%;
+ margin: 0 auto;
+ border-bottom: 1px solid silver;
+}
+
+</style>
+
+<script type="text/javascript" class="init">
+	
+$(document).ready(function() {
+	$('div.col > tableX').DataTable( {
+		scrollY: '50vh',
+		scrollX: true,
+		scrollCollapse: true,
+		searching: false,
+		ordering: false,
+		info: false,
+        	paging: false		
+	} );
+} );
+
+</script>
+
+<!-- new table style end -->
+	
 </head>
 
     <body class=" CppTkbPage">
