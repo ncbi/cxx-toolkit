@@ -181,6 +181,9 @@ ol,ul{margin: 0.6923em 1em 0.6923em inherit}
 dl dd{margin-left:1em;}
 /* table{border-collapse:collapse; margin:1.3846em 0;}  */
 table{border-collapse:collapse; margin:0;} 
+/* header table margins */
+form > table{padding-top: 1.2em;} 
+
 thead{border-bottom:1px solid #eee;}
 tfoot{border-top:1px solid #eee;}
 th{text-align:center;background-color:#f0f0f0;}
