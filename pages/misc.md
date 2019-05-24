@@ -25,7 +25,7 @@ The [inhouse only documentation](https://confluence.ncbi.nlm.nih.gov/pages/viewp
 
 -   PubSeq Gateway (PSG)
     -   [PubSeq Gateway Server Overview](/cxx-toolkit/misc/PSG Server.docx)
-    -   Chaos Monkey
-        -   [Chaos Monkey documentation](https://confluence.ncbi.nlm.nih.gov/display/~elisovdn/Chaos+Monkey+documentation)
-        -   [Chaos Monkey standard testing procedure](https://confluence.ncbi.nlm.nih.gov/display/~elisovdn/Chaos+Monkey+standard+testing+procedure)
+-   Chaos Monkey
+    -   [Chaos Monkey documentation](https://confluence.ncbi.nlm.nih.gov/display/~elisovdn/Chaos+Monkey+documentation)
+    -   [Chaos Monkey standard testing procedure](https://confluence.ncbi.nlm.nih.gov/display/~elisovdn/Chaos+Monkey+standard+testing+procedure)
 -  [UTTP and JSON Over UTTP Protocols](https://confluence.ncbi.nlm.nih.gov/display/CT/UTTP+and+JSON+Over+UTTP+Protocols) 
