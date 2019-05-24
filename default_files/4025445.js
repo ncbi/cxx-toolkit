@@ -1,4 +1,4 @@
-jQuery(function($j) {
+xQuery(function($j) {
       var formState = {
           overrideBackends: false,
           backends: {}
@@ -66,7 +66,7 @@ jQuery(function($j) {
           // PMC-11784 and PMC-11785.
           // This fixes a nasty IE bug.  It causes a slight flash when the user
           // clicks a checkbox, but it works.
-          if (jQuery.browser.msie){
+          if (xQuery.browser.msie){
               target.hide();
               window.setTimeout( function(){ target.show();}, 0 );
           }
@@ -323,7 +323,7 @@ jQuery(function($j) {
 {
 	// This script was written by Steve Fenton
 	// http://www.stevefenton.co.uk/Content/Jquery-Side-Content/
-	// Feel free to use this jQuery Plugin
+	// Feel free to use this xQuery Plugin
 	// Version: 3.0.2
 	
 	var classModifier = "";
@@ -537,7 +537,7 @@ jQuery(function($j) {
 		
 		return this;
 	};
-})(jQuery);
+})(xQuery);
 ;
 /* Override this file with one containing code that belongs on every page of your application */
 
@@ -636,7 +636,7 @@ function unoem()
 
         var theSearchInput = $("#term");
         var originalTerm = $.trim(theSearchInput.val());
-        var theForm = jQuery("form").has(theSearchInput);
+        var theForm = xQuery("form").has(theSearchInput);
         var dbNode = theForm.find("#database");
         var currDb = dbNode.val();
         var sbConfig = {};
@@ -707,7 +707,7 @@ function unoem()
                            if(searched == false){
                                searched = true;
                                theForm.find('input[type="hidden"][name^="p$"]').attr('disabled', 'disabled');
-                               //$("input[name]").not(jQuery(".search_form *")).attr('disabled', 'disabled');
+                               //$("input[name]").not(xQuery(".search_form *")).attr('disabled', 'disabled');
                                if (defaultSubmit)
                                    $.ncbi.searchbar.doSearchPing();
                                else {
@@ -841,13 +841,13 @@ function unoem()
          
      });//End of DOM Ready
 
-})(jQuery);
+})(xQuery);
 
 /*
 a call back for the 'Turn off' link at the bottom of the auto complete list
 */
 function NcbiSearchBarAutoComplCtrl(){
-    jQuery("#term").ncbiautocomplete("turnOff",true);
+    xQuery("#term").ncbiautocomplete("turnOff",true);
     if (typeof(NcbiSearchBarSaveAutoCompState) == 'function')
         NcbiSearchBarSaveAutoCompState();
  }

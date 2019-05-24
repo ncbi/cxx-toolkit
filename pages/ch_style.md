@@ -109,7 +109,7 @@ Choice of Language
 
 -   **Java** -- for Eclipse programming and in-house QA and testing tools.
 
-See the "[Recommended programming and scripting languages](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Recommended_programming_and_scripting_languages)" Wiki page for more information and updates to this policy. Send proposals for corrections, additions and extensions of the policy on language choice to the languages mailing list, <span class="oem_span">shun.hnlzGujip5ust5upo5nv/</span>.
+See the "[Recommended programming and scripting languages](https://intranet.ncbi.nlm.nih.gov/wiki-private/CxxToolkit/index.cgi/Recommended_programming_and_scripting_languages)" Wiki page (nb. not available outside NCBI) for more information and updates to this policy. Send proposals for corrections, additions and extensions of the policy on language choice to the languages mailing list, <span class="oem_span">shun.hnlzGujip5ust5upo5nv/</span>.
 
 <a name="ch_style.prog_style"></a>
 
@@ -241,6 +241,10 @@ Table 1. Naming Conventions
 |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Global (*"extern"*) Functions and Data**  |
 |***g\_****GlobalFunc*       |`double g_MyGlobalFunc();`      |
 |***g\_****GlobalVar*        |`short g_MyGlobalVar;`  |
+|         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TLS (thread_local) Variables**  |
+|***tg\_****GlobalVar*        |`thread_local short tg_MyGlobalTLSVar;`  |
+|***ts\_****GlobalVar*        |`thread_local static int ts_MyStaticTLSVar;`  |
+|***tsm\_****GlobalVar*        |`class C { thread_local static bool tsm_MyClassTLSVar; }`  |
 
 <div class="table-scroll"></div>
 
@@ -645,7 +649,7 @@ This section discusses the following topics:
 
 ##### Using C++11 Features
 
-Some new features of the C++11 Standard are not yet implemented (or implemented poorly) by at least some actual compilers (see e.g. [MS VS 2013](https://msdn.microsoft.com/en-us/library/hh567368.aspx) so - please be careful about using some of the "more advanced" C++11 features.
+While most of the C++11 features are well supported by the contemporary compilers... note however that some (a very few nowadays) of new features of the C++11 Standard are not yet implemented (or implemented poorly) by at least some actual compilers (see e.g. [MS VS 2015](https://msdn.microsoft.com/en-us/library/hh567368.aspx) so - please be careful about using some of the "more advanced" C++11 features.
 
 Do not use such C++11 features in code that is:
 
@@ -653,7 +657,7 @@ Do not use such C++11 features in code that is:
 
 -   Part of regular [coremake builds](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/c++/scripts/internal/projects/netopt.lst?view=markup);
 
--   Supposed to be compiled with the relatively old compilers (like MSVC13, etc) that don't support many features; or
+-   Supposed to be compiled with the relatively old compilers (like MSVC15, pre-GCC4.9, etc) that don't support many features; or
 
 -   Known to be a dependency for the projects that still need to be compiled with the older compilers.
 

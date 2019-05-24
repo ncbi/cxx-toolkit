@@ -559,6 +559,15 @@ There are defined symlinks into this directory tree. They include:
 
 -   `$NCBI/c++.trial` - This build is for NCBI developers to quickly check their planned stable component commits using [import\_project](ch_getcode_svn.html#ch_getcode_svn.import_project_sh). It is based on the repository path `toolkit/production/candidates/trial` – which is usually a codebase for the upcoming production build. It is available on 64-bit Linux.
 
+There are also `SC-NNN*` symlinks which are mnemonically linked to the versions of the Stable Component used, as follows:
+
+-   `$NCBI/c++.SC-NN` - Points to the full production-grade build based on the Stable Component codebase version `NNN`. For the current version of SC it is equivalent to `$NCBI/c++.production`. For the older SC versions it points to the `$NCBI/c++.by_date/production/*/` builds which use the those SC's codebases. 
+
+-   `$NCBI/c++.SC-NN-head` - Points to the latest daily build based on the Stable Component codebase version `NNN` (with a limited subset of build configurations). For the current production-grade version of SC it is equivalent to (points to the same build as) `$NCBI/c++.prod-head`. For the older SC versions it can be rather stale, or even absent.
+
+-   `$NCBI/c++.SC-NN-trial` - Points to the latest trial daily build based on the Stable Component codebase version `NNN` (with a limited subset of build configurations). For the current production-grade version of SC it is equivalent to (points to the same build as) `$NCBI/c++.trial`.
+
+
 <a name="ch_proj.outside_tree"></a>
 
 ### Working in a separate directory
@@ -925,9 +934,9 @@ Where nothing specified by the **`CHECK_CMD`** macro, the program specified by t
 
 Note, that you can use optional **`/CHECK_NAME`** to add alias for specified command line, especially if it is long. This alias will be used instead for reporting and collecting statistics. Application's makefile can have some **`CHECK_CMD`** lines for different tests in the same directory, or for the same test but with different arguments. So assigning unique **`CHECK_NAME`** for each command line could be very useful. Note, that test name should include only letters, digits, "_" and "-".
 
-Regarding command line, it could be an application name from **`APP`** line with added required arguments, or some script name instead. See below for more details.
+Regarding command line, it could be an application name from **`APP`** line with added required arguments, or some script name instead. For helper scripts see below for more details.
 
-***Note:*** Executing applications / scripts in the **`CHECK_CMD`** definition should **NOT** use "`.`" or any relative path, because (depending from platform) it could be executed not from a current directory, but from some directory added to **`$PATH`** by test suite.
+***Note:*** Executing applications / scripts in the **`CHECK_CMD`** definition should **NOT** use "`.`" or any relative path, because (depending from platform) it could be executed not from a current directory, but from some directory added to **`$PATH`** by test suite. Also, it is not allowed to use any shell commands, system utilities, piping or redirections directly in the **`CHECK_CMD`**.  If you need it, please use a helper script to run your application.
 
 In addition there are some optional macro than can help with setting up tests:
 
