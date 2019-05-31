@@ -578,7 +578,7 @@ A standard header template file, [header\_template.hpp](https://www.ncbi.nlm.nih
 Doxygen Comments
 ----------------
 
-[Doxygen](https://www.stack.nl/~dimitri/doxygen/) is an automated API documentation tool. It relies on special comments placed at appropriate places in the source code. Because the comments are in the source code near what they document, the documentation is more likely to be kept up-to-date when the code changes. A configuration and parsing system scans the code and creates the desired output (e.g. HTML).
+[Doxygen](http://www.doxygen.nl/manual/) is an automated API documentation tool. It relies on special comments placed at appropriate places in the source code. Because the comments are in the source code near what they document, the documentation is more likely to be kept up-to-date when the code changes. A configuration and parsing system scans the code and creates the desired output (e.g. HTML).
 
 Doxygen documentation is a valuable tool for software developers, as it automatically creates comprehensive cross-referencing of modules, namespaces, classes, and files. It creates inheritance diagrams, collaboration diagrams, header dependency graphs, and documents each class, struct, union, interface, define, typedef, enum, function, and variable (see the NCBI C++ Toolkit [Doxygen browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/)). However, developers must write meaningful comments to get the most out of it.
 
@@ -588,7 +588,7 @@ Doxygen commands are keywords within Doxygen comments that are used during the d
 
 Please do not use superfluous comments, such as ‘`/// Destructor`’. Especially do not use the same superfluous comment multiple times, such as using the same ‘`/// Constructor`’ comment for different constructors!
 
-Please see the [Doxygen manual](https://www.stack.nl/~dimitri/doxygen/manual.html) for complete usage information. More information can also be found in the chapter on [Toolkit browsers](ch_browse.html).
+Please see the [Doxygen manual](http://www.doxygen.nl/manual/) for complete usage information. More information can also be found in the chapter on [Toolkit browsers](ch_browse.html).
 
 <a name="ch_style.style_guidelines"></a>
 
