@@ -209,7 +209,7 @@ Table 1. Naming Conventions
 |***I****InterfaceName*      |`class IMyInterface { ..... };`     |
 |***S****StructTypeName*     |`struct SMyStruct { ..... };` |
 |***U****UnionTypeName*      |`union UMyUnion { ..... };`   |
-|***E****EnumTypeName*       |`enum EMyEnum { ..... };`     |
+|***E****EnumTypeName*       |`enum [class] EMyEnum { ..... };`     |
 |***F****FunctionTypeName*   |`typedef int (*FMyFunc)();`     |
 |***P****PredicateName*      |`struct PMyPred { bool operator() (.... , ....); };`  |
 |***T****AuxiliaryTypedef* [(\*)](#ch_style.1.3.1)   |`typedef map<int,string> TMyMapIntStr;`   |
@@ -744,7 +744,14 @@ Instead, create a meaningful enumerated type that captures the meaning of the pa
     // is an enum constant rather than a bool constant.
     CompareStrings(s1, s2, eIgnoreCase);
 
-As an added benefit, using an enumerated type for parameters instead of **`bool`** gives you the ability to expand the enumerated type to include more variants in the future if necessary - without changing the parameter type.
+Or, you can use a scoped enum. E.g. for the above case it could look like:
+
+    enum class ECaseSensitive {
+        yes,   ///< Consider case when comparing.
+        no     ///< Don’t consider case when comparing.
+    };
+
+As an added benefit, using an enumerated type for parameters instead of **`bool`** gives you the ability to expand the enumerated type to include more variants in the future if necessary - without changing the parameter type. Also, enums (especially scoped enums) being more strictly typed may protect the user code from unwanted accidental type conversions.
 
 <a name="ch_style.cpp_tips_tricks"></a>
 
