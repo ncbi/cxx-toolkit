@@ -47,6 +47,8 @@ The following is an outline of the topics presented in this chapter:
     -   [Serial](#ch_libconfig.Serial)
 
     -   [Objects, Object Manager, Object Tools](#ch_libconfig.Objects_Object_Manager_Obje)
+    
+        -   [psg_client library](#ch_libconfig.psg_client_library)
 
     -   [cSRA](#ch_libconfig.cSRA)
 
@@ -770,6 +772,38 @@ Table 13. Objects-related configuration parameters
 <a name="ch_libconfig.TF.40"></a>
 
 <sup>d</sup> case-insensitive: true values are { yes \| 1 }; anything else is false
+
+<a name="ch_libconfig.psg_client_library"></a>
+
+#### psg_client library
+
+[These parameters](#ch_libconfig.T.psg_client_library_configurat) tune the behavior of the psg_client library.
+
+<a name="ch_libconfig.T.psg_client_library_configurat"></a>
+
+Table 13.1. psg_client library configuration parameters
+
+| Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable              | Valid values        | Default  |
+|-------------|---------------------------------------------------------------------------------|---------------------|----------|
+| How often to query LBSM, in seconds. Less or equal to zero means no rebalance based on time | **`[PSG]`**<br/>**`rebalance_time`**<br/><br/>**`NCBI_CONFIG__PSG__REBALANCE_TIME`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | double | 10.0 |
+| How often to query LBSM, in number of internal requests. Less or equal to zero means no rebalance based on requests | **`[PSG]`**<br/>**`rebalance_requests`**<br/><br/>**`NCBI_CONFIG__PSG__REBALANCE_REQUESTS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer | 5000 |
+| Number of internal I/O threads. Each thread has one TCP connection per server in service | **`[PSG]`**<br/>**`num_io`**<br/><br/>**`NCBI_CONFIG__PSG__NUM_IO`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer | 16 |
+| Maximum number of concurrent streams per TCP connection | **`[PSG]`**<br/>**`max_concurrent_streams`**<br/><br/>**`NCBI_CONFIG__PSG__MAX_CONCURRENT_STREAMS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer | 200 |
+| Number of requests to submit consecutively per I/O thread | **`[PSG]`**<br/>**`requests_per_io`**<br/><br/>**`NCBI_CONFIG__PSG__REQUESTS_PER_IO`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer | 1 |
+| Timeout on blob stream reading, in seconds | **`[PSG]`**<br/>**`reader_timeout`**<br/><br/>**`NCBI_CONFIG__PSG__READER_TIMEOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer | 12 |
+| Logging of debug printout of PSG protocol. Setting to 'some' will output everything except blob data. | **`[PSG]`**<br/>**`debug_printout`**<br/><br/>**`NCBI_CONFIG__PSG__DEBUG_PRINTOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | none, some, all[<sup>b</sup>](#ch_libconfig.TF.13.1.2) | none |
+| Instructing server as whether to use LMDB cache. Setting to 'default' will let servers use their own parameters on using LMDB cache | **`[PSG]`**<br/>**`use_cache`**<br/><br/>**`NCBI_CONFIG__PSG__USE_CACHE`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | no, yes, default[<sup>b</sup>](#ch_libconfig.TF.13.1.2) | default |
+| Number of retries after any failure before giving up on a request | **`[PSG]`**<br/>**`request_retries`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_RETRIES`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer | 2 |
+
+<div class="table-scroll"></div>
+
+<a name="ch_libconfig.TF.13.1.1"></a>
+
+<sup>a</sup> [environment variable name](#ch_libconfig.Environment) formed from registry section and entry name
+
+<a name="ch_libconfig.TF.13.1.2"></a>
+
+<sup>b</sup> case-insensitive
 
 <a name="ch_libconfig.cSRA"></a>
 
