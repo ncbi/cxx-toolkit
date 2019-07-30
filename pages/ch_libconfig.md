@@ -777,7 +777,7 @@ Table 13. Objects-related configuration parameters
 
 #### psg_client library
 
-[These parameters](#ch_libconfig.T.psg_client_library_configurat) tune the behavior of the psg_client library.
+These parameters tune the behavior of the psg_client library.
 
 <a name="ch_libconfig.T.psg_client_library_configurat"></a>
 
