@@ -1,0 +1,92 @@
+
+#tkb_public {
+	padding-top: 20px;
+}
+
+.portlet {
+	font-family: arial, helvetica, sans-serif;
+	border-top: .4em solid #97b0c8;
+	padding-top: 0.46em;
+	margin: .769em 0 1.2em 0;
+	overflow: visible;
+	line-height: 1.23em;
+	zoom: 1;
+}
+.portlet_head {
+	margin-bottom: 0.46em;
+	position: relative;
+}
+.portlet_content {
+	position: relative;
+	margin: 0;
+}
+ol, ul {
+	margin: 0.6923em 1em 0.6923em inherit;
+}
+.portlet ul {
+	margin: 0;
+	padding: 0;
+}
+.portlet ul li {
+	list-style-type: none;
+	font-size: 15px;
+	line-height: 1.8em;
+	margin-top: 0.46em;
+	border-bottom: 1px dotted #CCC;
+	padding-bottom: 1px;
+	position: relative;
+	overflow: visible;
+	zoom: 1;
+}
+
+.portlet ul a {
+	_display: block;
+	_float: left;
+	_clear: left;
+}
+.portlet ul li a {
+	text-decoration: none;
+    	color: #14376c;
+}
+.sensor_title {
+	margin-right: 2em;
+}
+.portlet_title {
+	margin-right: 0.2em;
+	text-transform: uppercase;
+    	margin: 0;
+    	margin-bottom: 0.05em;
+	color: #724128;
+	font-size: 0.9em;
+    	line-height: 1.2857;
+	margin-block-start: 1em;
+    	margin-block-end: 1em;
+    	margin-inline-start: 0px;
+    	margin-inline-end: 0px;
+    	font-weight: bold;
+}
+
+.portlet ul li a:hover, .portlet ul li a:active {
+	border-bottom: 0;
+}
+
+p, pre, fieldset, dl {
+	margin: 0.6923em 0;
+}
+table {
+	border-collapse: collapse;
+	margin: 0;
+}
+thead {
+	border-bottom: 1px solid #eee;
+}
+th {
+	text-align: center;
+	background-color: #f0f0f0;
+	padding: 0.2em;
+	border: 1px solid #ddd;
+}
+td {
+	padding: 0.2em;
+	border: 1px solid #ddd;
+}

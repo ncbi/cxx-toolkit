@@ -1,51 +1,44 @@
-<!--?xml version="1.0" encoding="utf-8"?-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xml:lang="en" lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
 	<!-- google site verification -->
 	<meta name="google-site-verification" content="1E2mGo_sqU60SInLwmk-gaLIovV5oVkjJntFEf4gxcg" />
 	
-        <title>{{ page.title }} - NCBI C++ Toolkit Book</title>
+        <title>NCBI C++ Toolkit Book</title>
 
-        <!-- external_resources begin -->
-        <script type="text/javascript" src="/cxx-toolkit/default_files/jig.js"></script>
-        <link rel="stylesheet" type="text/css" href="/cxx-toolkit/default_files/jig.css">
-        <script type="text/javascript" src="/cxx-toolkit/default_files/jquery.js"></script>
-        <link type="text/css" rel="stylesheet" href="/cxx-toolkit/default_files/jquery.css">
 
-        <!-- external_resources end -->
+        <script type="text/javascript" src="/book/default_files/jig.js"></script>
+        <link rel="stylesheet" type="text/css" href="/book/default_files/jig.css">
+        <script type="text/javascript" src="/book/default_files/jquery.js"></script>
+        <link type="text/css" rel="stylesheet" href="/book/default_files/jquery.css">
+
 
         <!-- Page headcontent begin -->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="description" content="A comprehensive manual on the NCBI C++ toolkit, including its design and development framework, a C++ library reference, software examples and demos, FAQs and release notes.">
 	<meta name="ncbipopper" content="triggerPosition:'bottom left',destPosition:'top left',openEvent:'click',closeEvent:'click'">
 
-        <link type="text/css" rel="stylesheet" href="/cxx-toolkit/default_files/3579733.css">
-        <link type="text/css" rel="stylesheet" href="/cxx-toolkit/default_files/3529739.css" media="print">
-
         <!-- PageFixtures resources end -->
     
-<link type="text/css" rel="stylesheet" href="/cxx-toolkit/default_files/4005757.css">
-<link type="text/css" rel="stylesheet" href="/cxx-toolkit/default_files/3529739_002.css" media="print">
-
 <!-- new table style begin -->
 
-<script type="text/javascript" language="javascript" src="/cxx-toolkit/static/js/jquery-3.js"></script>
-<script type="text/javascript" language="javascript" src="/cxx-toolkit/static/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="/book/static/js/jquery-3.js"></script>
+	<script type="text/javascript" language="javascript" src="/book/static/js/jquery.js"></script>
 
 <style type="text/css">
 
 div.dataTables_wrapper {
- width: 100%;
+ max-width: 750px;	
+ display: inline-block;
  margin: 0 auto;
+ align: right;
  border-bottom: 1px solid silver;
 }
 
 </style>
 
-<script type="text/javascript" class="init">
-	
+<script type="text/javascript" class="init">	
 $(document).ready(function() {
-	$('div.col > table').DataTable( {
+	$('div.section > table').DataTable( {
 		scrollY: '50vh',
 		scrollX: true,
 		scrollCollapse: true,
@@ -55,111 +48,89 @@ $(document).ready(function() {
         	paging: false		
 	} );
 } );
-
 </script>
 
- <!-- new table style end -->
+<!-- new table style end -->
+		
+<!-- sidebar test begin -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="robots" content="noindex,nofollow">
+
+      <link rel="stylesheet" href="/book/static/css/bookpage.css" type="text/css">
+
+<!-- toggle sidebar functions -->		
+<script type="text/javascript">	
+  function doSBClose() {
+  	document.getElementById("showNav").style.display = "flex";
+	document.getElementById("left-column").style.display = "none";
+  }
+  function doSBOpen() {
+          document.getElementById("sphinxsidebar").style.display = "block";
+	  document.getElementById("left-column").style.display = "flex"; 
+	  document.getElementById("showNav").style.display = "none";
+  }
+</script>
 	
+		
+<!-- sidebar test end -->
+		
+<!-- updated CSS -->
+
+  <link rel="stylesheet" href="/book/static/css/footer.css" type="text/css">
+  <link rel="stylesheet" href="/book/static/css/sidebar.css" type="text/css">
+		
 </head>
+<body>
 
-    <body class=" CppTkbPage">
-        <div class="grid">
-            <div class="col twelve_col nomargin shadow">
-                <!-- System messages like service outage or JS required; this is handled by the TemplateResources portlet -->
-                <div class="sysmessages">
-                    <noscript>
-	<p class="nojs">
-	<strong>Warning:</strong>
-	This site requires JavaScript to function. 
-	</p>
-	</noscript>
-                </div>
-                <!--/.sysmessage-->
-                <div class="wrap">
-                    <div class="page">
-                        <!--/.header-->
-                        
-                    	{% include header.html %}                    
-                        
-                        <div class="nav_and_browser">
+{% include header.html %}    
+
+  <!-- content start -->	
+	
+  <div class="content">
     
-</div>
-                        
-                        <!-- was itemctrl -->
-                        <div class="container">
-                            <div id="maincontent" class="content">
-                                <div class="col1">
-                                    <div class="content"><div class="col nine_col">{{ content }}</div>
+    <!-- sidebar start -->
+    <div id="left-column">
+      <aside id="sidebar" class="sidebar">
+        <div class="sphinxsidebar" id="sphinxsidebar">
+          <div id="sphinxsidebarwrapper" class="sphinxsidebarwrapper"><a href="javascript:doSBClose()" class="closeNav" id="closeNav"><<< Minimize sidebar</a>
 
+{% include sidebar.html %}
 
-  {% include sidebar.html %}
-
-
-</div>
-
-                                </div>
-                                <!--/.col1-->
-                                <div class="col2">
-                                    
-                                </div>
-                                <!--/.col2-->
-                                <div class="col3">
-                                    
-                                </div>
-                                <!--/.col3-->
-                                <div class="col4">
-                                    
-                                </div>
-                                <!--/.col4-->
-                                <div class="col5">
-                                    
-                                </div>
-                                <div class="col6">
-                                    
-                                </div>
-                                <div class="col7">
-                                    
-                                </div>
-                                <div class="col8">
-                                    
-                                </div>
-                                <div class="col9">
-                                    
-                                </div>
-                            </div><!--/.content-->
-                        </div><!--/.container-->
-
-
-    <div class="footer" id="footer">
-        {% include footer.html %}
+          </div>
+        </div>
+      </aside>
     </div>
-                        <!--/.footer-->
-                        
-                    </div>
-                    <!--/.page-->
-                </div>
-                <!--/.wrap-->
-                <span class="PAFAppResources"></span>
-                
-                
-            </div><!-- /.twelve_col -->
-        <div style="display: none; top: 64.6px; left: 299.2px; width: 1116px; z-index: 1001;" class="ui-ncbiautocomplete-holder shadow ui-ncbiautocomplete-holder-clearfix" aria-live="assertive"><ul class="ui-ncbiautocomplete-options" role="listbox" aria-activedescendant="term"></ul><div style="display: block;" class="ui-ncbiautocomplete-actions shadow"><a style="display: none;" class="ui-ncbiautocomplete-link-pref">Preferences</a><a style="display: block;" href="#" class="ui-ncbiautocomplete-link-off ui-ncbiautocomplete-link-pref-right">Turn off</a></div></div><div class="ui-helper-reset ui-ncbipopper-wrapper ui-ncbipopper-basic" aria-hidden="true" aria-live="assertive" style="display: none; top: -100px; left: -100px;">External link. Please review our <a href="http://www.nlm.nih.gov/privacy.html">privacy policy</a>.</div></div>
-        <!-- /.grid -->
 
-        
-        
-        <!-- usually for JS scripts at page bottom -->
-        <span class="pagefixtures"></span>
+    <div id="main-column" class="main-column">
+    <a href="javascript:doSBOpen()"><span id="showNav" class="showNav">Sidebar</span></a>
+    <!-- sidebar end -->
 
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
 
-<!-- script type="text/javascript" src="/cxx-toolkit/default_files/portal.js"></script -->
-<script type="text/javascript" src="/cxx-toolkit/default_files/4025445.js" snapshot="toolkit"></script>
-
-
-<div aria-labelledby="ui-dialog-title-citation-window" role="dialog" tabindex="-1" class="ui-dialog ui-widget ui-widget-content ui-corner-all" style="display: none; z-index: 1000; outline: 0px none;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-dialog-title-citation-window" class="ui-dialog-title">Cite this Page</span><a role="button" class="ui-dialog-titlebar-close ui-corner-all" href="#"><span class="ui-icon ui-icon-closethick">close</span></a></div><div class="jig-ncbidialog-box ui-dialog-content ui-widget-content" style="" id="citation-window"><div class="bk_tt">
-        Vakatov D, editor. The NCBI C++ Toolkit Book [Internet]. Bethesda (MD): National Center for Biotechnology Information (US); 2004-2018.  24, Applications
-                    . 
-        [Updated: March 17, 2015]
-    .
-
-                            <div class="bk_tt"><span class="bk_cite_avail">Available from: http://www.ncbi.nlm.nih.gov/toolkit/doc/book/ch_app</span></div></div><span class="bk_cite_avail"></span></div></div></body></html>
+	    <!-- main content start -->    
+            <div class="section">
+{{ content }}
+            </div>
+	    <!-- main content end -->    
+		  
+	    <!-- footer start -->    
+            <div id="footer">
+{% include footer.html %}
+            </div>
+	    <!-- footer end -->    
+		  
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+	    
+<script type="text/javascript" src="/book/default_files/4025445.js"></script>
+	    
+</body>
+</html>	
+	
