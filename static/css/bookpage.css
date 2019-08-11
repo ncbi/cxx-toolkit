@@ -168,7 +168,7 @@ h1,.h1{color:#000;}
 	width: 68%;
 	max-width: 800px;
 	flex-grow: 2;
-	margin: 40px 15px;
+	margin: 110px 15px;
 	transition: margin-left .4s cubic-bezier(.02, .01, .47, 1);
 	align-items: center;
 	justify-content: center;
