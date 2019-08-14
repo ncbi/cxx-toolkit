@@ -161,7 +161,7 @@ h3,.h3{color:#724128;}
 h2,.h2{color:#985735;}
 h1,.h1{color:#000;}
 
-h1.section {color: #985735;}
+div.section > h1{color: #985735;}
 
 
 .content .main-column {
