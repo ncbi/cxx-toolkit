@@ -1641,7 +1641,7 @@ All directories given in the '`IncludeDirs`' entry should be specified relative 
 <a name="ch_config.T.nc_includedirs_path_specifie"></a>
 
 | IncludeDirs Path -<br/>specified relative to source directory | AdditionalIncludeDirectories Path -<br/>saved relative to $(ProjectDir) |
-|---------------------------------------------------------------|------------------------------------------------------------------------------=-----|
+|---------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | `somedir`                  | `..\..\..\..\..\src\$(SolutionName)\somedir`            |
 | `..\\somedir`              | `..\..\..\..\..\src\somedir`         |
 | `..\\..\\somedir`          | `..\..\..\..\..\somedir`             |
