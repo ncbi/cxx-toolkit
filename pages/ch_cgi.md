@@ -1425,7 +1425,7 @@ If the port is available there won't be any output; if it's in use by another pr
 Next, edit the proxy script (on the web server) and set the `-connect` option using the host that will be running the FCGI application, and the port from the previous step:
 
     # fmyapp.cgi
-    /netopt/ncbi_tools/fcgi-current/bin/cgi-fcgi -bind -connect myhost:5000
+    /netopt/ncbi_tools64/fcgi-current/bin/cgi-fcgi -bind -connect myhost:5000
 
 Then, edit the INI file for the FCGI application and set the listening port using the `StandaloneServer` entry (be sure to prepend a colon to the port):
 
