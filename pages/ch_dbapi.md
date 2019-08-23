@@ -152,6 +152,8 @@ The following is an outline of the topics presented in this chapter:
 -   [Database Load-Balancing (DBLB)](#ch_dbapi.Database_loadbalanci)
 
     -   [Setting up Load-Balancing of Database Servers](#ch_dbapi.Getting_started)
+    
+    -   [Using Database Load-Balancing from Python](#ch_dbapi.Using_Database_LoadBalancing_from_Python)
 
     -   [Using Database Load-Balancing from C++](#ch_dbapi.Using_Database_LoadBalancing_fr)
 
@@ -2109,6 +2111,15 @@ The following steps must be done prior to using database load-balancing and serv
 The DBAs will also ask for a DNS name to match the service name as a backup connection method, should everything else fail.
 
 
+<a name="ch_dbapi.Using_Database_LoadBalancing_from_Python"></a>
+
+### Using Database Load-Balancing from Python
+
+There is a Python module that provides an interface to the load-balancing service:
+
+-   documentation: <https://bitbucket.ncbi.nlm.nih.gov/projects/PY/repos/python-ncbi-lbsm/browse>
+
+
 <a name="ch_dbapi.Using_Database_LoadBalancing_fr"></a>
 
 ### Using Database Load-Balancing from C++
@@ -2229,11 +2240,6 @@ From Perl:
         # Do whatever is needed with the server name...
     }
 
-There is also a Python module that provides an interface to the load-balancing service:
-
--   code: <https://stash.ncbi.nlm.nih.gov/projects/LBSMD/repos/pylbsmd/browse>
-
--   documentation: <https://dsubmit.ncbi.nlm.nih.gov/docs/lbsmd/>
 
 <a name="ch_dbapi.Advantages_of_using_"></a>
 
