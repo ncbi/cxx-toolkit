@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Your title is here
+title: Building the Toolkit (AUTOCONF/PTB)
 nav: pages/ch_intro
 ---
 
