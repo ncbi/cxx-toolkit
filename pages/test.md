@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Building the Toolkit (AUTOCONF/PTB)
+title: Configure, Build and Use the Toolkit with CMake.
 nav: pages/ch_intro
 ---
 
@@ -19,28 +19,31 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
 ## Chapter Outline
 
--   Configure build tree
+-   [Configure build tree](#ch_cmconfig._Configure)
 
--   Use prebuilt Toolkit
+-   [Use prebuilt Toolkit](#ch_cmconfig._Use_prebuilt)
 
--   NCBIptb build system
+-   [NCBIptb build system](#ch_cmconfig._NCBIptb)
 
-    -   What is it?
+    -   [What is it?](#ch_cmconfig._What)
     
-    -   Examples.
+    -   [Examples.](#ch_cmconfig._Examples)
     
-    -   How does it work?
+    -   [How does it work?](#ch_cmconfig._How)
     
-    -   Tree structure and variable scopes.
+    -   [Tree structure and variable scopes.](#ch_cmconfig._Tree)
 
-    -   Directory entry.
+    -   [Directory entry.](#ch_cmconfig._Dir)
     
-    -   Library and application targets.
+    -   [Library and application targets.](#ch_cmconfig._Target)
     
-    -   Application target tests.
+    -   [Application target tests.](#ch_cmconfig._Test)
     
-    -   Custom target.
-    
+    -   [Custom target.](#ch_cmconfig._Custom)
+
+
+<a name="ch_cmconfig._Configure"></a>
+
 ## Configure build tree
 
 Having checked out the source tree, run the following command in the root directory:
@@ -58,6 +61,8 @@ It lists available options used to generate the build tree. Several of them limi
 
 Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-vs2017\static\build*, and run make or open a generated solution.
 
+<a name="ch_cmconfig._Use_prebuilt"></a>
+
 ## Use prebuilt Toolkit
 
 The prebuilt Toolkit is available in several configurations. ***Note*** that this must be built using CMake – that is, it must contain CMake import target configuration files. To create a new project which uses libraries from it, use *new_cmake_project* script:
@@ -66,17 +71,23 @@ The prebuilt Toolkit is available in several configurations. ***Note*** that thi
 
 The script will create a subdirectory *name*, source subdirectories with a sample project *type* and a configuration script. Run the script, then build the project.
 
+<a name="ch_cmconfig._NCBIptb"></a>
+
 ## NCBIptb build system.
+
+<a name="ch_cmconfig._What"></a>
 
 ### What is it?
 
 Imagine a large source tree with thousands of projects. It takes sources from several repositories and uses numerous external packages. It consists of “core” part and subtrees. Different teams work on multiple projects. To do their work, these teams assemble their own build trees, which include certain parts of core as well as their own projects. “Core” has several official releases; team projects have their own ones. There are several high frequency builds which work on different subtrees and ensure that everything stays compatible.
 
-NCBIptb was designed to facilitate handling of such large source tree in a dynamic build environment. The purpose of NCBIptb (which is written in CMake scripting language) is to extract from the source tree only requested projects. This includes analyzing and collecting build target dependencies on other targets, analyzing dependencies on external packages and excluding targets for which such dependencies cannot be satisfied, adding sources and headers, organizing them into source groups, defining precompiled header usage.  Doing this in “pure” CMake is either impossible or requires complex project descriptions. Still, all these tasks are pretty standard and can be automated. Using NCBIptb is convenience, not a requirement; it extends functionality but still allows using “native” CMake.
+NCBIptb was designed to facilitate handling of such large source tree in a dynamic build environment. The purpose of NCBIptb is to extract from the source tree only requested projects. This includes analyzing and collecting build target dependencies on other targets, analyzing dependencies on external packages and excluding targets for which such dependencies cannot be satisfied, adding sources and headers, organizing them into source groups, defining precompiled header usage.  Doing this in “pure” CMake is either impossible or requires complex project descriptions. Still, all these tasks are pretty standard and can be automated. Using NCBIptb is convenience, not a requirement; it extends functionality but still allows using “native” CMake.
 
 Probably, limiting the set of projects to build is not such a big problem for an automated build – it must build everything anyway. Still, it is a problem for an individual developer working in an Integrated Development Environment. IDEs can handle solutions with hundreds of build targets, but they can become very slow. And, it is simply not needed, it is waste of computer resources. Developer needs a solution with only few build targets. NCBIptb can do exactly that.
 
 Another challenge is working with prebuilt trees. Let us say, a developer needs to add features into some applications or libraries. He or she checks out part of the source tree. Some libraries are present in the local tree, others should be taken from a prebuilt one. The problem is that local libraries may have the same names as prebuilt ones. CMake will not add them into the build saying that these targets are already defined as “imported” ones. NCBIptb solves this problem by renaming such local build targets and adjusting target dependencies accordingly. Developer’s intervention is not required, everything is made automatically.
+
+<a name="ch_cmconfig._Examples"></a>
 
 ### Examples.
 
@@ -121,11 +132,15 @@ In NCBIptb, only one line must be added:
     NCBI_requires(X)
     NCBI_end_app()
 
+<a name="ch_cmconfig._How"></a>
+
 ### How does it work?
 
 While in CMake “adding a build target” is final and cannot be reversed, in NCBIptb it is only a piece of information. The decision of whether to add the target or not depends on several factors and is made by the build system itself. To do so, NCBIptb scans the source tree two times (CMake does it only once). During the first pass it collects information about target dependencies and requirements, then it uses filters to select “proper” build targets and finally, during the second pass adds them into the generated solution or build tree.
 
 Project filters include list of source tree subdirectories, list of build targets and list of build target “tags”. They can be specified in any combination. “Tag” is only a label – for example *test* or *demo*, it has no meaning for the build system. Subdirectories and targets are treated here as [regular expressions](https://cmake.org/cmake/help/v3.14/command/string.html#regex-specification). Note that project filters in only a starting point. If you request building projects in directory ***A*** only, but they require projects from directory ***B***, the latter ones will be added automatically. If you request building application ***A*** only, all required libraries will also be added automatically.
+
+<a name="ch_cmconfig._Tree"></a>
 
 ### Tree structure and variable scopes.
 
@@ -136,6 +151,8 @@ CMake input files are named *CMakeLists.txt*. When one “adds a subdirectory”
 So, in *CMakeLists.txt* one can call *add_subdirectory*, *include* a CMake file, or define a build target. In NCBIptb we use *NCBI_add_subdirectory*, *NCBI_add_library*, *NCBI_add_app* and *NCBI_add_target* instead. While NCBIptb does not prohibit defining a build target in *CMakeLists.txt*, we find it beneficial to define them in separate files. Also, NCBIptb creates a separate scope for each such file. That is, variables defined in *CMakeLists.txt* are propagated to each target definition file in the current directory and all subdirectories. At the same time, variables defined in target definition file are not propagated anywhere - they are guaranteed to be local.
 
 What if it was not so? What if, instead of calling *NCBI_add_target()*, we simply *included* target definition file? It is a common scenario when there are several target definitions in a single directory. Once so, variables defined in one file could silently affect others and potentially create a lot of confusion. Creating a separate scope for each target definition eliminates this interdependency.
+
+<a name="ch_cmconfig._Dir"></a>
 
 ### Directory entry
 
@@ -150,6 +167,8 @@ Normally, *CMakeLists.txt* contains the following function calls: *NCBI_add_subd
 -   **NCBI_add_target**(a b) – adds custom targets. In the current directory it looks for files named *CMakeLists.a.txt* and *CMakeLists.b.txt*.
 
 *CMakeLists.txt* may also contain calls to the following functions: *NCBI_headers*, *NCBI_disable_pch*, *NCBI_enable_pch*, *NCBI_requires*, *NCBI_optional_components*, *NCBI_add_definitions*, *NCBI_add_include_directories*, *NCBI_uses_toolkit_libraries*, *NCBI_uses_external_libraries*, *NCBI_project_tags*. If so, settings defined by them will affect all targets defined in this directory and its subdirectories.
+
+<a name="ch_cmconfig._Target"></a>
 
 ### Library and application targets.
 
@@ -186,13 +205,15 @@ Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib
 
 -   **NCBI_uses_toolkit_libraries**(list of libraries) – adds dependencies on other libraries in the same build tree.
 
--   **NCBI_uses_external_libraries**(list of libraries) – adds external libraries to the build target. Probably, a better way of doing this is by using *requirements* in NCBI_requires(), but if a library should be added to one or two projects only, then this might be an easier way.
+-   **NCBI_uses_external_libraries**(list of libraries) – adds external libraries to the build target. Probably, a better way of doing this is by using *requirements* in *NCBI_requires*, but if a library should be added to one or two projects only, then this might be an easier way.
 
 -   **NCBI_add_definitions**(list) – add compiler definitions to the target.
 
 -   **NCBI_add_include_directories**(list) – adds include directories.
 
 -   **NCBI_project_tags**(list) – adds tags to the target. A target may have an unlimited number of tags.
+
+<a name="ch_cmconfig._Test"></a>
 
 ### Application target tests.
 
@@ -219,6 +240,8 @@ Long form allows to define additional requirements and add test assets.
 -   **NCBI_set_test_requires**(list of components) - adds test requirements. If a requirement is not met, the test will not be added.
 
 -   **NCBI_set_test_timeout**(seconds) – test timeout in seconds.
+
+<a name="ch_cmconfig._Custom"></a>
 
 ### Custom target
 
