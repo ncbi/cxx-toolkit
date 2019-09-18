@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Working with Makefiles
+title: Working with Makefiles (autoconf/PTB)
 nav: pages/ch_build
 ---
 
