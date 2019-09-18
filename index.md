@@ -21,7 +21,7 @@ Contents
     -   [Configure, Build, and Use the Toolkit (autoconf/PTB)](pages/ch_config)
     -   [Working with Makefiles (autoconf/PTB)](pages/ch_build)
     -   [Project Creation and Management (autoconf/PTB)](pages/ch_proj)
-    -   [Configure, Build and Use the Toolkit with CMake](pages/ch_cmake)
+    -   [Configure, Build and Use the Toolkit with CMake](pages/ch_cmconfig)
     -   [Programming Policies and Guidelines](pages/ch_style)
 -   [Part 3. C++ Toolkit Library Reference](pages/part3)
     -   [Portability, Core Functionality and Application Framework](pages/ch_core)
