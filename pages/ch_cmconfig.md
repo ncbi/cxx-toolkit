@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configure, Build and Use the Toolkit with CMake.
+title: Configure, Build and Use the Toolkit with CMake
 nav: pages/ch_cmconfig
 ---
 
