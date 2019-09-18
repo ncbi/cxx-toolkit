@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Project Creation and Management
+title: Project Creation and Management (autoconf/PTB)
 nav: pages/ch_proj
 ---
 
