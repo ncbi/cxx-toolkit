@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configure, Build, and Use the Toolkit
+title: Configure, Build, and Use the Toolkit (autoconf/PTB)
 nav: pages/ch_config
 ---
 
