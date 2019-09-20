@@ -27,19 +27,21 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
     -   [What is it?](#ch_cmconfig._What)
     
-    -   [Examples.](#ch_cmconfig._Examples)
+    -   [Examples](#ch_cmconfig._Examples)
     
     -   [How does it work?](#ch_cmconfig._How)
     
-    -   [Tree structure and variable scopes.](#ch_cmconfig._Tree)
+    -   [Tree structure and variable scopes](#ch_cmconfig._Tree)
 
-    -   [Directory entry.](#ch_cmconfig._Dir)
+    -   [Directory entry](#ch_cmconfig._Dir)
     
     -   [Library and application targets.](#ch_cmconfig._Target)
     
     -   [Application target tests.](#ch_cmconfig._Test)
     
     -   [Custom target.](#ch_cmconfig._Custom)
+
+-   [Testing](#ch_cmconfig._Testing)
 
 
 <a name="ch_cmconfig._Configure"></a>
@@ -50,6 +52,7 @@ Having checked out the source tree, run the following command in the root direct
 
     On Linux:   src/build-system/cmake/cmake-cfg-unix.sh --help
     On Windows: src\build-system\cmake\cmake-cfg-vs.bat --help
+    For XCode: src\build-system\cmake\cmake-cfg-xcode.bat --help
 
 It lists available options used to generate the build tree. Several of them limit the build scope:
 
@@ -72,7 +75,12 @@ It lists available options used to generate the build tree. Several of them limi
     --with-tags="core;-test"
 ```
 
-Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-vs2017\static\build*, and run make or open a generated solution.
+Examples of configuration commands:
+
+    src/build-system/cmake/cmake-cfg-unix.sh --with-dll --with-debug --with-projects="sra"
+    src/build-system/cmake/cmake-cfg-vs.sh --with-projects="misc"
+
+Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-vs2017\static\build*, and run *make [target]* command or open a generated solution in an IDE and build *target*.
 
 <a name="ch_cmconfig._Use_prebuilt"></a>
 
@@ -86,7 +94,7 @@ The script will create a subdirectory *name*, source subdirectories with a sampl
 
 <a name="ch_cmconfig._NCBIptb"></a>
 
-## NCBIptb build system.
+## NCBIptb build system
 
 <a name="ch_cmconfig._What"></a>
 
@@ -102,7 +110,7 @@ Another challenge is working with prebuilt trees. Let us say, a developer needs 
 
 <a name="ch_cmconfig._Examples"></a>
 
-### Examples.
+### Examples
 
 To define a simple build target in CMake we use the following command:
 
@@ -155,7 +163,7 @@ Project filters include list of source tree subdirectories, list of build target
 
 <a name="ch_cmconfig._Tree"></a>
 
-### Tree structure and variable scopes.
+### Tree structure and variable scopes
 
 CMake input files are named *CMakeLists.txt*. When one “adds a subdirectory” to the build, CMake looks for *CMakeLists.txt* file in this directory and processes it. Each of the directories in a source tree has its own variable bindings. Before processing the *CMakeLists.txt* file for a directory, CMake copies all currently defined variables and creates a new scope. All changes to variables are reflected in the current scope only. They are propagated to subdirectories, but not to the parent one.
 
@@ -183,7 +191,7 @@ Normally, *CMakeLists.txt* contains the following function calls: *NCBI_add_subd
 
 <a name="ch_cmconfig._Target"></a>
 
-### Library and application targets.
+### Library and application targets
 
 Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib*; definition of an application begins with *NCBI_begin_app* and ends with *NCBI_end_app*. Otherwise, there is not much difference between them. All calls to other NCBIptb functions must be put between these two.
 
@@ -275,3 +283,20 @@ That is, the definition looks as follows:
     NCBI_end_custom_target(result)
 
 This approach allows to define custom target only when all the requirements are met and collect target dependencies automatically.
+
+<a name="ch_cmconfig._Testing"></a>
+
+## Testing
+
+The build system supports two test frameworks - NCBI and CMake one. To use NCBI test framework on Linux, in the root directory execute the following command:
+
+    make check; ./check.sh run
+
+To use CMake testing framework:
+
+    On Linux: make test
+    In Visual Studio or XCode: "build" RUN_TESTS target
+
+Refer to [CMake documentation](https://cmake.org/cmake/help/v3.14/manual/ctest.1.html) for details.
+In case of CMake testing framework, test outputs can be found in *CMake-GCC730-ReleaseDLL/testing* directory.
+
