@@ -52,8 +52,6 @@ The following is an outline of the topics presented in this chapter:
 
         -   [C++ Implementation Guide](#ch_style.impl_guideline)
 
-            -   [Limitations on Using C++11 Features](#ch_style.Limitations_on_Using_C11_Featur)
-
             -   [Use of STL (Standard Template Library)](#ch_style.stl_templ_lib)
 
             -   [Use of C++ Exceptions](#ch_style.use_cpp_excep)
@@ -601,8 +599,6 @@ This section discusses the following topics:
 
     -   [C++ Implementation Guide](#ch_style.impl_guideline)
 
-        -   [Limitations on Using C++11 Features](#ch_style.Limitations_on_Using_C11_Featur)
-
         -   [Use of STL (Standard Template Library)](#ch_style.stl_templ_lib)
 
         -   [Use of C++ Exceptions](#ch_style.use_cpp_excep)
@@ -645,27 +641,13 @@ This section discusses the following topics:
 
 #### C++ Implementation Guide
 
-<a name="ch_style.Limitations_on_Using_C11_Featur"></a>
-
-##### Using C++11 Features
-
-While most of the C++11 features are well supported by the contemporary compilers... note however that some (a very few nowadays) of new features of the C++11 Standard are not yet implemented (or implemented poorly) by at least some actual compilers (see e.g. [MS VS 2015](https://msdn.microsoft.com/en-us/library/hh567368.aspx) so - please be careful about using some of the "more advanced" C++11 features.
-
-Do not use such C++11 features in code that is:
-
--   Platform-portable, such as the ["core" (public, non-GUI, non-INTERNAL) part of the C++ Toolkit](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/);
-
--   Part of regular [coremake builds](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/c++/scripts/internal/projects/netopt.lst?view=markup);
-
--   Supposed to be compiled with the relatively old compilers (like MSVC15, pre-GCC4.9, etc) that don't support many features; or
-
--   Known to be a dependency for the projects that still need to be compiled with the older compilers.
-
 <a name="ch_style.stl_templ_lib"></a>
 
 ##### Use of STL (Standard Template Library)
 
 Use the [Standard Template Library (STL)](#ch_style.style_templ_library), which is part of ANSI/ISO C++. It'll make programming easier, as well as make it easier for others to understand and maintain your code.
+
+Starting with Stable Components 23 the C++ Toolkit supports only those compilers that are C++'2014 Standard compliant.
 
 Note that C++ Toolkit has quite a few APIs that were created in the earlier days of C++ to meet developers' programming needs which are nowadays covered by the newer standard C++ language features and libraries. At least in the new code, developers are strongly encouraged to use the standard C++ features rather than their C++ Toolkit's counterparts -- *unless* they are expected to ever get into a direct conflict with the existing uses of the corresponding C++ Toolkit features.
 
@@ -769,8 +751,6 @@ As an added benefit, using an enumerated type for parameters instead of **`bool`
 
 The [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) set a good example. There is a couple of practical caveats to following it though:
 
-- They are written for C++14, and we are still at C++11
-
 - Because there is already an established NCBI C++ coding style (this page) on which millions of lines of NCBI code have already been written... please follow the NCBI style if it conflicts with the [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines). FWIW, [C++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) itself advise that for well-established projects with pre-existing coding guidelines.
 
 <a name="ch_style.style_templ_library"></a>
@@ -821,7 +801,7 @@ If you pass a container to a function, don't add a local object to the container
 
 ##### Non-Standard STL Classes
 
--   Avoid using [hash\_map](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_map), [hash\_multimap](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_multimap), [hash\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_set), and [hash\_multiset](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_multiset) classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)). -- Nowadays there are standard C++11's ***unordered_map***, ***unordered_multimap***, ***unordered_set*** and ***unordered_multiset*** classes that provide a similar functionality.
+-   Avoid using [hash\_map](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_map), [hash\_multimap](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_multimap), [hash\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_set), and [hash\_multiset](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=hash_multiset) classes (from headers [\<corelib/hash\_map.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__map_8hpp.html) and [\<corelib/hash\_set.hpp\>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hash__set_8hpp.html)). -- Nowadays there are standard C++14's ***unordered_map***, ***unordered_multimap***, ***unordered_set*** and ***unordered_multiset*** classes that provide a similar functionality.
 
 <a name="ch_style.cpp_bad_guys"></a>
 
@@ -900,7 +880,7 @@ It is beyond the scope of this document to discuss all C++ gotchas, but this sec
 
     -   ***iostream*** buffering (**`cin`**/**`cout`**/**`cerr`**/**`clog`** including ***tie()*** and **`unitbuf`**)<br/>
 
-For more information, see the [C++ Draft Standard](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3242.pdf), or search related topics on the internet.
+For more information, see the [C++ Draft Standard](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf), or search related topics on the internet.
 
 <a name="ch_style.Source_Code_Repositories"></a>
 
