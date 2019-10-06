@@ -138,7 +138,7 @@ div#docs-header {
 /* Content formatting begin */
 .content {
 	display: flex;
-	margin: 101px auto 0
+	margin: 101px auto 0;
 	font: 62.5%/1.3846 arial,helvetica,clean,sans-serif;
 	font-size: 1.09em;
 	line-height: 1.45em;
