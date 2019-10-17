@@ -191,26 +191,37 @@ This section includes compact code fragments that show the essence of how to ach
 
 ### Create a Document from an std::string Object
 
+```
 
     std::string         xmldata( "<TagA>"
                                      "<TagB>stuff</TagB>"
                                  "</TagA>" );
     xml::document       doc( xmldata.c_str(), xmldata.size(), NULL );
+	
+```
 
 <a name="ch_xmlwrapp._Create_a_Document_fr_1"></a>
 
 ### Create a Document from a File
 
 
+```
+
     xml::document       doc( "MyFile.xml", NULL );
+
+```
 
 
 ***Note:*** The second parameter above is a pointer to an [error\_messages](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=error_messages) object, which stores any messages collected while parsing the XML document (a `NULL` value can be passed if you're not interested in collecting error messages). For example:
 
 
+```
+
     xml::error_messages msgs;
     xml::document       doc( "MyFile.xml", &msgs );
     std:cout << msgs.print() << std:endl;
+
+```
 
 
 <a name="ch_xmlwrapp.Save_a_Document_to_a"></a>
@@ -219,6 +230,8 @@ This section includes compact code fragments that show the essence of how to ach
 
 The simplest way is inserting into a stream:
 
+
+```
 
     // save document
     xml::document       xmldoc( "abook" );  // "abook" is the root node
@@ -234,21 +247,31 @@ The simplest way is inserting into a stream:
     node_file << n << std::endl;
     f.close();
 
+```
+
 The simplest way provides no control on how the output is formatted, but there is an alternative set of functions that accept formatting flags:
 
+
+```
 
     xml::document::save_to_string(...)
     xml::document::save_to_stream(...)
     xml::document::save_to_file(...)
     xml::node::node_to_string(...)
 
+```
+
 
 For example, if you do not want to have the XML declaration at the beginning of the document then you might have code similar to:
+
+```
 
     xml::document       doc( "example.xml", NULL );
     std::string         s;
     
     doc.save_to_string( s, xml::save_op_no_decl );
+
+```
 
 
 Note that all the ***save\_to\_...()*** functions use the same underlying formatting code and therefore respond to flags in the same way.
@@ -258,6 +281,8 @@ For further discussion, see the [Formatting of Programmatically Added Content](#
 <a name="ch_xmlwrapp.Iterate_Over_Nodes"></a>
 
 ### Iterate Over Nodes
+
+```
 
     xml::document       doc( "MyFile.xml", NULL );
     xml::node &         root = doc.get_root_node();
@@ -272,9 +297,13 @@ For further discussion, see the [Formatting of Programmatically Added Content](#
         std::cout << "child node '" << child->get_name() << "'" << std:endl;
     }
 
+```
+
 <a name="ch_xmlwrapp.Insert_and_Remove_No"></a>
 
 ### Insert and Remove Nodes
+
+```
 
     xml::document           doc( "MyFile2.xml", NULL );
     xml::node &             root = doc.get_root_node();
@@ -284,9 +313,13 @@ For further discussion, see the [Formatting of Programmatically Added Content](#
     i = root.find( "to_remove", root.begin() );
     root.erase( i );
 
+```
+
 <a name="ch_xmlwrapp.Iterate_Over_Attribu"></a>
 
 ### Iterate Over Attributes
+
+```
 
     xml::document              doc( "MyFile.xml", NULL );
     const xml::attributes &    attrs = doc.get_root_node().get_attributes();
@@ -299,9 +332,13 @@ For further discussion, see the [Formatting of Programmatically Added Content](#
         std::cout << i->get_name() << "=" << i->get_value() << std:endl;
     }
 
+```
+
 <a name="ch_xmlwrapp.Insert_and_Remove_At"></a>
 
 ### Insert and Remove Attributes
+
+```
 
     xml::document           doc( "MyFile.xml", NULL );
     xml::attributes &       attrs = doc.get_root_node().get_attributes();
@@ -311,9 +348,13 @@ For further discussion, see the [Formatting of Programmatically Added Content](#
     attrs.erase( i );
 
 
+```
+
 <a name="ch_xmlwrapp.Work_with_XML_Namesp"></a>
 
 ### Work with XML Namespaces
+
+```
 
     xml::document           doc( "MyFile.xml", NULL );
     xml::node &             root = doc.get_root_node();
@@ -333,6 +374,8 @@ For further discussion, see the [Formatting of Programmatically Added Content](#
     root.set_namespace( "myPrefix" );
     attr->set_namespace( "myPrefix" );
 
+```
+
 <a name="ch_xmlwrapp.Use_an_Event_Parser"></a>
 
 ### Use an Event Parser
@@ -342,6 +385,8 @@ For those within NCBI, there is [sample code](https://svn.ncbi.nlm.nih.gov/viewv
 <a name="ch_xmlwrapp.Make_an_XSLT_Transfo"></a>
 
 ### Make an XSLT Transformation
+
+```
 
     xml::document         doc( "example.xml", NULL );
     xslt::stylesheet      style( "example.xsl" );
@@ -354,6 +399,8 @@ For those within NCBI, there is [sample code](https://svn.ncbi.nlm.nih.gov/viewv
     
     // you can also specify save options, e.g. to omit the XML declaration:
     result.save_to_string( tempString, xml::save_op_no_decl );
+
+```
 
 Other methods and options are available for saving the transformation result - see [save\_to\_stream()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_stream), [save\_to\_file()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_file), and [save\_options](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_options).
 
@@ -379,6 +426,8 @@ Other methods and options are available for saving the transformation result - s
 
 ### Run an XPath Query
 
+```
+
     xml::document                  doc( "example.xml", NULL );
     xml::node &                    root = doc.get_root_node();
     xml::xpath_expression          expr( "/root/child" );
@@ -389,6 +438,8 @@ Other methods and options are available for saving the transformation result - s
     for ( ; k != nset.end(); ++k )
         std::cout << "Node #" << nnum++ << std::endl
                   << *k << std::endl;
+
+```
 
 Please note that the **`node_set`** object holds a set of references to the nodes from the document which is used to run the XPath query. Therefore you can change the nodes in the original document if you use a non-constant **`node_set`** and non-constant iterators.
 
@@ -403,6 +454,8 @@ The **`xpath_expression`** object also supports:
 ### Run an XPath Query with a Default Namespace
 
 The XPath specification does not support default namespaces, and it considers all nodes without prefixes to be in the null namespace, not the default namespace. This creates a problem when you want to search for nodes to which a default namespace applies, because the default namespace cannot be directly matched. For example, the following code will not find any matches:
+
+```
 
     std::string                     xmldata("<A xmlns=\"http://nlm.nih.gov\">"
                                                 "<B><C>stuff</C></B>"
@@ -419,7 +472,11 @@ The XPath specification does not support default namespaces, and it considers al
         std::cout << "Node #" << nnum++ << std::endl
                   << *k << std::endl;
 
+```
+
 The solution is to create a special namespace with the sole purpose of associating a made-up prefix with the URI of the default namespace. Use that namespace when creating the XPath expression, and prefix the nodes in your XPath expression with your made-up prefix. This prefix should be distinct from other prefixes in the document. The following code will find the desired node:
+
+```
 
     std::string                     xmldata("<A xmlns=\"http://nlm.nih.gov\">"
                                                 "<B><C>stuff</C></B>"
@@ -443,9 +500,13 @@ The solution is to create a special namespace with the sole purpose of associati
         std::cout << "Node #" << nnum++ << std::endl
                   << *k << std::endl;
 
+```
+
 <a name="ch_xmlwrapp.Use_an_Extension_Function"></a>
 
 ### Use an Extension Function
+
+```
 
     class myExtFunc : public xslt::extension_function
     {
@@ -485,6 +546,8 @@ The solution is to create a special namespace with the sole purpose of associati
     
         std::cout << result << std::endl; // "42"
 
+```
+
 Please also see the ***xslt::extension-function*** [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classxslt_1_1extension__function.html).
 
 Users inside NCBI can view the [extension function unit tests](https://svn.ncbi.nlm.nih.gov/viewvc/toolkit/trunk/internal/c++/src/internal/test/misc/xmlwrapp/xslt_ext_func/) for more usage examples.
@@ -492,6 +555,8 @@ Users inside NCBI can view the [extension function unit tests](https://svn.ncbi.
 <a name="ch_xmlwrapp.Use_an_Extension_Element"></a>
 
 ### Use an Extension Element
+
+```
 
     class myExtElem : public xslt::extension_element
     {
@@ -535,6 +600,8 @@ Users inside NCBI can view the [extension function unit tests](https://svn.ncbi.
     
         std::cout << result_root.get_name() << std::endl; // "inserted"
         std::cout << result_root.get_content() << std::endl; // "content"
+
+```
 
 Please also see the ***xslt::extension-element*** [class reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classxslt_1_1extension__element.html).
 
@@ -582,6 +649,8 @@ Implementation Details
 
 This example shows both ways:
 
+```
+
     xml::document       doc( "example.xml", NULL );
     xml::node_set       nset( doc.get_root_node().
                                       run_xpath_query( "/root/child" ) );
@@ -602,6 +671,8 @@ This example shows both ways:
         // Don't forget this
         delete my_copy;
     }
+
+```
 
 What is the difference between the **`node_ref`** and **`my_copy`** variables?
 
@@ -635,6 +706,8 @@ Recommendations:
 
 Sometimes it is necessary to iterate over a node's attributes or to find an attribute. Let’s take a simple example:
 
+```
+
     <?xml version="1.0" ?>
     <root xmlns:some_ns="http://the.com"
           attr1       = "val1"
@@ -642,7 +715,11 @@ Sometimes it is necessary to iterate over a node's attributes or to find an attr
           some_ns:bar = "barVal">
     </root>
 
+```
+
 XmlWrapp provides an STL-like way of iterating over the attributes, e.g:
+
+```
 
     void f( const xml::node &  theNode ) {
         const xml::attributes &  attrs = theNode.get_attributes();
@@ -653,9 +730,13 @@ XmlWrapp provides an STL-like way of iterating over the attributes, e.g:
                       << " value: " << k->get_value() << std::endl;
     }
 
+```
+
 You may notice that iterators are used here and the iterators can be incremented.
 
 ***Note:*** Although iterating over attributes is STL-like, searching for an attribute is only partially STL-like. Iterators returned by the ***find()*** method cannot be incremented, but both operator `->` and operator `*` can be used. The following code will work:
+
+```
 
     void f( const xml::node &  theNode, const char *  attrName ) {
         const xml::attributes &          attrs = theNode.get_attributes();
@@ -666,7 +747,11 @@ You may notice that iterators are used here and the iterators can be incremented
                       << "Found value: " << found->get_value() << std::endl;
     }
 
+```
+
 but this code will generate an exception:
+
+```
 
     void f( const xml::node &  theNode, const char *  attrName ) {
         const xml::attributes &          attrs = theNode.get_attributes();
@@ -676,9 +761,13 @@ but this code will generate an exception:
             ++found;  // Exception is guaranteed here
     }
 
+```
+
 This implementation detail is related to the limitations of `libxml2` with respect to default attributes. Let’s take an example that has a DTD:
 
-    <?xml version="1.0"?>
+```
+
+    &lt;?xml version="1.0"?>
     <!DOCTYPE root PUBLIC "something" "my.dtd" [
     <!ATTLIST root defaultAttr CDATA "defaultVal">
     ]>
@@ -688,7 +777,11 @@ This implementation detail is related to the limitations of `libxml2` with respe
           some_ns:bar = "barVal">
     </root>
 
+```
+
 This example introduces a default attribute called defaultAttr for the root node. The `libxml2` library stores default and non-default attributes separately. The library provides very limited access the default attributes - there is no way to iterate over them and the only possible way to get a default attribute is to search for it explicitly. For example:
+
+```
 
     void f( const xml::node &  theNode ) {
         const xml::attributes &          attrs = theNode.get_attributes();
@@ -700,6 +793,8 @@ This example introduces a default attribute called defaultAttr for the root node
                       << " Value: " << found->get_value() << std::endl;
         }
     }
+
+```
 
 XmlWrapp forbids incrementing iterators provided by ***xml::attributes::find(...)*** methods because:
 
@@ -715,7 +810,9 @@ XmlWrapp forbids incrementing iterators provided by ***xml::attributes::find(...
 
 `libxml2` does not provide the ability to change a default attribute. XmlWrapp does provide this ability, but at the cost of implicitly converting the default attribute into a non-default attribute. Consider the following document:
 
-    <?xml version="1.0"?>
+```
+
+    &lt;?xml version="1.0"?>
     <!DOCTYPE root PUBLIC "something" "my.dtd" [
     <!ATTLIST root language CDATA "EN">
     ]>
@@ -723,7 +820,11 @@ XmlWrapp forbids incrementing iterators provided by ***xml::attributes::find(...
           some_ns:bar = "barVal">
     </root>
 
+```
+
 The code below demonstrates changing a default attribute and is totally OK as explained in the comments (error handling is omitted for clarity):
+
+```
 
     xml::document               doc( "example.xml", NULL );
     xml::node &                 root = doc.get_root_node();
@@ -749,9 +850,13 @@ The code below demonstrates changing a default attribute and is totally OK as ex
     // If you decide to save the document at this point then you’ll see
     // the root node with one node attribute language="FR"
 
+```
+
 A similar conversion will happen if you decide to change a default attribute namespace.
 
 XmlWrapp will also ensure that all iterators pointing to the same attribute remain consistent when multiple iterators point to the same default attribute and one of them is changed. For example:
+
+```
 
     xml::document               doc( "example.xml", NULL );
     xml::node &                 root = doc.get_root_node();
@@ -776,6 +881,8 @@ XmlWrapp will also ensure that all iterators pointing to the same attribute rema
     assert( j->get_value() == std::string( "FR" ) );
     assert( k->get_value() == std::string( "FR" ) );
 
+```
+
 For a diagram illustrating how the XmlWrapp library handles iterators and changed default attributes, please see [Figure 1, Phantom Attributes](#ch_xmlwrapp.1.2).
 
 <a name="ch_xmlwrapp.1.2"></a>
@@ -798,9 +905,13 @@ When using ***xml***::[event\_parser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C
 
 Imagine that an event parser which implements both ***text()*** and [entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference) callbacks receives the following document as in input:
 
-    <?xml version="1.0"?>
+```
+
+    &lt;?xml version="1.0"?>
     <!DOCTYPE EXAMPLE SYSTEM "example.dtd" [ <!ENTITY my "VALUE">]>
     <root><node>Super &my; oh!</node></root>
+
+```
 
 Then the table below lists the callbacks that are called, depending on the value passed to [substitute\_entities()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=substitute_entities):
 
@@ -890,7 +1001,11 @@ Therefore, it is the responsibility of your program to ensure that ***xmlCleanup
 However, XmlWrapp does provide a way to prevent a crash when a *single* ***xmlCleanupParser()*** call is made outside XmlWrapp. In this case your program can prevent XmlWrapp from calling ***xmlCleanupParser()*** using:
 
 
+```
+
     xml::init::library_cleanup_on_exit(false);
+
+```
 
 
 Your program should also make sure that XmlWrapp finishes all its data handling before the other part calls ***xmlCleanupParser()***. This approach will prevent XmlWrapp from calling ***xmlCleanupParser()***, and the other use of ***xmlCleanupParser()*** will be safe.
@@ -899,8 +1014,12 @@ Your program should also make sure that XmlWrapp finishes all its data handling 
 
 The situation for `libxslt` cleanup is essentially the same as described above for `libxml2`, except that the problem arises from ***xsltCleanupGlobals()*** in addition to ***xmlCleanupParser()***. Therefore, if your program makes a call to ***xsltCleanupGlobals()*** outside XmlWrapp (either directly or through a library), then it should use:
 
+```
+
     xml::init::library_cleanup_on_exit(false);
     xslt::init::library_cleanup_on_exit(false);
+
+```
 
 Your program should also make sure that XmlWrapp finishes all its data handling before the other part calls ***xsltCleanupGlobals()*** and ***xmlCleanupParser()***.
 
@@ -925,16 +1044,26 @@ In some cases, programmatically adding content to an ***xml***::***document*** o
 
 To illustrate this, imagine that you have created an XML document from the following pretty-printed XML file:
 
+```
+
     <?xml version="1.0"?>
     <root>
         <child/>
     </root>
 
+```
+
 Then you insert the following subtree before the child node:
+
+```
 
     <new_1><new_2/></new_1>
 
+```
+
 You might expect [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) to produce:
+
+```
 
     <?xml version="1.0"?>
     <root>
@@ -944,12 +1073,18 @@ You might expect [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C
         <child/>
     </root>
 
+```
+
 But instead it produces:
+
+```
 
     <?xml version="1.0"?>
     <root>
         <new_1><new_2/></new_1><child/>
     </root>
+
+```
 
 This is because the original document contained a text-node (the newline and space) immediately following the opening tag of the root element, and therefore:
 
@@ -959,10 +1094,16 @@ This is because the original document contained a text-node (the newline and spa
 
 However, if you start with:
 
+```
+
     <?xml version="1.0"?>
     <root><child/></root>
 
+```
+
 Then inserting \<new\_1\>\<new\_2/\>\</new\_1\> and calling [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) will produce:
+
+```
 
     <?xml version="1.0"?>
     <root>
@@ -971,6 +1112,8 @@ Then inserting \<new\_1\>\<new\_2/\>\</new\_1\> and calling [save\_to\_string()]
       </new_1>
       <child/>
     </root>
+
+```
 
 This is because neither the original nor the modified document contains any text nodes, so `libxml2` formats the entire thing.
 
@@ -985,26 +1128,42 @@ While this may not be desirable in certain circumstances, there is no generic an
 
 The libxml2 library has a global setting for the parser whether to remove the blank nodes used for pretty printing or not. By default the parser does not strip those blank nodes. To change the parser behavior the following call should be made before parsing an input:
 
+```
+
     xml::init::remove_whitespace(true); // the xml parser will strip
                                         // the blank formatting nodes
                                         // from now on
 
+```
+
 To illustrate this suppose that the XML file contains a pretty formatted document the same as in the previous section:
+
+```
 
     <?xml version="1.0"?>
     <root>
         <child/>
     </root>
 
+```
+
 And the code to parse the document is as follows:
+
+```
 
     xml::init::remove_whitespace(true);
     xml::document    doc("mydoc.xml", NULL);
 
+```
+
 then the document in memory will have no formatting text nodes i.e. would be exactly if the input was:
+
+```
 
     <?xml version="1.0"?>
     <root><child/></root>
+
+```
 
 Having the document in memory without formatting nodes and inserting new non formatted nodes, it would be possible to use the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) member formatting facilities applied unified to the input and to the changes. Please note that `libxml2` uses two spaces to indent each level of nested nodes when it formats the output.
 
@@ -1040,10 +1199,14 @@ The following sections illustrate how various formatting flags affect the output
 
 Given the following original document (which contains text-like nodes for indenting and has not been programmatically modified):
 
+```
+
     <?xml version="1.0"?>
     <root>
         <child attr="AttrValue">content</child>
     </root>
+
+```
 
 Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) function will produce the following outputs for the given formatting flags:
 
@@ -1097,18 +1260,26 @@ Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 Given the following original document (which contains text-like nodes for indenting):
 
+```
+
     <?xml version="1.0"?>
     <root>
         <child attr="AttrValue">content</child>
     </root>
 
+```
+
 And given that a node has been programmatically inserted like this:
+
+```
 
     xml::node &             root = doc.get_root_node();
     xml::node::iterator     insert_before;
     
     insert_before = root.find( "child" );
     root.insert( insert_before, xml::node("inserted") );
+
+```
 
 Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) function will produce the following outputs for the given formatting flags:
 
@@ -1176,8 +1347,12 @@ Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 Given the following original document (which does not contain any text-like nodes inside the root element and has not been programmatically modified):
 
+```
+
     <?xml version="1.0"?>
     <root><child attr="AttrValue">content</child></root>
+
+```
 
 Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) function will produce the following outputs for the given formatting flags:
 
@@ -1238,17 +1413,25 @@ Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 Given the following original document (which does not contain any text-like nodes):
 
+```
+
     <?xml version="1.0"?>
     <root><child attr="AttrValue">content</child></root>
 
+```
+
 
 And given that a node has been programmatically inserted like this:
+
+```
 
     xml::node &             root = doc.get_root_node();
     xml::node::iterator     insert_before;
     
     insert_before = root.find( "child" );
     root.insert( insert_before, xml::node("inserted") );
+
+```
 
 Then the [save\_to\_string()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=save_to_string) function will produce the following outputs for the given formatting flags:
 
@@ -1327,10 +1510,14 @@ A. You need `<misc/xmlwrapp/xmlwrapp.hpp>` for functionality that resides in the
 
 A. You need to add the following:
 
+```
+
     LIB = xmlwrapp xconnect xncbi
     LIBS = $(NETWORK_LIBS) $(LIBXML_LIBS) $(LIBXSLT_LIBS) $(ORIG_LIBS)
     CPPFLAGS = $(LIBXML_INCLUDE) $(LIBXSLT_INCLUDE) $(ORIG_CPPFLAGS)
     REQUIRES = LIBXML LIBXSLT
+
+```
 
 **Q. I read my nicely formatted document from a file, and then I added a few nodes and saved it to a file. Why is my saved document partially unformatted - specifically, all my added nodes are glued into a single long line?**
 
