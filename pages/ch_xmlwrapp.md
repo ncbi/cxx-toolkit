@@ -905,16 +905,14 @@ When using ***xml***::[event\_parser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C
 
 Imagine that an event parser which implements both ***text()*** and [entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference) callbacks receives the following document as in input:
 
-<table border="0">
+<table>
 	<tr>
-		<td style="text-align: left; padding: 15px;">
-
+		<td style="text-align: left; padding: 15px; border: 0;">
 			<pre>
-			    &lt;?xml version="1.0"?&gt;
-			    &lt;!DOCTYPE EXAMPLE SYSTEM "example.dtd" [ &lt;!ENTITY my "VALUE"&gt;]&gt;
-			    &lt;root&gt;&lt;node&gt;Super &my; oh!&lt;/node&gt;&lt;/root&gt;
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE EXAMPLE SYSTEM "example.dtd" [ &lt;!ENTITY my "VALUE"&gt;]&gt;
+&lt;root&gt;&lt;node&gt;Super &my; oh!&lt;/node&gt;&lt;/root&gt;
 			</pre>
-
 		</td>
 	</tr>
 </table>
