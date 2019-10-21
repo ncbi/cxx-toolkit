@@ -905,13 +905,19 @@ When using ***xml***::[event\_parser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C
 
 Imagine that an event parser which implements both ***text()*** and [entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference) callbacks receives the following document as in input:
 
-```
+<table>
+	<tr>
+		<td>
 
-    &lt;?xml version="1.0"?>
-    <!DOCTYPE EXAMPLE SYSTEM "example.dtd" [ <!ENTITY my "VALUE">]>
-    <root><node>Super &my; oh!</node></root>
+			<pre>
+			    &lt;?xml version="1.0"?&gt;
+			    &lt;?!DOCTYPE EXAMPLE SYSTEM "example.dtd" [ &lt;?!ENTITY my "VALUE"?&gt;]?&gt;
+			    &lt;?root?&gt;&lt;?node?&gt;Super &my; oh!&lt;?/node?&gt;&lt;?/root?&gt;
+			</pre>
 
-```
+		</td>
+	</tr>
+</table>
 
 Then the table below lists the callbacks that are called, depending on the value passed to [substitute\_entities()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=substitute_entities):
 
