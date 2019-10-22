@@ -765,19 +765,25 @@ but this code will generate an exception:
 
 This implementation detail is related to the limitations of `libxml2` with respect to default attributes. Let’s take an example that has a DTD:
 
-```
-
-    &lt;?xml version="1.0"?>
-    <!DOCTYPE root PUBLIC "something" "my.dtd" [
-    <!ATTLIST root defaultAttr CDATA "defaultVal">
-    ]>
-    <root xmlns:some_ns="http://the.com"
+<table>
+	<tr>
+		<td style="text-align: left; padding: 15px; border: 0;">
+			<pre>
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE root PUBLIC "something" "my.dtd" [
+&lt;!ATTLIST root defaultAttr CDATA "defaultVal"&gt;
+]&gt;
+    &lt;root xmlns:some_ns="http://the.com"
           attr1       = "val1"
           foo         = "fooVal"
-          some_ns:bar = "barVal">
-    </root>
+          some_ns:bar = "barVal"&gt;
+    &lt;/root&gt;
+			</pre>
+		</td>
+	</tr>
+</table>
 
-```
+
 
 This example introduces a default attribute called defaultAttr for the root node. The `libxml2` library stores default and non-default attributes separately. The library provides very limited access the default attributes - there is no way to iterate over them and the only possible way to get a default attribute is to search for it explicitly. For example:
 
