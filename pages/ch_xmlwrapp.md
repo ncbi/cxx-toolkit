@@ -816,17 +816,21 @@ XmlWrapp forbids incrementing iterators provided by ***xml::attributes::find(...
 
 `libxml2` does not provide the ability to change a default attribute. XmlWrapp does provide this ability, but at the cost of implicitly converting the default attribute into a non-default attribute. Consider the following document:
 
-```
-
-    &lt;?xml version="1.0"?>
-    <!DOCTYPE root PUBLIC "something" "my.dtd" [
-    <!ATTLIST root language CDATA "EN">
-    ]>
-    <root xmlns:some_ns="http://the.com"
-          some_ns:bar = "barVal">
-    </root>
-
-```
+<table>
+	<tr>
+		<td style="text-align: left; padding: 15px; border: 0;">
+			<pre>
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE root PUBLIC "something" "my.dtd" [
+&lt;!ATTLIST root language CDATA "EN"&gt;
+]&gt;
+    &lt;root xmlns:some_ns="http://the.com"
+          some_ns:bar = "barVal"&gt;
+    &lt;/root&gt;
+			</pre>
+		</td>
+	</tr>
+</table>
 
 The code below demonstrates changing a default attribute and is totally OK as explained in the comments (error handling is omitted for clarity):
 
