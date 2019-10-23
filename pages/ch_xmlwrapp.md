@@ -765,6 +765,7 @@ but this code will generate an exception:
 
 This implementation detail is related to the limitations of `libxml2` with respect to default attributes. Let’s take an example that has a DTD:
 
+<!-- This table was added to enclose combination of DOCTYPE and xml version combo which otherwise causes rendering and build problems -->
 <table>
 	<tr>
 		<td style="text-align: left; padding: 15px; border: 0;">
@@ -816,6 +817,7 @@ XmlWrapp forbids incrementing iterators provided by ***xml::attributes::find(...
 
 `libxml2` does not provide the ability to change a default attribute. XmlWrapp does provide this ability, but at the cost of implicitly converting the default attribute into a non-default attribute. Consider the following document:
 
+<!-- This table was added to enclose combination of DOCTYPE and xml version combo which otherwise causes rendering and build problems -->
 <table>
 	<tr>
 		<td style="text-align: left; padding: 15px; border: 0;">
@@ -915,6 +917,7 @@ When using ***xml***::[event\_parser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/C
 
 Imagine that an event parser which implements both ***text()*** and [entity\_reference()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=entity_reference) callbacks receives the following document as in input:
 
+<!-- This table was added to enclose combination of DOCTYPE and xml version combo which otherwise causes rendering and build problems -->
 <table>
 	<tr>
 		<td style="text-align: left; padding: 15px; border: 0;">
