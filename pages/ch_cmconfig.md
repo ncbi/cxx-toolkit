@@ -78,7 +78,7 @@ It lists available options used to generate the build tree. Several of them limi
 Examples of configuration commands:
 
     src/build-system/cmake/cmake-cfg-unix.sh --with-dll --with-debug --with-projects="sra"
-    src/build-system/cmake/cmake-cfg-vs.sh --with-projects="misc"
+    src\build-system\cmake\cmake-cfg-vs.bat --with-projects="misc"
 
 Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-VS2017\build*, and run *make [target]* command or open a generated solution in an IDE and build *target*.
 
