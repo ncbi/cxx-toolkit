@@ -26,6 +26,8 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 -   [NCBIptb build system](#ch_cmconfig._NCBIptb)
 
     -   [What is it?](#ch_cmconfig._What)
+
+    -   [All features at a glance](#ch_cmconfig._Features)
     
     -   [Examples](#ch_cmconfig._Examples)
     
@@ -78,7 +80,7 @@ It lists available options used to generate the build tree. Several of them limi
 Examples of configuration commands:
 
     src/build-system/cmake/cmake-cfg-unix.sh --with-dll --with-debug --with-projects="sra"
-    src/build-system/cmake/cmake-cfg-vs.sh --with-projects="misc"
+    src\build-system\cmake\cmake-cfg-vs.bat --with-projects="misc"
 
 Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-VS2017\build*, and run *make [target]* command or open a generated solution in an IDE and build *target*.
 
@@ -108,7 +110,35 @@ Probably, limiting the set of projects to build is not such a big problem for an
 
 Another challenge is working with prebuilt trees. Let us say, a developer needs to add features into some applications or libraries. He or she checks out part of the source tree. Some libraries are present in the local tree, others should be taken from the prebuilt one. The problem is that local libraries may have the same names as prebuilt ones. CMake will not add them into the build saying that these targets are already defined as “imported” ones. NCBIptb solves this problem by renaming such local build targets and adjusting target dependencies accordingly. Developer’s intervention is not required, everything is made automatically.
 
-<a name="ch_cmconfig._Examples"></a>
+<a name="ch_cmconfig._Features"></a>
+
+### All features at a glance
+
+When analyzing source tree, NCBIptb does not expect much from  it, anything may be absent - subdirectories, projects, external components. NCBIptb issues a warning and it is up to developer to decide what to do with it.
+
+When configuring the build tree, NCBIptb does the following:
+
+-   Filters build targets by their location in the source tree, by name, and by tag, in any combination.
+
+-   Collects all dependencies of requested build targets.
+
+-   Excludes targets for which requirements are not met.
+
+-   Adds header files.
+
+-   Adds certain source and resource files, when required. This includes DLL or Windows GUI application entry points on Windows.
+
+-   Creates source groups.
+
+-   Defines precompiled header usage.
+
+-   When using prebuilt trees, identifies local targets with the same names as imported ones, and renames them, adjusting dependencies. Using local targets has priority.
+
+-   Defines tests.
+
+In addition, there is an option of creating "composite" build targets. Such targets are composed of other targets, including their sources and requirements. In the build tree, such "hosted" targets are excluded and replaced with "composite" ones.
+
+There are also tasks of source code generation, installation and testing. NCBIptb does not support them directly. Instead, there is a mechanism of plugin extensions which handle them.
 
 ### Examples
 
