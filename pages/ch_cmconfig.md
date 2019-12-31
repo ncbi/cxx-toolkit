@@ -52,7 +52,7 @@ Having checked out the source tree, run the following command in the root direct
 
     On Linux:   src/build-system/cmake/cmake-cfg-unix.sh --help
     On Windows: src\build-system\cmake\cmake-cfg-vs.bat --help
-    For XCode: src/build-system/cmake/cmake-cfg-xcode.bat --help
+    For XCode: src/build-system/cmake/cmake-cfg-xcode.sh --help
 
 It lists available options used to generate the build tree. Several of them limit the build scope:
 
