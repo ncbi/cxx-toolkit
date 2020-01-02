@@ -45,6 +45,16 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
 -   [Testing](#ch_cmconfig._Testing)
 
+-   [Inside NCBIptb](#ch_cmconfig._Inside)
+
+    -   [Source tree structure](#ch_cmconfig._SrcTree)
+
+    -   [Defaults](#ch_cmconfig._Defaults)
+
+    -   [Project filters](#ch_cmconfig._Filters)
+
+    -   [Extensions](#ch_cmconfig._Extensions)
+
 
 <a name="ch_cmconfig._Configure"></a>
 
@@ -330,3 +340,48 @@ To use CMake testing framework:
 Refer to [CMake documentation](https://cmake.org/cmake/help/v3.14/manual/ctest.1.html) for details.
 In case of CMake testing framework, test outputs can be found in *CMake-GCC730-ReleaseDLL/testing* directory.
 
+<a name="ch_cmconfig._Inside"></a>
+
+## Inside NCBIptb
+
+<a name="ch_cmconfig._SrcTree"></a>
+
+### Source tree structure
+
+NCBIptb expects the following variables to be defined: **NCBI_SRC_ROOT** and **NCBI_INC_ROOT**. *NCBI_SRC_ROOT* is the root directory of all source files, private headers and project definitions, *NCBI_INC_ROOT* is the root directory of public headers. For example, for a project defined in *${NCBI_SRC_ROOT}/a/b/c*, the system looks for its headers in *${NCBI_INC_ROOT}/a/b/c*.
+
+<a name="ch_cmconfig._Defaults"></a>
+
+### Defaults
+
+The following values, which affect project generation, may be defined:
+
+-   **NCBI_DEFAULT_USEPCH** - allows the use of precompiled headers (*ON/OFF*).
+
+-   **NCBI_DEFAULT_PCH** - file name of the precompiled header.
+
+-   **NCBI_DEFAULT_PCH_DEFINE** - additional compile definition to use with precompiled header.
+
+-   **NCBI_DEFAULT_HEADERS** - list of file masks (globbing expressions) to use when looking for headers. For example: *\*.h\*;\*.inl*.
+
+-   **NCBI_DEFAULT_DLLENTRY** - Source file (with path) which should be added into all shared libraies. For example, with the DLL entry (DllMain) definition on Windows.
+
+-   **NCBI_DEFAULT_GUIENTRY** - Source file (with path) which should be added into all GUI applications. For example, with the WinMain definition on Windows.
+
+-   **NCBI_DEFAULT_RESOURCES** - Resource file (with path) which should be added into all applications.
+
+<a name="ch_cmconfig._Filters"></a>
+
+### Project filters
+
+The following values affect project filtering. If none of them is defined, there is no filtering and all projects are allowed.
+
+-   **NCBI_PTBCFG_PROJECT_LIST** - Either list of relative paths (regular expressions), or a full path to the file which contains such a list. Paths must be relative to ${NCBI_SRC_ROOT}. For example: *corelib$;serial;-serial/test*, or */home/user/scripts/projects/ncbi_cpp.lst*
+
+-   **NCBI_PTBCFG_PROJECT_TARGETS** - lists targets to build, each entry is a regular expression. For example: *^cgi;-test*.
+
+-   **NCBI_PTBCFG_PROJECT_TAGS** - build targets with the listed tags only. Tags are **not** treated as regular expressions. For example: *core;-test*.
+
+<a name="ch_cmconfig._Extensions"></a>
+
+### Extensions
