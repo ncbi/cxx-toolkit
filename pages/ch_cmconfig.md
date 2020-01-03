@@ -55,6 +55,8 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
     -   [Extensions](#ch_cmconfig._Extensions)
 
+    -   [External packages and requirements](#ch_cmconfig._External)
+
 
 <a name="ch_cmconfig._Configure"></a>
 
@@ -410,4 +412,40 @@ Here is an example of hook definition:
     NCBI_register_hook(TARGET_ADDED NCBI_internal_AddCMakeTest)
 
 The mechanism utilizes [variable_watch](https://cmake.org/cmake/help/v3.14/command/variable_watch.html) CMake function, which means the arguments of the callback function are defined by CMake and cannot be changed. Still, to do their job, the hooks have access to all variables defined by NCBIptb and elsewhere.
+
+<a name="ch_cmconfig._External"></a>
+
+### External packages and requirements
+
+The way NCBIptb project uses external packages is by declaring
+
+    NCBI_requires(X)
+    NCBI_optional_components(Y)
+
+X and Y may be anything, but they should described, which means the following variables should be defined:
+
+-   **NCBI_COMPONENT_X_FOUND** - defined as *YES* if component *X* is found
+
+-   **NCBI_COMPONENT_X_INCLUDE** - additional include directories
+
+-   **NCBI_COMPONENT_X_LIBS** - addtional libraries
+
+-   **NCBI_COMPONENT_X_DEFINES** - additional compile definitions
+
+Note that *X* should not necessarily be a package, in which case it may be defined as simple
+
+    set(NCBI_COMPONENT_X_FOUND YES)
+
+or, if it is indeed a package, the definition might look like this:
+
+    find_package(X)
+    if(X_FOUND)
+        set(NCBI_COMPONENT_X_FOUND YES)
+        set(NCBI_COMPONENT_X_INCLUDE ${X_INCLUDE_DIRS})
+        set(NCBI_COMPONENT_X_LIBS ${X_LIBRARIES})
+    endif()
+
+Sure, there is a number of ways of defining them.
+
+When analyzing the source tree, if NCBIptb sees that a project requires *X*, it will check the value of *NCBI_COMPONENT_X_FOUND*, and will either exclude the project from the build, or add appropriate build settings.
 
