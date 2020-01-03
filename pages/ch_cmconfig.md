@@ -148,7 +148,7 @@ When configuring the build tree, NCBIptb does the following:
 
 In addition, there is an option of creating "composite" build targets. Such targets are composed of other targets, including their sources and requirements. In the build tree, such "hosted" targets are excluded and replaced with "composite" ones.
 
-There are also tasks of source code generation, installation and testing. NCBIptb does not support them directly. Instead, there is a mechanism of plugin extensions which handle them.
+There are also tasks of source code generation, installation and testing. NCBIptb does not support them directly. Instead, there is a mechanism of plugin [extensions](#ch_cmconfig._Extensions) which handle them.
 
 ### Examples
 
@@ -344,11 +344,13 @@ In case of CMake testing framework, test outputs can be found in *CMake-GCC730-R
 
 ## Inside NCBIptb
 
+Normally, developer should not care about anything described in this section. NCBIptb is a part of a bigger system (**core** part, but still only a part), which defines build configurations, source tree structure, configuration files, external components and so on. All settings described here should be defined by this system.
+
 <a name="ch_cmconfig._SrcTree"></a>
 
 ### Source tree structure
 
-NCBIptb expects the following variables to be defined: **NCBI_SRC_ROOT** and **NCBI_INC_ROOT**. *NCBI_SRC_ROOT* is the root directory of all source files, private headers and project definitions, *NCBI_INC_ROOT* is the root directory of public headers. For example, for a project defined in *${NCBI_SRC_ROOT}/a/b/c*, the system looks for its headers in *${NCBI_INC_ROOT}/a/b/c*.
+NCBIptb expects the following variables to be defined: **NCBI_SRC_ROOT** and **NCBI_INC_ROOT**. *NCBI_SRC_ROOT* is the root directory of all source files, private headers and project definitions, *NCBI_INC_ROOT* is the root directory of public headers. For example, if a project is defined in *${NCBI_SRC_ROOT}/a/b/c*, the system looks for its headers in *${NCBI_INC_ROOT}/a/b/c*.
 
 <a name="ch_cmconfig._Defaults"></a>
 
@@ -360,13 +362,13 @@ The following values, which affect project generation, may be defined:
 
 -   **NCBI_DEFAULT_PCH** - file name of the precompiled header.
 
--   **NCBI_DEFAULT_PCH_DEFINE** - additional compile definition to use with precompiled header.
+-   **NCBI_DEFAULT_PCH_DEFINE** - additional compile definition to use with the precompiled header.
 
 -   **NCBI_DEFAULT_HEADERS** - list of file masks (globbing expressions) to use when looking for headers. For example: *\*.h\*;\*.inl*.
 
--   **NCBI_DEFAULT_DLLENTRY** - Source file (with path) which should be added into all shared libraies. For example, with the DLL entry (DllMain) definition on Windows.
+-   **NCBI_DEFAULT_DLLENTRY** - Source file (with path) which should be added into all shared libraries. For example, one with the DLL entry (DllMain) definition on Windows.
 
--   **NCBI_DEFAULT_GUIENTRY** - Source file (with path) which should be added into all GUI applications. For example, with the WinMain definition on Windows.
+-   **NCBI_DEFAULT_GUIENTRY** - Source file (with path) which should be added into all GUI applications. For example, one with the WinMain definition on Windows.
 
 -   **NCBI_DEFAULT_RESOURCES** - Resource file (with path) which should be added into all applications.
 
@@ -376,7 +378,7 @@ The following values, which affect project generation, may be defined:
 
 The following values affect project filtering. If none of them is defined, there is no filtering and all projects are allowed.
 
--   **NCBI_PTBCFG_PROJECT_LIST** - Either list of relative paths (regular expressions), or a full path to the file which contains such a list. Paths must be relative to ${NCBI_SRC_ROOT}. For example: *corelib$;serial;-serial/test*, or */home/user/scripts/projects/ncbi_cpp.lst*
+-   **NCBI_PTBCFG_PROJECT_LIST** - Either list of relative paths (regular expressions), or a full path to the file which contains such a list. Paths must be relative to *${NCBI_SRC_ROOT}*. For example: *corelib$;serial;-serial/test*, or */home/user/scripts/projects/ncbi_cpp.lst*
 
 -   **NCBI_PTBCFG_PROJECT_TARGETS** - lists targets to build, each entry is a regular expression. For example: *^cgi;-test*.
 
@@ -385,3 +387,27 @@ The following values affect project filtering. If none of them is defined, there
 <a name="ch_cmconfig._Extensions"></a>
 
 ### Extensions
+
+NCBIptb has a very general functionality. It analyzes source tree and selects build targets, but there is a number of other tasks. For example, source file generation, testing, installation. To make such extensions possible, NCBIptb implements a mechanism of plugins, or hooks. Hook is a function which is being called when a certain event occurs. The following events are defined:
+
+-   **TARGET_PARSED** - a project is parsed
+
+-   **ALL_PARSED**    - all projects in the source tree are parsed
+
+-   **COLLECTED**     - all build targets are collected
+
+-   **TARGET_ADDED**  - build target is added
+
+-   **ALL_ADDED**     - all targets are added
+
+-   **DATASPEC**      - process data specification
+
+Here is an example of hook definition:
+
+    function(NCBI_internal_AddCMakeTest _variable _access _value)
+    ...
+    endfunction()
+    NCBI_register_hook(TARGET_ADDED NCBI_internal_AddCMakeTest)
+
+The mechanism utilizes [variable_watch](https://cmake.org/cmake/help/v3.14/command/variable_watch.html) CMake function, which means the arguments of the callback function are defined by CMake and cannot be changed. Still, to do their job, the hooks have access to all variables defined by NCBIptb and elsewhere.
+
