@@ -14,7 +14,7 @@ Connection Library [Library `xconnect`: [include](https://www.ncbi.nlm.nih.gov/I
 
 ## Introduction
 
-The connection library includes a generic socket interface ([SOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK)), connection object ([CONN](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONN)), and specialized [CONNECTOR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONNECTOR) constructors (for sockets, files, HTTP, and services) to be used as engines for connections. It also provides access to the load-balancing daemon and NCBI named service dispatching facilities.
+The connection library includes a generic socket interface ([SOCK](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOCK)), connection object ([CONN](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONN)), and specialized [CONNECTOR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONNECTOR) constructors (for sockets, files, HTTP, FTP, and services) to be used as engines for connections. It also provides access to the load-balancing daemon and NCBI named service dispatching facilities.
 
 Although the core of the Connection Library is written in C and has an underlying C interface, the analogous C++ interfaces have been built to provide objects that work smoothly with the rest of the Toolkit.
 
@@ -45,6 +45,8 @@ The following is an outline of the topics presented in this chapter, with links 
         -   [Common Parameters](#ch_conn.Connection_related_parameters) for higher level connectors
 
         -   [HTTP Connector](#ch_conn.HTTP_Connector) -- `ncbi_http_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_http_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_http_connector.c)]
+        
+        -   FTP Connector -- `ncbi_ftp_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_ftp_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ftp_connector.c)]
 
         -   [Service Connector](#ch_conn.service_connector) -- `ncbi_service_connector`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_service_connector.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_service_connector.c)]
 
@@ -153,7 +155,7 @@ Connections and Connectors
 
 This section discusses the "C API" for connections and connectors. There is a corresponding "C++ API" (see the [C++ Connection Streams](#ch_conn.cpp_connection_streams) section below) that is built on top of, is an approximate superset of, and should generally be preferred over, the "C API".
 
-There are three simple types of connections: `socket`, `file` and `http`; and one hybrid type, `service` connection.
+There are several simple types of connections: `memory`, `socket`, `pipe`, `file`, `http`, and `ftp`; and one hybrid type, `service` connection.
 
 A connection is created with a call to [CONN\_Create()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONN_Create), declared in [connect/ncbi\_connection.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/connect/ncbi_connection.h), and returned by a pointer to [CONN](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CONN) passed as a second argument:
 
