@@ -106,6 +106,14 @@ The prebuilt Toolkit is available in several configurations. ***Note*** that thi
 
 The script will create a subdirectory *name*, source subdirectories with a sample project *type* and a configuration script. Run the script, then build the project.
 
+For example:
+
+    new_cmake_project test app/basic $NCBI/c++.by-date/cmake/c++.current
+
+To get a list of available project types, run
+
+    new_cmake_project --help
+
 <a name="ch_cmconfig._NCBIptb"></a>
 
 ## NCBIptb build system
