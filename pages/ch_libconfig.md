@@ -870,12 +870,14 @@ The following parameters tune the behavior of the `ncbi_xloader_csra` library:
 
 | Purpose      | [Registry section]<br/>Registry name       | Valid values          | Default       |
 |--------------|--------------------------------------------------------------------------|-----------------------|---------------|
-|Enables debugging log messages (if not zero), the higher the number, the more messages are logged. |**`[bamloader]`**<br/>**`debug`**         |Number (0-3)   | 0             |
-|Specified file name for CIdMapperConfig used to map BAM sequence ids into CSeq_id.   |**`[bamloader]`**<br/>**`mapper_file`**   |File Name    |               |
-|Generate pileup graphs for alignments       |**`[bamloader]`**<br/>**`pileup_graphs`**                                          |Boolean     | true          |
-| Do not create pileup graphs from the set (ACGT,match,insert) if the graph is completely zero. |**`[bamloader]`**<br/>**`skip_empty_pileup_graphs`** |Boolean     | true          |
-| Use fast estimation for coverage graph if possible.     |**`[bamloader]`**<br/>**`estimated_coverage_graph`**                  |Boolean     | true          |
-|Do not open BAM files at time of loader registration, open them only when alignments or graphs are requested. |**`[bamloader]`**<br/>**`preopen`**       |Boolean     | false         |
+|Enables debugging log messages (if not zero), the higher the number, the more messages are logged. |**`[bam_loader]`**<br/>**`debug`**         |Number (0-3)   | 0             |
+|Specified file name for CIdMapperConfig used to map BAM sequence ids into CSeq_id.   |**`[bam_loader]`**<br/>**`mapper_file`**   |File Name    |               |
+|Use specified context as an argument to the CIdMapperConfig.   |**`[bam_loader]`**<br/>**`mapper_context `**   |String    |               |
+|Generate pileup graphs for alignments       |**`[bam_loader]`**<br/>**`pileup_graphs`**                                          |Boolean     | true          |
+| Do not create pileup graphs from the set (ACGT,match,insert) if the graph is completely zero. |**`[bam_loader]`**<br/>**`skip_empty_pileup_graphs`** |Boolean     | true          |
+| Use fast estimation for coverage graph if possible.     |**`[bam_loader]`**<br/>**`estimated_coverage_graph`**                  |Boolean     | true          |
+|Set alignment visibility MAPQ threshold.     |**`[bam_loader]`**<br/>**`min_map_quality`**                  |Integer     | 1          |
+|Do not open BAM files at time of loader registration, open them only when alignments or graphs are requested. |**`[bam_loader]`**<br/>**`preopen`**       |Boolean     | false         |
 
 
 
