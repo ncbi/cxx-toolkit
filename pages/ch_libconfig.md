@@ -437,6 +437,11 @@ Table 7. Connection library configuration parameters
 | Use `poll(2)` instead of `select(2)` to wait for available data for reading/writing.  This is necessary if the number of open file descriptors exceeds 1024. | **`[CONN]`**<br/>**`PIPE_USE_POLL`**<br/><br/>**`CONN_PIPE_USE_POLL`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.17) | false |
 | Enable [CServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html) to catch exceptions. | **`[server]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`CSERVER_CATCH_UNHANDLED_EXCEPTIONS`** | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
 | Enable [CThreadInPool\_ForServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCThreadInPool__ForServer.html) to catch exceptions. | **`[ThreadPool]`**<br/>**`Catch_Unhandled_Exceptions`**<br/><br/>**`NCBI_CONFIG__THREADPOOL__CATCH_UNHANDLED_EXCEPTIONS`**  [<sup>e</sup>](#ch_libconfig.TF.19) | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | true |
+| [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - enable/disable. | **`[USAGE_REPORT]`**<br/>**`Enabled`**<br/><br/>**`NCBI_USAGE_REPORT_ENABLED`** | Boolean  [<sup>b</sup>](#ch_libconfig.TF.16) | false |
+| [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - URL to report usage statistics. | **`[USAGE_REPORT]`**<br/>**`URL`**<br/><br/>**`NCBI_USAGE_REPORT_URL`** | a valid URL | https://www.ncbi.nlm.nih.gov/stat |
+| [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - application name. | **`[USAGE_REPORT]`**<br/>**`AppName`**<br/><br/>**`NCBI_USAGE_REPORT_APPNAME`** | string | (none) |
+| [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - application version. | **`[USAGE_REPORT]`**<br/>**`AppVersion`**<br/><br/>**`NCBI_USAGE_REPORT_APPVERSION`** | string | (none) |
+| [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - maximum number of reporting jobs in the queue per reporter. | **`[USAGE_REPORT]`**<br/>**`MaxQueueSize`**<br/><br/>**`NCBI_USAGE_REPORT_MAXQUEUESIZE`** | unsigned int  | 100 |
 
 
 <div class="table-scroll"></div>
