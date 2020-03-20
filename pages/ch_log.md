@@ -1016,6 +1016,8 @@ A family of **`ERR_POST*`** macros and a corresponding family of **`LOG_POST*`**
 
 The log entries produced by the two families are almost identical for the [new post format](#ch_core.The_New_Post_Format) - the **`ERR_POST*`** entries contain a full word for the severity (e.g. "`Error`") while the **`LOG_POST*`** entries contain the word "`Note`" and a one-character severity code (e.g. "`Note[E]`"). For the [old post format](#ch_core.The_Old_Post_Format), **`LOG_POST*`** macros simply contain the message, while **`ERR_POST*`** entries contain the severity, error code, and message. [Message filtering](#ch_core.diagnostic_messages_filtering) works exactly the same way for the two families of macros.
 
+Note that the the "Note" messages (from **`LOG_POST*`**) do not show by default in the AppLog browser. You need to check the "Note" checkbox to see them.
+
 The macros are:
 
 -   **`{ERR|LOG}_POST(msg)`** – for posting a simple message. ***Note:*** these macros are deprecated. Use **`{ERR|LOG}_POST_X`** instead (except for tests) for more flexible error statistics and logging.
