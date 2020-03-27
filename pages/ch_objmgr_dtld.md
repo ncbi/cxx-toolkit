@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Biological Object Manager
+title: Biological Object Manager – Data Loaders
 nav: pages/ch_objmgr_dtld
 ---
 
@@ -9,3 +9,10 @@ nav: pages/ch_objmgr_dtld
 ============================================
 
 ## Introduction
+
+Your intro 
+
+
+## Chapter Outline
+
+Your outline
