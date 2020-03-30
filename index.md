@@ -35,6 +35,7 @@ Contents
     -   [Data Serialization (ASN.1, XML, JSON)](pages/ch_ser)
     -   [Biological Sequence Data Model](pages/ch_datamod)
     -   [Biological Object Manager](pages/ch_objmgr)
+    -   [Biological Object Manager – Data Loaders](pages/ch_objmgr_dtld)   
     -   [BLAST API](pages/ch_blast)
     -   [Access to NCBI data](pages/ch_dataaccess)
     -   [Biological Sequence Alignment](pages/ch_algoalign)
