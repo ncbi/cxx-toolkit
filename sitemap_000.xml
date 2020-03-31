@@ -2,261 +2,265 @@
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_intro</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_start</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_config</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_build</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_proj</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_cmconfig</loc>
-		<lastmod>2019-09-18</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_style</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_core</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 		<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_log</loc>
-		<lastmod>2016-02-03</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_conn</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_dbapi</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_cgi</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_html</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_tabular</loc>
-		<lastmod>2017-06-29</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 		<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_compress</loc>
-		<lastmod>2017-08-11</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_ser</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_datamod</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_objmgr</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.9</priority>
+	</url>	
+	<url>
+		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_objmgr_dtld</loc>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_blast</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_dataaccess</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_algoalign</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_gui</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_boost</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_xmlwrapp</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_debug</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_grid</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_app</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_demo</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_res</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_browse</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_devtools</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_faq</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/ch_libconfig</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
-	</url>
-    
-    
-    <url>
+	</url>   
+        <url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/appendix</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
-    <url>
+        <url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/part1</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
-    <url>
+        <url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/part2</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
-    <url>
+    	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/part3</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
-    <url>
+    	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/part4</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
-    <url>
+    	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/part5</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
-    <url>
+    	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/part6</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>	
-    <url>
+    	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/part7</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
-    <url>
+    	<url>
 		<loc>https://ncbi.github.io/cxx-toolkit/pages/release_notes.md</loc>
-		<lastmod>2015-09-16</lastmod>
+		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
 	</url>
