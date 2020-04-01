@@ -616,6 +616,77 @@ Pubseq Gateway loader is not a standalone data loader but rather a mode of Genba
     [Genbank]
     Loader_PSG=t
 
-In most cases PSG loader offers much better performance than the default Genbank loader due to parallel processing of requests and replies. PSG loader handles requests for a single bioseq up to 10 times faster than ID2 reader and up to 5 times faster than PUBSEQOS one. Bulk requests for multiple bioseqs or sequence data (e.g. segments of a large delta sequence) are performed about 10 times faster. Sometimes the performance gain can be smaller. E.g. retrieval of large delta sequence without loading sequence data for all segments is only about 1.5-2 times faster with PSG than with ID2/PUBSEQOS.
+In most cases PSG loader offers much better performance than the default Genbank
+loader due to parallel processing of requests and replies. PSG loader handles
+requests for a single bioseq up to 10 times faster than ID2 reader and up to 5
+times faster than PUBSEQOS one. Bulk requests for multiple bioseqs or sequence
+data (e.g. segments of a large delta sequence) are performed about 10 times faster.
+Sometimes the performance gain can be smaller. E.g. retrieval of large delta sequence
+without loading sequence data for all segments is only about 1.5-2 times faster with
+PSG than with ID2/PUBSEQOS.
 
-Unlike the default Genbank loader, PSG loader does not retrieve orphan annotaions (CDD, SNP, STS). It also does not provide WGS sequences. These annotations and sequences can be requested through dedicated data loaders: CDD, SNP etc. These loaders should be [registered](ch_objmgr#ch_objmgr.om_faq.html_add_data_loader) in the Object Manager in addition to Genbank data loader. Some of these standalone loaders may work slower than ID2/PUBSEQOS, so, the overall performance of data retrieval will depend on specific task.
+Unlike the default Genbank loader, PSG loader does not retrieve orphan annotaions
+(CDD, SNP, STS). It also does not provide WGS sequences. These annotations and
+sequences can be requested through dedicated data loaders: CDD, SNP etc. These
+loaders should be [registered](ch_objmgr#ch_objmgr.om_faq.html_add_data_loader)
+in the Object Manager in addition to Genbank data loader. Some of these standalone
+loaders may work slower than ID2/PUBSEQOS, so, the overall performance of data
+retrieval will depend on specific task.
+
+To use a data loader in your application you may need to update library dependencies in the
+application makefile. Below are modifications required for SNP, CDD and WGS loaders.
+To find dependencies for other loaders use [NCBI Library Dependencies tool](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/depgraphs/dglistdeps.cgi).
+After updating the makefile modify the code to register the loader and add it to the scope.
+
+### SNP
+Makefile:
+
+    LIB  = ncbi_xloader_snp dbsnp_ptis grpc_integration $(CONNEXT) $(SRAREAD_LIBS) connect $(OBJMGR_LIBS)
+    LIBS = $(GENBANK_THIRD_PARTY_LIBS) $(VDB_LIBS) $(GRPC_LIBS) $(NETWORK_LIBS) $(ORIG_LIBS)
+
+Code:
+
+    #include <sra/data_loaders/snp/snploader.hpp>
+    ...
+    CRef<CObjectManager> om = CObjectManager::GetInstance();
+    auto snp_loader = CSNPDataLoader::RegisterInObjectManager(*om).GetLoader();
+    ...
+    scope.AddDataLoader(snp_loader->GetName());
+
+### CDD
+Makefile:
+
+    LIB  = ncbi_xloader_cdd cdd_access id2 xconnect $(OBJMGR_LIBS)
+    LIBS = $(GENBANK_THIRD_PARTY_LIBS) $(NETWORK_LIBS) $(ORIG_LIBS)
+
+Code:
+
+    #include <objtools/data_loaders/cdd/cdd_loader/cdd_loader.hpp>
+    ...
+    CRef<CObjectManager> om = CObjectManager::GetInstance();
+    auto cdd_loader = CCDDDataLoader::RegisterInObjectManager(*om).GetLoader();
+    ...
+    scope.AddDataLoader(cdd_loader->GetName());
+
+    
+### WGS
+Makefile:
+
+    LIB  = ncbi_xloader_wgs $(SRAREAD_LIBS) $(OBJMGR_LIBS)
+    LIBS = $(GENBANK_THIRD_PARTY_LIBS) $(VDB_LIBS) $(ORIG_LIBS)
+
+Code:
+
+    #include <sra/data_loaders/wgs/wgsloader.hpp>
+    ...
+    CRef<CObjectManager> om = CObjectManager::GetInstance();
+    auto wgs_loader = CWGSDataLoader::RegisterInObjectManager(*om).GetLoader();
+    ...
+    scope.AddDataLoader(wgs_loader->GetName());
+
+
+If you want a loader to be automatically used by all scopes you can simplify the above code by making the loader 'default':
+
+    CSNPDataLoader::RegisterInObjectManager(*om, CObjectManager::eDefault);
+    ...
+    scope.AddDefaults();
