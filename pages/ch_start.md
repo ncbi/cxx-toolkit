@@ -195,7 +195,7 @@ The source tree is available through FTP, SVN and by running special scripts. Th
 
 ### FTP Availability
 
-The Toolkit source is available via ftp at [ftp://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT), and the archives available, with unpacking instructions, are listed on the [download page](ch_getcode_svn.html). If you plan to modify the Toolkit source in any way with the ftp code, it is strongly advised that it be placed under a source code control system (preferably SVN) so that you can rollback to an earlier revision without having to ftp the entire archive once again.
+The Toolkit source is available via FTP at [https://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT) (also at [ftp://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT)... but FTP may be blocked on some clients), and the archives available, with unpacking instructions, are listed on the [download page](ch_getcode_svn.html). If you plan to modify the Toolkit source in any way with the ftp code, it is strongly advised that it be placed under a source code control system (preferably SVN) so that you can rollback to an earlier revision without having to ftp the entire archive once again.
 
 <a name="ch_start.svn_avail"></a>
 
