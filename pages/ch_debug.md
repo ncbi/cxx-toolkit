@@ -1311,7 +1311,7 @@ Again, the `(101.1)` indicates the error code (defined in the module's `error_co
 
 Knowing exactly where an exception first occurs can be very useful for debugging purposes. [CException](#ch_debug.CException) class has this functionality built in, so it is highly recommended to use exceptions derived from it. In addition to this a set of **`THROW_TRACE_*()`** macros defined in the NCBI C++ Toolkit combine exception handling with [trace](ch_core.html#ch_core._TRACE) mechanisms to provide such information.
 
-The first of these macros, **`THROW_TRACE_ARGS(class_name, ...)`**, instantiates an object of type **`class_name`** using the remaining arguments (optional) to initialize it. The object is then printed along with the current location (file, line number, function).
+The first of these macros, **`THROW_TRACE_ARGS(class_name, ...)`**, instantiates an object of type **`class_name`** using the remaining arguments (optional) to initialize it. The object is then printed along with the current location (file, line number, function), and thrown.
 
 - If the object has `what()` method (is an exception), the method is used for printing.
 
@@ -1333,7 +1333,7 @@ Below are a few examples of the macros and the output they produce.
 
 - `THROW_TRACE_SIMPLE(CNonPrintableClass());`<br/>T0 "test.cpp", line 123: Trace: CTestApp::Run() - CNonPrintableClass()
 
-There is also a set of old style **`THROW*_TRACE`** macros:
+There is also a set of old style **`THROW*_TRACE`** macros (NOTE: please do not use them if possible!):
 
 -   **`THROW0_TRACE(exception_object)`**
 
