@@ -362,7 +362,7 @@ In this output, the `(101.1)` indicates the error code (defined in the module's 
 
 #### Using **`THROW*_TRACE(...)`** to throw exceptions
 
-If you use one of **`THROW*_TRACE(...)`** macros to `throw` an exception, and the source was compiled in a debug mode (i.e. with the preprocessor **`_DEBUG`** defined), then you can turn on the following features that proved to be very useful for debugging:
+If you use one of [**`THROW*_TRACE(...)`** macros](#ch_debug.excep_tracing) to `throw` an exception, and the source was compiled in a debug mode (i.e. with the preprocessor **`_DEBUG`** defined), then you can turn on the following features that proved to be very useful for debugging:
 
 -   If the [tracing is on](#ch_debug.turn_on_tracing), then the location of the `throw` in the source code and the thrown exception will be printed out to the current diagnostic stream, e.g.:<br/>`THROW_TRACE(CParseException, ("Failed parsing(at pos. 123)", 123));`<br/><br/>`"coretest.cpp", line 708: Trace: CParseException: {123}`<br/>`Failed parsing(at pos. 123)`<br/><br/>`---------------------------------`<br/><br/>`strtod("1e-999999", 0);`<br/>`THROW1_TRACE(CErrnoException, "Failed strtod('1e-999999', 0)");`<br/><br/>`"coretest.cpp", line 718: Trace: CErrnoException:`<br/>`Failed strtod('1e-999999', 0): Result too large`
 
@@ -1319,15 +1319,16 @@ The most commonly used of these macros, `THROW1_TRACE(class_name, init_arg)`, in
     /// diagnostic message is printed, and then exception is thrown.
     ///
     /// Arguments can be any exception class with the specified initialization
-    /// argument. The class argument need not be derived from std::exception as
-    /// a new class object is constructed using the specified class name and
-    /// initialization argument.
+    /// argument. The class argument need not be derived from std::exception
+    /// but must have what() method used for output.
+    ///
+    /// Program may abort if so set by SetThrowTraceAbort() or $ABORT_ON_THROW.
     ///
     /// Example:
     /// -  THROW1_TRACE(runtime_error, "Something is weird...");
     #  define THROW1_TRACE(exception_class, exception_arg) \
         throw NCBI_NS_NCBI::DbgPrint(DIAG_COMPILE_INFO, \
-            exception_class(exception_arg), #exception_class)
+                                     exception_class(exception_arg), #exception_class)
 
 From the ***throw()*** statement here, we see that the object actually being thrown by this macro is the value returned by [DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). [DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint) in turn calls [DoDbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint). The latter is an overloaded function that simply creates a diagnostic stream and writes the file name, line number, and the exception's [what()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=what) message to that stream. The exception object (which is of type **`class_name`**) is then the value returned by [DbgPrint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DbgPrint).
 
@@ -1359,11 +1360,29 @@ or simply a `printable` object to be thrown, as in:
 
     THROW0_TRACE("print this message")
 
-The **`THROW0_TRACE`** macro accepts either an exception object or a string as the argument to be thrown. The **`THROW0p_TRACE`** macro generalizes this functionality by accepting any `printable` object, such as `complex(1,3)`, as its single argument. Any object with a defined output operator is, of course, printable. The third macro generalizes this one step further, and accepts aggregate arguments such as ***vector\<T\>***, where **`T`** is a printable object. Note that in cases where the object to be thrown is not a ***std***::***exception***, you will need to use **`STD_CATCH_ALL_{X|XX}`** or a customized catch statement to catch the thrown object.
+The **`THROW0_TRACE`** macro accepts either an exception object or a string as the argument to be thrown. The **`THROW0p_TRACE`** macro generalizes this functionality by accepting any `printable` object, such as `complex(1,3)`, as its single argument. Any object with a defined output operator is, of course, printable. The third macro generalizes this one step further, and accepts any object, but prints its argument expression rather than its value:
 
-The remaining six macros accept two arguments: an "exception" class name and an initialization argument, where both arguments are also passed to the trace message. The class argument need not actually be derived from ***std***::***exception***, as the pre-processor simply uses the class name to construct a new object of that type using the initialization argument. All of the **`THROW1*_TRACE`** macros assume that there is a single initialization argument. As in the first three macros, **`THROW1_TRACE()`**, **`THROW1p_TRACE()`** and **`THROW1np_TRACE()`** specialize in different types of printable objects, ranging from exceptions and numeric and character types, to aggregate and container types.
+    THROW0np_TRACE(non_printable_object(arg))
+
+will trace 'non_printable_object(arg)' message.
+
+Note that in cases where the object to be thrown is not a ***std***::***exception***, you will need to use **`STD_CATCH_ALL_{X|XX}`** or a customized catch statement to catch the thrown object.
+
+The remaining six macros accept two arguments: an "exception" class name and an initialization argument, where both arguments are also passed to the trace message. The class argument need not actually be derived from ***std***::***exception***, as the pre-processor simply uses the class name to construct a new object of that type using the initialization argument. All of the **`THROW1*_TRACE`** macros assume that there is a single initialization argument. As in the first three macros, **`THROW1_TRACE()`**, **`THROW1p_TRACE()`** and **`THROW1np_TRACE()`** specialize in different types of printable objects, ranging from exceptions and numeric and character types, to arbitrary non-printable objects.
 
 The last three macros parallel the previous two sets of macros in their specializations, and may be applied where the exception object's constructor takes multiple arguments. (See also the discussion on [Exception handling](#ch_debug.cpp_exceptions)).
+
+There are also two macros which automatically detect object type (exception, printable or non-printable):
+
+-   **`THROW_TRACE_SIMPLE(exception_object)`**
+
+-   **`THROW_TRACE_ARGS(exception_class, ...)`**
+
+**`THROW_TRACE_SIMPLE`** is similar to **`THROW0*_TRACE`** - it accepts an object which can be an exception, a printable object or a non-printable one. The macro uses 'what()' method, output operator or just traces the argument expression depending on the object type.
+
+**`THROW_TRACE_ARGS`** macro can be used similar to **`THROW1*_TRACE`** and **`THROW*_TRACE`**: it takes a class name and an arbitrary number of arguments, which are used to create an instance of the class:
+
+    THROW_TRACE_ARGS(complex, 1, 3)
 
 It is also possible to specify that execution should abort immediately when an exception occurs. By default, this feature is not activated, but the [SetThrowTraceAbort()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetThrowTraceAbort) function can be used to activate it. Alternatively, you can turn it on for the entire application by setting either the **`$ABORT_ON_THROW`** environment variable, or the application's registry **`ABORT_ON_THROW`** entry (in the **`[DEBUG]`** section) to an arbitrary non-empty value.
 
