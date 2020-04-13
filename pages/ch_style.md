@@ -84,6 +84,8 @@ The following is an outline of the topics presented in this chapter:
 
             -   [Do Not Mix malloc and new](#ch_style.malloc_new)
 
+            -   [Do Not Use C-Style Cast "(T)v" and Functional Cast "T(v)"](#ch_style.c_cast)
+
         -   [Miscellaneous Gotchas](#ch_style.Miscellaneous_Gotchas)
 
 -   [Source Code Repositories](#ch_style.Source_Code_Repositories)
@@ -631,6 +633,8 @@ This section discusses the following topics:
 
         -   [Do Not Mix malloc and new](#ch_style.malloc_new)
 
+        -   [Do Not Use C-Style Cast "(T)v" and Functional Cast "T(v)"](#ch_style.c_cast)
+
     -   [Miscellaneous Gotchas](#ch_style.Miscellaneous_Gotchas)
 
 <a name="ch_style.intro_stl_features"></a>
@@ -791,6 +795,8 @@ If you pass a container to a function, don't add a local object to the container
 
     -   [Do Not Mix malloc and new](#ch_style.malloc_new)
 
+    -   [Do Not Use C-Style Cast "(T)v" and Functional Cast "T(v)"](#ch_style.c_cast)
+
 -   [Miscellaneous Gotchas](#ch_style.Miscellaneous_Gotchas)
 
 <a name="ch_style.stl_bad_guys"></a>
@@ -856,7 +862,13 @@ Avoid having global and static constructible objects such as ***static const str
 
 ##### Do Not Mix malloc and new
 
-On some platforms, malloc and new may use completely different memory managers, so never "free()" what you created using "new" and never "delete" what you created using "malloc()". Also, when calling C code from C++ **always** allocate any structs or other items using "malloc()". The C routine may use "realloc()" or "free()" on the items, which can cause memory corruption if you allocated using "new."
+On some platforms, malloc and new may use completely different memory managers, so never "free()" what you created using "new" and never "delete" what you created using "malloc()". Also, when calling C code from C++ **always** allocate any structs or other items using "malloc()". The C routine may use "realloc()" or "free()" on the items, which can cause memory corruption if you allocated using "new".
+
+<a name="ch_style.c_cast"></a>
+
+##### Do Not Use C-Style Cast "(T)v" and Functional Cast "T(v)"
+
+Instead, use: `static_cast<T>(v)` if possible; `dynamic_cast<T>(v)` where fitting; `reinterpret_cast<T>(v)` if necessary; `const_cast<T>(v)` if... well, almost never. This is because C-style and functional casts are: too strong (indiscriminate); don't catch casting errors; very hard to spot in the code.
 
 <a name="ch_style.Miscellaneous_Gotchas"></a>
 
