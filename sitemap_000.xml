@@ -259,7 +259,7 @@
 		<priority>0.5</priority>
 	</url>
     	<url>
-		<loc>https://ncbi.github.io/cxx-toolkit/pages/release_notes.md</loc>
+		<loc>https://ncbi.github.io/cxx-toolkit/pages/release_notes</loc>
 		<lastmod>2020-03-30</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
