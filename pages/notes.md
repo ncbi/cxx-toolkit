@@ -43,5 +43,8 @@ How to submit your sitemap to Google Search Console
     
 URL Inspection Tool: https://support.google.com/webmasters/answer/9012289#url_not_on_google
     
-    
-Basic description of Google search: 
+
+### Basic info about search on Google
+
+Basic description of Google search: https://ahrefs.com/blog/google-index/
+Video: https://www.youtube.com/watch?v=BNHR6IQJGZs
