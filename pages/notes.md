@@ -39,6 +39,7 @@ How to submit your sitemap to Google Search Console
     Remove outdated or invalid sitemaps (if any) like sitemap.xml.
     Enter 'sitemap_index. ...
     Click Submit.
+More info here: https://www.seerinteractive.com/labs/the-seo-starter-guide-to-google-search-console/how-to-submit-an-xml-sitemap-to-google/
     
     
 URL Inspection Tool: https://support.google.com/webmasters/answer/9012289#url_not_on_google
