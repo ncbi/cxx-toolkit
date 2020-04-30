@@ -29,7 +29,7 @@ How to get indexed by Google
     Wait for Google to check the URL.
     Click the “Request indexing” button.
     
-How to create a sitemap: https://support.google.com/webmasters/answer/183668?hl=en
+How to create a sitemap: [https://support.google.com/webmasters/answer/183668?hl=en](https://support.google.com/webmasters/answer/183668?hl=en)
     
 How to submit your sitemap to Google Search Console
 
