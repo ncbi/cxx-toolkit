@@ -1,0 +1,6 @@
+# Exclude technical page for inhouse only use from indexing
+
+User-agent: *
+Disallow: /pages/notes
+
+Sitemap: https://ncbi.github.io/cxx-toolkit/sitemap_000.xml
