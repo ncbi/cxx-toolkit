@@ -12,12 +12,19 @@ This page contains some notes for maintaining the book.
 
 ## Indexing our site on Google
 
+### How we index our book.
+
+We use sitemap and crawling to index our site. We also use robots.txt file to control pages that are not supposed to be indexed by Google and other bots. 
+
+Sitemap (sitemap_000.xml) is located at the root directory of cxx-toolkit repository.
+robots.txt file is also located at the root directory.
+
 ### Resources
 
 [Google search console](https://search.google.com/search-console?resource_id=https://ncbi.github.io/cxx-toolkit/)
+
 To use this console, you need to create an account. 
-We use sitemap and crawling to index our site.
-Sitemap (sitemap_000.xml) is located at the root directory of cxx-toolkit repository.
+
 
 ### How to
 
