@@ -14,7 +14,7 @@ This page contains some notes for maintaining the book.
 
 ### Resources
 
-Google search console: https://search.google.com/search-console?resource_id=https://ncbi.github.io/cxx-toolkit/
+[Google search console](https://search.google.com/search-console?resource_id=https://ncbi.github.io/cxx-toolkit/)
 To use this console, you need to create an account. 
 We use sitemap and crawling to index our site.
 Sitemap (sitemap_000.xml) is located at the root directory of cxx-toolkit repository.
