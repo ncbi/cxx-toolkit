@@ -1,6 +1,6 @@
 ---
 layout: default
-title: JSONWRAPP (JSON parsing and handling)
+title: JsonWrapp (JSON parsing and handling)
 nav: pages/ch_jsonwrapp
 ---
 

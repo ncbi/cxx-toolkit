@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Release Notes (Version 22, March 2019)
-nav: pages/release_notes
+nav: pages/rn_new
 ---
 
 {{ page.title }}
@@ -46,11 +46,11 @@ The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/T
 Download
 -----------------------------------
 
-Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/Mar_28_2019/>
+Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/March_2019/>
 
--   [ncbi\_cxx--22\_0\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/Mar_28_2019/ncbi_cxx--22_0_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
+-   [ncbi\_cxx--22\_0\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/March_2019/ncbi_cxx--22_0_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
 
--   [ncbi\_cxx--22\_0\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/Mar_28_2019/ncbi_cxx--22_0_0.zip) -- for MS-Windows / MS Visual Studio C++ 2015 and 2017
+-   [ncbi\_cxx--22\_0\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/March_2019//ncbi_cxx--22_0_0.zip) -- for MS-Windows / MS Visual Studio C++ 2015 and 2017
 
 The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from August, 2018; and also include many hundreds of important and safe code updates made since then and through March, 2019.
 
@@ -214,7 +214,7 @@ Official support for macOS 10.13.x; for GCC 7.3 and ICC 17 on CentOS; for FreeBS
 Last Updated
 ---------------------------------------
 
-This document was last updated on March 28, 2019.
+This document was last updated on March 22, 2019.
 
 {{ page.last_modified_at }}
 

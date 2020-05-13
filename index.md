@@ -7,7 +7,7 @@ nav: index
 {{ page.title }}
 =========================
 
-National Center for Biotechnology Information (US): Bethesda (MD); 2004-2018.
+National Center for Biotechnology Information (US): Bethesda (MD); 2004-2019.
 
 Contents
 --------
@@ -18,9 +18,10 @@ Contents
     -   [Getting Started](pages/ch_start)
 -   [Part 2. Development Framework](pages/part2)
     -   [Retrieve the Source Code (FTP and Subversion)](pages/ch_getcode_svn)
-    -   [Configure, Build, and Use the Toolkit](pages/ch_config)
-    -   [Working with Makefiles](pages/ch_build)
-    -   [Project Creation and Management](pages/ch_proj)
+    -   [Configure, Build, and Use the Toolkit (autoconf/PTB)](pages/ch_config)
+    -   [Working with Makefiles (autoconf/PTB)](pages/ch_build)
+    -   [Project Creation and Management (autoconf/PTB)](pages/ch_proj)
+    -   [Configure, Build and Use the Toolkit with CMake](pages/ch_cmconfig)
     -   [Programming Policies and Guidelines](pages/ch_style)
 -   [Part 3. C++ Toolkit Library Reference](pages/part3)
     -   [Portability, Core Functionality and Application Framework](pages/ch_core)
@@ -34,6 +35,7 @@ Contents
     -   [Data Serialization (ASN.1, XML, JSON)](pages/ch_ser)
     -   [Biological Sequence Data Model](pages/ch_datamod)
     -   [Biological Object Manager](pages/ch_objmgr)
+    -   [Biological Object Manager – Data Loaders](pages/ch_objmgr_dtld)   
     -   [BLAST API](pages/ch_blast)
     -   [Access to NCBI data](pages/ch_dataaccess)
     -   [Biological Sequence Alignment](pages/ch_algoalign)
@@ -41,7 +43,7 @@ Contents
     -   [Using the Boost Unit Test Framework](pages/ch_boost)
 -   [Part 4. Wrappers for 3rd-Party Packages](pages/part4)
     -   [XmlWrapp (XML parsing and handling, XSLT, XPath)](pages/ch_xmlwrapp)
-    -   [JSONWRAPP (JSON parsing and handling)](pages/ch_jsonwrapp)
+    -   [JsonWrapp (JSON parsing and handling)](pages/ch_jsonwrapp)
 -   [Part 5. Software](pages/part5)
     -   [Debugging, Exceptions, and Error Handling](pages/ch_debug)
     -   [Distributed Computing](pages/ch_grid)

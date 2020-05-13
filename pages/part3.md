@@ -21,6 +21,7 @@ Part 3 discusses the the core library and the different specialized libraries su
 -   [Data Serialization (ASN.1, XML)](ch_ser.html)
 -   [Biological Sequence Data Model](ch_datamod.html)
 -   [Biological Object Manager](ch_objmgr.html)
+-   [Biological Object Manager – Data Loaders](ch_objmgr_dtld.html)   
 -   [BLAST API](ch_blast.html)
 -   [Access to NCBI data](ch_dataaccess.html)
 -   [Biological Sequence Alignment](ch_algoalign.html)

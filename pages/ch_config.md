@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configure, Build, and Use the Toolkit
+title: Configure, Build, and Use the Toolkit (autoconf/PTB)
 nav: pages/ch_config
 ---
 
@@ -12,7 +12,7 @@ nav: pages/ch_config
 
 This chapter describes in detail how to configure, build, and use the NCBI C++ Toolkit (or selected components of it) on supported platforms. See the [Getting Started](ch_start.html#ch_start.basic_install) chapter for a general overview of the process. A list of all supported platforms can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi).
 
-***Note:*** Users insde NCBI who just want to use the Toolkit don't need to configure and build it - there are [various configurations](ch_proj.html#ch_proj.daily_builds) of the Toolkit prebuilt and ready to use. See the [new\_project](ch_proj.html#ch_proj.new_project_Starting) script for more information.
+***Note:*** Users inside NCBI who just want to use the Toolkit don't need to configure and build it - there are [various configurations](ch_proj.html#ch_proj.daily_builds) of the Toolkit prebuilt and ready to use. See the [new\_project](ch_proj.html#ch_proj.new_project_Starting) script for more information.
 
 Configuring is the process of creating configuration files that define exactly what can be built and what options may be used in the build process. The created configuration files include C headers that define suitable preprocessor macros, as well makefiles (for Unix) or project solutions (for MS Visual C++ or for Xcode) used in the build step.
 
@@ -299,7 +299,7 @@ Therefore, if you don't mind error messages like this in your terminal output, y
 
 ##### Comment blocks
 
-As discussed in the previous section, lines that begin with "`#`", but are not valid C preprocessor directives, will result in an error. But it is also possible that lines beginnng with "`#`" and containing general comments could actually be valid preprocessor directives - and they could alter the processing of the project list file.
+As discussed in the previous section, lines that begin with "`#`", but are not valid C preprocessor directives, will result in an error. But it is also possible that lines beginning with "`#`" and containing general comments could actually be valid preprocessor directives - and they could alter the processing of the project list file.
 
 For example, consider this project list file:
 
@@ -988,8 +988,8 @@ The makefile macro **`ncbi_runpath`** will be set to the resulting runpath, if a
 
 ***Note:*** When running an executable you also can use environment variable **`$LD_LIBRARY_PATH`** to specify the runpath, like this:
 
-    env LD_LIBRARY_PATH="/home/USERNAME/c++/WorkShop6-ReleaseDLL/lib" \
-    /home/USERNAME/c++/WorkShop6-ReleaseDLL/bin/coretest
+    env LD_LIBRARY_PATH="/home/USERNAME/c++/GCC-ReleaseDLL/lib" \
+    /home/USERNAME/c++/GCC-ReleaseDLL/bin/coretest
 
 **HINT:** The *--with-runpath=....* option can be useful to build production DLLs and executables, which are meant to use production DLLs. The latter are usually installed not in the `lib/` dir of your development tree (*build tree*) but at some well-known dir of your production site. Thus, you can do the development in a "regular" manner (i.e., in a *build tree* configured using only *--with-runpath*); then, when you want to build a production version (which is to use, let's say, DLLs installed in `"/some_path/foo/ `*"*), you must reconfigure your C++ build tree with just the same options as before, plus *"--with-runpath=/some\_path/foo"*. Then rebuild the DLLs and executables and install them into production. Then re-reconfigure your *build tree* back with its original flags (without the "*--with-runpath* `=/some_path/foo `*"*) and continue with your development cycle, again using local in-tree DLLs.
 
@@ -1031,7 +1031,7 @@ will execute (after the configuration is done):
 
 ##### Tools and Flags
 
-There is a predefined set of tools and flags used in the build process. The user can customize these tools and flags by setting the environment variables shown in [Table 1](#ch_config.ref_TableToolsAndFlags) for the ***configure*** script. For example, if you intend to debug the Toolkit with Insure++, you should run ***configure*** with **`CC`** and **`CXX`** set to **`insure`**.
+There is a predefined set of tools and flags used in the build process. The user can customize these tools and flags by setting the environment variables shown in [Table 1](ch_start#ch_start.ref_TableToolsAndFlags) for the ***configure*** script. For example, if you intend to debug the Toolkit with Insure++, you should run ***configure*** with **`CC`** and **`CXX`** set to **`insure`**.
 
 [Later](ch_build.html#ch_build.build_make_macros), these tools and flags will be engaged in the makefile build rules, such as:
 
@@ -1286,13 +1286,13 @@ You can now edit, build, and/or debug (via some application) the library:
 
 Most of the non-GCC compilers require special tools and additional mandatory flags to compile and link C++ code properly. That's why there are special scripts that perform the required non-standard, compiler-specific pre-initialization for the [tools and flags](#ch_config.ch_configconfig_flag) used before running ***configure***.
 
-These wrapper scripts are located in the *compilers/* directory, and now we have such wrappers for the `SUN WorkShop` (`5.5` through `5.9)`, `GCC` and `ICC` compilers:
+These wrapper scripts are located in the *compilers/unix/ directory, and now we have such wrappers for the `Clang`, `LLVM-GCC`, `GCC` and `ICC` compilers:
 
--   `WorkShop.sh` {32\|64} [build\_dir] [--configure-flags]
-
--   `WorkShop55.sh` {32\|64} [build\_dir] [--configure-flags]
+-   `GCC.sh` [4.9.3] [build\_dir] [--configure-flags]
 
 -   `ICC.sh` [build\_dir] [--configure-flags]
+
+-   `Clang.sh` [build\_dir] [--configure-flags]
 
 Note that these scripts accept all regular ***configure*** flags and then pass them to the ***configure*** script.
 
@@ -1493,7 +1493,7 @@ Table 4. Project Tree Builder INI file (Local Site)
 |  | compilers   | compilers "compilers" branch    |
 |  | projects    | scripts/projects "projects" branch                 |
 |  |            |             |
-| [msvc\*] | Configurations                 | List of buid configurations that use static runtime libraries         |
+| [msvc\*] | Configurations                 | List of build configurations that use static runtime libraries         |
 |  |            | List of build configurations that use dynamic runtime libraries       |
 |  | msvc\_prj   | Sub-branch of compilers branch for MSVC projects   |
 |  | MakefilesExt                   | Extension of MSVC-specific makefiles               |
@@ -1641,7 +1641,7 @@ All directories given in the '`IncludeDirs`' entry should be specified relative 
 <a name="ch_config.T.nc_includedirs_path_specifie"></a>
 
 | IncludeDirs Path -<br/>specified relative to source directory | AdditionalIncludeDirectories Path -<br/>saved relative to $(ProjectDir) |
-|---------------------------------------------------------------|------------------------------------------------------------------------------=-----|
+|---------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | `somedir`                  | `..\..\..\..\..\src\$(SolutionName)\somedir`            |
 | `..\\somedir`              | `..\..\..\..\..\src\somedir`         |
 | `..\\..\\somedir`          | `..\..\..\..\..\somedir`             |
@@ -1839,7 +1839,7 @@ Note that the project directory, `vs2015`, may be different for your version of 
 
 #### Using the Toolkit with Visual C++
 
-This section dissusses the following examples of how to use the Toolkit with Windows:
+This section discusses the following examples of how to use the Toolkit with Windows:
 
 -   [Start a New Project That Uses the Toolkit](#ch_config.Start_a_New_Project_)
 

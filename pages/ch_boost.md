@@ -394,7 +394,9 @@ There is a special entry `GLOBAL` that can be used to disable all tests. For exa
     [UNITTESTS_DISABLE]
     GLOBAL = OS_Cygwin
 
-***Note***: If the configuration file contains either a test name or a variable name that has not been defined (e.g. due to a typo) then the test program will exit immediately with an error, without executing any tests.
+If the configuration file contains either a test name or a variable name that has not been defined (e.g. due to a typo) then the test program will exit immediately with an error, without executing any tests.
+
+If you disable tests with the configuration file, you'll need to list the `.ini` file in the `CHECK_COPY` macro in your makefile.  Please see the `CHECK_COPY` macro documentation in the [Defining and running tests](ch_proj.html#ch_proj.inside_tests) section for more detail.
 
 <a name="ch_boost.LibraryDefined_Variables"></a>
 

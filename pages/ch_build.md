@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Working with Makefiles
+title: Working with Makefiles (autoconf/PTB)
 nav: pages/ch_build
 ---
 
@@ -318,7 +318,7 @@ Many makefile macros are supplied with defaults **`ORIG_*`** in `Makefile.mk`. S
 
 Table 3. Flags
 
-| Macro   | [Source](ch_config.html#ch_config.ref_TableToolsAndFlags) | [Synopsis](ch_config.html#ch_config.ch_configconfig_flag)    |
+| Macro   | [Source](ch_start.html#ch_start.ref_TableToolsAndFlags) | [Synopsis](ch_config.html#ch_config.ch_configconfig_flag)    |
 |---------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------|
 | **`APP_LDFLAGS`**   | compiler test   | Compiler-dependent variaton on **`LDFLAGS`**     |
 | **`CFLAGS`**  | **`$CFLAGS`**   | C compiler flags              |

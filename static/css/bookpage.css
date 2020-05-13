@@ -1,0 +1,412 @@
+
+
+*,
+.content,
+:after,
+:before {
+	box-sizing: border-box
+}
+
+
+aside,
+footer,
+header,
+main,
+nav {
+	display: block
+}
+
+[hidden] {
+	display: none
+}
+
+
+.text-left {
+	text-align: left
+}
+
+#closeNav {
+	text-align: right
+}
+
+.footer .copyright {
+	text-align: center
+}
+
+
+
+.clearfix:after,
+.clearfix:before,
+.nav:after,
+.nav:before {
+	content: " ";
+	display: table
+}
+
+.clearfix:after,
+.nav:after {
+	clear: both
+}
+
+
+
+.nav {
+	margin-bottom: 0;
+	padding-left: 0;
+	list-style: none
+}
+
+.nav>li {
+	position: relative;
+	display: block
+}
+
+.nav>li>a {
+	position: relative;
+	display: block;
+	padding: 10px 15px
+}
+
+.nav>li>a:focus,
+.nav>li>a:hover {
+	text-decoration: none;
+	background-color: #eee
+}
+
+
+div.sphinxsidebar a {
+	color: #333
+}
+
+div.sidebar {
+	background-color: #fbfbfb
+}
+
+div.sphinxsidebar ul ul {
+	margin-top: 0;
+	margin-bottom: 0
+}
+
+div.body {
+	transition: opacity .25s linear
+}
+
+div.sidebar {
+	margin: 0 0 .5em 1em;
+	border: 1px solid #aaa;
+	padding: 7px;
+	width: 45%;
+	float: right;
+	border-radius: 2px
+}
+
+div.sidebar p {
+	margin-bottom: 4px
+}
+
+
+div.sphinxsidebarwrapper ul {
+	margin: 0;
+	padding: 0
+}
+
+#showNav {
+	border-radius: 3px
+}
+
+
+div.document {
+	margin-left: 25px
+}
+
+
+
+#left-column {
+	background-color: #fff
+}
+
+
+#showNav {
+	display: none
+}
+
+
+div#docs-header {
+	width: 950px
+}
+
+/* Content formatting begin */
+.content {
+	display: flex;
+	margin: 110px auto 0;
+	font: 62.5%/1.3846 arial,helvetica,clean,sans-serif;
+	font-size: 1.09em;
+	line-height: 1.45em;
+	}
+		
+
+* header typography */
+		
+/* all should be used in the context of 13px font-size, try to add to multiple of 18px for consistent vertical rhythm */
+h1,.h1{font-size: 1.3846em; line-height:1.5; margin:1em 0 .5em; } /* font-size of 18px, line-height of 27px */
+h2,.h2{font-size: 1.2307em; line-height:1.125; margin:1.125em 0 .5625em;} /* font-size of 16px, line-height of 18px */
+h3,.h3{font-size: 1.0769em; line-height:1.2857; margin:1.2856em 0 .6428em; } /* font-size of 14px, line-height of 18px */
+
+h4,h5,h6,h3.inline{font-size: 1em; margin:1.3846em 0 .6923em; } /* line-height of 18px */
+h5,.h5{font-style:italic;font-weight:normal;}
+h6, .h6 {font-weight: normal;}
+
+h4,.h4{color:#59331f;}
+h3,.h3{color:#724128;}
+h2,.h2{color:#985735;}
+h1,.h1{color:#000;}
+
+div.section > h1{color: #985735;}
+
+
+.content .main-column {
+	order: 1;
+	min-height: 600px;
+	width: 68%;
+	max-width: 800px;
+	flex-grow: 2;
+	margin: 0px 15px;
+	transition: margin-left .4s cubic-bezier(.02, .01, .47, 1);
+	align-items: center;
+	justify-content: center;
+	display: inline-block;
+	overflow-x: scroll
+}
+
+/* proposed link colors */
+.content a{color:#2f4a8b}
+.content a:hover,.content a:active{color:#985735}
+.content a:visited{color:#642a8f}
+
+/* Content formatting end */
+
+#left-column {
+	flex-shrink: 1;
+	flex-grow: 0;
+	flex-basis: 250px;
+	min-width: 250px;
+	display: flex;
+	overflow-y: auto;
+}
+
+.footer {
+	width: auto;
+/*	font-size: 80%; */
+	border: none;
+	padding: 20px 0
+}
+
+
+#showNav {
+	position: fixed;
+	top: 90px;
+	font-size: 14px;
+	margin-top: 70px;
+	text-align: center;
+	background-color: #205081;
+	color: #fff;
+	left: 30px;
+	border: 1.5px solid #205081;
+	padding: 5px 10px;
+	transform: rotate(90deg);
+	transform-origin: left top 0;
+	cursor: pointer
+}
+
+#closeNav {
+	font-size: 14px;
+	color: #205081;
+	text-decoration: none;
+	position: relative;
+	right: 12px;
+	display: block;
+	top: 12px
+}
+
+#closeNav:hover {
+	color: #000;
+	text-decoration: none
+}
+
+div.sphinxsidebar {
+	line-height: 20px;
+	top: 110px;
+	bottom: 0;
+	position: fixed;
+	overflow-y: auto;
+	background-color: #f9f9f9
+}
+
+div.sphinxsidebarwrapper {
+	padding: 0;
+	min-height: 100%;
+	width: 250px;
+	right: 0
+}
+
+div.sphinxsidebar h3 {
+	padding: 6px 12px;
+	margin: 5px 0 0 10px;
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 700
+}
+
+div.sphinxsidebar p {
+	color: #333;
+	margin: 12px 0 5px 12px;
+	padding: 0 12px
+}
+
+div.sphinxsidebar ul ul {
+	list-style: none;
+	margin-left: 0
+}
+
+div.sphinxsidebar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	color: #000
+}
+
+
+@media (max-width:1120px) {
+	#showNav {
+		cursor: pointer;
+		position: fixed;
+		display: block
+	}
+	#left-column,
+	.sphinxsidebar {
+		display: none
+	}
+	.document {
+		margin-left: 25px
+	}
+}
+
+
+.navbar {
+	background-color: #205081;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+	display: flex;
+	height: 80px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9999
+}
+
+.navbar2 {
+	background-color: #f9f9f9;
+	display: flex;
+	height: 30px;
+	position: fixed;
+	top: 80px;
+	width: 100%;
+	z-index: 9999
+}
+
+.navbar__left {
+	align-items: center;
+	display: flex;
+	padding-left: 20px;
+	width: 250px
+}
+
+
+
+//--------------------------------
+
+
+.search{
+	width:50%;
+}
+
+.search td {border-style:none;}
+.search tr {border-style:none;}
+tr.option {color:white;}
+
+#toolkit_header {
+	color:white;
+	font-family: times new roman;
+    	font-size: 1.5em;
+    	line-height: 1.5;
+}
+
+.res_logo { 
+	width:25em; 
+	left: 10px; 
+	top: 5px; 
+	position: absolute; 
+}
+	
+.res_logo h1{font-weight:normal;margin:0}
+.res_logo h1 a,.res_logo h1 a:hover,.res_logo h1 a:visited { 
+	text-decoration:none;
+	margin: 0 0 0 0;
+}
+
+#search_box{
+    border-top:thin solid  #e5e5e5;
+    border-right:thin solid #e5e5e5;
+    border-bottom:0;
+    border-left:thin solid  #e5e5e5;
+    box-shadow:0px 1px 1px 1px #e5e5e5;
+    float:left;
+    height:27px;
+    margin:1.0em 0 0 .8em; 
+    outline:0;
+    padding:.4em 0 .4em .6em; 
+    width:70%; 
+    min-width:150px;
+    max-width:400px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#button-holder{
+    background-color:#f1f1f1;
+    border-top:thin solid #e5e5e5;
+    box-shadow:1px 1px 1px 1px #e5e5e5;
+    cursor:pointer;
+    float:left;
+    height:27px;
+    margin:0.8em 0 0 0;
+    text-align:center;
+    width:50px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#button-holder img{
+    margin:4px;
+    width:20px; 
+}
+
+.ncbi_logo{
+	position:absolute; 
+	right: 30px;
+	top: 10px;
+	max-height: 24px;
+}
+
+.nvgtn {
+    padding-top: 3px;
+	width: 100%;
+}
+
+.nvgtn a {
+    font-size: 14px;
+    color: #205081;
+    text-decoration: none;
+}
+
+.right{float:right}
+

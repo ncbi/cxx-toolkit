@@ -149,7 +149,7 @@ The suite of application examples below highlight important areas of the Toolkit
 
 -   [app/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/objects/) - Creates an application that uses ASN.1 objects.
 
--   [app/objmgr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/objmgr/) - The Toolkit manipulates biological data objects in the context of an `Object Manager` class (***CObjectManager***). This example creates an application that uses the object manager.
+-   [app/objmgr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/objmgr/) - The Toolkit manipulates biological data objects in the context of an `Object Manager` class ([CObjectManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectManager)). This example creates an application that uses the object manager.
 
 -   [app/sdbapi](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/sdbapi/) - Creates a database application that uses `SDBAPI`.
 
@@ -195,7 +195,7 @@ The source tree is available through FTP, SVN and by running special scripts. Th
 
 ### FTP Availability
 
-The Toolkit source is available via ftp at [ftp://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT), and the archives available, with unpacking instructions, are listed on the [download page](ch_getcode_svn.html). If you plan to modify the Toolkit source in any way with the ftp code, it is strongly advised that it be placed under a source code control system (preferably SVN) so that you can rollback to an earlier revision without having to ftp the entire archive once again.
+The Toolkit source is available via FTP at [https://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT) (also at [ftp://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT)... but FTP may be blocked on some clients), and the archives available, with unpacking instructions, are listed on the [download page](ch_getcode_svn.html). If you plan to modify the Toolkit source in any way with the ftp code, it is strongly advised that it be placed under a source code control system (preferably SVN) so that you can rollback to an earlier revision without having to ftp the entire archive once again.
 
 <a name="ch_start.svn_avail"></a>
 
@@ -354,7 +354,7 @@ Summarized below are some basic ways to control the installation and configurati
 
 -   If you are outside NCBI, make sure the paths to your third party libraries are correctly specified. See [Site-Specific Third Party Library Configuration](ch_config.html#ch_config.SiteSpecific_Third_Party_Libra) for details.
 
--   [Influencing configure via Environment Variables](ch_config.html#ch_config.ch_configconfig_flag) Several environment variables control the tools and flags employed by **configure**. The [generic ones](ch_config.html#ch_config.ref_TableToolsAndFlags) are: **`CC, CXX, CPP, AR, RANLIB, STRIP, CFLAGS, CXXFLAGS, CPPFLAGS, LDFLAGS, LIBS`**. In addition, you may manually set various [localization environment variables](ch_config.html#ch_config.ch_configlocalizatio).
+-   [Influencing configure via Environment Variables](ch_config.html#ch_config.ch_configconfig_flag) Several environment variables control the tools and flags employed by **configure**. The [generic ones](#ch_start.ref_TableToolsAndFlags) are: **`CC, CXX, CPP, AR, RANLIB, STRIP, CFLAGS, CXXFLAGS, CPPFLAGS, LDFLAGS, LIBS`**. In addition, you may manually set various [localization environment variables](ch_config.html#ch_config.ch_configlocalizatio).
 
 -   [Multi-Thread Safe Compilation](ch_config.html#ch_config.ch_configmt_safe_com)
 
@@ -364,7 +364,7 @@ Summarized below are some basic ways to control the installation and configurati
 
 -   [Working with Multiple build trees](ch_config.html#ch_config.Configuration_and_In) Managing builds for a variety of platforms and/or compiler environments is straightforward. The configure/install/build cycle has been designed to support the concurrent development of multiple builds from the same source files. This is accomplished by having independent `build trees` that exist as sibling directories. Each build is configured according to its own set of configuration options and thus produces distinct libraries and executables. All builds are nonetheless constructed from the same source code in $NCBI/`c++/{src, include}`.
 
-<a name="ch_config.ref_TableToolsAndFlags"></a>
+<a name="ch_start.ref_TableToolsAndFlags"></a>
 
 Table 1. Environment variables that affect the configure / build process
 
@@ -448,11 +448,11 @@ Summarized below are some features of the global Toolkit infrastructure that use
 
 -   ***The*** `ncbistd.hpp` ***header*** The NCBI C++ standard \#include's and \#defin'itions are found in [ncbistd.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistd.hpp), which provides the interface to many of the basic Toolkit modules. The explicit NCBI headers included by `ncbistd.hpp` are: `ncbitype.h, ncbistl.hpp, ncbistr.hpp, ncbidbg.hpp, ncbiexpt.hpp` and `ncbi_limits.h`.
 
--   ***Portable Stream Handling*** Programmers can ensure portable stream and buffer I/O operations by using the NCBI C++ Toolkit stream wrappers, `typedef`'s and `#define`'s declared in the [ncbistre.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistre.hpp). For example, always use ***CNcbiIstream*** instead of `YourFavoriteNamespace::istream` and favor ***NcbiCin*** over ***cin***. A variety of classes that perform case-conversion and other manipulations in conjunction with NCBI streams and buffers are also available. See the [source](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistre.hpp) for details.
+-   ***Portable Stream Handling*** Programmers can ensure portable stream and buffer I/O operations by using the NCBI C++ Toolkit stream wrappers, `typedef`'s and `#define`'s declared in the [ncbistre.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistre.hpp). For example, always use [CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream) instead of `YourFavoriteNamespace::istream` and favor [NcbiCin](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiCin) over ***cin***. A variety of classes that perform case-conversion and other manipulations in conjunction with NCBI streams and buffers are also available. See the [source](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/corelib/ncbistre.hpp) for details.
 
 -   ***Use of the C++ STL (Standard Template Library) in the Toolkit*** The Toolkit employs the STL's set of template container classes, algorithms and iterators for managing collections of objects. Being standardized interfaces, coding with them provides portability. However, one drawback is the inability of STL containers to deal with reference objects, a problem area the Toolkit's [CRef and CObject classes](ch_core.html#ch_core.CRef) largely remedy.
 
--   ***Serializable Objects, the ASN.1 Data Types and*** **datatool** The [ASN.1 data model](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/SDKDOCS/DATAMODL.HTML) for biological data underlies all of the C and C++ Toolkit development at NCBI. The C++ Toolkit represents the ASN.1 data types as [serializable objects](ch_proj.html#ch_proj.ser_object), that is, objects able to save, restore, or transmit their state. This requires knowledge of an object's type and as such a ***CTypeInfo*** object is provided in each class to encapsulate [type information](ch_ser.html#ch_ser.typeinfo.html).<br/>Additionally, [object stream](ch_ser.html#ch_ser.objstream.html) classes (***CObject[IO]Stream***, and subclasses) have been designed specifically to perform data object serialization. The nuts-and-bolts of doing this has been documented on the [Processing Serial Data](ch_ser.html#ch_ser.asn.html) page, with additional information about the contents and parsing of ASN.1-derived objects in [Traversing a Data Structure](ch_ser.html#ch_ser.traverse.html).Each of the serializable objects appears in its own subdirectory under `[`[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects)`| `[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects)`]/objects`. These `objects/*` projects are configured differently from the rest of the Toolkit, in that header and source files are auto-generated from the ASN.1 specifications by the [datatool](ch_app.html#ch_app.datatool) program. The --with-objects flag to **configure** also directs a build of the [user classes](ch_proj.html#ch_proj.base_classes) for the serializable objects.
+-   ***Serializable Objects, the ASN.1 Data Types and*** **datatool** The [ASN.1 data model](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/SDKDOCS/DATAMODL.HTML) for biological data underlies all of the C and C++ Toolkit development at NCBI. The C++ Toolkit represents the ASN.1 data types as [serializable objects](ch_proj.html#ch_proj.ser_object), that is, objects able to save, restore, or transmit their state. This requires knowledge of an object's type and as such a [CTypeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeInfo) object is provided in each class to encapsulate [type information](ch_ser.html#ch_ser.typeinfo.html).<br/>Additionally, [object stream](ch_ser.html#ch_ser.objstream.html) classes (***CObject[IO]Stream***, and subclasses) have been designed specifically to perform data object serialization. The nuts-and-bolts of doing this has been documented on the [Processing Serial Data](ch_ser.html#ch_ser.asn.html) page, with additional information about the contents and parsing of ASN.1-derived objects in [Traversing a Data Structure](ch_ser.html#ch_ser.traverse.html).Each of the serializable objects appears in its own subdirectory under `[`[src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects)`| `[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects)`]/objects`. These `objects/*` projects are configured differently from the rest of the Toolkit, in that header and source files are auto-generated from the ASN.1 specifications by the [datatool](ch_app.html#ch_app.datatool) program. The --with-objects flag to **configure** also directs a build of the [user classes](ch_proj.html#ch_proj.base_classes) for the serializable objects.
 
 <a name="ch_start.key_classes"></a>
 
@@ -494,7 +494,7 @@ For reference, we list some of the fundamental classes used in developing applic
 
 The [datatool](ch_app.html#ch_app.datatool) processes the ASN.1 specifications in the `src/objects/directories` and is the C++ Toolkit's analogue of the C Toolkit's **asntool**. The goal of **datatool** is to generate the class definitions corresponding to each ASN.1 defined data entity, including all required [type information](ch_ser.html#ch_ser.typeinfo.html). As ASN.1 allows data to be selected from one of several types in a [choice element](ch_ser.html#ch_ser.choice.html), care must be taken to handle such cases.
 
-The [Object Manager](ch_objmgr.html) is a C++ Toolkit library whose goal is to transparently download data from the GenBank database, investigate bio sequence data structure, and retrieve sequence data, descriptions and annotations. In the library are [classes](ch_objmgr.html#ch_objmgr.om_def.html) such as ***CDataLoader*** and ***CDataSource*** which manage global and local accesses to data, ***CSeqVector*** and ***CSeqMap*** objects to find and manipulate sequence data, a number of [specialized iterators](ch_objmgr.html#ch_objmgr.om_def.html_Iterators) to parse descriptions and annotations, among others. The ***CObjectManager*** and ***CScope*** classes provide the foundation of the library, managing data objects and coordinating their interactions.
+The [Object Manager](ch_objmgr.html) is a C++ Toolkit library whose goal is to transparently download data from the GenBank database, investigate bio sequence data structure, and retrieve sequence data, descriptions and annotations. In the library are [classes](ch_objmgr.html#ch_objmgr.om_def.html) such as [CDataLoader](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDataLoader) and [CDataSource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDataSource) which manage global and local accesses to data, [CSeqVector](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeqVector) and [CSeqMap](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeqMap) objects to find and manipulate sequence data, a number of [specialized iterators](ch_objmgr.html#ch_objmgr.om_def.html_Iterators) to parse descriptions and annotations, among others. The [CObjectManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectManager) and [CScope](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CScope) classes provide the foundation of the library, managing data objects and coordinating their interactions.
 
 [Jump-start](ch_objmgr.html#ch_objmgr.om_start.html) and [Object Manager FAQ](ch_objmgr.html#ch_objmgr.om_faq.html) are all available to help new users.
 
@@ -504,7 +504,7 @@ The [Object Manager](ch_objmgr.html) is a C++ Toolkit library whose goal is to t
 
 The Toolkit has a number of methods for catching, reporting and handling coding bugs and exceptional conditions. During development, a [debug mode](ch_debug.html#ch_debug.debug_mode_internal) exists to allow for assertions, traces and message posting. The standard C++ exception handling (which should be used as much as possible) has been extended by a pair of [NCBI exception classes](ch_debug.html#ch_debug.excep_cpp_toolkit), ***CErrnoException*** and ***CParseException*** and additional associated macros. [Diagnostics](ch_core.html#ch_core.diag), including an [ERR\_POST macro](ch_core.html#ch_core.ERR_POST) available for routine error posting, have been built into the Toolkit infrastructure.
 
-For more detailed and extensive reporting of an object's state (including the states of any contained objects), a special [debug dump interface](ch_debug.html#ch_debug.debug_dump) has been implemented. All objects derived from the ***CObject*** class, which is in turn derived from the abstract base class [CDebugDumpable](ch_debug.html#ch_debug.debug_architecture), automatically have this capability.
+For more detailed and extensive reporting of an object's state (including the states of any contained objects), a special [debug dump interface](ch_debug.html#ch_debug.debug_dump) has been implemented. All objects derived from the [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject) class, which is in turn derived from the abstract base class [CDebugDumpable](ch_debug.html#ch_debug.debug_architecture), automatically have this capability.
 
 <a name="ch_start.coding_stds_guidelines"></a>
 
@@ -525,11 +525,10 @@ All C++ source in the Toolkit has a [well-defined coding style](ch_style.html#ch
 Noteworthy Files
 ----------------
 
-A list of important files is given in [Table 1](#ch_start.T1).
+[Table 2](#ch_start.T2). Noteworthy Files
 
-<a name="ch_start.T1"></a>
+<a name="ch_start.T2"></a>
 
-Table 1. Noteworthy Files
 
 | Filename (relative to $NCBI/c++)               | Description             |
 |---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

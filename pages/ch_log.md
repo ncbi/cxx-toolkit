@@ -21,7 +21,7 @@ Working with Diagnostic Streams ([\*](ch_debug.html#ch_debug.std_cpp_message_pos
 
 
 
-The [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiDiag.html) class implements the functionality of an output stream enhanced with error posting mechanisms similar to those found in the NCBI C Toolkit. A ***CNcbiDiag*** object has the look and feel of an output stream; its member functions and friends include output operators and format manipulators. A ***CNcbiDiag*** object is not itself a stream, but serves as an interface to a stream which allows multiple threads to write to the same output. Each instance of ***CNcbiDiag*** includes the following private data members:
+The [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiDiag.html) class implements the functionality of an output stream enhanced with error posting mechanisms similar to those found in the NCBI C Toolkit. A [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object has the look and feel of an output stream; its member functions and friends include output operators and format manipulators. A [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object is not itself a stream, but serves as an interface to a stream which allows multiple threads to write to the same output. Each instance of [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) includes the following private data members:
 
 -   a buffer to store (a single) message text
 
@@ -29,7 +29,7 @@ The [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classC
 
 -   a set of post flags
 
-Limiting each instance of ***CNcbiDiag*** to the storage and handling of a single message ensures that multiple threads writing to the same stream will not have interleaving message texts.
+Limiting each instance of [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) to the storage and handling of a single message ensures that multiple threads writing to the same stream will not have interleaving message texts.
 
 The following topics are discussed in this section:
 
@@ -93,7 +93,7 @@ The following topics are discussed in this section:
 
 The following decision tree describes how the destination for diagnostics messages is determined.
 
-1.  Before the application is constructed (before ***AppMain()*** is called), everything goes to:
+1.  Before the application is constructed (before [AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain) is called), everything goes to:
 
     1.  (Unix-like systems only) `/log/fallback/UNKNOWN.{log|err|trace}` -- if available
 
@@ -101,7 +101,7 @@ The following decision tree describes how the destination for diagnostics messag
 
 2.  When the application is ready, and its name is known, but before the configuration file is loaded:
 
-    1.  If ***AppMain()*** is passed flags **`eDS_Default`** or **`eDS_ToStdlog`**, then the diagnostics goes:
+    1.  If [AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain) is passed flags **`eDS_Default`** or **`eDS_ToStdlog`**, then the diagnostics goes:
 
         1.  (Unix-like systems only) if `/log` is present:
 
@@ -119,7 +119,7 @@ The following decision tree describes how the destination for diagnostics messag
 
             2.  **`eDS_Default`** -- continues to go to **`STDERR`**
 
-    2.  If ***AppMain()*** is passed flags other than **`eDS_Default`** or **`eDS_ToStdlog`**, then the diagnostics goes to:
+    2.  If [AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain) is passed flags other than **`eDS_Default`** or **`eDS_ToStdlog`**, then the diagnostics goes to:
 
         1.  **`eDS_ToStdout`** -- standard output stream
 
@@ -129,7 +129,7 @@ The following decision tree describes how the destination for diagnostics messag
 
         4.  **`eDS_Disable`** -- nowhere
 
-        5.  **`eDS_User`** -- wherever it went before the ***AppMain()*** call
+        5.  **`eDS_User`** -- wherever it went before the [AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain) call
 
         6.  **`eDS_ToSyslog`** -- system log daemon
 
@@ -147,7 +147,7 @@ The boolean `TryRootLogFirst` argument in the `[LOG]` section of the application
 
 ### Setting Diagnostic Severity Levels
 
-Each diagnostic message has its own severity level ([EDiagSev](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDiagSev)), which is compared to a global severity threshold to determine whether or not its message should be posted. Six levels of severity are defined by the ***EDiagSev*** enumeration:
+Each diagnostic message has its own severity level ([EDiagSev](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDiagSev)), which is compared to a global severity threshold to determine whether or not its message should be posted. Six levels of severity are defined by the [EDiagSev](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EDiagSev) enumeration:
 
     /// Severity level for the posted diagnostics.
     enum EDiagSev {
@@ -173,7 +173,7 @@ The severity level can be set directly in **`POST`** and **`TRACE`** statements,
 
 ### Diagnostic Messages Filtering
 
-Diagnostic messages from the ***CNcbiDiag*** and ***CException*** classes can be filtered by the source file path; message severity; or by the module, class, or function name. Messages from the ***CNcbiDiag*** class can also be filtered by error code. If a ***CException*** object is created by chaining to a previous exception, then all exceptions in the chain will be checked against the filter and the exception will pass if any exception in the chain passes (even if one of them is suppressed by a negative condition).
+Diagnostic messages from the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) and [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException) classes can be filtered by the source file path; message severity; or by the module, class, or function name. Messages from the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) class can also be filtered by error code. If a [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException) object is created by chaining to a previous exception, then all exceptions in the chain will be checked against the filter and the exception will pass if any exception in the chain passes (even if one of them is suppressed by a negative condition).
 
 The filter can be set by the **`TRACE_FILTER`** or **`POST_FILTER`** entry in the **`[DIAG]`** section of the registry file or during runtime through [SetDiagFilter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagFilter). Messages with a severity level of **`Fatal`** are not filtered; messages with a severity level of **`Trace`** are filtered by **`TRACE_FILTER`**; and all other messages are filtered by **`POST_FILTER`**.
 
@@ -452,7 +452,7 @@ Fields in the new post format:
 
 -   Most fields have a fixed or minimum width to improve readability by generally aligning fields in adjacent rows.
 
-The application name is set to the executable name (without path and extension) by default. Sometimes however the executable's name can be too generic (like "summary" or "fetch"). To change it use ***CNcbiApplication::SetProgramDisplayName()*** function. Better yet, just rename the executable itself. It's a good practice to prefix the application names with something project-specific (like "pc\_summary" for PubChem or "efetch" for E-Utils).
+The application name is set to the executable name (without path and extension) by default. Sometimes however the executable's name can be too generic (like "summary" or "fetch"). To change it use [CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication)::[SetProgramDisplayName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetProgramDisplayName) function. Better yet, just rename the executable itself. It's a good practice to prefix the application names with something project-specific (like "pc\_summary" for PubChem or "efetch" for E-Utils).
 
 For more details, see:
 
@@ -610,7 +610,7 @@ Diagnostic message event / severity field - message sub-fields:
 
 | Field or sub-field  | Description             |
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `event` / `severity`      | Diagnostic message severity = { Trace \\| Info \\| Warning \\| Error \\| Critical \\| Fatal \\| Message[T\\|I\\|W\\|E\\|C\\|F] } - left-justified and space-padded to 10 characters |
+| `event` / `severity`      | Diagnostic message severity = { Trace \\| Info \\| Warning \\| Error \\| Critical \\| Fatal \\| Note[T\\|I\\|W\\|E\\|C\\|F] } - left-justified and space-padded to 10 characters |
 | `module`      | Module where the post originates from (in most cases the module corresponds to a single library)    |
 | `err_code`, `err_subcode` | Numeric error code and subcode             |
 | `err_text`    | If the error has no numeric code, sometimes it can be represented as text        |
@@ -641,7 +641,7 @@ Performance logging event - message sub-fields:
 |--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | `exit_code`  | Application exit code (zero if not set)     |
 | `timespan`   | Application execution time                  |
-| `performance_parameters` | URL-encoded name=value pairs -- the resource name given to the logger, the status message (if given), and any others from ***AddParameter()*** |
+| `performance_parameters` | URL-encoded name=value pairs -- the resource name given to the logger, the status message (if given), and any others from [AddParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddParameter) |
 
 <div class="table-scroll"></div>
 
@@ -812,7 +812,7 @@ To set up this sort of tee, set these configuration parameters (see the [library
 
 <div class="table-scroll"></div>
 
-Alternatively, you can use the ***Console*** manipulator to indicate that output should go to the console (in human-readable format):
+Alternatively, you can use the [Console](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Console) manipulator to indicate that output should go to the console (in human-readable format):
 
     ERR_POST_X(1, Console << "My ERR_POST message.");
 
@@ -822,27 +822,27 @@ Alternatively, you can use the ***Console*** manipulator to indicate that output
 
 ### The Message Buffer
 
-Diagnostic messages (i.e. instances of the ***CNcbiDiag*** class) have a buffer that is initialized when the message is first instantiated. Additional information can then be appended to the message using the overloaded stream operator `<<`. Messages can then be terminated explicitly using ***CNcbiDiag***'s stream manipulator ***Endm***, or implicitly, when the ***CNcbiDiag*** object exits scope.
+Diagnostic messages (i.e. instances of the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) class) have a buffer that is initialized when the message is first instantiated. Additional information can then be appended to the message using the overloaded stream operator `<<`. Messages can then be terminated explicitly using [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag)'s stream manipulator [Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm), or implicitly, when the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object exits scope.
 
-Implicit message termination also occurs as a side effect of applying one of the [severity level manipulators](#ch_core.diag_severity). Whenever the severity level is changed, ***CNcbiDiag*** also automatically executes the following two `manipulators`:
+Implicit message termination also occurs as a side effect of applying one of the [severity level manipulators](#ch_core.diag_severity). Whenever the severity level is changed, [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) also automatically executes the following two `manipulators`:
 
--   ***Endm*** -- the message is complete and the message buffer will be flushed
+-   [Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm) -- the message is complete and the message buffer will be flushed
 
--   ***Reset*** -- empty the contents of the current message buffer
+-   [Reset](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset) -- empty the contents of the current message buffer
 
-When the message controlled by an instance of ***CNcbiDiag*** is complete, ***CNcbiDiag*** calls a global callback function (of type [FDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FDiagHandler)) and passes the message (along with its severity level) as the function arguments. The default callback function posts errors to the currently designated output stream, with the action (continue or abort) determined by the severity level of the message.
+When the message controlled by an instance of [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) is complete, [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) calls a global callback function (of type [FDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FDiagHandler)) and passes the message (along with its severity level) as the function arguments. The default callback function posts errors to the currently designated output stream, with the action (continue or abort) determined by the severity level of the message.
 
 <a name="ch_core.Logging_Requests"></a>
 
 ### Logging Requests
 
-In request-driven applications (like FastCGIs or ***CServer***-based) grouping diagnostics into request-specific blocks is very helpful for post-processing. To facilitate this, [CDiagContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagContext.html) provides the ***PrintRequestStart()***, ***PrintRequestStop()***, ***Extra()***, and various ***Print()***, methods.
+In request-driven applications (like FastCGIs or [CServer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CServer)-based) grouping diagnostics into request-specific blocks is very helpful for post-processing. To facilitate this, [CDiagContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagContext.html) provides the [PrintRequestStart()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PrintRequestStart), [PrintRequestStop()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PrintRequestStop), [Extra()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Extra), and various [Print()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Print), methods.
 
-The ***CDiagContext::SetRequestContext()*** method enables you to use a [CRequestContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) object to pass certain request-specific information - such as request ID, client IP, bytes sent, request status, etc. - to the diagnostics context. The request context information can be invaluable when analyzing logs.
+The [CDiagContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagContext)::[SetRequestContext()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetRequestContext) method enables you to use a [CRequestContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) object to pass certain request-specific information - such as request ID, client IP, bytes sent, request status, etc. - to the diagnostics context. The request context information can be invaluable when analyzing logs.
 
-[CRequestContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) objects are merely convenient packages for passing information - they can be preserved across multiple events or re-created as needed. However, as ***CObject***-derived objects, they should be wrapped by ***CRef*** to avoid inadvertent deletion by code accepting a ***CRef*** parameter.
+[CRequestContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestContext.html) objects are merely convenient packages for passing information - they can be preserved across multiple events or re-created as needed. However, as [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject)-derived objects, they should be wrapped by [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef) to avoid inadvertent deletion by code accepting a [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRef) parameter.
 
-The following code fragments show examples of API calls for creating request-specific blocks in the logfile. Your code may be slightly different and may make these calls in different event handlers (for example, you might call ***PrintRequestStart()*** in ***OnRead()*** and ***PrintRequestStop()*** in ***OnWrite()***).
+The following code fragments show examples of API calls for creating request-specific blocks in the logfile. Your code may be slightly different and may make these calls in different event handlers (for example, you might call [PrintRequestStart()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PrintRequestStart) in [OnRead()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnRead) and [PrintRequestStop()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PrintRequestStop) in [OnWrite()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnWrite)).
 
     // Set up the request context:
     CRef<CRequestContext> rqst_ctx(new CRequestContext());
@@ -877,7 +877,7 @@ Each thread has its own request context. Therefore, simultaneous calls to ***Get
 
 It is possible to pass request context from one thread to another. In this case the context must be removed from the old thread before passing it to ***GetDiagContext().SetRequestContext()*** in the new thread.
 
-The request handler should ensure that each request-start has a corresponding request-stop - for example by writing the request-stop in a destructor if it wasn't already written. ***PrintRequestStop()*** resets request context's properties so that a new request does not inherit any information from the previous request.
+The request handler should ensure that each request-start has a corresponding request-stop - for example by writing the request-stop in a destructor if it wasn't already written. [PrintRequestStop()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PrintRequestStop) resets request context's properties so that a new request does not inherit any information from the previous request.
 
 <a name="ch_core.Request_Exit_Status_Codes"></a>
 
@@ -939,7 +939,7 @@ So far we have the following NCBI specific status codes:
 
 ### Error codes and their Descriptions
 
-Error codes and subcodes are posted to an output stream only if applicable [post flags](#ch_core.diag_post_flags) were set. In addition to error codes, the logging framework can also post text explanations. The [CDiagErrCodeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagErrCodeInfo.html) class is used to find the error message that corresponds to a given error code/subcode. Such descriptions could be specified directly in the program code or placed in a separate message file. It is even possible to use several such files simultaneously. ***CDiagErrCodeInfo*** can also read error descriptions from any input stream(s), not necessarily files.
+Error codes and subcodes are posted to an output stream only if applicable [post flags](#ch_core.diag_post_flags) were set. In addition to error codes, the logging framework can also post text explanations. The [CDiagErrCodeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCDiagErrCodeInfo.html) class is used to find the error message that corresponds to a given error code/subcode. Such descriptions could be specified directly in the program code or placed in a separate message file. It is even possible to use several such files simultaneously. [CDiagErrCodeInfo](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CDiagErrCodeInfo) can also read error descriptions from any input stream(s), not necessarily files.
 
 <a name="ch_core.err_msg_file"></a>
 
@@ -1006,7 +1006,7 @@ The user can install his own handler (of type [CDiagHandler](https://www.ncbi.nl
         virtual void Post(const SDiagMessage& mess) = 0;
     };
 
-where [SDiagMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SDiagMessage) is a simple struct defined in `ncbidiag.hpp` whose data members' values are obtained from the ***CNcbiDiag*** object. The transfer of data values occurs at the time that ***Post*** is invoked. See also the section on [Message posting](ch_debug.html#ch_debug.std_cpp_message_post) for a more technical discussion.
+where [SDiagMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SDiagMessage) is a simple struct defined in `ncbidiag.hpp` whose data members' values are obtained from the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object. The transfer of data values occurs at the time that [Post](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Post) is invoked. See also the section on [Message posting](ch_debug.html#ch_debug.std_cpp_message_post) for a more technical discussion.
 
 <a name="ch_core.ERR_POST"></a>
 
@@ -1014,7 +1014,9 @@ where [SDiagMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?
 
 A family of **`ERR_POST*`** macros and a corresponding family of **`LOG_POST*`** macros are available for routine message posting.
 
-The log entries produced by the two families are almost identical for the [new post format](#ch_core.The_New_Post_Format) - the **`ERR_POST*`** entries contain a full word for the severity (e.g. "`Error`") while the **`LOG_POST*`** entries contain the word "`Message`" and a one-character severity code (e.g. "`Message[E]`"). For the [old post format](#ch_core.The_Old_Post_Format), **`LOG_POST*`** macros simply contain the message, while **`ERR_POST*`** entries contain the severity, error code, and message. [Message filtering](#ch_core.diagnostic_messages_filtering) works exactly the same way for the two families of macros.
+The log entries produced by the two families are almost identical for the [new post format](#ch_core.The_New_Post_Format) - the **`ERR_POST*`** entries contain a full word for the severity (e.g. "`Error`") while the **`LOG_POST*`** entries contain the word "`Note`" and a one-character severity code (e.g. "`Note[E]`"). For the [old post format](#ch_core.The_Old_Post_Format), **`LOG_POST*`** macros simply contain the message, while **`ERR_POST*`** entries contain the severity, error code, and message. [Message filtering](#ch_core.diagnostic_messages_filtering) works exactly the same way for the two families of macros.
+
+Note that the the "Note" messages (from **`LOG_POST*`**) do not show by default in the AppLog browser. You need to check the "Note" checkbox to see them.
 
 The macros are:
 
@@ -1028,7 +1030,7 @@ The macros are:
 
 The **`LOG_POST_*`** macros just write a string to the log file, and are useful if a human-readable log file is desired. The output from the **`ERR_POST_*`** macros is not easily read by humans, but facilitates automatic indexing for searching and/or error statistics. There are multiple flags to [control the appearance of the message](#ch_core.diag_post_flags) generated by the **`ERR_POST_*`** macros.
 
-The **`LOG_POST_*`** and **`ERR_POST_*`** macros implicitly create a temporary ***CNcbiDiag*** object and put the passed "message" into it with a default severity of **`Error`**. A [severity level manipulator](#ch_core.diag_severity) can be applied if desired, to modify the message's severity level. For example:
+The **`LOG_POST_*`** and **`ERR_POST_*`** macros implicitly create a temporary [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object and put the passed "message" into it with a default severity of **`Error`**. A [severity level manipulator](#ch_core.diag_severity) can be applied if desired, to modify the message's severity level. For example:
 
     long lll = 345;
     ERR_POST_X(1, "My ERR_POST message, print long: " << lll);
@@ -1105,31 +1107,31 @@ The C++ Toolkit includes a [performance logging API](https://www.ncbi.nlm.nih.go
 
 The performance logging classes and macros are:
 
--   ***CPerfLogGuard***
+-   [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogGuard)
 
     -   The [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogGuard.html) class will generally be the first choice for performance logging. If you want to use a **`PERF_POST*`** macro, then use [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogger.html) to create the logger object.
 
-    -   ***CPerfLogGuard*** measures elapsed time and posts a one-line entry in the performance log.
+    -   [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogGuard) measures elapsed time and posts a one-line entry in the performance log.
 
-    -   ***CPerfLogGuard*** should be used for measuring just one operation.
+    -   [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogGuard) should be used for measuring just one operation.
 
-    -   Extra parameters can be added using ***AddParameter()***.
+    -   Extra parameters can be added using [AddParameter()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddParameter).
 
-    -   You can call ***Start()*** and ***Suspend()*** as many times as you want after creating the logger and before posting or discarding.
+    -   You can call [Start()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Start) and [Suspend()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Suspend) as many times as you want after creating the logger and before posting or discarding.
 
-    -   End measurement with ***Post()*** or ***Discard()***. If one of these isn't called before the logger is destroyed, the destructor will post a log entry with a status code of 500.
+    -   End measurement with [Post()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Post) or [Discard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Discard). If one of these isn't called before the logger is destroyed, the destructor will post a log entry with a status code of 500.
 
-    -   ***CPerfLogGuard*** has built-in integrity checks to ensure that only one ***Post()*** or ***Discard()*** call is made, ***Suspend()*** isn't called when the time isn't running, etc.
+    -   [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogGuard) has built-in integrity checks to ensure that only one [Post()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Post) or [Discard()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Discard) call is made, [Suspend()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Suspend) isn't called when the time isn't running, etc.
 
--   ***CPerfLogger***
+-   [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogger)
 
-    -   The [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogger.html) class can be used on its own, but it's best to only use it if you need to create a logger for use in a **`PERF_POST*`** macro. ***CPerfLogger*** is slightly lower-level than ***CPerfLogGuard*** but is otherwise very similar, except that ***CPerfLogGuard*** offers generally desirable guard features.
+    -   The [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPerfLogger.html) class can be used on its own, but it's best to only use it if you need to create a logger for use in a **`PERF_POST*`** macro. [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogger) is slightly lower-level than [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogGuard) but is otherwise very similar, except that [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogGuard) offers generally desirable guard features.
 
-    -   ***Note:*** If you use ***CPerfLogger*** on its own, and logging is off, then neither logging nor timing will be done. However, the extra record will be put into the log if the following construct is used:<br/><br/>`perf_logger.Post(...).Print(...)`<br/><br/>Therefore, it's best to avoid that construct and use the ***CPerfLogGuard*** class or a **`PERF_POST`** macro instead.
+    -   ***Note:*** If you use [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogger) on its own, and logging is off, then neither logging nor timing will be done. However, the extra record will be put into the log if the following construct is used:<br/><br/>`perf_logger.Post(...).Print(...)`<br/><br/>Therefore, it's best to avoid that construct and use the [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogGuard) class or a **`PERF_POST`** macro instead.
 
 -   **`PERF_POST`**
 
-    -   Use the [PERF\_POST](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Diagnostics.html#ga8da8da548df436e673c0274f9bcb6770) macro if you find it more convenient than ***CPerfLogGuard***, or if you'd like to possibly save a few CPU cycles when performance logging is globally turned off.
+    -   Use the [PERF\_POST](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__Diagnostics.html#ga8da8da548df436e673c0274f9bcb6770) macro if you find it more convenient than [CPerfLogGuard](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogGuard), or if you'd like to possibly save a few CPU cycles when performance logging is globally turned off.
 
 -   **`PERF_POST_DB`**
 
@@ -1140,7 +1142,7 @@ Performance logging is turned off by default, but can be globally turned on usin
     [Log]
     PerfLogging = true
 
-It can also be turned on or off at runtime by calling ***CPerfLogger::SetON()***.
+It can also be turned on or off at runtime by calling [CPerfLogger](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerfLogger)::[SetON()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetON).
 
 Here is a typical usage example:
 
@@ -1182,7 +1184,7 @@ This example shows nested logging:
 
 ### Stack Traces
 
-***CStackTrace*** objects have special formatting: a "`Stack trace:`" line is added before the stack trace and standard indentation is used. This formatting is also used when printing the stack trace for exceptions.
+[CStackTrace](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStackTrace) objects have special formatting: a "`Stack trace:`" line is added before the stack trace and standard indentation is used. This formatting is also used when printing the stack trace for exceptions.
 
 Using stack traces with diagnostics is discussed in the following topics:
 
@@ -1215,7 +1217,7 @@ An example of a stack trace output on Linux:
 
 #### Obtaining a Stack Trace for Exceptions
 
-The stack trace can be saved by ***CException*** and derived classes automatically if the exception's severity is equal to or above the level set in the **`EXCEPTION_STACK_TRACE_LEVEL`** environment variable or [configuration parameter](ch_libconfig.html#ch_libconfig.NCBI). The default level is **`Critical`**, so that most exceptions do not save the stack trace (the default exception's severity is **`Error`**).
+The stack trace can be saved by [CException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CException) and derived classes automatically if the exception's severity is equal to or above the level set in the **`EXCEPTION_STACK_TRACE_LEVEL`** environment variable or [configuration parameter](ch_libconfig.html#ch_libconfig.NCBI). The default level is **`Critical`**, so that most exceptions do not save the stack trace (the default exception's severity is **`Error`**).
 
 When printing an exception, the diagnostics code checks if a stack trace is available and if so, automatically prints the stack trace along with the exception.
 
@@ -1271,7 +1273,7 @@ These parameters tune the usage and behavior of the library and all based on it 
 
 #### ncbi_applog
 
-To allow logging from scripts we have a command-line utility &mdash; ***ncbi_applog***. It is based on ***CLog*** library, so it accepts all parameters specified for [that library](#ch_core.Logging_Modules_CLog), and also some extra:
+To allow logging from scripts we have a command-line utility &mdash; ***ncbi_applog***. It is based on [CLog](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CLog) library, so it accepts all parameters specified for [that library](#ch_core.Logging_Modules_CLog), and also some extra:
 
 | Configuration Parameter | Purpose | Valid value | Default |
 |-------------------------|---------|--------------|---------|

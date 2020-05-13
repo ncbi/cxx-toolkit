@@ -57,7 +57,7 @@ The following is an outline of the topics presented in this chapter:
 Public Access to the Source Code via FTP
 ----------------------------------------
 
--   [FTP Download Now](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT)
+-   [FTP Download Now](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT)
 
 -   **Available FTP Archives**: Select the archive for your system. When the dialog box appears, choose the destination in your file system for the downloaded archive. ***Note:*** With some browsers, you may need to right-click-and-hold with your mouse and use the `'Save Link As...', 'Copy to Folder...'`, or similar options from the drop-down menu to properly save the archive. For a current list of the source code archives for different operating system/compiler combinations consult [the current Release Notes](release_notes.html).
 

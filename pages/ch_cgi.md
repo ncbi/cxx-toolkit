@@ -138,7 +138,7 @@ Developing CGI applications
 
 -   [Supplementary Information](#ch_cgi.appendix)
 
-Although CGI programs are generally run as web applications with HTML interfaces, this section of the Programming Manual places emphasis on the CGI side of things, omitting HTML details of the implementation where possible. Similarly, the section on [Generating web pages](ch_html.html#ch_html.webpgs.html) focuses largely on the usage of HTML components independent of CGI details. The two branches of the NCBI C++ Toolkit hierarchy are all but independent of one another - with but one explicit hook between them: the constructors for HTML [page](ch_html.html#ch_html.page_classes) components accept a ***CCgiApplication*** as an optional argument. This ***CCgiApplication*** argument provides the HTML page component with access to all of the CGI objects used in the application.
+Although CGI programs are generally run as web applications with HTML interfaces, this section of the Programming Manual places emphasis on the CGI side of things, omitting HTML details of the implementation where possible. Similarly, the section on [Generating web pages](ch_html.html#ch_html.webpgs.html) focuses largely on the usage of HTML components independent of CGI details. The two branches of the NCBI C++ Toolkit hierarchy are all but independent of one another - with but one explicit hook between them: the constructors for HTML [page](ch_html.html#ch_html.page_classes) components accept a [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) as an optional argument. This [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) argument provides the HTML page component with access to all of the CGI objects used in the application.
 
 Further discussion of combining a CGI application with the HTML classes can be found in the section on [An example web-based CGI application](#ch_cgi.html). The focus in this chapter is on the CGI classes only. For additional information about the CGI classes, the reader is also referred to the discussion of [NCBI C++ CGI Classes](#ch_cgi.) in the Reference Manual.
 
@@ -166,11 +166,11 @@ This design is best described by starting with a consideration of the capabiliti
 
 -   A way to set/reset the context of the application (for Fast-CGI)
 
-The ***CCgiContext*** class unifies these diverse capabilities under one aggregate structure. As their names suggest, the ***CCgiRequest*** class receives and parses the request, and the ***CCgiResponse*** class outputs the response on an output stream. All incoming ***CCgiCookie***s are also parsed and stored by the ***CCgiRequest*** object, and the outgoing cookies are sent along with the response by the ***CCgiResponse*** object. The request is actually processed by the application's ***CNcbiResource***. The list of ***CNcbiCommand***s stored with that resource object are scanned to find a matching command, which is then executed.
+The [CCgiContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiContext) class unifies these diverse capabilities under one aggregate structure. As their names suggest, the [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) class receives and parses the request, and the [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse) class outputs the response on an output stream. All incoming [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie)s are also parsed and stored by the [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) object, and the outgoing cookies are sent along with the response by the [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse) object. The request is actually processed by the application's [CNcbiResource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiResource). The list of [CNcbiCommand](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiCommand)s stored with that resource object are scanned to find a matching command, which is then executed.
 
-The ***CCgiContext*** object, which is a `friend` to the ***CCgiApplication*** class, orchestrates this sequence of events in coordination with the application object. The same application may be run in many different contexts, but the `resource` and defined set of `commands` are invariant. What changes with each context is the request and its associated response.
+The [CCgiContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiContext) object, which is a `friend` to the [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) class, orchestrates this sequence of events in coordination with the application object. The same application may be run in many different contexts, but the `resource` and defined set of `commands` are invariant. What changes with each context is the request and its associated response.
 
-The ***CCgiApplication*** class is a specialization of ***CNcbiApplication***. [Figure 2](#ch_cgi.F2) illustrates the adaptation of the ***Init()*** and ***Run()*** member functions inherited from the ***CNcbiApplication*** class to the requirements of CGI programming. Although the application is `contained` in the context, it is the application which creates and initializes each context in which it participates. The program arguments and environmental variables are passed along to the context, where they will be stored, thus freeing the application to be restarted in a new context, as in Fast-CGI.
+The [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) class is a specialization of [CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication). [Figure 2](#ch_cgi.F2) illustrates the adaptation of the [Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Init) and [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run) member functions inherited from the [CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication) class to the requirements of CGI programming. Although the application is `contained` in the context, it is the application which creates and initializes each context in which it participates. The program arguments and environmental variables are passed along to the context, where they will be stored, thus freeing the application to be restarted in a new context, as in Fast-CGI.
 
 <a name="ch_cgi.F2"></a>
 
@@ -178,7 +178,7 @@ The ***CCgiApplication*** class is a specialization of ***CNcbiApplication***. [
 
 Figure 2. Adapting the init() and run() methods inherited from CNcbiApplication
 
-The application's ***ProcessRequest*** member function is an abstract function that must be implemented for each application project. In most cases, this function will access the query and the environment variables via the ***CCgiContext***, using ***ctx.GetRequest()*** and ***ctx.GetConfig()***. The application may then service the request using its resource's ***HandleRequest()*** method. The context's response object can then be used to send an appropriate response.
+The application's [ProcessRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ProcessRequest) member function is an abstract function that must be implemented for each application project. In most cases, this function will access the query and the environment variables via the [CCgiContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiContext), using ***ctx.GetRequest()*** and ***ctx.GetConfig()***. The application may then service the request using its resource's [HandleRequest()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HandleRequest) method. The context's response object can then be used to send an appropriate response.
 
 These classes are described in more detail below, along with abbreviated synopses of the class definitions. These are included here to provide a conceptual framework and are not intended as reference materials. For example, constructor and destructor declarations that operate on void arguments, and `const` methods that duplicate non-const declarations are generally not included here. Certain virtual functions and data members that have no meaning outside of a web application are also omitted. For complete definitions, refer to the header files via the source browsers.
 
@@ -186,7 +186,7 @@ These classes are described in more detail below, along with abbreviated synopse
 
 ### The CCgiApplication Class ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiApplication.html))
 
-As mentioned, the ***CCgiApplication*** class implements its own version of [Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiApplication.html#a0a910deea4387498e472b209967569f0), where it instantiates a [CNcbiResource](#ch_cgi.cgi_res_class) object using ***LoadResource()***. [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiApplication.html#a9c4be90774829c6a66320a2391e7fcbb) is no longer a pure virtual function in this subclass, and its implementation now calls ***CreateContext(), ProcessRequest()***, and ***CCgiContext::GetResponse()***. The ***CCgiApplication*** class does **not** have a ***CCgiContext*** data member, because the application object can participate in multiple ***CCgiContext***s. Instead, a local variable in each ***Run()*** invocation stores a pointer to the context created there. The ***LoadServerContext()*** member function is used in Web applications, where it is necessary to store more complex run-time data with the context object. The ***CCgiServerContext*** object returned by this function is stored as a data member of a ***CCgiContext*** and is application specific.
+As mentioned, the [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) class implements its own version of [Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiApplication.html#a0a910deea4387498e472b209967569f0), where it instantiates a [CNcbiResource](#ch_cgi.cgi_res_class) object using [LoadResource()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LoadResource). [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiApplication.html#a9c4be90774829c6a66320a2391e7fcbb) is no longer a pure virtual function in this subclass, and its implementation now calls ***CreateContext(), ProcessRequest()***, and [CCgiContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiContext)::[GetResponse()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetResponse). The [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) class does **not** have a [CCgiContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiContext) data member, because the application object can participate in multiple [CCgiContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiContext)s. Instead, a local variable in each [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run) invocation stores a pointer to the context created there. The [LoadServerContext()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LoadServerContext) member function is used in Web applications, where it is necessary to store more complex run-time data with the context object. The [CCgiServerContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiServerContext) object returned by this function is stored as a data member of a [CCgiContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiContext) and is application specific.
 
     class CCgiApplication : public CNcbiApplication 
     { 
@@ -211,13 +211,19 @@ As mentioned, the ***CCgiApplication*** class implements its own version of [Ini
     private: auto_ptr<CNcbiResource> m_resource; 
     };
 
-If the program was **not** compiled as a FastCGI application (or the environment does not support FastCGI), then [IsFastCGI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsFastCGI) will return `false`. Otherwise, a "FastCGI loop" will be iterated over **`def_iter`** times, with the initialization methods and ***ProcessRequest()*** function being executed on each iteration. The value returned by ***IsFastCGI()*** in this case is `true`. ***Run()*** first calls ***IsFastCGI()***, and if that returns `false`, the application is run as a plain CGI program.
+If the program was **not** linked as a FastCGI application (or the environment does not support FastCGI), then [IsFastCGI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsFastCGI) will return `false`. Otherwise, a "FastCGI loop" will be iterated over **`def_iter`** times, with the initialization methods and [ProcessRequest()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ProcessRequest) function being executed on each iteration. The value returned by [IsFastCGI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsFastCGI) in this case is `true`. [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run) first calls [IsFastCGI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsFastCGI), and if that returns `false`, the application is run as a plain CGI program.
+
+Please note that for historical reasons by default FastCGI application will exit after processing only 10 requests. This can be changed using either C++ API or configuration file. To explain why: when we added Fast-CGI option to the C++ Toolkit CGI framework there already were hundreds of CGIs developed on the "plain" CGI framework; and, dozens of those CGIs were being converted into Fast-CGIs. But because originally the CGIs were not designed to live after the 1st request was done, so for a while the converted CGIs were plagued with the "after 1st request" side-effects such as not freed memory, not closed file descriptors, and worse. The "iterators" parameter was introduced to allow developers to mitigate these problems without rebuilding (fixing) their Fast-CGI binaries by reducing the number of iterations. The default of 10 iterations was chosen as a reasonable safeguard to limit the damage that the "side-effected" Fast-CGIs could inflict on their host backends. 
+
+The [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) class supports Cross-Origin Resource Sharing (CORS) which is disabled by default. To enable CORS set CORS_Enable variable to true in [CGI] section of the INI file. There are several other values for fine-tuning CORS request processing: CORS_Allow_Origin, CORS_Allow_Headers, CORS_Allow_Methods etc. All CORS related values are described in [CGI and FCGI parameters](https://ncbi.github.io/cxx-toolkit/pages/ch_libconfig#ch_libconfig.libconfig_cgi). For more information on CORS see https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS.
+
+The [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) class provides basic protection against [Cross Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29).  The protection uses synchronization token checked by [ValidateSynchronizationToken()](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=ValidateSynchronizationToken) virtual method. The default implementation checks if the token is present in **Ncbi-CSRF-Token** HTTP header, which must be set on the client side (e.g. by a javascript). ValidateSynchronizationToken() expects the token to be equal to the current session ID (passed in the HTTP cookies). If the token does not pass validation the CGI returns status "403 Forbidden". CSRF protection is disabled by default. See [CGI and FCGI parameters](https://ncbi.github.io/cxx-toolkit/pages/ch_libconfig#ch_libconfig.libconfig_cgi) for the information on enabling it. If token validation is enabled, replies to CORS preflight requests will add Ncbi-CSRF-Token to the list of allowed headers (Access-Control-Allow-Headers). ValidateSynchronizationToken() method can be overriden to provide a different CSRF protection mechanism.
 
 <a name="ch_cgi.cgi_res_class"></a>
 
 ### The CNcbiResource ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiResource.html)) and CNcbiCommand ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiCommand.html)) Classes
 
-The resource class is at the heart of the application, and it is here that the program's functionality is defined. The single argument to the resource class's constructor is a [CNcbiRegistry](ch_core.html#ch_core.CNcbiRegistry) object, which defines data paths, resources, and possibly environmental variables for the application. This information is stored in the resource class's data member, **`m_config`**. The only other data member is a [TCmdList](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TCmdList) (a list of ***CNcbiCommand***s) called **`m_cmd`**.
+The resource class is at the heart of the application, and it is here that the program's functionality is defined. The single argument to the resource class's constructor is a [CNcbiRegistry](ch_core.html#ch_core.CNcbiRegistry) object, which defines data paths, resources, and possibly environmental variables for the application. This information is stored in the resource class's data member, **`m_config`**. The only other data member is a [TCmdList](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TCmdList) (a list of [CNcbiCommand](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiCommand)s) called **`m_cmd`**.
 
     class CNcbiResource 
     { 
@@ -239,7 +245,7 @@ The resource class is at the heart of the application, and it is here that the p
         TCmdList m_cmd; 
     };
 
-The ***AddCommand()*** method is used when a resource is being initialized, to add commands to the command list. Given a ***CCgiRequest*** object defined in a particular context **`ctx`**, [HandleRequest(ctx)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HandleRequest) compares entries in the context's request to commands in **`m_cmd`**. The first command in **`m_cmd`** that matches an entry in the request is then executed (see below), and the request is considered "handled". If desired, a default command can be installed that will execute when no matching command is found. The default command is defined by implementing the pure virtual function ***GetDefaultCommand()***. The [CNcbiResPresentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiResPresentation.html) class is an abstract base class, and the member function, ***GetPresentation()***, returns 0. It is provided as a hook for implementing interfaces between information resources (e.g., databases) and CGI applications.
+The [AddCommand()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddCommand) method is used when a resource is being initialized, to add commands to the command list. Given a [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) object defined in a particular context **`ctx`**, [HandleRequest(ctx)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HandleRequest) compares entries in the context's request to commands in **`m_cmd`**. The first command in **`m_cmd`** that matches an entry in the request is then executed (see below), and the request is considered "handled". If desired, a default command can be installed that will execute when no matching command is found. The default command is defined by implementing the pure virtual function [GetDefaultCommand()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDefaultCommand). The [CNcbiResPresentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNcbiResPresentation.html) class is an abstract base class, and the member function, [GetPresentation()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetPresentation), returns 0. It is provided as a hook for implementing interfaces between information resources (e.g., databases) and CGI applications.
 
     class CNcbiCommand 
     { 
@@ -259,17 +265,17 @@ The ***AddCommand()*** method is used when a resource is being initialized, to a
         CNcbiResource& m_resource; 
     };
 
-***CNcbiCommand*** is an abstract base class; its only data member is a reference to the resource it belongs to, and most of its methods - with the exception of ***GetResource()*** and ***IsRequested()*** - are pure virtual functions. ***IsRequested()*** examines the `key=value` entries stored with the context's request object. When an entry is found where `key==GetEntry()` and `value==GetName()`, ***IsRequested()*** returns `true`.
+[CNcbiCommand](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiCommand) is an abstract base class; its only data member is a reference to the resource it belongs to, and most of its methods - with the exception of [GetResource()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetResource) and [IsRequested()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsRequested) - are pure virtual functions. [IsRequested()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsRequested) examines the `key=value` entries stored with the context's request object. When an entry is found where `key==GetEntry()` and `value==GetName()`, [IsRequested()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsRequested) returns `true`.
 
-The resource's ***HandleRequest()*** method iterates over its command list, calling ***CNcbiCommand::IsRequested()*** until the first match between a command and a request entry is found. When ***IsRequested()*** returns `true`, the command is `cloned`, and the cloned command is then `executed`. Both the ***Execute()*** and ***Clone()*** methods are pure virtual functions that must be implemented by the user.
+The resource's [HandleRequest()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HandleRequest) method iterates over its command list, calling [CNcbiCommand](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiCommand)::[IsRequested()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsRequested) until the first match between a command and a request entry is found. When [IsRequested()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsRequested) returns `true`, the command is `cloned`, and the cloned command is then `executed`. Both the [Execute()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Execute) and [Clone()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Clone) methods are pure virtual functions that must be implemented by the user.
 
 <a name="ch_cgi.cgi_http_req"></a>
 
 ### The CCgiRequest Class ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiRequest.html))
 
-The ***CCgiRequest*** class serves as an interface between the user's query and the CGI program. Arguments to the constructor include a ***CNcbiArguments*** object, a ***CNcbiEnvironment*** object, and a ***CNcbiIstream*** object. The class constructors do little other than invoke ***CCgiRequest::x\_Init()***, where the actual initialization takes place.
+The [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) class serves as an interface between the user's query and the CGI program. Arguments to the constructor include a [CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiArguments) object, a [CNcbiEnvironment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiEnvironment) object, and a [CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream) object. The class constructors do little other than invoke [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest)::[x\_Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_Init), where the actual initialization takes place.
 
-***x\_Init()*** begins by examining the environment argument, and if it is `NULL`, **`m_OwnEnv`** (an auto\_ptr) is reset to a dummy environment. Otherwise, **`m_OwnEnv`** is reset to the passed environment, making the request object the effective owner of that environment. The environment is then used to cache network information as "gettable" properties. Cached properties include:
+[x\_Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_Init) begins by examining the environment argument, and if it is `NULL`, **`m_OwnEnv`** (an auto\_ptr) is reset to a dummy environment. Otherwise, **`m_OwnEnv`** is reset to the passed environment, making the request object the effective owner of that environment. The environment is then used to cache network information as "gettable" properties. Cached properties include:
 
 -   server properties, such as the server name, gateway interface, and server port
 
@@ -283,9 +289,9 @@ The ***CCgiRequest*** class serves as an interface between the user's query and 
 
 -   standard HTTP properties (from the HTTP header)
 
-These properties are keyed to an enumeration named [ECgiProp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__CGIReqRes.html#a8) and can be retrieved using the request object's ***GetProperty()*** member function. For example, `GetProperty(eCgi_HttpCookie)` is used to access cookies from the HTTP Header, and `GetProperty(eCgi_RequestMethod)` is used to determine from where the query string should be read.
+These properties are keyed to an enumeration named [ECgiProp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/group__CGIReqRes.html#a8) and can be retrieved using the request object's [GetProperty()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetProperty) member function. For example, `GetProperty(eCgi_HttpCookie)` is used to access cookies from the HTTP Header, and `GetProperty(eCgi_RequestMethod)` is used to determine from where the query string should be read.
 
-***NOTE:*** Setting **`$QUERY_STRING`** without also setting **`$REQUEST_METHOD`** will result in a failure by ***x\_init()*** to read the input query. ***x\_init()*** first looks for the definition of **`$REQUEST_METHOD`**, and depending on if it is ***GET*** or ***POST***, reads the query from the environment or the input stream, respectively. If the environment does not define **`$REQUEST_METHOD`**, then ***x\_Init()*** will try to read the query string from the command line only.
+***NOTE:*** Setting **`$QUERY_STRING`** without also setting **`$REQUEST_METHOD`** will result in a failure by ***x\_init()*** to read the input query. ***x\_init()*** first looks for the definition of **`$REQUEST_METHOD`**, and depending on if it is ***GET*** or ***POST***, reads the query from the environment or the input stream, respectively. If the environment does not define **`$REQUEST_METHOD`**, then [x\_Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_Init) will try to read the query string from the command line only.
 
     class CCgiRequest { 
     public: 
@@ -308,19 +314,19 @@ These properties are keyed to an enumeration named [ECgiProp](https://www.ncbi.n
         CCgiCookies m_Cookies; 
     };
 
-This abbreviated definition of the ***CCgiRequest*** class highlights its primary functions:
+This abbreviated definition of the [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) class highlights its primary functions:
 
 To parse and store the `<key=value>` pairs contained in the query string (stored in **`m_Entries`**).
 
 To parse and store the cookies contained in the HTTP header (stored in **`m_Cookies`**).
 
-As implied by the "T" prefix, [TCgiEntries](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TCgiEntries) is a type definition, and defines **`m_Entries`** to be an STL multimap of `<string,string>` pairs. The ***CCgiCookies*** class (described [below](#ch_cgi.cgi_cookies_class)) contains an STL set of [CCgiCookie](#ch_cgi.cgi_http_cookies) and implements an interface to this set.
+As implied by the "T" prefix, [TCgiEntries](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TCgiEntries) is a type definition, and defines **`m_Entries`** to be an STL multimap of `<string,string>` pairs. The [CCgiCookies](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookies) class (described [below](#ch_cgi.cgi_cookies_class)) contains an STL set of [CCgiCookie](#ch_cgi.cgi_http_cookies) and implements an interface to this set.
 
 <a name="ch_cgi.cgi_http_resp"></a>
 
 ### The CCgiResponse Class ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiResponse.html))
 
-The ***CCgiResponse*** class provides an interface to the program's output stream (usually **`cout`**), which is the sole argument to the constructor for ***CCgiResponse***. The output stream can be accessed by the program using ***CCgiResponse::GetOutput()***, which returns a pointer to the output stream, or, by using ***CCgiResponse::out()***, which returns a reference to that stream.
+The [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse) class provides an interface to the program's output stream (usually **`cout`**), which is the sole argument to the constructor for [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse). The output stream can be accessed by the program using [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse)::[GetOutput()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetOutput), which returns a pointer to the output stream, or, by using [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse)::***out()***, which returns a reference to that stream.
 
 In addition to implementing controlled access to the output stream, the primary function of the response class is to generate appropriate HTML headers that will precede the rest of the response. For example, a typical sequence in the implementation of a particular command's execute function might be:
 
@@ -336,9 +342,9 @@ In addition to implementing controlled access to the output stream, the primary 
 
 Any cookies that are to be sent with the response are included in the headers generated by the response object.
 
-Two member functions are provided for outputting HTML headers: ***WriteHeader()*** and ***WriteHeader(CNcbiOstream&)***. The second of these is for writing to a specified stream other than the default stream stored with the response object. Thus, `WriteHeader(out())` is equivalent to `WriteHeader()`.
+Two member functions are provided for outputting HTML headers: [WriteHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteHeader) and ***WriteHeader(CNcbiOstream&)***. The second of these is for writing to a specified stream other than the default stream stored with the response object. Thus, `WriteHeader(out())` is equivalent to `WriteHeader()`.
 
-The ***WriteHeader()*** function begins by invoking ***IsRawCgi()*** to see whether the application is a [non-parsed header](http://tools.ietf.org/html/rfc3875#section-5) program. If so, then the first header put on the output stream is an HTTP status line, taken from the private static data member, **`sm_HTTPStatusDefault`**. Next, unless the content type has been set by the user (using ***SetContentType()***), a default content line is written, using **`sm_ContentTypeDefault`**. Any cookies stored in **`m_Cookies`** are then written, followed by any additional headers stored with the request in **`m_HeaderValues`**. Finally, a new line is written to separate the body from the headers.
+The [WriteHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=WriteHeader) function begins by invoking [IsRawCgi()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsRawCgi) to see whether the application is a [non-parsed header](http://tools.ietf.org/html/rfc3875#section-5) program. If so, then the first header put on the output stream is an HTTP status line, taken from the private static data member, **`sm_HTTPStatusDefault`**. Next, unless the content type has been set by the user (using [SetContentType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetContentType)), a default content line is written, using **`sm_ContentTypeDefault`**. Any cookies stored in **`m_Cookies`** are then written, followed by any additional headers stored with the request in **`m_HeaderValues`**. Finally, a new line is written to separate the body from the headers.
 
     class CCgiResponse { 
     public: 
@@ -388,7 +394,7 @@ The traditional means of maintaining state information when servicing a multi-st
 
 -   path (optional)
 
-The ***CCgiCookie*** class provides a means of creating, modifying, and sending cookies. The constructor requires at least two arguments, specifying the `name` and `value` of the cookie, along with the optional **`domain`** and **`path`** arguments. Format errors in the arguments to the constructor (see [Supplementary Information](#ch_cgi.appendix)) will cause the invalid argument to be thrown. The ***CCgiCookie::Write(CNcbiOstream&)*** member function creates a `Set-Cookie` directive using its private data members and places the resulting string on the specified output stream:
+The [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie) class provides a means of creating, modifying, and sending cookies. The constructor requires at least two arguments, specifying the `name` and `value` of the cookie, along with the optional **`domain`** and **`path`** arguments. Format errors in the arguments to the constructor (see [Supplementary Information](#ch_cgi.appendix)) will cause the invalid argument to be thrown. The ***CCgiCookie::Write(CNcbiOstream&)*** member function creates a `Set-Cookie` directive using its private data members and places the resulting string on the specified output stream:
 
     Set-Cookie: 
     m_Name=
@@ -437,15 +443,15 @@ As with the constructor, and in compliance with the proposed standard ([RFC 6265
         bool   m_Secure;
     };
 
-With the exception of **`m_Name`**, all of the cookie's data members can be reset using the ***SetXxx(), Reset()***, and ***CopyAttributes()*** member functions; **`m_Name`** is non-mutable. As with the constructor, format errors in the arguments to these functions will cause the invalid argument to be thrown. By default, **`m_Secure`** is `false`. The ***GetXxx()*** methods return the stored value for that attribute or, if no value has been set, a reference to ***NcbiEmptyString***. `GetExpDate(tm*)` returns `false` if no expiration date was previously set. Otherwise, **`tm`** is reset to **`m_Expire`**, and `true` is returned.
+With the exception of **`m_Name`**, all of the cookie's data members can be reset using the ***SetXxx(), Reset()***, and [CopyAttributes()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CopyAttributes) member functions; **`m_Name`** is non-mutable. As with the constructor, format errors in the arguments to these functions will cause the invalid argument to be thrown. By default, **`m_Secure`** is `false`. The ***GetXxx()*** methods return the stored value for that attribute or, if no value has been set, a reference to [NcbiEmptyString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiEmptyString). `GetExpDate(tm*)` returns `false` if no expiration date was previously set. Otherwise, **`tm`** is reset to **`m_Expire`**, and `true` is returned.
 
 <a name="ch_cgi.cgi_cookies_class"></a>
 
 ### The CCgiCookies Class ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiCookies.html))
 
-The ***CCgiCookies*** class provides an interface to an STL set of ***CCgiCookie***s (**`m_Cookies`**). Each cookie in the set is uniquely identified by its name, domain, and path values and is stored in ascending order using the ***CCgiCookie::PLessCPtr*** construct. Two constructors are provided, allowing the user to initialize **`m_Cookies`** to either an empty set or to a set of **`N`** new cookies created from the string "name1=value1; name2=value2; ...; nameN=valuenN". Many of the operations on a ***CCgiCookies*** object involve iterating over the set, and the class's type definitions support these activities by providing built-in iterators and a typedef for the set, ***TSet***.
+The [CCgiCookies](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookies) class provides an interface to an STL set of [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie)s (**`m_Cookies`**). Each cookie in the set is uniquely identified by its name, domain, and path values and is stored in ascending order using the [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie)::[PLessCPtr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=PLessCPtr) construct. Two constructors are provided, allowing the user to initialize **`m_Cookies`** to either an empty set or to a set of **`N`** new cookies created from the string "name1=value1; name2=value2; ...; nameN=valuenN". Many of the operations on a [CCgiCookies](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookies) object involve iterating over the set, and the class's type definitions support these activities by providing built-in iterators and a typedef for the set, [TSet](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TSet).
 
-The ***Add()*** methods provide a variety of options for creating and adding new cookies to the set. As with the constructor, a single string of name-value pairs may be used to create and add **`N`** cookies to the set at once. Previously created cookies can also be added to the set individually or as sets. Similarly, the ***Remove()*** methods allow individual cookies or sets of cookies (in the specified range) to be removed. All of the remove functions destroy the removed cookies when `destroy=true`. ***CCgiCookies::Write(CNcbiOstream&)*** iteratively invokes the ***CCgiCookie::Write()*** on each element.
+The [Add()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Add) methods provide a variety of options for creating and adding new cookies to the set. As with the constructor, a single string of name-value pairs may be used to create and add **`N`** cookies to the set at once. Previously created cookies can also be added to the set individually or as sets. Similarly, the [Remove()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Remove) methods allow individual cookies or sets of cookies (in the specified range) to be removed. All of the remove functions destroy the removed cookies when `destroy=true`. ***CCgiCookies::Write(CNcbiOstream&)*** iteratively invokes the [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie)::[Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) on each element.
 
     class CCgiCookies {
     public:
@@ -481,7 +487,7 @@ The ***Add()*** methods provide a variety of options for creating and adding new
 
 ### The CCgiContext Class ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiContext.html))
 
-As depicted in [Figure 1](#ch_cgi.cgi_class_overview), a ***CCgiContext*** object contains an application object, a request object, and a response object, corresponding to its data members **`m_app, m_request`**, and **`m_response`**. Additional data members include a string encoding the URL for the context (**`m_selfURL`**), a message buffer (**`m_lmsg`**), and a ***CCgiServerContext***. These last three data members are used only in complex Web applications, where it is necessary to store more complex run-time data with the context object. The message buffer is essentially an STL list of string objects the class definition of which ([CCtxMsgString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCtxMsgString)) includes a ***Write()*** output function. ***GetServCtx()*** returns **`m_srvCtx`** if it has been defined and, otherwise, calls the application's ***CCgiApplication::LoadServerContext()*** to obtain it.
+As depicted in [Figure 1](#ch_cgi.cgi_class_overview), a [CCgiContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiContext) object contains an application object, a request object, and a response object, corresponding to its data members **`m_app, m_request`**, and **`m_response`**. Additional data members include a string encoding the URL for the context (**`m_selfURL`**), a message buffer (**`m_lmsg`**), and a [CCgiServerContext](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiServerContext). These last three data members are used only in complex Web applications, where it is necessary to store more complex run-time data with the context object. The message buffer is essentially an STL list of string objects the class definition of which ([CCtxMsgString](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCtxMsgString)) includes a [Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) output function. [GetServCtx()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetServCtx) returns **`m_srvCtx`** if it has been defined and, otherwise, calls the application's [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication)::[LoadServerContext()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=LoadServerContext) to obtain it.
 
     class CCgiContext
     {
@@ -523,7 +529,7 @@ As depicted in [Figure 1](#ch_cgi.cgi_class_overview), a ***CCgiContext*** objec
 
 ### The CCgiUserAgent class ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCCgiUserAgent.html))
 
-The ***CCgiUserAgent*** class is used to gather information about the client's user agent - i.e. browser type, browser name, browser version, browser engine type, browser engine version, Mozilla version (if applicable), platform, and robot information. The default constructor looks for the user agent string first in the ***CCgiApplication*** context using the **`eCgi_HttpUserAgent`** request property, then in the ***CNcbiApplication*** instance **`HTTP_USER_AGENT`** environment variable, and finally in the operating system **`HTTP_USER_AGENT`** environment variable.
+The [CCgiUserAgent](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiUserAgent) class is used to gather information about the client's user agent - i.e. browser type, browser name, browser version, browser engine type, browser engine version, Mozilla version (if applicable), platform, and robot information. The default constructor looks for the user agent string first in the [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) context using the **`eCgi_HttpUserAgent`** request property, then in the [CNcbiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiApplication) instance **`HTTP_USER_AGENT`** environment variable, and finally in the operating system **`HTTP_USER_AGENT`** environment variable.
 
     class CCgiUserAgent
     {
@@ -600,7 +606,8 @@ The [sample CGI program](#ch_cgi.html) demonstrates a simple application that co
         return 0;
     }
     /////////////////////////////////////////////////////////////
-    // Define the resource's default command if none match queryCNcbiCommand* CCgiResource::GetDefaultCommand(void) const
+    // Define the resource's default command if none match query
+    CNcbiCommand* CCgiResource::GetDefaultCommand(void) const
     {
         cerr << "    executing CCgiResource::GetDefaultCommand()" << endl;
         return new CCgiBasicCommand(const_cast<CCgiResource&>(*this));
@@ -766,7 +773,7 @@ CGI load balancing settings. **`[CGI-LB]`** section (see [this table](ch_libconf
 
 ### Supplementary Information
 
-Restrictions on arguments to the ***CCgiCookie*** constructor.
+Restrictions on arguments to the [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie) constructor.
 
 See [Table 1](#ch_cgi.T5).
 
@@ -788,7 +795,7 @@ Table 1. Restrictions on arguments to the CCgiCookie constructor
 CGI Diagnostic Handling
 -----------------------
 
-By default, CGI applications support three query parameters affecting [diagnostic output](ch_core.html#ch_core.diag): [diag-destination](#ch_cgi.cgi_diag.html_ref_destination), [diag-threshold](#ch_cgi.cgi_diag.html_ref_threshold), and [diag-format](#ch_cgi.cgi_diag.html_ref_format). It is possible to modify this behavior by overriding the virtual function [CCgiApplication::ConfigureDiagnostics](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConfigureDiagnostics). (In particular, production applications may wish to disable these parameters by defining ***ConfigureDiagnostics*** to be a no-op.)
+By default, CGI applications support three query parameters affecting [diagnostic output](ch_core.html#ch_core.diag): [diag-destination](#ch_cgi.cgi_diag.html_ref_destination), [diag-threshold](#ch_cgi.cgi_diag.html_ref_threshold), and [diag-format](#ch_cgi.cgi_diag.html_ref_format). It is possible to modify this behavior by overriding the virtual function [CCgiApplication::ConfigureDiagnostics](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConfigureDiagnostics). (In particular, production applications may wish to disable these parameters by defining [ConfigureDiagnostics](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConfigureDiagnostics) to be a no-op.)
 
 <a name="ch_cgi.cgi_diag.html_ref_destination"></a>
 
@@ -807,7 +814,7 @@ Table 2. Effect of setting the diag-destination parameter
 
 <div class="table-scroll"></div>
 
-However, an application can make other options available by calling [RegisterDiagFactory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RegisterDiagFactory) from its ***Init*** routine. In particular, calling
+However, an application can make other options available by calling [RegisterDiagFactory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RegisterDiagFactory) from its [Init](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Init) routine. In particular, calling
 
     #include <connect/email_diag_handler.hpp> 
     ... 
@@ -821,7 +828,7 @@ Similarly, calling
     ... 
     RegisterDiagFactory("comments", new CCommentDiagFactory);
 
-and linking against `xhtml` will enable the destination `comments`. With this destination, diagnostics will take the form of comments in the generated HTML, provided that the application has also used [SetDiagNode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagNode) to indicate where they should go. (Applications may call that function repeatedly; each invocation will affect all diagnostics until the next invocation. Also, ***SetDiagNode*** is effectively a no-op for destinations other than `comments`, so applications may call it unconditionally.)
+and linking against `xhtml` will enable the destination `comments`. With this destination, diagnostics will take the form of comments in the generated HTML, provided that the application has also used [SetDiagNode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagNode) to indicate where they should go. (Applications may call that function repeatedly; each invocation will affect all diagnostics until the next invocation. Also, [SetDiagNode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDiagNode) is effectively a no-op for destinations other than `comments`, so applications may call it unconditionally.)
 
 Those destinations are not available by default because they introduce additional dependencies; however, either may become a standard possibility in future versions of the toolkit.
 
@@ -842,21 +849,21 @@ Finally, the parameter **`diag-format`** controls diagnostics' default appearanc
 NCBI C++ CGI Classes
 --------------------
 
-The Common Gateway Interface (CGI) is a method used by web servers to pass information from forms displayed in a web browser to a program running on the server and then allow the program to pass a web page back. The NCBI C++ CGI Classes are used by the program running on the server to decode the CGI input from the server and to send a response. The library also supports cookies, which is a method for storing information on the user's machine. The library supports the http methods GET and POST via application/x-www-form-urlencoded, and supports the POST via multipart/form-data (often used for file upload). In the POST via multipart/form-data, the data gets read into a ***TCgiEntries***; you also can get the filename out of it (the name of the entry is as specified by "name=" of the data-part header). 
+The Common Gateway Interface (CGI) is a method used by web servers to pass information from forms displayed in a web browser to a program running on the server and then allow the program to pass a web page back. The NCBI C++ CGI Classes are used by the program running on the server to decode the CGI input from the server and to send a response. The library also supports cookies, which is a method for storing information on the user's machine. The library supports the http methods GET and POST via application/x-www-form-urlencoded, and supports the POST via multipart/form-data (often used for file upload). In the POST via multipart/form-data, the data gets read into a [TCgiEntries](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=TCgiEntries); you also can get the filename out of it (the name of the entry is as specified by "name=" of the data-part header). 
 
 There are 5 main classes:
 
-***CCgiRequest***–what the CGI program is getting from the client.
+[CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest)–what the CGI program is getting from the client.
 
-***CCgiResponse***–what the CGI program is sending to the client.
+[CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse)–what the CGI program is sending to the client.
 
-***CCgiEntry***–a single field value, optionally accompanied by a filename.
+[CCgiEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiEntry)–a single field value, optionally accompanied by a filename.
 
-***CCookie***–a single cookie
+[CCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCookie)–a single cookie
 
-***CCookies***–a cookie container
+[CCookies](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCookies)–a cookie container
 
-Note: In the following libraries you will see references to the following typedefs: ***CNcbiOstream*** and ***CNcbiIstream***. On Solaris and NT, these are identical to the standard library output stream (ostream) and input stream (istream) classes. These typedefs are used on older computers to switch between the old stream library and the new standard library stream classes. Further details can be found in an accompanying document (to be written).
+Note: In the following libraries you will see references to the following typedefs: [CNcbiOstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiOstream) and [CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream). On Solaris and NT, these are identical to the standard library output stream (ostream) and input stream (istream) classes. These typedefs are used on older computers to switch between the old stream library and the new standard library stream classes. Further details can be found in an accompanying document (to be written).
 
 A demo program, cgidemo.cpp, can be found in internal/c++/src/corelib/demo.
 
@@ -864,9 +871,9 @@ A demo program, cgidemo.cpp, can be found in internal/c++/src/corelib/demo.
 
 ### CCgiRequest
 
-***CCgiRequest*** is the class that reads in the input from the web server and makes it accessible to the CGI program.
+[CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) is the class that reads in the input from the web server and makes it accessible to the CGI program.
 
-***CCgiRequest*** uses the following typedefs to simplify the code:
+[CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) uses the following typedefs to simplify the code:
 
     typedef map<string, string>         TCgiProperties
     typedef multimap<string, CCgiEntry> TCgiEntries
@@ -877,7 +884,7 @@ All of the basic types come from the C++ Standard library (`http://www.sgi.com/T
 
 **CCgiRequest(int argc, char\* argv[], CNcbiIstream\* istr=0, bool indexes\_as\_entries=true)**
 
-A CGI program can receive its input from three sources: the command line, environment variables, and an input stream. Some of this input is given to the ***CCgiRequest*** class by the following arguments to the constructor:
+A CGI program can receive its input from three sources: the command line, environment variables, and an input stream. Some of this input is given to the [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) class by the following arguments to the constructor:
 
 `int argc, char* argv[]` : standard command line arguments.
 
@@ -897,7 +904,7 @@ TCgiEntries& also includes "indexes" if "indexes\_as\_entries" in the constructo
 
 **const TCgiIndexes& GetIndexes(void) const**
 
-This performs a similar task as ***GetEntries()***, but gets a set of decoded entries received from the web browser that are ISINDEX like terms (i.e. no "=" sign),. It will always be empty if "indexes\_as\_entries" in the constructor was "true"(default).
+This performs a similar task as [GetEntries()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetEntries), but gets a set of decoded entries received from the web browser that are ISINDEX like terms (i.e. no "=" sign),. It will always be empty if "indexes\_as\_entries" in the constructor was "true"(default).
 
 **const string& GetProperty(ECgiProp prop) const**
 
@@ -965,7 +972,7 @@ This is also a helper function not usually used by CGI programs. This function d
 
 ### CCgiResponse
 
-***CCgiResponse*** is the object that takes output from the CGI program and sends it to the web browser via the web server.
+[CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse) is the object that takes output from the CGI program and sends it to the web browser via the web server.
 
 **CNcbiOstream& WriteHeader() const**
 
@@ -983,7 +990,7 @@ Retrieves the content type.
 
 **CNcbiOstream& out(void) const**
 
-This returns a reference to the output stream being used by the ***CCgiResponse*** object. Example:
+This returns a reference to the output stream being used by the [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse) object. Example:
 
     CCgiResponse Response; 
     Response.WriteHeader(); 
@@ -1065,7 +1072,7 @@ Return a cookie with the given name.
 
 ### CCgiCookie
 
-A cookie is a name, value string pair that can be stored on the user's web browser. Cookies are allocated per site and have restrictions on size and number. Cookies have attributes, such as the domain they originated from. ***CCgiCookie*** is used by the ***CCgiRequest*** and ***CCgiResponse*** classes.
+A cookie is a name, value string pair that can be stored on the user's web browser. Cookies are allocated per site and have restrictions on size and number. Cookies have attributes, such as the domain they originated from. [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie) is used by the [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) and [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse) classes.
 
 **CCgiCookie(const string& name, const string& value)**
 
@@ -1081,7 +1088,7 @@ Get the cookie name. The cookie name cannot be changed.
 
 **CNcbiOstream& Write(CNcbiOstream& os) const**
 
-Write the cookie out to ostream os. Normally this is handled by ***CCgiResponse***.
+Write the cookie out to ostream os. Normally this is handled by [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse).
 
 **void Reset(void)**
 
@@ -1099,17 +1106,17 @@ These function set the various properties of a cookie. These functions will thro
 
 These functions return true if the property is set. They also return value of the property in the argument. If the property is not set, str is emptied. These functions throw the "invalid\_argument" exception if the argument is a zero pointer.
 
-The string version of ***GetExpDate*** will return a string of the form "Wed Aug 9 07:49:37 1994"
+The string version of [GetExpDate](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetExpDate) will return a string of the form "Wed Aug 9 07:49:37 1994"
 
 <a name="ch_cgi.prog_man_cgi_1_17"></a>
 
 ### CCgiCookies
 
-***CCgiCookies*** aggregates a collection of ***CCgiCookie***
+[CCgiCookies](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookies) aggregates a collection of [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie)
 
 **CCgiCookies(void) CCgiCookies(const string& str)**
 
-Creates a ***CCgiCookies*** container. To initialize it with a cookie string, use the format: "name1=value1; name2=value2; ..."
+Creates a [CCgiCookies](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookies) container. To initialize it with a cookie string, use the format: "name1=value1; name2=value2; ..."
 
 **CCgiCookie\* Add(const string& name, const string& value)**
 
@@ -1117,11 +1124,11 @@ Add a cookie with the given name, value pair. Note the above requirements on the
 
 **CCgiCookie\* Add(const CCgiCookie& cookie)**
 
-Add a ***CCgiCookie***.
+Add a [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie).
 
 **void Add(const CCgiCookies& cookies)**
 
-Adds a ***CCgiCookie*** of cookies.
+Adds a [CCgiCookie](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiCookie) of cookies.
 
 **void Add(const string& str)**
 
@@ -1145,7 +1152,7 @@ Remove all stored cookies
 
 **CNcbiOstream& Write(CNcbiOstream& os) const**
 
-Prints all cookies into the stream "os" (see also ***CCgiCookie::****Write()***). Normally this is handled by ***CCgiResponse***.
+Prints all cookies into the stream "os" (see also ***CCgiCookie::*[Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write)). Normally this is handled by [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse).
 
 <a name="ch_cgi.html"></a>
 
@@ -1164,9 +1171,9 @@ An example web-based CGI application
 
 The previous two chapters described the NCBI C++ Toolkit's [CGI](#ch_cgi.cg_develop_apps) and [HTML](ch_html.html#ch_html.webpgs.html) classes, with an emphasis on their independence from one another. In practice however, a real application must employ both types of objects, with a good deal of inter-dependency.
 
-As described in the description of the CGI classes, the [CNcbiResource](#ch_cgi.cgi_res_class) class can be used to implement an application whose functionality varies with the query string. Specifically, the resource class contains a list of ***CNcbiCommand*** objects, each of which has a defined ***GetName()*** and ***GetEntry()***method. The only command selected for execution on a given query is the one whose ***GetName()*** and ***GetEntry()*** values match the leading `key=value` pair in the query string.
+As described in the description of the CGI classes, the [CNcbiResource](#ch_cgi.cgi_res_class) class can be used to implement an application whose functionality varies with the query string. Specifically, the resource class contains a list of [CNcbiCommand](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiCommand) objects, each of which has a defined [GetName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetName) and [GetEntry()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetEntry)method. The only command selected for execution on a given query is the one whose [GetName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetName) and [GetEntry()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetEntry) values match the leading `key=value` pair in the query string.
 
-The ***CHelloResource*** class has different commands which will be executed depending on whether the query string invoked an `init` or a `reply` command. For many applications however, this selection mechanism adds unnecessary complexity to the interface, as the application always performs the same function, albeit on different input. In these cases, there is no need to use a ***CNcbiResource*** object, or ***CNcbiCommand*** objects, as the necessary functionality can be encoded directly in the application's ***ProcessRequest()*** method. The example program described in this section uses this simpler approach.
+The [CHelloResource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CHelloResource) class has different commands which will be executed depending on whether the query string invoked an `init` or a `reply` command. For many applications however, this selection mechanism adds unnecessary complexity to the interface, as the application always performs the same function, albeit on different input. In these cases, there is no need to use a [CNcbiResource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiResource) object, or [CNcbiCommand](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiCommand) objects, as the necessary functionality can be encoded directly in the application's [ProcessRequest()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ProcessRequest) method. The example program described in this section uses this simpler approach.
 
 <a name="ch_cgi.descrip"></a>
 
@@ -1174,25 +1181,25 @@ The ***CHelloResource*** class has different commands which will be executed dep
 
 The **car.cgi** program presents an HTML form for ordering a custom color car with selected features. The form includes a group of checkboxes (listing individual features) and a set of radio buttons listing possible colors. Initially, no features are selected, and the default color is black. Following the form, a summary stating the currently selected features and color, along with a price quote, is displayed. When the `submit` button is clicked, the form generates a new query string (which includes the selected features and color), and the program is restarted.
 
-The program uses a [CHTMLPage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCHTMLPage.html) object with a template file ([car.html](ch_demo.html#ch_demo.carhtml)) to create the display. The template file contains three \<@tag@\> locations, which the program uses to map ***CNCBINode***s to the page, using the ***AddTagMap()*** method. Here is an outline of the execution sequence:
+The program uses a [CHTMLPage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCHTMLPage.html) object with a template file ([car.html](ch_demo.html#ch_demo.carhtml)) to create the display. The template file contains three \<@tag@\> locations, which the program uses to map [CNCBINode](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNCBINode)s to the page, using the [AddTagMap()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddTagMap) method. Here is an outline of the execution sequence:
 
 Create an instance of class ***CCar*** named **`car`**.
 
 Load **`car`** with the color and features specified in the query string.
 
-Create a ***CHTMLPage*** named **`page`**.
+Create a [CHTMLPage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CHTMLPage) named **`page`**.
 
-Generate a ***CHTML\_form*** object using the features and color currently selected for **`car`**, and map that HTML form to the \<@FORM@\> tag in **`page`**.
+Generate a [CHTML\_form](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CHTML_form) object using the features and color currently selected for **`car`**, and map that HTML form to the \<@FORM@\> tag in **`page`**.
 
-Generate the summary statement and save it in a ***CHTMLText*** node mapped to the \<@SUMMARY@\> tag.
+Generate the summary statement and save it in a [CHTMLText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CHTMLText) node mapped to the \<@SUMMARY@\> tag.
 
-Generate a price quote and save it in a ***CHTMLText*** node mapped to the \<@PRICE@\> tag.
+Generate a price quote and save it in a [CHTMLText](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CHTMLText) node mapped to the \<@PRICE@\> tag.
 
 Output **`page`** and exit.
 
-The ***CCar*** created in step 1 initially has the default color (black) and no features. Any features or colors specified in the query string with which the program was invoked are added to **`car`** in step 2, prior to generating the HTML display elements. In step 4, the form element is created using the set of possible features and the set of possible colors. These sets of attributes are stored as static data members in an external utility class, ***CCarAttr***. Each feature corresponds to a ***CHTML\_checkbox*** element in the form, and each color corresponds to a ***CHTML\_radio*** button. The selected color, along with all currently selected features, will be displayed as selected in the form.
+The ***CCar*** created in step 1 initially has the default color (black) and no features. Any features or colors specified in the query string with which the program was invoked are added to **`car`** in step 2, prior to generating the HTML display elements. In step 4, the form element is created using the set of possible features and the set of possible colors. These sets of attributes are stored as static data members in an external utility class, ***CCarAttr***. Each feature corresponds to a [CHTML\_checkbox](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CHTML_checkbox) element in the form, and each color corresponds to a [CHTML\_radio](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CHTML_radio) button. The selected color, along with all currently selected features, will be displayed as selected in the form.
 
-The summary statement uses a ***CHTML\_ol*** list element to itemize the selected features in **`car`**. The price is calculated as **`CCar::m_BasePrice`** plus an additional $1000 per feature. The `submit` button generates a fresh page with the new query string, as the `action` attribute of the form is the URL of **car.cgi**.
+The summary statement uses a [CHTML\_ol](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CHTML_ol) list element to itemize the selected features in **`car`**. The price is calculated as **`CCar::m_BasePrice`** plus an additional $1000 per feature. The `submit` button generates a fresh page with the new query string, as the `action` attribute of the form is the URL of **car.cgi**.
 
 <a name="ch_cgi.design"></a>
 
@@ -1269,9 +1276,9 @@ For compliance with the HTTP standard ([RFC7321](https://tools.ietf.org/html/rfc
 
     Status: 200 OK
 
-By default, the ***CCgiApplication*** framework will issue a status line with an appropriate status code (e.g. 200 for success; 400 for a malformed HTTP request, etc.). To set a non-default status code use ***CCgiResponse::SetStatus()*** or ***CCgiApplication::SetHTTPStatus()***. You can also override ***CCgiApplication::OnException()*** for custom handling of exceptions.
+By default, the [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) framework will issue a status line with an appropriate status code (e.g. 200 for success; 400 for a malformed HTTP request, etc.). To set a non-default status code use [CCgiResponse](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiResponse)::[SetStatus()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetStatus) or [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication)::[SetHTTPStatus()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetHTTPStatus). You can also override [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication)::[OnException()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=OnException) for custom handling of exceptions.
 
-The official list of HTTP status codes along with hyperlinks to their definitive meanings can be found at: <http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml> However, status codes issued by NCBI CGI applications should be selected from [Table 7](#ch_cgi.T7), which is a subset of the official list plus two special non-standard additions (299 and 499). There is also a class, [CRequestStatus](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestStatus.html), that holds an enumeration of the valid NCBI C++ Toolkit status codes. (Although the class is named ***CRequestStatus***, it relates to HTTP response status codes.)
+The official list of HTTP status codes along with hyperlinks to their definitive meanings can be found at: <http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml> However, status codes issued by NCBI CGI applications should be selected from [Table 7](#ch_cgi.T7), which is a subset of the official list plus two special non-standard additions (299 and 499). There is also a class, [CRequestStatus](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRequestStatus.html), that holds an enumeration of the valid NCBI C++ Toolkit status codes. (Although the class is named [CRequestStatus](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRequestStatus), it relates to HTTP response status codes.)
 
 <a name="ch_cgi.T7"></a>
 
@@ -1424,7 +1431,7 @@ If the port is available there won't be any output; if it's in use by another pr
 Next, edit the proxy script (on the web server) and set the `-connect` option using the host that will be running the FCGI application, and the port from the previous step:
 
     # fmyapp.cgi
-    /netopt/ncbi_tools/fcgi-current/bin/cgi-fcgi -bind -connect myhost:5000
+    /netopt/ncbi_tools64/fcgi-current/bin/cgi-fcgi -bind -connect myhost:5000
 
 Then, edit the INI file for the FCGI application and set the listening port using the `StandaloneServer` entry (be sure to prepend a colon to the port):
 
@@ -1457,7 +1464,7 @@ To debug a FastCGI-capable application:
 
     -   [Configure the connection](#ch_cgi.Connecting_the_FCGI_proxy_to_the) between the proxy and the application.
 
-2.  Start `fmyapp.fcgi` under the debugger (or a memory checker or other tool), set a breakpoint on ***ProcessRequest()***, and issue a "run" command. The program will remain in the running state while listening for a request from the proxy script.
+2.  Start `fmyapp.fcgi` under the debugger (or a memory checker or other tool), set a breakpoint on [ProcessRequest()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ProcessRequest), and issue a "run" command. The program will remain in the running state while listening for a request from the proxy script.
 
 3.  From your web browser (or using `GET`/`POST` command-line utilities), submit a web request to the proxy, `fmyapp.cgi`. The request will be tunneled to `fmyapp.fcgi` and the debugger will stop at the breakpoint.
 

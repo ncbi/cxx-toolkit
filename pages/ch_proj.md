@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Project Creation and Management
+title: Project Creation and Management (autoconf/PTB)
 nav: pages/ch_proj
 ---
 
@@ -165,7 +165,7 @@ Script usage:
 
     new_project <name> <type>[/<subtype>] [builddir]
 
-***NOTE***: in NCBI, you can (and should) invoke common scripts simply by name - i.e. without path or extension. The proper script located in the pre-built NCBI C++ toolkit directory will be invoked.
+[NOTE](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NOTE): in NCBI, you can (and should) invoke common scripts simply by name - i.e. without path or extension. The proper script located in the pre-built NCBI C++ toolkit directory will be invoked.
 
 This script will create a startup makefile for a new project which uses the NCBI C++ Toolkit (and possibly the C Toolkit as well). Replace `<type>` with `lib` for libraries or `app` for applications.
 
@@ -559,6 +559,15 @@ There are defined symlinks into this directory tree. They include:
 
 -   `$NCBI/c++.trial` - This build is for NCBI developers to quickly check their planned stable component commits using [import\_project](ch_getcode_svn.html#ch_getcode_svn.import_project_sh). It is based on the repository path `toolkit/production/candidates/trial` – which is usually a codebase for the upcoming production build. It is available on 64-bit Linux.
 
+There are also `SC-NNN*` symlinks which are mnemonically linked to the versions of the Stable Component used, as follows:
+
+-   `$NCBI/c++.SC-NN` - Points to the full production-grade build based on the Stable Component codebase version `NNN`. For the current version of SC it is equivalent to `$NCBI/c++.production`. For the older SC versions it points to the `$NCBI/c++.by_date/production/*/` builds which use the those SC's codebases. 
+
+-   `$NCBI/c++.SC-NN-head` - Points to the latest daily build based on the Stable Component codebase version `NNN` (with a limited subset of build configurations). For the current production-grade version of SC it is equivalent to (points to the same build as) `$NCBI/c++.prod-head`. For the older SC versions it can be rather stale, or even absent.
+
+-   `$NCBI/c++.SC-NN-trial` - Points to the latest trial daily build based on the Stable Component codebase version `NNN` (with a limited subset of build configurations). For the current production-grade version of SC it is equivalent to (points to the same build as) `$NCBI/c++.trial`.
+
+
 <a name="ch_proj.outside_tree"></a>
 
 ### Working in a separate directory
@@ -925,9 +934,9 @@ Where nothing specified by the **`CHECK_CMD`** macro, the program specified by t
 
 Note, that you can use optional **`/CHECK_NAME`** to add alias for specified command line, especially if it is long. This alias will be used instead for reporting and collecting statistics. Application's makefile can have some **`CHECK_CMD`** lines for different tests in the same directory, or for the same test but with different arguments. So assigning unique **`CHECK_NAME`** for each command line could be very useful. Note, that test name should include only letters, digits, "_" and "-".
 
-Regarding command line, it could be an application name from **`APP`** line with added required arguments, or some script name instead. See below for more details.
+Regarding command line, it could be an application name from **`APP`** line with added required arguments, or some script name instead. For helper scripts see below for more details.
 
-***Note:*** Executing applications / scripts in the **`CHECK_CMD`** definition should **NOT** use "`.`" or any relative path, because (depending from platform) it could be executed not from a current directory, but from some directory added to **`$PATH`** by test suite.
+***Note:*** Executing applications / scripts in the **`CHECK_CMD`** definition should **NOT** use "`.`" or any relative path, because (depending from platform) it could be executed not from a current directory, but from some directory added to **`$PATH`** by test suite. Also, it is not allowed to use any shell commands, system utilities, piping or redirections directly in the **`CHECK_CMD`**.  If you need it, please use a helper script to run your application.
 
 In addition there are some optional macro than can help with setting up tests:
 
@@ -1016,13 +1025,13 @@ If you checked out the entire C++ SVN tree, you may be surprised to find that in
 
 ***Note:*** If you would like to have the `objects` libraries built locally, you **must** use the `--with-objects` flag when running the **configure** script.
 
-You can also access the pre-generated serializable objects in the public area, using the source browsers to locate the objects you are particularly interested in. For example, if you are seeking the new class definition for the `Bioseq struct` defined in the C Toolkit, you can search for the ***CBioseq*** class, using either the [LXR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) identifier search tool, or the Doxygen [class hierarchy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html) browser. Starting with the name of the data object as it appears in the ASN.1 module, two simple rules apply in deriving the new C++ class name:
+You can also access the pre-generated serializable objects in the public area, using the source browsers to locate the objects you are particularly interested in. For example, if you are seeking the new class definition for the `Bioseq struct` defined in the C Toolkit, you can search for the [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq) class, using either the [LXR](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) identifier search tool, or the Doxygen [class hierarchy](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/hierarchy.html) browser. Starting with the name of the data object as it appears in the ASN.1 module, two simple rules apply in deriving the new C++ class name:
 
 -   The one letter 'C' (for class) prefix should precede the ASN.1 name
 
 -   All hyphens ('-') should be replaced by underscores ('\_')
 
-For example, `Seq-descr `becomes ***CSeq\_descr***.
+For example, `Seq-descr `becomes [CSeq\_descr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_descr).
 
 <a name="ch_proj.base_classes"></a>
 
@@ -1032,7 +1041,7 @@ The classes whose names are derived in this manner are called the `user classes`
 
 More generally, the `base classes` should *never* be instantiated or accessed directly in an application. The relation between the two source files and the classes they define reflects a general design used in developing the object libraries: the base class files are auto-generated by [datatool](ch_app.html#ch_app.datatool) according to the ASN.1 specifications in the `src/objects` directories; the inherited class files (the so-called `user classes`) are intended for developers who can extend these classes to support features above and beyond the ASN.1 specifications.
 
-Many applications will involve a "tangled hierarchy" of these objects, reflecting the complexity of the real world data that they represent. For example, a ***CBioseq\_set*** contains a list of ***CSeq\_entry*** objects, where each ***CSeq\_entry*** is, in turn, a [choice](ch_ser.html#ch_ser.choice.html) between a ***CBioseq*** and a ***CBioseq\_set***.
+Many applications will involve a "tangled hierarchy" of these objects, reflecting the complexity of the real world data that they represent. For example, a [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq_set) contains a list of [CSeq\_entry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_entry) objects, where each [CSeq\_entry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_entry) is, in turn, a [choice](ch_ser.html#ch_ser.choice.html) between a [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq) and a [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq_set).
 
 Given the potential for this complexity of interactions, a critical design issue becomes how one can ensure that methods which may have been defined only in the `user class` will be available for all instances of that class. In particular, these instances may occur as contained elements of another object which is compiled in a different library. These inter-object dependencies are the motivation for the `user classes`. As shown in [Figure 2](#ch_proj.F2), all references to external objects which occur inside the `base classes`, access external `user classes`, so as to include any methods which may be defined only in the `user classes`:
 
@@ -1089,7 +1098,7 @@ You are now ready to edit the user class files and add methods.
 
 ##### Adding methods
 
-As an example, suppose that we would like to add a method to the ***CSeq\_inst*** class to calculate sequence length, e.g.:***CSeq\_inst::CalculateLength()***. We begin by adding a declaration of this method to the public section of the user class definition in `Seq_inst.hpp`:
+As an example, suppose that we would like to add a method to the [CSeq\_inst](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_inst) class to calculate sequence length, e.g.:[CSeq\_inst](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_inst)::[CalculateLength()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CalculateLength). We begin by adding a declaration of this method to the public section of the user class definition in `Seq_inst.hpp`:
 
     class CSeq_inst : public CSeq_inst_Base
     {
@@ -1117,7 +1126,7 @@ These files are in the [include/objects/seq](https://www.ncbi.nlm.nih.gov/IEB/To
     cd path_to_compile_dir/GCC-Debug/build/objects/seq
     make
 
-Here **`path_to_compile_dir `**is set to the compile work directory which depends on the compiler settings (e.g: `~/Work/internal/GCC-Debug`). The new method can now be invoked from within a ***CBioseq*** object as: `myBioseq.GetInst().CalculateLength().`
+Here **`path_to_compile_dir `**is set to the compile work directory which depends on the compiler settings (e.g: `~/Work/internal/GCC-Debug`). The new method can now be invoked from within a [CBioseq](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBioseq) object as: `myBioseq.GetInst().CalculateLength().`
 
 The key issue that determines whether or not you will need to rebuild any `external` libraries that use the modified user class involves the class layout in memory. All of the external libraries which reference the object refer to the class layout that existed prior to the changes you have made. Thus, if your modifications do **not** affect the class layout, you do not have to rebuild any external libraries. Changes that *do* affect memory mapping include:
 

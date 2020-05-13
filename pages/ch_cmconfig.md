@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Configure, Build and Use the Toolkit with CMake.
-nav: pages/ch_intro
+title: Configure, Build and Use the Toolkit with CMake
+nav: pages/ch_cmconfig
 ---
 
 
@@ -26,20 +26,36 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 -   [NCBIptb build system](#ch_cmconfig._NCBIptb)
 
     -   [What is it?](#ch_cmconfig._What)
+
+    -   [All features at a glance](#ch_cmconfig._Features)
     
-    -   [Examples.](#ch_cmconfig._Examples)
+    -   [Examples](#ch_cmconfig._Examples)
     
     -   [How does it work?](#ch_cmconfig._How)
     
-    -   [Tree structure and variable scopes.](#ch_cmconfig._Tree)
+    -   [Tree structure and variable scopes](#ch_cmconfig._Tree)
 
-    -   [Directory entry.](#ch_cmconfig._Dir)
+    -   [Directory entry](#ch_cmconfig._Dir)
     
     -   [Library and application targets.](#ch_cmconfig._Target)
     
     -   [Application target tests.](#ch_cmconfig._Test)
     
     -   [Custom target.](#ch_cmconfig._Custom)
+
+-   [Testing](#ch_cmconfig._Testing)
+
+-   [Inside NCBIptb](#ch_cmconfig._Inside)
+
+    -   [Source tree structure](#ch_cmconfig._SrcTree)
+
+    -   [Defaults](#ch_cmconfig._Defaults)
+
+    -   [Project filters](#ch_cmconfig._Filters)
+
+    -   [Extensions](#ch_cmconfig._Extensions)
+
+    -   [External packages and requirements](#ch_cmconfig._External)
 
 
 <a name="ch_cmconfig._Configure"></a>
@@ -50,6 +66,7 @@ Having checked out the source tree, run the following command in the root direct
 
     On Linux:   src/build-system/cmake/cmake-cfg-unix.sh --help
     On Windows: src\build-system\cmake\cmake-cfg-vs.bat --help
+    For XCode: src/build-system/cmake/cmake-cfg-xcode.sh --help
 
 It lists available options used to generate the build tree. Several of them limit the build scope:
 
@@ -72,7 +89,12 @@ It lists available options used to generate the build tree. Several of them limi
     --with-tags="core;-test"
 ```
 
-Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-vs2017\static\build*, and run make or open a generated solution.
+Examples of configuration commands:
+
+    src/build-system/cmake/cmake-cfg-unix.sh --with-dll --with-debug --with-projects="sra"
+    src\build-system\cmake\cmake-cfg-vs.bat --with-projects="misc"
+
+Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-VS2017\build*, and run *make [target]* command or open a generated solution in an IDE and build *target*.
 
 <a name="ch_cmconfig._Use_prebuilt"></a>
 
@@ -84,9 +106,17 @@ The prebuilt Toolkit is available in several configurations. ***Note*** that thi
 
 The script will create a subdirectory *name*, source subdirectories with a sample project *type* and a configuration script. Run the script, then build the project.
 
+For example:
+
+    new_cmake_project test app/basic $NCBI/c++.by-date/cmake/c++.current
+
+To get a list of available project types, run
+
+    new_cmake_project --help
+
 <a name="ch_cmconfig._NCBIptb"></a>
 
-## NCBIptb build system.
+## NCBIptb build system
 
 <a name="ch_cmconfig._What"></a>
 
@@ -100,9 +130,37 @@ Probably, limiting the set of projects to build is not such a big problem for an
 
 Another challenge is working with prebuilt trees. Let us say, a developer needs to add features into some applications or libraries. He or she checks out part of the source tree. Some libraries are present in the local tree, others should be taken from the prebuilt one. The problem is that local libraries may have the same names as prebuilt ones. CMake will not add them into the build saying that these targets are already defined as “imported” ones. NCBIptb solves this problem by renaming such local build targets and adjusting target dependencies accordingly. Developer’s intervention is not required, everything is made automatically.
 
-<a name="ch_cmconfig._Examples"></a>
+<a name="ch_cmconfig._Features"></a>
 
-### Examples.
+### All features at a glance
+
+When analyzing source tree, NCBIptb does not expect much from  it, anything may be absent - subdirectories, projects, external components. NCBIptb issues a warning and it is up to developer to decide what to do with it.
+
+When configuring the build tree, NCBIptb does the following:
+
+-   Filters build targets by their location in the source tree, by name, and by tag, in any combination.
+
+-   Collects all dependencies of requested build targets.
+
+-   Excludes targets for which requirements are not met.
+
+-   Adds header files.
+
+-   Adds certain source and resource files, when required. This includes DLL or Windows GUI application entry points on Windows.
+
+-   Creates source groups.
+
+-   Defines precompiled header usage.
+
+-   When using prebuilt trees, identifies local targets with the same names as imported ones, and renames them, adjusting dependencies. Using local targets has priority.
+
+-   Defines tests.
+
+In addition, there is an option of creating "composite" build targets. Such targets are composed of other targets, including their sources and requirements. In the build tree, such "hosted" targets are excluded and replaced with "composite" ones.
+
+There are also tasks of source code generation, installation and testing. NCBIptb does not support them directly. Instead, there is a mechanism of plugin [extensions](#ch_cmconfig._Extensions) which handle them.
+
+### Examples
 
 To define a simple build target in CMake we use the following command:
 
@@ -155,7 +213,7 @@ Project filters include list of source tree subdirectories, list of build target
 
 <a name="ch_cmconfig._Tree"></a>
 
-### Tree structure and variable scopes.
+### Tree structure and variable scopes
 
 CMake input files are named *CMakeLists.txt*. When one “adds a subdirectory” to the build, CMake looks for *CMakeLists.txt* file in this directory and processes it. Each of the directories in a source tree has its own variable bindings. Before processing the *CMakeLists.txt* file for a directory, CMake copies all currently defined variables and creates a new scope. All changes to variables are reflected in the current scope only. They are propagated to subdirectories, but not to the parent one.
 
@@ -183,7 +241,7 @@ Normally, *CMakeLists.txt* contains the following function calls: *NCBI_add_subd
 
 <a name="ch_cmconfig._Target"></a>
 
-### Library and application targets.
+### Library and application targets
 
 Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib*; definition of an application begins with *NCBI_begin_app* and ends with *NCBI_end_app*. Otherwise, there is not much difference between them. All calls to other NCBIptb functions must be put between these two.
 
@@ -275,3 +333,127 @@ That is, the definition looks as follows:
     NCBI_end_custom_target(result)
 
 This approach allows to define custom target only when all the requirements are met and collect target dependencies automatically.
+
+<a name="ch_cmconfig._Testing"></a>
+
+## Testing
+
+The build system supports two test frameworks - NCBI and CMake one. To use NCBI test framework on Linux, in the root directory execute the following command:
+
+    make check; ./check.sh run
+
+To use CMake testing framework:
+
+    On Linux: make test
+    In Visual Studio or XCode: "build" RUN_TESTS target
+
+Refer to [CMake documentation](https://cmake.org/cmake/help/v3.14/manual/ctest.1.html) for details.
+In case of CMake testing framework, test outputs can be found in *CMake-GCC730-ReleaseDLL/testing* directory.
+
+<a name="ch_cmconfig._Inside"></a>
+
+## Inside NCBIptb
+
+Normally, developer should not care about anything described in this section. NCBIptb is a part of a bigger system (**core** part, but still only a part), which defines build configurations, source tree structure, configuration files, external components and so on. All settings described here should be defined by this system.
+
+<a name="ch_cmconfig._SrcTree"></a>
+
+### Source tree structure
+
+NCBIptb expects the following variables to be defined: **NCBI_SRC_ROOT** and **NCBI_INC_ROOT**. *NCBI_SRC_ROOT* is the root directory of all source files, private headers and project definitions, *NCBI_INC_ROOT* is the root directory of public headers. For example, if a project is defined in *${NCBI_SRC_ROOT}/a/b/c*, the system looks for its headers in *${NCBI_INC_ROOT}/a/b/c*.
+
+<a name="ch_cmconfig._Defaults"></a>
+
+### Defaults
+
+The following values, which affect project generation, may be defined:
+
+-   **NCBI_DEFAULT_USEPCH** - allows the use of precompiled headers (*ON/OFF*).
+
+-   **NCBI_DEFAULT_PCH** - file name of the precompiled header.
+
+-   **NCBI_DEFAULT_PCH_DEFINE** - additional compile definition to use with the precompiled header.
+
+-   **NCBI_DEFAULT_HEADERS** - list of file masks (globbing expressions) to use when looking for headers. For example: *\*.h\*;\*.inl*.
+
+-   **NCBI_DEFAULT_DLLENTRY** - Source file (with path) which should be added into all shared libraries. For example, one with the DLL entry (DllMain) definition on Windows.
+
+-   **NCBI_DEFAULT_GUIENTRY** - Source file (with path) which should be added into all GUI applications. For example, one with the WinMain definition on Windows.
+
+-   **NCBI_DEFAULT_RESOURCES** - Resource file (with path) which should be added into all applications.
+
+<a name="ch_cmconfig._Filters"></a>
+
+### Project filters
+
+The following values affect project filtering. If none of them is defined, there is no filtering and all projects are allowed.
+
+-   **NCBI_PTBCFG_PROJECT_LIST** - Either list of relative paths (regular expressions), or a full path to the file which contains such a list. Paths must be relative to *${NCBI_SRC_ROOT}*. For example: *corelib$;serial;-serial/test*, or */home/user/scripts/projects/ncbi_cpp.lst*
+
+-   **NCBI_PTBCFG_PROJECT_TARGETS** - lists targets to build, each entry is a regular expression. For example: *^cgi;-test*.
+
+-   **NCBI_PTBCFG_PROJECT_TAGS** - build targets with the listed tags only. Tags are **not** treated as regular expressions. For example: *core;-test*.
+
+<a name="ch_cmconfig._Extensions"></a>
+
+### Extensions
+
+NCBIptb has a very general functionality. It analyzes source tree and selects build targets, but there is a number of other tasks. For example, source file generation, testing, installation. To make such extensions possible, NCBIptb implements a mechanism of plugins, or hooks. Hook is a function which is being called when a certain event occurs. The following events are defined:
+
+-   **TARGET_PARSED** - a project is parsed
+
+-   **ALL_PARSED**    - all projects in the source tree are parsed
+
+-   **COLLECTED**     - all build targets are collected
+
+-   **TARGET_ADDED**  - build target is added
+
+-   **ALL_ADDED**     - all targets are added
+
+-   **DATASPEC**      - process data specification
+
+Here is an example of hook definition:
+
+    function(NCBI_internal_AddCMakeTest _variable _access _value)
+    ...
+    endfunction()
+    NCBI_register_hook(TARGET_ADDED NCBI_internal_AddCMakeTest)
+
+The mechanism utilizes [variable_watch](https://cmake.org/cmake/help/v3.14/command/variable_watch.html) CMake function, which means the arguments of the callback function are defined by CMake and cannot be changed. Still, to do their job, the hooks have access to all variables defined by NCBIptb and elsewhere.
+
+<a name="ch_cmconfig._External"></a>
+
+### External packages and requirements
+
+The way NCBIptb project uses external packages is by declaring
+
+    NCBI_requires(X)
+    NCBI_optional_components(Y)
+
+X and Y may be anything, but they should described, which means the following variables should be defined:
+
+-   **NCBI_COMPONENT_X_FOUND** - defined as *YES* if component *X* is found
+
+-   **NCBI_COMPONENT_X_INCLUDE** - additional include directories
+
+-   **NCBI_COMPONENT_X_LIBS** - addtional libraries
+
+-   **NCBI_COMPONENT_X_DEFINES** - additional compile definitions
+
+Note that *X* should not necessarily be a package, in which case it may be defined as simple
+
+    set(NCBI_COMPONENT_X_FOUND YES)
+
+or, if it is indeed a package, the definition might look like this:
+
+    find_package(X)
+    if(X_FOUND)
+        set(NCBI_COMPONENT_X_FOUND YES)
+        set(NCBI_COMPONENT_X_INCLUDE ${X_INCLUDE_DIRS})
+        set(NCBI_COMPONENT_X_LIBS ${X_LIBRARIES})
+    endif()
+
+Sure, there is a number of ways of defining them.
+
+When analyzing the source tree, if NCBIptb sees that a project requires *X*, it will check the value of *NCBI_COMPONENT_X_FOUND*, and will either exclude the project from the build, or add appropriate build settings.
+
