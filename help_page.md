@@ -18,12 +18,12 @@ How to edit the page
 -------------------------------------------------
 
 - On the page you need to edit, click 'Edit' button at the top right corner of the page. It will open the editable mode of this page. At this point, GitHub forks the repository for you.
-- On the *Edit file* tab, make any changes you need to the file. For our content, we are using [GitHub markdown](https://help.github.com/articles/markdown-basics/). You can find more details on how to use Markdown [here](https://help.github.com/articles/github-flavored-markdown/).
-- After you finished, click *Preview changes* tab (to the right of *Edit file* tab. Please note that Preview mode will mark in color the changes you've made. It will not show the styles that will be added during the rendering after your changes will be deployed.
+- On the **Edit file** tab, make any changes you need to the file. For our content, we are using [GitHub markdown](https://help.github.com/articles/markdown-basics/). You can find more details on how to use Markdown [here](https://help.github.com/articles/github-flavored-markdown/).
+- After you finished, click **Preview changes** tab (to the right of **Edit file** tab. Please note that Preview mode will mark in color the changes you've made. It does not apply the styles that are added during the rendering.
 - When you finish editing, at the bottom of the page, type a short, meaningful commit message that describes the change you made to the file.
-- Click 'Propose file change' button. 
-- At the top of the page, you should see the message:  Able to merge. These branches can be automatically merged.
-If you do not see this message, please *DO NOT CREATE A PULL REQUEST*. Please contact us before proceeding with your changes. If you see that message, please click *Create pull request* button.
+- Click **Propose file change** button. 
+- At the top of the page, you should see the message:  *Able to merge. These branches can be automatically merged.*
+If you do not see this message, please **DO NOT CREATE A PULL REQUEST**. Please contact us before proceeding with your changes. If you see that message, please click **Create pull request** button.
 -  We will review the changes you made and merge them with the current version of the page.
 -  You can find more details on GitHub Pull requests [here](https://help.github.com/articles/using-pull-requests/)
 
