@@ -268,7 +268,7 @@ Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib
 
 -   **NCBI_resources**(list of resource files) – adds Windows resource files to the target.
 
--   **NCBI_requires**(list of components) – adds requirements. If a requirement is not met, the target will be excluded from the build automatically.
+-   **NCBI_requires**(list of components) – adds requirements. If a requirement is not met, the target will be excluded from the build automatically. Note that it acts recursively through project dependencies, in the sense that if project A has “NCBI_requires(X)” and project B has “NCBI_uses_toolkit_libraries(A)” and X is not met, then project B won't be attempted to build.
 
 -   **NCBI_optional_components**(list of components) – adds optional components. If a component is not found (or requirement is not met), NCBIptb will print a warning and the target will still be added to the build.
 
@@ -430,7 +430,7 @@ The way NCBIptb project uses external packages is by declaring
     NCBI_requires(X)
     NCBI_optional_components(Y)
 
-X and Y may be anything, but they should described, which means the following variables should be defined:
+X and Y may be anything, but they should be described, which means the following variables should be defined:
 
 -   **NCBI_COMPONENT_X_FOUND** - defined as *YES* if component *X* is found
 
