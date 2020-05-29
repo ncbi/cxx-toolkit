@@ -23,6 +23,10 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
 -   [Use prebuilt Toolkit](#ch_cmconfig._Use_prebuilt)
 
+    -   [Create new project](#ch_cmconfig._new_prebuilt)
+
+    -   [Import project](#ch_cmconfig._import_prebuilt)
+
 -   [NCBIptb build system](#ch_cmconfig._NCBIptb)
 
     -   [What is it?](#ch_cmconfig._What)
@@ -64,8 +68,8 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
 Having checked out the source tree, run the following command in the root directory:
 
-    On Linux:   src/build-system/cmake/cmake-cfg-unix.sh --help
-    On Windows: src\build-system\cmake\cmake-cfg-vs.bat --help
+    On Linux or MacOS:   ./cmake-configure --help
+    On Windows: cmake-configure.bat --help
     For XCode: src/build-system/cmake/cmake-cfg-xcode.sh --help
 
 It lists available options used to generate the build tree. Several of them limit the build scope:
@@ -91,14 +95,18 @@ It lists available options used to generate the build tree. Several of them limi
 
 Examples of configuration commands:
 
-    src/build-system/cmake/cmake-cfg-unix.sh --with-dll --with-debug --with-projects="sra"
-    src\build-system\cmake\cmake-cfg-vs.bat --with-projects="misc"
+    cmake-configure --with-dll --with-debug --with-projects="sra"
+    cmake-configure --with-projects="misc"
 
 Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-VS2017\build*, and run *make [target]* command or open a generated solution in an IDE and build *target*.
 
 <a name="ch_cmconfig._Use_prebuilt"></a>
 
 ## Use prebuilt Toolkit
+
+<a name="ch_cmconfig._new_prebuilt"></a>
+
+### Create new project
 
 The prebuilt Toolkit is available in several configurations. ***Note*** that this must be built using CMake – that is, it must contain CMake import target configuration files. To create a new project which uses libraries from it, use *new_cmake_project* script:
 
@@ -108,11 +116,25 @@ The script will create a subdirectory *name*, source subdirectories with a sampl
 
 For example:
 
-    new_cmake_project test app/basic $NCBI/c++.by-date/cmake/c++.current
+    new_cmake_project test app/basic $NCBI/c++.cmake.metastable
+    cd test
+    ./configure
 
 To get a list of available project types, run
 
     new_cmake_project --help
+
+<a name="ch_cmconfig._import_prebuilt"></a>
+
+### Import project
+
+In many cases, you work on your own project which is a part of the NCBI C++ toolkit tree, and you do not want to check out, update and rebuild the entire NCBI C++ tree. Instead, you just want to use headers and libraries of the pre-built Toolkit.
+
+The shell script *import_cmake_project* will check out your project’s src and include directories from the repository and create required references to the prebuilt Toolkit. You then need to configure the build using generated *configure* script. For example:
+
+    import_cmake_project test serial/datatool $NCBI/c++.cmake.metastable
+    cd test
+    ./configure
 
 <a name="ch_cmconfig._NCBIptb"></a>
 
@@ -283,6 +305,9 @@ Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib
 -   **NCBI_add_include_directories**(list) – adds include directories.
 
 -   **NCBI_project_tags**(list) – adds tags to the target. A target may have an unlimited number of tags.
+
+-   **NCBI_project_watchers**(list) - list of developers who will receive email notification when application test fail.
+
 
 <a name="ch_cmconfig._Test"></a>
 
