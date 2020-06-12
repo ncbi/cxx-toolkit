@@ -118,7 +118,7 @@ For example:
 
     new_cmake_project test app/basic $NCBI/c++.cmake.metastable
     cd test
-    ./configure
+    ./configure.sh
 
 To get a list of available project types, run
 
@@ -134,7 +134,7 @@ The shell script *import_cmake_project* will check out your project’s src and 
 
     import_cmake_project test serial/datatool $NCBI/c++.cmake.metastable
     cd test
-    ./configure
+    ./configure.sh
 
 <a name="ch_cmconfig._NCBIptb"></a>
 
