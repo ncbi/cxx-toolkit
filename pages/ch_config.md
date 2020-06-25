@@ -394,7 +394,7 @@ The following places are searched in the order given for the tag filter to use (
 
     -   The syntax for the tag filter definition line in a project list file is: `#define TAGS [ tag_filter ]`
 
-3.  For MSVC, the **`-projtag`** option of the **`PTB_FLAGS`** macro in the `compilers\vs2015\static\build\UtilityProjects\configure._` file for non-interactive configuring, or the same option in the `configure_dialog._` file for interactive configuring.
+3.  For MSVC, the **`-projtag`** option of the **`PTB_FLAGS`** macro in the `compilers\vs2017\static\build\UtilityProjects\configure._` file for non-interactive configuring, or the same option in the `configure_dialog._` file for interactive configuring.
 
 If a significant tag filter (i.e. something besides an asterisk or empty field) is found in one of the above places, then that tag filter will be supplied to the configuration process. Otherwise, there will be no filtering of the projects.
 
@@ -410,7 +410,7 @@ Configuration can be done in one of three ways:
 
 -   Using the [Configuration GUI](#ch_config.Configuring_with_the_Java_GUI).
 
--   Using a "native" IDE – [MSVC](#ch_config.MS_Visual_C_2015) on Windows or [Xcode](#ch_config.Xcode_30__31) on Mac OS X.
+-   Using a "native" IDE – [MSVC](#ch_config.MS_Visual_C_2017) on Windows or [Xcode](#ch_config.Xcode_30__31) on Mac OS X.
 
 -   Using the command-line on [Unix](#ch_config.Configuring_with_UNI), [Cygwin/Windows](#ch_config.Configuring_with_Vis), or [Mac OS X](#ch_config.Configuring_with_Xco).
 
@@ -1393,15 +1393,15 @@ If you are interested in building only one project, you can limit the source cod
 
 You can also limit what will be built by choosing a standard solution. Five standard solutions are provided to enable working only with selected portions of the Toolkit.
 
-`compilers\vs2015\static\build\ncbi_cpp.sln`
+`compilers\vs2017\static\build\ncbi_cpp.sln`
 
-`compilers\vs2015\dll\build\ncbi_cpp.sln`
+`compilers\vs2017\dll\build\ncbi_cpp.sln`
 
-`compilers\vs2015\static\build\gui\ncbi_gui.sln`
+`compilers\vs2017\static\build\gui\ncbi_gui.sln`
 
-`compilers\vs2015\dll\build\gui\ncbi_gui.sln`
+`compilers\vs2017\dll\build\gui\ncbi_gui.sln`
 
-`compilers\vs2015\dll\build\gbench\ncbi_gbench.sln`
+`compilers\vs2017\dll\build\gbench\ncbi_gbench.sln`
 
 The first two solutions build console applications and required libraries only; the last three solutions build GUI applications.
 
@@ -1562,7 +1562,7 @@ Any section name can have one or several optional suffixes, so it can take the f
 <a name="ch_config.T4"></a>
 
 |----------------------|--------------------------|
-| `CompilerVersion`    | 1400 (i.e. MSVC 2015)    |
+| `CompilerVersion`    | 1500 (i.e. MSVC 2017)    |
 | `Platform`           | Win32 or x64             |
 | `static` or `dll`    | type of runtime libraries  |
 | `debug` or `release` | build configuration type |
@@ -1783,15 +1783,15 @@ Following are some additional build-related topics:
 
 This section deals with building a custom solution within the C++ Toolkit source tree. To build a custom solution outside the source tree, please see the section on using the [new\_project](ch_proj.html#ch_proj.new_project_Starting) script.
 
-There is a template solution, `compilers\vs2015\user\build\ncbi_user.sln`, that should help you build a customized solution. The project list for this solution is in `scripts\projects\ncbi_user.lst`
+There is a template solution, `compilers\vs2017\user\build\ncbi_user.sln`, that should help you build a customized solution. The project list for this solution is in `scripts\projects\ncbi_user.lst`
 
 ***Note:*** Do not use this solution directly. Instead, make a new solution based on the template:
 
-1.  Make copies of the `compilers\vs2015\user\` subtree and the `scripts\projects\ncbi_user.lst` file (keep the copies in the same folders as the originals).
+1.  Make copies of the `compilers\vs2017\user\` subtree and the `scripts\projects\ncbi_user.lst` file (keep the copies in the same folders as the originals).
 
-2.  Rename the subtree, solution file, and project list file appropriately, for example to `compilers\vs2015\project_name\, compilers\vs2015\project_name\build\project_name.sln`, and `scripts\projects\project_name.lst`.
+2.  Rename the subtree, solution file, and project list file appropriately, for example to `compilers\vs2017\project_name\, compilers\vs2017\project_name\build\project_name.sln`, and `scripts\projects\project_name.lst`.
 
-3.  In the folder `compilers\vs2015\project_name\build\UtilityProjects\`, use a text editor to edit `_CONFIGURE_.vcproj`, and `_CONFIGURE_DIALOG_.vcproj`. Change all instances of "`ncbi_user`" to "`project_name`".
+3.  In the folder `compilers\vs2017\project_name\build\UtilityProjects\`, use a text editor to edit `_CONFIGURE_.vcproj`, and `_CONFIGURE_DIALOG_.vcproj`. Change all instances of "`ncbi_user`" to "`project_name`".
 
 4.  In the same folder, also edit `configure._`, and `configure_dialog._`:
 
@@ -1805,9 +1805,9 @@ There is a template solution, `compilers\vs2015\user\build\ncbi_user.sln`, that 
 
 5.  If your new project will use a project list file, edit `scripts\projects\project_name.lst` to identify the required project folders.
 
-6.  Your custom solution can now be built. Open the solution file `compilers\vs2015\project_name\build\project_name.sln`, [configure](#ch_config.Configuring_with_Vis), and [build](#ch_config.Building_with_Visual).
+6.  Your custom solution can now be built. Open the solution file `compilers\vs2017\project_name\build\project_name.sln`, [configure](#ch_config.Configuring_with_Vis), and [build](#ch_config.Building_with_Visual).
 
-Note that the project directory, `vs2015`, may be different for your version of Visual C++.
+Note that the project directory, `vs2017`, may be different for your version of Visual C++.
 
 <a name="ch_config.Building_External_Li"></a>
 
@@ -1827,11 +1827,11 @@ If you do not have the external libraries already installed, you can download, b
 
 The built Toolkit applications and libraries will be put, respectively, to:
 
-`compilers\vs2015\{static|dll}\bin\<config_name>`
+`compilers\vs2017\{static|dll}\bin\<config_name>`
 
-`compilers\vs2015\{static|dll}\lib\<config_name>`
+`compilers\vs2017\{static|dll}\lib\<config_name>`
 
-Note that the project directory, `vs2015`, may be different for your version of Visual C++.
+Note that the project directory, `vs2017`, may be different for your version of Visual C++.
 
 ***Note:*** If the PTB (project tree builder) stage fails, the build may be stuck in a "locked" state. To "unlock" it, delete the file "`__configure.lock`" from the project directory.
 
@@ -1869,7 +1869,7 @@ where:
 
 For example, if the Toolkit is built in the `U:\cxx` folder, then this command:
 
-    new_project test app U:\cxx\compilers\vs2015
+    new_project test app U:\cxx\compilers\vs2017
 
 -   creates a new local build tree;
 
@@ -1877,9 +1877,9 @@ For example, if the Toolkit is built in the `U:\cxx` folder, then this command:
 
 -   puts the header files into `name\include\name`;
 
--   puts the Visual Studio project file into `name\compilers\vs2015\static\build\name`; and
+-   puts the Visual Studio project file into `name\compilers\vs2017\static\build\name`; and
 
--   puts the solution file into `name\compilers\vs2015\static\build`.
+-   puts the solution file into `name\compilers\vs2017\static\build`.
 
 To add new source files or libraries to the project, edit `name\src\name\Makefile.name.app` makefile template, then rebuild the **-CONFIGURE-** project of the solution.
 
@@ -1907,7 +1907,7 @@ Here's an example showing all the steps needed to build and debug the COBALT tes
 
 1.  In the Windows command-line prompt, run:<br/>`import_project algo/cobalt`<br/>This will prepare a Visual Studio solution and open Visual Studio. There, build "`cobalt_unit_test.exe`". It's all 32-bit by default, even though your Windows is 64-bit.<br/>(Agree to map "S:" disk if you want to see debug info from the pre-built libraries.)
 
-2.  Copy your "data" dir from:<br/>`imported_projects\src\algo\cobalt\unit_test\data`<br/>to:<br/>`imported_projects\compilers\vs2015\static\build\algo\cobalt\unit_test\data`
+2.  Copy your "data" dir from:<br/>`imported_projects\src\algo\cobalt\unit_test\data`<br/>to:<br/>`imported_projects\compilers\vs2017\static\build\algo\cobalt\unit_test\data`
 
 3.  Debug it (right-click on it, and choose Debug).
 
