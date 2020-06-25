@@ -614,9 +614,9 @@ This will create:
 
 2.  the source file -- `example\src\example\basic_sample.cpp` (the source file name is always `basic_sample.cpp`, regardless of the project name)
 
-3.  the MSVC project file -- `example\compilers\vs2015\static\build\example\example.exe.vcproj`
+3.  the MSVC project file -- `example\compilers\vs2017\static\build\example\example.exe.vcproj`
 
-4.  the MSVC solution file -- `example\compilers\vs2015\static\build\example.sln`
+4.  the MSVC solution file -- `example\compilers\vs2017\static\build\example.sln`
 
 5.  a project makefile -- `example\src\example\Makefile.example.app`
 
@@ -626,11 +626,11 @@ This will create:
 
 1.  Rename the source file from `example\src\example\basic_sample.cpp` to `example.cpp`.
 
-2.  Edit the MSVC project file `example\compilers\vs2015\static\build\example\example.exe.vcproj` and replace "basic\_sample" with "example".
+2.  Edit the MSVC project file `example\compilers\vs2017\static\build\example\example.exe.vcproj` and replace "basic\_sample" with "example".
 
 3.  Edit the project makefile `example\src\example\Makefile.example.app` and replace "basic\_sample" with "example".
 
-Then open the solution file `example\compilers\vs2015\static\build\example.sln` with MSVS and:
+Then open the solution file `example\compilers\vs2017\static\build\example.sln` with MSVS and:
 
 1.  Build the **`-CONFIGURE-`** project (reloading the project when prompted).
 
