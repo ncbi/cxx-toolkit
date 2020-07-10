@@ -50,6 +50,11 @@ More info here: https://www.seerinteractive.com/labs/the-seo-starter-guide-to-go
     
     
 URL Inspection Tool: https://support.google.com/webmasters/answer/9012289#url_not_on_google
+
+A couple of notes about our indexing:
+
+    - The newly added or updated content gets indexed in 7-10 days;
+    - Timestamps in sitemap file have little to no affect on this.
     
 
 ### Basic info about search on Google
