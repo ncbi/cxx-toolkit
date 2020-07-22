@@ -152,7 +152,7 @@ To start computations, call [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP
 
 ### Alignment transcript
 
-The immediate output of the global alignment algorithms is a transcript.The transcript serves as a basic representation of alignments and is simply a string of elementary commands transforming the first sequence into the second one on a per-character basis. These commands (transcript characters) are (M)atch, (R)eplace, (I)nsert, and (D)elete. For example, the alignment
+The immediate output of the global alignment algorithms is a transcript. The transcript serves as a basic representation of alignments and is simply a string of elementary commands transforming the first sequence into the second one on a per-character basis. These commands (transcript characters) are (M)atch, (R)eplace, (I)nsert, and (D)elete. For example, the alignment
 
     TTC-ATCTCTAAATCTCTCTCATATATATCG
     ||| ||||||     |||| || ||| ||||
