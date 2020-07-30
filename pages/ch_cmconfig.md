@@ -136,6 +136,12 @@ The shell script *import_cmake_project* will check out your project’s src and 
     cd test
     ./configure.sh
 
+It also possiible to use [*import_project*](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn.html#ch_getcode_svn.import_project_sh) script, but one has to be more specific about prebuilt tree:
+
+    import_project serial $NCBI/c++.cmake.metastable/CMake-GCC730-Debug
+
+The script configures the tree automatically, according to prebuilt directory settings (GCC730-Debug in the example above).
+
 <a name="ch_cmconfig._NCBIptb"></a>
 
 ## NCBIptb build system
