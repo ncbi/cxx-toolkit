@@ -265,7 +265,7 @@ Normally, *CMakeLists.txt* contains the following function calls: *NCBI_add_subd
 
 -   **NCBI_add_target**(a b) – adds custom targets. In the current directory it looks for files named *CMakeLists.a.txt* and *CMakeLists.b.txt*.
 
-*CMakeLists.txt* may also contain calls to the following functions: *NCBI_headers*, *NCBI_disable_pch*, *NCBI_enable_pch*, *NCBI_requires*, *NCBI_optional_components*, *NCBI_add_definitions*, *NCBI_add_include_directories*, *NCBI_uses_toolkit_libraries*, *NCBI_uses_external_libraries*, *NCBI_project_tags*. If so, settings defined by them will affect all targets defined in this directory and its subdirectories.
+*CMakeLists.txt* may also contain calls to the following functions: *NCBI_headers*, *NCBI_disable_pch*, *NCBI_enable_pch*, *NCBI_requires*, *NCBI_optional_components*, *NCBI_add_definitions*, *NCBI_add_include_directories*, *NCBI_uses_toolkit_libraries*, *NCBI_uses_external_libraries*, *NCBI_project_tags*, *NCBI_project_watchers*. If so, settings defined by them will affect all targets defined in this directory and its subdirectories.
 
 <a name="ch_cmconfig._Target"></a>
 
