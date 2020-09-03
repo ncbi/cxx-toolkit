@@ -685,6 +685,8 @@ Table 11. Serial library configuration parameters
 | While writing binary ASN.1 data issue UTF8 string tag as determined by specification, otherwise issue plain string tag. | **`[SERIAL]`**<br/>**`WRITE_UTF8STRING_TAG`**<br/><br/>**`SERIAL_WRITE_UTF8STRING_TAG`**           | Boolean  [<sup>c</sup>](#ch_libconfig.TF.35)               | false    |
 | Specifies what to do if an invalid character is read.      | **`[SERIAL]`**<br/>**`WRONG_CHARS_READ`**<br/><br/>**`NCBI_CONFIG__SERIAL__WRONG_CHARS_READ`**  [<sup>b</sup>](#ch_libconfig.TF.34)     | "ALLOW",<br/>"REPLACE",<br/>"REPLACE\_AND\_WARN",<br/>"THROW",<br/>"ABORT"             | "REPLACE\_AND\_WARN" |
 | Specifies what to do if an invalid character is written.   | **`[SERIAL]`**<br/>**`WRONG_CHARS_WRITE`**<br/><br/>**`NCBI_CONFIG__SERIAL__WRONG_CHARS_WRITE`**  [<sup>b</sup>](#ch_libconfig.TF.34)   | "ALLOW",<br/>"REPLACE",<br/>"REPLACE\_AND\_WARN",<br/>"THROW",<br/>"ABORT"             | "REPLACE\_AND\_WARN" |
+| Specifies number of attempts to send request to the service. | **`[<SERVICE_NAME>.rpc_client]`**<br/>**`max_try`**<br/><br/>**`<SERVICE_NAME>__RPC_CLIENT__MAX_TRY`** | int<br/>a positive integer or zero to use the default number | 3 |
+| Specifies delay in seconds between attempts to send request to the service. | **`[<SERVICE_NAME>.rpc_client]`**<br/>**`retry_delay`**<br/><br/>**`<SERVICE_NAME>__RPC_CLIENT__RETRY_DELAY`** | double<br/>delay in seconds | 0 |
 
 <div class="table-scroll"></div>
 
