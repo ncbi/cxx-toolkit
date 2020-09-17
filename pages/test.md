@@ -1,277 +1,573 @@
 ---
 layout: default
-title: Configure, Build and Use the Toolkit with CMake.
-nav: pages/ch_intro
+title: Biological Sequence Alignment
+nav: pages/ch_algoalign
 ---
 
 
 {{ page.title }}
-=================================================
+================================================
 
-## Introduction
+Introduction
+------------
 
-This chapter describes how to configure, build, and use the NCBI C++ Toolkit, or selected components of it using CMake.
+There are many libraries in the NCBI C++ Toolkit which deal with sequence alignments. This chapter describes computing and managing biological sequence alignments. Data structures used to store alignments are discussed in the [Biological Sequence Data Model](https://ncbi.github.io/cxx-toolkit/pages/ch_datamod#ch_datamod._Sequence_Alignments_1) chapter.
 
-[CMake](https://cmake.org) is an open-source, cross-platform family of tools designed to build, test and package software. It uses compiler-independent configuration files to generate native makefiles and workspaces which can be used in a variety of compiler environments.
+Chapter Outline
+---------------
 
-At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. It adds many convenient features, facilitates handling of large source trees and simplifies CMake build target descriptions, while still allowing use of “native” CMake.
+The following is an outline of the chapter topics:
 
+- [Alignment types](#ch_algoalign.alignment_types)
 
-## Chapter Outline
+- [Alignment Manager](#ch_algoalign.alignment_manager)
 
--   [Configure build tree](#ch_cmconfig._Configure)
+    - [Common interfaces and classes](#ch_algoalign.alignment_manager_interfaces)
 
--   [Use prebuilt Toolkit](#ch_cmconfig._Use_prebuilt)
+    - [Implementations](#ch_algoalign.alignment_manager_imlementations)
 
--   [NCBIptb build system](#ch_cmconfig._NCBIptb)
+        - [CSparseAln](#ch_algoalign.alignment_manager_impl_sparsealn)
 
-    -   [What is it?](#ch_cmconfig._What)
-    
-    -   [Examples.](#ch_cmconfig._Examples)
-    
-    -   [How does it work?](#ch_cmconfig._How)
-    
-    -   [Tree structure and variable scopes.](#ch_cmconfig._Tree)
+        - [CAlnMap](#ch_algoalign.alignment_manager_impl_alnmap)
 
-    -   [Directory entry.](#ch_cmconfig._Dir)
-    
-    -   [Library and application targets.](#ch_cmconfig._Target)
-    
-    -   [Application target tests.](#ch_cmconfig._Test)
-    
-    -   [Custom target.](#ch_cmconfig._Custom)
+    - [Using Alignment Manager](#ch_algoalign.alignment_manager_using)
 
+        - [Reading alignments](#ch_algoalign.alignment_manager_using_reading)
 
-<a name="ch_cmconfig._Configure"></a>
+        - [Seq-id wrappers](#ch_algoalign.alignment_manager_using_idwrappers)
 
-## Configure build tree
+        - [Alignment statistics](#ch_algoalign.alignment_manager_using_stats)
 
-Having checked out the source tree, run the following command in the root directory:
+        - [CPairwiseAln](#ch_algoalign.alignment_manager_using_pairwisealn)
 
-    On Linux:   src/build-system/cmake/cmake-cfg-unix.sh --help
-    On Windows: src\build-system\cmake\cmake-cfg-vs.bat --help
+        - [CAnchoredAln](#ch_algoalign.alignment_manager_using_anchoredaln)
 
-It lists available options used to generate the build tree. Several of them limit the build scope:
+        - [Building sparse alignment](#ch_algoalign.alignment_manager_using_buildsparse)
 
--   *--with-projects=*”FILE” – build projects listed in FILE. This is either a Project List File, or a list of subdirectories of *src* directory. Each entry is a regular expression (see [CMake documentation](https://cmake.org/cmake/help/v3.14/command/string.html#regex-specification) for details). List of subdirectories consists of entries separated by semicolon (hyphen in the beginning of the entry means that targets from that directory should be excluded). If "FILE" is an existing file, it should be in plain text with one such entry per line. For example:
+    - [Examples](#ch_algoalign.alignment_manager_examples)
 
-```
-    --with-projects="corelib$;serial;-serial/test"
-    --with-projects="scripts/projects/ncbi_cpp.lst"
-```
+- [Computing alignments](#ch_algoalign.computing_alignments)
 
--   *--with-targets=*”NAMES” – lists targets to build. Again, each entry is a regular expression. For example:
+    -   [Computing pairwise global sequence alignments](#ch_algoalign.generic_global_alignment)
 
-```
-    --with-targets="^cgi;-test"
-```
+        -   [Initialization](#ch_algoalign.initialization)
 
--   *--with-tags=*”TAGS” – build targets with the listed tags only. Tags are **not** treated as regular expressions. For example:
+        -   [Parameters of alignment](#ch_algoalign.setup)
 
-```
-    --with-tags="core;-test"
-```
+        -   [Computing](#ch_algoalign.computing)
 
-Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-vs2017\static\build*, and run make or open a generated solution.
+        -   [Alignment transcript](#ch_algoalign.transcript)
 
-<a name="ch_cmconfig._Use_prebuilt"></a>
+    -   [Computing multiple sequence alignments](#ch_algoalign.Computing_multiple_s)
 
-## Use prebuilt Toolkit
+    -   [Aligning sequences in linear space](#ch_algoalign.divide_and_conquer)
 
-The prebuilt Toolkit is available in several configurations. ***Note*** that this must be built using CMake – that is, it must contain CMake import target configuration files. To create a new project which uses libraries from it, use *new_cmake_project* script:
+        -   [The idea of the algorithm](#ch_algoalign.idea)
 
-    new_cmake_project <name> <type> <builddir>
+        -   [Implementation](#ch_algoalign.mm_implementation)
 
-The script will create a subdirectory *name*, source subdirectories with a sample project *type* and a configuration script. Run the script, then build the project.
+    -   [Computing spliced sequences alignments](#ch_algoalign.spliced_alignment)
 
-<a name="ch_cmconfig._NCBIptb"></a>
+        -   [The problem](#ch_algoalign.uk_formulation)
 
-## NCBIptb build system.
+        -   [Implementation](#ch_algoalign.uk_implementation)
 
-<a name="ch_cmconfig._What"></a>
+    -   [Formatting computed alignments](#ch_algoalign.formatter)
 
-### What is it?
+        -   [Formatter object](#ch_algoalign.nw_formatter)
 
-Imagine a large source tree with thousands of projects. It takes sources from several repositories and uses numerous external packages. It consists of “core” part and subtrees. Different teams work on multiple projects. To do their work, these teams assemble their own build trees, which include certain parts of core as well as their own projects. “Core” has several official releases; team projects have their own ones. There are several high frequency builds which work on different subtrees and ensure that everything stays compatible.
 
-NCBIptb was designed to facilitate handling of such large source tree in a dynamic build environment. The purpose of NCBIptb is to extract from the source tree only requested projects. This includes analyzing and collecting build target dependencies on other targets, analyzing dependencies on external packages and excluding targets for which such dependencies cannot be satisfied, adding sources and headers, organizing them into source groups, defining precompiled header usage.  Doing this in “pure” CMake is either impossible or requires complex project descriptions. Still, all these tasks are pretty standard and can be automated. Using NCBIptb is convenience, not a requirement; it extends functionality but still allows using “native” CMake.
+<a name="ch_algoalign.alignment_types"></a>
 
-Probably, limiting the set of projects to build is not such a big problem for an automated build – it must build everything anyway. Still, it is a problem for an individual developer working in an Integrated Development Environment. IDEs can handle solutions with hundreds of build targets, but they can become very slow. And, it is simply not needed, it is a waste of computer resources. Developer needs a solution with only few build targets. NCBIptb can do exactly that.
+Alignment types
+---------------
 
-Another challenge is working with prebuilt trees. Let us say, a developer needs to add features into some applications or libraries. He or she checks out part of the source tree. Some libraries are present in the local tree, others should be taken from the prebuilt one. The problem is that local libraries may have the same names as prebuilt ones. CMake will not add them into the build saying that these targets are already defined as “imported” ones. NCBIptb solves this problem by renaming such local build targets and adjusting target dependencies accordingly. Developer’s intervention is not required, everything is made automatically.
+(TODO)
 
-<a name="ch_cmconfig._Examples"></a>
 
-### Examples.
+<a name="ch_algoalign.alignment_manager"></a>
 
-To define a simple build target in CMake we use the following command:
+Alignment Manager
+-----------------
 
-    add_executable(hello hello.cpp)
+The Alignment Manager Library [`xalnmgr`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objtools/alnmgr) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objtools/alnmgr)]
 
-The same operation in NCBIptb will look like this:
 
-    NCBI_begin_app(hello)
-    NCBI_sources(hello.cpp)
-    NCBI_end_app()
+<a name="ch_algoalign.alignment_manager_interfaces"></a>
 
-So far, it does not look like NCBIptb makes a lot of sense.
+### Common interfaces and classes
 
-Let us now create source groups, because it will look better in an IDE:
+[IAlnExplorer](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=IAlnExplorer&_identdefonly=1) interface defines types and constants used by derived classes representing alignments ([CAlnMap](#ch_algoalign.alignment_manager_impl_alnmap) and [CSparseAln](#ch_algoalign.alignment_manager_impl_sparsealn)). *EAlignType* enumerator describes types of sequences participating in the alignment: nucleotide, protein, mixed etc. *ESearchDirection* defines how to change position while performing some operations: based on sequence position and strand, or alignment coordinates. *ESortState* defines possible states of alignment data: unsorted, ascending, descending or unsupported.
 
-CMake:
+[IAlnSegment](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=IAlnSegment&_identdefonly=1) interface defines types, constants and methods representing a single alignment segment. For each segment there are two ranges defined: the range on the selected sequence returned by *GetRange()* method, and the range on the whole alignment returned by *GetAlnRange()*. Depending on segment type one or both ranges may be empty. *ESegTypeFlags* provide information about segment type.
 
-    source_group(“Source files” FILES hello.cpp)
-    source_group(“Header files” FILES hello.hpp)
-    add_executable(hello hello.cpp hello.hpp)
+- *fAligned* indicates that the selected sequence is aligned to at least, both GetRange() and GetAlnRange() return non-empty ranges.
 
-In NCBIptb no changes are required, because source groups will be created automatically.
+- *fGap* means both anchor and the selected sequence are not included in the segment but there are other rows aligned to each other, so GetAlnRange() returns a non-empty range.
 
-Now, let us say our app uses package X, which may be absent.
-In CMake the project description will look like this:
+- *fIndel* is used when either anchor, or the selected sequence is not present in the segment, the corresponding method returns empty range.
 
-    if (X_FOUND)
-        source_group(“Source files” FILES hello.cpp)
-        source_group(“Header files” FILES hello.hpp)
-        add_executable(hello hello.cpp)
-        target_include_directories(hello ${X_INCLUDE_DIRS})
-        target_compile_definitions(hello ${X_DEFINITIONS})
-        target_link_libraries(hello ${X_LIBRARIES})
-    endif ()
+- *fUnaligned* is used for ranges of the selected sequence which do not participate in the alignment at all (not present in the source seq-align), GetAlnRange() returns empty range.
 
-In NCBIptb, only one line must be added:
+- *fReversed* flag is set when the selected row is reversed relatively to the anchor row.
 
-    NCBI_begin_app(hello)
-    NCBI_sources(hello.cpp)
-    NCBI_requires(X)
-    NCBI_end_app()
+- *fInvalid* indicates bad state of a segment iterator.
 
-<a name="ch_cmconfig._How"></a>
+[IAlnSegmentIterator](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=IAlnSegmentIterator&_identdefonly=1) interface defines types, constants and methods for iterating alignment segments. *EFlags* enumerator defines flags for iterating all segments, only aligned ranges, only unaligned ranges, or all segments where at least some rows are aligned to each other (but the selected row may contain a gap).
 
-### How does it work?
 
-While in CMake “adding a build target” is final and cannot be reversed, in NCBIptb it is only a piece of information. The decision of whether to add the target or not depends on several factors and is made by the build system itself. To do so, NCBIptb scans the source tree two times (CMake does it only once). During the first pass it collects information about target dependencies and requirements, then it uses filters to select “proper” build targets and finally, during the second pass adds them into the generated solution or build tree.
+<a name="ch_algoalign.alignment_manager_implementations"></a>
 
-Project filters include list of source tree subdirectories, list of build targets and list of build target “tags”. They can be specified in any combination. “Tag” is only a label – for example *test* or *demo*, it has no meaning for the build system. Subdirectories and targets are treated here as [regular expressions](https://cmake.org/cmake/help/v3.14/command/string.html#regex-specification). Note that project filters is only a starting point. If you request building projects in directory ***A*** only, but they require projects from directory ***B***, the latter ones will be added automatically. If you request building application ***A*** only, all required libraries will also be added automatically.
+### Implementations
 
-<a name="ch_cmconfig._Tree"></a>
 
-### Tree structure and variable scopes.
+<a name="ch_algoalign.alignment_manager_impl_sparsealn"></a>
 
-CMake input files are named *CMakeLists.txt*. When one “adds a subdirectory” to the build, CMake looks for *CMakeLists.txt* file in this directory and processes it. Each of the directories in a source tree has its own variable bindings. Before processing the *CMakeLists.txt* file for a directory, CMake copies all currently defined variables and creates a new scope. All changes to variables are reflected in the current scope only. They are propagated to subdirectories, but not to the parent one.
+#### CSparseAln
 
-*CMakeLists.txt* in turn can include other CMake files – this does not create a new scope. This is good and bad at the same time. We will return to this topic shortly.
+[CSparseAln](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CSparseAln&_identdefonly=1) is an implementation of IAlnExplorer which keeps alignment data in a [CAnchoredAln](#ch_algoalign.alignment_manager_using_anchoredaln) object. It defines methods for converting coordinates and ranges, and for getting sequence data. *GetSeqAlnRange()*, *GetSeqAlnStart()* and *GetSeqAlnStop()* methods return total range for the selected row in alignment coordinates. *GetSeqRange()*, *GetSeqStart()* and *GetSeqStop()* return total range in sequence coordinates. *GetAlnPosFromSeqPos()* and *GetSeqPosFromAlnPos()* can be used to convert between alignment and sequence coordinates. There are also a few methods which can be used when dealing with mixed alignments; these methods allow to convert positions and ranges between alignment coordinates (which are always genomic) and sequence native coordinates, calculate protein frames. *GetSeqString()* and *GetAlnSeqString()* methods return sequence data for the selected sequence and range, (the latter fills unaligned parts with the gap character). CSparseAln can be created from a CAnchoredAln; to work correctly the anchored alignment must be built with [BuildAln()](#ch_algoalign.alignment_manager_using_buildsparse) function.
 
-So, in *CMakeLists.txt* one can call *add_subdirectory*, *include* a CMake file, or define a build target. In NCBIptb we use *NCBI_add_subdirectory*, *NCBI_add_library*, *NCBI_add_app* and *NCBI_add_target* instead. While NCBIptb does not prohibit defining a build target in *CMakeLists.txt*, we find it beneficial to define them in separate files. Also, NCBIptb creates a separate scope for each such file. That is, variables defined in *CMakeLists.txt* are propagated to each target definition file in the current directory and all subdirectories. At the same time, variables defined in target definition file are not propagated anywhere - they are guaranteed to be local.
+[CSparseSegment](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CSparseSegment&_identdefonly=1) is an implementation of IAlnSegment which defines it’s abstract methods.
 
-What if it was not so? What if, instead of calling *NCBI_add_target()*, we simply *included* target definition file? It is a common scenario when there are several target definitions in a single directory. Once so, variables defined in one file could silently affect others and potentially create a lot of confusion. Creating a separate scope for each target definition eliminates this interdependency.
+[CSparse_CI](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CSparse_CI&_identdefonly=1) implements IAlnSegmentIterator which allows to iterate a given row of a CSparseAln. The iterator can be used to iterate the whole row or a specific range on it.
 
-<a name="ch_cmconfig._Dir"></a>
 
-### Directory entry
+<a name="ch_algoalign.alignment_manager_impl_alnmap"></a>
 
-Normally, *CMakeLists.txt* contains the following function calls: *NCBI_add_subdirectory*, *NCBI_add_library*, *NCBI_add_app* and *NCBI_add_target*.
+#### CAlnMap
 
--   **NCBI_add_subdirectory**(a b) – adds subdirectories *a* and *b*. In order to be processed, a subdirectory must exist and have CMakeLists.txt file. Otherwise, a warning will be printed, and the entry skipped.
+[CAlnMap](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnMap&_identdefonly=1) and [CAlnVec](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnVec&_identdefonly=1) are two more implementations of IAlnExplorer. Internally both are based on [Dense-seg](https://ncbi.github.io/cxx-toolkit/pages/ch_datamod#ch_datamod.Denseseg_Segments_fo) alignment which imposes some limitations on the data they can handle. CAlnMap provides methods for accessing alignment structure (segments, rows, ranges). CAlnVec extends CAlnMap with methods handling sequence data. Unlike [CSarseAln](#ch_algoalign.alignment_manager_impl_sparsealn), CAlnMap and CAlnVec do not use IAlnSegment and IAlnSegmentIterator interfaces. Instead both use their own [CAlnChunk](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnChunk&_identdefonly=1) and [CAlnChunkVec](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnChunkVec&_identdefonly=1) classes to return alignment data.
 
--   **NCBI_add_library**(a b) – adds library build targets. In the current directory it looks for files named *CMakeLists.a.lib.txt* and *CMakeLists.b.lib.txt*.
 
--   **NCBI_add_app**(a b) – adds application build targets. In the current directory it looks for files named *CMakeLists.a.app.txt* and *CMakeLists.b.app.txt*.
+<a name="ch_algoalign.alignment_manager_using"></a>
 
--   **NCBI_add_target**(a b) – adds custom targets. In the current directory it looks for files named *CMakeLists.a.txt* and *CMakeLists.b.txt*.
+### Using Alignment Manager
 
-*CMakeLists.txt* may also contain calls to the following functions: *NCBI_headers*, *NCBI_disable_pch*, *NCBI_enable_pch*, *NCBI_requires*, *NCBI_optional_components*, *NCBI_add_definitions*, *NCBI_add_include_directories*, *NCBI_uses_toolkit_libraries*, *NCBI_uses_external_libraries*, *NCBI_project_tags*. If so, settings defined by them will affect all targets defined in this directory and its subdirectories.
 
-<a name="ch_cmconfig._Target"></a>
+<a name="ch_algoalign.alignment_manager_using_reading"></a>
 
-### Library and application targets.
+#### Reading alignments
 
-Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib*; definition of an application begins with *NCBI_begin_app* and ends with *NCBI_end_app*. Otherwise, there is not much difference between them. All calls to other NCBIptb functions must be put between these two.
+[CAlnAsnReader](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnAsnReader&_identdefonly=1) is a helper class which can be used to load multiple objects from a stream, find all alignments inside the objects and store them for further processing. Top-level object types supported by CAlnAsnReader are: *Seq-entry*, *Seq-align*, *Seq-submit*, *Seq-align-set*, *Seq-annot*, and *Dense-seg*. A [scope](https://ncbi.github.io/cxx-toolkit/pages/ch_objmgr#ch_objmgr.om_attrib.html_Scope) can be passed to CAlnAsnReader constructor; if it’s done, each loaded seq-entry is automatically added to the scope. *Read()* method is used to read objects from a stream. The method takes pointer to a [CObjectIStream](https://ncbi.github.io/cxx-toolkit/pages/ch_ser#ch_ser.objstream.html_objcopy), a callback function, which argument is a const pointer to a [CSeq_align](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CSeq_align&_identdefonly=1), and an optional top-level object type which is required only in case of binary input stream. Each seq-align found in the loaded data is then passed to the callback, which usually stores the alignments in a container for further processing.
 
--   **NCBI_begin_lib**(name)/**NCBI_begin_app**(name) – begins definition of a library or an application target called *name*.
+[CAlnContainer](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnContainer&_identdefonly=1) can be used to store alignments loaded by CAlnAsnReader. The container checks for duplicates and has an option to split seq-align-sets (‘disc’ seq-aligns) into separate alignments.
 
--   **NCBI_end_lib**(result)/**NCBI_end_app**(result) – ends the definition. Optional argument *result* becomes TRUE when the target was indeed added to the build. This makes it possible to add “native” CMake commands or properties to the target:
+[Sample code](#ch_algoalign.alignment_manager_examples_reading)
 
-```
-    NCBI_begin_app(name)
+
+<a name="ch_algoalign.alignment_manager_using_idwrappers"></a>
+
+#### Seq-id wrappers
+
+[Seq-id](https://ncbi.github.io/cxx-toolkit/pages/ch_datamod#ch_datamod._Seqid_Identifying_th) objects used in the C++ Toolkit do not provide sequence information such as sequence type (nucleotide or protein) or base width (1 for nucleotides, 3 for proteins). For this reason, the Alignment Manager stores seq-ids using [IAlnSeqId](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=IAlnSeqId&_identdefonly=1) wrapper interface rather than using [CSeq_id](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CSeq_id&_identdefonly=1) or [CSeq_id_Handle](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CSeq_id_Handle&_identdefonly=1) classes directly. [TAlnSeqIdIRef](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=TAlnSeqIdIRef&_identdefonly=1) is a typedef for smart pointer to IAlnSeqId (CIRef\<IAlnSeqId\>).
+
+[CAlnSeqId](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnSeqId&_identdefonly=1) class provides the default implementation of IAlnSeqId based on CSeq_id_Handle.
+
+To convert CSeq_id to IAlnSeqId two template classes can be used: [CAlnSeqIdConverter\<TAlnSeqId\>](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnSeqIdConverter&_identdefonly=1) and [CScopeAlnSeqIdConverter\<TAlnSeqId\>](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CScopeAlnSeqIdConverter&_identdefonly=1). The former converts each seq-id to *TAlnSeqId* wrapper class (which assumes that the template argument TAlnSeqId can be initialized with a CSeq_id), the latter also fetches bioseq information from a [CScope](https://ncbi.github.io/cxx-toolkit/pages/ch_objmgr#ch_objmgr.om_attrib.html_Scope), filling sequence type and base width in the IAlnSeqId.
+
+[CAlnSeqIdsExtract\<TAlnSeqId, TIdConverter\>](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnSeqIdsExtract&_identdefonly=1) template class is used to extract seq-ids from a seq-align and store them in a vector of TAlnSeqIdIRef-s (TAlnSeqIdVec). The extractor takes two arguments: seq-id wrapper (e.g. IAlnSeqId) and seq-id converter (CAlnSeqIdConverter by default). [TIdExtract](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=TIdExtract&_identdefonly=1) and [TScopeIdExtract](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=TScopeIdExtract&_identdefonly=1) are two predefined extractor types based on CAlnSeqIdConverter\<\> and CScopeAlnSeqIdConverter\<\> respectively.
+
+
+<a name="ch_algoalign.alignment_manager_using_stats"></a>
+
+#### Alignment statistics
+
+Before the Alignment Manager can work with seq-aligns they must be parsed into special container classes and some data about their structure must be collected.
+
+[CAlnIdMap\<TAlnVec, TAlnSeeqIdExtract\>](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnIdMap&_identdefonly=1) template class is used to map each CSeq_align object to a vector of participating seq-ids. There are two predefined versions of CAlnIdMap: [TAlnIdMap](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=TAlnIdMap) based on TIdExtract, and CScope aware TScopeAlnIdMap using TScopeIdExtract.
+
+A CAlnIdMap instance can be passed to [CAlnStats\<TAlnIdVec\>](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnStats&_identdefonly=1) (note that though the template argument is named TAlnIdVec, it’s expected to be a CAlnIdMap\<\>). This class collects seq-align statistics such as ids, potential anchor rows etc. The stats are used to initialize anchored alignments (CAnchoredAln). Two predefined instances of the template are [TAlnStats](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=TAlnStats) (CAlnStats\<TAlnIdMap\>) and CScope aware version TScopeAlnStats (CAlnStats\<TScopeAlnIdMap\>).
+
+
+<a name="ch_algoalign.alignment_manager_using_pairwisealn"></a>
+
+#### CPairwiseAln
+
+[CPairwiseAln](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CPairwiseAln&_identdefonly=1) is based on [CAlignRangeCollection\<\>](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlignRangeCollection&_identdefonly=1) template and provides a simple mapping of ranges ([CAlignRange\<TSignedSeqPos\>](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlignRange&_identdefonly=1)) on two sequences. The class allows to enforce different policies like overlaps between segments, mixed segment directions etc. Pairwise alignments also allow to store insertions, which indicate segments where the first sequence has a gap, while the second one contains data of known length. [CreatePairwiseAlnFromSeqAlign()](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CreatePairwiseAlnFromSeqAlign&_identdefonly=1) function can be used to create CPairwiseAln from a seq-align. The function expects that the source alignment contains exactly two rows and uses default policies. Another function for creating pairwise alignments is [ConvertSeqAlignToPairwiseAln()](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=ConvertSeqAlignToPairwiseAln&_identdefonly=1) – it allows to specify rows of the source seq-align and configure CPairwiseAln policies and options before populating it. Note that the function does not check if the specified rows of the source seq-align contain correct seq-ids.
+
+
+<a name="ch_algoalign.alignment_manager_using_anchoredaln"></a>
+
+#### CAnchoredAln
+
+To work with multiple aligned sequences [CAnchoredAln](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAnchoredAln&_identdefonly=1) class is used. Each anchored alignment contains two or more pairwise alignments and has a few methods for accessing alignment properties and data (dimension, seq-id for each row, CPairwiseAln for each row etc.). There are several functions which can be used to create anchored alignments. [CreateAnchoredAlnFromAln()](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CreateAnchoredAlnFromAln&_identdefonly=1) takes a CAlnStats instance and creates a single anchored alignment from the seq-align with the given index using hints and options passed to the function. [CreateAnchoredAlnVec()](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CreateAnchoredAlnVec&_identdefonly=1) also takes a CAlnStats and creates a vector of anchored alignments, one for each source seq-align.
+
+All functions building anchored alignments take a [CAlnUserOptions](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CAlnUserOptions&_identdefonly=1) argument. This class allows to specify various merging and building options: anchor row seq-id, merging algorithm and flags etc.
+
+
+<a name="ch_algoalign.alignment_manager_using_buildsparse"></a>
+
+#### Building sparse alignment
+
+One more function for building CAnchoredAln is [BuildAln()](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=BuildAln&_identdefonly=1). It takes one or more anchored alignments, merges them and creates a new anchored alignment, which anchor row represents alignment coordinates. The new row is assigned a pseudo-id (by default it’s a local seq-id based on the current timestamp). The resulting anchored alignment may be used to initialize a [CSparseAln](#ch_algoalign.alignment_manager_impl_sparsealn).
+
+
+<a name="ch_algoalign.alignment_manager_examples"></a>
+
+### Examples
+
+<a name="ch_algoalign.alignment_manager_examples_reading"></a>
+
+Loading seq-aligns using CAlnAsnReader and CAlnContainer.
+---------------------------------------------------------
+
+    auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, filename));
+    CAlnAsnReader reader(&scope);
+    // Read objects from the stream. If the callback (AddAln) is a member of
+    // a class (CMyApp), wrap it in bind1st(mem_fun(...)).
+    reader.Read(in.get(), bind1st(mem_fun(&CMyApp::AddAln), this));
+
+    // A possible implementation of AddAln() can store the alignments in an
+    // alignment container which can be used later to perform other tasks.
+    class CMyApp
+    {
+    public:
+        bool AddAln(const CSeq_align* aln)
+        {
+            m_AlnContainer.insert(*aln);
+            return true;
+        }
     ...
-    NCBI_end_app(result)
-    if (result)
+    private:
+        CAlnContainer m_AlnContainer;
     ...
-    endif()
-```
+    }
 
--   **NCBI_sources**(list of source files) – adds source files to the target.
+Collecting seq-ids and alignment statistics.
+--------------------------------------------
 
--   **NCBI_generated_sources**(list of source files) – adds sources which might not exists initially, but will be generated somehow during the build.
+    TScopeAlnSeqIdConverter id_conv(&scope);
+    TScopeIdExtract id_extract(id_conv);
+    TScopeAlnIdMap aln_id_map(id_extract, m_AlnContainer.size());
+    ITERATE(CAlnContainer, aln_it, aln_container) {
+        try {
+            aln_id_map.push_back(**aln_it);
+        } catch (CAlnException e) {
+            // Report error
+            ...
+        }
+    }
+    TScopeAlnStats aln_stats(aln_id_map);
 
--   **NCBI_headers**(list of header file masks) – adds header files to the target. By default, NCBIptb adds all header files it can find both in the current source directory and corresponding include directory. If for some reason it is undesirable, this is the way to reduce the list.
+Creating a CPairwiseAln.
+------------------------
 
--   **NCBI_dataspec**() – adds data specifications: ASN.1, DTD, XML schema, JSON schema, WSDL or PROTOBUF. Adding data specification implies generating C++ data classes. It also means that corresponding generated source files will be added to the target automatically by NCBIptb.
+    // Initialize alignment seq-ids.
+    TAlnSeqIdIRef aln_id1(Ref(new CAlnSeqId(seq_id1)));
+    TAlnSeqIdIRef aln_id2(Ref(new CAlnSeqId(seq_id2)));
+    // Create an empty pairwise alignment for the ids.
+    CPairwiseAln pairwise(aln_id1, aln_id2);
+    // Populate the alignment with data from rows 0 and 1 of the seq-align.
+    // Does not check if rows 0 and 1 use seq_id1 and seq_id2.
+    ConvertSeqAlignToPairwiseAln(pairwise, seq_align, 0, 1);
 
--   **NCBI_resources**(list of resource files) – adds Windows resource files to the target.
+Creating anchored alignments and building sparse alignment.
+-----------------------------------------------------------
 
--   **NCBI_requires**(list of components) – adds requirements. If a requirement is not met, the target will be excluded from the build automatically.
+    CAlnUserOptions merge_options;
+    // Set the desired options
+    ...
+    TAnchoredAlnVec anchored_aln_vec;
+    // Convert each seq-align from aln_stats to a CAnchoredAln
+    CreateAnchoredAlnVec(aln_stats, anchored_aln_vec, merge_options);
+    // Change merge options if necessary
+    ...
+    CAnchoredAln built_aln;
+    // Build merged anchored alignment
+    BuildAln(anchored_aln_vec, built_aln, merge_options);
+    CSparseAln sparse_aln(built_aln, scope);
 
--   **NCBI_optional_components**(list of components) – adds optional components. If a component is not found (or requirement is not met), NCBIptb will print a warning and the target will still be added to the build.
 
--   **NCBI_enable_pch**(), **NCBI_disable_pch**(), **NCBI_set_pch_header**(name), **NCBI_set_pch_define**(define), **NCBI_disable_pch_for**(list of files) – define the usage of precompiled headers. Most of the time, default behavior is enough, and these calls are not needed. Still some projects prefer to precompile their own headers, or do not want it at all.
+Demo applications.
+------------------
 
--   **NCBI_uses_toolkit_libraries**(list of libraries) – adds dependencies on other libraries in the same build tree.
+Usage of CSarseAln:
+[aln_build_app.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objtools/alnmgr/demo/aln_build_app.cpp)
+[aln_test_app.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objtools/alnmgr/demo/aln_test_app.cpp)
 
--   **NCBI_uses_external_libraries**(list of libraries) – adds external libraries to the build target. Probably, a better way of doing this is by using *requirements* in *NCBI_requires*, but if a library should be added to one or two projects only, then this might be an easier way.
 
--   **NCBI_add_definitions**(list) – add compiler definitions to the target.
+Usage of CAlnMix/CAlnVec:
+[alnmrg.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objtools/alnmgr/demo/alnmrg.cpp)
+[alnmgr_sample.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/alnmgr/alnmgr_sample.cpp)
 
--   **NCBI_add_include_directories**(list) – adds include directories.
 
--   **NCBI_project_tags**(list) – adds tags to the target. A target may have an unlimited number of tags.
+<a name="ch_algoalign.computing_alignments"></a>
 
-<a name="ch_cmconfig._Test"></a>
+Computing alignments
+--------------------
 
-### Application target tests.
+The Global Alignment Library [`xalgoalign`:[include](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/algo/align) \| [src](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/algo/align)]
 
-There are different approaches to testing. CMake has test infrastructure, or organization can use their own one. NCBIptb defines tests in a standard way. Then, a special module translates this definition into one used in a specific case.
+The library contains C++ classes encapsulating global pairwise alignment algorithms frequently used in computational biology.
 
-All tests must be described inside application target definition, that is between *NCBI_begin_app* and *NCBI_end_app* calls.
+-   [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) is the base class for the global alignment algorithm classes. The class provides an implementation of the generic Needleman-Wunsch for computing global alignments of nucleotide and amino acid sequences. The implementation uses an affine scoring scheme. An optional end-space free variant is supported, which is useful in applications where one sequence is expected to align in the interior of the other sequence, or the suffix of one string to align with a prefix of the other.<br/><br/>The classical Needleman-Wunsch algorithm is known to have memory and CPU requirements of the order of the sequence lengths' product. If consistent partial alignments are available, the problem is split into smaller subproblems taking fewer operations and less space to complete. [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) provides a way to specify such partial alignments (ungapped).
 
-There are two forms of test definition – short and long one.
+-   [CBandAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBandAligner) encapsulates the banded variant of the global alignment algorithm which is applicable when the number of differences in the target alignment is limited ('the band width'). The computational cost of the algorithm is of the order of the band width multiplied by the length of the query sequence.
 
-Short one consists of a single function call – **NCBI_add_test**(command and arguments).
+-   [CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner) follows Hirschberg's divide-and-conquer approach under which the amount of space required to align two sequences globally becomes a linear function of the sequences' lengths. Although the latter is achieved at a cost of up to twice longer running time, a multithreaded version of the algorithm can run even faster than the classical Needleman-Wunsch algorithm in a multiple-CPU environment.
 
-Long form allows to define additional requirements and add test assets.
+-   [CSplicedAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner) is an abstract base for algorithms computing cDNA-to-genome, or spliced alignments. Spliced alignment algorithms specifically account for splice signals in their dynamic programming recurrences resulting in better alignments for these particular but very important types of sequences.
 
--   **NCBI_begin_test**(name) – begins definition of a test. *name* is optional parameter, if it is absent an automatically generated name will be used.
+**Demo Cases** [[src/app/nw\_aligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/nw_aligner)] [[src/app/splign/](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/splign/)]
 
--   **NCBI_end_test**() – ends the definition.
 
--   **NCBI_set_test_command**(command) – usually this is the name of the application but may be a script for example.
+<a name="ch_algoalign.generic_global_alignment"></a>
 
--   **NCBI_set_test_arguments**(arguments) – command arguments.
+### Computing pairwise global sequence alignments
 
--   **NCBI_set_test_assets**(list of files and directories) – lists files and directories required for the test. These are relative to the current source directory. Note that the test will run in a separate directory, probably created specifically for this test. So, if it requires data files, they must be copied to that directory. 
+Generic **pairwise** global alignment functionality is provided by [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner).
 
--   **NCBI_set_test_requires**(list of components) - adds test requirements. If a requirement is not met, the test will not be added.
+***NOTE:*** [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) is not a multiple sequence aligner. An example of using [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/nw_aligner).
 
--   **NCBI_set_test_timeout**(seconds) – test timeout in seconds.
+This functionality is discussed in the following topics:
 
-<a name="ch_cmconfig._Custom"></a>
+-   [Initialization](#ch_algoalign.initialization)
 
-### Custom target
+-   [Parameters of alignment](#ch_algoalign.setup)
 
-Definition of a custom target begins with *NCBI_begin_custom_target*(name) and ends with *NCBI_end_custom_target*(result). It also requires a definition of a function which creates this target, that is calls *add_custom_target* CMake function.
+-   [Computing](#ch_algoalign.computing)
 
-The definition consists of target requirements - *NCBI_requires*, dependencies on other targets in the same build tree – *NCBI_custom_target_dependencies* and the callback function which defines the target – *NCBI_custom_target_definition*. 
+-   [Alignment transcript](#ch_algoalign.transcript)
 
-That is, the definition looks as follows:
+<a name="ch_algoalign.initialization"></a>
 
-    function(xxx_definition) 
-        ...
-        add_custom_target(name ...)
-    endfunction()
-    NCBI_begin_custom_target(name)
-        NCBI_requires( list of components)
-        NCBI_custom_target_dependencies(list of toolkit libraries or apps)
-        NCBI_custom_target_definition( xxx_definition)
-    NCBI_end_custom_target(result)
+#### Initialization
 
-This approach allows to define custom target only when all the requirements are met and collect target dependencies automatically.
+Two constructors are provided to initialize the aligner:
+
+    CNWAligner(const char* seq1, size_t len1,
+               const char* seq2, size_t len2,
+               const SNCBIPackedScoreMatrix* scoremat = 0);
+    CNWAligner(void);
+
+The first constructor allows specification of the sequences and the score matrix at the time of the object's construction. Note that the sequences must be in the proper strands, because the aligners do not build reverse complementaries. The last parameter must be a pointer to a properly initialized [SNCBIPackedScoreMatrix](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SNCBIPackedScoreMatrix) object or zero. If it is a valid pointer, then the sequences are verified against the alphabet contained in the [SNCBIPackedScoreMatrix](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SNCBIPackedScoreMatrix) object, and its score matrix is further used in dynamic programming recurrences. Otherwise, sequences are verified against the IUPACna alphabet, and match/mismatch scores are used to fill in the score matrix.
+
+The default constructor is provided to support reuse of an aligner object when many sequence pairs share the same type and alignment parameters. In this case, the following two functions must be called before computing the first alignment to load the score matrix and the sequences:
+
+    void SetScoreMatrix(const SNCBIPackedScoreMatrix* scoremat = 0);
+    void SetSequences(const char* seq1, size_t len1,
+                      const char* seq2, size_t len2,
+                      bool verify = true);
+
+where the meaning of **`scoremat`** is the same as above.
+
+<a name="ch_algoalign.setup"></a>
+
+#### Parameters of alignment
+
+[CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) realizes the affine gap penalty model, which means that every gap of length L (with the possible exception of end gaps) contributes Wg+L\*Ws to the total alignment score, where Wg is a cost to open the gap and Ws is a cost to extend the gap by one basepair. These two parameters are always in effect when computing sequence alignments and can be set with:
+
+    void SetWg(TScore value); // set gap opening score
+    void SetWs(TScore value); // set gap extension score
+
+To indicate penalties, both gap opening and gap extension scores are assigned with negative values.
+
+Many applications (such as the shotgun sequence assembly) benefit from a possibility to avoid penalizing end gaps of alignment, because the relevant sequence's ends may not be expected to align. [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner) supports this through a built-in end-space free variant controlled with a single function:
+
+    void SetEndSpaceFree(bool Left1, bool Right1, bool Left2, bool Right2);
+
+The first two arguments control the left and the right ends of the first sequence. The other two control the second sequence's ends. True value means that end spaces will not be penalized. Although an arbitrary combination of end-space free flags can be specified, judgment should be used to get plausible alignments.
+
+The following two functions are only meaningful when aligning nucleotide sequences:
+
+    void SetWm(TScore value); // set match score
+    void SetWms(TScore value); // set mismatch score
+
+The first function sets a bonus associated with every matching pair of nucleotides. The second function assigns a penalty for every mismatching aligned pair of nucleotides. It is important that values set with these two functions will only take effect after [SetScoreMatrix()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetScoreMatrix) is called (with a zero pointer, which is the default).
+
+One thing that could limit the scope of global alignment applications is that the classical algorithm takes quadratic space and time to evaluate the alignment. One wayto deal with it is to use the linear-space algorithm encapuslated in [CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner). However, when some pattern of alignment is known or desired, it is worthwhile to explicitly specify "mile posts" through which the alignment should pass. Long high-scoring pairs with 100% identity (no gaps or mismatches) are typically good candidates for them. From the algorithmic point of view, the pattern splits the dynamic programming table into smaller parts, thus alleviating space and CPU requirements. The following function is provided to let the aligner know about such guiding constraints:
+
+    void SetPattern(const vector<size_t>& pattern);
+
+Pattern is a vector of hits specified by their zero-based coordinates, as in the following example:
+
+    // the last parameter omitted to indicate nucl sequences
+    CNWAligner aligner (seq1, len1, seq2, len2);
+    // we want coordinates [99,119] and [129,159] on seq1 be aligned
+    // with [1099,1119] and [10099,10129] on seq2.
+    const size_t hits [] = { 99, 119, 1099, 1119, 129, 159, 10099, 10129 };
+    vector<size_t> pattern ( hits, hits + sizeof(hits)/sizeof(hits[0]) );
+    aligner.SetPattern(pattern);
+
+<a name="ch_algoalign.computing"></a>
+
+#### Computing
+
+To start computations, call [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run), which returns the overall alignment score having aligned the sequences. Score is a scalar value associated with the alignment and depends on the parameters of the alignment. The global alignment algorithms align two sequences so that the score is the maximum over all possible alignments.
+
+<a name="ch_algoalign.transcript"></a>
+
+#### Alignment transcript
+
+The immediate output of the global alignment algorithms is a transcript. The transcript serves as a basic representation of alignments and is simply a string of elementary commands transforming the first sequence into the second one on a per-character basis. These commands (transcript characters) are (M)atch, (R)eplace, (I)nsert, and (D)elete. For example, the alignment
+
+    TTC-ATCTCTAAATCTCTCTCATATATATCG
+    ||| ||||||     |||| || ||| ||||
+    TTCGATCTCT-----TCTC-CAGATAAATCG
+
+has a transcript:
+
+    MMMIMMMMMMDDDDDMMMMDMMRMMMRMMMM
+
+Several functions are available to retrieve and analyze the transcript:
+
+    // raw transcript
+    const vector<ETranscriptSymbol>* GetTranscript(void) const
+    {
+        return &m_Transcript;
+    }
+    // converted transcript vector
+    void GetTranscriptString(vector<char>* out) const;
+    // transcript parsers
+    size_t        GetLeftSeg(size_t* q0, size_t* q1,
+                             size_t* s0, size_t* s1,
+                             size_t min_size) const;
+    size_t        GetRightSeg(size_t* q0, size_t* q1,
+                              size_t* s0, size_t* s1,
+                              size_t min_size) const;
+    size_t        GetLongestSeg(size_t* q0, size_t* q1,
+                                size_t* s0, size_t* s1) const;
+
+The last three functions search for a continuous segment of matching characters and return it in sequence coordinates through **`q0`**, **`q1`**, **`s0`**, **`s1`**.
+
+The alignment transcript is a simple yet complete representation of alignments that can be used to evaluate virtually every characteristic or detail of any particular alignment. Some of them, such as the percent identity or the number of gaps or mismatches, could be easily restored from the transcript alone, whereas others, such as the scores for protein alignments, would require availability of the original sequences.
+
+<a name="ch_algoalign.Computing_multiple_s"></a>
+
+Computing multiple sequence alignments
+--------------------------------------
+
+COBALT (COnstraint Based ALignment Tool) is an experimental multiple alignment algorithm whose basic idea was to leverage resources at NCBI, then build up a set of pairwise constraints, then perform a fairly standard iterative multiple alignment process (with many tweaks driven by various benchmarks).
+
+COBALT is available online at:
+
+<https://www.ncbi.nlm.nih.gov/tools/cobalt/>
+
+A precompiled binary, with the data files needed to run it, is available at:
+
+[ftp://ftp.ncbi.nlm.nih.gov/pub/agarwala/cobalt/](ftp://ftp.ncbi.nlm.nih.gov/pub/agarwala/cobalt)
+
+Work is being done on an improved COBALT tool.
+
+The paper reference for this algorithm is:
+
+*J.S. Papadopoulos, R. Agarwala, "COBALT: Constraint-Based Alignment Tool for Multiple Protein Sequences". Bioinformatics, May 2007*
+
+<a name="ch_algoalign.divide_and_conquer"></a>
+
+Aligning sequences in linear space
+----------------------------------
+
+[CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner) is an interface to a linear space variant of the global alignment algorithm. This functionality is discussed in the following topics:
+
+-   [The idea of the algorithm](#ch_algoalign.idea)
+
+-   [Implementation](#ch_algoalign.mm_implementation)
+
+<a name="ch_algoalign.idea"></a>
+
+#### The idea of the algorithm
+
+That the classical global alignment algorithm requires quadratic space could be a serious restriction in sequence alignment. One way to deal with it is to use alignment patterns. Another approach was first introduced by Hirschberg and became known as a divide-and-conquer strategy. At a coarse level, it suggests computing of scores for partial alignments starting from two opposite corners of the dynamic programming matrix while keeping only those located in the middle rows or columns. After the analysis of the adjacent scores, it is possible to determine cells on those lines through which the global alignment's back-trace path will go. This approach reduces space to linear while only doubling the worst-case time bound. For details see, for example, Dan Gusfield's "Algorithms on Strings, Trees and Sequences".
+
+<a name="ch_algoalign.mm_implementation"></a>
+
+#### Implementation
+
+[CMMAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CMMAligner) inherits its public interface from [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner). The only additional method allows us to toggle multiple-threaded versions of the algorithm.
+
+The divide-and-conquer strategy suggests natural parallelization, where blocks of the dynamic programming matrix are evaluated simultaneously. A theoretical acceleration limit imposed by the current implementation is 0.5. To use multiple-threaded versions, call [EnableMultipleThreads()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EnableMultipleThreads). The number of simultaneously running threads will not exceed the number of CPUs installed on your system.
+
+When comparing alignments produced with the linear-space version with those produced by [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner), be ready to find many of them similar, although not exactly the same. This is normal, because several optimal alignments may exist for each pair of sequences.
+
+<a name="ch_algoalign.spliced_alignment"></a>
+
+Computing spliced sequences alignments
+--------------------------------------
+
+This functionality is discussed in the following topics:
+
+-   [The problem](#ch_algoalign.uk_formulation)
+
+-   [Implementation](#ch_algoalign.uk_implementation)
+
+<a name="ch_algoalign.uk_formulation"></a>
+
+#### The problem
+
+The spliced sequence alignment arises as an attempt to address the problem of eukaryotic gene structure recognition. Tools based on spliced alignments exploit the idea of comparing genomic sequences to their transcribed and spliced products, such as mRNA, cDNA, or EST sequences. The final objective for all splice alignment algorithms is to come up with a combination of segments on the genomic sequence that:
+
+-   makes up a sequence very similar to the spliced product, when the segments are concatenated; and
+
+-   satisfies certain statistically determined conditions, such as consensus splice sites and lengths of introns.
+
+According to the classical eukaryotic transcription and splicing mechanism, pieces of genomic sequence do not get shuffled. Therefore, one way of revealing the original exons could be to align the spliced product with its parent gene globally. However, because of the specificity of the process in which the spliced product is constructed, the generic global alignment with the affine penalty model may not be enough. To address this accurately, dynamic programming recurrences should specifically account for introns and splice signals.
+
+Algorithms described in this chapter exploit this idea and address a refined splice alignment problem presuming that:
+
+-   the genomic sequence contains only one location from which the spliced product could have originated;
+
+-   the spliced product and the genomic sequence are in the plus strand; and
+
+-   the poly(A) tail and any other chunks of the product not created through the splicing were cut off, although a moderate level of sequencing errors on genomic, spliced, or both sequences is allowed.
+
+In other words, the library classes provide basic splice alignment algorithms to be used in more sophisticated applications. One real-life application, Splign, can be found under demo cases for the library.
+
+<a name="ch_algoalign.uk_implementation"></a>
+
+#### Implementation
+
+There is a small hierarchy of three classes involved in spliced alignment facilitating a quality/performance trade-off in the case of distorted sequences:
+
+-   [CSplicedAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner) - abstract base for spliced aligners.
+
+-   [CSplicedAligner16](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner16) - accounts for the three conventional splices (GT/AG, GC/AG, AT/AC) and a generic splice; uses 2 bytes per back-trace matrix cell. Use this class with high-quality genomic sequences.
+
+-   [CSplicedAligner32](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSplicedAligner32) - accounts for the three conventionals and splices that could be produced by damaging bases of any conventional; uses 4 bytes per back-trace matrix cell. Use this class with distorted genomic sequences.
+
+The abstract base class for spliced aligners, ***CNWSplicedAligner***, inherites an interface from its parent, [CNWAligner](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWAligner), adding support for two new parameters: intron penalty and minimal intron size (the default is 50).
+
+All classes assume that the spliced sequence is the first of the two input sequences passed. By default, the classes do not penalize gaps at the ends of the spliced sequence. The default intron penalties are chosen so that the 16-bit version is able able to pick out short exons, whereas the 32-bit version is generally more conservative.
+
+As with the generic global alignment, the immediate output of the algorithms is the alignment transcript. For the sake of spliced alignments, the transcript's alphabet is augmented to accommodate introns as a special sequence-editing operation.
+
+<a name="ch_algoalign.formatter"></a>
+
+Formatting computed alignments
+------------------------------
+
+This functionality is discussed in the following topics:
+
+-   [Formatter object](#ch_algoalign.nw_formatter)
+
+<a name="ch_algoalign.nw_formatter"></a>
+
+#### Formatter object
+
+[CNWFormatter](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNWFormatter) is a single place where all different alignment representations are created. The only argument to its constructor is the aligner object that actually was or will be used to align the sequences.
+
+The alignment must be computed before formatting. If the formatter is unable to find the computed alignment in the aligner that was referenced to the constructor, an exception will be thrown.
+
+To format the alignment as a [CSeq\_align](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_align) structure, call
+
+    void AsSeqAlign(CSeq_align* output) const;
+
+To format it as text, call
+
+    void AsText(string* output, ETextFormatType type, size_t line_width = 100)
+
+Supported text formats and their [ETextFormatType](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ETextFormatType) constants follow:
+
+-   Type 1 (**`eFormatType1`**):<br/>`TTC-ATCTCTAAATCTCTCTCATATATATCG`<br/>`TTCGATCTCT-----TCTC-CAGATAAATCG`<br/>`                      ^   ^    `<br/>
+
+-   Type 2 (**`eFormatType2`**):<br/>`TTC-ATCTCTAAATCTCTCTCATATATATCG`<br/>`||| ||||||     |||| || ||| ||||`<br/>`TTCGATCTCT-----TCTC-CAGATAAATCG`<br/>
+
+-   Gapped FastA (**`eFormatFastA`**):<br/>`>SEQ1`<br/>`TTC-ATCTCTAAATCTCTCTCATATATATCG`<br/>`>SEQ2`<br/>`TTCGATCTCT-----TCTC-CAGATAAATCG`<br/>
+
+-   Table of exons (**`eFormatExonTable`**) - spliced alignments only. The exons are listed from left to right in tab-separated columns. The columns represent sequence IDs, alignment lengths, percent identity, coordinates on the query (spliced) and the subject sequences, and a short annotation including splice signals.<br/>
+
+-   Extended table of exons (**`eFormatExonTableEx`**) - spliced alignments only. In addition to the nine columns, the full alignment transcript is listed for every exon.<br/>
+
+-   ASN.1 (**`eFormatASN`**)
+
+
