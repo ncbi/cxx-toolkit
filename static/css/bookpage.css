@@ -424,7 +424,7 @@ display: none; /* Hidden by default */
   outline: none; /* Remove outline */
   background-color:  #f9f9f9; /* Set a background color */
   cursor: pointer; /* Add a mouse pointer on hover */
-  border-radius: 10px; /* Rounded corners */
+  /* border-radius: 10px; Rounded corners */
 
     border: 0;
     bottom: 0;
