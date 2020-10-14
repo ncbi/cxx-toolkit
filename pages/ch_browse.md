@@ -34,19 +34,19 @@ The following is an outline of the topics presented in this chapter:
 LXR
 ---
 
-The [LXR Engine](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/blurb.html) enables search-driven browsing together with a more conventional [navigation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source) of the Toolkit's source. In [source](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source) mode, LXR provides navigation of the source tree through a Web-based front end. The LXR search modes [ident](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident), [find](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/find) and [search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search) will generate a list to identify all occurrences in the Toolkit where an identifier, file name, or specified free text, respectively, are found.
+The [LXR Engine](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/blurb.html) enables search-driven browsing together with a more conventional [navigation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source) of the Toolkit's source. In [source](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source) mode, LXR provides navigation of the source tree through a Web-based front end. The LXR search modes [ident](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident) and [search](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search) will generate a list to identify all occurrences in the Toolkit where an identifier, file name or specified text, respectively, are found.
 
 An `identifier` in an LXR search is the name of a class, function, variable, macro, typedef, or other named entity within the Toolkit source. This search can be especially handy when attempting to determine, for example, which header has been left out when a symbol reference cannot be found.
 
 Some hints for using LXR:
 
+-   The identifier ("ident") LXR mode attempt an **exact** and **case-sensitive** match to your query.
+
+-   The general file/text ("search") LXR mode is **case-insensitive** by default, use checkbox for **case-sensitive** search if necessary.
+
 -   For free-text LXR searches, patterns, wildcards, and regular expression syntax are allowed. See the [Search Help page](http://tidy.sourceforge.net/lxr_search_help.html) for details.
 
--   The identifier ("ident") and file ("find") LXR search modes attempt an **exact** and **case-sensitive** match to your query.
-
--   LXR indexes files from a root of `$NCBI/c++`; matches will be found not only in `src` and `include` but also in any resident build tree and the `compilers` and `scripts` directories as well.
-
--   [Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): The documentation itself is not searched by LXR.
+-   LXR indexes files from a root of `$NCBI/c++`; so matches will be found not only in `src` and `include` but also in any resident build tree and the `compilers` and `scripts` directories as well.
 
 <a name="ch_browse.doxygen"></a>
 
