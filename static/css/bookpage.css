@@ -431,7 +431,8 @@ display: none; /* Hidden by default */
     box-shadow: none;
     color: #0c2a55;
     font-family: Overpass,Helvetica,Arial,sans-serif;
-    font-weight: 600;
+    font-weight: 500;
+    font-color: #205081;
     width: 43px;
     height: 43px;
     padding: 7px;
