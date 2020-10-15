@@ -429,10 +429,9 @@ display: none; /* Hidden by default */
     border: 1px solid #d9d5d2;
     border-radius: 3px;
     box-shadow: none;
-    color: #0c2a55;
+    color: #205081;
     font-family: Overpass,Helvetica,Arial,sans-serif;
-    font-weight: 500;
-    font-color: #205081;
+    font-weight: 600;
     width: 43px;
     height: 43px;
     padding: 7px;
