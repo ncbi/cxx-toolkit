@@ -424,10 +424,10 @@ display: none; /* Hidden by default */
   outline: none; /* Remove outline */
   background-color:  #f9f9f9; /* Set a background color */
   cursor: pointer; /* Add a mouse pointer on hover */
-  /* border-radius: 10px; Rounded corners */
+  /* border-radius: 10px; Rounded corners */	
 
-    border: 0;
-    bottom: 0;
+    border: 1px solid #d9d5d2;
+    border-radius: 3px;
     box-shadow: none;
     color: #0c2a55;
     font-family: Overpass,Helvetica,Arial,sans-serif;
@@ -435,7 +435,7 @@ display: none; /* Hidden by default */
     width: 43px;
     height: 43px;
     padding: 7px;
-    text-transform: uppercase;
+    text-transform: uppercase; 
 }
 
 #myBtn:hover {
