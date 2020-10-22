@@ -488,7 +488,7 @@ fieldset{
 
 /* The submit button */
 #submitButton{
-	background:url('/book/static/img/buttons.png') no-repeat;
+	background:url('/cxx-toolkit/static/img/buttons.png') no-repeat;
 	width:83px;
 	height:36px;
 	text-indent:-9999px;
