@@ -2833,7 +2833,7 @@ The NCBI C++ Toolkit SOAP server and client provide a limited level of support o
 
 The core section of the SOAP specification is the messaging framework. The client sends a request and receives a response in the form of a SOAP message. A SOAP message is a one-way transmission between SOAP nodes: from a SOAP sender to a SOAP receiver. The root element of a SOAP message is the `Envelope`. The `Envelope` contains an optional `Header` element followed by a mandatory `Body` element. The `Body` element represents the message payload - it is a generic container that can contain any number of elements from any namespace.
 
-In the Toolkit, the [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=CSoapMessage) class defines `Header` and `Body` containers. Serializable objects (derived from the [CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject) class) can be added into these containers using [AddObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddObject) method. Such a message object can then be sent to a message receiver. The response will also come in the form of an object derived from [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=CSoapMessage). At this time, it is possible to investigate its contents using [GetContent()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetContent) method; or ask directly for an object of a specific type using the [SOAP\_GetKnownObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=SOAP_GetKnownObject) template function.
+In the Toolkit, the [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSoapMessage) class defines `Header` and `Body` containers. Serializable objects (derived from the [CSerialObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSerialObject) class) can be added into these containers using [AddObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddObject) method. Such a message object can then be sent to a message receiver. The response will also come in the form of an object derived from [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSoapMessage). At this time, it is possible to investigate its contents using [GetContent()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetContent) method; or ask directly for an object of a specific type using the [SOAP\_GetKnownObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SOAP_GetKnownObject) template function.
 
 <a name="ch_ser.SOAP_client_CSoapHtt"></a>
 
@@ -2857,7 +2857,7 @@ The [CSoapHttpClient](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident
 
 The SOAP server receives SOAP mesages from a client and processes the contents of the SOAP Body and SOAP Header.
 
-The processing of incoming requests is done with the help of "message listeners" - the server methods which analyze requests (in the form of objects derived from [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=CSoapMessage)) and create responses. It is possible to have more than one listener for each message. When such a listener returns TRUE, the SOAP server base class object passes the request to the next listener, if it exists, and so on.
+The processing of incoming requests is done with the help of "message listeners" - the server methods which analyze requests (in the form of objects derived from [CSoapMessage](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSoapMessage)) and create responses. It is possible to have more than one listener for each message. When such a listener returns TRUE, the SOAP server base class object passes the request to the next listener, if it exists, and so on.
 
 The server can return a WSDL specification if the specification file name is passed to the server's constructor and the file is located with the server.
 
@@ -2929,7 +2929,7 @@ Message listeners are user-defined functions that process incoming messages. The
 
 #### Sample client
 
-Unlike SOAP server, SOAP client object has nothing to do with [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/search?string=CCgiApplication) class. It is "just" an object. As such, it can be created and destroyed when appropriate. Sample SOAP client constructor defines the server URL and the default namespace for the data objects. Its constructor is the proper place to register incoming object types:
+Unlike SOAP server, SOAP client object has nothing to do with [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiApplication) class. It is "just" an object. As such, it can be created and destroyed when appropriate. Sample SOAP client constructor defines the server URL and the default namespace for the data objects. Its constructor is the proper place to register incoming object types:
 
 `// Register incoming object types, so the SOAP message parser can`
 
