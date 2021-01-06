@@ -595,3 +595,61 @@ label {
 input[type=radio] {
 	cursor: pointer;
 }
+
+<!-- new navbar begin -->
+
+.dropdown {
+  float: left;
+  overflow: auto;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: black;
+  padding: 4px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #f9f9f9;
+  min-width: 360px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  height: 100px;
+  max-height:600px;/* you can change as you need it */
+  overflow:auto;/* to get scroll */
+  width: 700px;
+  border: 3px solid #3e72a6;
+  border-radius: 6px;
+  transition: height 0.4s;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 2px 6px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content:hover {
+  height: 600px;
+}
+
+<!-- new navbar end -->		
