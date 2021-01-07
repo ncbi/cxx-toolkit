@@ -603,6 +603,10 @@ input[type=radio] {
   overflow: auto;
 }
 
+div.dropdown {
+float: left;
+}	
+
 .dropdown .dropbtn {
   font-size: 16px;  
   border: none;
@@ -653,3 +657,20 @@ input[type=radio] {
 }
 
 <!-- new navbar end -->		
+
+.edit_links {
+	display: flex
+	width:300px;
+	float: right;
+}
+
+div.edit_links {
+	float: right;
+}
+
+.edit_links > * {
+  display:inline-block;
+  vertical-align:middle;
+  padding-top: 4px;
+  padding-right: 50px;	
+}
