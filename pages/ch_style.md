@@ -76,6 +76,8 @@ The following is an outline of the topics presented in this chapter:
 
         -   [C++ Bad Guys](#ch_style.cpp_bad_guys)
 
+            -   [auto_ptr](#ch_style.style_auto_ptr)
+            
             -   [Operator Overload](#ch_style.style_op_overload)
 
             -   [Assignment and Copy Constructor Overload](#ch_style.assign_copy_constr)
@@ -625,6 +627,8 @@ This section discusses the following topics:
 
     -   [C++ Bad Guys](#ch_style.cpp_bad_guys)
 
+        -   [auto_ptr](#ch_style.style_auto_ptr)
+        
         -   [Operator Overload](#ch_style.style_op_overload)
 
         -   [Assignment and Copy Constructor Overload](#ch_style.assign_copy_constr)
@@ -787,6 +791,8 @@ If you pass a container to a function, don't add a local object to the container
 
 -   [C++ Bad Guys](#ch_style.cpp_bad_guys)
 
+    -   [auto_ptr](#ch_style.style_auto_ptr)
+
     -   [Operator Overload](#ch_style.style_op_overload)
 
     -   [Assignment and Copy Constructor Overload](#ch_style.assign_copy_constr)
@@ -812,6 +818,12 @@ If you pass a container to a function, don't add a local object to the container
 <a name="ch_style.cpp_bad_guys"></a>
 
 #### C++ Bad Guys
+
+<a name="ch_style.style_auto_ptr"></a>
+
+##### auto_ptr
+
+Obsoleted in the C++'2017 Standard. Use e.g. `unique_ptr` instead!
 
 <a name="ch_style.style_op_overload"></a>
 
