@@ -239,11 +239,11 @@ The base classes for the object stream classes are [CObjectIStream](https://www.
     using namespace objects;
 
     int CTestAsn::Run() {
-        auto_ptr<CObjectIStream>
+        unique_ptr<CObjectIStream>
             xml_in(CObjectIStream::Open("1001.xml", eSerial_Xml));
-        auto_ptr<CObjectOStream>
+        unique_ptr<CObjectOStream>
             txt_out(CObjectOStream::Open("1001.asntxt", eSerial_AsnText));
-        auto_ptr<CObjectOStream>
+        unique_ptr<CObjectOStream>
             bin_out(CObjectOStream::Open("1001.asnbin", eSerial_AsnBinary));
         CBiostruc bs;
         *xml_in >> bs;
@@ -293,9 +293,9 @@ classes. As such, it has no public constructors, and its user interface includes
 
 -   [SkipObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SkipObject)
 
-There are several [Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open) methods; most of these are static class methods that return a pointer to a newly created [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream). Typically, these methods are used with an [auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr), as in:
+There are several [Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open) methods; most of these are static class methods that return a pointer to a newly created [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream). Typically, these methods are used with an unique\_ptr, as in:
 
-    auto_ptr<CObjectIStream> xml_in(CObjectIStream::Open(filename, eSerial_Xml));
+    unique_ptr<CObjectIStream> xml_in(CObjectIStream::Open(filename, eSerial_Xml));
 
 Here, an XML format is specified by the enumerated value **`eSerial_Xml`**, defined in [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat). Because these methods are static, they can be used to create a new instance of a [CObjectIStream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectIStream) subclass, and open it with one statement. In this example, a [CObjectIStreamXml](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObjectIStreamXml.html) is created and opened on the file **`filename`**.
 
@@ -305,7 +305,7 @@ An additional non-static [Open()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_D
 
 The next three methods have the following definitions. [Close()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close) closes the stream. [GetDataFormat()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetDataFormat) returns the enumerated [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat) for the stream. [ReadFileHeader()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ReadFileHeader) reads the first line from the file, and returns it in a string. This might be used for example, in the following context:
 
-    auto_ptr<CObjectIStream> in(CObjectIStream::Open(fname, eSerial_AsnText));
+    unique_ptr<CObjectIStream> in(CObjectIStream::Open(fname, eSerial_AsnText));
     string type = in.ReadFileHeader();
     if (type.compare("Seq-entry") == 0) {
         CSeq_entry seqent;
@@ -391,13 +391,13 @@ In keeping with the [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/
 As an example, consider how the [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run) method in [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) might be implemented differently using the [CObjectStreamCopier](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObjectStreamCopier) class:
 
     int CTestAsn::Run() {
-        auto_ptr<CObjectIStream>
+        unique_ptr<CObjectIStream>
             xml_in(CObjectIStream::Open("1001.xml", eSerial_Xml));
-        auto_ptr<CObjectOStream>
+        unique_ptr<CObjectOStream>
             txt_out(CObjectOStream::Open("1001.asntxt", eSerial_AsnText));
         CObjectStreamCopier txt_copier(*xml_in, *txt_out);
         txt_copier.Copy(CBiostruc::GetTypeInfo());
-        auto_ptr<CObjectOStream>
+        unique_ptr<CObjectOStream>
             bin_out(CObjectOStream::Open("1001.asnbin", eSerial_AsnBinary));
         CObjectStreamCopier bin_copier(*xml_in, *bin_out);
         bin_copier.Copy(CBiostruc::GetTypeInfo());
@@ -560,7 +560,7 @@ Here is a complete program that illustrates how to create a read hook for class 
 
         // Setup an input stream, based on the sample ASN.1.
         CNcbiIstrstream iss(asn);
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
 
         ////////////////////////////////////////////////////
         // Create a hook for the 'year' class member of Date-std objects.
@@ -703,7 +703,7 @@ A read object hook can be created very much like other hooks. For example, the e
     {
         char asn[] = "Date-std ::= { year 1998 }";
         CNcbiIstrstream iss(asn);
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
 
         CObjectTypeInfo(CType<CDate_std>()).SetLocalReadHook(*in, new CDemoHook());
 
@@ -751,7 +751,7 @@ A read choice variant hook can be created very much like other hooks. For exampl
     {
         char asn[] = "Date ::= str \"late-spring\"";
         CNcbiIstrstream iss(asn);
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
 
         CObjectTypeInfo(CType<CDate>()).FindVariant("str")
                                        .SetLocalReadHook(*in, new CDemoHook);
@@ -828,8 +828,8 @@ A write object hook can be created very much like other hooks. For example, the 
 
     int main(int argc, char** argv)
     {
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
-        auto_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
+        unique_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
 
         CObjectTypeInfo(CType<CCit_art>()).SetLocalWriteHook(*out, new CDemoHook);
 
@@ -871,8 +871,8 @@ A write class member hook can be created very much like other hooks. For example
 
     int main(int argc, char** argv)
     {
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
-        auto_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
+        unique_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
 
         CObjectTypeInfo(CType<CAuth_list>())
             .FindMember("names")
@@ -916,8 +916,8 @@ A write choice variant hook can be created very much like other hooks. For examp
 
     int main(int argc, char** argv)
     {
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
-        auto_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
+        unique_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
 
         (*CObjectTypeInfo(CType<CAuth_list>()).FindMember("names"))
             .GetPointedType()
@@ -981,8 +981,8 @@ A copy object hook can be created very much like other hooks. For example, the e
 
     int main(int argc, char** argv)
     {
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
-        auto_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
+        unique_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
         CObjectStreamCopier copier(*in, *out);
 
         CObjectTypeInfo(CType<CCit_art>())
@@ -1025,8 +1025,8 @@ A copy class member hook can be created very much like other hooks. For example,
 
     int main(int argc, char** argv)
     {
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
-        auto_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
+        unique_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
         CObjectStreamCopier copier(*in, *out);
 
         CObjectTypeInfo(CType<CBioseq>())
@@ -1070,8 +1070,8 @@ A copy choice variant hook can be created very much like other hooks. For exampl
 
     int main(int argc, char** argv)
     {
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
-        auto_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
+        unique_ptr<CObjectOStream> out(CObjectOStream::Open(eSerial_AsnText, "of"));
         CObjectStreamCopier copier(*in, *out);
 
         (*CObjectTypeInfo(CType<CAuth_list>()).FindMember("names"))
@@ -1139,7 +1139,7 @@ A skip object hook can be created very much like other hooks. For example, the e
 
     int main(int argc, char** argv)
     {
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
 
         CObjectTypeInfo(CType<CCit_art>()).SetLocalSkipHook(*in, new CDemoHook);
 
@@ -1176,7 +1176,7 @@ A skip class member hook can be created very much like other hooks. For example,
 
     int main(int argc, char** argv)
     {
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, "if"));
 
         CObjectTypeInfo(CType<CAuth_list>())
             .FindMember("names")
@@ -1217,7 +1217,7 @@ A skip choice variant hook can be created very much like other hooks. For exampl
     {
         char asn[] = "Imprint ::= { date std { year 2010 } }";
         CNcbiIstrstream iss(asn);
-        auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
+        unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
 
         CObjectTypeInfo(CType<CDate>()).FindVariant("std")
                                        .SetLocalSkipHook(*in, new CDemoHook());
@@ -1772,7 +1772,7 @@ The following code shows how to write binary JSON data:
     // Use ASN.1 data to populate a Seq-data object.
     char asn[] = "Seq-data ::= ncbi2na '0123456789ABCDEF'H";
     CNcbiIstrstream iss(asn);
-    auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
+    unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, iss));
     CSeq_data mySeq_data;
     *in >> mySeq_data;
 
@@ -2077,11 +2077,11 @@ The following example demonstrates how the class hierarchy determines which data
 
 -   Class ***CA*** contains a single ***int*** data member and is used as a target object type for the type iterators demonstrated.
 
--   class ***CB*** contains an [auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr) to a ***CA*** object.
+-   class ***CB*** contains an shared\_ptr to a ***CA*** object.
 
 -   Class ***CC*** is derived from ***CA*** and is used to demonstrate the usage of class hierarchy information.
 
--   Class ***CD*** contains an [auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr) to a ***CC*** object, and, since it is derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject), can be used as the object pointed to by a [CRef](ch_core.html#ch_core.smart_ptrs).
+-   Class ***CD*** contains an shared\_ptr to a ***CC*** object, and, since it is derived from [CObject](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CObject), can be used as the object pointed to by a [CRef](ch_core.html#ch_core.smart_ptrs).
 
 -   Class ***CX*** contains both pointers-to and instances-of ***CA, CB, CC***, and ***CD*** objects, and is used as the argument to [Begin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Begin) for the demonstrated type iterators.
 
@@ -2096,13 +2096,13 @@ The preprocessor macros used in this example implement the [GetTypeInfo()](https
         static const CTypeInfo* GetTypeInfo(void);
         int m_Data;
     };
-    // Define a class containing an auto_ptr to the target class
+    // Define a class containing an shared_ptr to the target class
     class CB
     {
     public:
         CB() : m_a(0) {};
         static const CTypeInfo* GetTypeInfo(void);
-        auto_ptr<CA> m_a;
+        shared_ptr<CA> m_a;
     };
     // define a subclass of the target class
     class CC : public CA
@@ -2114,13 +2114,13 @@ The preprocessor macros used in this example implement the [GetTypeInfo()](https
     };
 
     // define a class derived from CObject to use in a CRef
-    // this class also contains an auto_ptr to the target class
+    // this class also contains an shared_ptr to the target class
     class CD : public CObject
     {
     public:
         CD() : m_c(0) {};
         static const CTypeInfo* GetTypeInfo(void);
-        auto_ptr<CC> m_c;
+        shared_ptr<CC> m_c;
     };
     // This class will be the argument to the iterator. It contains 4
     // instances of CA - directly, through pointers, and via inheritance
@@ -2130,10 +2130,10 @@ The preprocessor macros used in this example implement the [GetTypeInfo()](https
         CX() : m_a(0), m_b(0), m_d(0) {};
         ~CX(){};
         static const CTypeInfo* GetTypeInfo(void);
-        auto_ptr<CA> m_a; // auto_ptr to a CA
+        shared_ptr<CA> m_a; // shared_ptr to a CA
         CB *m_b;          // pointer to an object containing a CA
         CC  m_c;          // instance of a subclass of CA
-        CRef<CD> m_d;     // CRef to an object containing an auto_ptr to CC
+        CRef<CD> m_d;     // CRef to an object containing an shared_ptr to CC
     };
     //////////  Implement the GetTypeInfo() methods /////////
     BEGIN_CLASS_INFO(CA)
@@ -2182,10 +2182,10 @@ The preprocessor macros used in this example implement the [GetTypeInfo()](https
         d.m_c.reset(new CC(4));
         CX x;
 
-        x.m_a.reset(new CA(1));    // auto_ptr to CA
-        x.m_b = &b;            // pointer to CB containing auto_ptr to CA
+        x.m_a.reset(new CA(1));    // shared_ptr to CA
+        x.m_b = &b;            // pointer to CB containing shared_ptr to CA
         x.m_c = *(new CC(3));      // instance of subclass of CA
-        x.m_d = &d;            // CRef to CD containing auto_ptr to CC
+        x.m_d = &d;            // CRef to CD containing shared_ptr to CC
 
         cout << "Iterating over CA objects in x" << endl << endl;
 
@@ -2539,7 +2539,7 @@ The program `traverseBS.cpp` (see [Code Sample 4](#ch_ser.traverse_cpp.html)) de
     int CTestAsn::Run()
     {
         // initialize ASN input stream
-        auto_ptr<CObjectIStream>
+        unique_ptr<CObjectIStream>
             inObject(CObjectIStream::Open("1001.val", eSerial_AsnBinary));
         // initialize, read into, and traverse CBiostruc object
         CBiostruc bs;
@@ -2988,7 +2988,7 @@ All of the objects' header and implementation files are generated by **datatool*
 
 Let's consider a program [xml2asn.cpp](#ch_ser.xml2asn_cpp.html) that translates an XML data file containing an object of type [Biostruc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/mmdb1/mmdb1.asn), to ASN.1 text and binary formats. In ***main()***, we begin by initializing the diagnostic stream to write errors to a local file called `xml2asn.log`. (Exception handling, program tracing, and error logging are described in the [Diagnostic Streams](ch_core.html#ch_core.diag) section).
 
-An instance of the ***CTestAsn*** class is then created, and its member function [AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain) is invoked. This function in turn calls ***CTestAsn***::[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run). The first three lines of code there define the XML input and ASN.1 output streams, using [auto\_ptr](ch_core.html#ch_core.smart_ptrs), to ensure automatic destruction of these objects.
+An instance of the ***CTestAsn*** class is then created, and its member function [AppMain()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AppMain) is invoked. This function in turn calls ***CTestAsn***::[Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run). The first three lines of code there define the XML input and ASN.1 output streams, using unique\_ptr, to ensure automatic destruction of these objects.
 
 Each stream is associated with data serialization mechanisms appropriate to the [ESerialDataFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ESerialDataFormat) provided to the constructor:
 
