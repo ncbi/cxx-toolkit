@@ -824,6 +824,8 @@ Table 13.1. psg_client library configuration parameters
 | Instructing server as whether to use LMDB cache. Setting to 'default' will let servers use their own parameters on using LMDB cache                                                                                    | **`[PSG]`**<br/>**`use_cache`**<br/><br/>**`NCBI_CONFIG__PSG__USE_CACHE`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                           | no, yes, default[<sup>b</sup>](#ch_libconfig.TF.13.1.2)     | default                    |
 | Number of retries after any failure before giving up on a request                                                                                                                                                      | **`[PSG]`**<br/>**`request_retries`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_RETRIES`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)               | integer                                                     | 2                          |
 | Timeout on request, in seconds                                                                                                                                                                                         | **`[PSG]`**<br/>**`request_timeout`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_TIMEOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)               | integer                                                     | 10                         |
+| Arbitrary URL arguments to add to every request                                                                                                                                                                        | **`[PSG]`**<br/>**`request_user_args`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_USER_ARGS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)           | string                                                      | ""                         |
+| Whether to throw an exception on retrieving an unknown reply item type (or, if set false, to log an error instead, once per process)                                                                                   | **`[PSG]`**<br/>**`fail_on_unknown_items`**<br/><br/>**`NCBI_CONFIG__PSG__FAIL_ON_UNKNOWN_ITEMS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)   | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.1.3)             | false                      |
 | Localhost preference multiplier                                                                                                                                                                                        | **`[PSG]`**<br/>**`localhost_preference`**<br/><br/>**`NCBI_CONFIG__PSG__LOCALHOST_PREFERENCE`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)     | integer                                                     | 1                          |
 | Indicates whether throttling is enabled and, if so, when server throttling is released, in seconds                                                                                                                     | **`[PSG]`**<br/>**`throttle_relaxation_period`**<br/><br/>N/A                                                                               | integer                                                     | 0 (throttling is disabled) |
 | This is one condition that will trigger server throttling and is defined as a string having the form "A / B" where A and B are integers. Throttling will be triggered if there are A failures in the last B operations | **`[PSG]`**<br/>**`throttle_by_connection_error_rate`**<br/><br/>N/A                                                                        | a string having the form "A / B" where A and B are integers | "" (ignored)               |
@@ -839,6 +841,10 @@ Table 13.1. psg_client library configuration parameters
 <a name="ch_libconfig.TF.13.1.2"></a>
 
 <sup>b</sup> case-insensitive
+
+<a name="ch_libconfig.TF.13.1.3"></a>
+
+<sup>c</sup> case-insensitive: true, t, yes, y, false, f, no, n
 
 <a name="ch_libconfig.cSRA"></a>
 
