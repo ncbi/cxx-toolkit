@@ -1422,7 +1422,7 @@ The [CPrefetchManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml
         // feature iterator action source (in turn based on the scope, IDs, and
         // feature selector).
         // Note: CPrefetchSequence is designed to take ownership of the action
-        // source, so do not delete it or use auto_ptr etc to manage it.
+        // source, so do not delete it or use smart pointers to manage it.
         CRef<CPrefetchSequence> prefetch;
         prefetch = new CPrefetchSequence(*m_PrefMgr,
             new CPrefetchFeat_CIActionSource(CScopeSource::New(scope),
