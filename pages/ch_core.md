@@ -142,6 +142,8 @@ The following is an outline of the topics presented in this chapter:
 
 -   [Understanding Smart Pointers: the CObject and CRef Classes](#ch_core.smart_ptrs)
 
+    -   [NOTE](#ch_core.note)
+
     -   [STL auto\_ptrs](#ch_core.auto_ptr)
 
     -   [The CRef (\*) Class](#ch_core.CRef)
@@ -670,7 +672,7 @@ In the [sample application](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr
     void CSampleBasicApplication::Init(void)
     {
         // Create command-line argument descriptions
-        auto_ptr<CArgDescriptions> arg_desc(new CArgDescriptions);
+        unique_ptr<CArgDescriptions> arg_desc(new CArgDescriptions);
 
         // Specify USAGE context
         arg_desc->SetUsageContext(GetArguments().GetProgramBasename(),
@@ -1116,7 +1118,7 @@ Although each argument's input value is initially loaded as a simple character s
 
 It may be necessary to specify a restricted range for argument values. For example, an integer argument that has a range between 5 and 10. Further restrictions on the allowed values can be specified using the [CArgDescriptions](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgDescriptions)::[SetConstraint()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetConstraint) method with the [CArgAllow](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArgAllow.html) class. For example:
 
-    auto_ptr<CArgDescriptions> args(new CArgDescriptions);
+    unique_ptr<CArgDescriptions> args(new CArgDescriptions);
     // add descriptions for "firstint" and "nextint" using AddXxx( ...)
     ...
     CArgAllow* constraint = new CArgAllow_Integers(5,10);
@@ -1146,7 +1148,7 @@ There are two other pre-defined constraint classes: [CArgAllow\_Symbols](https:/
 
 The description of program arguments should be provided in the application's [Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Init) function before any other initialization. A good idea is also to specify the description of the program here:
 
-    auto_ptr<CArgDescriptions> arg_desc(new CArgDescriptions);
+    unique_ptr<CArgDescriptions> arg_desc(new CArgDescriptions);
     arg_desc->SetUsageContext(GetArguments().GetProgramBasename(),
                               "program's description here");
     // Define arguments, if any
@@ -2148,6 +2150,8 @@ This section provides reference information on the use of [CRef](https://www.ncb
 
 The following is a list of topics discussed in this section:
 
+-   [NOTE](#ch_core.note)
+
 -   [STL auto\_ptrs](#ch_core.auto_ptr)
 
 -   [The CRef Class](#ch_core.CRef)
@@ -2159,6 +2163,16 @@ The following is a list of topics discussed in this section:
 -   [When to use CRefs and auto\_ptrs](#ch_core.CRef_usage)
 
 -   [CRef Pitfalls](#ch_core.CRef_pitfalls)
+
+<a name="ch_core.note"></a>
+
+### NOTE
+
+The following chapter on smart pointers is mostly obsolete. It discusses auto_ptr type which is deprecated in C++-2011 and deleted in C++-2017.
+Modern C++ has unique_ptr and shared_ptr types which replace auto_ptr and do not have the problems discussed below. The chapter is kept here
+just to explain why CRef type was introduced. It can still be used for CObject based classes.
+
+[AutoPtr](#ch_core.AutoPtr) class discussed further in this chapter is also obsolete and should be avoided in favor of shared_ptr.
 
 <a name="ch_core.auto_ptr"></a>
 
@@ -3322,7 +3336,7 @@ Defined here are a number of inline template functions that make it easier to pe
 
 There are three overloads for the [DeleteElements()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DeleteElements) template function. One overload accepts a container (list, vector, set, multiset) of pointers and deletes all elements in the container and clears the container afterwards. The other overloads work with map and multimap objects. In each case, they delete the pointers in the map object and clear the map container afterwards.
 
-The [AutoMap()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AutoMap) template function works with a cache pointed to [auto\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=auto_ptr). It retrieves the result from the cache, and if the cache is empty, it inserts a value into the cache from a specified source.
+The [AutoMap()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AutoMap) template function works with a cache pointed to [unique\_ptr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=unique_ptr). It retrieves the result from the cache, and if the cache is empty, it inserts a value into the cache from a specified source.
 
 A [FindBestChoice()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindBestChoice) template function is defined that returns the best choice (lowest score) value in the container. The container and scoring functions are specified as template parameters. The [FindBestChoice()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindBestChoice) in turn uses the [CBestChoiceTracker](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBestChoiceTracker) template class, which uses the standard unary\_function as its base class. The [CBestChoiceTracker](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CBestChoiceTracker) contains the logic to record the scoring function and keep track of the current value and the best score.
 
