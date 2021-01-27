@@ -473,7 +473,7 @@ Examples from the Programming Manual
     };
     int CTestApp::Run() {
 
-        auto_ptr<CArgs> args;
+        unique_ptr<CArgs> args;
 
         // create a CArgDescriptions object to constrain the input arguments;
         // Argument descriptions are added using:
@@ -720,7 +720,7 @@ Examples from the Programming Manual
     {
         // Create new "car" object with the attributes retrieved
         // from the CGI request parameters
-        auto_ptr<CCar> car;
+        unique_ptr<CCar> car;
         try {
             car.reset( CreateCarByRequest(ctx) );
         } catch (exception& e) {
@@ -763,7 +763,7 @@ Examples from the Programming Manual
 
     CCar* CCarCgi::CreateCarByRequest(const CCgiContext& ctx)
     {
-        auto_ptr<CCar> car(new CCar);
+        unique_ptr<CCar> car(new CCar);
 
         // Get the list of CGI request name/value pairs
         const TCgiEntries& entries = ctx.GetRequest().GetEntries();
