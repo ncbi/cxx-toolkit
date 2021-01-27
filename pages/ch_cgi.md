@@ -208,7 +208,7 @@ As mentioned, the [CCgiApplication](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP
         CCgiContext* CreateContext(CNcbiArguments*, CNcbiEnvironment*, 
                                    CNcbiIstream*, CNcbiOstream*); 
 
-    private: auto_ptr<CNcbiResource> m_resource; 
+    private: unique_ptr<CNcbiResource> m_resource; 
     };
 
 If the program was **not** linked as a FastCGI application (or the environment does not support FastCGI), then [IsFastCGI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsFastCGI) will return `false`. Otherwise, a "FastCGI loop" will be iterated over **`def_iter`** times, with the initialization methods and [ProcessRequest()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ProcessRequest) function being executed on each iteration. The value returned by [IsFastCGI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsFastCGI) in this case is `true`. [Run()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Run) first calls [IsFastCGI()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsFastCGI), and if that returns `false`, the application is run as a plain CGI program.
@@ -275,7 +275,7 @@ The resource's [HandleRequest()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DO
 
 The [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest) class serves as an interface between the user's query and the CGI program. Arguments to the constructor include a [CNcbiArguments](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiArguments) object, a [CNcbiEnvironment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiEnvironment) object, and a [CNcbiIstream](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiIstream) object. The class constructors do little other than invoke [CCgiRequest](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCgiRequest)::[x\_Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_Init), where the actual initialization takes place.
 
-[x\_Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_Init) begins by examining the environment argument, and if it is `NULL`, **`m_OwnEnv`** (an auto\_ptr) is reset to a dummy environment. Otherwise, **`m_OwnEnv`** is reset to the passed environment, making the request object the effective owner of that environment. The environment is then used to cache network information as "gettable" properties. Cached properties include:
+[x\_Init()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=x_Init) begins by examining the environment argument, and if it is `NULL`, **`m_OwnEnv`** (a unique\_ptr) is reset to a dummy environment. Otherwise, **`m_OwnEnv`** is reset to the passed environment, making the request object the effective owner of that environment. The environment is then used to cache network information as "gettable" properties. Cached properties include:
 
 -   server properties, such as the server name, gateway interface, and server port
 
@@ -309,7 +309,7 @@ These properties are keyed to an enumeration named [ECgiProp](https://www.ncbi.n
             CNcbiIstream*, TFlags); 
 
         const CNcbiEnvironment* m_Env; 
-        auto_ptr<CNcbiEnvironment> m_OwnEnv; 
+        unique_ptr<CNcbiEnvironment> m_OwnEnv; 
         TCgiEntries m_Entries; 
         CCgiCookies m_Cookies; 
     };
@@ -516,11 +516,11 @@ As depicted in [Figure 1](#ch_cgi.cgi_class_overview), a [CCgiContext](https://w
         void ReplaceRequestValue(const string& name, const string& value);
     private:
         CCgiApplication&      m_app;
-        auto_ptr<CCgiRequest> m_request;
+        unique_ptr<CCgiRequest> m_request;
         CCgiResponse      m_response;
         mutable string    m_selfURL;
         list<CCtxMsg*>        m_lmsg;        // message buffer
-        auto_ptr<CCgiServerContext> m_srvCtx;
+        unique_ptr<CCgiServerContext> m_srvCtx;
         // defined by CCgiApplication::LoadServerContext()
         friend class CCgiApplication;
     };
@@ -590,7 +590,7 @@ The [sample CGI program](#ch_cgi.html) demonstrates a simple application that co
     // Implement the application's LoadResource() and ProcessRequest() methods
     CNcbiResource* CCgiApp::LoadResource(void)
     {
-        auto_ptr<CCgiResource> resource(new CCgiResource(GetConfig()));
+        unique_ptr<CCgiResource> resource(new CCgiResource(GetConfig()));
         resource->AddCommand(new CCgiBasicCommand(*resource));
         resource->AddCommand(new CCgiReplyCommand(*resource));
         return resource.release();
