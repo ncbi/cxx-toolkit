@@ -30,8 +30,6 @@ See [Getting Started](ch_start.html) for basic information on using the NCBI C++
 
     -   [applic.cpp](#ch_demo.examples_1_3)
 
-    -   [smart.cpp](#ch_demo.examples_1_4)
-
     -   [ctypeiter.cpp](ch_ser.html#ch_ser.ctypeiter_cpp.html)
 
     -   [justcgi.cpp](ch_cgi.html#ch_cgi.cgi_cpp.html)
@@ -439,8 +437,6 @@ Examples from the Programming Manual
 
 -   [applic.cpp](#ch_demo.examples_1_3)
 
--   [smart.cpp](#ch_demo.examples_1_4)
-
 -   [An Example of a Web-based CGI Application - Source Files](#ch_demo.prog_man_CARdemo_index.html)
 
     -   [car.cpp](#ch_demo.carcpp)
@@ -555,77 +551,6 @@ Examples from the Programming Manual
 
           CTestApp theTestApp;
           return theTestApp.AppMain(argc, argv);
-    }
-
-<a name="ch_demo.examples_1_4"></a>
-
-### smart.cpp
-
-<a name="idp64890064"></a>
-
-    // File name: smart.cpp
-    // Description: Memory management using auto_ptr versus CRef
-
-    #include <corelib/ncbiapp.hpp>
-    #include <corelib/ncbiobj.hpp>
-
-    USING_NCBI_SCOPE;
-
-    class CTestApp : public CNcbiApplication {
-    public:
-        virtual int Run(void);
-    };
-
-    /////////////////////////////////////////////////////////////////
-    //
-    // 1. Install an auto_ptr to an int and make a copy - then try to
-    //    reference the value from the original auto_ptr.
-    //
-    // 2. Do the same thing using CRefs instead of auto_ptrs.
-    //
-    //////////////////////////////////////////////////////////////////
-
-    int CTestApp::Run()
-    {
-        auto_ptr<int> orig_ap;
-        orig_ap.reset(new int(5));
-        {
-            auto_ptr<int> copy_ap = orig_ap;
-
-            if ( !orig_ap.get() ) {
-                cout << "orig_ap no longer exists - copy_ap = " << *copy_ap << endl;
-            } else {
-                cout << "orig_ap = " << *orig_ap << ", copy_ap = "
-                     << *copy_ap << endl;
-            }
-        }
-        if ( orig_ap.get() ) {
-            cout << "orig_ap = " << *orig_ap << endl;
-        }
-
-        CRef< CObjectFor<int> > orig(new  CObjectFor<int>);
-        *orig = 5;
-        {
-            CRef< CObjectFor<int> > copy = orig;
-
-            if ( !orig ) {
-                cout << "orig no longer exists - copy = " << (int&) *copy << endl;
-            } else {
-                cout << "orig = " << (int&) *orig << ", copy = "
-                     << (int&) *copy << endl;
-            }
-        }
-        if ( orig ) {
-            cout << "orig = " << (int&) *orig << endl;
-        }
-        return 0;
-    }
-
-
-    int main(int argc, const char* argv[])
-    {
-        CTestApp theTestApp;
-        return theTestApp.AppMain(argc, argv);
     }
 
 <a name="ch_demo.prog_man_CARdemo_index.html"></a>
