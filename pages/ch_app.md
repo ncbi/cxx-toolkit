@@ -2132,13 +2132,13 @@ If you are saving a new blob using [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/I
     nc_api.PutData(key, message.c_str(), message.size());
 
     // Or, create an ostream (and get a key), then insert into the stream.
-    auto_ptr<CNcbiOstream> os(nc_api.CreateOStream(key));
+    unique_ptr<CNcbiOstream> os(nc_api.CreateOStream(key));
     *os << "line one\n";
     *os << "line two\n";
     // (data written at stream deletion or os.reset())
 
     // Or, create a writer (and get a key), then write data in chunks.
-    auto_ptr<IEmbeddedStreamWriter> writer(nc_api.PutData(&key));
+    unique_ptr<IEmbeddedStreamWriter> writer(nc_api.PutData(&key));
     while(...) {
         writer->Write(chunk_buf, chunk_size);
         // (data written at writer deletion or writer.Close())
@@ -2155,7 +2155,7 @@ If you are saving a new blob using [CNetICacheClient](https://www.ncbi.nlm.nih.g
     ic_client.Store(key, version, subkey, message.c_str(), message.size());
 
     // Or, create a writer, then write data in chunks.
-    auto_ptr<IEmbeddedStreamWriter>
+    unique_ptr<IEmbeddedStreamWriter>
         writer(ic_client.GetNetCacheWriter(key, version, subkey));
     while(...) {
         writer->Write(chunk_buf, chunk_size);
@@ -2179,7 +2179,7 @@ The following code snippet demonstrates three ways of retrieving data using [CNe
     nc_api.ReadData(key, message);
 
     // Or, extract words from a stream.
-    auto_ptr<CNcbiIstream> is(nc_api.GetIStream(key));
+    unique_ptr<CNcbiIstream> is(nc_api.GetIStream(key));
     while (!is->eof()) {
         *is >> message; // get one word at a time, ignoring whitespace
 
@@ -2207,7 +2207,7 @@ The following code snippet demonstrates two ways to retrieve data using [CNetICa
 
     // Or, read data in chunks.
     size_t remaining(ic_client.GetSize(key, version, subkey));
-    auto_ptr<IReader> reader(ic_client.GetReadStream(key, version, subkey));
+    unique_ptr<IReader> reader(ic_client.GetReadStream(key, version, subkey));
     while (remaining > 0) {
         size_t bytes_read;
         ERW_Result rw_res = reader->Read(chunk_buf, chunk_size, &bytes_read);
