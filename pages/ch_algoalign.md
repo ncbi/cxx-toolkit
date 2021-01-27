@@ -217,7 +217,7 @@ One more function for building CAnchoredAln is [BuildAln()](http://intranet.ncbi
 Loading seq-aligns using CAlnAsnReader and CAlnContainer.
 ---------------------------------------------------------
 
-    auto_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, filename));
+    unique_ptr<CObjectIStream> in(CObjectIStream::Open(eSerial_AsnText, filename));
     CAlnAsnReader reader(&scope);
     // Read objects from the stream. If the callback (AddAln) is a member of
     // a class (CMyApp), wrap it in bind1st(mem_fun(...)).
