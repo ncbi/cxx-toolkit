@@ -25,6 +25,8 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
     -   [Create new project](#ch_cmconfig._new_prebuilt)
 
+    -   [Create freestyle project](#ch_cmconfig._freestyle_prebuilt)
+    
     -   [Import project](#ch_cmconfig._import_prebuilt)
 
 -   [NCBIptb build system](#ch_cmconfig._NCBIptb)
@@ -123,6 +125,40 @@ For example:
 To get a list of available project types, run
 
     new_cmake_project --help
+
+<a name="ch_cmconfig._freestyle_prebuilt"></a>
+
+### Create freestyle project
+
+Using *new_cmake_project* script is convenience, not a requirement. You are free to choose your own style. For example, create *CMakeLists.txt* with the following contents:
+
+    cmake_minimum_required(VERSION 3.7)
+    project(test1)
+    include($ENV{NCBI}/c++.cmake.stable/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+
+    add_executable(basic_sample basic_sample)
+    target_link_libraries(basic_sample xncbi)
+
+then configure and build it:
+
+    cmake .
+    make
+
+NCBIptb style also works. Create *CMakeLists.txt*
+
+    cmake_minimum_required(VERSION 3.7)
+    project(test1)
+    include($ENV{NCBI}/c++.cmake.stable/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+
+    NCBI_begin_app(basic_sample)
+        NCBI_sources(basic_sample)
+        NCBI_uses_toolkit_libraries(xncbi)
+    NCBI_end_app()
+
+Configure and build:
+
+    cmake .
+    make
 
 <a name="ch_cmconfig._import_prebuilt"></a>
 
