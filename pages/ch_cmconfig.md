@@ -129,8 +129,8 @@ Using *new_cmake_project* script is convenience, not a requirement. You are free
     cmake_minimum_required(VERSION 3.7)
     project(test1)
     include($ENV{NCBI}/c++.cmake.stable/src/build-system/cmake/CMake.NCBItoolkit.cmake)
-    add_executable(basic_sample basic_sample)
-    target_link_libraries(basic_sample xncbi)
+    add_executable(blast_demo blast_demo)
+    target_link_libraries(blast_demo blastinput)
 
 then configure and build it:
 
@@ -142,9 +142,9 @@ NCBIptb style also works. Create *CMakeLists.txt*
     cmake_minimum_required(VERSION 3.7)
     project(test1)
     include($ENV{NCBI}/c++.cmake.stable/src/build-system/cmake/CMake.NCBItoolkit.cmake)
-    NCBI_begin_app(basic_sample)
-        NCBI_sources(basic_sample)
-        NCBI_uses_toolkit_libraries(xncbi)
+    NCBI_begin_app(blast_demo)
+        NCBI_sources(blast_demo)
+        NCBI_uses_toolkit_libraries(blastinput)
     NCBI_end_app()
 
 Configure and build:
