@@ -7,6 +7,7 @@
 
 body {
 	margin: 0;
+	overflow-x: visible;
 }
 
 aside,
@@ -218,16 +219,17 @@ div.section>h1 {
 	order: 1;
 	min-height: 600px;
 	width: 68%;
-	max-width: 800px;
+	/* max-width: 800px; */
 	flex-grow: 2;
 	margin: 0px 15px;
 	transition: margin-left .4s cubic-bezier(.02, .01, .47, 1);
 	align-items: center;
 	justify-content: center;
 	display: inline-block;
-	overflow-x: scroll
+	/* overflow-x: scroll */
 }
 
+.content p{max-width: 800px}
 
 /* proposed link colors */
 
@@ -254,6 +256,7 @@ div.section>h1 {
 	min-width: 250px;
 	display: flex;
 	overflow-y: auto;
+	z-index: 9998;
 }
 
 .footer {
