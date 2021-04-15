@@ -683,7 +683,7 @@ div.edit_links {
 
 /* Zebra striping  */
 
-div.section tbody tr:nth-child(odd) {
+div.section tr:nth-child(odd) {
   background: #F8F8F8;
 }
 
@@ -692,3 +692,7 @@ div.section thead th {
   border-bottom:1px solid #858d99;
 }
 
+/* Row highlighting on hover */
+ div.section tr:hover {
+	background: #DCDCDC;
+}
