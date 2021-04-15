@@ -690,6 +690,7 @@ div.section tr:nth-child(odd) {
 div.section thead th {
   padding:20px;
   border-bottom:1px solid #858d99;
+  background-color: #E8E8E8;
 }
 
 /* Row highlighting on hover */
