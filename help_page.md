@@ -37,10 +37,13 @@ How to add images
 
 How to add CSS classes to tables
 -------------------------------------------------
-GitHub renderer strips down all HTML and CSS wrapping you add to markdown. In order to add a class to a table, we use Liquid markdown language.
+GitHub renderer strips down all HTML and CSS wrapping you add to markdown. In order to add a class to a table, we use [Liquid markdown language](https://shopify.github.io/liquid/).
 
 Adding the following line below the last table row will add CSS class your_table_class to your table
-`{: .your_table_class }`. So, the following table in GitHub markdown
+
+```{: .your_table_class }```
+
+So, the following table in GitHub markdown
 
 ```
 
