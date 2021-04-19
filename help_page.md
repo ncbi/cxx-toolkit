@@ -35,9 +35,9 @@ How to add images
 - Create a reference (link) to the image you want to add. See syntax for the image reference [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images). Click 'Propose file changes' button.
 - Only users with administrators' rights can upload images to the book. You will need to send us the image you want to upload (see contact info below). Please make sure that the name of your image is the same that you used in the reference link.
 
-How to add CSS classes to tables
+How to add CSS class to a table
 -------------------------------------------------
-GitHub renderer strips down all HTML and CSS wrapping you add to markdown. In order to add a class to a table, we use [Liquid markdown language](https://shopify.github.io/liquid/).
+GitHub renderer strips down all HTML and CSS wrapping you add to markdown. In order to asign a class to a table, we use [Liquid markdown language](https://shopify.github.io/liquid/).
 
 Adding the following line below the last table row will add CSS class your_table_class to your table
 
@@ -53,7 +53,7 @@ So, the following table in GitHub markdown
 | Cell 2A | Cell 2B | Cell 2C |
 {: .your_table_class }
 ```
-will create this table:
+will be rendered:
 
 | Column1 | Column2 | Column3 |
 |---------|---------|---------|
@@ -67,6 +67,7 @@ with your_table_class added to HTML table element:
 <table class="your_table_class" style="table-layout: auto;">
 
 ```
+
 Contact info
 -------------------------------------------------
 
