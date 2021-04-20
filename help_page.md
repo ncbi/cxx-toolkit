@@ -35,6 +35,11 @@ How to add images
 - Create a reference (link) to the image you want to add. See syntax for the image reference [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images). Click 'Propose file changes' button.
 - Only users with administrators' rights can upload images to the book. You will need to send us the image you want to upload (see contact info below). Please make sure that the name of your image is the same that you used in the reference link.
 
+Creating and formatting tables
+-------------------------------------------------
+You can create and apply a simple formatting to a table in GitHub markdown as it is described [here](https://docs.github.com/en/github/writing-on-github/organizing-information-with-tables). We have some pretty large and complicated tables in this documentation, so we apply further formatting through CSS table classes that will be automatically applied to your table if you do not overwrite it with a specially assigned class (see next section).
+
+
 How to add CSS class to a table
 -------------------------------------------------
 GitHub renderer strips down all HTML and CSS that is added to the table markdown, so on the rendered page such additions will be lost. I. In order to asign a class to a table, we use [Liquid markdown language](https://shopify.github.io/liquid/).
