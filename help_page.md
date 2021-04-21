@@ -7,12 +7,16 @@ nav: help_page
 {{ page.title }}
 =================================================
 
+<a name="help_page.Getting_Started"></a>
+
 Getting started
 -------------------------------------------------
 
 - To author this book you have to register at GitHub. If you already have GitHub account linked to your NCBI email, you can use this account. If not, please register at [https://github.com/](https://github.com/) **using your NCBI email**. 
 We also can create an account for you.
 - After you created your GitHub account, <a href="mailto:cpp-doc@ncbi.nlm.nih.gov?Subject=Please%20add%20me%20to%20contributors%20list" target="_top">please send us your GitHub user name</a> so we can add you to our authors team. You will get an email invitation to join NCBI GitHub organization.
+
+<a name="help_page.How_to_edit"></a>
 
 How to edit the page
 -------------------------------------------------
@@ -27,6 +31,7 @@ If you do not see this message, please **DO NOT CREATE A PULL REQUEST**. Please 
 -  We will review the changes you made and merge them with the current version of the page.
 -  You can find more details on GitHub Pull requests [here](https://help.github.com/articles/using-pull-requests/)
 
+<a name="help_page.How_to_add_images"></a>
   
 How to add images
 -------------------------------------------------
@@ -35,10 +40,13 @@ How to add images
 - Create a reference (link) to the image you want to add. See syntax for the image reference [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images). Click 'Propose file changes' button.
 - Only users with administrators' rights can upload images to the book. You will need to send us the image you want to upload (see contact info below). Please make sure that the name of your image is the same that you used in the reference link.
 
+<a name="help_page.Creating_and_formatting_tables"></a>
+
 Creating and formatting tables
 -------------------------------------------------
 You can create and apply a simple formatting to a table in GitHub markdown as it is described [here](https://docs.github.com/en/github/writing-on-github/organizing-information-with-tables). We have some pretty large and complicated tables in this documentation, so we apply further formatting through CSS table classes that will be automatically applied to your table if you do not overwrite it with a specially assigned class (see next section).
 
+<a name="help_page.How_to_add_CSS"></a>
 
 How to add CSS class to a table
 -------------------------------------------------
@@ -72,6 +80,9 @@ with your_table_class added to HTML table element:
 <table class="your_table_class" style="table-layout: auto;">
 
 ```
+
+
+<a name="help_page.Contact_info"></a>
 
 Contact info
 -------------------------------------------------
