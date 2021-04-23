@@ -7,6 +7,19 @@ nav: help_page
 {{ page.title }}
 =================================================
 
+- [Getting started](#help_page.Getting_Started)
+- 
+- [How to edit the page](#help_page.How_to_edit)
+- 
+- [How to add images](#help_page.How_to_add_images)
+- 
+- [Creating and formatting tables](#help_page.Creating_and_formatting_tables)
+- 
+- [How to add CSS class to a table](#help_page.How_to_add_CSS)
+- 
+- [Contact info](#help_page.Contact_info)
+
+
 <a name="help_page.Getting_Started"></a>
 
 Getting started
