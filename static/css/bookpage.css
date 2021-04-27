@@ -697,3 +697,9 @@ div.section thead th {
  div.section tr:hover {
 	background: #DCDCDC;
 }
+
+
+/* Fixing anchor links hidden under the floating header */
+div.section a {
+	scroll-margin-top: 5em;
+}
