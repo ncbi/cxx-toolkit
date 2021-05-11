@@ -186,7 +186,7 @@ By default, failure of any project will cause make to exit immediately. Although
 
 Consequently, the toolkit's build system supports an alternative approach: [meta-makefiles](#ch_build.makefiles_meta) can define `expendable` projects which should be built if possible but are allowed to fail without interrupting the build. The way to do this is to list such projects in **`EXPENDABLE_*_PROJ`** rather than **`*_PROJ`**.
 
-But note, that this is a temporary solution, that allow to test some new code everywhere without breaking a whole build. But projects should not be marked as **`EXPENDABLE`** forever. If project fails, please try to it in a reasonable time and make it a regular project.
+Note that this is a temporary solution which allows to test some new code everywhere without breaking the entire build. However, the projects should not be marked as **`EXPENDABLE`** forever. If the project fails, please check it in a reasonable time and make it a regular project.
 
 <a name="ch_build.build_proj_makefiles"></a>
 
