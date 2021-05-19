@@ -332,7 +332,9 @@ Table 3. Flags
 | **`FAST_CFLAGS`**   | **`$FAST_CFLAGS`**    | [(\*)](#ch_build.build_make_macros) C compiler flags to generate faster code   |
 | **`FAST_CXXFLAGS`** | **`$FAST_CXXFLAGS`**  | [(\*)](#ch_build.build_make_macros) C++ compiler flags to generate faster code |
 | **`LDFLAGS`** | **`$LDFLAGS`**  | Linker flags                  |
+| **`RUNPATH_ORIGIN`** | compiler test | **`LDFLAGS`** entry to request looking for shared libraries alongside executables |
 | **`LIB_OR_DLL`**    | **`@LIB_OR_DLL@`**    | Specify whether to build a library as static or dynamic      |
+| **`DLL`**  | **`@DLL@`**  | Library suffix to request dynamic linkage |
 | **`STATIC`**  | **`@STATIC@`**  | Library suffix to force static linkage (see [example](ch_proj.html#ch_proj.make_proj_app)) |
 
 <div class="table-scroll"></div>
