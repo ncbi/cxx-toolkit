@@ -95,8 +95,28 @@ It lists available options used to generate the build tree. Several of them limi
 
 Few options define requirements and compilation features:
 
--   *--with-components=*”LIST” – explicitly enable or disable components (external packages) listed in LIST. Many libraries and applications in the NCBI C++ Toolkit use external packages. It can be image manipulation, database interfaces, compression libraries. The list depends on build environment. Usually, Toolkit projects either require or may use such components when they are available. If a project requires something which is not found, this project will be excluded from build. With this configuration option it is possible to disable components even when they are available - use minus sign (for example, *-BerkeleyDB*). If a component is listed here, but it is not found, configuration will fail.
--   *--with-features=*”LIST” - specify compilation features. Features are used to fine-tune build settings and enable or disable certain experimental settings. For example, *Symbols* adds debug symbols into release build, *Coverage* - adds coverage compilation flags.
+-   *--with-components=*”LIST” – explicitly enable or disable components (external packages) listed in LIST. Many libraries and applications in the NCBI C++ Toolkit use external packages. It can be image manipulation, database interface, compression library. The list of available components depends on build environment. Usually, Toolkit projects either require or may use such components when they are available. If a project requires something which is not found, this project will be excluded from build. With this configuration option it is possible to disable components even when they are available - use minus sign (for example, *-BerkeleyDB*). If a component is listed here, but it is not found, configuration will treat it as error and fail. For example:
+
+```
+    --with-components="Z;-PCRE;XML"
+```
+
+-   *--with-features=*”LIST” - specify compilation features. Features are used to fine-tune build settings and enable or disable certain experimental settings. The list of available features depends on build environment. Some of available features are listed here:
+    -   *BinRelease* - changes several settings, is used when building an application for public release
+    -   *CfgMT* - on Windows adds build configurations which use static multithreaded runtime libraries
+    -   *CfgProps* - on Windows, modifies Visual Studio solution to use custom Properties file (which defines build settings)
+    -   *Coverage* - when using GCC compiler, sets code coverage flags
+    -   *MaxDebug* - on Unix, adds *_GLIBCXX_DEBUG* compile definition
+    -   *noOpenMP* - on Unix, disables OpenMP API
+    -   *noSSE* - disables using SSE instruction set
+    -   *StaticComponents* - instructs build system to use component's static libraries if they are available,
+    -   *Symbols*  - adds debug symbols into release build,
+ For example:
+
+```
+    --with-features="StaticComponents;Symbols;MaxDebug"
+```
+
 
 Examples of configuration commands:
 
