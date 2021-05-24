@@ -74,7 +74,7 @@ Having checked out the source tree, run the following command in the root direct
 
 It lists available options used to generate the build tree. Several of them limit the build scope:
 
--   *--with-projects=*”FILE” – build projects listed in FILE. This is either a Project List File, or a list of subdirectories of *src* directory. Each entry is a regular expression (see [CMake documentation](https://cmake.org/cmake/help/v3.14/command/string.html#regex-specification) for details). List of subdirectories consists of entries separated by semicolon (hyphen in the beginning of the entry means that targets from that directory should be excluded). If "FILE" is an existing file, it should be in plain text with one such entry per line. For example:
+-   *--with-projects=*”FILE” – build projects listed in FILE. This is either a [Project List File](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Project_List_Files), or a list of subdirectories of *src* directory. Each entry is a regular expression (see [CMake documentation](https://cmake.org/cmake/help/v3.14/command/string.html#regex-specification) for details). List of subdirectories consists of entries separated by semicolon (hyphen in the beginning of the entry means that targets from that directory should be excluded). If "FILE" is an existing file, it should be in plain text with one such entry per line. For example:
 
 ```
     --with-projects="corelib$;serial;-serial/test"
@@ -87,11 +87,16 @@ It lists available options used to generate the build tree. Several of them limi
     --with-targets="^cgi;-test"
 ```
 
--   *--with-tags=*”TAGS” – build targets with the listed tags only. Tags are **not** treated as regular expressions. For example:
+-   *--with-tags=*”TAGS” – build targets with the listed tags only. Tag is a text label which may be assigned to a project. Tags are **not** treated as regular expressions. For example:
 
 ```
     --with-tags="core;-test"
 ```
+
+Few options define requirements and compilation features:
+
+-   *--with-components=*”LIST” – explicitly enable or disable components (external packages) listed in LIST. Many libraries and applications in the NCBI C++ Toolkit use external packages. It can be image manipulation, database interfaces, compression libraries. The list depends on build environment. Usually, Toolkit projects either require or may use such components when they are available. If a project requires something which is not found, this project will be excluded from build. With this configuration option it is possible to disable components even when they are available - use minus sign (for example, *-BerkeleyDB*). If a component is listed here, but it is not found, configuration will fail.
+-   *--with-features=*”LIST” - specify compilation features. Features are used to fine-tune build settings and enable or disable certain experimental settings. For example, *Symbols* adds debug symbols into release build, *Coverage* - adds coverage compilation flags.
 
 Examples of configuration commands:
 
