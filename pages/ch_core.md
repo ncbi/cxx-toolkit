@@ -797,7 +797,8 @@ Here is a somewhat simplified view of the application's class definition:
         /// parameter. Currently, this calls SetupDiag(eDS_ToStderr) to setup
         /// diagonistic stream to the std error channel.
         /// @return
-        ///   TRUE if successful, FALSE otherwise.
+        ///   
+        if successful, FALSE otherwise.
        virtual bool SetupDiag_AppSpecific(void);
 
         /// Load configuration settings from the configuration file to
@@ -1301,6 +1302,32 @@ An exception will be generated with an appropriate error message, if:
 -   the conversion fails, or
 
 -   "f" was described as an optional key or positional argument without default value (i.e., using the ***AddOptional\*\*\*()*** method), and it was not defined in the command line. Note that you can check for this case using the [CArgValue](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArgValue)::[HasValue()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=HasValue) method.
+
+Important note on boolean arguments
+-----------------------------------
+
+Boolean arguments should be used with care. It's easy to confuse the value returned by ***operator bool()*** and the actual value of an argument. ***operator bool()*** is a shortcut for ***HasValue()*** method which checks if any value was set either on the command line or as the default one. ***AsBoolean()*** method returns the actual value of the argument.
+
+The following code demonstrates the problem.
+
+    arg_desc.AddOptionalKey("optkey", "optkey", "optional key", CArgDescriptions::eBoolean);
+    ...
+    if (args["optkey"]) {
+        // This code is executed if the argument was present on the command line regardless of it's value.
+        ...
+    }
+    // operator [] may throw an exception if the argument was not set
+    // on the command line.
+    if (args["optkey"].AsBoolean()) {
+        // This code is executed only if the argument has value is 'true',
+        ...
+    }
+    // The best approach
+    if (args["optkey"].HasValue() && args["optkey"].AsBoolean()) {
+        ...
+    }
+
+Flag arguments have different behavior: ***HasValue()***, ***operator bool()*** and ***AsBoolean()*** always return the same value for flags, so that `args["flag"]` can be safely used to check if the flag is set. Note that when a flag argument is created using eFlagHasValueIfMissed option all three methods will return FALSE when the flag is present on the command line and TRUE otherwise.
 
 <a name="ch_core.Supporting_CommandBased_Command"></a>
 
