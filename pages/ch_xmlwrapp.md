@@ -115,6 +115,8 @@ XmlWrapp was created by forking [xmlwrapp](http://vslavik.github.io/xmlwrapp/) a
 
 -   Fixing some bugs that were in [xmlwrapp](http://vslavik.github.io/xmlwrapp/).
 
+-   Adding support for https:// input
+
 The figure below illustrates the relationship between your C++ application and the XML libraries:
 
 [![Image Overview.png](/cxx-toolkit/static/img/Overview.png)](/cxx-toolkit/static/img/Overview.png "Click to see the full-resolution image")
