@@ -109,6 +109,8 @@ The following is an outline of the topics presented in this chapter:
 
 [FCGI Redirection and Debugging C++ Toolkit CGI Programs](#ch_cgi.FCGI_Redirection_and_Debugging_C)
 
+[Multithreaded FastCGI applications](#ch_cgi.Multithreaded_FastCGI_applications)
+
 <a name="ch_cgi.cg_develop_apps"></a>
 
 Developing CGI applications
@@ -1472,4 +1474,30 @@ To debug a FastCGI-capable application:
 
 5.  Issue another "run" command to the debugger to complete processing of the current request, send the response back to the proxy, and begin waiting for the next request (or exit if the configured number of iterations has been reached).
 
+<a name="ch_cgi.Multithreaded_FastCGI_applications"></a>
 
+Multithreaded FastCGI applications
+----------------------------------
+
+The FastCGI-MT library allows to create FastCGIs which can process multiple requests at the same time in different threads. Using threads does not allow to store any request related data at application level. Multithreaded FastCGIs use [CCgiRequestProcessor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CCgiRequestProcessor) as a base class for processing requests and storing per-request data. To simplify transition from plain CGI to FastCGI-MT the class mimics most methods of CCgiApplication, so that only minimal changes are required to convert an application.
+
+Here is the process of converting an existing CGI/FCGI to a FastCGI-MT.
+
+1.  Add a new class (e.g. CMyRequestProcessor) derived from [CCgiRequestProcessor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CCgiRequestProcessor).
+
+2.  Change base class of the application from CCgiApplication to [CFastCgiApplicationMT](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CFastCgiApplicationMT).
+
+3.  Override CCgiApplication's [CreateRequestProcessor()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CreateRequestProcessor) method to return CMyRequestProcessor.
+
+4.  Move all request related members and methods from application class to CMyRequestProcessor.
+
+5.  If the application uses classes like [CNcbiResource](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CNcbiResource) and [CNcbiCommand](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CNcbiCommand), they should be carefully reviewed and made MT safe since one instance of CNcbiResource is shared by all request processing threads.
+
+7.  Update the application's makefile:
+    -   Add `xfcgi_mt` to the list of libraries (LIB).
+    -   Add `$(FASTCGIPP_LIBS)` to the list of third-party libraries (LIBS).
+    -   Add `$(FASTCGIPP_INCLUDE)` to CPPFLAGS.
+
+An example of converting a plain CGI to a FastCGI-MT can be found in src/sample/app/cgi/: compare `fcgi_mt_sample` and `cgi_sample` projects.
+
+After making the above changes switching temporarily between plain CGI and FastCGI-MT (e.g. for testing and debugging) is as simple as changing the application's base class from CFastCgiApplicationMT to CCgiApplication and back.
