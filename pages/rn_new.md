@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release Notes (Version 22, March 2019)
+title: Release Notes (Version 25, August 2021)
 nav: pages/rn_new
 ---
 
@@ -10,7 +10,7 @@ nav: pages/rn_new
 The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/RN_index.html).
 
 
-> These notes give a somewhat superficial and incomplete (albeit still useful) description of the latest NCBI C++ Toolkit changes, fixes and additions. Some important topics (especially numerous bug fixes and feature improvements, but possibly a bigger fish) are just out of scope of these notes. Feel free to write to the mailing group <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp> with any questions or reports.
+> These notes give a somewhat superficial and incomplete (albeit still useful) description of the latest NCBI C++ Toolkit changes, fixes and additions. Some important topics (especially numerous bug fixes and feature improvements, but possibly a bigger fish) are out of scope of these notes. Feel free to write to the mailing group <https://www.ncbi.nlm.nih.gov/mailman/listinfo/cpp> with any questions or reports.
 
 
 -   [Download](#release_notes.Download)
@@ -46,27 +46,27 @@ The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/T
 Download
 -----------------------------------
 
-Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/Mar_28_2019/>
+Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Aug_18_2021/>
 
--   [ncbi\_cxx--22\_0\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/Mar_28_2019/ncbi_cxx--22_0_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
+-   [ncbi\_cxx--25\_0\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Aug_18_2021/ncbi_cxx--25_0_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
 
--   [ncbi\_cxx--22\_0\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2019/Mar_28_2019/ncbi_cxx--22_0_0.zip) -- for MS-Windows / MS Visual Studio C++ 2015 and 2017
+-   [ncbi\_cxx--25\_0\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Aug_18_2021/ncbi_cxx--25_0_0.zip) -- for MS-Windows / MS Visual Studio C++ 2017
 
-The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from August, 2018; and also include many hundreds of important and safe code updates made since then and through March, 2019.
+The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from November, 2020; and also include many hundreds of important and safe code updates made since then and through August, 2021.
 
 <a name="release_notes.Third_Party_Packages"></a>
 
 Third Party Packages
 -----------------------------------------------
 
-Some parts of the C++ Toolkit just cannot be built without 3<sup>rd</sup> party libraries, and other parts of the Toolkit will work more efficiently or provide more functionality if some 3rd-party packages (such as BerkeleyDB which is used for local data cache and for local data storage) are available.
+Some parts of the C++ Toolkit cannot be built without 3<sup>rd</sup> party libraries, and other parts of the Toolkit will work more efficiently or provide more functionality if some 3rd-party packages (such as BerkeleyDB which is used for local data cache and for local data storage) are available.
 
 
 Table 1. Currently Supported/Tested Versions of Third Party Packages
 
 |Package   |Versions expected to work (obtained by build-environment inspection in some cases)  |Versions known to work (used in-house on any platform)  |
 |-------|----------------------------------|--------------|
-|[BerkeleyDB](https://www.oracle.com/database/berkeley-db/db.html)  |4.3.0 or newer   |4.5.20, 4.6.21.NC, 4.6.21.1, 4.7.25  |
+|[BerkeleyDB](https://www.oracle.com/database/berkeley-db/db.html)  |4.6.0 or newer   |4.5.20, 4.6.21.NC, 4.6.21.1, 4.7.25  |
 |[Boost Test](https://www.boost.org) |1.35.0 or newer |1.53.0, 1.54.0, 1.62.0, 1.66.0 |
 |FastCGI    |All versions    |2.1, 2.4.0, 2.4.1 |
 |[libbzip2](http://www.bzip.org)    |All versions    |1.0.5, 1.0.6   | 
@@ -103,11 +103,13 @@ New Developments
 
 
 
-There have been significant additions and improvements in all parts of the Toolkit since the last public release of the NCBI C++ Toolkit. Here, only very few are listed, mostly related to major formal changes.
+There have been significant additions and improvements in all parts of the Toolkit since the last public release of the NCBI C++ Toolkit. Here, only very few are listed, mostly related to major formal changes:
 
-We started using C++11 specific features, so you will now need a C++11 compliant compiler to build the Toolkit.
-
-We are about to drop 32-bit support, so while the Toolkit will still likely build (and even work) in _some_ 32-bit configurations... the 32-bit support is nominal, and will go away for good real soon now.
+ - Adjusted code to work with GI identifiers whose values exceed 31 bit. Please use type 'TGi' for the GI values. The 31-bit boundary is currently expected to be crossed around January 2022... but this can happen earlier.
+ - Started using C++14 specific features, so you will now need a C++14 compliant compiler to build the Toolkit.
+ - Dropped support of 32-bit platforms for good.
+ - Added "CMake" based build system. It currently co-exists with the "legacy" configure/PTB based build system.
+ - Ported to work on ARM processors.
 
 <a name="release_notes.Documentation"></a>
 
@@ -152,7 +154,7 @@ Supported Platforms (OS's and Compilers)
 
 This release was successfully tested on at least the following platforms (but may also work on other platforms). Since the previous release, some platforms were dropped from this list and some were added. Also, it can happen that some projects would not work (or even compile) in the absence of 3rd-party packages, or with older or newer versions of such packages. In these cases, just skipping such projects (e.g. using flag "<span class="nctnt ncbi-monospace">-k</span>" for <span class="nctnt ncbi-app"> make</span> on Unix), can get you through.
 
-In cases where multiple compilers or versions are supported, the mainstream one is shown in **bold**.  Other versions might also work, but **must** support C++11; minimum versions are GCC 4.8.x, Clang 3.4.x, ICC 15.x, and MS VS 2015.
+In cases where multiple compilers or versions are supported, the mainstream one is shown in **bold**.  Other versions might also work, but **must** support C++14; minimum versions are GCC 5.x, Clang 3.4.x, ICC 17.x, and MS VS 2017.
 
 <a name="release_notes.Unix"></a>
 
@@ -161,11 +163,10 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 |Operating System |Architecture    |Compilers  |
 |-----------------------------------|----------------|-----------------------------|
-|CentOS 6.x (LIBC 2.12) |x86-64    |**GCC 4.9.3**, 5.3; ICC 2015,2017 |
-|CentOS 7.x (LIBC 2.17) |x86-64    |**GCC 7.3.0**; ICC 2015, 2017  |
-|Ubuntu 14.04 (LIBC 2.19)|x86-32|GCC 4.8.4 |
-|Ubuntu 16.04 (LIBC 2.23)|x86-64|GCC 5.4.0 |
-|FreeBSD 11.2           |x86-64    |Clang 6.0.0      |
+|CentOS 7.x (LIBC 2.17)  |x86-64    |**GCC 7.3.0**; ICC 2017, **2019**, **2021**  |
+|Ubuntu **18.04 (LIBC 2.27)**|x86-64    |**GCC 7.5** |
+|FreeBSD **12.2**            |x86-64    |**Clang 10.0**      |
+|Ubuntu **20.04**|**Graviton 2 (ARM)**  |**Clang 10.0** | experimental |
 
 <a name="release_notes.MS_Windows"></a>
 
@@ -174,9 +175,9 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 |Operating System    |Architecture  |Compilers    |
 |--------------------------|--------------------------------|-------------------------------|
-|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C) 2015 (MSVC 14)<br/>  |
-|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C) 2017 (MSVC 14.1) experimental<br/>  |
-|Cygwin 2.9.0  |x86-64  |[GCC 6.4.0](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
+|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C) 2017 (MSVC 14.1)<br/>  |
+|MS Windows    |x86-64  |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C) **2019 (MSVC 16.9.5)** experimental<br/>  |
+|Cygwin 6.3    |x86-64  |[GCC **7.4**](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Cygwin_GCC)- nominal support only. |
 
 <a name="release_notes.Mac_OS_X"></a>
 
@@ -185,35 +186,38 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 |Operating System  |Architecture|Compilers     |
 |---------------------------|------------|--------------------------------------|
-|macOS 10.11.x (Darwin 15.x)|x86-64      |**Apple Clang 8.0.0**, Xcode 8.2.1    |
-|macOS 10.12.x (Darwin 16.x)|x86-64      |**Apple Clang 9.0.0**, Xcode 9.2    |
-|macOS 10.13.x (Darwin 17.x)|x86-64      |**Apple Clang 10.0.0** |
+|**macOS 10.14 (Darwin 18.x)**|x86-64      |**Apple Clang 11**, Xcode    |
+|**macOS 10.15 (Darwin 19.6)**|x86-64      |**Apple Clang 12**, Xcode    |
 
 <a name="release_notes.Added_Platforms"></a>
 
 ### Added Platforms
 
 
-Official support for macOS 10.13.x; for GCC 7.3 and ICC 17 on CentOS; for FreeBSD 11.2 is new in this release.
+Official support for macOS 10.14, 10.15; for GCC 7.3 and ICC 2019 on CentOS; for FreeBSD 11.2 is new in this release. Also added an experimental ARM support.
 
 <a name="release_notes.Discontinued"></a>
 
 ### Discontinued Platforms
 
 
-|Operating System      |Architecture  |Compilers   |
+|Compiler      |Operating System    |Architecture  |
 |----------------------------|--------------------------------------|------------------------------------|
-|MS Windows      |x86-32| all (only 64-bit arch is supported from now on) |
-|MS Windows      |x86-32, 64    |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C) 2013 (MSVC 12)|
-|Ubuntu 14.04 ("jaunty")      |x86-32    |All   |
-|FreeBSD 10.3     |x86-32  |All   |
-|CentOS 6.x      |x86-32, 64    | Nominal support, will be dropped soon |
+|All 32-bit compilers | All 32-bit OS's |All 32-bit processors |
+|[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C) 2015 (MSVC 14) |MS Windows | x86-64 |
+|Apple Clang 8  | macOS 10.11.x (Darwin 15)|x86-64 |
+|Apple Clang 9  | macOS 10.12.x (Darwin 16)|x86-64 |
+|Apple Clang 10 | macOS 10.13.x (Darwin 17)|x86-64 |
+| | Ubuntu 14.04    |x86-64 |
+| | Ubuntu 16.04    |x86-64 | 
+| | FreeBSD 11.2    |x86-64 |
+| | CentOS 6.x      |x86-64 |
 
 <a name=""></a>
 
 Last Updated
 ---------------------------------------
 
-This document was last updated on March 28, 2019.
+This document was last updated on August 18, 2021.
 
 {{ page.last_modified_at }}
