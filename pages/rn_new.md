@@ -66,21 +66,21 @@ Table 1. Currently Supported/Tested Versions of Third Party Packages
 
 |Package   |Versions expected to work (obtained by build-environment inspection in some cases)  |Versions known to work (used in-house on any platform)  |
 |-------|----------------------------------|--------------|
-|[BerkeleyDB](https://www.oracle.com/database/berkeley-db/db.html)  |4.6.0 or newer   |4.5.20, 4.6.21.NC, 4.6.21.1, 4.7.25  |
-|[Boost Test](https://www.boost.org) |1.35.0 or newer |1.53.0, 1.54.0, 1.62.0, 1.66.0 |
-|FastCGI    |All versions    |2.1, 2.4.0, 2.4.1 |
-|[libbzip2](http://www.bzip.org)    |All versions    |1.0.5, 1.0.6   | 
-|[libjpeg](http://freshmeat.net/projects/libjpeg)     |All versions    |6b, 8c, 8d, 9c |
-|[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.2.7, 1.2.49, 1.2.50, 1.5.13, 1.6.20, 1.6.34 |
-|[libtiff](http://www.libtiff.org)  |All versions    |3.6.1, 3.9.4, 4.0.3, 4.0.6 |
-|[libungif](https://sourceforge.net/projects/giflib)   |All versions    |4.1.3 (libungif),<br/> 4.1.6, 5.1.2 (giflib) |
-|[libxml2](http://xmlsoft.org/)     |All versions    |2.7.6, 2.7.8, 2.9.0, 2.9.1, 2.9.4 |
-|[libxslt](http://xmlsoft.org/xslt/)|1.1.14 or newer |1.1.26, 1.1.28 |
-|[<span class="small-caps">LZO</span>](https://www.oberhumer.com/opensource/lzo) |2.x |2.05, 2.09   |
-|[PCRE](http://www.pcre.org)  |All versions    |7.8, 7.9, 8.31, 8.32, 8.38 |
-|[SQLite3](https://www.sqlite.org)   |3.6.6 or newer  |3.6.14.2, 3.6.20, 3.7.13, 3.7.17, 3.8.2, 3.8.10.1, 3.22.0 |
-|Sybase     |All versions    |15.5, 15.7, 16.0 |
-|[zlib](http://www.zlib.org)  |All versions    |1.2.3, 1.2.5, 1.2.7, 1.2.8, 1.2.11 |
+|[BerkeleyDB](https://www.oracle.com/database/berkeley-db/db.html)  |4.3.0 or newer   |4.5.20, 4.6.21.NC, 4.6.21.1, 5.3.21  |
+|[Boost Test](https://www.boost.org) |1.35.0 or newer |1.62.0, 1.65.1, 1.66.0, 1.71.0 |
+|FastCGI    |All versions    |2.4.0, 2.4.1 |
+|[libbzip2](http://www.bzip.org)    |All versions    |1.0.6, 1.0.8   | 
+|[libjpeg](http://freshmeat.net/projects/libjpeg)([-turbo](http://sourceforge.net/projects/libjpeg-turbo))     |All versions    |8c, 9b, 9c (libjpeg),<br/>1.2.90, 2.0.5 (libjpeg-turbo)  |
+|[libpng](http://www.libpng.org/pub/png/libpng.html)  |All versions    |1.5.13, 1.6.26, 1.6.34, 1.6.37 |
+|[libtiff](http://www.libtiff.org)  |All versions    |3.6.1, 4.0.3, 4.0.6, 4.1.0 |
+|[libungif](https://sourceforge.net/projects/giflib)   |All versions    |4.1.3 (libungif),<br/> 4.1.6, 5.1.4 (giflib) |
+|[libxml2](http://xmlsoft.org/)     |All versions    |2.7.8, 2.9.1, 2.9.4, 2.9.10 |
+|[libxslt](http://xmlsoft.org/xslt/)|1.1.14 or newer |1.1.26, 1.1.28, 1.1.29, 1.1.34 |
+|[<span class="small-caps">LZO</span>](https://www.oberhumer.com/opensource/lzo) |2.x |2.05, 2.08, 2.09, 2.10   |
+|[PCRE](http://www.pcre.org)  |All versions    |8.32, 8.39, 8.42, 8.43 |
+|[SQLite3](https://www.sqlite.org)   |3.6.6 or newer  |3.7.17, 3.22.0, 3.26.0, 3.31.1, 3.34.1 |
+|Sybase     |All versions    |16.0 |
+|[zlib](http://www.zlib.org)  |All versions    |1.2.7, 1.2.11 |
 
 The user is expected to download and build the 3<sup>rd</sup> party packages themselves. The release's package list includes links to download sites. However, the user still needs a list of the 3<sup>rd</sup> party packages and which versions of them are compatible with the release.
 
@@ -218,6 +218,6 @@ Official support for macOS 10.14, 10.15; for GCC 7.3 and ICC 2019 on CentOS; for
 Last Updated
 ---------------------------------------
 
-This document was last updated on August 18, 2021.
+This document was last updated on August 20, 2021.
 
 {{ page.last_modified_at }}
