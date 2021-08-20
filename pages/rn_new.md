@@ -163,10 +163,10 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 |Operating System |Architecture    |Compilers  |
 |-----------------------------------|----------------|-----------------------------|
-|CentOS 7.x (LIBC 2.17)  |x86-64    |**GCC 7.3.0**; ICC 2017, **2019**, **2021**  |
+|CentOS 7.x (LIBC 2.17)  |x86-64    |**GCC 7.3**, 8.3, 9.1, 10.2; Clang 7.0; ICC (20)17, **(20)19**, **(20)21**  |
 |Ubuntu **18.04 (LIBC 2.27)**|x86-64    |**GCC 7.5** |
 |FreeBSD **12.2**            |x86-64    |**Clang 10.0**      |
-|Ubuntu **20.04**|**Graviton 2 (ARM)**  |**Clang 10.0** | experimental |
+|Ubuntu **20.04 (LIBC 2.31)**|**Graviton 2 (ARM)**  |**Clang 10.0**; **GCC 9.3** | experimental |
 
 <a name="release_notes.MS_Windows"></a>
 
@@ -186,15 +186,16 @@ In cases where multiple compilers or versions are supported, the mainstream one 
 
 |Operating System  |Architecture|Compilers     |
 |---------------------------|------------|--------------------------------------|
+|macOS 10.13 (Darwin 17.x)|x86-64      |**Apple Clang 10**, Xcode; nominal support only at this point.    |
 |**macOS 10.14 (Darwin 18.x)**|x86-64      |**Apple Clang 11**, Xcode    |
-|**macOS 10.15 (Darwin 19.6)**|x86-64      |**Apple Clang 12**, Xcode    |
+|**macOS 10.15 (Darwin 19.x)**|x86-64      |**Apple Clang 12**, Xcode    |
 
 <a name="release_notes.Added_Platforms"></a>
 
 ### Added Platforms
 
 
-Official support for macOS 10.14, 10.15; for GCC 7.3 and ICC 2019 on CentOS; for FreeBSD 11.2 is new in this release. Also added an experimental ARM support.
+Official support for macOS 10.14, 10.15; for Ubuntu 18.04 and 20.04; for ICC (20)19 and (20)21 on CentOS; for FreeBSD 12.2 is new in this release. Also added experimental ARM support.
 
 <a name="release_notes.Discontinued"></a>
 
@@ -207,7 +208,6 @@ Official support for macOS 10.14, 10.15; for GCC 7.3 and ICC 2019 on CentOS; for
 |[MS Visual C++](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.MS_Visual_C) 2015 (MSVC 14) |MS Windows | x86-64 |
 |Apple Clang 8  | macOS 10.11.x (Darwin 15)|x86-64 |
 |Apple Clang 9  | macOS 10.12.x (Darwin 16)|x86-64 |
-|Apple Clang 10 | macOS 10.13.x (Darwin 17)|x86-64 |
 | | Ubuntu 14.04    |x86-64 |
 | | Ubuntu 16.04    |x86-64 | 
 | | FreeBSD 11.2    |x86-64 |
