@@ -357,6 +357,8 @@ Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib
 
 -   **NCBI_uses_toolkit_libraries**(list of libraries) – adds dependencies on other libraries in the same build tree.
 
+-   **NCBI_optional_toolkit_libraries**(COMPONENT list of libraries) – adds dependencies on other libraries in the same build tree depending on the availability of component *COMPONENT*.
+
 -   **NCBI_uses_external_libraries**(list of libraries) – adds external libraries to the build target. Probably, a better way of doing this is by using *requirements* in *NCBI_requires*, but if a library should be added to one or two projects only, then this might be an easier way.
 
 -   **NCBI_add_definitions**(list) – add compiler definitions to the target.
