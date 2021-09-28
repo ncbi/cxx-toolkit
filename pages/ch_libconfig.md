@@ -1137,6 +1137,7 @@ Table 19. Worker Node configuration parameters
 | Default timeout before the job is terminated in case of pullback.  This value can be overridden by the '--timeout' option specified with 'grid_cli suspend --pullback'.  | **`[server]`**<br/>**`default_pullback_timeout`** | | |
 | Sets the maximum number of jobs with the same client IP address running in parallel. When this limit is reached for a client IP address, the worker node immediately returns all new jobs with the same client IP address back to the queue also blacklisting them. Blacklisted jobs will not be given again to the same worker node for some time (server configured). | **`[server]`**<br/>**`max_jobs_per_client_ip`** | unsigned | 0 - unlimited |
 | Sets the maximum number of jobs with the same session ID running in parallel. When this limit is reached for a session ID, the worker node immediately returns all new jobs with the same session ID back to the queue also blacklisting them. Blacklisted jobs will not be given again to the same worker node for some time (server configured). | **`[server]`**<br/>**`max_jobs_per_session_id`** | unsigned | 0 - unlimited |
+| Specifies how often (in seconds) the worker node retries to commit a job after communication errors. The worker node gives up retrying either after it takes more than queue timeout (server configured) or if server successfully receives corresponding commit request but responds with an error. | **`[server]`**<br/>**`commit_job_interval`** | unsigned > 0 | 2 |
 
 <div class="table-scroll"></div>
 
