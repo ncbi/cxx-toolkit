@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release Notes (Version 25, August 2021)
+title: Release Notes (Version 25.2, September 2021)
 nav: pages/rn_new
 ---
 
@@ -46,13 +46,13 @@ The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/T
 Download
 -----------------------------------
 
-Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Aug_18_2021/>
+Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/>
 
--   [ncbi\_cxx--25\_0\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Aug_18_2021/ncbi_cxx--25_0_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
+-   [ncbi\_cxx--25\_2\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/ncbi_cxx--25_2_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
 
--   [ncbi\_cxx--25\_0\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Aug_18_2021/ncbi_cxx--25_0_0.zip) -- for MS-Windows / MS Visual Studio C++ 2017
+-   [ncbi\_cxx--25\_2\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/ncbi_cxx--25_2_0.zip) -- for MS-Windows / MS Visual Studio C++ 2017
 
-The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from November, 2020; and also include many hundreds of important and safe code updates made since then and through August, 2021.
+The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from November, 2020; and also include many hundreds of important and safe code updates made since then and through September, 2021.
 
 <a name="release_notes.Third_Party_Packages"></a>
 
@@ -218,6 +218,6 @@ Official support for macOS 10.14, 10.15; for Ubuntu 18.04 and 20.04; for ICC (20
 Last Updated
 ---------------------------------------
 
-This document was last updated on August 20, 2021.
+This document was last updated on September 30, 2021.
 
 {{ page.last_modified_at }}
