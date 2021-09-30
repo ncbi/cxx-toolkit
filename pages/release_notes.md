@@ -108,7 +108,7 @@ There have been significant additions and improvements in all parts of the Toolk
  - Adjusted code to work with GI identifiers whose values exceed 31 bit. Please use type 'TGi' for the GI values. The 31-bit boundary is currently expected to be crossed around January 2022... but this can happen earlier.
  - Started using C++14 specific features, so you will now need a C++14 compliant compiler to build the Toolkit.
  - Dropped support of 32-bit platforms for good.
- - Added "CMake" based build system. It currently co-exists with the "legacy" configure/PTB based build system.
+ - Added "CMake" based build system (experimental). It currently co-exists with the "legacy" configure/PTB based build system.
  - Ported to work on ARM processors.
 
 <a name="release_notes.Documentation"></a>
