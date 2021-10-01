@@ -105,11 +105,11 @@ New Developments
 
 There have been significant additions and improvements in all parts of the Toolkit since the last public release of the NCBI C++ Toolkit. Here, only very few are listed, mostly related to major formal changes:
 
- - Adjusted code to work with GI identifiers whose values exceed 31 bit. Please use type 'TGi' for the GI values. The 31-bit boundary is currently expected to be crossed around January 2022... but this can happen earlier.
+ - Adjusted code to work with GI identifiers whose values exceed 31 bit. Please use type 'TGi' for the GI values. The 31-bit boundary is currently expected to be crossed around January 2022... but it can happen earlier.
  - Started using C++14 specific features, so you will now need a C++14 compliant compiler to build the Toolkit.
  - Dropped support of 32-bit platforms for good.
  - Added "CMake" based build system (experimental). It currently co-exists with the "legacy" configure/PTB based build system.
- - Ported to work on ARM processors.
+ - Ported to work on ARM processors (doesn't yet work with the VDB Toolkit though, need to use --without-vdb flag).
 
 <a name="release_notes.Documentation"></a>
 
