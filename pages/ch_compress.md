@@ -292,7 +292,7 @@ Examples (`ZIP` compression/decompression for different sources):
 	is >> MDecompress_Zip >> str;
 	is >> MDecompress_Zip >> os;
 
-But this simplicity comes at a price. All manipulators use default parameters and flags for the underlying compression methods, and they have have limited error reporting (see notes below) and data sources. Each manipulator is just a shorthand for a [compression stream](#ch_compress.streams). It creates a corresponding compression/decompression/input/output stream, accepts passed parameter, perform a compression or decompression, puts the result data into the output, and then destroys itself. And all that in a single short line of code.
+But this simplicity comes at a price. All manipulators use default parameters and flags for the underlying compression methods, and they have limited error reporting (see notes below) and data sources. Each manipulator is just a shorthand for a [compression stream](#ch_compress.streams). It creates a corresponding compression/decompression/input/output stream, accepts passed parameter, perform a compression or decompression, puts the result data into the output, and then destroys itself. And all that in a single short line of code.
 
 **Notes**
 
@@ -321,7 +321,8 @@ Currently, archive API have support for [ZIP file format](#ch_compress.methods.z
 	
 That small library is very useful but it has some limitations:
 -	No support for encrypted archives;
--	No support for `zip64` format, so the number of files in the archive is limited to 65535.
+
+Latest versions of `miniz` have support for [ZIP64 file format](https://en.wikipedia.org/wiki/ZIP_(file_format)#ZIP64), that allow to create archives more than 4GB and have more than 65535 files in the archive. It automatically switches to ZIP64 if necessary.
 
 
 <a name="ch_compress.archiver.tar"></a>
