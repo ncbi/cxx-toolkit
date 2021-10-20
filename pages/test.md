@@ -6,8 +6,9 @@ nav: pages/release_notes
 
 
 <!-- Content start -->
+
 {{ page.title }}
-=============
+=================================
 
 The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/RN_index.html).
 
