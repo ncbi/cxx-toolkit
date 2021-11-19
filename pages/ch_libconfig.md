@@ -1065,6 +1065,7 @@ Table 17. NetCache client API configuration parameters (netcache\_api)
 | Defines LBSM affinity name to use for floor assignment, etc.         | **`[netcache_api]`**<br/>**`use_lbsm_affinity`**<br/><br/>N/A          | a valid affinity                  | (none)                   |
 | If this parameter is set to true, blob key contains service name and server (listed in the blob key) is not present in that service, then do not try to connect to that server. If set to 'auto' and key has a "Check-Server" hint set to NO, then assume 'server_check = no'; otherwise, assume 'server_check = yes'. Otherwise, unconditionally try to connect to the server. | **`[netcache_api]`**<br/>**`server_check`** | true/false/auto | auto |
 | This is a hint for the blob readers that use 'server_check = auto'. If set to true, blob readers are advised to pre-check the server which is listed in the blob key. | **`[netcache_api]`**<br/>**`server_check_hint`** | true/false | true |
+| If set, restricts NetCache API to specified services (unless `[netcache_api] server_check` is explicitly set to `false`). It is highly recommended to also set `[netcache_api] server_check` to `true` to prevent circumventing this check by using blob keys containing explicit instructions to turn server check off. | **`[netcache_api]`**<br/>**`allowed_services`** | comma/space separated list | "" |
 
 <div class="table-scroll"></div>
 
