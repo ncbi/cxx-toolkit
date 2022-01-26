@@ -78,7 +78,7 @@ Public Access to the Source Code via FTP
 Public Access to the Source Code via GitHub
 -------------------------------------------
 
-The contemporary TRUNK (and in the future, public releases) of the C++ Toolkit is available to the public in GitHub at https://github.com/ncbi/ncbi-cxx-toolkit-public.
+The contemporary TRUNK (and in the future, public releases) of the C++ Toolkit is available to the public in GitHub at [https://github.com/ncbi/ncbi-cxx-toolkit-public](https://github.com/ncbi/ncbi-cxx-toolkit-public).
 
 At this time it is a read-only mirror of our master SVN repository, updated nightly. Note however that one can submit Pull Requests to it (assumed to be under the overall C++ Toolkit license only!). We will review and consider such PRs for merging into our SVN repository -- from which they will make its way back into this GitHub mirror.
 
