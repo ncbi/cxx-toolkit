@@ -20,7 +20,7 @@ The following is an outline of the topics presented in this chapter:
 
 -   [Public Access to the Source Code via FTP](#ch_getcode_svn.ftp_download)
 
--   [Read-Only Access to the Source Code via Subversion](#ch_getcode_svn.external)
+-   [Public Access to the Source Code via GitHub](#ch_getcode_svn.external)
 
 -   [Read-Write Access to the Source Code via Subversion (NCBI only)](#ch_getcode_svn.code_retrieval)
 
@@ -75,16 +75,13 @@ Public Access to the Source Code via FTP
 
 <a name="ch_getcode_svn.external"></a>
 
-Read-Only Access to the Source Code via Subversion
---------------------------------------------------
+Public Access to the Source Code via GitHub
+-------------------------------------------
 
-The following options for read-only access to the C++ Toolkit Subversion repository are available to the public:
+The contemporary TRUNK (and in the future, public releases) of the C++ Toolkit is available to the public in GitHub at https://github.com/ncbi/ncbi-cxx-toolkit-public.
 
--   Checking out the source tree directly from the repository (e.g. svn co <https://anonsvn.ncbi.nlm.nih.gov/repos/v1/trunk/c++>).
+At this time it is a read-only mirror of our master SVN repository, updated nightly. Note however that one can submit Pull Requests to it (assumed to be under the overall C++ Toolkit license only!). We will review and consider such PRs for merging into our SVN repository -- from which they will make its way back into this GitHub mirror.
 
--   Browsing the repository with an HTTP browser (e.g. <https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++>).
-
--   Accessing the repository with a WebDAV client (also using <https://anonsvn.ncbi.nlm.nih.gov/repos/v1/trunk/c++> – although some clients may require dav:// instead of http://).
 
 <a name="ch_getcode_svn.code_retrieval"></a>
 
