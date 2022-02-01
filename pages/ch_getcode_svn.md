@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Retrieve the Source Code (FTP and Subversion)
+title: Retrieve the Source Code (FTP, Subversion and GitHub)
 nav: pages/ch_getcode_svn
 ---
 
