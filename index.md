@@ -17,7 +17,7 @@ Contents
     -   [Introduction to the C++ Toolkit](pages/ch_intro)
     -   [Getting Started](pages/ch_start)
 -   [Part 2. Development Framework](pages/part2)
-    -   [Retrieve the Source Code (FTP and Subversion)](pages/ch_getcode_svn)
+    -   [Retrieve the Source Code (FTP, Subversion and GitHub)](pages/ch_getcode_svn)
     -   [Configure, Build, and Use the Toolkit (autoconf/PTB)](pages/ch_config)
     -   [Working with Makefiles (autoconf/PTB)](pages/ch_build)
     -   [Project Creation and Management (autoconf/PTB)](pages/ch_proj)
