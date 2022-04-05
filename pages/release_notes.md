@@ -46,11 +46,11 @@ The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/T
 Download
 -----------------------------------
 
-Download the source code archives at: <ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/>
+Download the source code archives at: <https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/>
 
--   [ncbi\_cxx--25\_2\_0.tar.gz](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/ncbi_cxx--25_2_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
+-   [ncbi\_cxx--25\_2\_0.tar.gz](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/ncbi_cxx--25_2_0.tar.gz) -- for Unix'es (see the list of Unix flavors below) and MacOSX
 
--   [ncbi\_cxx--25\_2\_0.zip](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/ncbi_cxx--25_2_0.zip) -- for MS-Windows / MS Visual Studio C++ 2017
+-   [ncbi\_cxx--25\_2\_0.zip](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/ARCHIVE/2021/Sep_30_2021/ncbi_cxx--25_2_0.zip) -- for MS-Windows / MS Visual Studio C++ 2017
 
 The sources correspond to the NCBI production tree [sources](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn#ch_getcode_svn.chkout_production_tree), which are originally based on the development tree source snapshot from November, 2020; and also include many hundreds of important and safe code updates made since then and through September, 2021.
 
