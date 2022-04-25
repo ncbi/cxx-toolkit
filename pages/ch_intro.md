@@ -884,7 +884,7 @@ To use [CRegexp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CR
     LIB  = xregexp $(PCRE_LIB) xncbi
     LIBS = $(PCRE_LIBS) $(ORIG_LIBS)
 
-***Note:*** [CRegexp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRegexp) has no replacement functionality - i.e. there is no API support for replacing matched text with provided text or matched groups.
+There is also [CRegexpUtil](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CRegexpUtil) class which provides additional functionality such as replacing matched text with provided text or matched groups.
 
 <a name="ch_intro.intro_resizeiterator"></a>
 
