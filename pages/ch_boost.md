@@ -381,13 +381,14 @@ The Boost Unit Test Framework was extended by NCBI to provide several ways to di
 
 ##### Disabling Tests with Configuration File Entries
 
-The **`[UNITTESTS_DISABLE]`** section of the application configuration file can be customized to disable test cases or suites. Entries in this section should specify a test case or suite name and a logical expression for disabling it (expressions that evaluate to **`true`** disable the test). The logical expression can be formed from the logical constants **`true`** and **`false`**, numeric constants, [library-defined](#ch_boost.LibraryDefined_Variables) or [user-defined](#ch_boost._Disabling_Tests_with_1) unit test variables, logical operators ('`!`', '`&&`', and '`||`'), and parentheses.
+The **`[UNITTESTS_DISABLE]`** section of the application configuration file can be customized to disable test cases or suites. Entries in this section should specify a test case or suite name or fixture name and a logical expression for disabling it (expressions that evaluate to **`true`** disable the test). The logical expression can be formed from the logical constants **`true`** and **`false`**, numeric constants, [library-defined](#ch_boost.LibraryDefined_Variables) or [user-defined](#ch_boost._Disabling_Tests_with_1) unit test variables, logical operators ('`!`', '`&&`', and '`||`'), and parentheses.
 
-To disable specific tests, use commands like:
+To disable specific tests, suites and/or fixtures use commands like:
 
     [UNITTESTS_DISABLE]
-    SomeTestCaseName = OS_Windows && PLATFORM_BigEndian
-    SomeTestSuiteName = (OS_Linux || OS_Solaris) && COMPILER_GCC
+    SomeCaseName = OS_Windows && PLATFORM_BigEndian
+    SomeSuiteName = !OS_Linux
+    SomeFixtureName = COMPILER_ICC
 
 There is a special entry `GLOBAL` that can be used to disable all tests. For example, to disable all tests under Cygwin, use:
 
@@ -396,7 +397,7 @@ There is a special entry `GLOBAL` that can be used to disable all tests. For exa
 
 If the configuration file contains either a test name or a variable name that has not been defined (e.g. due to a typo) then the test program will exit immediately with an error, without executing any tests.
 
-If you disable tests with the configuration file, you'll need to list the `.ini` file in the `CHECK_COPY` macro in your makefile.  Please see the `CHECK_COPY` macro documentation in the [Defining and running tests](ch_proj.html#ch_proj.inside_tests) section for more detail.
+If you disable tests using the configuration file, you'll need to list the `.ini` file in the `CHECK_COPY` macro in your makefile.  Please see the `CHECK_COPY` macro documentation in the [Defining and running tests](ch_proj.html#ch_proj.inside_tests) section for more detail.
 
 <a name="ch_boost.LibraryDefined_Variables"></a>
 
