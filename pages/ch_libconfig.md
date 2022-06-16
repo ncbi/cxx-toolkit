@@ -360,6 +360,7 @@ Table 6. NCBI C++ Toolkit-wide configuration parameters
 | Specify the directory to use for temporary files.      | **`[NCBI]`**<br/>**`TmpDir`**<br/><br/>**`NCBI_CONFIG__NCBI__TMPDIR`**  [<sup>c</sup>](#ch_libconfig.TF.14)     | a valid path            | ""                |
 | Specify the file name of a Unicode-to-ASCII translation table.            | **`[NCBI]`**<br/>**`UnicodeToAscii`**<br/><br/>**`NCBI_CONFIG__NCBI__UNICODETOASCII`**  [<sup>c</sup>](#ch_libconfig.TF.14) | a valid path            | ""                |
 | Safety switch to turn async write off (making write blocking) for all CAsyncWriteCache instances.  | **`[NCBI]`**<br/>**`cache_async_write`**<br/><br/>**`NCBI_CONFIG__NCBI__CACHE_ASYNC_WRITE`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.12)      | true |
+| Enable CUrl class to parse input as 'indexed' query (RFC3875) when no '=' is present. | **`[CUrl]`**<br/>**`enable_parsing_as_index`**<br/><br/>**`NCBI_CONFIG__CURL__ENABLE_PARSING_AS_INDEX`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.12) | false |
 
 
 <div class="table-scroll"></div>
