@@ -70,11 +70,11 @@ Having checked out the source tree, run the following command in the root direct
 
     On Linux or MacOS:   ./cmake-configure --help
     On Windows: cmake-configure.bat --help
-    For XCode: src/build-system/cmake/cmake-cfg-xcode.sh --help
+    For XCode: ./cmake-configure Xcode --help
 
 It lists available options used to generate the build tree. Several of them limit the build scope:
 
--   *--with-projects=*”FILE” – build projects listed in FILE. This is either a [Project List File](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Project_List_Files), or a list of subdirectories of *src* directory. Each entry is a regular expression (see [CMake documentation](https://cmake.org/cmake/help/v3.14/command/string.html#regex-specification) for details). List of subdirectories consists of entries separated by semicolon (hyphen in the beginning of the entry means that targets from that directory should be excluded). If "FILE" is an existing file, it should be in plain text with one such entry per line. For example:
+-   *--with-projects=*”FILE” – build projects listed in FILE. This is either a [Project List File](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Project_List_Files), or a list of subdirectories of *src* directory. Each entry is a regular expression (see [CMake documentation](https://cmake.org/cmake/help/latest/command/string.html#regex-specification) for details). List of subdirectories consists of entries separated by semicolon (hyphen in the beginning of the entry means that targets from that directory should be excluded). If "FILE" is an existing file, it should be in plain text with one such entry per line. For example:
 
 ```
     --with-projects="corelib$;serial;-serial/test"
@@ -107,10 +107,11 @@ Few options define requirements and compilation features:
     -   *CfgProps* - on Windows, modifies Visual Studio solution to use custom Properties file (which defines build settings)
     -   *Coverage* - when using GCC compiler, sets code coverage flags
     -   *MaxDebug* - on Unix, adds *_GLIBCXX_DEBUG* compile definition
-    -   *noOpenMP* - on Unix, disables OpenMP API
-    -   *noSSE* - disables using SSE instruction set
+    -   *OpenMP* - on Unix, enables OpenMP API
+    -   *SSE* - enables using SSE instruction set
     -   *StaticComponents* - instructs build system to use component's static libraries if they are available,
     -   *Symbols*  - adds debug symbols into release build,
+    -   *UNICODE* - on Windows, enables using UNICODE character set.
  For example:
 
 ```
@@ -505,7 +506,7 @@ Here is an example of hook definition:
     endfunction()
     NCBI_register_hook(TARGET_ADDED NCBI_internal_AddCMakeTest)
 
-The mechanism utilizes [variable_watch](https://cmake.org/cmake/help/v3.14/command/variable_watch.html) CMake function, which means the arguments of the callback function are defined by CMake and cannot be changed. Still, to do their job, the hooks have access to all variables defined by NCBIptb and elsewhere.
+The mechanism utilizes [variable_watch](https://cmake.org/cmake/help/latest/command/variable_watch.html) CMake function, which means the arguments of the callback function are defined by CMake and cannot be changed. Still, to do their job, the hooks have access to all variables defined by NCBIptb and elsewhere.
 
 <a name="ch_cmconfig._External"></a>
 
