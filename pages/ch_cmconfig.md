@@ -29,6 +29,8 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
     
     -   [Import project](#ch_cmconfig._import_prebuilt)
 
+    -   [Conan package](#ch_cmconfig._Conan_prebuilt)
+
 -   [NCBIptb build system](#ch_cmconfig._NCBIptb)
 
     -   [What is it?](#ch_cmconfig._What)
@@ -207,6 +209,12 @@ It also possiible to use [*import_project*](https://ncbi.github.io/cxx-toolkit/p
     import_project serial $NCBI/c++.cmake.metastable/CMake-GCC730-Debug
 
 The script configures the tree automatically, according to prebuilt directory settings (GCC730-Debug in the example above).
+
+<a name="ch_cmconfig._Conan_prebuilt"></a>
+
+### Conan package
+
+NCBI C++ Toolkit is also available as [Conan package](https://conan.io/center/ncbi-cxx-toolkit-public). For details, please see the [package recipe](https://github.com/ncbi/ncbi-cxx-toolkit-conan) documentation.
 
 <a name="ch_cmconfig._NCBIptb"></a>
 
