@@ -21,6 +21,8 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
 -   [Configure build tree](#ch_cmconfig._Configure)
 
+    -   [Use Conan to manage external packages](#ch_cmconfig._Configure_Conan)
+
 -   [Use prebuilt Toolkit](#ch_cmconfig._Use_prebuilt)
 
     -   [Create new project](#ch_cmconfig._new_prebuilt)
@@ -125,6 +127,16 @@ Examples of configuration commands:
     cmake-configure --with-projects="misc"
 
 Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-VS2017\build*, and run *make [target]* command or open a generated solution in an IDE and build *target*.
+
+<a name="ch_cmconfig._Configure_Conan"></a>
+
+### Use Conan to manage external packages
+
+[Conan](https://docs.conan.io/en/latest/) is a software package manager for C and C++ development. NCBI C++ Toolkit uses a number of third party libraries and packages. At NCBI, they are usually prebuilt and readily available in many configuration. Still, in certain scenarios, it might be beneficial to manage them using package manager. To instruct NCBIptb to use Conan, use *--with-conan* command line flag in configuration command, for example:
+
+    cmake-configure --with-conan --with-projects="misc"
+
+In this case, NCBIptb installs specified Conan packages first, and only after that looks for additional packages in known locations at NCBI. The list of Conan packages and their options is described in *src/build-system/cmake/conanfile.\*.txt* files. There are 3 lists – for Windows (*conanfile.MSVC.txt*), Unix (*conanfile.UNIX.txt*) and MacOS (*conanfile.XCODE.txt*).
 
 <a name="ch_cmconfig._Use_prebuilt"></a>
 
