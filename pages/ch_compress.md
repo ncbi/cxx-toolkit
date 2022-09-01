@@ -18,6 +18,7 @@ To support data compression and decompression the C++ Toolkit have the [Compress
 -    bzip2 - [http://www.bzip.org/](http://www.bzip.org/)
 -    lzo - [http://www.oberhumer.com/opensource/lzo/](http://www.oberhumer.com/opensource/lzo/)
 -    zlib - [http://zlib.org/](http://zlib.org/)
+-    zstd - [https://github.com/facebook/zstd](https://facebook.github.io/zstd/)
 
 C++ Toolkit tries to use system version of these libraries installed on host. If they are missing though, then the embedded versions of `bzip2` and `zlib` will be automatically used instead. `lzo` is supported as a pure 3-rd party package.
 
@@ -47,6 +48,7 @@ The Compression API supports the following compression methods:
 -   [LZO](#ch_compress.methods.lzo)
 -   [ZIP](#ch_compress.methods.zip)
 -   [GZIP](#ch_compress.methods.gzip)
+-   [ZSTD](#ch_compress.methods.zstd)
 -   [ZIP (file format)](#ch_compress.methods.zip.file)
 -   [TAR (file format)](#ch_compress.methods.tar.file)
 
@@ -76,6 +78,11 @@ The `zlib` library uses `DEFLATE` compression algorithm. It is widely used and v
 
 This method add support for gzip (.gz) file format. This is a flavor of `ZIP` that uses special header and footer which allows to store a file name and other file system information (RFC 1952). It is fully compatible with .gz file format, and it allows to store/process concatenated gzip files as well. But, regardless of its relation to files this format can be used for memory and stream operations as well, if needed.
 
+<a name="ch_compress.methods.zstd"></a>
+### ZSTD [[zstd.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/zstd.hpp)]
+
+`Zstandard`, or `zstd`, is a fast lossless compression algorithm from Facebook, targeting real-time compression scenarios at `zlib`-level and better compression ratios. It's backed by a very fast entropy stage, provided by Huff0 and FSE library. The reference library offers a very wide range of speed / compression trade-off, and is backed by an extremely fast decoder.
+
 <a name="ch_compress.methods.zip.file"></a>
 ### ZIP (file format) [[archive.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/archive.hpp)]
 
@@ -100,8 +107,9 @@ All basic methods for compression/decompression are implemented in the following
 -	[CBZip2Compression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBZip2Compression.html)
 -	[CLZOCompression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCLZOCompression.html)
 -	[CZipCompression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZipCompression.html)
+-	[CZstdCompression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZstdCompression.html)
 
-Each class adds support for corresponding compression library (bzip2, lzo, zlib) and has methods to get a version of the used compression library, get or set a compression level, get status of the last operation, error code and description, and declare a specific set of supported compression/decompression flags. Basic compression allows to compress/decompress memory buffer of file with one call to the Compression API.
+Each class adds support for corresponding compression library (bzip2, lzo, zlib, zstd) and has methods to get a version of the used compression library, get or set a compression level, get status of the last operation, error code and description, and declare a specific set of supported compression/decompression flags. Basic compression allows to compress/decompress memory buffer of file with one call to the Compression API.
 
 All archive file formats are supported independently, see [archivers](#ch_compress.archivers) section for more details. 
 
@@ -111,7 +119,7 @@ All archive file formats are supported independently, see [archivers](#ch_compre
 Memory compression and decompression
 -----------------------------------
 
-The easiest method to compress/decompress data in memory is to use [[CompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer) and [[DecompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer) methods. Each of the compression classes mentioned above has such methods and allows to use corresponding compression libraries to perform data compression/decompression. Note that the advantages in simplified usage have their cost -- an increased memory consumption. You need to know sizes of input and output data in advance, and to allocate memory buffers accordingly. If the output buffer is too small, the operation will fail. Some compression methods like `ZIP` or `LZO` have [[EstimateCompressionBufferSize](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EstimateCompressionBufferSize)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EstimateCompressionBufferSize) method that can help with this. But because it is unknown in advance what kind of data will be compressed, this method behaves a bit pessimistic, and as a result the estimated buffer size can be larger than a size of the original non-compressed data.
+The easiest method to compress/decompress data in memory is to use [CompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer) and [DecompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer) methods. Each of the compression classes mentioned above has such methods and allows to use corresponding compression libraries to perform data compression/decompression. Note that the advantages in simplified usage have their cost -- an increased memory consumption. You need to know sizes of input and output data in advance, and to allocate memory buffers accordingly. If the output buffer is too small, the operation will fail. Some compression methods like `LZO`, `ZIP` or `ZSTD`have [EstimateCompressionBufferSize](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=EstimateCompressionBufferSize) method that can help with this. But because it is unknown in advance what kind of data will be compressed, this method behaves a bit pessimistic, and as a result the estimated buffer size can be larger than a size of the original non-compressed data.
 
 Below are some examples for in-memory compression and decompression. They use `ZIP` method but you can use any other base class to change it.
 
@@ -138,12 +146,13 @@ In spite of all, these compression/decompression methods are very useful in cont
 Files
 -------------------------
 
-Similar to memory-based [CompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer) and [DecompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer) methods, each [mentioned compression class](#ch_compress.basic) have corresponding file-based methods [[CompressFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressFile)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressFile) and [[DecompressFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressFile)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressFile). Both require to specify input and output file names. These classes can be used for some utility operations -- when you don`t need additionally process data. Both methods take data from files, compress or decompress it, and create output file on disk as well. 
+Similar to memory-based [CompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressBuffer) and [DecompressBuffer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressBuffer) methods, each [mentioned compression class](#ch_compress.basic) have corresponding file-based methods [CompressFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CompressFile) and [DecompressFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DecompressFile). Both require to specify input and output file names. These classes can be used for some utility operations -- when you don`t need additionally process data. Both methods take data from files, compress or decompress it, and create output file on disk as well. 
 
 But sometimes this is not enough. If you need to read some data from a compression file into memory or to write some data from a memory into a file and compress/decompress it on-the-fly, then the following classes could be useful:
 -	[CBZip2CompressionFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBZip2CompressionFile.html)
 -	[CLZOCompressionFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCLZOCompressionFile.html)
 -	[CZipCompressionFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZipCompressionFile.html)
+-	[CZstdCompressionFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZstdCompressionFile.html)
 
 Each class have [Open](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Open), [Read](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read), [Write](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) and [Close](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Close) methods. This allows to read/write compressed files; the data will be decompressed or compressed on-the-fly.
 
@@ -235,6 +244,8 @@ The main difference, besides names, is that each class accepts a "stream process
 -	[CLZOStreamDecompressor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCLZOStreamDecompressor.html)
 -	[CZipStreamCompressor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZipStreamCompressor.html)
 -	[CZipStreamDecompressor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZipStreamDecompressor.html)
+-	[CZstdStreamCompressor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZstdStreamCompressor.html)
+-	[CZstdStreamDecompressor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCZstdStreamDecompressor.html)
 -	[CTransparentStreamProcessor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTransparentStreamProcessor.html)
 
 All library based "stream processors" accept parameters specific for the underlying compression library. See compression libraries for details and parameters description.
@@ -272,10 +283,12 @@ All manipulators are declared in [include/util/compress/stream_util.hpp](https:/
 -	MCompress_BZip2
 -	MCompress_LZO
 -	MCompress_Zip
+-	MCompress_Zstd
 -	MCompress_GZipFile
 -	MDecompress_BZip2
 -	MDecompress_LZO
 -	MDecompress_Zip
+-	MDecompress_Zstd
 -	MDecompress_GZipFile,
 -	MDecompress_ConcatenatedGZipFile
 
@@ -315,7 +328,7 @@ The C++ Toolkit Compression API includes two subsets to work with compression ar
 Compression archive API
 -----------------------
 
-Compression archive API is implemented in [[CArchive](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchive)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchive.html) class and two derived classes [[CArchiveFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchiveFile)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveFile.html) and [[CArchiveMemory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchiveMemory)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCArchiveMemory.html) that support file- and memory-based archives accordingly. These classes have methods to create archives, add or extract files, list existing files, etc. -- whatever users usually do with an archive files.
+Compression archive API is implemented in [CArchive](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchive) class and two derived classes [CArchiveFile](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchiveFile) and [CArchiveMemory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CArchiveMemory) that support file- and memory-based archives accordingly. These classes have methods to create archives, add or extract files, list existing files, etc. -- whatever users usually do with an archive files.
 
 Currently, archive API have support for [ZIP file format](#ch_compress.methods.zip.file) only. This is possible due to [miniz](https://github.com/richgel999/miniz) compression library. Toolkit has an embedded copy for `miniz`, see [miniz.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/util/compress/api/miniz/miniz.c) that is a part of the compression API.
 	
@@ -381,7 +394,30 @@ For specific library, you can use more detailed `LIB` and `LIBS`, and omit all n
 	
     LIB  =  xcompress $(BZ2_LIB) $(Z_LIB) $(LZO_LIB) xncbi
     LIBS =  $(BZ2_LIBS) $(Z_LIBS) $(LZO_LIBS) $(ORIG_LIBS)
-	
+    
+For CMake files you just need to link with `xcompress` library:
+
+    NCBI_uses_toolkit_libraries(xcompress)
+
+
+
+**Q. Can I use all compression algorithms on any platforms / compilers?**
+
+Toolkit checks existing compressions libraries on a configuration stage. If system version of some compression library is not found, for some libraries like `bzip2`, `zlib`, `gzip` we have an embedded alternatives, that will be used automatically. But for some others we don't, like `lzo` and `zsd`. The configure define next macros, so it is better to put specific library related code to corresponding #if/#endif block to avoid compilation errors on some platforms/compilers.
+
+-	HAVE_LIBZ
+-	HAVE_LIBBZ2
+-	HAVE_LIBLZO
+-	HAVE_LIBZSTD
+
+```
+#if defined(HAVE_LIBZSTD)
+    // use ZSD related code here
+#else
+     // some backup code, or error reporting
+#endif
+```
+This is related to algorithm-specific classes. Many other common compession classes/interfaces can be used without such guards, like [ICompression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ICompression) or [streams](#ch_compress.streams).
 
 
 **Q. Can we compress/decompress data more than 4GB in size?**
@@ -429,7 +465,8 @@ You can try to decompress it, and if an error occurs, then the data is most prob
 		case CFormatGuess::eGZip:  method = CCompressStream::eGZipFile;  break;
 		case CFormatGuess::eBZip2: method = CCompressStream::eBZip2;     break;
 		case CFormatGuess::eLzo:   method = CCompressStream::eLZO;       break;
-		case CFormatGuess::eZip:   /* zip file format */                 break;
+		case CFormatGuess::eZip:   method = CCompressStream::eZip;       break;
+		case CFormatGuess::eZstd:  method = CCompressStream::eZstd;      break;
 		default:                   method = CCompressStream::eNone;      break;
 	}
 
