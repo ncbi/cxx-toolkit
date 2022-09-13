@@ -145,7 +145,7 @@ The suite of application examples below highlight important areas of the Toolkit
 
 -   [app/netcache](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/) - Creates an application that uses [NetCache](ch_app.html#ch_app.ncbi_netcache_service).
 
--   [app/netschedule](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/) - Creates an NCBI [GRID]([http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/GRID](https://confluence.ncbi.nlm.nih.gov/display/CT/GRID)) application that uses [NetSchedule](http://intranet.ncbi.nlm.nih.gov:6224/wiki-private/CxxToolkit/index.cgi/NetSchedule).
+-   [app/netschedule](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netschedule/) - Creates an NCBI [GRID] application that uses [NetSchedule](https://confluence.ncbi.nlm.nih.gov/display/CT/GRID).
 
 -   [app/objects](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/objects/) - Creates an application that uses ASN.1 objects.
 
