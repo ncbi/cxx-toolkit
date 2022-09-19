@@ -1338,7 +1338,7 @@ Table 7. HTTP Status Codes
 FCGI Redirection and Debugging C++ Toolkit CGI Programs
 -------------------------------------------------------
 
-Development, testing, and debugging of CGI applications can be greatly facilitated by making them [FastCGI](http://www.fastcgi.com/)-capable and using a simple proxy script. The basic idea is that FastCGI-enabled applications can be started once and process many requests without exiting, thereby improving performance.
+Development, testing, and debugging of CGI applications can be greatly facilitated by making them [FastCGI](https://fastcgi-archives.github.io/)-capable and using a simple proxy script. The basic idea is that FastCGI-enabled applications can be started once and process many requests without exiting, thereby improving performance.
 
 Applications that were written to use the C++ Toolkit CGI framework (see [example above](#ch_cgi.html)) can easily be made to run under your account, on your development machine, and in a number of ways (e.g. standalone, with special configuration, under a debugger, using a memory checker, using **strace**, etc.). This is accomplished by "tunneling" or "redirecting" through a simple FCGI proxy script that forwards HTTP requests to your application and returns the HTTP responses.
 
