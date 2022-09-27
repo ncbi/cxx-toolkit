@@ -458,7 +458,7 @@ Some of the source code retrieval scripts are available in Windows:
 
 ### Source Code Retrieval under Mac OS X
 
-Download and install the latest Subversion binaries for MacOSX from [http://subversion.tigris.org/](http://subversion.tigris.org).
+Download and install the latest Subversion binaries for MacOSX from [https://subversion.apache.org/](https://subversion.apache.org/).
 
 The rest should be the same as when using Subversion under UNIX systems. See [Source Code Retrieval under Unix](#ch_getcode_svn.unix).
 
