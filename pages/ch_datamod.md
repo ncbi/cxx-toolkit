@@ -1803,7 +1803,7 @@ The local Seq-id is an Object-id (see discussion in [General Use Objects](#ch_da
 
 ##### refseq: From the Reference Sequence project at the NCBI
 
-The [Reference Sequence project](https://www.ncbi.nlm.nih.gov/RefSeq/) at the NCBI aims to provide a comprehensive, integrated, non-redundant, well-annotated set of sequences, including genomic DNA, transcripts, and proteins. RefSeq assigns accessions (but not a LOCUS) to all entries. RefSeq accessions begin with two letters followed by an underscore, with additional letters after the underscore for some accessions. The leading characters have a distinct meaning as described in the [RefSeq accession format reference(https://www.ncbi.nlm.nih.gov/books/NBK21091/table/ch18.T.refseq_accession_numbers_and_mole/).
+The [Reference Sequence project](https://www.ncbi.nlm.nih.gov/RefSeq/) at the NCBI aims to provide a comprehensive, integrated, non-redundant, well-annotated set of sequences, including genomic DNA, transcripts, and proteins. RefSeq assigns accessions (but not a LOCUS) to all entries. RefSeq accessions begin with two letters followed by an underscore, with additional letters after the underscore for some accessions. The leading characters have a distinct meaning as described in the [RefSeq accession format reference](https://www.ncbi.nlm.nih.gov/books/NBK21091/table/ch18.T.refseq_accession_numbers_and_mole/).
 
 <a name="ch_datamod.general_Ids_from_Loc"></a>
 
