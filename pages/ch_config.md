@@ -605,7 +605,7 @@ This section covers the following topics:
 
 This section provides information on configuring, building, and using the Toolkit that is applicable to all Unix platforms. The section [Special Considerations for Specific Unix Platforms](#ch_config.Special_Consideratio) addresses platform-specific details.
 
-Note, however, that the sections on specific platforms do not address the level of support for specific compilers. See the [Supported Platforms](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi) section in the release notes for information on partially supported compilers.
+Note, however, that the sections on specific platforms do not address the level of support for specific compilers. See the [Supported Platforms](https://ncbi.github.io/cxx-toolkit/pages/release_notes#release_notes.Platforms_OSs__compi) section in the release notes for information on partially supported compilers.
 
 The following topics are discussed in this section:
 
