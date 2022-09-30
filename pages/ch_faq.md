@@ -172,7 +172,7 @@ Once the Toolkit is [configured and built](ch_config.html#ch_config.UNIX), then 
 
 ##### Windows inside NCBI
 
-A [supported version of MSVC](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi) must be installed.
+A [supported version of MSVC](https://ncbi.github.io/cxx-toolkit/pages/release_notes#release_notes.Platforms_OSs__compi) must be installed.
 
 A Subversion client must be installed. Normally, the systems team installs Subversion clients on new PCs and updates the client for everyone at the same time. Therefore, your PC should have a suitable Subversion client installed. To make sure that your client is working properly, enter `svn --version` in your `cmd.exe` shell. If this doesn't work, email <span class="oem_span">wj5z2z-ltzGujip5ust5upo5nv/</span>.
 
@@ -184,7 +184,7 @@ If you want to step into the source for the C++ Toolkit libraries while debuggin
 
 ##### Windows outside NCBI
 
-A [supported version of MSVC](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi) must be installed.
+A [supported version of MSVC](https://ncbi.github.io/cxx-toolkit/pages/release_notes#release_notes.Platforms_OSs__compi) must be installed.
 
 [Download the Toolkit source](ch_getcode_svn.html#ch_getcode_svn.ftp_download).
 
