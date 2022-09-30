@@ -572,7 +572,7 @@ After choosing a build scope, configuring, and building the Toolkit, you can now
 
 The term “platform” in this chapter has a specific meaning: the combination of operating system, architecture, and compiler. A supported platform is one for which the Toolkit has been configured, built, tested, and used by other applications.
 
-The list of supported platforms may change with new releases. For the platforms supported in the release you are using, see the [Supported Platforms](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/release_notes.html#release_notes.Platforms_OSs__compi) section in the release notes. Note that some platforms are only partially supported.
+The list of supported platforms may change with new releases. For the platforms supported in the release you are using, see the [Supported Platforms](https://ncbi.github.io/cxx-toolkit/pages/release_notes#release_notes.Platforms_OSs__compi) section in the release notes. Note that some platforms are only partially supported.
 
 <a name="ch_config.UNIX"></a>
 
