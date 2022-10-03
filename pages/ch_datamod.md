@@ -389,7 +389,7 @@ To include a time in the date:
 
 An Object-id is a simple structure used to identify a data object. It is just a CHOICE of an INTEGER or a VisibleString. It must always be used within some defining context (e.g. see Dbtag below) in order to have some global meaning. It allows flexibility in a host system's preference for identifying things by integers or strings.
 
-The Object-id type is implemented by the [CObject\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html) class. [CObject\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html) includes the [Match()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Match), [Compare()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Compare), and ***operator\<()*** methods for determining whether two Object-id's are identical.
+The Object-id type is implemented by the [CObject\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html) class. [CObject\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCObject__id.html) includes the ***Match(), Compare()***, and ***operator\<()*** methods for determining whether two Object-id's are identical.
 
 Types that include choices, such as Object-id, retain the last CHOICE assigned to them. For example, the following results in the Object-id being a string:
 
@@ -804,15 +804,15 @@ The C++ Toolkit introduced some new methods for Bioseq's:
 
 -   ***CBioseq(CSeq\_loc, string)*** - constructs a new delta sequence from the Seq-loc. The string argument may be used to specify local Seq-id text for the new Bioseq.
 
--   [GetParentEntry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetParentEntry) - returns Seq-entry containing the Bioseq.
+-   ***GetParentEntry*** - returns Seq-entry containing the Bioseq.
 
--   [GetLabel](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetLabel) - returns the Bioseq label.
+-   ***GetLabel*** - returns the Bioseq label.
 
--   [GetFirstId](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetFirstId) - returns the first element from the Bioseq's Id list or null.
+-   ***GetFirstId*** - returns the first element from the Bioseq's Id list or null.
 
--   [IsNa](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsNa) - true if the Bioseq is a nucleotide.
+-   ***IsNa*** - true if the Bioseq is a nucleotide.
 
--   [IsAa](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsAa) - true if the Bioseq is a protein.
+-   ***IsAa*** - true if the Bioseq is a protein.
 
 In addition, many utility functions for working with Bioseqs and sequence data are defined in the [CSeqportUtil](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeqportUtil.html) class.
 
@@ -834,15 +834,15 @@ A Bioseq may have many Seq-annots. This means it is possible for one Bioseq to h
 
 Some of the important methods for the [CSeq\_annot](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__annot.html) class are:
 
--   [AddName()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddName) - adds or replaces annotation descriptor of type `name`.
+-   ***AddName()*** - adds or replaces annotation descriptor of type `name`.
 
--   [AddTitle()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddTitle), [SetTitle()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetTitle) - adds or replaces annotation descriptor of type `title`.
+-   ***AddTitle(), SetTitle()*** - adds or replaces annotation descriptor of type `title`.
 
--   [AddComment()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddComment) - adds annotation descriptor of type `comment`.
+-   ***AddComment()*** - adds annotation descriptor of type `comment`.
 
--   [SetCreateDate()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetCreateDate), [SetUpdateDate()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetUpdateDate) - add or set annotation create/update time.
+-   ***SetCreateDate()*, *SetUpdateDate()*** - add or set annotation create/update time.
 
--   [AddUserObject()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddUserObject) - add a user-object descriptor.
+-   ***AddUserObject()*** - add a user-object descriptor.
 
 <a name="ch_datamod.Seqdescr_Describing_"></a>
 
@@ -941,7 +941,7 @@ The modifier concept permits a lot of flexibility. So a peptide with GIBB-mod = 
 
 ##### method: Protein Sequencing Method
 
-The method [GetMethod()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetMethod) gives the method used to obtain a protein sequence. The values for a GIBB-method are stored in the object as enumerated values mapping directly from the ASN.1 ENUMERATED type. They are:
+The method ***GetMethod()*** gives the method used to obtain a protein sequence. The values for a GIBB-method are stored in the object as enumerated values mapping directly from the ASN.1 ENUMERATED type. They are:
 
 **GIBB-method**
 
@@ -1096,9 +1096,9 @@ The representation class to which the Bioseq belongs is encoded in Seq-inst.repr
 
 Some of the important methods for Seq-inst are:
 
--   [IsAa](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsAa) - determines if the sequence type is amino acid
+-   ***IsAa*** - determines if the sequence type is amino acid
 
--   [IsNa](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsNa) - determines if the sequence type is nucleic acid
+-   ***IsNa*** - determines if the sequence type is nucleic acid
 
 <a name="ch_datamod.Seqinst_Virtual_Bios"></a>
 
@@ -1198,7 +1198,7 @@ The ASN.1 module [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/
 
 Some of the important methods for [CSeq\_data](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data.html) are:
 
--   [CSeq\_data()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_data) - constructors to create objects from string or vector of char
+-   ***CSeq\_data()*** - constructors to create objects from string or vector of char
 
 <a name="ch_datamod.IUPACaa_The_IUPACIUB"></a>
 
@@ -1565,11 +1565,11 @@ Sometimes a sequence is not part of a collection (e.g. a single annotated protei
 
 Some of the important methods for [CSeq\_entry](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__entry.html) are:
 
--   [GetLabel()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetLabel) - append a label based on type or content of the current Seq-entry
+-   ***GetLabel()*** - append a label based on type or content of the current Seq-entry
 
--   [GetParentEntry()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetParentEntry) - gets the parent of the current Seq-entry
+-   ***GetParentEntry()*** - gets the parent of the current Seq-entry
 
--   [Parentize()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Parentize) - recursive update of parent Seq-entries
+-   ***Parentize()*** - recursive update of parent Seq-entries
 
 <a name="ch_datamod.Bioseqset_A_Set_Of_S"></a>
 
@@ -1579,9 +1579,9 @@ A Bioseq-set contains a convenient collection of Seq-entry's. It can have descri
 
 Some of the important methods for [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html) are:
 
--   [GetLabel()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetLabel) - append a label based on type or content of [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html)
+-   ***GetLabel()*** - append a label based on type or content of [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html)
 
--   [GetParentSet()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetParentSet) - gets the parent of the current [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html)
+-   ***GetParentSet()*** - gets the parent of the current [CBioseq\_set](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCBioseq__set.html)
 
 <a name="ch_datamod.id_local_identifier_"></a>
 
@@ -1749,13 +1749,13 @@ There are no implicit Bioseq locations. All locations include a sequence identif
 
 In addition to the various sequence location and identifier classes, several convenience functions for comparing or manipulating Na-strands are defined in [Na\_strand.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/seqloc/Na_strand.hpp):
 
--   [IsForward()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsForward)
+-   ***IsForward()***
 
--   [IsReverse()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsReverse)
+-   ***IsReverse()***
 
--   [Reverse()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reverse)
+-   ***Reverse()***
 
--   [SameOrientation()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SameOrientation)
+-   ***SameOrientation()***
 
 <a name="ch_datamod._Seqid_Identifying_Se_1"></a>
 
@@ -1769,23 +1769,23 @@ A Textseq-id structure is used in many Seq-ids described below. It has four poss
 
 Some important methods of the [CSeq\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html) class are:
 
--   [CSeq\_id()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_id) -- constructors to simplify creation of Seq-ids from primitive types (string, int). Some of these constructors auto-detect the type of the Seq-id from its string representation.
+-   ***CSeq\_id()*** -- constructors to simplify creation of Seq-ids from primitive types (string, int). Some of these constructors auto-detect the type of the Seq-id from its string representation.
 
--   [Compare()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Compare) -- compare Seq-ids.
+-   ***Compare()*** -- compare Seq-ids.
 
 -   ***GetTextseq\_Id ()*** -- checks whether the Seq-id subtype is Textseq-id compatible and returns its value.
 
--   [IdentifyAccession()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IdentifyAccession) -- deduces Seq-id information from a bare accession.
+-   ***IdentifyAccession()*** -- deduces Seq-id information from a bare accession.
 
--   [Match()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Match) -- compare Seq-ids.
+-   ***Match()*** -- compare Seq-ids.
 
 Some important nonmember template functions are:
 
--   [FindGi()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindGi) -- returns gi from id list if exists, returns 0 otherwise.
+-   ***FindGi()*** -- returns gi from id list if exists, returns 0 otherwise.
 
--   [FindTextseq\_id()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FindTextseq_id) -- returns text seq-id from id list if exists, returns 0 otherwise.
+-   ***FindTextseq\_id()*** -- returns text seq-id from id list if exists, returns 0 otherwise.
 
--   [GetSeq\_idByType()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetSeq_idByType) -- search the container of [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html)\<[CSeq\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html)\> for the id of given type.
+-   ***GetSeq\_idByType()*** -- search the container of [CRef](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCRef.html)\<[CSeq\_id](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__id.html)\> for the id of given type.
 
 <a name="ch_datamod.Seqid_Semantics_of_U"></a>
 
@@ -1939,21 +1939,21 @@ A Seq-loc is a location on a Bioseq of any representation class, nucleic acid or
 
 Some important methods of the [CSeq\_loc](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc.html) class and some of the subtype classes ([CSeq\_interval](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__interval.html), [CSeq\_loc\_mix](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc__mix.html) etc.) are:
 
--   [CSeq\_loc()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_loc) -- constructors to simplify creation of simple Seq-loc objects.
+-   ***CSeq\_loc()*** -- constructors to simplify creation of simple Seq-loc objects.
 
--   [Compare()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Compare) -- compares two Seq-locs if they are defined on the same Bioseq.
+-   ***Compare()*** -- compares two Seq-locs if they are defined on the same Bioseq.
 
--   [GetTotalRange()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTotalRange) -- returns range, covering the whole Seq-loc. If the Seq-loc refers multiple Bioseqs, exception is thrown.
+-   ***GetTotalRange()*** -- returns range, covering the whole Seq-loc. If the Seq-loc refers multiple Bioseqs, exception is thrown.
 
--   [IsReverseStrand()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=IsReverseStrand) -- returns true if all ranges in the Seq-loc have reverse strand.
+-   ***IsReverseStrand()*** -- returns true if all ranges in the Seq-loc have reverse strand.
 
 -   ***GetStart(), GetStop()*** -- return start and stop positions of the Seq-loc. This may be different from GetTotalRange if the related Bioseq is circular or if the order of ranges in the Seq-loc is non-standard.
 
--   [GetCircularLength()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetCircularLength) -- returns length of the Seq-loc. If the sequence length is provided, the method checks whether the Seq-loc is circular and calculates the correct length, even if the location crosses a sequence start.
+-   ***GetCircularLength()*** -- returns length of the Seq-loc. If the sequence length is provided, the method checks whether the Seq-loc is circular and calculates the correct length, even if the location crosses a sequence start.
 
--   [CheckId()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CheckId) -- checks whether the Seq-loc refers to only one Seq-id and returns it; otherwise, it sends an exception.
+-  ***CheckId()]*** -- checks whether the Seq-loc refers to only one Seq-id and returns it; otherwise, it sends an exception.
 
--   [Add()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Add) -- adds a sub-location to the existing one.
+-  ***Add()]*** -- adds a sub-location to the existing one.
 
 Beside these methods, a new class [CSeq\_loc\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc__CI.html) is defined in Seq\_loc.hpp, which provides simplified access to individual ranges of any Seq-loc, regardless of its real type and structure.
 
