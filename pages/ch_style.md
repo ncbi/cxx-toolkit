@@ -931,7 +931,7 @@ Note for NCBI developers: Using these repositories has the additional advantages
 
 -   partially included in automated builds and tests (along with reporting via [email](ch_proj.html#ch_proj.inside_tests) and on the [intranet](http://intranet/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi)) on multiple platforms and compiler configurations; and
 
--   integrated with [JIRA](https://jira.ncbi.nlm.nih.gov/secure/Dashboard.jspa) and [FishEye](http://fisheye:8008/).
+-   integrated with [JIRA](https://jira.ncbi.nlm.nih.gov/secure/Dashboard.jspa) and [FishEye](https://fisheye.ncbi.nlm.nih.gov/).
 
 <a name="ch_style.Testing"></a>
 
