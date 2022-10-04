@@ -1951,9 +1951,9 @@ Some important methods of the [CSeq\_loc](https://www.ncbi.nlm.nih.gov/IEB/ToolB
 
 -   ***GetCircularLength()*** -- returns length of the Seq-loc. If the sequence length is provided, the method checks whether the Seq-loc is circular and calculates the correct length, even if the location crosses a sequence start.
 
--  ***CheckId()]*** -- checks whether the Seq-loc refers to only one Seq-id and returns it; otherwise, it sends an exception.
+-  ***CheckId()*** -- checks whether the Seq-loc refers to only one Seq-id and returns it; otherwise, it sends an exception.
 
--  ***Add()]*** -- adds a sub-location to the existing one.
+-  ***Add()*** -- adds a sub-location to the existing one.
 
 Beside these methods, a new class [CSeq\_loc\_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__loc__CI.html) is defined in Seq\_loc.hpp, which provides simplified access to individual ranges of any Seq-loc, regardless of its real type and structure.
 
