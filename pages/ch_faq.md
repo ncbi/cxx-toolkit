@@ -192,9 +192,9 @@ Once the Toolkit is [configured and built](ch_config.html#ch_config.MS_Windows),
 
 <a name="ch_faq.faq.CannotFindGetTypeInfo"></a>
 
-#### The [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) method is not declared or defined in any of the objects for which it is part of the interface
+#### The ***GetTypeInfo()*** method is not declared or defined in any of the objects for which it is part of the interface
 
-The macro DECLARE\_INTERNAL\_TYPE\_INFO() is used in the `*.hpp` files to declare the [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo). There are several macros that are used to implement [GetTypeInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetTypeInfo) methods in `*.cpp` files. These macros are generally named and used as follows:
+The macro DECLARE\_INTERNAL\_TYPE\_INFO() is used in the `*.hpp` files to declare the ***GetTypeInfo()***. There are several macros that are used to implement ***GetTypeInfo()*** methods in `*.cpp` files. These macros are generally named and used as follows:
 
     BEGIN_*_INFO(...)
     {
