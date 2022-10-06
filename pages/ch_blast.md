@@ -50,7 +50,7 @@ An attempt was made to isolate the user of the BLAST API (as exposed in `algo/bl
 
 -   [Results](#ch_blast._Results_2)
 
-[C++ BLAST Options Cookbook](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/blast_opts_cookbook.html)
+[C++ BLAST Options Cookbook](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c%2B%2B/include/algo/blast/api/blast_options.hpp?revision=82005&view=markup#l586)
 
 [Sample Applications](#ch_blast.Sample_Applications)
 
