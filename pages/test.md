@@ -10,6 +10,11 @@ nav: pages/release_notes
 {{ page.title }}
 =================================
 
+
+*** test ***
+
+[C++ BLAST Options Cookbook](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c%2B%2B/include/algo/blast/api/blast_options.hpp?revision=82005&view=markup.html#1586)
+
 The previous Release Notes can be seen [here](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/public_releases/RN_index.html).
 
 
