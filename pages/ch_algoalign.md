@@ -99,7 +99,7 @@ The Alignment Manager Library [`xalnmgr`:[include](https://www.ncbi.nlm.nih.gov/
 
 [IAlnExplorer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=IAlnExplorer&_remember=1) interface defines types and constants used by derived classes representing alignments ([CAlnMap](#ch_algoalign.alignment_manager_impl_alnmap) and [CSparseAln](#ch_algoalign.alignment_manager_impl_sparsealn)). *EAlignType* enumerator describes types of sequences participating in the alignment: nucleotide, protein, mixed etc. *ESearchDirection* defines how to change position while performing some operations: based on sequence position and strand, or alignment coordinates. *ESortState* defines possible states of alignment data: unsorted, ascending, descending or unsupported.
 
-[IAlnSegment](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=IAlnSegment&_identdefonly=1) interface defines types, constants and methods representing a single alignment segment. For each segment there are two ranges defined: the range on the selected sequence returned by *GetRange()* method, and the range on the whole alignment returned by *GetAlnRange()*. Depending on segment type one or both ranges may be empty. *ESegTypeFlags* provide information about segment type.
+[IAlnSegment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=IAlnSegment&_remember=1) interface defines types, constants and methods representing a single alignment segment. For each segment there are two ranges defined: the range on the selected sequence returned by *GetRange()* method, and the range on the whole alignment returned by *GetAlnRange()*. Depending on segment type one or both ranges may be empty. *ESegTypeFlags* provide information about segment type.
 
 - *fAligned* indicates that the selected sequence is aligned to at least, both GetRange() and GetAlnRange() return non-empty ranges.
 
@@ -113,7 +113,7 @@ The Alignment Manager Library [`xalnmgr`:[include](https://www.ncbi.nlm.nih.gov/
 
 - *fInvalid* indicates bad state of a segment iterator.
 
-[IAlnSegmentIterator](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=IAlnSegmentIterator&_identdefonly=1) interface defines types, constants and methods for iterating alignment segments. *EFlags* enumerator defines flags for iterating all segments, only aligned ranges, only unaligned ranges, or all segments where at least some rows are aligned to each other (but the selected row may contain a gap).
+[IAlnSegmentIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=IAlnSegmentIterator&_remember=1) interface defines types, constants and methods for iterating alignment segments. *EFlags* enumerator defines flags for iterating all segments, only aligned ranges, only unaligned ranges, or all segments where at least some rows are aligned to each other (but the selected row may contain a gap).
 
 
 <a name="ch_algoalign.alignment_manager_implementations"></a>
