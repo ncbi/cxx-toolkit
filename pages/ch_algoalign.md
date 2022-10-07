@@ -129,7 +129,7 @@ The Alignment Manager Library [`xalnmgr`:[include](https://www.ncbi.nlm.nih.gov/
 
 [CSparseSegment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CSparseSegment&_remember=1) is an implementation of IAlnSegment which defines it’s abstract methods.
 
-[CSparse_CI](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr2/ident?v=c%2B%2B&i=CSparse_CI&_identdefonly=1) implements IAlnSegmentIterator which allows to iterate a given row of a CSparseAln. The iterator can be used to iterate the whole row or a specific range on it.
+[CSparse_CI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CSparse_CI&_remember=1) implements IAlnSegmentIterator which allows to iterate a given row of a CSparseAln. The iterator can be used to iterate the whole row or a specific range on it.
 
 
 <a name="ch_algoalign.alignment_manager_impl_alnmap"></a>
