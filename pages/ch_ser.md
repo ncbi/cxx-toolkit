@@ -1905,17 +1905,17 @@ User-defined classes that are derived from [CObject](https://www.ncbi.nlm.nih.go
 
 <a name="ch_ser.iterators.html_stdType"></a>
 
-### [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeIterator) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCStdTypeIterator.html)) and [CStdTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeConstIterator) ([\*](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCStdTypeConstIterator.html))
+### [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CStdTypeIterator&_remember=1) and [CStdTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeConstIterator)
 
-All of the type iterators described thus far require that each object visited must provide its own type information. Hence, none of these can be applied to standard types such as ***int, float, double*** or the STL type ***string***. The [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeIterator) and [CStdTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeConstIterator) classes selectively iterate over data members of a specified type. But for these iterators, the type **must** be a simple C type (***int, double, char\*, etc.***) or an STL type ***string***. For example, to iterate over all the ***string*** data members in a [CPerson](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerson) object, we could use:
+All of the type iterators described thus far require that each object visited must provide its own type information. Hence, none of these can be applied to standard types such as ***int, float, double*** or the STL type ***string***. The [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CStdTypeIterator&_remember=1) and [CStdTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeConstIterator) classes selectively iterate over data members of a specified type. But for these iterators, the type **must** be a simple C type (***int, double, char\*, etc.***) or an STL type ***string***. For example, to iterate over all the ***string*** data members in a [CPerson](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CPerson) object, we could use:
 
     for (CStdTypeIterator<string> i(Begin(neighborhood)); i; ++i) {
         cout << *i << ' ';
     }
 
-The [CStdTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeConstIterator) is identical to the [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeIterator) but is designed to operate on `const` elements and requires the [ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin) function.
+The [CStdTypeConstIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeConstIterator) is identical to the [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CStdTypeIterator&_remember=1) but is designed to operate on `const` elements and requires the [ConstBegin()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ConstBegin) function.
 
-For examples using [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) and [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeIterator), see [Code Sample 2 (ctypeiter.cpp)](#ch_ser.ctypeiter_cpp.html) and [Code Sample 3 (ctypeiter.hpp)](#ch_ser.ctypeiter_hpp.html).
+For examples using [CTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CTypeIterator) and [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CStdTypeIterator&_remember=1), see [Code Sample 2 (ctypeiter.cpp)](#ch_ser.ctypeiter_cpp.html) and [Code Sample 3 (ctypeiter.hpp)](#ch_ser.ctypeiter_hpp.html).
 
 <a name="ch_ser.ctypeiter_cpp.html"></a>
 
@@ -2818,7 +2818,7 @@ The NCBI C++ Toolkit provides a rich and powerful [set of iterators](#ch_ser.ite
 
 In this example, the iterator will skip over all but the string data members.
 
-The [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CStdTypeIterator) is one of several iterators which makes use of an object's `type information` to implement the desired functionality. We began this section by positing that the traversal of an object requires an a priori knowledge of that object's internal structure. This is not strictly true however, if type information for the object is also available. An object's type information specifies the class layout, inheritance relations, data member names, and various other attributes such as size, which are independent of specific instances. All of the C++ type iterators described in [The NCBI C++ Toolkit Iterators](#ch_ser.iterators.html) section utilize type information, which is the topic of a previous section: [Runtime Object Type Information](#ch_ser.typeinfo.html).
+The [CStdTypeIterator](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=CStdTypeIterator&_remember=1) is one of several iterators which makes use of an object's `type information` to implement the desired functionality. We began this section by positing that the traversal of an object requires an a priori knowledge of that object's internal structure. This is not strictly true however, if type information for the object is also available. An object's type information specifies the class layout, inheritance relations, data member names, and various other attributes such as size, which are independent of specific instances. All of the C++ type iterators described in [The NCBI C++ Toolkit Iterators](#ch_ser.iterators.html) section utilize type information, which is the topic of a previous section: [Runtime Object Type Information](#ch_ser.typeinfo.html).
 
 <a name="ch_ser.SOAP_support"></a>
 
