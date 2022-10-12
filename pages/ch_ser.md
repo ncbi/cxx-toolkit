@@ -95,7 +95,7 @@ The following is an outline of the topics presented in this chapter:
 
     -   [CObjectIterator (\*) and CObjectConstIterator (\*)](#ch_ser.iterators.html_cobjType)
 
-    -   [CStdTypeIterator (\*) and CStdTypeConstIterator (\*)](#ch_ser.iterators.html_stdType)
+    -   [CStdTypeIterator and CStdTypeConstIterator](#ch_ser.iterators.html_stdType)
 
     -   [CTypesIterator (\*)](#ch_ser.iterators.html_typesIt)
 
