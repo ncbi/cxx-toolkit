@@ -816,7 +816,7 @@ Table 2. Effect of setting the diag-destination parameter
 
 <div class="table-scroll"></div>
 
-However, an application can make other options available by calling [RegisterDiagFactory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RegisterDiagFactory) from its [Init](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Init) routine. In particular, calling
+However, an application can make other options available by calling [RegisterDiagFactory](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RegisterDiagFactory) from its Init routine. In particular, calling
 
     #include <connect/email_diag_handler.hpp> 
     ... 
