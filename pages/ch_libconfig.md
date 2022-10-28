@@ -622,7 +622,7 @@ Table 9. FCGI-related configuration parameters
 | Make the FastCGI application exit if the named file changes.              | **`[FastCGI]`**<br/>**`WatchFile.Name`**<br/><br/>**`NCBI_CONFIG__FASTCGI__WATCHFILE_DOT_NAME`**  [<sup>b</sup>](#ch_libconfig.TF.30) | valid file name        | (none)  |
 | The number of bytes to read from the watch file to see if it has changed. | **`[FastCGI]`**<br/>**`WatchFile.Limit`**<br/><br/>**`NCBI_CONFIG__FASTCGI__WATCHFILE_DOT_LIMIT`**  [<sup>b</sup>](#ch_libconfig.TF.30)     | positive integer (non-positives trigger default)             | 1024    |
 | The period in seconds between checking the watch file for changes.        | **`[FastCGI]`**<br/>**`WatchFile.Timeout`**<br/><br/>**`NCBI_CONFIG__FASTCGI__WATCHFILE_DOT_TIMEOUT`**  [<sup>b</sup>](#ch_libconfig.TF.30) | positive integer (non-positives trigger default, which is to disable the watch file checking)      | 0 |
-| Maximum number of request processing threads. | **`[FastCGI]`**<br/>**`MaxThreads`**<br/><br/>**`NCBI_CONFIG__FASTCGI__MAXTHREADS`**  [<sup>b</sup>](#ch_libconfig.TF.30) | positive integer or 0 for the default value | (thread::hardware_concurrency()) |
+| Maximum number of request processing threads. | **`[FastCGI]`**<br/>**`MaxThreads`**<br/><br/>**`NCBI_CONFIG__FASTCGI__MAXTHREADS`**  [<sup>b</sup>](#ch_libconfig.TF.30) | positive integer or 0 for the default value | 8 |
 
 <div class="table-scroll"></div>
 
