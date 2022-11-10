@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Data compression (ZIP, GZIP, BZip2, LZO)  
+title: Data compression (BZip2, LZO, ZIP, GZIP, ZSTD) 
 nav: pages/ch_compress
 ---
 
@@ -28,14 +28,18 @@ The following is an outline of the topics presented in this chapter:
 
 - [Supported compression methods](#ch_compress.methods)
 - [Basic methods](#ch_compress.basic)
--	[Memory compression and decompression](#ch_compress.memory)
--	[Files](#ch_compress.files)
--	[Streams](#ch_compress.streams)
--	[Stream manipulators](#ch_compress.manipulators)
--	[Archivers](#ch_compress.archivers)
-    -    [Compression archive API](#ch_compress.archiver.arc)
-    -    [TAR archive API](#ch_compress.archiver.tar)
--   [FAQ](#ch_compress.FAQ)
+- [Memory compression and decompression](#ch_compress.memory)
+- [Files](#ch_compress.files)
+- [Streams](#ch_compress.streams)
+- [Stream manipulators](#ch_compress.manipulators)
+- [Advanced compression parameters](#ch_compress.params)
+- [Dictionaries](#ch_compress.dict)
+    - [ZIP](#ch_compress.dict.zip)
+    - [ZSTD](#ch_compress.dict.zstd)
+- [Archivers](#ch_compress.archivers)
+    - [Compression archive API](#ch_compress.archiver.arc)
+    - [TAR archive API](#ch_compress.archiver.tar)
+- [FAQ](#ch_compress.FAQ)
 
 
 <a name="ch_compress.methods"></a>
@@ -161,8 +165,8 @@ Reading data from compressed file (using [CZipCompression](https://www.ncbi.nlm.
 	CZipCompressionFile cf;
 	if (!cf.Open(file_path, CCompressionFile::eMode_Read)) {
 	    // error
-		// int err_code   = cf.GetErrorCode();
-        // string err_msg = cf.GetErrorDescription();
+	    // int err_code   = cf.GetErrorCode();
+	    // string err_msg = cf.GetErrorDescription();
 	} 
 	long n = cf.Read(buf, len);
 	if (n < 0) {
@@ -256,7 +260,7 @@ Here is an example of how to read some data from a stream and to decompress it o
 
 	CSomeIstreamDerivedClass is_orig(...);  // add ios_base::binary to stream's open mode
 	CCompressionIStream is(is_orig,
-	                       new CZipStreamDecompressor(... parameters/flags ...),
+	                       new CZipStreamDecompressor(...),
 	                       CCompressionIStream::fOwnProcessor));
 	is.read(buf, len);
 
@@ -297,7 +301,7 @@ Manipulators are very easy to use, they don't require long definitions or initia
 Examples (`ZIP` compression/decompression for different sources):
 
 	// Compress text or other stream, and write result to 'os'
-	os << MCompress_Zip << "Text";
+	os << MCompress_Zip << "text";
 	os << MCompress_Zip << str;
 	os << MCompress_Zip << is;
   
@@ -314,6 +318,100 @@ But this simplicity comes at a price. All manipulators use default parameters an
 1. Compression/decompression manipulators accept streams, `char*` and `string` parameters only. No any other type.
 
 2. The diagnostic is very limited. On error, it can throw an exception of type [CCompressionException](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCompressionException) only.
+
+
+<a name="ch_compress.params"></a>
+
+Advanced compression parameters
+-------------------------------
+
+Usually default flags and parameters provide an abequate environment to compress and decompress data using the Compression API. But sometimes it is necessary to change default behavior. There are a two ways to do this, first one is flags. All compression methods have `EFlags` enumeration and `GetFlags()`/`SetFlags()` methods to apply it. Some classes, like streams, allow to specify flags via parameters in it's constructor. Some flags share its name between different compression methods, but other are unuque for each one. Note, please don't use flags from one compression method on another, this can lead to unpredictable results.
+
+Other way to tune up each compression method is an advanced parameters. Each compression method have its own set of functions to set required advanced parameters and get min/max/default values for each of them. Using incorrect out-of-range parameter's value can lead to an error or throwing an exception.
+
+Here are some examples of setting advanced compression parameters using `zip` compression method, but same technique could be applied to any other:
+
+**CCompression**
+
+	CZipCompression zip(CCompression::eLevel_Best);
+	zip.SetWindowBits(15);
+	zip.SetMemoryLevel(9);
+
+**CCompressionFile**
+
+	CZipCompressionFile zip_file(file_name, mode);
+	zip_file.SetWindowBits(15);
+	zip_file.SetMemoryLevel(9);
+	zip_file.SetStrategy(strategy)
+
+**Streams**
+
+The stream classes are more complicated. The stream wrappers and manipulators from [include/util/compress/stream_util.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/stream_util.hpp) are made for a easier usage and doesn't allow to set an advanced compression parameters. You neeed to create compression stream using algorithm-specific stream processor and tune up all necessary parameters there, before creating a stream. See [compression stream](#ch_compress.streams) for details.
+
+In short, you need to use algorithm specific `CCompression[IO]Stream` from [include/util/compress/stream.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/stream.hpp), like
+
+	// Create algorithm specific compressor (as example)
+	CZipCompressor compressor(<params>);
+	// Set all necessary advanced parameters
+    	compressor.SetMemoryLevel(9);
+	// Create stream processor
+    	CCompressionStreamProcessor processor(&compressor, ...);
+	// Create compression stream (input stream as example)
+	CCompressionIStream is(data_input_stream, zip_proc, CCompressionStream::fOwnProcessor);
+
+or, if you use shorter stream compressor/decompressor approach. The stream processor have a special `GetCompressor()`/`GetDecompressor()` methods to get a pointer to internal compressor/decompressor accordingly, which can be used to set all parameters:
+
+	// Create stream processor (compressor as example)
+	CZipStreamCompressor* processor = new CZipStreamCompressor(...);
+	// Set all necessary advanced parameters before creating the stream
+ 	processor->GetCompressor()->SetMemoryLevel(9);
+	// Create compression stream (input stream as example)
+	CCompressionIStream is(data_input_stream, processor, CCompressionStream::fOwnProcessor);
+	
+
+
+<a name="ch_compress.dict"></a>
+
+Dictionaries
+------------
+
+Dictionaries can have a large impact on the compression ratio of small files. The smaller the amount of data to compress, the more difficult it is to compress. This problem is common to all compression algorithms, that learn from past data how to compress future data. But at the beginning of a new data set, there is no "past" to build upon. So dictionaries allow to have a good starting point for compressing such data, if it were selected right. Using a dictionary is most useful when the data to be compressed is short and can be predicted with good accuracy; the data can then be compressed better than without a dictionary.
+
+Each compression algorithm have [SetDictionary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDictionary) method, that allow to set a dictionary for all operations of compressing/decompressing buffers, files and streams. Setting dictionary for a stream is the same as setting advanced compression parameters, see (#ch_compress.params), simplified stream wrappers and manipulators from [include/util/compress/stream_util.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/stream_util.hpp) don't allow to use advanced parameters or dictionaries.
+
+Currently only [ZIP](#ch_compress.methods.zip) and [ZSTD](#ch_compress.methods.zstd) have dictionary support, all other return `FALSE` on a  [SetDictionary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SetDictionary) call. But you can add a check on this feature at runtime, if necessary:
+
+	CSomeCompression c;
+	bool support_dictionary = c.HaveSupport(ICompression::eFeature_Dictionary);
+
+The compressor and decompressor must use exactly the same dictionary. Each compression algorithm have its own format for dictionaries. We have a [CCompressionDictionary](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CCompressionDictionary) class, that allow to load and manage dictionary data, but we don't support creating dictionaries in this API (see algorithm-specific sections below for details). There are no such thing as an "universal" dictionary, it should be created for "yours" specific data and specific compression method. Yours should try to create different dictionaries and find which one is working best for your. Once created, the dictionary can be used to compress/decompress similar data and save a lot of space. Badly prepared dictionary don't inprove compression ratio against non-dictionary scenarios.
+
+<a name="ch_compress.dict.zip"></a>
+### ZIP
+
+Dictionaries designed to work with `zib` raw deflate compression. They can be used with [GZIP](#ch_compress.methods.gzip) compression as well, if corresponding flags were used to write a `gzip` format, but files were created this way can be decompressed using this API only, default `gunzip` utility doesn't support dictionaries, be aware.
+
+The process of preparing a dictionary for `zip` compression is a dark area, there are very little information how to do this, and no any tools exists to help with creating them. It is known that the dictionary is a binary file, and should consist of "strings" (byte sequences) that are likely to be encountered later in the data to be compressed, with the most commonly used sequences preferably put towards the end of the dictionary. The dictionary size cannot exceed the size of the window used for compression, so the compression library use the end of the dictionary and discard all from the beginning. Any "string" delimiters in the dictionary can and probably should be omitted. 
+
+<a name="ch_compress.dict.zstd"></a>
+### ZSTD
+
+[ZSTD](#ch_compress.methods.zstd) have easier way to create dictionaries. Widely available for all platforms `zstd` utility offers a training mode that able to generate a dictionary from a set of samples or small files. See [The case for Small Data compression](https://github.com/facebook/zstd#the-case-for-small-data-compression). An example of a train set for a dictionary can be found [here](https://github.com/facebook/zstd/releases/tag/v1.1.3), see `github_users_sample_set.tar.gz` in Assets (it includes a directory with a lot of small files with a minimal differences). Default dictionary size for `zstd` is 112,649 bytes, but you can change this with `--maxdict` option to desired value.
+
+	# see full set of options and tuneups on trainig dictionaries
+	zstd --help
+	
+	# Different ways to create a dictionary
+	zstd --train dir_with_samples/* -o dictionary
+	zstd --train -r dir_with_samples -o dictionary
+	zstd --train -r dir_with_samples --maxdict=2048 -o dictionary
+
+It also have `-b`option to benchmark compression, so you can easier find a best dictionary for your data:
+	
+	# benchmark sample set with and without dictionary compression
+	zstd -b1 -r data_dir
+	zstd -b1 -r data_dir -D dictionary
+
 
 
 <a name="ch_compress.archivers"></a>
@@ -351,11 +449,11 @@ Tar format supports combining multiple files into one `.tar` file which is not c
 
 	ifstream ifs("some.tar.gz", ios_base::in | ios_base::binary);
 	if (ifs.fail()) {
-		// error
+	   // error
 	}
 	CDecompressIStream ics(ifs, CDecompressIStream::eGZipFile, flags);
 	if (ics.fail()) {
-		// error
+	    // error
 	}
 	CTar tar(ics);
 	...
@@ -370,6 +468,8 @@ Note that if stream constructor is used, then [CTar](https://www.ncbi.nlm.nih.go
 FAQ
 ----------------
 
+<br>
+
 **Q. What header files do I need to include?**
 
 This depends on what functionality you need.
@@ -381,6 +481,7 @@ This depends on what functionality you need.
 -	For the archive file format support: [<util/compress/archive.hpp>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/archive.hpp) or [<util/compress/tar.hpp>](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/tar.hpp).
 
 
+<br>
 
 **Q. What do I need to add to my Makefile?**
 
@@ -400,6 +501,7 @@ For CMake files you just need to link with `xcompress` library:
     NCBI_uses_toolkit_libraries(xcompress)
 
 
+<br>
 
 **Q. Can I use all compression algorithms on any platforms / compilers?**
 
@@ -420,29 +522,40 @@ Toolkit checks existing compressions libraries on a configuration stage. If syst
 This is related to algorithm-specific classes. Many other common compession classes/interfaces can be used without such guards, like [ICompression](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=ICompression) or [streams](#ch_compress.streams).
 
 
+<br>
+
 **Q. Can we compress/decompress data more than 4GB in size?**
 
 Yes, all compression methods have full support for data > 4GB. The size of compressed or uncompressed data is limited to size of `size_t` type only. 
 
-Note 1. [Compression files](#ch_compress.files) have [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) and [Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) methods, both are limited to return values of `long` type, to allow to return a negative values on errors. Both methods return the number of bytes actually read/written, so you need to repeat calling it until all the data has been read/written.
+Notes:
 
-Note 2. [Streams](#ch_compress.streams) also have ***read()*** and [write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=write) methods derived from the standard I/O stream API; both accept parameter of `std::streamsize` type which is usually different from the `size_t` that is used in the Compression API. So, all compression streams have two additional non-standard methods, that can be helpful:
+1. [Compression files](#ch_compress.files) have [Read()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Read) and [Write()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Write) methods, both are limited to return values of `long` type, to allow to return a negative values on errors. Both methods return the number of bytes actually read/written, so you need to repeat calling it until all the data has been read/written.
+
+1. [Streams](#ch_compress.streams) also have `read()` and `write()` methods derived from the standard I/O stream API; both accept parameter of `std::streamsize` type which is usually different from the `size_t` that is used in the Compression API. So, all compression streams have two additional non-standard methods, that can be helpful:
 
 Input streams:
 
-    size_t Read(void* buf, size_t len);
-  
+	size_t Read(void* buf, size_t len);
+
 Output streams:
 
-    size_t Write(const void* buf, size_t len);
+	size_t Write(const void* buf, size_t len);
 
 
+<br>
 
 **Q. What is `CCompressStream::eNone` compression method for streams and its difference from `CCompress::eLevel_NoCompression` compression level?**
 
 `CCompress::eLevel_NoCompression` is a library-defined compression level. Each library can store data not compressed, but it may it into its own footer and header, add may add checksums or other information depending on used compression format. `CCompressStream::eNone` is a specific compression method for our [compression streams](#ch_compress.streams). It uses [CTransparentStreamProcessor](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCTransparentStreamProcessor.html) that does not perform any compression or decompression and it does not add any header or footer -- rather, it merely copies the data "as is", ignoring the specified compression level at all. See [streams](#ch_compress.streams) section for details.
 
+Note, that some compressions do not support `CCompress::eLevel_NoCompression` compression level, and do not allow to store data not compressed. In this case the Compression API automatically select the lowest supported compression level. You always can check on its support using `HaveSupport()` method. For `zip` as example:
 
+	CZipCompression c;
+	bool have_no_compression = c.HaveSupport(ICompression::eFeature_NoCompression);
+
+
+<br>
 
 **Q. How to read `.gz` file (decompress gzip data in-memory), the Compression API produces error code -3 on decompression?**
 
@@ -453,6 +566,7 @@ The Compression API supports [ZIP](#ch_compress.methods.zip) and [GZIP](#ch_comp
 Utility streams in [include/util/compress/stream_util.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/util/compress/stream_util.hpp) supports 2 `ZLIB` based methods: `CCompressStream::eZip` for DEFLATE and gzip-compatible `CCompressStream::eGZipFile`. Use the second one to handle .gz data streams.
 
 
+<br>
 
 **Q. It is unknown is data compressed or not but I need to read it anyway. How to do this?**
 
