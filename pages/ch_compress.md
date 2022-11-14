@@ -353,9 +353,9 @@ In short, you need to use algorithm specific `CCompression[IO]Stream` from [incl
 	// Create algorithm specific compressor (as example)
 	CZipCompressor compressor(<params>);
 	// Set all necessary advanced parameters
-    	compressor.SetMemoryLevel(9);
+	compressor.SetMemoryLevel(9);
 	// Create stream processor
-    	CCompressionStreamProcessor processor(&compressor, ...);
+	CCompressionStreamProcessor processor(&compressor, ...);
 	// Create compression stream (input stream as example)
 	CCompressionIStream is(data_input_stream, zip_proc, CCompressionStream::fOwnProcessor);
 
@@ -364,7 +364,7 @@ or, if you use shorter stream compressor/decompressor approach. The stream proce
 	// Create stream processor (compressor as example)
 	CZipStreamCompressor* processor = new CZipStreamCompressor(...);
 	// Set all necessary advanced parameters before creating the stream
- 	processor->GetCompressor()->SetMemoryLevel(9);
+	processor->GetCompressor()->SetMemoryLevel(9);
 	// Create compression stream (input stream as example)
 	CCompressionIStream is(data_input_stream, processor, CCompressionStream::fOwnProcessor);
 	
