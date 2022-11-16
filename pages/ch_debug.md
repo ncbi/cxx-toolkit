@@ -534,7 +534,7 @@ NOTE: whenever the severity level is changed, [CNcbiDiag](https://www.ncbi.nlm.n
 
 -   [Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm) -- means that the message is complete and to be flushed(via the global callback as described above)
 
--   [Reset](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset) -- directs to discard the content of presently composed message
+-   Reset -- directs to discard the content of presently composed message
 
 The [Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm) manipulator also gets executed on the [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) object destruction.
 
