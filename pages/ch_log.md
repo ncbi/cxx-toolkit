@@ -828,7 +828,7 @@ Implicit message termination also occurs as a side effect of applying one of the
 
 -   [Endm](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Endm) -- the message is complete and the message buffer will be flushed
 
--   [Reset](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Reset) -- empty the contents of the current message buffer
+-   Reset -- empty the contents of the current message buffer
 
 When the message controlled by an instance of [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) is complete, [CNcbiDiag](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CNcbiDiag) calls a global callback function (of type [FDiagHandler](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=FDiagHandler)) and passes the message (along with its severity level) as the function arguments. The default callback function posts errors to the currently designated output stream, with the action (continue or abort) determined by the severity level of the message.
 
