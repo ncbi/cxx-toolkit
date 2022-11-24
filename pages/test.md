@@ -4,9 +4,10 @@ title: Portability, Core Functionality and Application Framework
 nav: pages/test
 ---
 
-<div name="test">
-    <p>test for CSS</p>
-</div>
+<style>
+       p    {color: red;}
+</style>
+       
 *** test ***
 
 {{ page.title }}
