@@ -5,10 +5,21 @@ nav: pages/test
 ---
 
 <style>
-       p    {color: red;}
+      .content .main-column {
+                order: 1;
+                min-height: 600px;
+                width: 68%;
+                max-width: 1200px; 
+                }
+       .content p{max-width: 800px}
+       div.highlight {
+              padding: 6px 16px;  
+              background-color: #f6f6f6;
+              border-radius: 5px;
+              }
 </style>
        
-*** test ***
+
 
 {{ page.title }}
 ===========================================================================
