@@ -11,7 +11,7 @@ nav: pages/test
                 width: 68%;
                 max-width: 1200px; 
                 }
-       .content p{max-width: 800px}
+      
        div.highlight {
               padding: 6px 16px;  
               background-color: #f6f6f6;
