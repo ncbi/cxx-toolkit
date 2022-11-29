@@ -5,7 +5,7 @@ nav: pages/test_tables
 ---
 
 <style>
-      .content p {
+      .content .main-column {
                 order: 1;
                 min-height: 600px;
                 width: 68%;
@@ -20,6 +20,7 @@ nav: pages/test_tables
       */
       
       
+      .content p {max-width:none; }
       .content td {
             padding: 0.5em;
             }
