@@ -246,7 +246,7 @@ div.section>h1 {
 	color: #642a8f
 }
 
- pre.highlight {
+ .content pre.highlight {
             padding: 6px 16px;
             background-color: #f6f6f6;
             border: 1px solid #ccc;
