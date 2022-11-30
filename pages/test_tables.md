@@ -12,8 +12,11 @@ nav: pages/test_tables
                 max-width: 1200px; 
                 }
        
-      
-      .content p {max-width:none; }
+   .content p {max-width:none; }
+   
+   div.floatThead-wrapper {
+   width: 120%;
+   }
       
      
 </style>
