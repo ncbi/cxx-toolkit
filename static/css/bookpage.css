@@ -219,7 +219,7 @@ div.section>h1 {
 	order: 1;
 	min-height: 600px;
 	width: 68%;
-	max-width: 1200px; 
+	/* max-width: 1200px; */
 	flex-grow: 2;
 	margin: 0px 15px;
 	transition: margin-left .4s cubic-bezier(.02, .01, .47, 1);
@@ -229,9 +229,9 @@ div.section>h1 {
 	/* overflow-x: scroll */
 }
 
-/* 
+
 .content p{max-width: 800px} 
-*/
+
 
 /* proposed link colors */
 
