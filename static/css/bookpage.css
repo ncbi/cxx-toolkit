@@ -246,6 +246,12 @@ div.section>h1 {
 	color: #642a8f
 }
 
+ pre.highlight {
+            padding: 6px 16px;
+            background-color: #f6f6f6;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            }
 
 /* Content formatting end */
 
@@ -703,3 +709,8 @@ div.section thead th {
 div.section a {
 	scroll-margin-top: 5em;
 }
+
+/* Padding for table text */
+ .content td {
+            padding: 0.5em;
+            }
