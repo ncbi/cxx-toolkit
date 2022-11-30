@@ -5,24 +5,17 @@ nav: pages/test_tables
 ---
 
 <style>
-    /*  .content .main-column {
+   .content .main-column {
                 order: 1;
                 min-height: 600px;
                 width: 68%;
                 max-width: 1200px; 
                 }
-      
-
-      
+       
       
       .content p {max-width:none; }
-      */
-     .content .main-column p {
-                order: 1;
-                min-height: 600px;
-                width: 68%;
-                max-width: 1200px; 
-                }
+      
+     
       .content td {
             padding: 0.5em;
             }
