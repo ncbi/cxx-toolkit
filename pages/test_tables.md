@@ -5,22 +5,24 @@ nav: pages/test_tables
 ---
 
 <style>
-      .content .main-column {
+    /*  .content .main-column {
                 order: 1;
                 min-height: 600px;
                 width: 68%;
                 max-width: 1200px; 
                 }
       
-      /*  div.highlight {
-              padding: 6px 16px;  
-              background-color: #f6f6f6;
-              border-radius: 5px;
-              } 
-      */
+
       
       
       .content p {max-width:none; }
+      */
+      p {
+                order: 1;
+                min-height: 600px;
+                width: 68%;
+                max-width: 1200px; 
+                }
       .content td {
             padding: 0.5em;
             }
