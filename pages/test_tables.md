@@ -17,7 +17,7 @@ nav: pages/test_tables
       
       .content p {max-width:none; }
       */
-      p {
+     .content .main-column p {
                 order: 1;
                 min-height: 600px;
                 width: 68%;
