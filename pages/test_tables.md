@@ -16,15 +16,6 @@ nav: pages/test_tables
       .content p {max-width:none; }
       
      
-      .content td {
-            padding: 0.5em;
-            }
-       pre.highlight {
-            padding: 6px 16px;
-            background-color: #f6f6f6;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            }
 </style>
        
 
