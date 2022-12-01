@@ -5,6 +5,7 @@ nav: pages/test_tables
 ---
 
 <style>
+ /*  
    .content .main-column {
                 order: 1;
                 min-height: 600px;
@@ -18,7 +19,7 @@ nav: pages/test_tables
    width: 120%;
    }
       
-     
+  */   
 </style>
        
 
