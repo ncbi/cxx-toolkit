@@ -28,7 +28,7 @@ Object Manager [[include/objmgr](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DO
 
 -   Handles
 
-    -   Seq\_id Handle (now located outside of the Object Manager) seq\_id\_handle[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/seq/seq_id_handle.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq/seq_id_handle.cpp)]
+    -   [Seq\_id Handle](#ch_objmgr.om_attrib.html_Seq_id_handle) (now located outside of the Object Manager) seq\_id\_handle[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objects/seq/seq_id_handle.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq/seq_id_handle.cpp)]
 
     -   [Bioseq handle](#ch_objmgr.om_attrib.html_Bioseq_handle) bioseq\_handle[[.hpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/include/objmgr/bioseq_handle.hpp) \| [.cpp](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objmgr/bioseq_handle.cpp)]
 
@@ -379,6 +379,8 @@ The [CFeatTree](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CFe
 
 -   Handles:
 
+    -   [Seq-id handle](#ch_objmgr.om_attrib.html_Seq_id_handle)
+
     -   [Bioseq handle](#ch_objmgr.om_attrib.html_Bioseq_handle)
 
     -   [Bioseq-set handle](#ch_objmgr.om_attrib.Bioseq_set_handle)
@@ -494,6 +496,14 @@ See the [CScope API reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/
 All data sources (data loaders and explicitly added data) have priorities. For example, if you call [AddScope()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=AddScope) and specify a non-default priority, the scope scans data sources in order of increasing priority to find the sequence you've requested. By default, explicitly added data have priority 9 and data loaders have priority 99, so the scope will first look in explicit data, then in data loaders. If you have conflicting data or loaders (e.g. GenBank and BLAST), you may need different priorities to make the scope first look, for example, in BLAST, and then in GenBank if the sequence is not found.
 
 ***Note:*** the priority you've specified for a data loader at registration time ([RegisterInObjectManager()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RegisterInObjectManager)) is a new default for it, and can be overridden when you add the data loader to a scope.
+
+<a name="ch_objmgr.om_attrib.html_Seq_id_handle"></a>
+
+#### Seq_id handle
+
+The main goal of introducing [CSeq\_id\_Handle](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CSeq_id_Handle) class was to improve the performance of seq-id sorting and indexing. It's important to know that the default comparison operators are not guaranteed to produce be the same result as comparing seq-ids. Moreover, sort order of seq-id handles is not guaranteed to be stable and may depend on many things like the order of creating the handles; it may change with each application run. Comparing handles is similar to comparing pointers.
+
+When stable sorting is required one should use `CSeq_id_Handle::CompareOrdered()` method, which behavior is similar to `CSeq_id::CompareOrdered()`, or `CSeq_id_Handle::PLessOrdered` functor. For example a stable-sorted set of seq-id handles can be declared as `set<CSeq_id_Handle, CSeq_id_Handle::PLessOrdered>`.
 
 <a name="ch_objmgr.om_attrib.html_Bioseq_handle"></a>
 
