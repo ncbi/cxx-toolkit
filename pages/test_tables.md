@@ -506,9 +506,9 @@ Table 7. Connection library configuration parameters
 
 ***Note 1:*** All service-specific parameters shown in [Table 7](#ch_libconfig.T7) (except one) have corresponding global parameters - i.e. parameters that apply to all services. For these global parameters, the registry section name is **`CONN`**; the registry entry name doesn't have the **`CONN_`** prefix; and the environment variable doesn't have the **`<service>_`** prefix. For example, the service-specific parameter specified by the **`CONN_ARGS`** entry in a given **`[<service>]`** section of the registry (or by the **`<service>_CONN_ARGS`** environment variable) corresponds to the global parameter specified by the **`ARGS`** entry in the **`[CONN]`** section of the registry (or by the **`CONN_ARGS`** environment variable). When both a service-specific parameter and its corresponding global parameter are set, the service-specific parameter takes precedence.
 
-<a name="ch_libconfig.TF.22"></a>
+<!-- <a name="ch_libconfig.TF.22"></a> -->
 
-***Note 2:*** Environment variable names for service-specific parameters are formed by capitalizing the service name.
+***Note 2:*** <a name="ch_libconfig.TF.22"></a>Environment variable names for service-specific parameters are formed by capitalizing the service name.
 
 <a name="ch_libconfig.TF.49"></a>
 
