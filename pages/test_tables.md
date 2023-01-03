@@ -5,21 +5,10 @@ nav: pages/test_tables
 ---
 
 <style>
- /*  
-   .content .main-column {
-                order: 1;
-                min-height: 600px;
-                width: 68%;
-                max-width: 1200px; 
-                }
-       
-   .content p {max-width:none; }
-   
-   div.floatThead-wrapper {
-   width: 120%;
-   }
-      
-  */   
+
+ .content {
+    margin: 120px auto 0;}
+ 
 </style>
        
 
