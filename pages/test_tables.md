@@ -12,8 +12,8 @@ nav: pages/test_tables
  :target::before {
   content: "";
   display: block;
-  height: 60px; /* fixed header height*/
-  margin: -60px 0 0; /* negative fixed header height */
+  height: 50px; /* fixed header height*/
+  margin: -50px 0 0; /* negative fixed header height */
 }
  
 </style>
