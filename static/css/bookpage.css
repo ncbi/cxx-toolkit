@@ -5,6 +5,9 @@
 	box-sizing: border-box
 }
 
+
+/* Fixed page header overlaps in-page anchors */
+
  :target::before {
   content: "";
   display: block;
