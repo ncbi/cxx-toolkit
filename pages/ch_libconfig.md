@@ -47,7 +47,17 @@ The following is an outline of the topics presented in this chapter:
     -   [Serial](#ch_libconfig.Serial)
 
     -   [Objects, Object Manager, Object Tools](#ch_libconfig.Objects_Object_Manager_Obje)
-    
+
+        -   [Objects library](#ch_libconfig.objects_library)
+
+        -   [Object Manager library](#ch_libconfig.object_manager_library)
+
+        -   [Genbank data loader and readers](#ch_libconfig.genbank_data_loader)
+
+        -   [PSG data loader](#ch_libconfig.psg_data_loader)
+
+        -   [Object Tools library](#ch_libconfig.object_tools_library)
+
         -   [psg_client library](#ch_libconfig.psg_client_library)
 
     -   [cSRA](#ch_libconfig.cSRA)
@@ -709,42 +719,90 @@ Table 11. Serial library configuration parameters
 
 ### Objects, Object Manager, Object Tools
 
-[These parameters](#ch_libconfig.T.Objectsrelated_configurat) tune the behavior of the Objects-related libraries, including the Object Manager and loader and reader libraries.
+<a name="ch_libconfig.objects_library"></a>
+
+#### Objects library
+
+These parameters tune the behavior of the Objects library.
 
 <a name="ch_libconfig.T.Objectsrelated_configurat"></a>
 
-Table 13. Objects-related configuration parameters
+Table 13.1. Objects-related configuration parameters
 
 | Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default                 |
 |-----------------|-------------------------------------------------------------------------|---------------|-------------------------|
-| Specify whether the blob stream processor should try to use string packing.                 | [N/A]<br/>N/A<br/><br/>**`NCBI_SERIAL_PACK_STRINGS`**                   | Boolean  [<sup>d</sup>](#ch_libconfig.TF.40)              | true |
-| The Object Manager will attach WGS master descriptors to Bioseq data by default. Setting this parameter to false will disable this behavior.         | **`[GENBANK]`**<br/>**`ADD_WGS_MASTER`**<br/><br/>**`GENBANK_ADD_WGS_MASTER`**             | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| If non-zero, reserve Dense-seg vectors using predefined pre-read hook.   | **`[OBJECTS]`**<br/>**`DENSE_SEG_RESERVE`**<br/><br/>**`OBJECTS_DENSE_SEG_RESERVE`**       | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| Specify whether Seq-id general trees are packed.      | **`[OBJECTS]`**<br/>**`PACK_GENERAL`**<br/><br/>**`OBJECTS_PACK_GENERAL`**                 | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| Specify whether Seq-id text-seq trees are packed.     | **`[OBJECTS]`**<br/>**`PACK_TEXTID`**<br/><br/>**`OBJECTS_PACK_TEXTID`**                   | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| Specify whether empty Seq-descr's will be allowed (or throw if not).     | **`[OBJECTS]`**<br/>**`SEQ_DESCR_ALLOW_EMPTY`**<br/><br/>**`OBJECTS_SEQ_DESCR_ALLOW_EMPTY`**                  | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | false                   |
+| If non-zero, reserve Seq-graph vectors using predefined pre-read hook.   | **`[OBJECTS]`**<br/>**`SEQ_GRAPH_RESERVE`**<br/><br/>**`OBJECTS_SEQ_GRAPH_RESERVE`**       | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| If non-zero, reserve Seq-table vectors using predefined pre-read hook.   | **`[OBJECTS]`**<br/>**`SEQ_TABLE_RESERVE`**<br/><br/>**`OBJECTS_SEQ_TABLE_RESERVE`**       | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| If true, try to avoid GIs where possible, even if there's no accessions to prefer. | **`[SeqId]`**<br/>**`AvoidGi`**<br/><br/>**`SEQ_ID_AVOID_GI`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| If true, give GIs worse (higher) score to prefer accessions in CSeq_id ranking methods. | **`[SeqId]`**<br/>**`PreferAccessionOverGi`**<br/><br/>**`SEQ_ID_PREFER_ACCESSION_OVER_GI`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| If true, replace ranges that cannot be mapped with a NULL location instead of using the neighbor's fuzz. | **`[Mapper]`**<br/>**`NonMapping_As_Null`**<br/><br/>**`MAPPER_NONMAPPING_AS_NULL`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+
+<div class="table-scroll"></div>
+
+<a name="ch_libconfig.object_manager_library"></a>
+
+#### Object Manager library
+
+These parameters tune the behavior of the Object Manager library.
+
+<a name="ch_libconfig.T.Objectmanager_configurat"></a>
+
+Table 13.2. Object Manager configuration parameters
+
+| Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default                 |
+|-----------------|-------------------------------------------------------------------------|---------------|-------------------------|
+| Default adaptive depth heuristic will include adaptive depth by named annot accession:<br/>if only named annot accessions are requested in SAnnotSelector then iterator stops at level where all requested names are seen. | **`[OBJMGR]`**<br/>**`ADAPTIVE_DEPTH_BY_NAMED_ACC`**<br/><br/>**`NCBI_CONFIG__OBJMGR__ADAPTIVE_DEPTH_BY_NAMED_ACC`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+| Sets the maximum number of master TSE blobs that will be cached.         | **`[OBJMGR]`**<br/>**`BLOB_CACHE`**<br/><br/>**`OBJMGR_BLOB_CACHE`**    | unsigned int       | 10   |
+| Data source uses bulk chunk requests to load blobs.   | **`[OBJMGR]`**<br/>**`BULK_CHUNKS`**<br/><br/>**`OBJMGR_BULK_CHUNKS`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+| CObjectManager reports scope register/revoke operations.<br/>Checked only in debug builds. | **`[OBJMGR]`**<br/>**`DEBUG_SCOPE`**<br/><br/>**`NCBI_CONFIG__OBJMGR__DEBUG_SCOPE`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Keep external annotations (SNP, CDD, etc.) visible on edited sequences.<br/>Potentially slow due to size of SNP data. | **`[OBJMGR]`**<br/>**`KEEP_EXTERNAL_FOR_EDIT`**<br/><br/>**`NCBI_CONFIG__OBJMGR__KEEP_EXTERNAL_FOR_EDIT`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Specify whether the scope can be auto-released.       | **`[OBJMGR]`**<br/>**`SCOPE_AUTORELEASE`**<br/><br/>**`OBJMGR_SCOPE_AUTORELEASE`**         | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| Specify the size of the scope auto-release.           | **`[OBJMGR]`**<br/>**`SCOPE_AUTORELEASE_SIZE`**<br/><br/>**`OBJMGR_SCOPE_AUTORELEASE_SIZE`**                  | unsigned int       | 10   |
+| Controls MT optimization of object deletion in CScope.<br/>If the value is not zero CScope deletes unused entries outside of its mutex, avoiding MT-bottleneck. | **`[OBJMGR]`**<br/>**`SCOPE_POSTPONE_DELETE`**<br/><br/>**`OBJMGR_SCOPE_POSTPONE_DELETE`** | int | 1 |
+
+<div class="table-scroll"></div>
+
+<a name="ch_libconfig.genbank_data_loader"></a>
+
+#### Genbank data loader and readers
+
+These parameters tune the behavior of the Genbank data loader.
+
+<a name="ch_libconfig.T.Genbankdataloader_configurat"></a>
+
+Table 13.3a. Genbank data loader configuration parameters
+
+| Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default                 |
+|-----------------|-------------------------------------------------------------------------|---------------|-------------------------|
+| The Object Manager will attach WGS master descriptors to Bioseq data by default. Setting this parameter to false will disable this behavior. | **`[GENBANK]`**<br/>**`ADD_WGS_MASTER`**<br/><br/>**`NCBI_CONFIG__GENBANK__ADD_WGS_MASTER`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+| Allow GenBank loader readers to process loader commands partially, in hope that missing data will be loaded later. | **`[GENBANK]`**<br/>**`ALLOW_INCOMPLETE_COMMANDS`**<br/><br/>**`GENBANK_ALLOW_INCOMPLETE_COMMANDS`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Load external annotations for other loaders. | **`[GENBANK]`**<br/>**`ALWAYS_LOAD_EXTERNAL`**<br/><br/>**`NCBI_CONFIG__GENBANK__ALWAYS_LOAD_EXTERNAL`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Load NANNOT annotations for other loaders. | **`[GENBANK]`**<br/>**`ALWAYS_LOAD_NAMED_ACC`**<br/><br/>**`NCBI_CONFIG__GENBANK__ALWAYS_LOAD_NAMED_ACC`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
 | A non-zero value turns on debugging messages about GenBank loader's interaction with cache. | **`[GENBANK]`**<br/>**`CACHE_DEBUG`**<br/><br/>**`GENBANK_CACHE_DEBUG`**                   | \>=0, currently only zero and non-zero are distinguished | 0    |
 | Specify whether an attempt should be made to recompress the cache.       | **`[GENBANK]`**<br/>**`CACHE_RECOMPRESS`**<br/><br/>**`GENBANK_CACHE_RECOMPRESS`**         | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
 | A non-zero value turns on debugging messages about opening/closing connections to ID1/ID2 services.            | **`[GENBANK]`**<br/>**`CONN_DEBUG`**<br/><br/>**`GENBANK_CONN_DEBUG`**  | \>=0, currently only zero and non-zero are distinguished | 0    |
-| Disable attaching WGS master descriptors when retrieving ASN.1 blobs using the CPubseqReader class. | **`[GENBANK/PUBSEQOS]`**<br/>**`EXCLUDE_WGS_MASTER`**<br/><br/>**`NCBI_CONFIG__GENBANK_PUBSEQOS__EXCLUDE_WGS_MASTER`** | Boolean  [<sup>b</sup>](#ch_libconfig.TF.38) | false |
-| Disable attaching WGS master descriptors when retrieving ASN.1 blobs using the CPubseq2Reader class. | **`[GENBANK/PUBSEQOS2]`**<br/>**`EXCLUDE_WGS_MASTER`**<br/><br/>**`NCBI_CONFIG__GENBANK_PUBSEQOS2__EXCLUDE_WGS_MASTER`** | Boolean  [<sup>b</sup>](#ch_libconfig.TF.38) | false |
+| Offset all GIs loaded by GenBank loader by a 64-bit value.<br/>Use this option only to test your code for 64-bit GI compatibility, the data from GenBank loader will be modified!  | **`[GENBANK]`**<br/>**`GI_OFFSET`**<br/><br/>**`GENBANK_GI_OFFSET`** | 64-bit int| 0 |
+| Expiration timeout of id resolution information in seconds (must be > 0). | **`[GENBANK]`**<br/>**`ID_EXPIRATION_TIMEOUT`**<br/><br/>**`NCBI_CONFIG__GENBANK__ID_EXPIRATION_TIMEOUT`** | positive integer | 7200 (2hr) |
+| Size of id resolution GC queues. | **`[GENBANK]`**<br/>**`ID_GC_SIZE`**<br/><br/>**`NCBI_CONFIG__GENBANK__ID_GC_SIZE`**    | unsigned int | 10000    |
 | Set the severity level for ID1 debug tracing.         | **`[GENBANK]`**<br/>**`ID1_DEBUG`**<br/><br/>**`GENBANK_ID1_DEBUG`**    | int:<br/>0 = none,<br/>1 = error,<br/>2 = open,<br/>4 = conn,<br/>5 = asn,<br/>8 = asn data      | 0    |
 | Specify the ID1 reader service name. ***Note:*** The services can be redirected using generic [Service Redirection](ch_conn.html#ch_conn.Service_Redirection) technique. Has precedence over **`[NCBI].SERVICE_NAME_ID1`** | **`[GENBANK]`**<br/>**`ID1_SERVICE_NAME`**<br/><br/>**`GENBANK_ID1_SERVICE_NAME`** | a valid reader service name | ID1<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_SERVICE)) |
-| Specify the ID2 reader service name. ***Note:*** The services can be redirected using generic [Service Redirection](ch_conn.html#ch_conn.Service_Redirection) technique. Has precedence over **`[GENBANK].ID2_SERVICE_NAME`** | **`[GENBANK]`**<br/>**`ID2_CGI_NAME`**<br/><br/>**`GENBANK_ID2_CGI_NAME`** | a valid reader service name | ID2<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_SERVICE)) |
 | Set the severity level for ID2 debug tracing.         | **`[GENBANK]`**<br/>**`ID2_DEBUG`**<br/><br/>**`GENBANK_ID2_DEBUG`**    | int:<br/>0 = none,<br/>1 = error,<br/>2 = open,<br/>4 = conn,<br/>5 = asn,<br/>8 = blob,<br/>9 = blob data | debug: none<br/>release: error<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_DEBUG_LEVEL)) |
 | Number of chunks allowed in a single request.         | **`[GENBANK]`**<br/>**`ID2_MAX_CHUNKS_REQUEST_SIZE`**<br/><br/>**`GENBANK_ID2_MAX_CHUNKS_REQUEST_SIZE`**      | int:<br/>0 = unlimited request size;<br/>1 = do not use packets or get-chunks requests              | 100  |
+| Specify the ID2 reader service name. ***Note:*** The services can be redirected using generic [Service Redirection](ch_conn.html#ch_conn.Service_Redirection) technique. Has precedence over **`[GENBANK].ID2_SERVICE_NAME`** | **`[GENBANK]`**<br/>**`ID2_CGI_NAME`**<br/><br/>**`GENBANK_ID2_CGI_NAME`** | a valid reader service name | ID2<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_SERVICE)) |
 | Maximum number of requests packed in a single ID2 packet.                | **`[GENBANK]`**<br/>**`ID2_MAX_IDS_REQUEST_SIZE`**<br/><br/>**`GENBANK_ID2_MAX_IDS_REQUEST_SIZE`**            | \>=0               | 100  |
+| Plug-in libraries with CID2Processor implementation.<br/>Useful for development of alternative data sources. | **`[GENBANK]`**<br/>**`ID2_PROCESSOR`**<br/><br/>**`GENBANK_ID2_PROCESSOR`** | comma-separated list of names of id2proc interface plug-ins | "" |
 | Specify the ID2 reader service name. ***Note:*** The services can be redirected using generic [Service Redirection](ch_conn.html#ch_conn.Service_Redirection) technique. Has precedence over **`[NCBI].SERVICE_NAME_ID2`** | **`[GENBANK]`**<br/>**`ID2_SERVICE_NAME`**<br/><br/>**`GENBANK_ID2_SERVICE_NAME`** | a valid reader service name | ID2<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_SERVICE)) |
 | Prioritized list of drivers to try for the reader or writer.<br />Less precedence than **`[GENBANK].READER_NAME`** or **`[GENBANK].WRITER_NAME`**. | **`[GENBANK]`**<br/>**`LOADER_METHOD`**<br/><br/>**`GENBANK_LOADER_METHOD`** | list items are semicolon-delimited;<br/>each item is a colon-delimited list of drivers.<br/>valid drivers:<br/>id1, id2, cache, pubseqos | `#if defined(HAVE_PUBSEQ_OS)`<br />"ID2:PUBSEQOS:ID1"<br />`else`<br />"ID2:ID1"<br />`#endif`<br />(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_DRV_ORDER)) |
-| Flag switching CGBDataLoader to PSG mode. If set to true, PSG data loader is used to process requests instead of the normal Genbank loader.| **`[GENBANK]`**<br/>**`LOADER_PSG`**<br/><br/>**`GENBANK_LOADER_PSG`** | Boolean [<sup>b</sup>](#ch_libconfig.TF.38) | false |
-| The maximum number of connections the reader can establish to the data source. This is run-time limited to 1 for single threaded clients and for all clients using the cache or gi reader, and to 5 for multi-threaded clients using the id1, id2, pubseqos, and pubseqos2 readers.      | **`[GENBANK]`**<br/>**`MAX_NUMBER_OF_CONNECTIONS`**                | int                | 3 for id1 and id2; 2 for pubseqos and pubseqos2               |
-| See **`MAX_NUMBER_OF_CONNECTIONS`**                   | **`[GENBANK]`**<br/>**`NO_CONN`**               |                   |     |
-| See **`OPEN_TIMEOUT_INCREMENT`**   | **`[GENBANK]`**<br/>**`OPEN_INCREMENT`**        |                   |     |
-| See **`OPEN_TIMEOUT_MAX`**         | **`[GENBANK]`**<br/>**`OPEN_MAX`**              |                   |     |
-| See **`OPEN_TIMEOUT_MULTIPLIER`**  | **`[GENBANK]`**<br/>**`OPEN_MULTIPLIER`**       |                   |     |
-| The **`OPEN_TIMEOUT*`** parameters describe the timeout for opening a GenBank connection. The timeout allows the server a reasonable time to respond while providing a means to quickly abandon unresponsive servers.            | **`[GENBANK]`**<br/>**`OPEN_TIMEOUT`**<br/><br/>**`NCBI_CONFIG__GENBANK__OPEN_TIMEOUT`**  [<sup>c</sup>](#ch_libconfig.TF.39)     | any floating point value \>= 0.0      | 5 seconds               |
-| **`OPEN_TIMEOUT_MULTIPLIER`** and **`OPEN_TIMEOUT_INCREMENT`** specify the way the open timeout is increased if no response is received (next\_open\_timeout = prev\_open\_timeout \* multiplier + increment).                   | **`[GENBANK]`**<br/>**`OPEN_TIMEOUT_INCREMENT`**<br/><br/>**`NCBI_CONFIG__GENBANK__OPEN_TIMEOUT_INCREMENT`**  [<sup>c</sup>](#ch_libconfig.TF.39)    | any floating point value \>= 0.0      | 0 seconds               |
-| The limit of increasing the open timeout using **`OPEN_TIMEOUT_MULTIPLIER`** and **`OPEN_TIMEOUT_INCREMENT`**. | **`[GENBANK]`**<br/>**`OPEN_TIMEOUT_MAX`**<br/><br/>**`NCBI_CONFIG__GENBANK__OPEN_TIMEOUT_MAX`**  [<sup>c</sup>](#ch_libconfig.TF.39)                | floating point \>= 0.0                | 30 seconds              |
-| See **`OPEN_TIMEOUT_INCREMENT`**   | **`[GENBANK]`**<br/>**`OPEN_TIMEOUT_MULTIPLIER`**<br/><br/>**`NCBI_CONFIG__GENBANK__OPEN_TIMEOUT_MULTIPLIER`**  [<sup>c</sup>](#ch_libconfig.TF.39)  | floating point \>= 0.0                | 1.5  |
-| Whether to open first connection immediately or not.  | **`[GENBANK]`**<br/>**`preopen`**<br/><br/>**`NCBI_CONFIG__GENBANK__PREOPEN`**  [<sup>c</sup>](#ch_libconfig.TF.39)               | Boolean  [<sup>b</sup>](#ch_libconfig.TF.38)              | true |
+| Flag switching CGBDataLoader to PSG mode. If set to true, PSG data loader is used to process requests instead of the normal Genbank loader.| **`[GENBANK]`**<br/>**`LOADER_PSG`**<br/><br/>**`GENBANK_LOADER_PSG`** | Boolean [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Whether to open first connection immediately or not. Has precedence over any reader-specific **`PREOPEN`** parameters. | **`[GENBANK]`**<br/>**`PREOPEN`**<br/><br/>**`NCBI_CONFIG__GENBANK__PREOPEN`**  [<sup>b</sup>](#ch_libconfig.TF.38)               | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| How GBLoader should react on PTIS failure. | **`[GENBANK]`**<br/>**`PTIS_ERROR_ACTION`**<br/><br/>**`NCBI_CONFIG__GENBANK__PTIS_ERROR_ACTION`** | "ignore", "report" or "throw" | "report" |
 | Turns on different levels of debug messages in PubSeqOS reader. A value \>=2 means debug opening connections while \>=5 means debug results of Seq-id resolution requests. ***Note:*** only applies to debug builds.             | **`[GENBANK]`**<br/>**`PUBSEQOS_DEBUG`**<br/><br/>**`GENBANK_PUBSEQOS_DEBUG`**             | int                | 0    |
-| Prioritized list of drivers to try for the reader. Has precedence over **`[GENBANK].LOADER_METHOD`**. | **`[GENBANK]`**<br/>**`READER_NAME`**<br/><br/>**`GENBANK_READER_NAME`** | See **`[GENBANK].LOADER_METHOD`**. | See **`[GENBANK].LOADER_METHOD`**. |
+| Prioritized list of drivers to try for the reader. Can be overridden by **`[GENBANK].READERNAME`**. Has precedence over **`[GENBANK].LOADER_METHOD`**. | **`[GENBANK]`**<br/>**`READER_NAME`**<br/><br/>**`GENBANK_READER_NAME`** | See **`[GENBANK].LOADER_METHOD`**. | See **`[GENBANK].LOADER_METHOD`**. |
+| Prioritized list of drivers to try for the reader. Has precedence over **`[GENBANK].READER_NAME`** and **`[GENBANK].LOADER_METHOD`**. | **`[GENBANK]`**<br/>**`READERNAME`**<br/><br/>**`GENBANK_READERNAME`** | See **`[GENBANK].LOADER_METHOD`**. | See **`[GENBANK].LOADER_METHOD`**. |
 | Specify the level of reader statistics to collect.    | **`[GENBANK]`**<br/>**`READER_STATS`**<br/><br/>**`GENBANK_READER_STATS`**                 | int:<br/>0 = none,<br/>1 = verbose         | 0    |
 | Specify whether the reader manager should automatically register ID1, ID2, and cache.       | **`[GENBANK]`**<br/>**`REGISTER_READERS`**<br/><br/>**`GENBANK_REGISTER_READERS`**         | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
 | On some platforms, equal strings can share their character data, reducing the required memory. Set this parameter to true to have the GenBank loader try to use this feature if it is available.              | **`[GENBANK]`**<br/>**`SNP_PACK_STRINGS`**<br/><br/>**`GENBANK_SNP_PACK_STRINGS`**         | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
@@ -752,47 +810,98 @@ Table 13. Objects-related configuration parameters
 | Storing all the SNPs as plain ASN.1 objects would require a huge amount of memory. The SNP table is a compact way of storing SNPs to reduce memory consumption. Set this parameter to true to have the object manager try to use the SNP table.     | **`[GENBANK]`**<br/>**`SNP_TABLE`**<br/><br/>**`GENBANK_SNP_TABLE`**    | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
 | Set to a positive integer to enable dumping (to stderr in text ASN.1 form) all the SNPs that don't fit into the SNP table. ***Note:*** this is only available in debug mode.               | **`[GENBANK]`**<br/>**`SNP_TABLE_DUMP`**<br/><br/>**`GENBANK_SNP_TABLE_DUMP`**             | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | false                   |
 | Set this parameter to true to dump (to stdout) some statistics on the process of storing SNPs into the SNP table. This option may help determine why not all the SNPs could fit in the table.                 | **`[GENBANK]`**<br/>**`SNP_TABLE_STAT`**<br/><br/>**`GENBANK_SNP_TABLE_STAT`**             | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | false                   |
+| Verbosity level of loading information in GenBank loader. | **`[GENBANK]`**<br/>**`TRACE_LOAD`**<br/><br/>**`GENBANK_TRACE_LOAD`** | int | 0 |
 | Specify whether to use a memory pool.                 | **`[GENBANK]`**<br/>**`USE_MEMORY_POOL`**<br/><br/>**`GENBANK_USE_MEMORY_POOL`**           | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
-| The **`WAIT_TIME`** parameters describe the wait time before opening new GenBank connections in case of communication errors. The wait time is necessary to allow network and/or GenBank servers to recover. **`WAIT_TIME`** is the initial wait after the first error. See also: GenBank reader configuration. | **`[GENBANK]`**<br/>**`WAIT_TIME`**<br/><br/>**`NCBI_CONFIG__GENBANK__WAIT_TIME`**  [<sup>c</sup>](#ch_libconfig.TF.39)           | floating point \>= 0.0                | 1 second                |
-| Specifies for how many sequential communication errors the response should be to use wait time, before trying to open a new connection instead.      | **`[GENBANK]`**<br/>**`WAIT_TIME_ERRORS`**<br/><br/>**`NCBI_CONFIG__GENBANK__WAIT_TIME_ERRORS`**  [<sup>c</sup>](#ch_libconfig.TF.39)                | int                | 2 errors                |
-| **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`** specify the way wait time is increased if errors continue to happen (next\_wait\_time = prev\_wait\_time \* multiplier + increment).                 | **`[GENBANK]`**<br/>**`WAIT_TIME_INCREMENT`**<br/><br/>**`NCBI_CONFIG__GENBANK__WAIT_TIME_INCREMENT`**  [<sup>c</sup>](#ch_libconfig.TF.39)          | any floating point value \>= 0.0      | 1 second                |
-| The limit of increasing wait time using **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`**.              | **`[GENBANK]`**<br/>**`WAIT_TIME_MAX`**<br/><br/>**`NCBI_CONFIG__GENBANK__WAIT_TIME_MAX`**  [<sup>c</sup>](#ch_libconfig.TF.39)   | floating point \>= 0.0                | 30 seconds              |
-| See **`WAIT_TIME_INCREMENT`**      | **`[GENBANK]`**<br/>**`WAIT_TIME_MULTIPLIER`**<br/><br/>**`NCBI_CONFIG__GENBANK__WAIT_TIME_MULTIPLIER`**  [<sup>c</sup>](#ch_libconfig.TF.39)        | any floating point value \>= 0.0      | 1.5  |
-| Prioritized list of drivers to try for the writer. Has precedence over **`[GENBANK].LOADER_METHOD`**. | **`[GENBANK]`**<br/>**`WRITER_NAME`**<br/><br/>**`GENBANK_WRITER_NAME`** | See **`[GENBANK].LOADER_METHOD`**. | See **`[GENBANK].LOADER_METHOD`**. |
-| How many tries to process a single-sequence request will be performed by PSG loader.| **`[PSG_LOADER]`**<br/>**`RETRY_COUNT`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__RETRY_COUNT`**  [<sup>c</sup>](#ch_libconfig.TF.39)           | int                | 4 tries                |
-| How many tries to process a multi-sequence request will be performed by PSG loader.| **`[PSG_LOADER]`**<br/>**`BULK_RETRY_COUNT`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__BULK_RETRY_COUNT`**  [<sup>c</sup>](#ch_libconfig.TF.39)           | int                | 8 tries                |
-| The **`WAIT_TIME`** parameters describe the wait time after PSG communication error encountered. The wait time is necessary to allow network and/or PSG servers to recover. **`WAIT_TIME`** is the initial wait after the first error.| **`[PSG_LOADER]`**<br/>**`WAIT_TIME`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__WAIT_TIME`**  [<sup>c</sup>](#ch_libconfig.TF.39)           | floating point \>= 0.0                | 1 second                |
-| **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`** specify the way wait time is increased if errors continue to happen (next\_wait\_time = prev\_wait\_time \* multiplier + increment).                 | **`[PSG_LOADER]`**<br/>**`WAIT_TIME_INCREMENT`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__WAIT_TIME_INCREMENT`**  [<sup>c</sup>](#ch_libconfig.TF.39)          | any floating point value \>= 0.0      | 1 second                |
-| See **`WAIT_TIME_INCREMENT`**      | **`[PSG_LOADER]`**<br/>**`WAIT_TIME_MULTIPLIER`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__WAIT_TIME_MULTIPLIER`**  [<sup>c</sup>](#ch_libconfig.TF.39)        | any floating point value \>= 0.0      | 1.5  |
-| The limit of increasing wait time using **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`**.              | **`[PSG_LOADER]`**<br/>**`WAIT_TIME_MAX`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__WAIT_TIME_MAX`**  [<sup>c</sup>](#ch_libconfig.TF.39)   | floating point \>= 0.0                | 30 seconds              |
+| Enable version 2 (from MongoDB... despite "VDB" in the name) source of CDD annotations on os_gateway ID2 server with GenBank ID2 reader. | **`[GENBANK]`**<br/>**`VDB_CDD`**<br/><br/>**`GENBANK_VDB_CDD`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Enable version 2 (from VDB) source of SNP annotations on os_gateway ID2 server with GenBank ID2 reader. | **`[GENBANK]`**<br/>**`VDB_SNP`**<br/><br/>**`GENBANK_VDB_SNP`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Enable VDB source of WGS sequences on os_gateway ID2 server with GenBank ID2 reader. | **`[GENBANK]`**<br/>**`VDB_WGS`**<br/><br/>**`GENBANK_VDB_WGS`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+| Prioritized list of drivers to try for the writer. Can be overridden by **`[GENBANK].WRITERNAME`**. Has precedence over **`[GENBANK].LOADER_METHOD`**. | **`[GENBANK]`**<br/>**`WRITER_NAME`**<br/><br/>**`GENBANK_WRITER_NAME`** | See **`[GENBANK].LOADER_METHOD`**. | See **`[GENBANK].LOADER_METHOD`**. |
+| Prioritized list of drivers to try for the writer. Has precedence over **`[GENBANK].WRITER_NAME`** and **`[GENBANK].LOADER_METHOD`**. | **`[GENBANK]`**<br/>**`WRITERNAME`**<br/><br/>**`GENBANK_WRITERNAME`** | See **`[GENBANK].LOADER_METHOD`**. | See **`[GENBANK].LOADER_METHOD`**. |
+| Specify the ID1 reader service name. ***Note:*** The services can be redirected using generic [Service Redirection](ch_conn.html#ch_conn.Service_Redirection) technique. Less precedence than **`[GENBANK].ID1_SERVICE_NAME`**. | **`[NCBI]`**<br/>**`SERVICE_NAME_ID1`**<br/><br/>**`GENBANK_SERVICE_NAME_ID1`** | a valid reader service name | ID1<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_SERVICE)) |
+| Specify the ID2 reader service name. ***Note:*** The services can be redirected using generic [Service Redirection](ch_conn.html#ch_conn.Service_Redirection) technique. Less precedence than **`[GENBANK].ID2_SERVICE_NAME`**. | **`[NCBI]`**<br/>**`SERVICE_NAME_ID2`**<br/><br/>**`GENBANK_SERVICE_NAME_ID2`** | a valid reader service name | ID2<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_SERVICE)) |
+
+<div class="table-scroll"></div>
+
+These parameters tune the behavior of the Genbank readers. Each parameter is checked in the **`[GENBANK/<reader_name>]`** section first, then if the section does not exist, **`[<reader_name>]`** is checked as well.
+
+<a name="ch_libconfig.T.Genbankreaders_configurat"></a>
+
+Table 13.3b. Genbank readers configuration parameters
+
+| Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default                 |
+|-----------------|-------------------------------------------------------------------------|---------------|-------------------------|
+| The maximum number of connections the reader can establish to the data source. This is run-time limited to 1 for single threaded clients and for all clients using the cache or gi reader, and to 5 for multi-threaded clients using the ID1, ID2, PubSeqOS, and PubSeqOS2 readers. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`MAX_NUMBER_OF_CONNECTIONS`** or **`NO_CONN`**| int | 3 for ID1 and ID2; 2 for PubSeqOS and PubSeqOS2 |
+| The **`OPEN_TIMEOUT*`** parameters describe the timeout for opening a GenBank connection (ID1, ID2 and PubSeqOS2 readers). The timeout allows the server a reasonable time to respond while providing a means to quickly abandon unresponsive servers. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`OPEN_TIMEOUT`** | any floating point value \>= 0.0 | 5 seconds |
+| **`OPEN_TIMEOUT_MULTIPLIER`** and **`OPEN_TIMEOUT_INCREMENT`** (ID1 and ID2 readers) specify the way the open timeout is increased if no response is received (next\_open\_timeout = prev\_open\_timeout \* multiplier + increment). | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`OPEN_TIMEOUT_INCREMENT`** or **`OPEN_INCREMENT`** | any floating point value \>= 0.0 | 0 seconds |
+| The limit of increasing the open timeout using **`OPEN_TIMEOUT_MULTIPLIER`** and **`OPEN_TIMEOUT_INCREMENT`** (ID1 and ID2 readers). | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`OPEN_TIMEOUT_MAX`** or **`OPEN_MAX`** | floating point \>= 0.0 | 30 seconds |
+| See **`OPEN_TIMEOUT_INCREMENT`** | **`[GENBANK/<reader_name>]`** or **`[GENBANK/<reader_name>]`**<br/>**`OPEN_TIMEOUT_MULTIPLIER`** or **`OPEN_MULTIPLIER`** | floating point \>= 0.0 | 1.5 |
+| Whether to open first connection immediately or not. Can be overriden by **`[GENBANK].PREOPEN`**. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`PREOPEN`** | Boolean [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Number of retries on errors. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`RETRY`** | int | 5 |
+| Timeout of network connections in seconds (ID1, ID2 and PubSeqOS2 readers). | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`TIMEOUT`** | integer | 20 seconds |
+| The **`WAIT_TIME*`** parameters describe the wait time before opening new GenBank connections in case of communication errors. The wait time is necessary to allow network and/or GenBank servers to recover. **`WAIT_TIME`** is the initial wait after the first error. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`WAIT_TIME`** | floating point \>= 0.0 | 1 second |
+| Specifies for how many sequential communication errors the response should be to use wait time, before trying to open a new connection instead. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`WAIT_TIME_ERRORS`** | int | 2 errors |
+| **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`** specify the way wait time is increased if errors continue to happen (next\_wait\_time = prev\_wait\_time \* multiplier + increment). | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`WAIT_TIME_INCREMENT`** | any floating point value \>= 0.0 | 1 second |
+| The limit of increasing wait time using **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`**.              | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`WAIT_TIME_MAX`** | floating point \>= 0.0 | 30 seconds |
+| See **`WAIT_TIME_INCREMENT`** | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`WAIT_TIME_MULTIPLIER`** | any floating point value \>= 0.0 | 1.5 |
+| ID1 and ID2 reader service name. Overrides **`[GENBANK].ID*_SERVICE_NAME`** and **`[NCBI].SERVICE_NAME_ID*`**. | **`[GENBANK/<reader_name>]`**<br/><br/>**`SERVICE`** | a valid reader service name | ID1 or ID2 |
+| Prioritized list of DBAPI drivers for PubSeqOS/PubSeqOS2 readers. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`DRIVER`** | semicolon-delimited list of driver names | "ftds;ctlib" |
+| Disable attaching WGS master descriptors when retrieving ASN.1 blobs using the PubSeqOS/PubSeqOS2 readers. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`EXCLUDE_WGS_MASTER`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true for PubSeqOS<br>false for PubSeqOS2 |
+| Password for PubSeqOS/PubSeqOS2 database. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`PASSWORD`** | string | "allowed" |
+| Server name for PubSeqOS/PubSeqOS2 database. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`SERVER`** | string | "PUBSEQ_OS_PUBLIC_GI64" |
+| Fetch user name from MyNCBI and put the value into cubby_user variable for PubSeqOS/PubSeqOS2 database. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`SET_CUBBY_USER`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| User name for PubSeqOS/PubSeqOS2 database. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`USER`** | string | "anyone" |
+| Allow gzip compression of PubSeqOS data. | **`[GENBANK/pubseqos]`** or **`[pubseqos]`**<br/>**`GZIP`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+
+<div class="table-scroll"></div>
+
+<a name="ch_libconfig.psg_data_loader"></a>
+
+#### PSG data loader
+
+These parameters tune the behavior of the PSG data loader.
+
+<a name="ch_libconfig.T.Psgdataloader_configurat"></a>
+
+Table 13.4. PSG data loader configuration parameters
+
+| Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default                 |
+|-----------------|-------------------------------------------------------------------------|---------------|-------------------------|
+| The Object Manager will attach WGS master descriptors to Bioseq data by default. Setting this parameter to false will disable this behavior. | **`[PSG_LOADER]`**<br/>**`ADD_WGS_MASTER`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__ADD_WGS_MASTER`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+| Number of retries when fetching bulk data. | **`[PSG_LOADER]`**<br/>**`BULK_RETRY_COUNT`**<br/><br/>**`PSG_LOADER_BULK_RETRY_COUNT`** | unsigned int | 8 |
+| Set the severity level for PSG debug tracing. | **`[PSG_LOADER]`**<br/>**`DEBUG`**<br/><br/>**`PSG_LOADER_DEBUG`** | int:<br/><5 = none<br/>5..8 = different details of loading data | 1 |
+| Expiration timeout of in-memory caches in seconds (must be > 0). | **`[PSG_LOADER]`**<br/>**`ID_EXPIRATION_TIMEOUT`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__ID_EXPIRATION_TIMEOUT`** | positive unsigned integer | 7200 (2hr) |
+| Size of in-memory caches. | **`[PSG_LOADER]`**<br/>**`ID_GC_SIZE`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__ID_GC_SIZE`**    | unsigned int | 10000 |
+| Number of threads in the thread pool used by PSG loader. | **`[PSG_LOADER]`**<br/>**`MAX_POOL_THREADS`**<br/><br/>**`PSG_LOADER_MAX_POOL_THREADS`** | unsigned int | 10 |
+| By default PSG loader prefers loading split data. If this parameter is set to true the loader will request original non-split data instead. | **`[PSG_LOADER]`**<br/>**`NO_SPLIT`**<br/><br/>**`NCBI_CONFIG__PSG_LOADER__NO_SPLIT`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Prefetch information about bioseqs having no CDD annotations to avoid sending unnecessary CDD requests. | **`[PSG_LOADER]`**<br/>**`PREFETCH_CDD`**<br/><br/>**`PSG_LOADER_PREFETCH_CDD`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Number of retries when fetching data (non-bulk). | **`[PSG_LOADER]`**<br/>**`RETRY_COUNT`**<br/><br/>**`PSG_LOADER_RETRY_COUNT`** | unsigned int | 4 |
+| PSG loader service name. | **`[PSG_LOADER]`**<br/>**`SERVICE_NAME`**<br/><br/>**`PSG_LOADER_SERVICE_NAME`** | a valid service name | "PSG2" |
+| The **`WAIT_TIME*`** parameters describe the wait time before opening new PSG connections in case of communication errors. The wait time is necessary to allow network and/or PSG servers to recover. **`WAIT_TIME`** is the initial wait after the first error. | **`[PSG_LOADER]`**<br/>**`WAIT_TIME`** | floating point \>= 0.0 | 1 second |
+| **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`** specify the way wait time is increased if errors continue to happen (next\_wait\_time = prev\_wait\_time \* multiplier + increment). | **`[PSG_LOADER]`**<br/>**`WAIT_TIME_INCREMENT`** | any floating point value \>= 0.0 | 1 second |
+| The limit of increasing wait time using **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`**. | **`[PSG_LOADER]`**<br/>**`WAIT_TIME_MAX`** | floating point \>= 0.0 | 30 seconds |
+| See **`WAIT_TIME_INCREMENT`** | **`[PSG_LOADER]`**<br/>**`WAIT_TIME_MULTIPLIER`** | any floating point value \>= 0.0 | 1.5 |
+| If this parameter is set to true the loader will request whole TSEs instead of split ones. If **`[PSG_LOADER].NO_SPLIT`** is set to true this parameter is ignored and original TSEs are requested. | **`[PSG_LOADER]`**<br/>**`WHOLE_TSE`**<br/><br/>**`PSG_LOADER_WHOLE_TSE`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| If this parameter is set to false the loader will request split TSEs instead of whole ones in bulk mode. If **`[PSG_LOADER].NO_SPLIT`** is set to true this parameter is ignored and original TSEs are requested. | **`[PSG_LOADER]`**<br/>**`WHOLE_TSE_BULK`**<br/><br/>**`PSG_LOADER_WHOLE_TSE_BULK`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+
+<div class="table-scroll"></div>
+
+<a name="ch_libconfig.object_tools_library"></a>
+
+#### Object Tools library
+
+These parameters tune the behavior of the Object Tools library.
+
+<a name="ch_libconfig.T.Objecttools_configurat"></a>
+
+Table 13.5. Object Tools configuration parameters
+
+| Purpose         | [Registry section]<br/>Registry name<br/><br/>Environment variable      | Valid values  | Default                 |
+|-----------------|-------------------------------------------------------------------------|---------------|-------------------------|
+| Specify whether the blob stream processor should try to use string packing. | [N/A]<br/>N/A<br/><br/>**`NCBI_SERIAL_PACK_STRINGS`** | Boolean  [<sup>c</sup>](#ch_libconfig.TF.39) | true |
 | Database lock control. By default LDS2 databases are read-only, so they are cached in memory. If an explicit mode is set in the code, this config parameter is ignored. ***Note:*** To set locks the database must be writable. | **`[LDS2]`**<br/>**`DataLoader_Lock`**<br/><br/>**`LDS2_DATALOADER_LOCK`** | "lock", "nolock", or "cache" | "cache" |
 | Max number of data files allowed to be kept open by LDS2 file handler. | **`[LDS2]`**<br/>**`MAX_CACHED_STREAMS`**<br/><br/>**`LDS2_MAX_CACHED_STREAMS`** | unsigned integer | 3 |
 | Data format to be used by CDD client. | **`[CDD]`**<br/>**`data_format`**<br/><br/>**`NCBI_CONFIG__CDD__DATA_FORMAT`** | "JSON", "semi-binary", or "binary" | "binary" |
-| If true, replace ranges that cannot be mapped with a NULL location instead of using the neighbor's fuzz. | **`[Mapper]`**<br/>**`NonMapping_As_Null`**<br/><br/>**`MAPPER_NONMAPPING_AS_NULL`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
-| Specify the ID1 reader service name. ***Note:*** The services can be redirected using generic [Service Redirection](ch_conn.html#ch_conn.Service_Redirection) technique. Less precedence than **`[GENBANK].ID1_SERVICE_NAME`**. | **`[NCBI]`**<br/>**`SERVICE_NAME_ID1`**<br/><br/>**`GENBANK_SERVICE_NAME_ID1`** | a valid reader service name | ID1<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_SERVICE)) |
-| Specify the ID2 reader service name. ***Note:*** The services can be redirected using generic [Service Redirection](ch_conn.html#ch_conn.Service_Redirection) technique. Less precedence than **`[GENBANK].ID2_SERVICE_NAME`**. | **`[NCBI]`**<br/>**`SERVICE_NAME_ID2`**<br/><br/>**`GENBANK_SERVICE_NAME_ID2`** | a valid reader service name | ID2<br/>(see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=DEFAULT_SERVICE)) |
-| Plug-in libraries with CID2Processor implementation.<br/>Useful for development of alternative data sources. | **`[GENBANK]`**<br/>**`ID2_PROCESSOR`**<br/><br/>**`GENBANK_ID2_PROCESSOR`** | comma-separated list of names of id2proc interface plug-ins | "" |
-| Verbosity level of loading information in GenBank loader. | **`[GENBANK]`**<br/>**`TRACE_LOAD`**<br/><br/>**`GENBANK_TRACE_LOAD`** | int | 0 |
-| Enable VDB source of WGS sequences on os_gateway ID2 server with GenBank id2 reader. | **`[GENBANK]`**<br/>**`VDB_WGS`**<br/><br/>**`GENBANK_VDB_WGS`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
-| Enable version 2 (from VDB) source of SNP annotations on os_gateway ID2 server with GenBank ID2 reader. | **`[GENBANK]`**<br/>**`VDB_SNP`**<br/><br/>**`GENBANK_VDB_SNP`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
-| Enable version 2 (from MongoDB... despite "VDB" in the name) source of CDD annotations on os_gateway ID2 server with GenBank ID2 reader. | **`[GENBANK]`**<br/>**`VDB_CDD`**<br/><br/>**`GENBANK_VDB_CDD`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
-| Offset all GIs loaded by GenBank loader by a 64-bit value.<br/>Use this option only to test your code for 64-bit GI compatibility, the data from GenBank loader will be modified!  | **`[GENBANK]`**<br/>**`GI_OFFSET`**<br/><br/>**`GENBANK_GI_OFFSET`** | 64-bit int| 0 |
-| Allow GenBank loader readers to process loader commands partially, in hope that missing data will be loaded later. | **`[GENBANK]`**<br/>**`ALLOW_INCOMPLETE_COMMANDS`**<br/><br/>**`GENBANK_ALLOW_INCOMPLETE_COMMANDS`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
-| Keep external annotations (SNP, CDD, etc.) visible on edited sequences.<br/>Potentially slow due to size of SNP data. | **`[OBJMGR]`**<br/>**`KEEP_EXTERNAL_FOR_EDIT`**<br/><br/>**`NCBI_CONFIG__OBJMGR__KEEP_EXTERNAL_FOR_EDIT`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
-| Default adaptive depth heuristic will include adaptive depth by named annot accession:<br/>if only named annot accessions are requested in SAnnotSelector then iterator stops at level where all requested names are seen. | **`[OBJMGR]`**<br/>**`ADAPTIVE_DEPTH_BY_NAMED_ACC`**<br/><br/>**`NCBI_CONFIG__OBJMGR__ADAPTIVE_DEPTH_BY_NAMED_ACC`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
-| Controls MT optimization of object deletion in CScope.<br/>If the value is not zero CScope deletes unused entries outside of its mutex, avoiding MT-bottleneck. | **`[OBJMGR]`**<br/>**`SCOPE_POSTPONE_DELETE`**<br/><br/>**`OBJMGR_SCOPE_POSTPONE_DELETE`** | int | 1 |
-| If non-zero, reserve Dense-seg vectors using predefined pre-read hook.   | **`[OBJECTS]`**<br/>**`DENSE_SEG_RESERVE`**<br/><br/>**`OBJECTS_DENSE_SEG_RESERVE`**       | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
-| Specify whether Seq-id general trees are packed.      | **`[OBJECTS]`**<br/>**`PACK_GENERAL`**<br/><br/>**`OBJECTS_PACK_GENERAL`**                 | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
-| Specify whether Seq-id text-seq trees are packed.     | **`[OBJECTS]`**<br/>**`PACK_TEXTID`**<br/><br/>**`OBJECTS_PACK_TEXTID`**                   | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
-| Specify whether empty Seq-descr's will be allowed (or throw if not).     | **`[OBJECTS]`**<br/>**`SEQ_DESCR_ALLOW_EMPTY`**<br/><br/>**`OBJECTS_SEQ_DESCR_ALLOW_EMPTY`**                  | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | false                   |
-| If non-zero, reserve Seq-graph vectors using predefined pre-read hook.   | **`[OBJECTS]`**<br/>**`SEQ_GRAPH_RESERVE`**<br/><br/>**`OBJECTS_SEQ_GRAPH_RESERVE`**       | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
-| If non-zero, reserve Seq-table vectors using predefined pre-read hook.   | **`[OBJECTS]`**<br/>**`SEQ_TABLE_RESERVE`**<br/><br/>**`OBJECTS_SEQ_TABLE_RESERVE`**       | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
-| Sets the maximum number of master TSE blobs that will be cached.         | **`[OBJMGR]`**<br/>**`BLOB_CACHE`**<br/><br/>**`OBJMGR_BLOB_CACHE`**    | unsigned int       | 10   |
-| Specify whether the scope can be auto-released.       | **`[OBJMGR]`**<br/>**`SCOPE_AUTORELEASE`**<br/><br/>**`OBJMGR_SCOPE_AUTORELEASE`**         | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
-| Specify the size of the scope auto-release.           | **`[OBJMGR]`**<br/>**`SCOPE_AUTORELEASE_SIZE`**<br/><br/>**`OBJMGR_SCOPE_AUTORELEASE_SIZE`**                  | unsigned int       | 10   |
-| Specify whether the new FASTA implementation will be used.               | **`[READ_FASTA]`**<br/>**`USE_NEW_IMPLEMENTATION`**<br/><br/>**`NCBI_CONFIG__READ_FASTA__USE_NEW_IMPLEMENTATION`**  [<sup>c</sup>](#ch_libconfig.TF.39)                 | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
-| If true, try to avoid GIs where possible, even if there's no accessions to prefer. | **`[SeqId]`**<br/>**`AvoidGi`**<br/><br/>**`SEQ_ID_AVOID_GI`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
-| If true, give GIs worse (higher) score to prefer accessions in CSeq_id ranking methods. | **`[SeqId]`**<br/>**`PreferAccessionOverGi`**<br/><br/>**`SEQ_ID_PREFER_ACCESSION_OVER_GI`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| Specify whether the new FASTA implementation will be used.               | **`[READ_FASTA]`**<br/>**`USE_NEW_IMPLEMENTATION`**<br/><br/>**`NCBI_CONFIG__READ_FASTA__USE_NEW_IMPLEMENTATION`**  [<sup>b</sup>](#ch_libconfig.TF.38)                 | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
 
 <div class="table-scroll"></div>
 
@@ -802,15 +911,11 @@ Table 13. Objects-related configuration parameters
 
 <a name="ch_libconfig.TF.38"></a>
 
-<sup>b</sup> case-insensitive: true, t, yes, y, false, f, no, n
+<sup>b</sup> [environment variable name](#ch_libconfig.Environment) formed from registry section and entry name
 
 <a name="ch_libconfig.TF.39"></a>
 
-<sup>c</sup> [environment variable name](#ch_libconfig.Environment) formed from registry section and entry name
-
-<a name="ch_libconfig.TF.40"></a>
-
-<sup>d</sup> case-insensitive: true values are { yes \| 1 }; anything else is false
+<sup>c</sup> case-insensitive: true values are { yes \| 1 }; anything else is false
 
 <a name="ch_libconfig.psg_client_library"></a>
 
@@ -820,33 +925,33 @@ These parameters tune the behavior of the psg_client library.
 
 <a name="ch_libconfig.T.psg_client_library_configurat"></a>
 
-Table 13.1. psg_client library configuration parameters
+Table 13.6. psg_client library configuration parameters
 
 | Purpose                                                                                                                                                                                                                | [Registry section]<br/>Registry name<br/><br/>Environment variable                                                                          | Valid values                                                | Default                    |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|----------------------------|
-| How often to query LBSM, in seconds. Less or equal to zero means no rebalance based on time                                                                                                                            | **`[PSG]`**<br/>**`rebalance_time`**<br/><br/>**`NCBI_CONFIG__PSG__REBALANCE_TIME`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                 | double                                                      | 10.0                       |
-| How often to query LBSM while no servers discovered, in seconds. Less or equal to zero means `rebalance_time` is used instead                                                                                          | **`[PSG]`**<br/>**`no_servers_retry_delay`**<br/><br/>**`NCBI_CONFIG__PSG__NO_SERVERS_RETRY_DELAY`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | double                                                      | 1.0                        |
-| Number of internal I/O threads.                                                                                                                                                                                        | **`[PSG]`**<br/>**`num_io`**<br/><br/>**`NCBI_CONFIG__PSG__NUM_IO`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                                 | integer                                                     | 6                          |
-| Max number of sessions (TCP connections) per server per I/O thread. Each thread has one session per server at start. New sessions are added dynamically (up to the limit) if all existing ones are full.               | **`[PSG]`**<br/>**`max_sessions`**<br/><br/>**`NCBI_CONFIG__PSG__MAX_SESSIONS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                     | integer                                                     | 40                         |
-| Maximum number of concurrent streams per session (TCP connection)                                                                                                                                                      | **`[PSG]`**<br/>**`max_concurrent_streams`**<br/><br/>**`NCBI_CONFIG__PSG__MAX_CONCURRENT_STREAMS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer                                                     | 100                        |
-| Maximum number of concurrent submits per "on queue" callback. Essentially, maximum number of requests to be sent per one I/O operation.                                                                                | **`[PSG]`**<br/>**`max_concurrent_submits`**<br/><br/>**`NCBI_CONFIG__PSG__MAX_CONCURRENT_SUBMITS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer                                                     | 150                        |
-| Number of requests to submit consecutively per I/O thread                                                                                                                                                              | **`[PSG]`**<br/>**`requests_per_io`**<br/><br/>**`NCBI_CONFIG__PSG__REQUESTS_PER_IO`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)               | integer                                                     | 1                          |
-| Timeout on blob stream reading, in seconds                                                                                                                                                                             | **`[PSG]`**<br/>**`reader_timeout`**<br/><br/>**`NCBI_CONFIG__PSG__READER_TIMEOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                 | integer                                                     | 12                         |
-| Logging of debug printout of PSG protocol. Setting to 'some' will output everything except blob data.                                                                                                                  | **`[PSG]`**<br/>**`debug_printout`**<br/><br/>**`NCBI_CONFIG__PSG__DEBUG_PRINTOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                 | none, some, all[<sup>b</sup>](#ch_libconfig.TF.13.1.2)      | none                       |
-| Instructing server as whether to use LMDB cache. Setting to 'default' will let servers use their own parameters on using LMDB cache                                                                                    | **`[PSG]`**<br/>**`use_cache`**<br/><br/>**`NCBI_CONFIG__PSG__USE_CACHE`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                           | no, yes, default[<sup>b</sup>](#ch_libconfig.TF.13.1.2)     | default                    |
-| I/O timer period, in seconds. Defines accuracy and precision for 'competitive_after' and 'request_timeout'.                                                                                                            | **`[PSG]`**<br/>**`io_timer_period`**<br/><br/>**`NCBI_CONFIG__PSG__IO_TIMER_PERIOD`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)               | double                                                      | 0.4                        |
-| Number of seconds after a competitive hit is started for a request not yet received a reply.                                                                                                                           | **`[PSG]`**<br/>**`competitive_after`**<br/><br/>**`NCBI_CONFIG__PSG__COMPETITIVE_AFTER`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)           | double                                                      | 2.0                        |
-| Number of retries after any failure before giving up on a request                                                                                                                                                      | **`[PSG]`**<br/>**`request_retries`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_RETRIES`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)               | integer                                                     | 2                          |
-| Number of retries after REFUSED_STREAM failure before giving up on a request.                                                                                                                                          | **`[PSG]`**<br/>**`refused_stream_retries`**<br/><br/>**`NCBI_CONFIG__PSG__REFUSED_STREAM_RETRIES`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | integer                                                     | 2                          |
-| Timeout on request, in seconds                                                                                                                                                                                         | **`[PSG]`**<br/>**`request_timeout`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_TIMEOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)               | double                                                      | 10.0                       |
-| Arbitrary URL arguments to add to every request                                                                                                                                                                        | **`[PSG]`**<br/>**`request_user_args`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_USER_ARGS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)           | string                                                      | ""                         |
-| Enables using user contexts as request IDs. If enabled, user contexts are internally cast to strings and, if successful, then used in logging of debug printout (see above).                                           | **`[PSG]`**<br/>**`user_request_ids`**<br/><br/>**`NCBI_CONFIG__PSG__USER_REQUEST_IDS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)             | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.1.3)             | false                      |
-| Whether to throw an exception on retrieving an unknown reply item type (or, if set false, to log an error instead, once per process)                                                                                   | **`[PSG]`**<br/>**`fail_on_unknown_items`**<br/><br/>**`NCBI_CONFIG__PSG__FAIL_ON_UNKNOWN_ITEMS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)   | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.1.3)             | false                      |
-| Whether to fail an item/reply on receiving an unknown chunk type. If enabled, such items/replies will then get the error status and a corresponding message. The error message is logged (once per process) regardless | **`[PSG]`**<br/>**`fail_on_unknown_chunks`**<br/><br/>**`NCBI_CONFIG__PSG__FAIL_ON_UNKNOWN_CHUNKS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1) | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.1.3)             | false                      |
-| Localhost preference multiplier                                                                                                                                                                                        | **`[PSG]`**<br/>**`localhost_preference`**<br/><br/>**`NCBI_CONFIG__PSG__LOCALHOST_PREFERENCE`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)     | integer                                                     | 1                          |
-| Whether to use HTTPS                                                                                                                                                                                                   | **`[PSG]`**<br/>**`https`**<br/><br/>**`NCBI_CONFIG__PSG__HTTPS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                                   | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.1.3)             | false                      |
-| Enables reporting of PSG client API stats. If enabled, the stats are reported using ERR_POST(Note)                                                                                                                     | **`[PSG]`**<br/>**`stats`**<br/><br/>**`NCBI_CONFIG__PSG__STATS`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                                   | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.1.3)             | false                      |
-| Defines how often to report PSG client API stats, in seconds. Less or equal to zero means the stats are only reported on exit                                                                                          | **`[PSG]`**<br/>**`stats_period`**<br/><br/>**`NCBI_CONFIG__PSG__STATS_PERIOD`**[<sup>a</sup>](#ch_libconfig.TF.13.1.1)                     | double                                                      | 0.0                        |
+| How often to query LBSM, in seconds. Less or equal to zero means no rebalance based on time                                                                                                                            | **`[PSG]`**<br/>**`rebalance_time`**<br/><br/>**`NCBI_CONFIG__PSG__REBALANCE_TIME`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                 | double                                                      | 10.0                       |
+| How often to query LBSM while no servers discovered, in seconds. Less or equal to zero means `rebalance_time` is used instead                                                                                          | **`[PSG]`**<br/>**`no_servers_retry_delay`**<br/><br/>**`NCBI_CONFIG__PSG__NO_SERVERS_RETRY_DELAY`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1) | double                                                      | 1.0                        |
+| Number of internal I/O threads.                                                                                                                                                                                        | **`[PSG]`**<br/>**`num_io`**<br/><br/>**`NCBI_CONFIG__PSG__NUM_IO`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                                 | integer                                                     | 6                          |
+| Max number of sessions (TCP connections) per server per I/O thread. Each thread has one session per server at start. New sessions are added dynamically (up to the limit) if all existing ones are full.               | **`[PSG]`**<br/>**`max_sessions`**<br/><br/>**`NCBI_CONFIG__PSG__MAX_SESSIONS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                     | integer                                                     | 40                         |
+| Maximum number of concurrent streams per session (TCP connection)                                                                                                                                                      | **`[PSG]`**<br/>**`max_concurrent_streams`**<br/><br/>**`NCBI_CONFIG__PSG__MAX_CONCURRENT_STREAMS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1) | integer                                                     | 100                        |
+| Maximum number of concurrent submits per "on queue" callback. Essentially, maximum number of requests to be sent per one I/O operation.                                                                                | **`[PSG]`**<br/>**`max_concurrent_submits`**<br/><br/>**`NCBI_CONFIG__PSG__MAX_CONCURRENT_SUBMITS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1) | integer                                                     | 150                        |
+| Number of requests to submit consecutively per I/O thread                                                                                                                                                              | **`[PSG]`**<br/>**`requests_per_io`**<br/><br/>**`NCBI_CONFIG__PSG__REQUESTS_PER_IO`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)               | integer                                                     | 1                          |
+| Timeout on blob stream reading, in seconds                                                                                                                                                                             | **`[PSG]`**<br/>**`reader_timeout`**<br/><br/>**`NCBI_CONFIG__PSG__READER_TIMEOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                 | integer                                                     | 12                         |
+| Logging of debug printout of PSG protocol. Setting to 'some' will output everything except blob data.                                                                                                                  | **`[PSG]`**<br/>**`debug_printout`**<br/><br/>**`NCBI_CONFIG__PSG__DEBUG_PRINTOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                 | none, some, all[<sup>b</sup>](#ch_libconfig.TF.13.5.2)      | none                       |
+| Instructing server as whether to use LMDB cache. Setting to 'default' will let servers use their own parameters on using LMDB cache                                                                                    | **`[PSG]`**<br/>**`use_cache`**<br/><br/>**`NCBI_CONFIG__PSG__USE_CACHE`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                           | no, yes, default[<sup>b</sup>](#ch_libconfig.TF.13.5.2)     | default                    |
+| I/O timer period, in seconds. Defines accuracy and precision for 'competitive_after' and 'request_timeout'.                                                                                                            | **`[PSG]`**<br/>**`io_timer_period`**<br/><br/>**`NCBI_CONFIG__PSG__IO_TIMER_PERIOD`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)               | double                                                      | 0.4                        |
+| Number of seconds after a competitive hit is started for a request not yet received a reply.                                                                                                                           | **`[PSG]`**<br/>**`competitive_after`**<br/><br/>**`NCBI_CONFIG__PSG__COMPETITIVE_AFTER`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)           | double                                                      | 2.0                        |
+| Number of retries after any failure before giving up on a request                                                                                                                                                      | **`[PSG]`**<br/>**`request_retries`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_RETRIES`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)               | integer                                                     | 2                          |
+| Number of retries after REFUSED_STREAM failure before giving up on a request.                                                                                                                                          | **`[PSG]`**<br/>**`refused_stream_retries`**<br/><br/>**`NCBI_CONFIG__PSG__REFUSED_STREAM_RETRIES`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1) | integer                                                     | 2                          |
+| Timeout on request, in seconds                                                                                                                                                                                         | **`[PSG]`**<br/>**`request_timeout`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_TIMEOUT`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)               | double                                                      | 10.0                       |
+| Arbitrary URL arguments to add to every request                                                                                                                                                                        | **`[PSG]`**<br/>**`request_user_args`**<br/><br/>**`NCBI_CONFIG__PSG__REQUEST_USER_ARGS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)           | string                                                      | ""                         |
+| Enables using user contexts as request IDs. If enabled, user contexts are internally cast to strings and, if successful, then used in logging of debug printout (see above).                                           | **`[PSG]`**<br/>**`user_request_ids`**<br/><br/>**`NCBI_CONFIG__PSG__USER_REQUEST_IDS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)             | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.5.3)             | false                      |
+| Whether to throw an exception on retrieving an unknown reply item type (or, if set false, to log an error instead, once per process)                                                                                   | **`[PSG]`**<br/>**`fail_on_unknown_items`**<br/><br/>**`NCBI_CONFIG__PSG__FAIL_ON_UNKNOWN_ITEMS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)   | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.5.3)             | false                      |
+| Whether to fail an item/reply on receiving an unknown chunk type. If enabled, such items/replies will then get the error status and a corresponding message. The error message is logged (once per process) regardless | **`[PSG]`**<br/>**`fail_on_unknown_chunks`**<br/><br/>**`NCBI_CONFIG__PSG__FAIL_ON_UNKNOWN_CHUNKS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1) | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.5.3)             | false                      |
+| Localhost preference multiplier                                                                                                                                                                                        | **`[PSG]`**<br/>**`localhost_preference`**<br/><br/>**`NCBI_CONFIG__PSG__LOCALHOST_PREFERENCE`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)     | integer                                                     | 1                          |
+| Whether to use HTTPS                                                                                                                                                                                                   | **`[PSG]`**<br/>**`https`**<br/><br/>**`NCBI_CONFIG__PSG__HTTPS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                                   | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.5.3)             | false                      |
+| Enables reporting of PSG client API stats. If enabled, the stats are reported using ERR_POST(Note)                                                                                                                     | **`[PSG]`**<br/>**`stats`**<br/><br/>**`NCBI_CONFIG__PSG__STATS`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                                   | Boolean [<sup>c</sup>](#ch_libconfig.TF.13.5.3)             | false                      |
+| Defines how often to report PSG client API stats, in seconds. Less or equal to zero means the stats are only reported on exit                                                                                          | **`[PSG]`**<br/>**`stats_period`**<br/><br/>**`NCBI_CONFIG__PSG__STATS_PERIOD`**[<sup>a</sup>](#ch_libconfig.TF.13.5.1)                     | double                                                      | 0.0                        |
 | Indicates whether throttling is enabled and, if so, when server throttling is released, in seconds                                                                                                                     | **`[PSG]`**<br/>**`throttle_relaxation_period`**<br/><br/>N/A                                                                               | integer                                                     | 0 (throttling is disabled) |
 | This is one condition that will trigger server throttling and is defined as a string having the form "A / B" where A and B are integers. Throttling will be triggered if there are A failures in the last B operations | **`[PSG]`**<br/>**`throttle_by_connection_error_rate`**<br/><br/>N/A                                                                        | a string having the form "A / B" where A and B are integers | "" (ignored)               |
 | This is another condition that will trigger server throttling and is defined as follows. Server throttling will be triggered if this number of consecutive connection failures happens                                 | **`[PSG]`**<br/>**`throttle_by_consecutive_connection_failures`**<br/><br/>N/A                                                              | integer                                                     | 0 (ignored)                |
@@ -854,15 +959,15 @@ Table 13.1. psg_client library configuration parameters
 
 <div class="table-scroll"></div>
 
-<a name="ch_libconfig.TF.13.1.1"></a>
+<a name="ch_libconfig.TF.13.5.1"></a>
 
 <sup>a</sup> [environment variable name](#ch_libconfig.Environment) formed from registry section and entry name
 
-<a name="ch_libconfig.TF.13.1.2"></a>
+<a name="ch_libconfig.TF.13.5.2"></a>
 
 <sup>b</sup> case-insensitive
 
-<a name="ch_libconfig.TF.13.1.3"></a>
+<a name="ch_libconfig.TF.13.5.3"></a>
 
 <sup>c</sup> case-insensitive: true, t, yes, y, false, f, no, n
 
