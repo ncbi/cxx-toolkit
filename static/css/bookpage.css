@@ -567,7 +567,6 @@ fieldset {
 #s {
 	/* The search text box. */
 	border: none;
-	color: #888888;
 	background: url("/cxx-toolkit/static/img/searchBox.png") no-repeat;
 	float: left;
 	font-family: Arial, Helvetica, sans-serif;
