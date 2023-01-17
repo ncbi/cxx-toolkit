@@ -226,7 +226,7 @@ For example:
     client = objmgr_demo
 
 
-    <a name="ch_objmgr_dtld.Configuring_NetCache"></a>
+<a name="ch_objmgr_dtld.Configuring_NetCache"></a>
 
 Configuring NetCached to cache GenBank data
 -------------------------------------------
