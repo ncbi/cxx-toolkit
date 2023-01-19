@@ -67,6 +67,8 @@ Application configuration is stored in a file with the same name as application,
 
 ### Main GenBank data loader configuration<br/>section [genbank]
 
+See also the full list of [Genbank data loader configuration parameters](https://ncbi.github.io/cxx-toolkit/pages/ch_libconfig#ch_libconfig.T.Genbankdataloader_configurat).
+
     [genbank]
 
     ; loader_method lists GenBank readers - interfaces to GenBank server.
@@ -84,6 +86,8 @@ Application configuration is stored in a file with the same name as application,
 <a name="ch_objmgr_dtld.GenBank_readers_conf"></a>
 
 ### GenBank readers configuration
+
+See also the full list of [Genbank readers configuration parameters](https://ncbi.github.io/cxx-toolkit/pages/ch_libconfig#ch_libconfig.T.Genbankreaders_configurat).
 
 <a name="ch_objmgr_dtld.Readers_id1__id2sect"></a>
 
@@ -625,13 +629,14 @@ Sometimes the performance gain can be smaller. E.g. retrieval of large delta seq
 without loading sequence data for all segments is only about 1.5-2 times faster with
 PSG than with ID2/PUBSEQOS.
 
-Unlike the default Genbank loader, PSG loader does not retrieve orphan annotaions
-(CDD, SNP, STS). It also does not provide WGS sequences. These annotations and
-sequences can be requested through dedicated data loaders: CDD, SNP etc. These
-loaders should be [registered](ch_objmgr#ch_objmgr.om_faq.html_add_data_loader)
-in the Object Manager in addition to Genbank data loader. Some of these standalone
-loaders may work slower than ID2/PUBSEQOS, so, the overall performance of data
-retrieval will depend on specific task.
+See the full list of [PSG data loader configuration parameters](https://ncbi.github.io/cxx-toolkit/pages/ch_libconfig#ch_libconfig.T.Psgdataloader_configurat)
+and [psg_client library configuration parameters](ch_libconfig.T.psg_client_library_configurat).
+
+Depending on the PSG server and client configuration PSG loader may provide or ignore some annotations (CDD, SNP, STS)
+or sequenses (WGS). These data types can be requested through dedicated data loaders: CDD, SNP etc. which should be
+[registered](ch_objmgr#ch_objmgr.om_faq.html_add_data_loader) in the Object Manager in addition to Genbank data loader.
+Some of these standalone loaders may work slower than ID2/PUBSEQOS, so, the overall performance of data retrieval will
+depend on specific configuration and task.
 
 To use a data loader in your application you may need to update library dependencies in the
 application makefile. Below are modifications required for SNP, CDD and WGS loaders.
