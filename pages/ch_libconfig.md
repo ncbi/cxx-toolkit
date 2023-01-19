@@ -770,7 +770,7 @@ Table 13.2. Object Manager configuration parameters
 
 #### Genbank data loader and readers
 
-These parameters tune the behavior of the Genbank data loader.
+These parameters tune the behavior of the Genbank data loader. More details about Genbank loader and readers cofniguration can be found [here](https://ncbi.github.io/cxx-toolkit/pages/ch_objmgr_dtld#ch_objmgr_dtld.GenBank_data_loader_).
 
 <a name="ch_libconfig.T.Genbankdataloader_configurat"></a>
 
@@ -851,6 +851,7 @@ Table 13.3b. Genbank readers configuration parameters
 | Fetch user name from MyNCBI and put the value into cubby_user variable for PubSeqOS/PubSeqOS2 database. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`SET_CUBBY_USER`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
 | User name for PubSeqOS/PubSeqOS2 database. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`USER`** | string | "anyone" |
 | Allow gzip compression of PubSeqOS data. | **`[GENBANK/pubseqos]`** or **`[pubseqos]`**<br/>**`GZIP`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+| ICache driver or a list of drivers for cache reader and writer. For more details about cache configuration see [GenBank data loader configuration](https://ncbi.github.io/cxx-toolkit/pages/ch_objmgr_dtld#ch_objmgr_dtld.GenBank_data_loader_). | **`[GENBANK/cache/<cache_type>]`** or **`[cache/<cache_type>]`**<br/>**`DRIVER`** | semicolon-delimited list of driver names ("bdb" and "netcache") | "bdb" |
 
 <div class="table-scroll"></div>
 
