@@ -1103,7 +1103,7 @@ Table 15. eutils library configuration parameters
 
 | Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable | Valid values | Default               |
 |-------------|--------------------------------------------------------------------|--------------|-----------------------|
-| Specify the base URL for Eutils requests. | **`[Eutils]`**<br/>**`Base_URL`**<br/><br/>**`EUTILS_BASE_URL`**   | a valid URL  | https://www.ncbi.nlm.nih.gov/books/NBK25501/ (see [API](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=kDefaultEUtils_Base_URL)) |
+| Specify the base URL for Eutils requests. | **`[Eutils]`**<br/>**`Base_URL`**<br/><br/>**`EUTILS_BASE_URL`**   | a valid URL  | The host returned by resolving "eutils_lb" service or "eutils.ncbi.nlm.nih.gov" by default, with "/entrez/eutils/" path appended ("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"). |
 
 <div class="table-scroll"></div>
 
