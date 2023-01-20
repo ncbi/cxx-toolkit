@@ -851,6 +851,7 @@ Table 13.3b. Genbank readers configuration parameters
 | Fetch user name from MyNCBI and put the value into cubby_user variable for PubSeqOS/PubSeqOS2 database. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`SET_CUBBY_USER`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
 | User name for PubSeqOS/PubSeqOS2 database. | **`[GENBANK/<reader_name>]`** or **`[<reader_name>]`**<br/>**`USER`** | string | "anyone" |
 | Allow gzip compression of PubSeqOS data. | **`[GENBANK/pubseqos]`** or **`[pubseqos]`**<br/>**`GZIP`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
+| Path to the gicache index files. | **`[GENBANK/gicache]`** or **`[gicache]`**<br/>**`PATH`** | valid path | "//panfs/pan1.be-md.ncbi.nlm.nih.gov/id_dumps/gi_cache" |
 | ICache driver or a list of drivers for cache reader and writer. For more details about cache configuration see [GenBank data loader configuration](https://ncbi.github.io/cxx-toolkit/pages/ch_objmgr_dtld#ch_objmgr_dtld.GenBank_data_loader_). | **`[GENBANK/cache/<cache_type>]`** or **`[cache/<cache_type>]`**<br/>**`DRIVER`** | semicolon-delimited list of driver names ("bdb" and "netcache") | "bdb" |
 
 <div class="table-scroll"></div>
