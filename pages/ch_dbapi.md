@@ -674,7 +674,7 @@ CDatabase    db2(service);
 db2.Connect();
 ```
 
-To configure connection pooling the configuration file must have a section called `[<service name>.dbservice]` so for the example above it will be `[srv.dbservice]`. See the available parameters in the “Connection Pooling Configurable Parameters” section.
+To configure connection pooling the configuration file must have a section called `[<service name>.dbservice]` so for the example above it will be `[srv.dbservice]`. See the available parameters in the "Connection Pooling Configurable Parameters" section.
 
 Obviously, an application may create as many pools as required providing different service names in the C++ code and supplying appropriate sections in the configuration file.
 
@@ -841,7 +841,7 @@ The service name `MyMirroredService` is used here and further to make the exampl
 The application code should use the following way of instantiating the `CDatabase` object:
 
 ```
-CDatabase    my_db(“MyMirroredService”);
+CDatabase    my_db("MyMirroredService");
 ```
 
 When the `my_db` instance is created the SDBAPI searches in the configuration file a section named as follows:
@@ -2034,7 +2034,7 @@ NCBI created the "BDB" wrapper to simplify use of the open source [Berkeley DB](
 
 -   **Error checking.** All error codes coming from the Berkeley DB are analyzed and processed in a manner common to all other components of the C++ Toolkit. When an error situation is detected, the BDB wrapper sends an exception that is reported by the diagnostic services and can be handled by the calling application, similar to any other Toolkit exception.
 
--   **Support for relational table structure and different data types.** The Berkeley DB itself is “type agnostic” and provides no means to manipulate data types. But for many cases, clear data type support can save a lot of work. The Toolkit implements all major scalar data types so it can be used like a regular database.
+-   **Support for relational table structure and different data types.** The Berkeley DB itself is "type agnostic" and provides no means to manipulate data types. But for many cases, clear data type support can save a lot of work. The Toolkit implements all major scalar data types so it can be used like a regular database.
 
 -   **Cross platform compatibility.** The BDB databases can be transferred across platforms without reconverting the data. The BDB tracks the fact that the database was created as big-endian or little-endian and does the conversion transparently when the database migrates.
 

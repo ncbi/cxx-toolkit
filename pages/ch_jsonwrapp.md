@@ -86,7 +86,7 @@ If we then want to convert it into *Null*, we use *ResetValue()*:
 
 Converting the *Null* value into *String* or *Number* does not require *ResetX()* because it is still primitive type:
 
-    val.SetString(“value”);
+    val.SetString("value");
 
 Converting it into *Array*, does:
 
@@ -205,11 +205,11 @@ There are two types of data parsing – DOM and SAX. `JsonWrapp` library support
 The DOM stands for Document Object Model. This type of parser loads the whole object into memory.  The document has methods to access, insert, and delete data nodes. For example, to read data from file, do the following:
 
     CJson_Document doc;
-    doc.Read(“filename”);
+    doc.Read("filename");
 
 The data then can be modified and written back into a file:
 
-    doc.Write(“filename”);
+    doc.Write("filename");
 
 
 The SAX stands for Simple API for XML.  SAX type parser is event-based sequential access API. When reading data, it does not produce an object, it generates events instead. The data cannot be written because there is no data object, but inside SAX parser, it is possible to read parts of the data using DOM parser and write them separately. 
@@ -219,13 +219,13 @@ class. Developers should provide their own class derived from *CJson_WalkHandler
 For example, having *CSax* class derived from *CJson_WalkHandler*, it is possible to use it to parse existing JSON document:
 
     CJson_Document doc;
-    doc.Read(“filename”);
+    doc.Read("filename");
     CSax parser;
     Doc.Walk(parser);
 
 Or to parse a file:
 
-    Ifstream ifs(“filename”);
+    Ifstream ifs("filename");
     CSax parser;
     CJson_Document::Walk(ifs, parser);
 
@@ -239,10 +239,10 @@ JSON Schema is a formal description of JSON data structure, used for validation 
 Schema can only be created from a Document (Schema specification). After that it can be used to validate JSON data:
 
     CJson_Document schema_doc;
-    doc.Read(“schema_filename”);
+    doc.Read("schema_filename");
     CJson_Schema sc(schema_doc);
     CJson_Document data_doc;
-    doc.Read(“data_filename”);
+    doc.Read("data_filename");
     sc.Validate(data_doc);
     
 Several methods return name or URI of nonconforming value, if any. It also possible to validate data on reading or writing - [CJson_Document](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCJson__Document.html) has `Read` and `Write` methods with Schema as a parameter.

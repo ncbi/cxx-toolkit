@@ -272,7 +272,7 @@ For example, if you are creating a new class called "`Bar`" in package "`Foo`" t
 
 `<ncbistl.hpp>`
 
-All NCBI-made “core” API code must be put into the `"ncbi::"` namespace. For this purpose, there are two preprocessor macros, **`BEGIN_NCBI_SCOPE`** and **`END_NCBI_SCOPE`**, that must enclose **all** NCBI C++ API code -- both declarations and definitions (see [examples](ch_proj.html#ch_proj.new_modules)). Inside these "brackets", all `"std::"` and `"ncbi::"` scope prefixes can (and must!) be omitted.
+All NCBI-made "core" API code must be put into the `"ncbi::"` namespace. For this purpose, there are two preprocessor macros, **`BEGIN_NCBI_SCOPE`** and **`END_NCBI_SCOPE`**, that must enclose **all** NCBI C++ API code -- both declarations and definitions (see [examples](ch_proj.html#ch_proj.new_modules)). Inside these "brackets", all `"std::"` and `"ncbi::"` scope prefixes can (and must!) be omitted.
 
 For code that does not define a new API but merely **uses** the NCBI C++ API, there is a macro **`USING_NCBI_SCOPE;`** (semicolon-terminated) that brings all types and prototypes from the `"std::"` and `"ncbi::"` namespaces into the current scope, eliminating the need for the `"std::"` and `"ncbi::"` prefixes.
 

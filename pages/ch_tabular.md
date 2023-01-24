@@ -133,7 +133,7 @@ Access to the first field is done via its number and the third field is accessed
 
 The fields are represented by a template class CRR_Field and could be copied similar to the rows.
 
-CRR_Row::operator[] provides a reference to a field which can be used to get a field value. In some cases a field from a data source needs to be translated to something else. For example, NCBI TSV may have a character ‘-‘ coming from the source stream and in this case it needs to be translated to an empty value. So there is a difference between a field value and an original field value. Also a field could be null. For example, the NCBI TSV informal rules say that if the source stream has “na” for a field value then the field value is actually a null. The CRR_Field class respects these cases and provides the methods, informally described in the table below.
+CRR_Row::operator[] provides a reference to a field which can be used to get a field value. In some cases a field from a data source needs to be translated to something else. For example, NCBI TSV may have a character ‘-‘ coming from the source stream and in this case it needs to be translated to an empty value. So there is a difference between a field value and an original field value. Also a field could be null. For example, the NCBI TSV informal rules say that if the source stream has "na" for a field value then the field value is actually a null. The CRR_Field class respects these cases and provides the methods, informally described in the table below.
 
 CRR_Field method	| Description
 ------------------|------------
@@ -183,7 +183,7 @@ The field meta info includes:
 - field data type
 - extended field data type
 
-On most occasions the meta info does not enforce anything (except for some cases of validation, described below). For example, a name for field number 79 could be set to “Address” while the data source has only 4 fields. This would not lead to errors unless the field is referred by its name and there is no such a field in the current row. Also it is all right to set many names for the same field or the same name for many fields. In the last case it is an undefined behavior what field is provided if it is referred to by a name.
+On most occasions the meta info does not enforce anything (except for some cases of validation, described below). For example, a name for field number 79 could be set to "Address" while the data source has only 4 fields. This would not lead to errors unless the field is referred by its name and there is no such a field in the current row. Also it is all right to set many names for the same field or the same name for many fields. In the last case it is an undefined behavior what field is provided if it is referred to by a name.
 
 The data types for the fields are fixed and include:
 - eRR_String for strings
@@ -363,7 +363,7 @@ Stop processing the stream	| CRowReader stops iterating over the data source i.e
 
 The next stage is to tokenize the data if needed. To do that CRowReader invokes the traits Tokenize() method providing the raw data and storage for the tokens. The traits are expected to populate the tokens and inform CRowReader (via the Tokenize() method return value) of a required further action. The same action enumeration is used here as for the OnNextLine() method however the only allowed return values are: skip, continue as data and stop processing.
 
-Upon the tokenization stage completion the recognized tokens may need to be translated to something else. A good example here is NCBI TSV which requires treating input data “na” as a null field and “-“ as an empty string. To accomplish translations CRowReader invokes the traits Translate() method, supplying the field number, the field original value and storage for saving the translated value. The traits Translate() return value informs CRowReader of what happened with the original value. The return value could be:
+Upon the tokenization stage completion the recognized tokens may need to be translated to something else. A good example here is NCBI TSV which requires treating input data "na" as a null field and "-" as an empty string. To accomplish translations CRowReader invokes the traits Translate() method, supplying the field number, the field original value and storage for saving the translated value. The traits Translate() return value informs CRowReader of what happened with the original value. The return value could be:
 - Use original value
 - The original value has been translated
 - The original value has been translated to null

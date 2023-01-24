@@ -331,7 +331,7 @@ The following sections describe how to wrap an existing CGI application into a G
 
 In this case a real CGI does not need to be modified at all and **remote\_cgi** utility serves as an intermediate between NetSchedule service and a real CGI. The real CGI and **remote\_cgi** utility go to the server side. The **remote\_cgi** gets a job from NetSchedule service, deserializes the CGI request and **`stdin`** stream and runs the real CGI with this data. When the CGI finishes the **remote\_cgi** utility serializes its **`stdout`** stream and sends it back to the client.
 
-On the client side (front-end) **cgi2rcgi** sees that the job’s status is changed to “done” gets the data sent by the server side (back-end), deserializes it and writes it on its **`stdout`**.
+On the client side (front-end) **cgi2rcgi** sees that the job’s status is changed to "done" gets the data sent by the server side (back-end), deserializes it and writes it on its **`stdout`**.
 
 **cgi2rcgi** utility has two html template files to define its look. The first file is [cgi2rcgi.html](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/cgi2rcgi/cgi2rcgi.html) (can be redefined in [cgi2rcgi.ini](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/app/grid/cgi2rcgi/cgi2rcgi.ini) file) which is the main html template file and it contains all common html tags for the particular application. It also has to have two required tags.
 

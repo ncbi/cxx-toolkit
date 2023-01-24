@@ -34,7 +34,7 @@ How to get indexed by Google
     Navigate to the URL inspection tool.
     Paste the URL you'd like Google to index into the search bar.
     Wait for Google to check the URL.
-    Click the “Request indexing” button.
+    Click the "Request indexing" button.
     
 How to create a sitemap: [https://support.google.com/webmasters/answer/183668?hl=en](https://support.google.com/webmasters/answer/183668?hl=en)
     

@@ -426,7 +426,7 @@ The projects to be retrieved (or updated) must be specified in the command line 
 
 -   Explicit specification of the pathname of the project listing file. This project listing file can contain project directory names as well as references to other project listings and must be formatted according to the simple [syntax used by the configure script](ch_config.html#ch_config.ch_configwith_projec).
 
--   Specify one of the standard project names. Standard projects are those whose project listing files are located in one of the system directories, which are `trunk/c++/scripts/projects` and `trunk/c++/scripts/internal/projects`. When a project name is specified on the command line, the “.lst” extension is added to it and the resulting file name is searched for in the above mentioned system directories.
+-   Specify one of the standard project names. Standard projects are those whose project listing files are located in one of the system directories, which are `trunk/c++/scripts/projects` and `trunk/c++/scripts/internal/projects`. When a project name is specified on the command line, the ".lst" extension is added to it and the resulting file name is searched for in the above mentioned system directories.
 
 The parameter to **update\_projects** indicates the target directory where the sources will be checked out to and where the project will be configured and built. This parameter is optional and is set to the current directory by default.
 

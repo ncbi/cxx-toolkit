@@ -949,9 +949,9 @@ Further sections describe all the components in more detail.
 
 As mentioned earlier, the LBSMD daemon runs almost on every host that carries either public or private servers which, in turn, implement NCBI services. The services include CGI programs or standalone servers to access NCBI data.
 
-Each service has a unique name assigned to it. The “TaxService” would be an example of such a name. The name not only identifies a service. It also implies a protocol which is used for data exchange with that service. For example, any client which connects to the “TaxService” service knows how to communicate with that service regardless the way the service is implemented. In other words the service could be implemented as a standalone server on host X and as a CGI program on the same host or on another host Y (please note, however, that there are exceptions and for some service types it is forbidden to have more than one service type on the same host).
+Each service has a unique name assigned to it. The "TaxService" would be an example of such a name. The name not only identifies a service. It also implies a protocol which is used for data exchange with that service. For example, any client which connects to the "TaxService" service knows how to communicate with that service regardless the way the service is implemented. In other words the service could be implemented as a standalone server on host X and as a CGI program on the same host or on another host Y (please note, however, that there are exceptions and for some service types it is forbidden to have more than one service type on the same host).
 
-A host can advertize many services. For example, one service (such as “Entrez2”) can operate with binary data only while another one (such as “Entrez2Text”) can operate with text data only. The distinction between those two services could be made by using a content type specifier in the LBSMD daemon configuration file.
+A host can advertize many services. For example, one service (such as "Entrez2") can operate with binary data only while another one (such as "Entrez2Text") can operate with text data only. The distinction between those two services could be made by using a content type specifier in the LBSMD daemon configuration file.
 
 The main purpose of the LBSMD daemon is to maintain a table of all services available at NCBI at the moment. In addition the LBSMD daemon keeps track of servers that are found to be dysfunctional (dead servers). The daemon is also responsible for propagating trouble reports, obtained from applications. The application trouble reports are based on their experience with advertised servers (e.g., an advertised server is not technically marked dead but generates some sort of garbage). Further in this document, the latter kind of feedback is called a penalty.
 
@@ -959,7 +959,7 @@ The principle of load balancing is simple: each server which implements a servic
 
 The LBSMD daemon calculates two parameters for the host on which it is running. The parameters are a normal host status and a BLAST host status (based on the instant load of the system). These parameters are then used to calculate the rate of all (non static) servers on the host. The rates of all other hosts are not calculated but received and stored in the LBSMD table.
 
-The LBSMD daemon can be restarted from a crontab every few minutes on all the production hosts to ensure that the daemon is always running. This technique is safe because no more than one instance of the daemon is permitted on a certain host and any attempt to start more than one is ignored. Normally, though, a running daemon instance is maintained afloat by some kind of monitoring software, such as “puppet” or “monit” that makes use of the crontabs unnecessary.
+The LBSMD daemon can be restarted from a crontab every few minutes on all the production hosts to ensure that the daemon is always running. This technique is safe because no more than one instance of the daemon is permitted on a certain host and any attempt to start more than one is ignored. Normally, though, a running daemon instance is maintained afloat by some kind of monitoring software, such as "puppet" or "monit" that makes use of the crontabs unnecessary.
 
 The main loop of the LBSMD daemon:
 
@@ -1013,27 +1013,27 @@ causes the contents of the named file **`filename`** to be inserted here. The da
 
 Once started, the daemon first tries to read its configuration from `/etc/lbsmd/servrc.cfg`. If the file is not found (or is not readable) the daemon looks for the configuration file `servrc.cfg` in the directory from which it has been started. This fallback mechanism is not used when the configuration file name is explicitly stated in the command line. The daemon periodically checks the configuration file and all of its descendants and reloads (discards) their contents if some of the files have been either updated, (re-)moved, or added.
 
-The “**`filename`**” can be followed by a pipe character ( \| ) and some text (up to the end of the line or the comment introduced by the hash character). That text is then prepended to every line (but the `%include` directives) read from the included file.
+The "**`filename`**" can be followed by a pipe character ( \| ) and some text (up to the end of the line or the comment introduced by the hash character). That text is then prepended to every line (but the `%include` directives) read from the included file.
 
 A configuration line of the form
 
     @zone
 
-specifies the zone to which the entire configuration file applies, where a zone is a subdivision of the existing broadcast domain which does not intermix with other unrelated zones. Only one zone designation is allowed, and it must match the predefined site information (the numeric designation of the entire broadcast domain, which is either “guessed” by LBSMD or preset via a command-line parameter): the zone value must be a binary subset of the site value (which is usually a contiguous set of 1-bits, such as `0xC0` or `0x1E`).
+specifies the zone to which the entire configuration file applies, where a zone is a subdivision of the existing broadcast domain which does not intermix with other unrelated zones. Only one zone designation is allowed, and it must match the predefined site information (the numeric designation of the entire broadcast domain, which is either "guessed" by LBSMD or preset via a command-line parameter): the zone value must be a binary subset of the site value (which is usually a contiguous set of 1-bits, such as `0xC0` or `0x1E`).
 
-When no zone is specified, the zone is set equal to the entire site (broadcast domain) so that any regular service defined by the configuration is visible to each and every LBSMD running at the same site. Otherwise, only the servers with bitwise-matching zones are visible to each other: if 1, 2, and 3 are the zones of hosts “X”, “Y” and “Z”, respectively (all hosts reside within the same site, say 7), then servers from “X” are visible by “Z”, but not by “Y”; servers from “Y” are visible by “Z” but not by “X”; and finally, all servers from “Z” are visible by both “X” and “Y”. There’s a way to define servers at “X” to be visible by “Y” using an “Inter” server flag (see below).
+When no zone is specified, the zone is set equal to the entire site (broadcast domain) so that any regular service defined by the configuration is visible to each and every LBSMD running at the same site. Otherwise, only the servers with bitwise-matching zones are visible to each other: if 1, 2, and 3 are the zones of hosts "X", "Y" and "Z", respectively (all hosts reside within the same site, say 7), then servers from "X" are visible by "Z", but not by "Y"; servers from "Y" are visible by "Z" but not by "X"; and finally, all servers from "Z" are visible by both "X" and "Y". There’s a way to define servers at "X" to be visible by "Y" using an "Inter" server flag (see below).
 
 A configuration line of the form
 
     [*]user
 
-introduces a user that is added to the host authority. There can be multiple authority lines across the configuration, and they are all aggregated into a list. The list can contain both individual user names and / or group names (denoted by a preceding asterisk). The listed users and / or members of the listed groups, will be allowed to operate on all server records that appear in the LBSMD configuration files on this host (individual server entries may designate additional personnel on a per-server basis). Additional authority entries are only allowed from the same branch of the configuration file tree: so if a file “a” includes a file “b”, where the first host authority is defined, then any file that is included (directly or indirectly) from “b” can add entries to the host authority, while no other file that is included later from “a”, can.
+introduces a user that is added to the host authority. There can be multiple authority lines across the configuration, and they are all aggregated into a list. The list can contain both individual user names and / or group names (denoted by a preceding asterisk). The listed users and / or members of the listed groups, will be allowed to operate on all server records that appear in the LBSMD configuration files on this host (individual server entries may designate additional personnel on a per-server basis). Additional authority entries are only allowed from the same branch of the configuration file tree: so if a file "a" includes a file "b", where the first host authority is defined, then any file that is included (directly or indirectly) from "b" can add entries to the host authority, while no other file that is included later from "a", can.
 
 A configuration line of the form
 
     :port
 
-designates a local network port for monitoring by LBSMD: the daemon will regularly pull the port information as provided by servers in run-time: total port capacity, used capacity and free capacity; and make these values available in the load-balance messages sent to other LBSMDs. The ratio “free” over “total” will be used to calculate the port availability (1.0=fully free, 0.0=fully clogged). Servers may use arbitrary units to express the capacity, but both “used” and “free” may not be greater than “total”, and “used” must correspond to the actual used resource, yet “free” may be either calculated (e.g. algorithmically decreased in anticipation of the mouting load in order to shrink the port availability ratio quicker) or simply amounts to “total” – “used”. Note that “free” set to “0” signals the port as currently being unavailable for service (i.e. as if the port was down) – and an automatic connection check, if any, will not be performed by LBSMD on that port.
+designates a local network port for monitoring by LBSMD: the daemon will regularly pull the port information as provided by servers in run-time: total port capacity, used capacity and free capacity; and make these values available in the load-balance messages sent to other LBSMDs. The ratio "free" over "total" will be used to calculate the port availability (1.0=fully free, 0.0=fully clogged). Servers may use arbitrary units to express the capacity, but both "used" and "free" may not be greater than "total", and "used" must correspond to the actual used resource, yet "free" may be either calculated (e.g. algorithmically decreased in anticipation of the mouting load in order to shrink the port availability ratio quicker) or simply amounts to "total" – "used". Note that "free" set to "0" signals the port as currently being unavailable for service (i.e. as if the port was down) – and an automatic connection check, if any, will not be performed by LBSMD on that port.
 
 A configuration line of the form
 
@@ -1041,7 +1041,7 @@ A configuration line of the form
 
 goes into the host environment. The host environment can be accessed by clients when they perform the service name resolution. The host environment is designed to help the client to know about limitations/options that the host has, and based on this additional information the client can make a decision whether the server (despite the fact that it implements the service) is suitable for carrying out the client's request. For example, the host environment can give the client an idea about what databases are available on the host. The host environment is not interpreted or used in any way by either the daemon or by the load balancing algorithm, except that the name must be a valid identifier. The value may be practically anything, even empty. It is left solely for the client to parse the environment and to look for the information of interest. The host environment can be obtained from the service iterator by a call to `SERV_GetNextInfoEx()` (<https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=SERV_GetNextInfoEx>), which is documented in the [service mapping API](ch_conn.html#ch_conn.service_mapping_api)
 
-[Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): White space characters which surround the name are not preserved but they are preserved in the value i.e. when they appear after the “=” sign.
+[Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): White space characters which surround the name are not preserved but they are preserved in the value i.e. when they appear after the "=" sign.
 
 A configuration line of the form
 
@@ -1053,11 +1053,11 @@ defines a server. The detailed description of the individual fields is given bel
 
 -   **`[check_specifier]`** is an optional parameter (if omitted, the surrounding square brackets must not be used). The parameter is a comma separated list and each element in the list can be one of the following.
 
-    -   **`[-]N[/M]`** where N and M are integers. This will lead to checking every N seconds with backoff time of M seconds if failed. The “-“ character is used when it is required to check dependencies only, but not the primary connection point. "0", which stands for "no check interval", disables checks for the service.
+    -   **`[-]N[/M]`** where N and M are integers. This will lead to checking every N seconds with backoff time of M seconds if failed. The "-" character is used when it is required to check dependencies only, but not the primary connection point. "0", which stands for "no check interval", disables checks for the service.
 
-    -   **`[!][host[:port]][+[service]]`** which describes a dependency. The “!” character means negation. The **`service`** is a service name the describing service depends on and runs on **`host:port`**. The pair **`host:port`** is required if no service is specified. The **`host`**, :**`port`**, or both can be missing if **`service`** is specified (in that case the missing parts are read as “any”). The “+” character alone means “this service’s name” (of the one currently being defined). Multiple dependency specifications are allowed.
+    -   **`[!][host[:port]][+[service]]`** which describes a dependency. The "!" character means negation. The **`service`** is a service name the describing service depends on and runs on **`host:port`**. The pair **`host:port`** is required if no service is specified. The **`host`**, :**`port`**, or both can be missing if **`service`** is specified (in that case the missing parts are read as "any"). The "+" character alone means "this service’s name" (of the one currently being defined). Multiple dependency specifications are allowed.
 
-    -   **`[~][DOW[-DOW]][@H[-H]]`** which defines a schedule. The “~” character means negation. The service runs from **`DOW`** to **`DOW`** (**`DOW`** is one of Su, Mo, Tu, We, Th, Fr, Sa, or Hd, which stands for a federal holiday, and cannot be used in weekday ranges) or any if not specified, and between hours **`H`** to **`H`** (9-5 means 9:00am thru 4:59pm, 18-0 means 6pm thru midnight). Single **`DOW`** and / or **`H`** are allowed and mean the exact day of week (or a holiday) and / or one exact hour. Multiple schedule specifications are allowed.
+    -   **`[~][DOW[-DOW]][@H[-H]]`** which defines a schedule. The "~" character means negation. The service runs from **`DOW`** to **`DOW`** (**`DOW`** is one of Su, Mo, Tu, We, Th, Fr, Sa, or Hd, which stands for a federal holiday, and cannot be used in weekday ranges) or any if not specified, and between hours **`H`** to **`H`** (9-5 means 9:00am thru 4:59pm, 18-0 means 6pm thru midnight). Single **`DOW`** and / or **`H`** are allowed and mean the exact day of week (or a holiday) and / or one exact hour. Multiple schedule specifications are allowed.
 
     -   **`email@ncbi.nlm.nih.gov`** which makes the LBSMD daemon to send an e-mail to the specified address whenever this server changes its status (e.g. from up to down). Multiple e-mail specifications are allowed. The **`ncbi.nlm.nih.gov`** part is fixed and may not be changed.
 
@@ -1169,7 +1169,7 @@ where:
 
         -   ***Regular*** to use an ordinary rate calculation (default, and the only load calculation option allowed for static servers).
 
-    -   Either of these keywords may be suffixed with “Inter”, such as to form ***RegularInter***, making the entry to cross the current zone boundary, and being available outside its zone.
+    -   Either of these keywords may be suffixed with "Inter", such as to form ***RegularInter***, making the entry to cross the current zone boundary, and being available outside its zone.
 
 -   base rate:
 
@@ -1212,11 +1212,11 @@ Server descriptors of type ***NAMEHOLD*** are special. As **`arguments`**, they 
 
 #### Sites
 
-LBSMD is minimally aware of NCBI network layout and can generally guess its “site” information from either an IP address or special location-role files located in the /etc/ncbi directory: a BE-MD production and development site, a BE-MD.QA site, a BE-MD.TRY site, and lastly an ST-VA site. When reading zone information from the “@” directive of the configuration, LBSMD can treat special non-numeric values as the following: “@try” as the production zone within BE-MD.TRY, “@qa” as the production zone within BE-MD.QA, “@dev” as a development zone within the current site, and “@\*prod\*” (e.g. @intprod) as a production zone within the current site – where the production zone has a value of “1” and the development – “2”: so “@2” and “@dev” as well as “@1” and “@\*prod\*” are each equivalent. That makes the definition of zones more convenient by the %include directive with the pipe character:
+LBSMD is minimally aware of NCBI network layout and can generally guess its "site" information from either an IP address or special location-role files located in the /etc/ncbi directory: a BE-MD production and development site, a BE-MD.QA site, a BE-MD.TRY site, and lastly an ST-VA site. When reading zone information from the "@" directive of the configuration, LBSMD can treat special non-numeric values as the following: "@try" as the production zone within BE-MD.TRY, "@qa" as the production zone within BE-MD.QA, "@dev" as a development zone within the current site, and "@\*prod\*" (e.g. @intprod) as a production zone within the current site – where the production zone has a value of "1" and the development – "2": so "@2" and "@dev" as well as "@1" and "@\*prod\*" are each equivalent. That makes the definition of zones more convenient by the %include directive with the pipe character:
 
     %include /etc/ncbi/role |@    # define zone via the role file 
 
-Suppose that the daemon detected its site as ST-VA and assigned it a value of 0x300; then the above directive assigns the current zone the value of 0x100 if the file reads “prod” or “1”, and zone 0x200 if the file reads “dev” or “2”. Note that if the file reads either “try” or “qa”, or “4”, the implied “@” directive will flag an error because of the mismatch between the resultant zone and the current site values.
+Suppose that the daemon detected its site as ST-VA and assigned it a value of 0x300; then the above directive assigns the current zone the value of 0x100 if the file reads "prod" or "1", and zone 0x200 if the file reads "dev" or "2". Note that if the file reads either "try" or "qa", or "4", the implied "@" directive will flag an error because of the mismatch between the resultant zone and the current site values.
 
 Both zone and site (or site alone) can be permanently assigned with the command-line parameters and then may not be overridden from the configuration file(s).
 
@@ -1285,7 +1285,7 @@ The following screen will appear
 
 Figure 11. NCBI Service Search Page
 
-As an example of usage a user might enter the partial name of the service like "TaxService" and click on the “Go” button. The search results will display "TaxService", "TaxService3" and "TaxService3Test" if those services are available (see <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=TaxService&host=&button=Go&db=>).
+As an example of usage a user might enter the partial name of the service like "TaxService" and click on the "Go" button. The search results will display "TaxService", "TaxService3" and "TaxService3Test" if those services are available (see <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc/search.cgi?key=rb_svc&service=TaxService&host=&button=Go&db=>).
 
 <a name="ch_app.lbsmc_Utility"></a>
 
@@ -1297,7 +1297,7 @@ Another way of monitoring the LBSMD daemon is using the lbsmc (<https://intranet
 
 The NCBI intranet users can also get the list of options by clicking on this link: <https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/NETWORK/lbsmc.cgi?-h>.
 
-For example, to print a list of hosts which names match the pattern “sutil\*” the user can issue the following command:
+For example, to print a list of hosts which names match the pattern "sutil\*" the user can issue the following command:
 
     >./lbsmc -h sutil* 0
     LBSMC - Load Balancing Service Mapping Client R100432
@@ -1363,7 +1363,7 @@ If the lbsmc utility is run with the -f option then the output contains two part
 
 The output is provided in either long or short format. The format depends on whether the -w option was specified in the command line (the option requests the long (wide) output). The wide output occupies about 132 columns, while the short (normal) output occupies only 80, which is the standard terminal width.
 
-In case if the service name is more than the allowed number of characters to display the trailing characters will be replaced with “\>”. When there is more information about the host / service to be displayed the “+” character is put beside the host / service name (this additional information can be retrieved by adding the -i option). When both “+” and “\>” are to be shown they are replaced with the single character “\*”. In the case of wide-output format the “\#” character shown in the service line means that there is no host information available for the service (similar to the static servers). The “!” character in the service line denotes that the service was configured / stored with an error (this character actually should never appear in the listings and should be reported whenever encountered). Wide output for hosts contains the time of bootup and startup. If the startup time is preceded by the “~” character then the host was gone for a while and then came back while the lbsmc utility was running. The “+” character in the times is to show that the date belongs to the past year(s).
+In case if the service name is more than the allowed number of characters to display the trailing characters will be replaced with "\>". When there is more information about the host / service to be displayed the "+" character is put beside the host / service name (this additional information can be retrieved by adding the -i option). When both "+" and "\>" are to be shown they are replaced with the single character "\*". In the case of wide-output format the "\#" character shown in the service line means that there is no host information available for the service (similar to the static servers). The "!" character in the service line denotes that the service was configured / stored with an error (this character actually should never appear in the listings and should be reported whenever encountered). Wide output for hosts contains the time of bootup and startup. If the startup time is preceded by the "~" character then the host was gone for a while and then came back while the lbsmc utility was running. The "+" character in the times is to show that the date belongs to the past year(s).
 
 <a name="ch_app.Server_Penalizer_API"></a>
 
@@ -1596,7 +1596,7 @@ The DISPD dispatcher can produce the following HTTP tags in response to the clie
 
 After making a dispatching request and using the dispatching information returned, the client can usually connect to the server on its own. Sometimes, however, the client has to connect to the DISPD dispatcher again to proceed with communication with the server. For the DISPD dispatcher this would then be a connection request which can go one of two similar ways, relaying and firewalling.
 
-The figures (Figure7, Figure8) provided at the very beginning of the “Load Balancing” chapter can be used for better understanding of the communication schemes described below.
+The figures (Figure7, Figure8) provided at the very beginning of the "Load Balancing" chapter can be used for better understanding of the communication schemes described below.
 
 -   In the relay mode, the DISPD dispatcher passes data from the client to the server and back, playing the role of a middleman. Data relaying occurs when, for instance, a Web browser client wants to communicate with a service governed by the DISPD dispatcher itself.
 
@@ -1604,7 +1604,7 @@ The figures (Figure7, Figure8) provided at the very beginning of the “Load Bal
 
 The firewall mode is selected by the presence of the ***FIREWALL*** keyword in the `Accepted-Server-Types` tag set by the client sitting behind a firewall and not being able to connect to an arbitrary port.
 
-These are scenarios of data flow between the client and the server, depending on the “stateness” of the client:
+These are scenarios of data flow between the client and the server, depending on the "stateness" of the client:
 
 A. Stateless client
 
@@ -1687,7 +1687,7 @@ For the sake of the backward compatibility the NCBID utility creates the followi
 
 The NCBI Firewall Daemon (FWDaemon) is essentially a network multiplexer listening at an advertised network address.
 
-The FWDaemon works in a close cooperation with the DISPD dispatcher which informs FWDaemon on how to connect to the “real” NCBI server and then instructs the network client to connect to FWDaemon (instead of the “real” NCBI server). Thus, the FWDaemon serves as a middleman that just pumps the network traffic from the network client to the NCBI server and back.
+The FWDaemon works in a close cooperation with the DISPD dispatcher which informs FWDaemon on how to connect to the "real" NCBI server and then instructs the network client to connect to FWDaemon (instead of the "real" NCBI server). Thus, the FWDaemon serves as a middleman that just pumps the network traffic from the network client to the NCBI server and back.
 
 The FWDaemon allows a network client to establish a persistent TCP/IP connection to any of publicly advertised NCBI services, provided that the client is allowed to make an outgoing network connection to any of the following FWDaemon addresses (on front-end NCBI machines):
 
@@ -1727,7 +1727,7 @@ Having the page loaded into a browser the user will see the following.
 
 Figure 15. FWDaemon Checking Web Page
 
-By clicking the “Check” button a page similar to the following will appear.
+By clicking the "Check" button a page similar to the following will appear.
 
 [![Image FWDaemonCheckPage.gif](/cxx-toolkit/static/img/FWDaemonCheckPage.gif)](/cxx-toolkit/static/img/FWDaemonCheckPage.gif "Click to see the full-resolution image")
 
@@ -1737,7 +1737,7 @@ The outside NCBI network users can check the connection to the NAT service follo
 
 -   Run the FWDaemon presence check as described above.
 
--   Take connection properties from any line where the status is “OK”. For example 130.14.29.112:5864
+-   Take connection properties from any line where the status is "OK". For example 130.14.29.112:5864
 
 -   Establish a telnet session using those connection properties. The example of a connection session is given below (a case when a connection was successfully established).
 

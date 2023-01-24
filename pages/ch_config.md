@@ -354,7 +354,7 @@ An important benefit of using project tags is that all dependencies for the proj
 
 ##### Defining Project Tags
 
-All project tags must be defined in `src\build-system\project_tags.txt` prior to use. Tag names should be easily recognizable and classifiable, like ‘`proj[_subproj]`’, e.g. “`pubchem`” or “`pubchem_openeye`”.
+All project tags must be defined in `src\build-system\project_tags.txt` prior to use. Tag names should be easily recognizable and classifiable, like ‘`proj[_subproj]`’, e.g. "`pubchem`" or "`pubchem_openeye`".
 
 Once defined in `project_tags.txt`, project tags can then be associated with any number of projects by using the **`PROJ_TAG`** macro in the `Makefile.in` or `Makefile.*.{app|lib}` for the selected projects. Project tag definitions apply recursively to subprojects and subdirectories (similar to a [`REQUIRES`](ch_proj.html#ch_proj.proj_makefiles) definition), thereby removing the need to define tags in all makefiles in a subtree. Subprojects may define additional tags, or undefine inherited tags by prefixing a hyphen '`-`' to the tag.
 
@@ -570,7 +570,7 @@ After choosing a build scope, configuring, and building the Toolkit, you can now
 
 ### Supported Platforms
 
-The term “platform” in this chapter has a specific meaning: the combination of operating system, architecture, and compiler. A supported platform is one for which the Toolkit has been configured, built, tested, and used by other applications.
+The term "platform" in this chapter has a specific meaning: the combination of operating system, architecture, and compiler. A supported platform is one for which the Toolkit has been configured, built, tested, and used by other applications.
 
 The list of supported platforms may change with new releases. For the platforms supported in the release you are using, see the [Supported Platforms](https://ncbi.github.io/cxx-toolkit/pages/release_notes#release_notes.Platforms_OSs__compi) section in the release notes. Note that some platforms are only partially supported.
 
@@ -1158,7 +1158,7 @@ Following are some examples of how to build specific projects and some additiona
 
 ##### General Principles for Building with Unix
 
-Use this key for the examples in the “Building with Unix” sections:
+Use this key for the examples in the "Building with Unix" sections:
 
 <a name="ch_config.T3"></a>
 

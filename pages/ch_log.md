@@ -362,11 +362,11 @@ Table 4. Filter String Samples
 
 For example:
 
--   To log diagnostic messages from source files located in `src/corelib` with error codes from 101 to 106 and any subcode, use the following filter: “`/corelib (101-106.)`”.
+-   To log diagnostic messages from source files located in `src/corelib` with error codes from 101 to 106 and any subcode, use the following filter: "`/corelib (101-106.)`".
 
--   To exclude log messages from sources in `src/serial` and `src/dbapi`, use this filter: “`!/serial !/dbapi`”.
+-   To exclude log messages from sources in `src/serial` and `src/dbapi`, use this filter: "`!/serial !/dbapi`".
 
--   To log messages from sources in `src/serial` excluding those with error code 802 and subcodes 4 and 10 through 12, and to exclude messages from sources in `src/dbapi/driver`, use the following filter: “`/serial !(802.4,10-12) !/dbapi/driver`”.
+-   To log messages from sources in `src/serial` excluding those with error code 802 and subcodes 4 and 10 through 12, and to exclude messages from sources in `src/dbapi/driver`, use the following filter: "`/serial !(802.4,10-12) !/dbapi/driver`".
 
 <a name="ch_core.Log_File_Format"></a>
 

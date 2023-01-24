@@ -14,7 +14,7 @@ This chapter describes how to configure, build, and use the NCBI C++ Toolkit, or
 
 [CMake](https://cmake.org) is an open-source, cross-platform family of tools designed to build, test and package software. It uses compiler-independent configuration files to generate native makefiles and workspaces which can be used in a variety of compiler environments.
 
-At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. It adds many convenient features, facilitates handling of large source trees and simplifies CMake build target descriptions, while still allowing use of “native” CMake.
+At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. It adds many convenient features, facilitates handling of large source trees and simplifies CMake build target descriptions, while still allowing use of "native" CMake.
 
 
 ## Chapter Outline
@@ -78,20 +78,20 @@ Having checked out the source tree, run the following command in the root direct
 
 It lists available options used to generate the build tree. Several of them limit the build scope:
 
--   *--with-projects=*”FILE” – build projects listed in FILE. This is either a [Project List File](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Project_List_Files), or a list of subdirectories of *src* directory. Each entry is a regular expression (see [CMake documentation](https://cmake.org/cmake/help/latest/command/string.html#regex-specification) for details). List of subdirectories consists of entries separated by semicolon (hyphen in the beginning of the entry means that targets from that directory should be excluded). If "FILE" is an existing file, it should be in plain text with one such entry per line. For example:
+-   *--with-projects=*"FILE" – build projects listed in FILE. This is either a [Project List File](https://ncbi.github.io/cxx-toolkit/pages/ch_config#ch_config.Project_List_Files), or a list of subdirectories of *src* directory. Each entry is a regular expression (see [CMake documentation](https://cmake.org/cmake/help/latest/command/string.html#regex-specification) for details). List of subdirectories consists of entries separated by semicolon (hyphen in the beginning of the entry means that targets from that directory should be excluded). If "FILE" is an existing file, it should be in plain text with one such entry per line. For example:
 
 ```
     --with-projects="corelib$;serial;-serial/test"
     --with-projects="scripts/projects/ncbi_cpp.lst"
 ```
 
--   *--with-targets=*”NAMES” – lists targets to build. Again, each entry is a regular expression. For example:
+-   *--with-targets=*"NAMES" – lists targets to build. Again, each entry is a regular expression. For example:
 
 ```
     --with-targets="^cgi;-test"
 ```
 
--   *--with-tags=*”TAGS” – build targets with the listed tags only. Tag is a text label which may be assigned to a project. Tags are **not** treated as regular expressions. For example:
+-   *--with-tags=*"TAGS" – build targets with the listed tags only. Tag is a text label which may be assigned to a project. Tags are **not** treated as regular expressions. For example:
 
 ```
     --with-tags="core;-test"
@@ -99,13 +99,13 @@ It lists available options used to generate the build tree. Several of them limi
 
 Few options define requirements and compilation features:
 
--   *--with-components=*”LIST” – explicitly enable or disable components (external packages) listed in LIST. Many libraries and applications in the NCBI C++ Toolkit use external packages. It can be image manipulation, database interface, compression library. The list of available components depends on build environment. Usually, Toolkit projects either require or may use such components when they are available. If a project requires something which is not found, this project will be excluded from build. With this configuration option it is possible to disable components even when they are available - use minus sign (for example, *-BerkeleyDB*). If a component is listed here, but it is not found, configuration will treat it as error and fail. For example:
+-   *--with-components=*"LIST" – explicitly enable or disable components (external packages) listed in LIST. Many libraries and applications in the NCBI C++ Toolkit use external packages. It can be image manipulation, database interface, compression library. The list of available components depends on build environment. Usually, Toolkit projects either require or may use such components when they are available. If a project requires something which is not found, this project will be excluded from build. With this configuration option it is possible to disable components even when they are available - use minus sign (for example, *-BerkeleyDB*). If a component is listed here, but it is not found, configuration will treat it as error and fail. For example:
 
 ```
     --with-components="Z;-PCRE;XML"
 ```
 
--   *--with-features=*”LIST” - specify compilation features. Features are used to fine-tune build settings and enable or disable certain experimental settings. The list of available features depends on build environment. Some of available features are listed here:
+-   *--with-features=*"LIST" - specify compilation features. Features are used to fine-tune build settings and enable or disable certain experimental settings. The list of available features depends on build environment. Some of available features are listed here:
     -   *BinRelease* - changes several settings, is used when building an application for public release
     -   *CfgMT* - on Windows adds build configurations which use static multithreaded runtime libraries
     -   *CfgProps* - on Windows, modifies Visual Studio solution to use custom Properties file (which defines build settings)
@@ -224,13 +224,13 @@ NCBI C++ Toolkit is also available as [Conan package](https://conan.io/center/nc
 
 ### What is it?
 
-Imagine a large source tree with thousands of projects. It takes sources from several repositories and uses numerous external packages. It consists of “core” part and subtrees. Different teams work on multiple projects. To do their work, these teams assemble their own build trees, which include certain parts of core as well as their own projects. “Core” has several official releases; team projects have their own ones. There are several high frequency builds which work on different subtrees and ensure that everything stays compatible.
+Imagine a large source tree with thousands of projects. It takes sources from several repositories and uses numerous external packages. It consists of "core" part and subtrees. Different teams work on multiple projects. To do their work, these teams assemble their own build trees, which include certain parts of core as well as their own projects. "Core" has several official releases; team projects have their own ones. There are several high frequency builds which work on different subtrees and ensure that everything stays compatible.
 
-NCBIptb was designed to facilitate handling of such large source tree in a dynamic build environment. The purpose of NCBIptb is to extract from the source tree only requested projects. This includes analyzing and collecting build target dependencies on other targets, analyzing dependencies on external packages and excluding targets for which such dependencies cannot be satisfied, adding sources and headers, organizing them into source groups, defining precompiled header usage.  Doing this in “pure” CMake is either impossible or requires complex project descriptions. Still, all these tasks are pretty standard and can be automated. Using NCBIptb is convenience, not a requirement; it extends functionality but still allows using “native” CMake.
+NCBIptb was designed to facilitate handling of such large source tree in a dynamic build environment. The purpose of NCBIptb is to extract from the source tree only requested projects. This includes analyzing and collecting build target dependencies on other targets, analyzing dependencies on external packages and excluding targets for which such dependencies cannot be satisfied, adding sources and headers, organizing them into source groups, defining precompiled header usage.  Doing this in "pure" CMake is either impossible or requires complex project descriptions. Still, all these tasks are pretty standard and can be automated. Using NCBIptb is convenience, not a requirement; it extends functionality but still allows using "native" CMake.
 
 Probably, limiting the set of projects to build is not such a big problem for an automated build – it must build everything anyway. Still, it is a problem for an individual developer working in an Integrated Development Environment. IDEs can handle solutions with hundreds of build targets, but they can become very slow. And, it is simply not needed, it is a waste of computer resources. Developer needs a solution with only few build targets. NCBIptb can do exactly that.
 
-Another challenge is working with prebuilt trees. Let us say, a developer needs to add features into some applications or libraries. He or she checks out part of the source tree. Some libraries are present in the local tree, others should be taken from the prebuilt one. The problem is that local libraries may have the same names as prebuilt ones. CMake will not add them into the build saying that these targets are already defined as “imported” ones. NCBIptb solves this problem by renaming such local build targets and adjusting target dependencies accordingly. Developer’s intervention is not required, everything is made automatically.
+Another challenge is working with prebuilt trees. Let us say, a developer needs to add features into some applications or libraries. He or she checks out part of the source tree. Some libraries are present in the local tree, others should be taken from the prebuilt one. The problem is that local libraries may have the same names as prebuilt ones. CMake will not add them into the build saying that these targets are already defined as "imported" ones. NCBIptb solves this problem by renaming such local build targets and adjusting target dependencies accordingly. Developer’s intervention is not required, everything is made automatically.
 
 <a name="ch_cmconfig._Features"></a>
 
@@ -280,8 +280,8 @@ Let us now create source groups, because it will look better in an IDE:
 
 CMake:
 
-    source_group(“Source files” FILES hello.cpp)
-    source_group(“Header files” FILES hello.hpp)
+    source_group("Source files" FILES hello.cpp)
+    source_group("Header files" FILES hello.hpp)
     add_executable(hello hello.cpp hello.hpp)
 
 In NCBIptb no changes are required, because source groups will be created automatically.
@@ -290,8 +290,8 @@ Now, let us say our app uses package X, which may be absent.
 In CMake the project description will look like this:
 
     if (X_FOUND)
-        source_group(“Source files” FILES hello.cpp)
-        source_group(“Header files” FILES hello.hpp)
+        source_group("Source files" FILES hello.cpp)
+        source_group("Header files" FILES hello.hpp)
         add_executable(hello hello.cpp)
         target_include_directories(hello ${X_INCLUDE_DIRS})
         target_compile_definitions(hello ${X_DEFINITIONS})
@@ -309,15 +309,15 @@ In NCBIptb, only one line must be added:
 
 ### How does it work?
 
-While in CMake “adding a build target” is final and cannot be reversed, in NCBIptb it is only a piece of information. The decision of whether to add the target or not depends on several factors and is made by the build system itself. To do so, NCBIptb scans the source tree two times (CMake does it only once). During the first pass it collects information about target dependencies and requirements, then it uses filters to select “proper” build targets and finally, during the second pass adds them into the generated solution or build tree.
+While in CMake "adding a build target" is final and cannot be reversed, in NCBIptb it is only a piece of information. The decision of whether to add the target or not depends on several factors and is made by the build system itself. To do so, NCBIptb scans the source tree two times (CMake does it only once). During the first pass it collects information about target dependencies and requirements, then it uses filters to select "proper" build targets and finally, during the second pass adds them into the generated solution or build tree.
 
-Project filters include list of source tree subdirectories, list of build targets and list of build target “tags”. They can be specified in any combination. “Tag” is only a label – for example *test* or *demo*, it has no meaning for the build system. Subdirectories and targets are treated here as [regular expressions](https://cmake.org/cmake/help/v3.14/command/string.html#regex-specification). Note that project filters is only a starting point. If you request building projects in directory ***A*** only, but they require projects from directory ***B***, the latter ones will be added automatically. If you request building application ***A*** only, all required libraries will also be added automatically.
+Project filters include list of source tree subdirectories, list of build targets and list of build target "tags". They can be specified in any combination. "Tag" is only a label – for example *test* or *demo*, it has no meaning for the build system. Subdirectories and targets are treated here as [regular expressions](https://cmake.org/cmake/help/v3.14/command/string.html#regex-specification). Note that project filters is only a starting point. If you request building projects in directory ***A*** only, but they require projects from directory ***B***, the latter ones will be added automatically. If you request building application ***A*** only, all required libraries will also be added automatically.
 
 <a name="ch_cmconfig._Tree"></a>
 
 ### Tree structure and variable scopes
 
-CMake input files are named *CMakeLists.txt*. When one “adds a subdirectory” to the build, CMake looks for *CMakeLists.txt* file in this directory and processes it. Each of the directories in a source tree has its own variable bindings. Before processing the *CMakeLists.txt* file for a directory, CMake copies all currently defined variables and creates a new scope. All changes to variables are reflected in the current scope only. They are propagated to subdirectories, but not to the parent one.
+CMake input files are named *CMakeLists.txt*. When one "adds a subdirectory" to the build, CMake looks for *CMakeLists.txt* file in this directory and processes it. Each of the directories in a source tree has its own variable bindings. Before processing the *CMakeLists.txt* file for a directory, CMake copies all currently defined variables and creates a new scope. All changes to variables are reflected in the current scope only. They are propagated to subdirectories, but not to the parent one.
 
 *CMakeLists.txt* in turn can include other CMake files – this does not create a new scope. This is good and bad at the same time. We will return to this topic shortly.
 
@@ -349,7 +349,7 @@ Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib
 
 -   **NCBI_begin_lib**(name)/**NCBI_begin_app**(name) – begins definition of a library or an application target called *name*.
 
--   **NCBI_end_lib**(result)/**NCBI_end_app**(result) – ends the definition. Optional argument *result* becomes TRUE when the target was indeed added to the build. This makes it possible to add “native” CMake commands or properties to the target:
+-   **NCBI_end_lib**(result)/**NCBI_end_app**(result) – ends the definition. Optional argument *result* becomes TRUE when the target was indeed added to the build. This makes it possible to add "native" CMake commands or properties to the target:
 
 ```
     NCBI_begin_app(name)
@@ -370,7 +370,7 @@ Definition of a library begins with *NCBI_begin_lib* and ends with *NCBI_end_lib
 
 -   **NCBI_resources**(list of resource files) – adds Windows resource files to the target.
 
--   **NCBI_requires**(list of components) – adds requirements. If a requirement is not met, the target will be excluded from the build automatically. Note that it acts recursively through project dependencies, in the sense that if project A has “NCBI_requires(X)” and project B has “NCBI_uses_toolkit_libraries(A)” and X is not met, then project B won't be attempted to build.
+-   **NCBI_requires**(list of components) – adds requirements. If a requirement is not met, the target will be excluded from the build automatically. Note that it acts recursively through project dependencies, in the sense that if project A has "NCBI_requires(X)" and project B has "NCBI_uses_toolkit_libraries(A)" and X is not met, then project B won't be attempted to build.
 
 -   **NCBI_optional_components**(list of components) – adds optional components. If a component is not found (or requirement is not met), NCBIptb will print a warning and the target will still be added to the build.
 

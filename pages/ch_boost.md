@@ -79,7 +79,7 @@ The following is an outline of the topics presented in this chapter:
 Why Use the Boost Unit Test Framework?
 --------------------------------------
 
-“...*I would like to see a practical plan for every group in Internal Services to move toward standardized testing. Then, in addition to setting an example for the other coding groups, I hope that you will have guidance for them as well about how best to move ahead in this direction. Once you have that, and are adhering to it yourselves, I will start pushing the other coding groups in that direction*.”
+"...*I would like to see a practical plan for every group in Internal Services to move toward standardized testing. Then, in addition to setting an example for the other coding groups, I hope that you will have guidance for them as well about how best to move ahead in this direction. Once you have that, and are adhering to it yourselves, I will start pushing the other coding groups in that direction*."
 
 -   Jim Ostell, April 21, 2008
 
@@ -569,7 +569,7 @@ The difference between these functions is that globally disabled unit tests will
 
 The Boost Unit Test Framework provides more than just command-line testing. Each unit test built with the framework becomes incorporated into nightly testing and is tested on multiple platforms and under numerous configurations. All such results are archived in the database and available through a [web interface](https://intranet/ieb/ToolBox/STAT/test_stat/test_stat_ext.cgi).
 
-The main page (see [Figure 1](#ch_boost.F20.1)) provides many ways to narrow down the vast quantity of statistics available. The top part of the page allows you to select test date, test result, build configuration (branch, compiler, operating system, etc), debug/release, and more. The page also has a column for selecting tests, and a column for configurations. For best results, refine the selection as much as possible, and then click on the “See test statistics” button.
+The main page (see [Figure 1](#ch_boost.F20.1)) provides many ways to narrow down the vast quantity of statistics available. The top part of the page allows you to select test date, test result, build configuration (branch, compiler, operating system, etc), debug/release, and more. The page also has a column for selecting tests, and a column for configurations. For best results, refine the selection as much as possible, and then click on the "See test statistics" button.
 
 <a name="ch_boost.F20.1"></a>
 
@@ -577,7 +577,7 @@ The main page (see [Figure 1](#ch_boost.F20.1)) provides many ways to narrow dow
 
 Figure 1. Test Interface
 
-The “See test statistics” button retrieves the desired statistics in a second page (see [Figure 2](#ch_boost.F20.2)). The results are presented in tables: one for each selected date, with unit tests down the left side and configurations across the top. Further refinements of the displayed results can be made by removing rows, columns, or dates; and by selecting whether all columns, all cells, or only selected cells are displayed.
+The "See test statistics" button retrieves the desired statistics in a second page (see [Figure 2](#ch_boost.F20.2)). The results are presented in tables: one for each selected date, with unit tests down the left side and configurations across the top. Further refinements of the displayed results can be made by removing rows, columns, or dates; and by selecting whether all columns, all cells, or only selected cells are displayed.
 
 <a name="ch_boost.F20.2"></a>
 
