@@ -159,7 +159,7 @@ To insert Array or Object node into Object:
 To enumerate contents of the Object:
 
     for (CJson_Object::iterator i = obj.begin(); i != obj.end(); ++i) {
-      string n = v->name;
+      string n = i->name;
       CJson_Node v = i->value;
     }
     for_each(obj.begin(), obj.end(), [](const CJson_ConstObject_pair& v) {
