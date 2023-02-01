@@ -740,6 +740,17 @@ Table 13.1. Objects-related configuration parameters
 | If true, try to avoid GIs where possible, even if there's no accessions to prefer. | **`[SeqId]`**<br/>**`AvoidGi`**<br/><br/>**`SEQ_ID_AVOID_GI`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
 | If true, give GIs worse (higher) score to prefer accessions in CSeq_id ranking methods. | **`[SeqId]`**<br/>**`PreferAccessionOverGi`**<br/><br/>**`SEQ_ID_PREFER_ACCESSION_OVER_GI`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
 | If true, replace ranges that cannot be mapped with a NULL location instead of using the neighbor's fuzz. | **`[Mapper]`**<br/>**`NonMapping_As_Null`**<br/><br/>**`MAPPER_NONMAPPING_AS_NULL`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
+| SNP PTIS GRPC server, if not set then GRPC_PROXY environment variable is used. | **`[ID2SNP]`**<br/>**`PTIS_NAME`**<br/><br/>**`NCBI_CONFIG__ID2SNP__PTIS_NAME`** | "host:port" | "linderd:4142" |
+| SNP PTIS client debug level. | **`[ID2SNP]`**<br/>**`PTIS_DEBUG`**<br/><br/>**`NCBI_CONFIG__ID2SNP__PTIS_DEBUG`** | int: if >= 5 dbsnp requests and replies are logged | 1 |
+| SNP PTIS client number of retries. | **`[ID2SNP]`**<br/>**`RETRY`**<br/><br/>**`NCBI_CONFIG__ID2SNP__RETRY`** | int | 5 |
+| The **`TIMEOUT*`** parameters describe the timeout for opening a SNP PTIS connection. | **`[ID2SNP]`**<br/>**`TIMEOUT`**<br/><br/>**`NCBI_CONFIG__ID2SNP__TIMEOUT`** | any floating point value \>= 0.0 | 1 second |
+| **`TIMEOUT_MULTIPLIER`** and **`TIMEOUT_INCREMENT`** specify the way the open timeout is increased if no response is received (next\_open\_timeout = prev\_open\_timeout \* multiplier + increment). | **`[ID2SNP]`**<br/>**`TIMEOUT_INCREMENT`**<br/><br/>**`NCBI_CONFIG__ID2SNP__TIMEOUT_INCREMENT`** | any floating point value \>= 0.0 | 0 seconds |
+| The limit of increasing the open timeout using **`TIMEOUT_MULTIPLIER`** and **`TIMEOUT_INCREMENT`**. | **`[ID2SNP]`**<br/>**`TIMEOUT_MAX`**<br/><br/>**`NCBI_CONFIG__ID2SNP__TIMEOUT_MAX`** | floating point \>= 0.0 | 10 seconds |
+| See **`TIMEOUT_INCREMENT`** | **`[ID2SNP]`**<br/>**`TIMEOUT_MULTIPLIER`**<br/><br/>**`NCBI_CONFIG__ID2SNP__TIMEOUT_MULTIPLIER`** | floating point \>= 0.0 | 1.5 |
+| The **`WAIT_TIME*`** parameters describe the wait time before opening new connections in case of communication errors. **`WAIT_TIME`** is the initial wait after the first error. | **`[ID2SNP]`**<br/>**`WAIT_TIME`**<br/><br/>**`NCBI_CONFIG__ID2SNP__WAIT_TIME`** | floating point \>= 0.0 | 0.5 seconds |
+| **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`** specify the way wait time is increased if errors continue to happen (next\_wait\_time = prev\_wait\_time \* multiplier + increment). | **`[ID2SNP]`**<br/>**`WAIT_TIME_INCREMENT`**<br/><br/>**`NCBI_CONFIG__ID2SNP__WAIT_TIME_INCREMENT`** | any floating point value \>= 0.0 | 0 second |
+| The limit of increasing wait time using **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`**. | **`[ID2SNP]`**<br/>**`WAIT_TIME_MAX`**<br/><br/>**`NCBI_CONFIG__ID2SNP__WAIT_TIME_MAX`** | floating point \>= 0.0 | 10 seconds |
+| See **`WAIT_TIME_INCREMENT`** | **`[ID2SNP]`**<br/>**`WAIT_TIME_MULTIPLIER`**<br/><br/>**`NCBI_CONFIG__ID2SNP__WAIT_TIME_MULTIPLIER`** | any floating point value \>= 0.0 | 1.5 |
 
 <div class="table-scroll"></div>
 
