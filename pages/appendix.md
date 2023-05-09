@@ -25,6 +25,5 @@ Books
 
 -   *More Effective C++: 35 New Ways to Improve Your Programs and Designs*, by Scott Meyers.. Same as above. For example, how is the new operator different from operator new? Operator new is called by the new operator to allocate memory for the object being created. This is how you hook your own malloc into C++.
 
-Test12345
 
 
