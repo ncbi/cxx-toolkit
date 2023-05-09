@@ -98,6 +98,7 @@ The Alignment Manager Library [`xalnmgr`:[include](https://www.ncbi.nlm.nih.gov/
 ### Common interfaces and classes
 
 [IAlnExplorer](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=IAlnExplorer&_remember=1) interface defines types and constants used by derived classes representing alignments ([CAlnMap](#ch_algoalign.alignment_manager_impl_alnmap) and [CSparseAln](#ch_algoalign.alignment_manager_impl_sparsealn)). *EAlignType* enumerator describes types of sequences participating in the alignment: nucleotide, protein, mixed etc. *ESearchDirection* defines how to change position while performing some operations: based on sequence position and strand, or alignment coordinates. *ESortState* defines possible states of alignment data: unsorted, ascending, descending or unsupported.
+Test12345
 
 [IAlnSegment](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?v=c%2B%2B&i=IAlnSegment&_remember=1) interface defines types, constants and methods representing a single alignment segment. For each segment there are two ranges defined: the range on the selected sequence returned by *GetRange()* method, and the range on the whole alignment returned by *GetAlnRange()*. Depending on segment type one or both ranges may be empty. *ESegTypeFlags* provide information about segment type.
 
