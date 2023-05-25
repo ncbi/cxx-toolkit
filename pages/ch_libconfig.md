@@ -56,7 +56,7 @@ The following is an outline of the topics presented in this chapter:
 
         -   [PSG data loader](#ch_libconfig.psg_data_loader)
 
-        -   [Object Tools library](#ch_libconfig.object_tools_library)
+        -   [Object Tools library and other data loaders](#ch_libconfig.object_tools_library)
 
         -   [psg_client library](#ch_libconfig.psg_client_library)
 
@@ -864,6 +864,7 @@ Table 13.3b. Genbank readers configuration parameters
 | Allow gzip compression of PubSeqOS data. | **`[GENBANK/pubseqos]`** or **`[pubseqos]`**<br/>**`GZIP`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | true |
 | Path to the gicache index files. | **`[GENBANK/gicache]`** or **`[gicache]`**<br/>**`PATH`** | valid path | "//panfs/pan1.be-md.ncbi.nlm.nih.gov/id_dumps/gi_cache" |
 | ICache driver or a list of drivers for cache reader and writer. For more details about cache configuration see [GenBank data loader configuration](https://ncbi.github.io/cxx-toolkit/pages/ch_objmgr_dtld#ch_objmgr_dtld.GenBank_data_loader_). | **`[GENBANK/cache/<cache_type>]`** or **`[cache/<cache_type>]`**<br/>**`DRIVER`** | semicolon-delimited list of driver names ("bdb" and "netcache") | "bdb" |
+| ID2 reader SNP scale limit. | **`[GENBANK]`**<br/>**`ID2SNP_SCALE_LIMIT`**<br/><br/>**`GENBANK_ID2SNP_SCALE_LIMIT`** | "Chromosome", "Supercontig", "Contig", "Unit", or empty string to use server default | empty string |
 
 <div class="table-scroll"></div>
 
@@ -889,6 +890,7 @@ Table 13.4. PSG data loader configuration parameters
 | Prefetch information about bioseqs having no CDD annotations to avoid sending unnecessary CDD requests. | **`[PSG_LOADER]`**<br/>**`PREFETCH_CDD`**<br/><br/>**`PSG_LOADER_PREFETCH_CDD`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
 | Number of retries when fetching data (non-bulk). | **`[PSG_LOADER]`**<br/>**`RETRY_COUNT`**<br/><br/>**`PSG_LOADER_RETRY_COUNT`** | unsigned int | 4 |
 | PSG loader service name. | **`[PSG_LOADER]`**<br/>**`SERVICE_NAME`**<br/><br/>**`PSG_LOADER_SERVICE_NAME`** | a valid service name | "PSG2" |
+| SNP scale limit. | **`[PSG_LOADER]`**<br/>**`SNP_SCALE_LIMIT`**<br/><br/>**`PSG_LOADER_SNP_SCALE_LIMIT`** | "Chromosome", "Supercontig", "Contig", "Unit", or empty string to use server default | empty string |
 | The **`WAIT_TIME*`** parameters describe the wait time before opening new PSG connections in case of communication errors. The wait time is necessary to allow network and/or PSG servers to recover. **`WAIT_TIME`** is the initial wait after the first error. | **`[PSG_LOADER]`**<br/>**`WAIT_TIME`** | floating point \>= 0.0 | 1 second |
 | **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`** specify the way wait time is increased if errors continue to happen (next\_wait\_time = prev\_wait\_time \* multiplier + increment). | **`[PSG_LOADER]`**<br/>**`WAIT_TIME_INCREMENT`** | any floating point value \>= 0.0 | 1 second |
 | The limit of increasing wait time using **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`**. | **`[PSG_LOADER]`**<br/>**`WAIT_TIME_MAX`** | floating point \>= 0.0 | 30 seconds |
@@ -900,9 +902,9 @@ Table 13.4. PSG data loader configuration parameters
 
 <a name="ch_libconfig.object_tools_library"></a>
 
-#### Object Tools library
+#### Object Tools library and other data loaders
 
-These parameters tune the behavior of the Object Tools library.
+These parameters tune the behavior of the Object Tools library and data loaders implemented in other parts of the C++ Toolkit.
 
 <a name="ch_libconfig.T.Objecttools_configurat"></a>
 
@@ -915,6 +917,7 @@ Table 13.5. Object Tools configuration parameters
 | Max number of data files allowed to be kept open by LDS2 file handler. | **`[LDS2]`**<br/>**`MAX_CACHED_STREAMS`**<br/><br/>**`LDS2_MAX_CACHED_STREAMS`** | unsigned integer | 3 |
 | Data format to be used by CDD client. | **`[CDD]`**<br/>**`data_format`**<br/><br/>**`NCBI_CONFIG__CDD__DATA_FORMAT`** | "JSON", "semi-binary", or "binary" | "binary" |
 | Specify whether the new FASTA implementation will be used.               | **`[READ_FASTA]`**<br/>**`USE_NEW_IMPLEMENTATION`**<br/><br/>**`NCBI_CONFIG__READ_FASTA__USE_NEW_IMPLEMENTATION`**  [<sup>b</sup>](#ch_libconfig.TF.38)                 | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
+| SNP data loader scale limit. | **`[SNP_LOADER]`**<br/>**`SCALE_LIMIT`**<br/><br/>**`SNP_LOADER_SCALE_LIMIT`** | "Chromosome", "Supercontig", "Contig", "Unit", or empty string to use default value ("Chromosome") | empty string |
 
 <div class="table-scroll"></div>
 
