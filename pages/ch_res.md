@@ -17,7 +17,6 @@ For certain tasks in the C++ Toolkit environment, it is necessary to use, or at 
 
 -   [C Toolkit Documentation](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/SDKDOCS/INDEX.HTML)
 
--   [C Toolkit Queryable Source Browser](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/SB/hbr.html)
 
 ## Chapter Outline
 
