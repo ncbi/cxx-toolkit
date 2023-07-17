@@ -76,6 +76,8 @@ See also the full list of [Genbank data loader configuration parameters](https:/
     ; For example the value "cache;id2" directs GenBank loader to look in cache
     ; reader first, then to look for information in id2 reader from GenBank servers.
     ; Available readers are: id1, id2, pubseqos, pubseqos2, and cache.
+    ; The parameter can also be used to enable PSG data loader - in this case the
+    ; valuue must be "psg", no other readers should be listed.
     loader_method = cache;id2
 
     ; preopen can be set to false to postpone GenBank connection until needed,
