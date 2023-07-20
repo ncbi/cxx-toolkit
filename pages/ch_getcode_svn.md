@@ -280,11 +280,7 @@ Table 2. List of the directories that are always checked out
 | `src/build-system`    | yes  |
 | `(include\|src)/cgi`  | yes  |
 | `include/common`      | yes  |
-| `(include\|src)/connect`    | ***no***   |
-| `(include\|src)/connect/ext`      | yes  |
-| `include/connect/impl`      | yes  |
-| `src/connect/test`    | yes  |
-| `(include\|src)/connect/services` | yes  |
+| `(include\|src)/connect`    | yes  |
 | `(include\|src)/corelib`    | yes  |
 | `(include\|src)/db`   | yes  |
 | `(include\|src)/dbapi`      | yes  |
@@ -309,15 +305,12 @@ Table 3. Directories that may be checked out depending on branch and platform op
 | `compilers`   | yes  | `<platform>` = all |
 | `compilers`   | ***no***   | `<platform>` != all      |
 | `compilers/cygwin`  | yes  | `<platform>` = cygwin    |
-| `compilers/vs2017`  | yes  | `<platform>` = msvc      |
+| `compilers/vs2019`  | yes  | `<platform>` = msvc      |
 | `compilers/unix`    | yes  | `<platform>` = cygwin or mac or unix |
 | `compilers/xCode`   | yes  | `<platform>` = max |
 | `compilers/xcode30_prj`   | yes  | `<platform>` = mac |
 | `doc`   | yes  | `<branch>` = development |
-| `include/connect/daemons` | yes  | `<platform>` = all or unix     |
 | `src/check`   | yes  | `<platform>` != mac      |
-| `src/connect/daemons`     | yes  | `<platform>` = all or unix     |
-| `src/connect/mitsock`     | yes  | `<platform>` = mac |
 | `src/dll`     | yes  | `<platform>` = all or mac or msvc    |
 
 <div class="table-scroll"></div>
