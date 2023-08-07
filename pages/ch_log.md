@@ -1269,6 +1269,7 @@ These parameters tune the usage and behavior of the library and all based on it 
 | **`SERVER_PORT`**  | Web server/service port. Specifies one of the possible locations to store logging files for CGI, see [Where Diagnostic Messages Go](#ch_core.Where_Diagnostic_Messages_Go). | a positive integer | (none) |
 | **`NCBI_CONFIG__LOG__FILE`**  | Reset the log file to the specified file. By default, if [NcbiLog_SetDestination()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiLog_SetDestination) is not called or set to ***eNcbiLog_Default***, and environment variable **`$NCBI_CONFIG__LOG__FILE`** points to some location on a file system, its value will be used as base name for logging. Also, it can have special value "-" to redirect all output to ***STDERR***. Note, this is not a preferred way to set logging to a local file, this exists for a backward compatibility only. Please use [NcbiLog_SetDestination(eNcbiLog_File)](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=NcbiLog_SetDestination) instead.| a valid file name, or "-" | (none) |
 | **`NCBI_CLOG_REPORT_ERRORS`** | Report critical errors to ***stderr*** if defined to positive values. If CLog destination is set to ***stderr*** as well, do nothing. | "Y", "y", "1" | (none) |
+| **`LOG_ISSUED_SUBHIT_LIMIT`** | Specify the maximum number of sub-PHIDs that can be reported to the AppLog by a single request. | unsigned integer | 200 |
 
 <a name="ch_core.Logging_Modules_ncbi_applog"></a>
 
