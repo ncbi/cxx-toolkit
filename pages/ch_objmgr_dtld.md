@@ -61,6 +61,8 @@ GenBank data loader configuration
 
 Application configuration is stored in a file with the same name as application, and extension `.ini`. The file will be found either in the executable or in the user's home directory.
 
+Some parameters (e.g. loader_method) can also be set using optional [CGBLoaderParams](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=CGBLoaderParams) argument passed to the [RegisterInObjectManager](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=RegisterInObjectManager) method.
+
 <br/>GenBank data loader looks for parameters in section `[genbank]` and its subsections.
 
 <a name="ch_objmgr_dtld.Main_GenBank_data_lo"></a>
