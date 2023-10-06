@@ -140,6 +140,14 @@ Once the build tree is generated, go into build directory – for example, *CMak
 
 In this case, NCBIptb installs specified Conan packages first, and only after that looks for additional packages in known locations at NCBI. The list of Conan packages and their options is described in *src/build-system/cmake/conanfile.\*.txt* files. There are 3 lists – for Windows (*conanfile.MSVC.txt*), Unix (*conanfile.UNIX.txt*) and MacOS (*conanfile.XCODE.txt*).
 
+There are two major releases of Conan - [v1.x](https://docs.conan.io/1/) and [v2.x](https://docs.conan.io/2/). The problem is that they are not fully compatible. That is, some older package recipes work with Conan1 only. For this reason, at present the Toolkit configuration supports Conan v1.x only.
+
+The configuration process expects to find recipes and prebuilt packages in NCBI artifactory. Some of the packages exist at NCBI only - for example, [fastcgi](https://github.com/FastCGI-Archives/fcgi2), [ncbi-vdb](https://github.com/ncbi/ncbi-vdb), ncbicrypt. Outside of NCBI, one needs either establish a connection to NCBI artifactory (and specify that in Conan configuration [proxies](https://docs.conan.io/1/reference/config_files/conan.conf.html?highlight=proxies) ), or remove corresponding entries from *src/build-system/cmake/conanfile.\*.txt* files and rely on [Conan center](https://conan.io/center) only.
+
+On Unix systems, by default, configuration installs *shared* components always (which use shared libraries). Depending on the requested build type, *Debug* or *Release* libraries are used. By specifying *--with-features="StaticComponents"*, one can request installation of *static* components.
+
+On Windows, configuration installs *static* components in static (*--without-dll*) builds, and *shared* - in DLL (*--with-dll*) ones. Both, *Debug* and *Release* libraries are installed. Same as on Unix, by specifying *--with-features="StaticComponents"*, one can request installation of *static* components.
+
 <a name="ch_cmconfig._Use_prebuilt"></a>
 
 ## Use prebuilt Toolkit
@@ -214,7 +222,14 @@ The script configures the tree automatically, according to prebuilt directory se
 
 ### Conan package
 
-NCBI C++ Toolkit is also available as [Conan package](https://conan.io/center/ncbi-cxx-toolkit-public). For details, please see the [package recipe](https://github.com/ncbi/ncbi-cxx-toolkit-conan) documentation.
+NCBI C++ Toolkit is also available as Conan package. There are two packages, in fact - [ncbi-cxx-toolkit-public](https://github.com/ncbi/ncbi-cxx-toolkit-conan), and [ncbi-cxx-toolkit-core](https://bitbucket.ncbi.nlm.nih.gov/projects/CXX/repos/ncbi-cxx-toolkit-core-conan). The latter available at NCBI only. There is also *ncbi-cxx-toolkit-public* package in [Conan center](https://conan.io/center/recipes/ncbi-cxx-toolkit-public).
+
+*Public* package relies on Conan center and uses publicly available 3rd party packages only. *Core* one adds internal packages available at NCBI only, and provides more  debugging and testing options. To find out, what is available, use the following Conan command
+
+    conan search 'ncbi-cxx-toolkit*' -r all
+
+For developers at NCBI, the following samples are available: [CGI sample](https://gitlab.be-md.ncbi.nlm.nih.gov/pd/cxxtk/cxx/cgi-sample) and [FCGI sample](https://gitlab.be-md.ncbi.nlm.nih.gov/pd/cxxtk/cxx/fcgi-sample).
+
 
 <a name="ch_cmconfig._NCBIptb"></a>
 
