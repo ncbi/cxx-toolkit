@@ -917,6 +917,7 @@ Table 13.5. Object Tools configuration parameters
 | Database lock control. By default LDS2 databases are read-only, so they are cached in memory. If an explicit mode is set in the code, this config parameter is ignored. ***Note:*** To set locks the database must be writable. | **`[LDS2]`**<br/>**`DataLoader_Lock`**<br/><br/>**`LDS2_DATALOADER_LOCK`** | "lock", "nolock", or "cache" | "cache" |
 | Max number of data files allowed to be kept open by LDS2 file handler. | **`[LDS2]`**<br/>**`MAX_CACHED_STREAMS`**<br/><br/>**`LDS2_MAX_CACHED_STREAMS`** | unsigned integer | 3 |
 | Data format to be used by CDD client. | **`[CDD]`**<br/>**`data_format`**<br/><br/>**`NCBI_CONFIG__CDD__DATA_FORMAT`** | "JSON", "semi-binary", or "binary" | "binary" |
+| CDD client timeout. | **`[CDD]`**<br/>**`client_timeout`**<br/><br/>**`NCBI_CONFIG__CDD__CLIENT_TIMEOUT`** | floating point \> 0.0 | none - use the default connection timeout |
 | Specify whether the new FASTA implementation will be used.               | **`[READ_FASTA]`**<br/>**`USE_NEW_IMPLEMENTATION`**<br/><br/>**`NCBI_CONFIG__READ_FASTA__USE_NEW_IMPLEMENTATION`**  [<sup>b</sup>](#ch_libconfig.TF.38)                 | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37)              | true |
 | SNP data loader scale limit. | **`[SNP_LOADER]`**<br/>**`SCALE_LIMIT`**<br/><br/>**`SNP_LOADER_SCALE_LIMIT`** | "Chromosome", "Supercontig", "Contig", "Unit", or empty string to use default value ("Chromosome") | empty string |
 
