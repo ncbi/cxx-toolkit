@@ -2491,6 +2491,8 @@ Note that this encoding of the bases is not the same as any of the standard nucl
 
 The genetic code arrays have names which indicate the amino acid alphabet used (e.g. ncbieaa). The same encoding technique is used to specify start codons. Alphabet names are prefixed with "s" (e.g. sncbieaa) to indicate start codon arrays. Each cell of a start codon array contains either the gap code ("-" for ncbieaa) or an amino acid code if it is valid to use the codon as a start codon. Currently all starts are set to code for methionine, since it has never been convincingly demonstrated that a protein can start with any other amino acid. However, if other amino acids are shown to be used as starts, this structure can easily accommodate that information.
 
+After the discovery of genetic codes with an amino acid assigned to each of the 64 possible triplet codons, the use of sncbieaa was expanded to indicate codons that could be used as stop signals. Context determines whether a tRNA extends the peptide or, near the end of the mRNA, a release factor terminates translation. Software should use the sncbieaa field to confirm that the end of a coding region feature location is on a stop codon. For these genetic codes, an open reading frame search on a genomic sequence will not be able to find a terminator codon without additional knowledge of mRNA boundaries.
+
 The contents of gc.prt, the current supported genetic codes, is given at the end of this chapter.
 
 <a name="ch_datamod.C_Implementation_Of_"></a>
