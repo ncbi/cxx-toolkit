@@ -432,45 +432,54 @@ The network information structure (from [connect/ncbi\_connutil.h](https://www.n
 
 [Note](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=Note): Not all parameters of the structure shown below apply to every network connector.
 
-    /* Network connection related configurable info struct.
+    /* Network connection-related configurable informational structure.
      * ATTENTION:  Do NOT fill out this structure (SConnNetInfo) "from scratch"!
-     *             Instead, use ConnNetInfo_Create() described below to create
-     *             it, and then fix (hard-code) some fields, if really necessary.
+     *             Instead, use ConnNetInfo_Create() described below to create it,
+     *             and then fix (hard-code) some fields using the ConnNetInfo API,
+     *             or directly as the last resort if really necessary.
      * NOTE1:      Not every field may be fully utilized throughout the library.
-     * NOTE2:      HTTP passwords can be either clear text or Base64 encoded values
+     * NOTE2:      HTTP passwords can be either clear text or Base-64 encoded value
      *             enclosed in square brackets [] (which are not Base-64 charset).
-     *             For encoding / decoding, one can use command line open ssl:
-     *             echo "password|base64value" | openssl enc {-e|-d} -base64
+     *             For encoding / decoding, one can use the command-line OpenSSL:
+     *             echo [-n] "password|base64value" | openssl enc {-e|-d} -base64
      *             or an online tool (search the Web for "base64 online").
+     * NOTE3:      The NCBI_CRED credentials are stored by the handle value and are
+     *             not otherwise managed (reallocated / duplicated) by the API:
+     *             they are passed strictly "as-is" to the lower levels of the SSL.
      */
     typedef struct {  /* NCBI_FAKE_WARNING: ICC */
-        char            client_host[256]; /* effective client hostname ('\0'=def)*/
-        EBURLScheme     scheme:3;         /* only pre-defined types (limited)    */
+        char            client_host[CONN_HOST_LEN+1]; /*client hostname('\0'=def)*/
         TReqMethod      req_method:5;     /* method to use in the request (HTTP) */
-        unsigned        version:1;        /* HTTP/1.v (or selected by req_method)*/
+        EBURLScheme     scheme:3;         /* only pre-defined types (limited)    */
+        unsigned        external:1;       /* mark service request as external    */
         EBFWMode        firewall:2;       /* to use firewall (relay otherwise)   */
         unsigned        stateless:1;      /* to connect in HTTP-like fashion only*/
         unsigned        lb_disable:1;     /* to disable local load-balancing     */
+        unsigned        http_version:1;   /* HTTP/1.v (or selected by req_method)*/
         EBDebugPrintout debug_printout:2; /* switch to printout some debug info  */
-        unsigned        http_proxy_leak:1;/* non-zero when can fallback to direct*/
-        char            user[64];         /* username (if specified)             */
-        char            pass[64];         /* password (if any)                   */
-        char            host[256];        /* host to connect to                  */
-        unsigned short  port;             /* port to connect to, host byte order */
-        char            path[1024];       /* path (e.g. to  a CGI script or page)*/
-        char            args[1024];       /* args (e.g. for a CGI script)        */
-        char            http_proxy_host[256]; /* hostname of HTTP proxy server   */
-        unsigned short  http_proxy_port;      /* port #   of HTTP proxy server   */
-        char            http_proxy_user[64];  /* http proxy username (if req'd)  */
-        char            http_proxy_pass[64];  /* http proxy password             */
-        char            proxy_host[256];  /* CERN-like (non-transp) f/w proxy srv*/
+        unsigned        http_push_auth:1; /* push authorize tags even w/o 401/407*/
+        unsigned        http_proxy_leak:1;/* TRUE when may fallback to direct    */
+        unsigned        http_proxy_skip:1;/* TRUE when *NOT* to read $http_proxy */
+        EBProxyType     http_proxy_mask:2;/* $http_proxy / $https_proxy          */
+        unsigned        reserved:11;      /* MBZ                                 */
+        char            user[CONN_USER_LEN+1];  /* username (if spec'd or req'd) */
+        char            pass[CONN_PASS_LEN+1];  /* password (for non-empty user) */
+        char            host[CONN_HOST_LEN+1];  /* host name to connect to       */
+        unsigned short  port;                   /* port # (host byte order)      */
+        char            path[CONN_PATH_LEN+1];  /* path (incl. args and frag)    */
+        char            http_proxy_host[CONN_HOST_LEN+1]; /* HTTP proxy server   */
+        unsigned short  http_proxy_port;        /* port # of HTTP proxy server   */
+        char            http_proxy_user[CONN_USER_LEN+1]; /* HTTP proxy username */
+        char            http_proxy_pass[CONN_PASS_LEN+1]; /* HTTP proxy password */
         unsigned short  max_try;          /* max. # of attempts to connect (>= 1)*/
+        unsigned short  unused;           /* MBZ; 8-byte alignment               */
         const STimeout* timeout;          /* ptr to I/O timeout(infinite if NULL)*/
         const char*     http_user_header; /* user header to add to HTTP request  */
-        const char*     http_referer;     /* default referrer (when not spec'd)  */
+        const char*     http_referer;     /* request referrer (when spec'd)      */
         NCBI_CRED       credentials;      /* connection credentials (optional)   */
-
-        /* the following field(s) are for the internal use only -- don't touch!  */
+    
+        /* the following fields are for internal use only -- look but don't touch*/
+        unsigned int    magic;            /* to detect version skew              */
         STimeout        tmo;              /* default storage for finite timeout  */
         const char      svc[1];           /* service which this info created for */
     } SConnNetInfo;
