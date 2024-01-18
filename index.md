@@ -11,6 +11,8 @@ National Center for Biotechnology Information (US): Bethesda (MD); 2004-2022.
 
 Contents
 --------
+![05_28_56_kg](https://github.com/ncbi/cxx-toolkit/assets/141368479/d3ef56c8-5b8b-4d71-bdee-25f7b78cd443)
+![01_28_51_super-goeth](https://github.com/ncbi/cxx-toolkit/assets/141368479/60ffa017-a8ab-4a9d-9de3-b40b1625daf8)
 
 -   [Book Information](pages/fm)
 -   [Part 1. Overview](pages/part1)
