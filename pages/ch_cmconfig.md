@@ -128,7 +128,7 @@ Examples of configuration commands:
     cmake-configure --with-dll --with-debug --with-projects="sra"
     cmake-configure --with-projects="misc"
 
-Once the build tree is generated, go into build directory – for example, *CMake-GCC730-ReleaseDLL/build* or *CMake-VS2017\build*, and run *make [target]* command or open a generated solution in an IDE and build *target*.
+Once the build tree is generated, go into build directory – for example, *CMake-GCC1320-ReleaseDLL/build* or *CMake-VS2019\build*, and run *make [target]* command or open a generated solution in an IDE and build *target*.
 
 <a name="ch_cmconfig._Configure_Conan"></a>
 
@@ -140,7 +140,7 @@ Once the build tree is generated, go into build directory – for example, *CMak
 
 In this case, NCBIptb installs specified Conan packages first, and only after that looks for additional packages in known locations at NCBI. The list of Conan packages and their options is described in *src/build-system/cmake/conanfile.\*.txt* files. There are 3 lists – for Windows (*conanfile.MSVC.txt*), Unix (*conanfile.UNIX.txt*) and MacOS (*conanfile.XCODE.txt*).
 
-There are two major releases of Conan - [v1.x](https://docs.conan.io/1/) and [v2.x](https://docs.conan.io/2/). The problem is that they are not fully compatible. That is, some older package recipes work with Conan1 only. For this reason, at present the Toolkit configuration supports Conan v1.x only.
+There are two major releases of Conan - [v1.x](https://docs.conan.io/1/) and [v2.x](https://docs.conan.io/2/). The problem is that they are not fully compatible. The Toolkit configuration supports both Conan v1.x and v2.x.
 
 The configuration process expects to find recipes and prebuilt packages in NCBI artifactory. Some of the packages exist at NCBI only - for example, [fastcgi](https://github.com/FastCGI-Archives/fcgi2), [ncbi-vdb](https://github.com/ncbi/ncbi-vdb), ncbicrypt. Outside of NCBI, one needs either establish a connection to NCBI artifactory (and specify that in Conan configuration [proxies](https://docs.conan.io/1/reference/config_files/conan.conf.html?highlight=proxies) ), or remove corresponding entries from *src/build-system/cmake/conanfile.\*.txt* files and rely on [Conan center](https://conan.io/center) only.
 
@@ -174,7 +174,7 @@ To get a list of available project types, run
 
 Using *new_cmake_project* script is convenience, not a requirement. You are free to choose your own style. For example, create *CMakeLists.txt* with the following contents:
 
-    cmake_minimum_required(VERSION 3.7)
+    cmake_minimum_required(VERSION 3.20)
     project(test1)
     include($ENV{NCBI}/c++.cmake.stable/src/build-system/cmake/CMake.NCBItoolkit.cmake)
     add_executable(blast_demo blast_demo)
@@ -187,7 +187,7 @@ then configure and build it:
 
 NCBIptb style also works. Create *CMakeLists.txt*
 
-    cmake_minimum_required(VERSION 3.7)
+    cmake_minimum_required(VERSION 3.20)
     project(test1)
     include($ENV{NCBI}/c++.cmake.stable/src/build-system/cmake/CMake.NCBItoolkit.cmake)
     NCBI_begin_app(blast_demo)
@@ -195,10 +195,14 @@ NCBIptb style also works. Create *CMakeLists.txt*
         NCBI_uses_toolkit_libraries(blastinput)
     NCBI_end_app()
 
-Configure and build:
+Note that NCBIptb is not an inseparable part of the Toolkit. It is possible to take it from one tree and the prebuilt Toolkit from another one. In the this case,
+you need to specify the location of the prebuilt Toolkit explicitely - by defining *NCBI_EXTERNAL_TREE_ROOT*:
 
-    cmake .
-    make
+    cmake_minimum_required(VERSION 3.20)
+    project(test1)
+    set(NCBI_EXTERNAL_TREE_ROOT $ENV{NCBI}/c++.cmake.stable)
+    include($ENV{HOME}/toolkit/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+    NCBI_add_subdirectory(src)
 
 <a name="ch_cmconfig._import_prebuilt"></a>
 
