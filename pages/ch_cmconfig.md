@@ -31,6 +31,10 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
     -   [Conan package](#ch_cmconfig._Conan_prebuilt)
 
+-   [Use Toolkit as source tree](#ch_cmconfig._Use_source)
+
+    -   [Unrelated source trees](#ch_cmconfig._unrelated)
+
 -   [NCBIptb build system](#ch_cmconfig._NCBIptb)
 
     -   [What is it?](#ch_cmconfig._What)
@@ -218,9 +222,9 @@ The shell script *import_cmake_project* will check out your project’s src and 
 
 It also possiible to use [*import_project*](https://ncbi.github.io/cxx-toolkit/pages/ch_getcode_svn.html#ch_getcode_svn.import_project_sh) script, but one has to be more specific about prebuilt tree:
 
-    import_project serial $NCBI/c++.cmake.metastable/CMake-GCC730-Debug
+    import_project serial $NCBI/c++.cmake.metastable/CMake-GCC1320-Debug
 
-The script configures the tree automatically, according to prebuilt directory settings (GCC730-Debug in the example above).
+The script configures the tree automatically, according to prebuilt directory settings (GCC1320-Debug in the example above).
 
 <a name="ch_cmconfig._Conan_prebuilt"></a>
 
@@ -235,7 +239,38 @@ NCBI C++ Toolkit is also available as Conan package. There are two packages, in 
 For developers at NCBI, the following samples are available: [CGI sample](https://gitlab.be-md.ncbi.nlm.nih.gov/pd/cxxtk/cxx/cgi-sample) and [FCGI sample](https://gitlab.be-md.ncbi.nlm.nih.gov/pd/cxxtk/cxx/fcgi-sample).
 
 
+<a name="ch_cmconfig._Use_source"></a>
+
+## Use Toolkit as source tree
+
+Sometimes it could be beneficial to use the NCBI C++ Toolkit directly as a source tree. For example, you find the Toolkit in [Github](https://github.com/ncbi/ncbi-cxx-toolkit-public) and want to use it in your project. How to integrate them? One option is to build the Toolkit - standalone or as a Conan package, and then use it as a [prebuilt one](#ch_cmconfig._Use_prebuilt).
+Another option is using the Toolkit directly as a source tree.
+
+<a name="ch_cmconfig._unrelated"></a>
+
+### Unrelated source trees
+
+In this case, you put your project sources and the Toolkit into separate unrelated trees - for example, in *$HOME/project* and  *$HOME/toolkit*. Now in *$HOME/project*,  create *CMakeLists.txt as follows:
+
+    cmake_minimum_required(VERSION 3.20)
+    project(test)
+    include($ENV{HOME}/toolkit/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+    NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src)
+
+Note that the Toolkit sources are added directly. These two trees will be treated as a compound one. This also means that, by default, all Toolkit build targets will be added as well.
+It is unlikely that you want it, so you need to use [project filters](ch_cmconfig._Configure)
+
+As with the prebuilt tree setup, NCBIptb can be detached from the Toolkit source.  In the this case, you need to specify the location of the Toolkit sources explicitely - by defining *NCBITK_TREE_ROOT*:
+
+    cmake_minimum_required(VERSION 3.20)
+    project(test)
+    set(NCBITK_TREE_ROOT $ENV{HOME}/toolkit)
+    include($ENV{HOME}/test/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+    NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src)
+
+
 <a name="ch_cmconfig._NCBIptb"></a>
+
 
 ## NCBIptb build system
 
@@ -280,6 +315,8 @@ When configuring the build tree, NCBIptb does the following:
 In addition, there is an option of creating "composite" build targets. Such targets are composed of other targets, including their sources and requirements. In the build tree, such "hosted" targets are excluded and replaced with "composite" ones.
 
 There are also tasks of source code generation, installation and testing. NCBIptb does not support them directly. Instead, there is a mechanism of plugin [extensions](#ch_cmconfig._Extensions) which handle them.
+
+<a name="ch_cmconfig._Examples"></a>
 
 ### Examples
 
