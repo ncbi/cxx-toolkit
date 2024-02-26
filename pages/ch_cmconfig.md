@@ -35,6 +35,8 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
     -   [Unrelated source trees](#ch_cmconfig._unrelated)
 
+    -   [Single source tree](#ch_cmconfig._related)
+
 -   [NCBIptb build system](#ch_cmconfig._NCBIptb)
 
     -   [What is it?](#ch_cmconfig._What)
@@ -246,6 +248,22 @@ For developers at NCBI, the following samples are available: [CGI sample](https:
 Sometimes it could be beneficial to use the NCBI C++ Toolkit directly as a source tree. For example, you find the Toolkit in [Github](https://github.com/ncbi/ncbi-cxx-toolkit-public) and want to use it in your project. How to integrate them? One option is to build the Toolkit - standalone or as a Conan package, and then use it as a [prebuilt one](#ch_cmconfig._Use_prebuilt).
 Another option is to use the Toolkit directly as a source tree.
 
+Here we assume that you project has *include* and *src* directories:
+
+    project
+        -- include
+        -- src
+
+If you like convenience of *cmake-configure* scripts, you can simply copy them from the root directory of the Toolkit and edit to point to location of the Toolkit scripts.
+For example, *cmake-configure* might look like this:
+
+    #!/bin/sh
+    script_dir=`dirname $0`
+    script_name=`basename $0`
+    exec ${NCBI}/c++.cmake.stable/src/build-system/cmake/cmake-cfg-unix.sh --rootdir=$script_dir --caller=$script_name "$@"
+
+Normally, it does not matter where the script comes from. What matters is *--rootdir=$script_dir* argument.
+
 <a name="ch_cmconfig._unrelated"></a>
 
 ### Unrelated source trees
@@ -269,8 +287,30 @@ As with the prebuilt tree setup, NCBIptb can be detached from the Toolkit source
     NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src)
 
 
-<a name="ch_cmconfig._NCBIptb"></a>
+<a name="ch_cmconfig._related"></a>
 
+### Single source tree
+
+Here, you put your project sources and the Toolkit into the same source tree - for example, in root directory *$HOME/project*, there will be *module* and *toolkit* subdirectories.
+Historically, the Toolkit does not contain *CMakeLists.txt* file in its root directory. Create one, it is trivial:
+
+    NCBI_add_subdirectory(src)
+
+Next, the *CMakeLists.txt* in *module* root, must include *NCBI_module* directive:
+
+    NCBI_module(modulename)
+    NCBI_add_subdirectory(src)
+
+Finally, the root *CMakeLists.txt*, in *$HOME/project*, might look like this:
+
+    cmake_minimum_required(VERSION 3.20)
+    project(test)
+    include(toolkit/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+    NCBI_add_subdirectory(toolkit module)
+
+
+
+<a name="ch_cmconfig._NCBIptb"></a>
 
 ## NCBIptb build system
 
