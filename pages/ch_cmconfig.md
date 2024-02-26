@@ -244,13 +244,13 @@ For developers at NCBI, the following samples are available: [CGI sample](https:
 ## Use Toolkit as source tree
 
 Sometimes it could be beneficial to use the NCBI C++ Toolkit directly as a source tree. For example, you find the Toolkit in [Github](https://github.com/ncbi/ncbi-cxx-toolkit-public) and want to use it in your project. How to integrate them? One option is to build the Toolkit - standalone or as a Conan package, and then use it as a [prebuilt one](#ch_cmconfig._Use_prebuilt).
-Another option is using the Toolkit directly as a source tree.
+Another option is to use the Toolkit directly as a source tree.
 
 <a name="ch_cmconfig._unrelated"></a>
 
 ### Unrelated source trees
 
-In this case, you put your project sources and the Toolkit into separate unrelated trees - for example, in *$HOME/project* and  *$HOME/toolkit*. Now in *$HOME/project*,  create *CMakeLists.txt as follows:
+In this case, you put your project sources and the Toolkit into separate unrelated trees - for example, in *$HOME/project* and  *$HOME/toolkit*. Now in *$HOME/project*,  create *CMakeLists.txt* as follows:
 
     cmake_minimum_required(VERSION 3.20)
     project(test)
