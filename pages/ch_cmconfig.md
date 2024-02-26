@@ -286,6 +286,14 @@ As with the prebuilt tree setup, NCBIptb can be detached from the Toolkit source
     include($ENV{HOME}/test/src/build-system/cmake/CMake.NCBItoolkit.cmake)
     NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src)
 
+Adding yet another unrelated source tree to the project requires declaring it in advance. So, to add *$HOME/project2*, you need to call *NCBI_declare_module_root*:
+
+    cmake_minimum_required(VERSION 3.20)
+    project(test)
+    include($ENV{HOME}/toolkit/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+    NCBI_declare_module_root("$ENV{HOME}/project2")
+    NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src $ENV{HOME}/project2)
+
 
 <a name="ch_cmconfig._related"></a>
 
