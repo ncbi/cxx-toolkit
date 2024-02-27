@@ -178,7 +178,7 @@ To get a list of available project types, run
 
     new_cmake_project --help
 
-Using *new_cmake_project* script is convenience, not a requirement. You are free to choose your own style. For example, create *CMakeLists.txt* with the following contents:
+Using *new_cmake_project* script is a convenience, not a requirement. You are free to choose your own style. For example, create *CMakeLists.txt* with the following contents:
 
     cmake_minimum_required(VERSION 3.20)
     project(test1)
@@ -201,7 +201,7 @@ NCBIptb style also works. Create *CMakeLists.txt*
         NCBI_uses_toolkit_libraries(blastinput)
     NCBI_end_app()
 
-Note that NCBIptb is not an inseparable part of the Toolkit. It is possible to take it from one tree and the prebuilt Toolkit from another one. In the this case,
+Note that NCBIptb is not an inseparable part of the Toolkit. It is possible to take it from one tree and the prebuilt Toolkit from another one. In this case,
 you need to specify the location of the prebuilt Toolkit explicitely - by defining *NCBI_EXTERNAL_TREE_ROOT*:
 
     cmake_minimum_required(VERSION 3.20)
@@ -245,7 +245,7 @@ For developers at NCBI, the following samples are available: [CGI sample](https:
 
 ## Use Toolkit as source tree
 
-Sometimes it could be beneficial to use the NCBI C++ Toolkit directly as a source tree. For example, you find the Toolkit in [Github](https://github.com/ncbi/ncbi-cxx-toolkit-public) and want to use it in your project. How to integrate them? One option is to build the Toolkit - standalone or as a Conan package, and then use it as a [prebuilt one](#ch_cmconfig._Use_prebuilt).
+Sometimes it is beneficial to use the NCBI C++ Toolkit directly as a source tree. For example, you find the Toolkit in [Github](https://github.com/ncbi/ncbi-cxx-toolkit-public) and want to use it in your project. How to integrate them? One option is to build the Toolkit - standalone or as a Conan package, and then use it as a [prebuilt one](#ch_cmconfig._Use_prebuilt).
 Another option is to use the Toolkit directly as a source tree.
 
 Here we assume that you project has *include* and *src* directories:
@@ -299,7 +299,7 @@ Adding yet another unrelated source tree to the project requires declaring it in
 
 ### Single source tree
 
-Here, you put your project sources and the Toolkit into the same source tree - for example, in root directory *$HOME/project*, there will be *module* and *toolkit* subdirectories.
+Here, you put your project sources and the Toolkit into the same source tree - for example, in root directory *$HOME/project*, there can be *module* and *toolkit* subdirectories.
 Historically, the Toolkit does not contain *CMakeLists.txt* file in its root directory. Create one, it is trivial:
 
     NCBI_add_subdirectory(src)
