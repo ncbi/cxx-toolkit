@@ -254,6 +254,10 @@ Here we assume that you project has *include* and *src* directories:
         -- include
         -- src
 
+And there is a *CMakeLists.txt* file in the root which adds *src* directory:
+
+    NCBI_add_subdirectory(src)
+
 If you like convenience of *cmake-configure* scripts, you can simply copy them from the root directory of the Toolkit and edit to point to location of the Toolkit scripts.
 For example, *cmake-configure* might look like this:
 
@@ -304,16 +308,12 @@ Historically, the Toolkit does not contain *CMakeLists.txt* file in its root dir
 
     NCBI_add_subdirectory(src)
 
-Next, the *CMakeLists.txt* in *module* root, must include *NCBI_module* directive:
-
-    NCBI_module(modulename)
-    NCBI_add_subdirectory(src)
-
-Finally, the root *CMakeLists.txt*, in *$HOME/project*, might look like this:
+Next, in the root *$HOME/projectCMakeLists.txt* specify the location of module root directory using *NCBI_declare_module_root*:
 
     cmake_minimum_required(VERSION 3.20)
     project(test)
     include(toolkit/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+    NCBI_declare_module_root(module)
     NCBI_add_subdirectory(toolkit module)
 
 
