@@ -308,7 +308,7 @@ Historically, the Toolkit does not contain *CMakeLists.txt* file in its root dir
 
     NCBI_add_subdirectory(src)
 
-Next, in the root *$HOME/projectCMakeLists.txt* specify the location of module root directory using *NCBI_declare_module_root*:
+Next, in the root *$HOME/project/CMakeLists.txt* specify the location of module root directory using *NCBI_declare_module_root*:
 
     cmake_minimum_required(VERSION 3.20)
     project(test)
