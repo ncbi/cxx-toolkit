@@ -461,6 +461,9 @@ Table 7. Connection library configuration parameters
 | [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - application name. | **`[USAGE_REPORT]`**<br/>**`AppName`**<br/><br/>**`NCBI_USAGE_REPORT_APPNAME`** | string | (none) |
 | [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - application version. | **`[USAGE_REPORT]`**<br/>**`AppVersion`**<br/><br/>**`NCBI_USAGE_REPORT_APPVERSION`** | string | (none) |
 | [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - maximum number of reporting jobs in the queue per reporter. | **`[USAGE_REPORT]`**<br/>**`MaxQueueSize`**<br/><br/>**`NCBI_USAGE_REPORT_MAXQUEUESIZE`** | unsigned int  | 100 |
+| [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - connection timeout (in seconds). Any negative number uses the Connect API default instead, like $CONN_TIMEOUT environment or [CONN]TIMEOUT registry value.| **`[USAGE_REPORT]`**<br/>**`ConnTimeout`**<br/><br/>**`NCBI_USAGE_REPORT_CONN_TIMEOUT`** | double | -1 |
+| [CUsageReportAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReportAPI.html) - maximum number of tries to set connection. Any negative number uses uses the Connect API default instead, like $CONN_MAX_TRY environment or [CONN]MAX_TRY registry value. | **`[USAGE_REPORT]`**<br/>**`ConnMaxTry`**<br/><br/>**`NCBI_USAGE_REPORT_CONN_MAX_TRY`** | int | -1 |
+| [CUsageReport](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCUsageReport.html) - wait timeout (in seconds) for `Wait()`.  Any negative number sets infinite timeout. | **`[USAGE_REPORT]`**<br/>**`WaitTimeout`**<br/><br/>**`NCBI_USAGE_REPORT_WAIT_TIMEOUT`** | double | -1 |
 
 
 <div class="table-scroll"></div>
