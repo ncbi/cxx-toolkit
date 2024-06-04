@@ -1125,11 +1125,28 @@ Table 14. DBAPI configuration parameters
 
 <a name="ch_libconfig.T.eutils_library_configurat"></a>
 
-Table 15. eutils library configuration parameters
+Table 15.1. eutils library configuration parameters
 
 | Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable | Valid values | Default               |
 |-------------|--------------------------------------------------------------------|--------------|-----------------------|
 | Specify the base URL for Eutils requests. | **`[Eutils]`**<br/>**`Base_URL`**<br/><br/>**`EUTILS_BASE_URL`**   | a valid URL  | The host returned by resolving "eutils_lb" service or "eutils.ncbi.nlm.nih.gov" by default, with "/entrez/eutils/" path appended ("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"). |
+
+<div class="table-scroll"></div>
+
+[These parameters](#ch_libconfig.T.eutilscli_library_configurat) tune the behavior of the Eutils Client library (misc/eutils_client).
+
+<a name="ch_libconfig.T.eutilscli_library_configurat"></a>
+
+Table 15.2. misc/eutils_client library configuration parameters
+
+| Purpose     | [Registry section]<br/>Registry name<br/><br/>Environment variable | Valid values | Default               |
+|-------------|--------------------------------------------------------------------|--------------|-----------------------|
+| EUtils client number of retries. | **`[EUTILS_CLIENT]`**<br/>**`MAX_RETRIES`**<br/><br/>**`NCBI_CONFIG__EUTILS_CLIENT__MAX_RETRIES`** | int | 9 |
+| Timeout for opening EUTILS service HTTP connection. | **`[EUTILS_CLIENT]`**<br/>**`CONN_TIMEOUT`**<br/><br/>**`NCBI_CONFIG__EUTILS_CLIENT__CONN_TIMEOUT`** | any floating point value \>= 0.0 | default HTTP timeout |
+| The **`WAIT_TIME*`** parameters describe the wait time before opening new connections in case of communication errors. **`WAIT_TIME`** is the initial wait after the first error. | **`[EUTILS_CLIENT]`**<br/>**`WAIT_TIME`**<br/><br/>**`NCBI_CONFIG__EUTILS_CLIENT__WAIT_TIME`** | floating point \>= 0.0 | 0 seconds |
+| The limit of increasing wait time using **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`**. | **`[EUTILS_CLIENT]`**<br/>**`WAIT_TIME_MAX`**<br/><br/>**`NCBI_CONFIG__EUTILS_CLIENT__WAIT_TIME_MAX`** | floating point \>= 0.0 | 3 seconds |
+| **`WAIT_TIME_MULTIPLIER`** and **`WAIT_TIME_INCREMENT`** specify the way wait time is increased if errors continue to happen (next\_wait\_time = prev\_wait\_time \* multiplier + increment). | **`[EUTILS_CLIENT]`**<br/>**`WAIT_TIME_INCREMENT`**<br/><br/>**`NCBI_CONFIG__EUTILS_CLIENT__WAIT_TIME_INCREMENT`** | any floating point value \>= 0.0 | 0.5 seconds |
+| See **`WAIT_TIME_INCREMENT`** | **`[EUTILS_CLIENT]`**<br/>**`WAIT_TIME_MULTIPLIER`**<br/><br/>**`NCBI_CONFIG__EUTILS_CLIENT__WAIT_TIME_MULTIPLIER`** | any floating point value \>= 1.0 | 1.0 |
 
 <div class="table-scroll"></div>
 
