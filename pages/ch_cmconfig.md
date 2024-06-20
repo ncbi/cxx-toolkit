@@ -116,9 +116,9 @@ Few options define requirements and compilation features:
     -   *CfgMT* - on Windows adds build configurations which use static multithreaded runtime libraries
     -   *CfgProps* - on Windows, modifies Visual Studio solution to use custom Properties file (which defines build settings)
     -   *Coverage* - when using GCC compiler, sets code coverage flags
-    -   *MaxDebug* - on Unix, adds *_GLIBCXX_DEBUG* compile definition
+    -   *CustomRPath* - on Unix, disables setting RPATH-related CMake definitions, allowing user to define custom ones or use defaults
+    -   *MaxDebug* - on Unix, adds address sanitizer and stack checking flags
     -   *OpenMP* - on Unix, enables OpenMP API
-    -   *SSE* - enables using SSE instruction set
     -   *StaticComponents* - instructs build system to use component's static libraries if they are available,
     -   *Symbols*  - adds debug symbols into release build,
     -   *UNICODE* - on Windows, enables using UNICODE character set.
