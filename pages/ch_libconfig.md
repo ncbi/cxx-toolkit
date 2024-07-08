@@ -209,6 +209,9 @@ Table 2. Log file configuration parameters
 | Specify whether to try creating the log file under `/log` before trying other locations (e.g. a location specified by the registry or by **`NCBI_CONFIG__LOG__FILE`**).              | **`[LOG]`**<br/>**`TryRootLogFirst`**<br/><br/>**`NCBI_CONFIG__LOG__TRYROOTLOGFIRST`**  [<sup>c</sup>](#ch_libconfig.TF.3) | Boolean  [<sup>a</sup>](#ch_libconfig.TF.1)    | false      |
 | If true, default to logging warnings when unsafe static array types are copied.       | **`[NCBI]`**<br/>**`STATIC_ARRAY_COPY_WARNING`**<br/><br/>**`NCBI_STATIC_ARRAY_COPY_WARNING`**    | Boolean  [<sup>b</sup>](#ch_libconfig.TF.2)    | false      |
 | If true, log warnings for unsafe static array types.               | **`[NCBI]`**<br/>**`STATIC_ARRAY_UNSAFE_TYPE_WARNING`**<br/><br/>**`NCBI_STATIC_ARRAY_UNSAFE_TYPE_WARNING`**  | Boolean  [<sup>b</sup>](#ch_libconfig.TF.2)    | true |
+| Default exporter for OpenTelemetry library | **`[OTEL]`**<br/>**`TRACES_EXPORTER`**<br/><br/>**`OTEL_TRACES_EXPORTER`** | "none", "otlp", "console" | "otlp" |
+| Default protocol for OTLP exporter | **`[OTEL]`**<br/>**`EXPORTER_OTLP_PROTOCOL`**<br/><br/>**`OTEL_EXPORTER_OTLP_PROTOCOL`** | "http/protobuf", "http/json", "grpc" | "http/protobuf" |
+| Default endpoint/url for OTLP exporter | **`[OTEL]`**<br/>**`EXPORTER_OTLP_ENDPOINT`**<br/><br/>**`OTEL_EXPORTER_OTLP_ENDPOINT`** | A valid URL string | "" (to use the default value depending on the protocol) |
 
 <div class="table-scroll"></div>
 
