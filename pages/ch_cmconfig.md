@@ -549,9 +549,11 @@ This approach allows to define custom target only when all the requirements are 
 
 ## Testing
 
-The build system supports two test frameworks - NCBI and CMake one. To use NCBI test framework on Linux, in the root directory execute the following command:
+The build system supports two test frameworks - NCBI and CMake one. To use NCBI test framework on Linux, in the build directory execute the following command:
 
-    make check; ./check.sh run
+    make check
+
+Test outputs can be found in *CMake-GCC730-ReleaseDLL/check* directory. Please note that the NCBI test framework does not support [Unrelated source trees](#ch_cmconfig._unrelated).
 
 To use CMake testing framework:
 
