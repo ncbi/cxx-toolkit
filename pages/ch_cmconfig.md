@@ -37,6 +37,8 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
     -   [Single source tree](#ch_cmconfig._related)
 
+-   [Testing](#ch_cmconfig._Testing)
+
 -   [NCBIptb build system](#ch_cmconfig._NCBIptb)
 
     -   [What is it?](#ch_cmconfig._What)
@@ -56,8 +58,6 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
     -   [Application target tests.](#ch_cmconfig._Test)
     
     -   [Custom target.](#ch_cmconfig._Custom)
-
--   [Testing](#ch_cmconfig._Testing)
 
 -   [Inside NCBIptb](#ch_cmconfig._Inside)
 
@@ -317,6 +317,30 @@ Next, in the root *$HOME/project/CMakeLists.txt* specify the location of module 
     NCBI_add_subdirectory(toolkit module)
 
 
+<a name="ch_cmconfig._Testing"></a>
+
+## Testing
+
+The build system supports two test frameworks - NCBI and CMake one. To use NCBI test framework on Linux, in the build directory execute the following command:
+
+    make check
+
+Test outputs can be found in *CMake-GCC730-ReleaseDLL/check* directory. Please note that the NCBI test framework does not support [Unrelated source trees](#ch_cmconfig._unrelated) and the [Toolkit Conan package](#ch_cmconfig._Conan_prebuilt).
+
+To use CMake testing framework:
+
+    On Linux: make test
+    In Visual Studio or XCode: "build" RUN_TESTS target
+
+Refer to [CMake documentation](https://cmake.org/cmake/help/v3.14/manual/ctest.1.html) for details.
+In case of CMake testing framework, test outputs can be found in *CMake-GCC730-ReleaseDLL/testing* directory.
+
+When using the Toolkit as [Conan package](#ch_cmconfig._Conan_prebuilt), availability of CTest framework should be explicitely requested by defining *NCBI_PTBCFG_ADDTEST* CMake variable before finding the Toolkit:
+
+    set(NCBI_PTBCFG_ADDTEST TRUE)
+    find_package(ncbi-cxx-toolkit-core REQUIRED)
+
+It also requires using [NCBIptb](#ch_cmconfig._NCBIptb) in your project source tree.
 
 <a name="ch_cmconfig._NCBIptb"></a>
 
@@ -544,24 +568,6 @@ That is, the definition looks as follows:
     NCBI_end_custom_target(result)
 
 This approach allows to define custom target only when all the requirements are met and collect target dependencies automatically.
-
-<a name="ch_cmconfig._Testing"></a>
-
-## Testing
-
-The build system supports two test frameworks - NCBI and CMake one. To use NCBI test framework on Linux, in the build directory execute the following command:
-
-    make check
-
-Test outputs can be found in *CMake-GCC730-ReleaseDLL/check* directory. Please note that the NCBI test framework does not support [Unrelated source trees](#ch_cmconfig._unrelated).
-
-To use CMake testing framework:
-
-    On Linux: make test
-    In Visual Studio or XCode: "build" RUN_TESTS target
-
-Refer to [CMake documentation](https://cmake.org/cmake/help/v3.14/manual/ctest.1.html) for details.
-In case of CMake testing framework, test outputs can be found in *CMake-GCC730-ReleaseDLL/testing* directory.
 
 <a name="ch_cmconfig._Inside"></a>
 
