@@ -280,7 +280,7 @@ In this case, you put your project sources and the Toolkit into separate unrelat
     NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src)
 
 Note that the Toolkit sources are added directly. These two trees will be treated as a compound one. This also means that, by default, all Toolkit build targets will be added as well.
-It is unlikely that you want it, so you need to use [project filters](ch_cmconfig._Configure)
+It is unlikely that you want it, so you need to use [project filters](#ch_cmconfig._Configure)
 
 As with the prebuilt tree setup, NCBIptb can be detached from the Toolkit source.  In the this case, you need to specify the location of the Toolkit sources explicitely - by defining *NCBITK_TREE_ROOT*:
 
