@@ -110,7 +110,7 @@ For additional related information, see:
 
     -   Non-ANSI, Widely Used Functions -- `ncbi_ansi_ext`[[.h](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.h) \| [.c](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/connect/ncbi_ansi_ext.c)]
 
--   daemons [[https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal/cppcore/dispatcher/)]
+-   [daemons](https://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/source/src/internal/cppcore/dispatcher/)
 
     -   [LBSMD](ch_app.html#ch_app.Load_Balancing_Servi)
 
