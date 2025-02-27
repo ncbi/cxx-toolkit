@@ -234,6 +234,8 @@ The script configures the tree automatically, according to prebuilt directory se
 
 NCBI C++ Toolkit is also available as Conan package. There are two packages, in fact - [ncbi-cxx-toolkit-public](https://github.com/ncbi/ncbi-cxx-toolkit-conan), and [ncbi-cxx-toolkit-core](https://bitbucket.ncbi.nlm.nih.gov/projects/CXX/repos/ncbi-cxx-toolkit-core-conan). The latter available at NCBI only. There is also *ncbi-cxx-toolkit-public* package in [Conan center](https://conan.io/center/recipes/ncbi-cxx-toolkit-public).
 
+Documentation on the contents and on how to use these packages can be found in their respective *README.md* files.
+
 *Public* package relies on Conan center and uses publicly available 3rd party packages only. *Core* one adds internal packages available at NCBI only, and provides more  debugging and testing options. To find out, what is available, use the following Conan command
 
     conan search 'ncbi-cxx-toolkit*' -r all
