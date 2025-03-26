@@ -35,11 +35,13 @@ The following is an outline of the topics presented in this chapter:
 
 -   [Source Tree Availability](#ch_start.source_avail)
 
-    -   [FTP Availability](#ch_start.ftp_avail)
+    -   [GitHub Availability](#ch_start.git_avail)
 
     -   [SVN Availability](#ch_start.svn_avail)
 
     -   [Availability via Shell Scripts](#ch_start.script_avail)
+
+    -   [FTP Availability](#ch_start.ftp_avail)
 
 -   [Source Tree Contents](#ch_start.source_tree_contents)
 
@@ -83,6 +85,8 @@ Quick Start
 A good deal of the complication and tedium of getting started has thankfully been wrapped by a number of shell scripts. They facilitate a 'quick start' whether starting anew or within an existing Toolkit work environment. ('Non-quick starts' sometimes cannot be avoided, but they are considered [elsewhere](ch_proj.html#ch_proj.new_proj_struct).)
 
 -   **Get the Source Tree (see** [Figure 1](#ch_start.F1)**)**
+
+    -   Retrieve from [GitHub](ch_getcode_svn.html#ch_getcode_svn.external), **or**
 
     -   Retrieve via SVN ([in-house](ch_getcode_svn.html#ch_getcode_svn.code_retrieval) \| [public](ch_getcode_svn.html#ch_getcode_svn.external)), **or**
 
@@ -183,27 +187,27 @@ The following example libraries can be created with [new\_project](ch_proj.html#
 Source Tree Availability
 ------------------------
 
-The source tree is available through FTP, SVN and by running special scripts. The following subsections discuss these topics in more detail:
+The source tree is available through GitHub, SVN, FTP, or by running special scripts. The following subsections discuss these topics in more detail:
 
--   [FTP Availability](#ch_start.ftp_avail)
+-   [GitHub Availability](#ch_start.git_avail)
 
 -   [SVN Availability](#ch_start.svn_avail)
 
 -   [Availability via Shell Scripts](#ch_start.script_avail)
 
-<a name="ch_start.ftp_avail"></a>
+-   [FTP Availability](#ch_start.ftp_avail)
 
-### FTP Availability
+<a name="ch_start.git_avail"></a>
 
-The Toolkit source is available via FTP at [https://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT) (also at [ftp://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT)... but FTP may be blocked on some clients), and the archives available, with unpacking instructions, are listed on the [download page](ch_getcode_svn.html). If you plan to modify the Toolkit source in any way with the ftp code, it is strongly advised that it be placed under a source code control system (preferably SVN) so that you can rollback to an earlier revision without having to ftp the entire archive once again.
+### GitHub Availability
+
+The Toolkit source code can be retrieved from GitHub [read-only repository](ch_getcode_svn.html#ch_getcode_svn.external).
 
 <a name="ch_start.svn_avail"></a>
 
 ### SVN Availability
 
 NCBI users can obtain the source tree directly from the internal [SVN repository](ch_getcode_svn.html#ch_getcode_svn.code_retrieval).
-
-A [read-only repository](ch_getcode_svn.html#ch_getcode_svn.external) is also available to the public.
 
 <a name="ch_start.script_avail"></a>
 
@@ -218,6 +222,12 @@ For NCBI users, the various shell scripts in `$NCBI/c++/scripts` tailor the work
 -   **new\_project**. Details on [new\_project](ch_proj.html#ch_proj.new_proj_struct) are discussed in a later chapter.
 
 -   **update\_projects**. Details on [update\_core](ch_getcode_svn.html#ch_getcode_svn.update_projects_sh) and [update\_projects](ch_getcode_svn.html#ch_getcode_svn.update_projects_sh) are covered in later chapter.
+
+<a name="ch_start.ftp_avail"></a>
+
+### FTP Availability
+
+The Toolkit source is available via FTP at [https://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT) (also at [ftp://ftp.ncbi.nih.gov/toolbox/ncbi\_tools++/CURRENT/](ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT)... but FTP may be blocked on some clients), and the archives available, with unpacking instructions, are listed on the [download page](ch_getcode_svn.html). If you plan to modify the Toolkit source in any way with the ftp code, it is strongly advised that it be placed under a source code control system (preferably SVN) so that you can rollback to an earlier revision without having to ftp the entire archive once again.
 
 <a name="ch_start.source_tree_contents"></a>
 

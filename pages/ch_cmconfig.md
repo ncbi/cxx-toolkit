@@ -16,6 +16,8 @@ This chapter describes how to configure, build, and use the NCBI C++ Toolkit, or
 
 At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. It adds many convenient features, facilitates handling of large source trees and simplifies CMake build target descriptions, while still allowing use of "native" CMake.
 
+The Toolkit utilizes several open source 3rd party packages. To install them outside of NCBI, we suggest using [Conan](https://conan.io) package manager.
+When configuring build, this can be done [automatically](#ch_cmconfig._Configure_Conan).
 
 ## Chapter Outline
 
@@ -31,7 +33,7 @@ At NCBI, we use NCBIptb – CMake wrapper, written in CMake scripting language. 
 
     -   [Conan package](#ch_cmconfig._Conan_prebuilt)
 
--   [Use Toolkit as source tree](#ch_cmconfig._Use_source)
+-   [Use the Toolkit as source tree](#ch_cmconfig._Use_source)
 
     -   [Unrelated source trees](#ch_cmconfig._unrelated)
 
@@ -119,9 +121,10 @@ Few options define requirements and compilation features:
     -   *CustomRPath* - on Unix, disables setting RPATH-related CMake definitions, allowing user to define custom ones or use defaults
     -   *MaxDebug* - on Unix, adds address sanitizer and stack checking flags
     -   *OpenMP* - on Unix, enables OpenMP API
+    -   *Profiling* - when using GCC compiler, sets code profiling flags
     -   *StaticComponents* - instructs build system to use component's static libraries if they are available,
     -   *Symbols*  - adds debug symbols into release build,
-    -   *UNICODE* - on Windows, enables using UNICODE character set.
+    -   *UNICODE* - on Windows, enables using UNICODE character set (by default, UNICODE is enabled. We do not recommend disabling it)
  For example:
 
 ```
@@ -140,15 +143,17 @@ Once the build tree is generated, go into build directory – for example, *CMak
 
 ### Use Conan to manage external packages
 
-[Conan](https://docs.conan.io/en/latest/) is a software package manager for C and C++ development. NCBI C++ Toolkit uses a number of third party libraries and packages. At NCBI, they are usually prebuilt and readily available in many configuration. Still, in certain scenarios, it might be beneficial to manage them using package manager. To instruct NCBIptb to use Conan, use *--with-conan* command line flag in configuration command, for example:
+[Conan](https://conan.io) is a software package manager for C and C++ development. NCBI C++ Toolkit uses a number of third party libraries and packages. At NCBI, they are usually prebuilt and readily available in many configuration. Still, in certain scenarios, it might be beneficial to manage them using package manager. To instruct NCBIptb to use Conan, use *--with-conan* command line flag in configuration command, for example:
 
     cmake-configure --with-conan --with-projects="misc"
 
-In this case, NCBIptb installs specified Conan packages first, and only after that looks for additional packages in known locations at NCBI. The list of Conan packages and their options is described in *src/build-system/cmake/conanfile.\*.txt* files. There are 3 lists – for Windows (*conanfile.MSVC.txt*), Unix (*conanfile.UNIX.txt*) and MacOS (*conanfile.XCODE.txt*).
+In this case, NCBIptb installs specified Conan packages first, and only after that looks for additional packages in known locations at NCBI. The list of Conan packages and their options is described in *src/build-system/cmake/conanfile.py* file.
 
 There are two major releases of Conan - [v1.x](https://docs.conan.io/1/) and [v2.x](https://docs.conan.io/2/). The problem is that they are not fully compatible. The Toolkit configuration supports both Conan v1.x and v2.x.
 
-The configuration process expects to find recipes and prebuilt packages in NCBI artifactory. Some of the packages exist at NCBI only - for example, [fastcgi](https://github.com/FastCGI-Archives/fcgi2), [ncbi-vdb](https://github.com/ncbi/ncbi-vdb), ncbicrypt. Outside of NCBI, one needs either establish a connection to NCBI artifactory (and specify that in Conan configuration [proxies](https://docs.conan.io/1/reference/config_files/conan.conf.html?highlight=proxies) ), or remove corresponding entries from *src/build-system/cmake/conanfile.\*.txt* files and rely on [Conan center](https://conan.io/center) only.
+The configuration process expects to find recipes and prebuilt packages in NCBI artifactory. Some of the packages exist at NCBI only - for example, [fastcgi](https://github.com/FastCGI-Archives/fcgi2), [ncbi-vdb](https://github.com/ncbi/ncbi-vdb), ncbicrypt.
+Outside of NCBI, the configuration script will check for their presence in the local Conan cache and disable if they are not found.
+Publicly available packages will be downloaded from the [Conan center](https://conan.io/center).
 
 On Unix systems, by default, configuration installs *shared* components always (which use shared libraries). Depending on the requested build type, *Debug* or *Release* libraries are used. By specifying *--with-features="StaticComponents"*, one can request installation of *static* components.
 
@@ -162,7 +167,7 @@ On Windows, configuration installs *static* components in static (*--without-dll
 
 ### Create new project
 
-The prebuilt Toolkit is available in several configurations. ***Note*** that this must be built using CMake – that is, it must contain CMake import target configuration files. To create a new project which uses libraries from it, use *new_cmake_project* script:
+At NCBI, the prebuilt Toolkit is available in several configurations. ***Note*** that this must be built using CMake – that is, it must contain CMake import target configuration files. To create a new project which uses libraries from it, use *new_cmake_project* script:
 
     new_cmake_project <name> <type> <builddir>
 
@@ -232,25 +237,25 @@ The script configures the tree automatically, according to prebuilt directory se
 
 ### Conan package
 
-NCBI C++ Toolkit is also available as Conan package. There are two packages, in fact - [ncbi-cxx-toolkit-public](https://github.com/ncbi/ncbi-cxx-toolkit-conan), and [ncbi-cxx-toolkit-core](https://bitbucket.ncbi.nlm.nih.gov/projects/CXX/repos/ncbi-cxx-toolkit-core-conan). The latter available at NCBI only. There is also *ncbi-cxx-toolkit-public* package in [Conan center](https://conan.io/center/recipes/ncbi-cxx-toolkit-public).
+NCBI C++ Toolkit is also available as Conan package. There are two packages, in fact - [ncbi-cxx-toolkit-public](https://github.com/ncbi/ncbi-cxx-toolkit-conan), and [ncbi-cxx-toolkit-core](https://gitlab.be-md.ncbi.nlm.nih.gov/pd/cxxtk/cxx/ncbi-cxx-toolkit-core-conan). The latter is available at NCBI only. There is also *ncbi-cxx-toolkit-public* package in [Conan center](https://conan.io/center/recipes/ncbi-cxx-toolkit-public).
 
 Documentation on the contents and on how to use these packages can be found in their respective *README.md* files.
 
 *Public* package relies on Conan center and uses publicly available 3rd party packages only. *Core* one adds internal packages available at NCBI only, and provides more  debugging and testing options. To find out, what is available, use the following Conan command
 
-    conan search 'ncbi-cxx-toolkit*' -r all
+    conan list 'ncbi-cxx-toolkit*' -r '*'
 
 For developers at NCBI, the following samples are available: [CGI sample](https://gitlab.be-md.ncbi.nlm.nih.gov/pd/cxxtk/cxx/cgi-sample) and [FCGI sample](https://gitlab.be-md.ncbi.nlm.nih.gov/pd/cxxtk/cxx/fcgi-sample).
 
 
 <a name="ch_cmconfig._Use_source"></a>
 
-## Use Toolkit as source tree
+## Use the Toolkit as source tree
 
 Sometimes it is beneficial to use the NCBI C++ Toolkit directly as a source tree. For example, you find the Toolkit in [Github](https://github.com/ncbi/ncbi-cxx-toolkit-public) and want to use it in your project. How to integrate them? One option is to build the Toolkit - standalone or as a Conan package, and then use it as a [prebuilt one](#ch_cmconfig._Use_prebuilt).
 Another option is to use the Toolkit directly as a source tree.
 
-Here we assume that you project has *include* and *src* directories:
+Here we assume that your project has *include* and *src* directories:
 
     project
         -- include
@@ -281,7 +286,7 @@ In this case, you put your project sources and the Toolkit into separate unrelat
     include($ENV{HOME}/toolkit/src/build-system/cmake/CMake.NCBItoolkit.cmake)
     NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src)
 
-Note that the Toolkit sources are added directly. These two trees will be treated as a compound one. This also means that, by default, all Toolkit build targets will be added as well.
+Note that the Toolkit sources are added directly. These two trees will be treated as a compound one. This also means that, by default, all the Toolkit build targets will be added as well.
 It is unlikely that you want it, so you need to use [project filters](#ch_cmconfig._Configure)
 
 As with the prebuilt tree setup, NCBIptb can be detached from the Toolkit source.  In the this case, you need to specify the location of the Toolkit sources explicitely - by defining *NCBITK_TREE_ROOT*:
@@ -292,7 +297,7 @@ As with the prebuilt tree setup, NCBIptb can be detached from the Toolkit source
     include($ENV{HOME}/test/src/build-system/cmake/CMake.NCBItoolkit.cmake)
     NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src)
 
-Adding yet another unrelated source tree to the project requires declaring it in advance. So, to add *$HOME/project2*, you need to call *NCBI_declare_module_root*:
+Adding yet another unrelated source tree to the project requires declaring it in advance. For example, to add *$HOME/project2*, you need to call *NCBI_declare_module_root*:
 
     cmake_minimum_required(VERSION 3.20)
     project(test)
@@ -327,15 +332,15 @@ The build system supports two test frameworks - NCBI and CMake one. To use NCBI 
 
     make check
 
-Test outputs can be found in *CMake-GCC730-ReleaseDLL/check* directory. Please note that the NCBI test framework does not support [Unrelated source trees](#ch_cmconfig._unrelated) and the [Toolkit Conan package](#ch_cmconfig._Conan_prebuilt).
+Test outputs can be found in *CMake-GCC1320-ReleaseDLL/check* directory. Please note that the NCBI test framework does not support [Unrelated source trees](#ch_cmconfig._unrelated) and the [Toolkit Conan package](#ch_cmconfig._Conan_prebuilt).
 
 To use CMake testing framework:
 
     On Linux: make test
     In Visual Studio or XCode: "build" RUN_TESTS target
 
-Refer to [CMake documentation](https://cmake.org/cmake/help/v3.14/manual/ctest.1.html) for details.
-In case of CMake testing framework, test outputs can be found in *CMake-GCC730-ReleaseDLL/testing* directory.
+Refer to [CMake documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html) for details.
+In case of CMake testing framework, test outputs can be found in *CMake-GCC1320-ReleaseDLL/testing* directory.
 
 When using the Toolkit as [Conan package](#ch_cmconfig._Conan_prebuilt), availability of CTest framework should be explicitely requested by defining *NCBI_PTBCFG_ADDTEST* CMake variable before finding the Toolkit:
 
