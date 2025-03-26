@@ -10,15 +10,13 @@ nav: pages/ch_getcode_svn
 
 ## Introduction
 
-The first step in working with the C++ Toolkit is getting the source code, which can be either downloaded from anonymous FTP or checked out from a Subversion repository. This chapter describes both methods and the use of utility scripts that can help getting only the necessary source code components.
+The first step in working with the C++ Toolkit is getting the source code, which can be retrieved from GitHub or from a Subversion repository. This chapter describes both methods and the use of utility scripts that can help getting only the necessary source code components.
 
 If you are interested in downloading source code from the C Toolkit instead of the C++ Toolkit, please see [Access to the C Toolkit source tree Using CVS](ch_res.html#ch_res.Access_to_the_C_Tool).
 
 ## Chapter Outline
 
 The following is an outline of the topics presented in this chapter:
-
--   [Public Access to the Source Code via FTP](#ch_getcode_svn.ftp_download)
 
 -   [Public Access to the Source Code via GitHub](#ch_getcode_svn.external)
 
@@ -50,35 +48,16 @@ The following is an outline of the topics presented in this chapter:
 
     -   [Source Code Retrieval under Mac OS X](#ch_getcode_svn.mac)
 
+-   [Public Access to the Source Code via FTP](#ch_getcode_svn.ftp_download)
+
 -   [Source Tree Structure Summary](#ch_getcode_svn.src_tree_struct)
-
-<a name="ch_getcode_svn.ftp_download"></a>
-
-Public Access to the Source Code via FTP
-----------------------------------------
-
--   [FTP Download Now](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT)
-
--   **Available FTP Archives**: Select the archive for your system. When the dialog box appears, choose the destination in your file system for the downloaded archive. ***Note:*** With some browsers, you may need to right-click-and-hold with your mouse and use the `'Save Link As...', 'Copy to Folder...'`, or similar options from the drop-down menu to properly save the archive. For a current list of the source code archives for different operating system/compiler combinations consult [the current Release Notes](release_notes.html).
-
--   **Unpack the Source Archive**
-
-    -   *Unix and Macintosh Systems*<br/>The Unix distributions have been archived using the standard **tar** command and compressed using **gzip**. When unpacked, all files will be under the directory `ncbi_cxx--<version_number>`, which will be created in the current directory. (***Caution:*** If `ncbi_cxx--<version_number>` already exists, **tar** extraction will overwrite existing files.) To unpack the archive: `gunzip -c ncbi_cxx--*.tar.gz | tar xvf -`
-
-    -   *Windows Systems*<br/>The Microsoft Windows versions of the source distribution have been prepared as self-extracting executables. By default a sub-folder `ncbi_cxx--<version_number >` will be created in the current folder to contain the extracted source. If `ncbi_cxx--<version_number >` already exists in the folder where the executable is launched, user confirmation is required before files are overwritten. To actually perform the extraction, do one of the following:
-
-        -   Run the executable from a command shell. This will create the sub-folder in the shell's current directory, even if the executable is located somewhere else.
-
-        -   Double-click on the archive's icon to create `ncbi_cxx--<version_number >` in the current folder.
-
-        -   Right-click on the archive's icon, and select `'Extract to...'` to unpack the archive to a user-specified location in the filesystem.
 
 <a name="ch_getcode_svn.external"></a>
 
 Public Access to the Source Code via GitHub
 -------------------------------------------
 
-The contemporary TRUNK (and in the future, public releases) of the C++ Toolkit is available to the public in GitHub at [https://github.com/ncbi/ncbi-cxx-toolkit-public](https://github.com/ncbi/ncbi-cxx-toolkit-public).
+The current TRUNK and public releases of the C++ Toolkit is available on GitHub at [https://github.com/ncbi/ncbi-cxx-toolkit-public](https://github.com/ncbi/ncbi-cxx-toolkit-public).
 
 At this time it is a read-only mirror of our master SVN repository, updated nightly. Note however that one can submit Pull Requests to it (assumed to be under the overall C++ Toolkit license only!). We will review and consider such PRs for merging into our SVN repository -- from which they will make its way back into this GitHub mirror.
 
@@ -454,6 +433,29 @@ Some of the source code retrieval scripts are available in Windows:
 Download and install the latest Subversion binaries for MacOSX from [https://subversion.apache.org/](https://subversion.apache.org/).
 
 The rest should be the same as when using Subversion under UNIX systems. See [Source Code Retrieval under Unix](#ch_getcode_svn.unix).
+
+<a name="ch_getcode_svn.ftp_download"></a>
+
+Public Access to the Source Code via FTP
+----------------------------------------
+
+Old releases of the Toolkit can be downloaded via FTP. At present they are probably of historical interest only.
+
+-   [FTP Download Now](https://ftp.ncbi.nih.gov/toolbox/ncbi_tools++/CURRENT)
+
+-   **Available FTP Archives**: Select the archive for your system. When the dialog box appears, choose the destination in your file system for the downloaded archive. ***Note:*** With some browsers, you may need to right-click-and-hold with your mouse and use the `'Save Link As...', 'Copy to Folder...'`, or similar options from the drop-down menu to properly save the archive. For a current list of the source code archives for different operating system/compiler combinations consult [the current Release Notes](release_notes.html).
+
+-   **Unpack the Source Archive**
+
+    -   *Unix and Macintosh Systems*<br/>The Unix distributions have been archived using the standard **tar** command and compressed using **gzip**. When unpacked, all files will be under the directory `ncbi_cxx--<version_number>`, which will be created in the current directory. (***Caution:*** If `ncbi_cxx--<version_number>` already exists, **tar** extraction will overwrite existing files.) To unpack the archive: `gunzip -c ncbi_cxx--*.tar.gz | tar xvf -`
+
+    -   *Windows Systems*<br/>The Microsoft Windows versions of the source distribution have been prepared as self-extracting executables. By default a sub-folder `ncbi_cxx--<version_number >` will be created in the current folder to contain the extracted source. If `ncbi_cxx--<version_number >` already exists in the folder where the executable is launched, user confirmation is required before files are overwritten. To actually perform the extraction, do one of the following:
+
+        -   Run the executable from a command shell. This will create the sub-folder in the shell's current directory, even if the executable is located somewhere else.
+
+        -   Double-click on the archive's icon to create `ncbi_cxx--<version_number >` in the current folder.
+
+        -   Right-click on the archive's icon, and select `'Extract to...'` to unpack the archive to a user-specified location in the filesystem.
 
 <a name="ch_getcode_svn.src_tree_struct"></a>
 
