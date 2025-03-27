@@ -8,15 +8,6 @@ nav: pages/ch_start
 {{ page.title }}
 =================================
 
-Overview
---------
-
-The overview for this chapter consists of the following topics:
-
--   Introduction
-
--   Chapter Outline
-
 ### Introduction
 
 This section is intended as a bird's-eye view of the Toolkit for new users, and to give quick access to important reference links for experienced users. It lays out the general roadmap of tasks required to get going, giving links to take the reader to detailed discussions and supplying a number of simple, concrete test applications.
@@ -82,6 +73,9 @@ The following is an outline of the topics presented in this chapter:
 Quick Start
 -----------
 
+The NCBI C++ Toolkit supports two build systems: one based of [GNU autoconf](https://www.gnu.org/software/autoconf/) and one based on [CMake](https://cmake.org).
+Autoconf build system is gradually phased out, and eventually may be removed.
+
 A good deal of the complication and tedium of getting started has thankfully been wrapped by a number of shell scripts. They facilitate a 'quick start' whether starting anew or within an existing Toolkit work environment. ('Non-quick starts' sometimes cannot be avoided, but they are considered [elsewhere](ch_proj.html#ch_proj.new_proj_struct).)
 
 -   **Get the Source Tree (see** [Figure 1](#ch_start.F1)**)**
@@ -96,17 +90,32 @@ A good deal of the complication and tedium of getting started has thankfully bee
 
 -   **Configure the build tree (see** [Figure 2](#ch_start.F2)**)**
 
+    -   Use the [cmake-configure](ch_cmconfig.html#ch_cmconfig._Configure) script, **or**
+
     -   Use the [configure](ch_config.html#ch_config.Running_the_configur) script, **or**
 
     -   Use a compiler-specific [wrapper script](ch_config.html#ch_config.Special_Consideratio) (e.g. **compilers/unix/\*.sh**).
 
--   **Build the C++ Toolkit from** `makefiles` **and** `meta-makefiles`(if required)
+-   **Build the C++ Toolkit**
 
-    -   `make all_r` for a recursive make, **or**
+    -   The build process in CMake-based system depends on [generator](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html) being used
 
-    -   `make all` to make only targets for the current directory.
+    -   Autoconf system generates a set of Unix Makefiles. One can then use `make all_r` for a recursive make, or `make all` to make only targets for the current directory.
 
--   **Work on your new or existing application or library** the scripts [new\_project](ch_proj.html#ch_proj.new_proj_struct) and (for an existing Toolkit project) [import\_project](ch_getcode_svn.html#ch_getcode_svn.import_project_sh) help to set up the appropriate `makefiles` and/or source.
+-   **Work on your new or existing application or library**
+
+    These scripts can help to set up appropriate `CMakeLists` or `makefiles` and source:
+
+    -   CMake: [new\_cmake_\_project](ch_cmconfig.html#ch_cmconfig._new_prebuilt) script or, for an existing Toolkit project, [import\_cmake_\_project](ch_cmconfig.html#ch_cmconfig._import_prebuilt)
+
+    -   Autoconf: [new\_project](ch_proj.html#ch_proj.new_proj_struct) script or [import\_project](ch_getcode_svn.html#ch_getcode_svn.import_project_sh)
+
+The build tree is generated in the source tree root and is named using compiler name and version:
+
+    CMake-{compiler_name}{compiler_version}-{build_type}
+
+Autoconf build system uses the same pattern, only without `CMake-` prefix.
+It is possible to specify a custom build root name using `--with-build-root` argument to configure scripts.
 
 <a name="ch_start.F1"></a>
 
@@ -252,7 +261,7 @@ The following topics are discussed in this section:
 
 The NCBI C++ Toolkit `source tree` (see [Figure 1](#ch_start.F1)) is organized as follows:
 
--   `src/` -- a hierarchical directory tree of [NCBI C++ projects](ch_proj.html#ch_proj.start_new_proj). Contained within `src` are all source files (`*.cpp, *.c`), along with private header files (`*.hpp, *.h`), makefiles (`Makefile.*`, including [Makefile.mk](ch_build.html#ch_build.build_make_macros)), scripts (`*.sh`), and occasionally some project-specific data
+-   `src/` -- a hierarchical directory tree of [NCBI C++ projects](ch_proj.html#ch_proj.start_new_proj). Contained within `src` are all source files (`*.cpp, *.c`), along with private header files (`*.hpp, *.h`), CMakeLists files, makefiles (`Makefile.*`, including [Makefile.mk](ch_build.html#ch_build.build_make_macros)), scripts (`*.sh`), and occasionally some project-specific data
 
 -   `include/` -- a hierarchical directory tree whose structure mirrors the `src` directory tree. It contains only public header files (`*.hpp, *.h`).
 
@@ -293,6 +302,10 @@ An individual project contains the set of source code and/or scripts that are re
 The contents of each project's [source tree](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src) are:
 
 -   `*.cpp, *.hpp` -- project's source files and private headers
+
+-   `CMakeLists.txt` -- a CMake file which specifies which local projects and sub-projects(located in the project subdirectories) must be built
+
+-   `CMakeLists.*.lib.txt, CMakeLists.*.app.txt` -- CMake files which describe build targets -  a library or an application
 
 -   `Makefile.in` -- a [meta-makefile](ch_build.html#ch_build.makefiles_meta) to specify which local projects (described in `Makefile.*.in`) and sub-projects(located in the project subdirectories) must be built
 
