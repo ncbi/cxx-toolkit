@@ -597,25 +597,25 @@ Figure 3. Test Result
 
 ### Running Unit Tests from a Command-Line
 
-To run one or more selected test cases from a command-line, use this:
+To see all test cases (as well as the test suites, if any):
 
-    ./foo --run_test=TestCaseName1,TestCaseName2
-
+    ./foo --list_content
+    (or, sometimes: ./foo -dryrun)
+    
 Multiple test cases can be selected by using a comma-separated list of names.
+To run one or more selected test cases from a command-line:
 
-To see all test cases in a unit test, use this:
+    ./foo --run_test='TestCaseName1,TestSuiteNameA/TestCaseNameFoo,*/TestCaseNameBar'
 
-    ./foo -dryrun
-
-To see exactly which test cases passed and failed, use this:
+To see exactly which test cases passed and failed:
 
     ./foo --report_level=detailed
 
-To see warning messages, use this:
+To see warning messages:
 
     ./foo --log_level=warning
 
-Additional runtime parameters can be set. For a complete list, see the online [documentation](https://www.boost.org/doc/libs/1_53_0/libs/test/doc/html/utf/user-guide/runtime-config/reference.html).
+Additional runtime parameters can be set. For a complete list, see the online [documentation](https://www.boost.org/doc/libs/1_76_0/libs/test/doc/html/boost_test/runtime_config/summary.html).
 
 <a name="ch_boost.Limitations_of_the_B"></a>
 
