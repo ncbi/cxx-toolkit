@@ -305,6 +305,25 @@ Adding yet another unrelated source tree to the project requires declaring it in
     NCBI_declare_module_root("$ENV{HOME}/project2")
     NCBI_add_subdirectory(${NCBITK_SRC_ROOT} src $ENV{HOME}/project2)
 
+Finally, if your build target is defined in the current directory and there is no subdirectories, the definition must be put into a separate CMake file and the target must be declared in advance.
+For example, to define *mytest* application, create *CMakeLists.mytest.app.txt* file:
+
+    NCBI_begin_app(mytest)
+      NCBI_sources(mytest.cpp)
+      NCBI_uses_toolkit_libraries(xncbi)
+    NCBI_end_app()
+
+and the root *CMakeLists.txt*:
+
+    cmake_minimum_required(VERSION 3.20)
+    project(test)
+    include($ENV{HOME}/src/build-system/cmake/CMake.NCBItoolkit.cmake)
+    NCBI_declare_target(mytest.app)
+    NCBI_add_subdirectory(${NCBITK_SRC_ROOT})
+    NCBI_add_target(mytest.app)
+
+Note that the target is *declared* before adding ${NCBITK_SRC_ROOT} and *defined* after that.
+
 
 <a name="ch_cmconfig._related"></a>
 
