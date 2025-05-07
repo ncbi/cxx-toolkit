@@ -1244,7 +1244,7 @@ An example of an exception with a stack trace on Linux:
 
 ### Logging modules and its configuration parameters
 
-Logging can be done from different modules and sources, written in different languages and having different APIs. Below is a list of each module and description for all its configuration parameters.
+Logging can be done from different modules and sources, written in different languages and having different APIs. Below is a list of each module and description for all its configuration parameters. NOTE: there are also [other AppLog client language bindings](https://confluence.ncbi.nlm.nih.gov/pages/viewpage.action?pageId=87134843) available (for Python, Perl, Java, etc).
 
 <a name="ch_core.Logging_Modules_CXX"></a>
 
