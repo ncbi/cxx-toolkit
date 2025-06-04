@@ -1993,7 +1993,7 @@ The following topics explain how to use NetCache from an application:
 
 #### The basic ideas
 
-A typical **NetCache** implementation involves a load-balanced server daemon (the "service") and one or more clients that access the service through a software interface. See [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log) for descriptions of the **NetCache** server daemon configuration parameters.
+A typical **NetCache** implementation involves a load-balanced server daemon (the "service") and one or more clients that access the service through a software interface. See [netcached.ini](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/app/netcache/netcached.ini) for descriptions of the **NetCache** server daemon configuration parameters.
 
 Two classes provide access to **NetCache** - 
 [CNetCacheAPI](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCNetCacheAPI.html) and
@@ -2029,13 +2029,13 @@ There are multiple ways to write data to **NetCache** and read it back, but the 
 
     -   Reading a blob won't delete it - it will be removed automatically when its TTL has expired, or it can be removed explicitly.
 
-    -   **NetCache** server daemons can specify a default TTL for their blobs using the `blob_ttl` entry in the `[netcache]` section of [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log). There is no direct way to find the server's default TTL, but you can find it indirectly by creating a blob and calling [GetBlobInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobInfo) on the new blob. For an example of this, see [CSampleNetCacheClient::DemoPutRead()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_client_sample.cpp).
+    -   **NetCache** server daemons can specify a default TTL for their blobs using the `blob_ttl` entry in the `[netcache]` section of [netcached.ini](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/app/netcache/netcached.ini). There is no direct way to find the server's default TTL, but you can find it indirectly by creating a blob and calling [GetBlobInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobInfo) on the new blob. For an example of this, see [CSampleNetCacheClient::DemoPutRead()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/sample/app/netcache/netcache_client_sample.cpp).
 
     -   Blob lifetime can be prolonged.
 
         -   By default, each time a blob is accessed its lifetime will be extended by the server's default `blob_ttl`. The default prolongation can be overridden by passing a TTL when accessing the blob (the passed value will apply only to that access).
 
-        -   Lifetime prolongation can be disabled by setting the `prolong_on_read` entry to `false` in [netcached.ini](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log).
+        -   Lifetime prolongation can be disabled by setting the `prolong_on_read` entry to `false` in [netcached.ini](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/app/netcache/netcached.ini).
 
         -   ***Note:*** Calling [GetBlobSize()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobSize) will prolong a blob's lifetime (unless `prolong_on_read` is `false`), but calling [GetBlobInfo()](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/ident?i=GetBlobInfo) will not.
 
