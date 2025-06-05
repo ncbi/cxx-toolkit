@@ -1360,7 +1360,7 @@ The subsequent sections are based on a Linux platform. If you are using Windows,
 
 -   Running `new_project myapp app/cgi` creates file names with "cgi\_sample" in them rather than "myapp".
 
--   The proxy script, [fcgi\_sample.cgi](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c%2B%2B/src/sample/app/cgi/fcgi_sample.cgi?view=log), is a Bourne shell script and therefore won't run on Windows. Please copy it to a Linux web server.
+-   The proxy script, [fcgi\_sample.cgi](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/sample/app/cgi/fcgi_sample.cgi), is a Bourne shell script and therefore won't run on Windows. Please copy it to a Linux web server.
 
 <a name="ch_cgi.Creating_and_debugging_a_sample_F"></a>
 
@@ -1454,7 +1454,7 @@ To debug a "plain" CGI, first create a FastCGI-capable version of it, then debug
 
 2.  Rebuild.
 
-3.  Install the [proxy script](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/sample/app/cgi/fcgi_sample.cgi?view=log) on the web server in place of, or in addition to, the existing CGI.
+3.  Install the [proxy script](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/sample/app/cgi/fcgi_sample.cgi) on the web server in place of, or in addition to, the existing CGI.
 
 4.  [Configure the connection](#ch_cgi.Connecting_the_FCGI_proxy_to_the) between the proxy and the application.
 
