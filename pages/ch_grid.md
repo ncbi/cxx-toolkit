@@ -523,7 +523,7 @@ Typical client-server interactions differ in the following categories:
 
 The simplest protocol is probably a consistent pattern of a client request followed by a server response. The [Track Manager](https://mini.ncbi.nlm.nih.gov/1k2qd) server uses this protocol.
 
-The [NetScheduler](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netschedule/) server follows a modified request / response protocol. It expects three "messages" - two information lines followed by a command line - then it returns a response.
+The [NetScheduler](https://github.com/ncbi/ncbi-cxx-toolkit-public/tree/main/src/app/netschedule) server follows a modified request / response protocol. It expects three "messages" - two information lines followed by a command line - then it returns a response.
 
 The [Genome Pipeline](https://mini.ncbi.nlm.nih.gov/1k2qn) server protocol adds a client acknowledgment to the interaction. A missing or corrupt acknowledgment triggers a rollback of the transaction.
 
@@ -535,7 +535,7 @@ Your server can follow whatever pattern of requests and responses is appropriate
 
 At a low level, the server simply receives bytes through a socket, so it must parse the input data into separate requests.
 
-Perhaps the easiest request format to parse simply delimits requests with newlines - this is the request format used by the [NetScheduler](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netschedule/) server.
+Perhaps the easiest request format to parse simply delimits requests with newlines - this is the request format used by the [NetScheduler](https://github.com/ncbi/ncbi-cxx-toolkit-public/tree/main/src/app/netschedule) server.
 
 A more robust way to define the request and response formats is with an ASN.1 specification. NCBI servers that use an ASN.1-defined request format include:
 
@@ -555,7 +555,7 @@ Servers may be implemented to respond immediately (i.e. in the same thread execu
 
 NCBI Servers that use respond immediately include:
 
--   [NetScheduler](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netschedule/)
+-   [NetScheduler](https://github.com/ncbi/ncbi-cxx-toolkit-public/tree/main/src/app/netschedule)
 
 -   [Ideogram](https://mini.ncbi.nlm.nih.gov/1k2qe)
 
@@ -734,9 +734,9 @@ Here are some places to look for reference and to see how to [CServer](https://w
 
 -   [CServer Class Reference](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCServer.html)
 
--   [CServer test application](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/connect/test/test_server.cpp)
+-   [CServer test application](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/connect/test/test_server.cpp)
 
--   [NetScheduler](https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netschedule/)
+-   [NetScheduler](https://github.com/ncbi/ncbi-cxx-toolkit-public/tree/main/src/app/netschedule)
 
 -   [Ideogram](https://mini.ncbi.nlm.nih.gov/1k2qe) (NCBI only)
 
