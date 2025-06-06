@@ -781,7 +781,7 @@ The following sample code shows how to perform both character- and line-based di
 
 For more detailed usage, see the test program:
 
-<https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c%2B%2B/src/util/diff/test/>
+<https://github.com/ncbi/ncbi-cxx-toolkit-public/tree/main/src/util/diff/test>
 
 <a name="ch_intro.Floating_Point_Comparison"></a>
 
