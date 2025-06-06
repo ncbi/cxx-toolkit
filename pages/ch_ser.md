@@ -474,7 +474,7 @@ In addition, there is a [hook guard](#ch_ser.objstream.html_hookguard) class, wh
 
 #### Hook Sample
 
-Here is a complete program that illustrates how to create a read hook for class members (other sample programs are available at <https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/sample/app/serial/>):
+Here is a complete program that illustrates how to create a read hook for class members (other sample programs are available at <https://github.com/ncbi/ncbi-cxx-toolkit-public/tree/main/src/sample/app/serial>):
 
     #include <ncbi_pch.hpp>
     #include <objects/general/Date_std.hpp>
