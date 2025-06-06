@@ -1321,7 +1321,7 @@ See the [Distributed Computing](ch_grid.html) chapter for more information on Ne
 
 Configuration parameters for NetCache daemons are described in the file:
 
-<https://www.ncbi.nlm.nih.gov/viewvc/v1/trunk/c++/src/app/netcache/netcached.ini?view=log>
+<https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/app/netcache/netcached.ini>
 
 <a name="ch_libconfig.Internal_ApplicationSpecifi"></a>
 
