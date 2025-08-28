@@ -119,7 +119,7 @@ Few options define requirements and compilation features:
     -   *CfgProps* - on Windows, modifies Visual Studio solution to use custom Properties file (which defines build settings)
     -   *Coverage* - when using GCC compiler, sets code coverage flags
     -   *CustomRPath* - on Unix, disables setting RPATH-related CMake definitions, allowing user to define custom ones or use defaults
-    -   *MaxDebug* - on Unix, adds address sanitizer and stack checking flags
+    -   *MaxDebug* - on Unix and for VisualStudio, adds address sanitizer and stack checking flags
     -   *OpenMP* - on Unix, enables OpenMP API
     -   *Profiling* - when using GCC compiler, sets code profiling flags
     -   *StaticComponents* - instructs build system to use component's static libraries if they are available,
