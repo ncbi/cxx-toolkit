@@ -726,7 +726,7 @@ Normally, the last parameter of [SERVICE\_CreateConnectorEx()](https://www.ncbi.
 
 #### Service Redirection
 
-Services can be redirected without changing any code - for example, to test production code with a test service, or for debugging. Services are redirected using the `<service>_CONN_SERVICE_NAME` environment variable or the `[<service>] CONN_SERVICE_NAME` registry entry (see the connection library [configuration section](ch_libconfig.html#ch_libconfig.libconfig_connect)). The client application will use the original service name, but the connection will actually be made to the redirected-to service.
+Services can be redirected without changing any code - for example, to test production code with a test service, or for debugging. Services are redirected using the `<service>_CONN_SERVICE_NAME` environment variable or the `[<service>] CONN_SERVICE_NAME` registry entry (see the connection library [configuration section](ch_libconfig.html#ch_libconfig.libconfig_connect)). The client application will use the original service name, but the connection will actually be made to the redirected-to service. The redirection may recurse (up to a few reasonable number of times, and if that limit is exceeded, the API fails -- to avoid infinite or cyclical resursion). While by default the service names are treated case-insensitively, if a service name is redirected to the same name case-blindly, the latter name is going to be used "as-is" as the exact target name. This allows using case-sensitive service names (for the name resolvers that support service name case sensitivity).
 
 <a name="ch_conn.conn_debug_tools"></a>
 
