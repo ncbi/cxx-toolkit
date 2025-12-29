@@ -952,7 +952,7 @@ Table 13.5. Object Tools configuration parameters
 
 These parameters tune the behavior of the psg_client library.
 
-<a name="#ch_libconfig.T.psg_client_library_configurat"></a>
+<a name="ch_libconfig.T.psg_client_library_configurat"></a>
 
 Table 13.6. psg_client library configuration parameters
 
