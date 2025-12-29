@@ -736,7 +736,7 @@ Table 11. Serial library configuration parameters
 
 These parameters tune the behavior of the Objects library.
 
-<a name="#ch_libconfig.T.Objectsrelated_configurat"></a>
+<a name="ch_libconfig.T.Objectsrelated_configurat"></a>
 
 Table 13.1. Objects-related configuration parameters
 
