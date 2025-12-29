@@ -639,7 +639,7 @@ without loading sequence data for all segments is only about 1.5-2 times faster 
 PSG than with ID2/PUBSEQOS.
 
 See the full list of [PSG data loader configuration parameters](https://ncbi.github.io/cxx-toolkit/pages/ch_libconfig#ch_libconfig.T.Psgdataloader_configurat)
-and [psg_client library configuration parameters](ch_libconfig.T.psg_client_library_configurat).
+and [psg_client library configuration parameters](ch_libconfig#T.psg_client_library_configurat).
 
 Depending on the PSG server and client configuration PSG loader may provide or ignore some annotations (CDD, SNP, STS)
 or sequenses (WGS). These data types can be requested through dedicated data loaders: CDD, SNP etc. which should be
