@@ -272,6 +272,7 @@ Table 3. Diagnostic trace configuration parameters
 | Max size of [CAsyncDiagHandler](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=CAsyncDiagHandler) message buffer. | **`[Diag]`**<br/>**`Async_Buffer_Size`**<br/><br/>**`DIAG_ASYNC_BUFFER_SIZE`**  | unsigned integer | 32768 |
 | Max number of lines in a single [CAsyncDiagHandler](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=CAsyncDiagHandler) message buffer. | **`[Diag]`**<br/>**`Async_Buffer_Max_Lines`**<br/><br/>**`DIAG_ASYNC_BUFFER_MAX_LINES`**  | unsigned integer | 100 |
 | Max number of messages in the [CAsyncDiagHandler](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=CAsyncDiagHandler) queue. | **`[Diag]`**<br/>**`Max_Async_Queue_Size`**<br/><br/>**`DIAG_MAX_ASYNC_QUEUE_SIZE`**  | Uint4 | 10000 |
+| Discard messages on [CAsyncDiagHandler](http://intranet.ncbi.nlm.nih.gov/ieb/ToolBox/CPP_DOC/lxr/ident?i=CAsyncDiagHandler) queue overflow instead of waiting for free slots. | **`[Diag]`**<br/>**`Async_Discard_On_Overflow`**<br/><br/>**`DIAG_ASYNC_DISCARD_ON_OVERFLOW`**  | Boolean  <sup>a</sup> | false |
 
 <div class="table-scroll"></div>
 
