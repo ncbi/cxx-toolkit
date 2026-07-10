@@ -1837,6 +1837,13 @@ Obtaining a literal dollar sign requires doubling it as for `make`: `$$`
 Environment expansion occurs after splitting,
 so the Toolkit takes any resulting spaces or commas literally.
 
+Listing a nonexistent subregistry normally yields an error message with `Critical` severity.
+It is possible to make the error `Fatal` instead by preceding the name with `+`
+or suppress it altogether by preceding the name with a `-`.
+These possibilities may be of particular interest in conjunction with environment expansion
+to ensure complete configuration before proceeding
+or alternatively to allow for fully optional tuneups.
+
 Finally, the environment variable `NCBI_CONFIG_OVERRIDES` can be used to name a configuration file whose entries override any corresponding entries in all the processed registry files.
 
 <a name="ch_core.ini_search_order"></a>
