@@ -1823,9 +1823,19 @@ an entry in "`a.ini`" or any of its subregistries will take priority over an ide
     [NCBI]
     .Inherits = mytest.ini myapp.ini
 
-Entries in the main configuration file take priority over entries in subregistries.
+By default, entries in the main configuration file take priority over entries in subregistries.
+However, it is possible to give subregistries higher priority than the main configuration file
+by listing them at the front of `.Inherits` followed by a special `{}` marker
+standing in for the main configuration file.
 
 Entries defined in a subregistry can be "undefined" by explicitly defining the entry as empty in a higher priority registry file.
+
+Subregistry names can incorporate environment variables' values via shell-like syntax:
+`$VAR` (where `VAR` can be any valid C identifier, complete with possible underscores)
+or `${VAR}` (explicitly delimited).
+Obtaining a literal dollar sign requires doubling it as for `make`: `$$`
+Environment expansion occurs after splitting,
+so the Toolkit takes any resulting spaces or commas literally.
 
 Finally, the environment variable `NCBI_CONFIG_OVERRIDES` can be used to name a configuration file whose entries override any corresponding entries in all the processed registry files.
 
