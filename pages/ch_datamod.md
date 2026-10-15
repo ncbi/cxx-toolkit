@@ -3211,7 +3211,7 @@ See also the [online-version](https://github.com/ncbi/ncbi-cxx-toolkit-public/bl
 
 ### ASN.1 Specification: biblio.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/biblio/biblio.asn) of this specification, which may be more up-to-date.
+See also the [online-version](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/objects/biblio/biblio.asn) of this specification, which may be more up-to-date.
 
     --$Revision$
     --****************************************************************
