@@ -3052,7 +3052,7 @@ Following are the ASN.1 specifications referenced in this chapter:
 
 ### ASN.1 Specification: general.asn
 
-See also the [online-version](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/objects/general/general.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/general.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -3211,7 +3211,7 @@ See also the [online-version](https://github.com/ncbi/ncbi-cxx-toolkit-public/bl
 
 ### ASN.1 Specification: biblio.asn
 
-See also the [online-version](https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/objects/biblio/biblio.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/biblio.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --****************************************************************
@@ -3464,7 +3464,7 @@ See also the [online-version](https://github.com/ncbi/ncbi-cxx-toolkit-public/bl
 
 ### ASN.1 Specification: pub.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/pub/pub.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/pub.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --********************************************************************
@@ -3518,7 +3518,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: medline.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/medline/medline.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/medline.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -3614,7 +3614,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: seq.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq/seq.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seq.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -4079,7 +4079,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: seqblock.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqblock.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --*********************************************************************
@@ -4317,7 +4317,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: seqcode.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqcode.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --  *********************************************************************
@@ -4389,7 +4389,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: seqset.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqset.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -4457,7 +4457,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: seqloc.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqloc/seqloc.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqloc.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -4591,7 +4591,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: seqfeat.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqfeat/seqfeat.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqfeat.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -5724,7 +5724,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: seqalign.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqalign/seqalign.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqalign.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
@@ -6026,7 +6026,7 @@ See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/l
 
 ### ASN.1 Specification: seqres.asn
 
-See also the [online-version](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqres/seqres.asn) of this specification, which may be more up-to-date.
+The up-to-date version of this specification is available [online](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqres.asn.html) of this specification, which may be more up-to-date.
 
     --$Revision$
     --**********************************************************************
