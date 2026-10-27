@@ -337,7 +337,7 @@ Types (such as Person-id) that contain other types can be constructed by assigni
 General Use Objects
 -------------------
 
-This section describes the data objects defined in [general.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/general/general.asn) and their C++ classes and APIs. They are a miscellaneous collection of generally useful types.
+This section describes the data objects defined in [general.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/general.asn.html) and their C++ classes and APIs. They are a miscellaneous collection of generally useful types.
 
 -   [The Date: Date-std and Date](#ch_datamod.The_Date_Datestd_and)
 
