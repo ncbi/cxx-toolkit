@@ -458,7 +458,7 @@ The User-object and User-field types are implemented with the [CUser\_object](ht
 Bibliographic References
 ------------------------
 
-The Bibliographic References section documents types for storing publications of any sort and collections of publications. The types are defined in [biblio.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/biblio/biblio.asn) and [pub.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/pub/pub.asn) modules.
+The Bibliographic References section documents types for storing publications of any sort and collections of publications. The types are defined in [biblio.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/biblio.asn.html) and [pub.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/pub.asn.html) modules.
 
 <a name="ch_datamod.Content"></a>
 
@@ -667,7 +667,7 @@ The Pub-set type is implemented by the [CPub\_set](https://www.ncbi.nlm.nih.gov/
 MEDLINE Data
 ------------
 
-This section is an introduction to MEDLINE and the structure of a MEDLINE record. It describes types defined in the [medline.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/medline/medline.asn) module.
+This section is an introduction to MEDLINE and the structure of a MEDLINE record. It describes types defined in the [medline.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/medline.asn.html) module.
 
 <a name="ch_datamod.datamodel.types.medline"></a>
 
@@ -746,7 +746,7 @@ As an experiment, Library Operations at the NLM is putting in mnemonic symbols f
 Biological Sequences
 --------------------
 
-This section describes types used to represent biological data. These types are defined in the [seq.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seq/seq.asn), [seqblock.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn), and [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) modules.
+This section describes types used to represent biological data. These types are defined in the [seq.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seq.asn.html), [seqblock.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqblock.asn.html), and [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqcode.asn.html) modules.
 
 <a name="ch_datamod.datamodel.cpp.seq"></a>
 
@@ -1036,7 +1036,7 @@ The map location given here is a Dbtag, to be able to cite a map location given 
 
 ##### pdb: PDB Data
 
-NCBI produces ASN.1 encoded entries from data provided by many different sources. Almost all of the data items from these widely differing sources are mapped into the common ASN.1 specifications described in this document. However, in all cases a small number of elements are unique to a particular data source, or cannot be unambiguously mapped into the common ASN.1 specification. Rather than lose such elements, they are carried in small data structures unique to each data source. These are specified in [seqblock.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqblock/seqblock.asn) and implemented by the C++ classes [CGB\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGB__block.html), [CEMBL\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCEMBL__block.html), [CSP\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSP__block.html), [CPIR\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPIR__block.html), [CPRF\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPRF__block.html), and [CPDB\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPDB__block.html).
+NCBI produces ASN.1 encoded entries from data provided by many different sources. Almost all of the data items from these widely differing sources are mapped into the common ASN.1 specifications described in this document. However, in all cases a small number of elements are unique to a particular data source, or cannot be unambiguously mapped into the common ASN.1 specification. Rather than lose such elements, they are carried in small data structures unique to each data source. These are specified in [seqblock.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqblock.asn.html) and implemented by the C++ classes [CGB\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCGB__block.html), [CEMBL\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCEMBL__block.html), [CSP\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSP__block.html), [CPIR\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPIR__block.html), [CPRF\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPRF__block.html), and [CPDB\_block](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCPDB__block.html).
 
 <a name="ch_datamod.genbank_GenBank_Flat"></a>
 
@@ -1194,7 +1194,7 @@ In the case of a raw or constructed Bioseq, the sequence data itself is stored i
 
 The Seq-data type is implemented in C++ with the [CSeq\_data](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data.html) class. This class has an [E\_Choice](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data__Base.html#4ebe9e4dab723da143541cd84b40fbd3) enumeration to identify the data representation scheme and a union to hold the sequence data.
 
-The ASN.1 module [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn) and C++ class [CSeq\_code\_table](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__code__table.html) define the allowed values for the various sequence encoding and the ways to display or map between codes. This permits useful information about the allowed encoding to be stored as ASN.1 data and read into a program at runtime. Some of the encodings are presented in tables in the following discussion of the different sequence encodings. The "value" is the internal numerical value of a residue in the C++ code. The "symbol" is a one letter or multi-letter symbol to be used in display to a human. The "name" is a descriptive name for the residue.
+The ASN.1 module [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqcode.asn.html) and C++ class [CSeq\_code\_table](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__code__table.html) define the allowed values for the various sequence encoding and the ways to display or map between codes. This permits useful information about the allowed encoding to be stored as ASN.1 data and read into a program at runtime. Some of the encodings are presented in tables in the following discussion of the different sequence encodings. The "value" is the internal numerical value of a residue in the C++ code. The "symbol" is a one letter or multi-letter symbol to be used in display to a human. The "name" is a descriptive name for the residue.
 
 Some of the important methods for [CSeq\_data](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/classCSeq__data.html) are:
 
@@ -1446,7 +1446,7 @@ The sequence is encoded as a simple linear sequence of bytes where the first fiv
 
 #### Tables of Sequence Codes
 
-Various sequence alphabets can be stored in tables of type Seq-code-table, defined in [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqcode/seqcode.asn). An enumerated type, Seq-code-type is used as a key to each table. Each code can be thought of as a square table essentially like those presented above in describing each alphabet. Each "residue" of the code has a numerical one-byte value used to represent that residue both in ASN.1 data and in internal C++ structures. The information necessary to display the value is given by the "symbol". A symbol can be in a one-letter series (e.g. A,G,C,T) or more than one letter (e.g. Met, Leu, etc.). The symbol gives a human readable representation that corresponds to each numerical residue value. A name, or explanatory string, is also associated with each.
+Various sequence alphabets can be stored in tables of type Seq-code-table, defined in [seqcode.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqcode.asn.html). An enumerated type, Seq-code-type is used as a key to each table. Each code can be thought of as a square table essentially like those presented above in describing each alphabet. Each "residue" of the code has a numerical one-byte value used to represent that residue both in ASN.1 data and in internal C++ structures. The information necessary to display the value is given by the "symbol". A symbol can be in a one-letter series (e.g. A,G,C,T) or more than one letter (e.g. Met, Leu, etc.). The symbol gives a human readable representation that corresponds to each numerical residue value. A name, or explanatory string, is also associated with each.
 
 So, the NCBI2na code above would be coded into a Seq-code-table very simply as:
 
@@ -1535,7 +1535,7 @@ A Numbering object is implemented by the C++ class [CNumbering](https://www.ncbi
 Collections of Sequences
 ------------------------
 
-This section describes the types used to organize multiple Bioseqs into tree structures. The types are located in the [seqset.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqset/seqset.asn) module.
+This section describes the types used to organize multiple Bioseqs into tree structures. The types are located in the [seqset.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqset.asn.html) module.
 
 <a name="ch_datamod.datamodel.cpp.seqset"></a>
 
@@ -1715,7 +1715,7 @@ Remember that Bioseq-sets are just convenient ways to package Bioseqs and associ
 Sequence Locations and Identifiers
 ----------------------------------
 
-This section contains documentation for types used to identify Bioseqs and describe locations on them. These types are defined in the [seqloc.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqloc/seqloc.asn) module.
+This section contains documentation for types used to identify Bioseqs and describe locations on them. These types are defined in the [seqloc.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqloc.asn.html) module.
 
 <a name="ch_datamod.datamodel.cpp.seqloc"></a>
 
@@ -2080,7 +2080,7 @@ In addition, there are a large number of utility functions for working with SeqL
 Sequence Features
 -----------------
 
-This section documents data structures used to describe regions of Bioseqs. The types are located in the [seqfeat.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqfeat/seqfeat.asn) module.
+This section documents data structures used to describe regions of Bioseqs. The types are located in the [seqfeat.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqfeat.asn.html) module.
 
 <a name="ch_datamod.datamodel.cpp.seqfeat"></a>
 
@@ -2995,7 +2995,7 @@ The C++ Toolkit adds several methods to the classes generated from ASN.1 specifi
 Sequence Graphs
 ---------------
 
-The Sequence Graphs section describes the Seq-graph type used to associate some analytical data with a region on a Bioseq. The type definition is located in the [seqres.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/lxr/source/src/objects/seqres/seqres.asn) module.
+The Sequence Graphs section describes the Seq-graph type used to associate some analytical data with a region on a Bioseq. The type definition is located in the [seqres.asn](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/asn_spec/seqres.asn.html) module.
 
 -   [Introduction](#ch_datamod._Introduction_9)
 
