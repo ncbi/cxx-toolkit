@@ -756,7 +756,7 @@ Table 13.1. Objects-related configuration parameters
 | How to interpret an [EPDBMolFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/PDB__mol__id_8hpp.html#a8bb383c2bf0ec25e7745474b4b84dda3) value of ePDB_Public. | **`[PDB]`**<br/>**`DfltPubMolFmt`**<br/><br/>**`NCBI_CONFIG__PDB__DFLTPUBMOLFMT`** | "as-is",<br/>"legacy",<br/>"minimal",<br/>"extended" | "legacy" | 
 | How to interpret an [EPDBMolFormat](https://www.ncbi.nlm.nih.gov/IEB/ToolBox/CPP_DOC/doxyhtml/PDB__mol__id_8hpp.html#a8bb383c2bf0ec25e7745474b4b84dda3) value of ePDB_Internal. | **`[PDB]`**<br/>**`DfltIntMolFmt`**<br/><br/>**`NCBI_CONFIG__PDB__DFLTINTMOLFMT`** | "as-is",<br/>"legacy",<br/>"minimal",<br/>"extended" | "legacy" | 
 | If true, replace ranges that cannot be mapped with a NULL location instead of using the neighbor's fuzz. | **`[Mapper]`**<br/>**`NonMapping_As_Null`**<br/><br/>**`MAPPER_NONMAPPING_AS_NULL`** | Boolean  [<sup>a</sup>](#ch_libconfig.TF.37) | false |
-| SNP PTIS GRPC server, if not set then GRPC_PROXY environment variable is used. | **`[ID2SNP]`**<br/>**`PTIS_NAME`**<br/><br/>**`NCBI_CONFIG__ID2SNP__PTIS_NAME`** | "host:port" | "linkerd:4142" |
+| SNP PTIS GRPC server, if not set then GRPC_PROXY environment variable is used. | **`[ID2SNP]`**<br/>**`PTIS_NAME`**<br/><br/>**`NCBI_CONFIG__ID2SNP__PTIS_NAME`** | "host:port" | "linkerd:4142"<br/><br/>"hvar-dbsnpprimarytrack--develop.ocpdev-be.p2.ncbi.nlm.nih.gov:80" [<sup>d</sup>](#ch_libconfig.TF.40) |
 | SNP PTIS client debug level. | **`[ID2SNP]`**<br/>**`PTIS_DEBUG`**<br/><br/>**`NCBI_CONFIG__ID2SNP__PTIS_DEBUG`** | int: if >= 5 dbsnp requests and replies are logged | 1 |
 | SNP PTIS client number of retries. | **`[ID2SNP]`**<br/>**`RETRY`**<br/><br/>**`NCBI_CONFIG__ID2SNP__RETRY`** | int | 5 |
 | The **`TIMEOUT*`** parameters describe the timeout for opening a SNP PTIS connection. | **`[ID2SNP]`**<br/>**`TIMEOUT`**<br/><br/>**`NCBI_CONFIG__ID2SNP__TIMEOUT`** | any floating point value \>= 0.0 | 1 second |
@@ -950,6 +950,10 @@ Table 13.5. Object Tools configuration parameters
 <a name="ch_libconfig.TF.39"></a>
 
 <sup>c</sup> case-insensitive: true values are { yes \| 1 }; anything else is false
+
+<a name="ch_libconfig.TF.40"></a>
+
+<sup>d</sup> "hvar-..." if **`NCBI_ROLE`** or `/etc/ncbi/role` reads `development`, "linkerd:4142" otherwise.
 
 <a name="ch_libconfig.psg_client_library"></a>
 
